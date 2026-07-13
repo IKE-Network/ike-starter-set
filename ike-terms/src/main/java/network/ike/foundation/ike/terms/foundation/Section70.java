@@ -128,6 +128,11 @@ final class Section70 {
 
         set.concept("Axioms", PublicIds.of(UUID.fromString("20746b91-521a-45a6-89da-0fe32384a67f"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1e0fc030-ec28-4e18-b021-ceaa1d1e3ee4")), IkeTerm.ENGLISH_LANGUAGE, "Axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        Groups the logical-axiom meta-schema concepts: the vocabulary for \
+                        expressing a concept's formal, machine-processable meaning — EL++ \
+                        terminological axioms, interval-set axioms, and their syntax and \
+                        origin.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("6151c4c3-bc96-4b86-9e0c-a05b64396db5")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("2708aab3-d7ca-47f0-a7fc-a9b41c45e2c9")), IkeTerm.ENGLISH_LANGUAGE, "Axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("8ac2ff67-d2b2-5e69-a0ff-f82d73ef61e9")))
@@ -135,6 +140,10 @@ final class Section70 {
 
         set.concept("Blank Concept", PublicIds.of(UUID.fromString("cd23d88d-2fcd-4007-8829-97e37bf336aa"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("fddf5dfb-702a-4ef1-84a2-e2c8881f10b5")), IkeTerm.ENGLISH_LANGUAGE, "Blank Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        A sentinel concept used as a field value in place of a real concept \
+                        reference — a placeholder meaning no meaningful value applies here, \
+                        not a modeled domain concept itself.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("7b1742ae-98e7-4562-bd47-d20a0b35127e")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("395a8595-4e3a-5f2c-935f-28ab6c0d2fff")))
                 ;
@@ -286,6 +295,10 @@ final class Section70 {
 
         set.concept("Field categories", PublicIds.of(UUID.fromString("ed230c7c-20f9-470d-8566-5057f92748a5"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("64478cb5-6d8e-4e02-9f80-f084cb15df8e")), IkeTerm.ENGLISH_LANGUAGE, "Field categories", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        Groups the field-level meta-schema concepts: the vocabulary \
+                        describing what kind of value — a component, a field definition, a \
+                        semantic field, or a set of these — a semantic's field can hold.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("f2446156-e60e-4a7f-a859-0558b282903b")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("86c16e94-be65-5020-8542-61a611c03abd")))
                 ;

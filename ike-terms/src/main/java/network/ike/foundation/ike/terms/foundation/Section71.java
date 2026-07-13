@@ -89,6 +89,10 @@ final class Section71 {
 
         set.concept("Data Concept", PublicIds.of(UUID.fromString("ae7069d1-67fa-4470-a56f-0d24a8fcea83"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("871e69f3-e844-4342-b56f-a22188feb129")), IkeTerm.ENGLISH_LANGUAGE, "Data Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        Groups concepts that represent data values and defaults — the \
+                        data-carrying side of the model, as distinct from Tinkar Model \
+                        concept's structural, self-descriptive side.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("137221ba-47a9-442a-a62a-dcdd20a0d50e")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODEL_CONCEPT))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("515bf9ec-954d-42d8-a5e7-727e05b51602")), IkeTerm.ENGLISH_LANGUAGE, "Data Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("ac8d42ee-be33-5254-833c-cb6f688ba7f3")))
