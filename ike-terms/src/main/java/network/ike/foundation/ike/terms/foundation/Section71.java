@@ -46,6 +46,10 @@ final class Section71 {
 
         set.concept("Status field", PublicIds.of(UUID.fromString("f2c79ebb-3095-44ea-831f-992aed48801f"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("63089ce4-4fd4-4d51-b0a1-1465434022c0")), IkeTerm.ENGLISH_LANGUAGE, "Status field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        A concept field whose value is the status dimension of a STAMP — \
+                        the version's state (active, inactive, or otherwise) at the time \
+                        it was committed.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("a5c5ea2d-2d81-4275-ba18-ada4fb00448b")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of(UUID.fromString("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e")))))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("5de39a0b-0e4f-5d21-a97b-e9f454fea78a")))
                 ;
@@ -59,6 +63,9 @@ final class Section71 {
 
         set.concept("Author field", PublicIds.of(UUID.fromString("a9210ad6-cc48-47df-86e5-2192d56704a6"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a2849246-87e7-4cf1-8d24-22f09678ed72")), IkeTerm.ENGLISH_LANGUAGE, "Author field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        A concept field whose value is the author dimension of a STAMP — \
+                        who committed the version.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("cc364868-eabe-4a93-8381-7bdf84bb3df6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of(UUID.fromString("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e")))))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("c8de0a4f-4868-53b0-909d-a4603b997e13")))
                 ;
@@ -71,6 +78,9 @@ final class Section71 {
 
         set.concept("Module field", PublicIds.of(UUID.fromString("e6359a86-a1df-4721-8a1a-1f1f075ec3d9"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1a3627bd-09ec-421c-9c37-1fc6fd07d82c")), IkeTerm.ENGLISH_LANGUAGE, "Module field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        A concept field whose value is the module dimension of a STAMP — \
+                        the module the version belongs to.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("90a4ace9-c128-435d-9060-79d8920e0bd8")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of(UUID.fromString("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e")))))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("239dce52-c668-57a1-8316-b1c8bd276d0c")))
                 ;
@@ -249,6 +259,10 @@ final class Section71 {
         set.pattern("US Dialect Pattern", PublicIds.of(UUID.fromString("08f9112c-c041-56d3-b89b-63258f070074"))).at(inception)
                 .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY).purpose(IkeTerm.DESCRIPTION_SEMANTIC).field(IkeTerm.US_ENGLISH_DIALECT, IkeTerm.DESCRIPTION_ACCEPTABILITY, IkeTerm.COMPONENT_FIELD)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("413469a3-a340-4a55-8074-b44029765f93")), IkeTerm.ENGLISH_LANGUAGE, "US Dialect Pattern", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        Records whether a description is preferred or acceptable in the \
+                        United States English dialect — one field, that description's \
+                        acceptability for this dialect.""")
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3fe6d66f-bcad-4859-b513-68f924143f1f")), IkeTerm.ENGLISH_LANGUAGE, "US Dialect Pattern", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("21b12d41-1083-4fd5-95ea-1aea8edf868f")))
                 ;

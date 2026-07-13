@@ -62,6 +62,9 @@ final class Section70 {
 
         set.concept("Path field", PublicIds.of(UUID.fromString("6622a391-e2e6-45a0-97e1-c58cd0184092"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("caf4bc68-0641-4b79-9f10-c64baf689399")), IkeTerm.ENGLISH_LANGUAGE, "Path field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .definition("""
+                        A concept field whose value is the path dimension of a STAMP — \
+                        the path the version was committed on.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("98c878ac-8de4-4768-ac58-320e015daf02")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of(UUID.fromString("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e")))))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("7475aa07-c8e5-50d6-bb31-334edd0ceff8")))
                 ;
