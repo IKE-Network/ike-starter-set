@@ -15,31 +15,7 @@ at the end lists every koncept in the set, alphabetically, for lookup.
 
 == Language Concepts
 
-Every human-readable name in the knowledge base is a description: a
-k:DescriptionPattern[] semantic attached to a concept, carrying the description's own
-language, its text, its case significance, and which of three description types it
-is — k:FullyQualifiedNameDescriptionType[] (the one formal, unique name every concept
-must have), k:RegularNameDescriptionType[] (a synonym), or
-k:DefinitionDescriptionType[] (the natural-language definition text this guide renders
-for every koncept).
-
-A description's acceptability within a dialect is a separate semantic layered on top
-of it: k:USDialectPattern[] and k:GBDialectPattern[] each record whether a description
-is k:Preferred[] or merely k:Acceptable[] for that dialect, so the same concept can
-carry a British spelling and an American one side by side, each preferred in its own
-dialect. Language itself is a concept too — k:EnglishLanguage[] and its siblings —
-not a string constant.
-
-A `LanguageCoordinate` picks one description out of all of a concept's candidates by
-walking four preference lists, each itself modeled as a koncept:
-k:LanguageNidForLanguageCoordinate[] (which language to prefer),
-k:DescriptionTypePreferenceListForLanguageCoordinate[] (fully qualified name before
-regular name, or the reverse), k:DialectAssemblagePreferenceListForLanguageCoordinate[]
-(US before GB, or the reverse), and k:ModulePreferenceListForLanguageCoordinate[] (a
-final tie-break when two descriptions are otherwise equally preferred). The calculator
-matches language first, then walks description-type order, then prefers a dialect
-acceptability of k:Preferred[] matching the dialect preference order, then breaks any
-remaining tie by module preference.
+koncept-narrative::DescriptionPattern[]
 
 == STAMP Concepts
 
@@ -49,39 +25,19 @@ path, and when. Four of those five dimensions are themselves concepts in this se
 
 === Status
 
-k:StatusValue[] is the concept field holding a version's state — one of
-k:ActiveState[], k:InactiveState[], k:PrimordialState[], k:CanceledState[], or
-k:WithdrawnState[]. A `StampCoordinate` doesn't accept just any state: its
-k:AllowedStatesForStampCoordinate[] narrows which of these count as "current" when the
-calculator resolves a component's latest version — ordinarily just k:ActiveState[], so
-a retired or withdrawn version stops being what callers see by default without ever
-being deleted.
+koncept-narrative::StatusValue[]
 
 === Author
 
-k:Author[] identifies who committed a version, carried by the k:AuthorField[] concept
-field. A version's own author is k:AuthorForVersion[]; a `StampCoordinate` doesn't
-filter by author (identity, unlike state, module, and path, isn't part of "what's
-current"), but an `EditCoordinate` does, via k:AuthorForEditCoordinate[] — the author
-a new edit is stamped with. k:AuthorForStampCoordinate[] names the analogous idea
-should a future coordinate ever need to filter by author.
+koncept-narrative::Author[]
 
 === Module
 
-k:Module[] groups versions by the export or authoring boundary they belong to — the
-k:ModuleField[] concept field. k:DevelopmentModule[] and k:PrimordialModule[] are the
-two this starter set's own content is stamped with. A `StampCoordinate` narrows which
-modules count via k:ModulePreferenceListForStampCoordinate[] (preference order among
-several acceptable modules) and k:ModuleExclusionSetForStampCoordinate[] (modules to
-ignore outright).
+koncept-narrative::Module[]
 
 === Path
 
-k:Path[] is the version-control lineage a version was committed on — the
-k:PathField[] concept field. k:DevelopmentPath[] and k:PrimordialPath[] are this
-starter set's own two paths; k:PathOriginsForStampPath[] records which path a path
-itself branched from, so a `StampCoordinate` positioned on one path can still resolve
-versions committed on an ancestor path before the branch point.
+koncept-narrative::Path[]
 
 Put together, a `StampCoordinate` is exactly these four dimensions plus a time: the
 allowed states, the module preference and exclusion, and a position (path plus time).
@@ -91,60 +47,15 @@ state — "latest state," computed the same way every time the same coordinate i
 
 == Logic Coordinates
 
-A concept's formal, machine-processable meaning lives in its stated and inferred
-logical axioms — separate from its human-readable descriptions. A `LogicCoordinate`
-names which patterns and which classifier resolve that meaning, and — like the
-preference lists on a `LanguageCoordinate` — each of its own fields is itself a
-koncept: k:LogicCoordinateProperties[] groups them.
-
-k:StatedAssemblageForLogicCoordinate[] names the pattern an author's own stated axioms
-are recorded under (k:ELStatedAxiomsPattern[] in this starter set), and
-k:InferredAssemblageForLogicCoordinate[] names the pattern the classifier's derived
-axioms are written to (k:ELInferredAxiomsPattern[]) — stated is what was authored;
-inferred is what the classifier concluded follows from it, computed, never
-hand-written. k:ClassifierForLogicCoordinate[] names which classifier does that
-computation (k:SnoRocketClassifier[] here), and
-k:DescriptionLogicProfileForLogicCoordinate[] names the logic profile it classifies
-against (k:ELLogicProfile[] — EL++, described below). k:RootForLogicCoordinate[]
-anchors the whole taxonomy the coordinate reasons over.
+koncept-narrative::LogicCoordinateProperties[]
 
 == Navigation Coordinates
 
-Where a `LogicCoordinate` answers "what are this concept's axioms," a
-`NavigationCoordinate` answers "what are this concept's parents and children" — a
-faster question to ask repeatedly than re-deriving it from axioms every time.
-k:StatedNavigationPattern[] and k:InferredNavigationPattern[] are the two caches
-navigation can be read from — k:InferredNavigation[] the concrete pattern a
-coordinate actually points at by default — each k:NavigationVertex[] recording a
-concept's direct parents and children, filtered to whichever k:VertexStateSet[]
-states the coordinate considers current.
-
-Both are *derived*, not authored: a classifier run populates them from the stated (or
-inferred) axioms, the same way it populates k:ELInferredAxiomsPattern[]. A freshly
-authored ledger that has never been classified — this starter set's own, today — has
-stated *axioms* (k:Axioms[] below) but no stated *navigation* at all yet, which is
-exactly why this set's own documentation tooling reads taxonomy structure from stated
-axioms directly rather than from navigation.
+koncept-narrative::NavigationVertex[]
 
 == EL++ Concepts
 
-k:Axioms[] groups every concept in this set's meta-schema that describes how a
-concept's formal meaning is expressed: k:AxiomSyntax[] (the notation an axiom is
-written in) and k:AxiomOrigin[] (whether an axiom was authored or derived) sit
-alongside k:ELTerminologicalAxioms[] — this set's actual logic profile — which splits
-into k:ELStatedTerminologicalAxioms[] (what was authored) and
-k:ELInferredTerminologicalAxioms[] (what the classifier concluded). A separate
-family, k:IntervalSetAxioms[], covers interval- and range-valued axioms rather than
-terminological ones.
-
-EL++ is the description-logic profile SNOMED CT and Tinkar both build on: expressive
-enough for real terminological definitions (necessary conditions, role restrictions,
-concrete-value constraints), restricted enough that classification stays tractable at
-hundreds of thousands of concepts. This starter set can describe its own logic
-because the identity-exact ingest (IKE-Network/ike-issues#872) brought in Tinkar's
-entire EL++ vocabulary — the classifier, the axiom patterns, the profile concept
-itself — as part of the same "fork and own" ingest that gave every other concept in
-this guide its identity.
+koncept-narrative::Axioms[]
 
 // The comprehensive, alphabetical Koncept Glossary is appended automatically
 // (koncept-glossary-all) as the final chapter.
