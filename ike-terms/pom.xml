@@ -19,6 +19,13 @@
         change-set module consumes this ledger.
     </description>
 
+    <properties>
+        <!-- The exact artifact FoundationFidelityIT's baseline compares against —
+             the same coordinates the #869 generator was proven against
+             (tinkar-core's GeneratorEndToEndIT). -->
+        <tinkar-starter-data.version>20251009</tinkar-starter-data.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>dev.ikm.tinkar</groupId>
@@ -40,4 +47,64 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>stage-fidelity-baseline</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>dev.ikm.data.tinkar</groupId>
+                                    <artifactId>tinkar-starter-data</artifactId>
+                                    <version>${tinkar-starter-data.version}</version>
+                                    <classifier>unreasoned-pb</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/data</outputDirectory>
+                                    <destFileName>tinkar-starter-data-unreasoned-pb.zip</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- ike-parent's pluginManagement pins the version/config but binds no
+                 executions by default — FoundationFidelityIT (*IT) needs this bound
+                 explicitly to run under `mvn verify`. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <!-- Override ike-parent's @{failsafeArgLine} placeholder — this
+                         module's jacoco-prepare-agent-integration execution isn't
+                         populating it, leaving the literal token passed to java. -->
+                    <argLine>
+                        --enable-preview
+                        --enable-native-access=ALL-UNNAMED
+                        --add-opens java.base/java.lang=ALL-UNNAMED
+                        --add-opens java.base/java.util=ALL-UNNAMED
+                        --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+                        --add-opens java.base/java.io=ALL-UNNAMED
+                    </argLine>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

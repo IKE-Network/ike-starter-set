@@ -17,6 +17,7 @@ package network.ike.foundation.ike.terms;
 
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.KnowledgeSetSource;
+import network.ike.foundation.ike.terms.foundation.FoundationSet;
 
 /**
  * The IkeFoundation ledger's composition entry: build tooling discovers this source,
@@ -31,7 +32,9 @@ public final class IkeSource implements KnowledgeSetSource {
     @Override
     public KnowledgeSet compose() {
         ConceptSet.compose(Ike.SET);
-        // TODO: compose further functional sections here (patterns, meanings).
+        FoundationSet.compose(Ike.SET);
+        // TODO: the IKE carriers section (new (IKE)-tagged content) lands
+        // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;
     }
 }

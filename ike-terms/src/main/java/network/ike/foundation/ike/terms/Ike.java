@@ -42,4 +42,14 @@ public final class Ike {
     /** The set's root concept. */
     public static final EntityProxy.Concept ROOT =
             SET.conceptRef("IkeFoundation root (IkeFoundation)");
+
+    /**
+     * Community authorship: the IKE Network itself, attributed as author for
+     * content synthesized by tooling on the Network's behalf (starter-set
+     * ingest, IKE-Network/ike-issues#872) rather than by an individual editor
+     * or an ingested upstream source. Resolves the curator-identity TODO this
+     * scaffold generates by default.
+     */
+    public static final EntityProxy.Concept IKE_COMMUNITY =
+            SET.conceptRef("IKE Community (IkeFoundation)");
 }

@@ -1,4 +1,4 @@
-= Ike Starter Knowledge
+= Ike Starter Set
 :toc: left
 :sectnums:
 

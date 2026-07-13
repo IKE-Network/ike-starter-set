@@ -16,7 +16,7 @@
 
 /**
  * The IkeFoundation ledger: the append-only, replayable source of the Ike
- * starter knowledge.
+ * starter set.
  */
 module network.ike.foundation.ike.terms {
     requires transitive dev.ikm.tinkar.entity;

@@ -12,9 +12,9 @@
     <artifactId>ike-doc</artifactId>
     <packaging>pom</packaging>
 
-    <name>Ike Starter Knowledge — Guide</name>
+    <name>Ike Starter Set — Guide</name>
     <description>
-        Documentation for the IkeFoundation starter knowledge. The comprehensive Koncept
+        Documentation for the IkeFoundation starter set. The comprehensive Koncept
         glossary renders from the koncepts.yml the change-set module extracts from
         the loaded store.
     </description>
