@@ -18,7 +18,6 @@ package network.ike.foundation.ike.terms;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.Stamp;
-import dev.ikm.tinkar.terms.TinkarTerm;
 
 /**
  * The concept section of the IkeFoundation ledger: the module concept, the set root, and
@@ -41,7 +40,7 @@ final class ConceptSet {
         // before its own set.concept(...) call runs, is exactly as safe as the
         // forward reference to Ike.MODULE on the same line (IKE-Network/ike-issues#872).
         ActiveStamp inception = Stamp.active("2026-07-12T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, TinkarTerm.DEVELOPMENT_PATH);
+                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
 
         // Both anchor into the base taxonomy so a KB that loads base + this set
         // navigates to it from the root — no orphan forest.
@@ -49,12 +48,12 @@ final class ConceptSet {
                 .synonym("IkeFoundation module")
                 .definition("The module scoping every stamp of the IkeFoundation content"
                         + " set; the export dimension for this knowledge.")
-                .isA(TinkarTerm.MODULE);
+                .isA(IkeTerm.MODULE);
 
         set.concept("IkeFoundation root (IkeFoundation)").at(inception)
                 .synonym("IkeFoundation root")
                 .definition("Root concept of the Ike starter set.")
-                .isA(TinkarTerm.MODEL_CONCEPT);
+                .isA(IkeTerm.MODEL_CONCEPT);
 
         // Community authorship: the IKE Network itself, attributed as author for
         // content synthesized by tooling on the Network's behalf (the
@@ -69,7 +68,7 @@ final class ConceptSet {
                         + " Network's behalf (e.g. the identity-exact starter-set"
                         + " ingest, IKE-Network/ike-issues#872) rather than by an"
                         + " individual editor or an ingested upstream source.")
-                .isA(TinkarTerm.USER);
+                .isA(IkeTerm.USER);
 
         // The ingested foundation (the full starter-set ingest, #872) composes
         // in Foundation.FoundationSet, wired from IkeSource. The IKE carriers
