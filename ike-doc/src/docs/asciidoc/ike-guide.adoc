@@ -14,6 +14,14 @@ coordinates, EL++, the field-level meta-schema, and the base component/chronicle
 model itself — each naming the actual koncepts involved. The Koncept Glossary at the
 end lists every koncept in the set, alphabetically, for lookup.
 
+Every pattern in the set is a semantic assemblage: a referenced-component meaning and
+purpose, plus a declared, ordered list of fields, each with its own meaning, purpose,
+and data type. The table below indexes all of them — a table of patterns, the way the
+table of contents indexes chapters — each row linking to that pattern's full shape in
+the Koncept Glossary.
+
+koncept-pattern-table::[]
+
 == Language Concepts
 
 koncept-narrative::DescriptionPattern[]

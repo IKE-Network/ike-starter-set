@@ -112,7 +112,15 @@ final class NarrativeContentSet {
                         and purpose concept: k:LanguageConceptNidForDescription[] (meaning) for k:Language[]
                         (purpose), k:TextForDescription[] (meaning) for k:Description[] (purpose), and
                         k:DescriptionCaseSignificance[] and k:DescriptionType[], each serving as both its own
-                        field's meaning and purpose.""");
+                        field's meaning and purpose.
+
+                        The two dialect patterns named above share one shape, differing only in which
+                        national dialect each is attached to: k:USDialectPattern[] and k:GBDialectPattern[]
+                        each carry a referenced-component meaning of k:DescriptionAcceptability[] and a
+                        purpose of k:DescriptionSemantic[], with one field serving as both its own meaning
+                        and purpose — k:UnitedStatesOfAmericaEnglishDialect[] for the US pattern,
+                        k:GreatBritainEnglishDialect[] for the GB one — the field a description's
+                        k:Preferred[]/k:Acceptable[] acceptability value is actually recorded against.""");
 
         set.concept("Status value").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -143,7 +151,13 @@ final class NarrativeContentSet {
                         two this starter set's own content is stamped with. A `StampCoordinate` narrows which
                         modules count via k:ModulePreferenceListForStampCoordinate[] (preference order among
                         several acceptable modules) and k:ModuleExclusionSetForStampCoordinate[] (modules to
-                        ignore outright).""");
+                        ignore outright).
+
+                        A module's own lineage is tracked the same way a path's is: k:ModuleOriginsPattern[]
+                        carries a referenced-component meaning and purpose of k:ModuleOrigins[], and one
+                        field serving as both its own meaning and purpose, k:ModuleOrigins[] itself, holding
+                        the set of modules a given module originated from — the module-level counterpart to
+                        k:PathOriginsPattern[] below.""");
 
         set.concept("Path").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -152,7 +166,17 @@ final class NarrativeContentSet {
                         k:PathField[] concept field. k:DevelopmentPath[] and k:PrimordialPath[] are this
                         starter set's own two paths; k:PathOriginsForStampPath[] records which path a path
                         itself branched from, so a `StampCoordinate` positioned on one path can still resolve
-                        versions committed on an ancestor path before the branch point.""");
+                        versions committed on an ancestor path before the branch point.
+
+                        As a pattern, k:PathOriginsPattern[] itself carries a referenced-component meaning
+                        and purpose of k:PathOrigins[], and two fields, each serving as both its own meaning
+                        and purpose: k:PathConcept[] (which path this origin record is about) and
+                        k:PathOrigins[] again (the origin time and ancestor path). k:VersionControlPathPattern[]
+                        is simpler still — a referenced-component meaning of k:Path[] and purpose of
+                        k:MembershipSemantic[], with no fields of its own: a semantic of it merely tags a
+                        component as belonging to version-control path management, the same bare
+                        membership-tagging convention this guide's Tinkar Base Model chapter describes for
+                        k:TinkarBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[].""");
 
         set.concept("Author for edit coordinate (SOLOR)").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -191,7 +215,14 @@ final class NarrativeContentSet {
                         computation (k:SnoRocketClassifier[] here), and
                         k:DescriptionLogicProfileForLogicCoordinate[] names the logic profile it classifies
                         against (k:ELLogicProfile[] — EL++, described below). k:RootForLogicCoordinate[]
-                        anchors the whole taxonomy the coordinate reasons over.""");
+                        anchors the whole taxonomy the coordinate reasons over.
+
+                        k:SOLORConceptAssemblage[] is the membership tag k:ConceptAssemblageForLogicCoordinate[]
+                        names: a referenced-component meaning of k:ConceptAssemblageForLogicCoordinate[] and
+                        purpose of k:MembershipSemantic[], with no fields of its own — a semantic of it marks
+                        a concept as belonging to the SOLOR concept assemblage a `LogicCoordinate` reasons
+                        over, the same bare membership-tagging shape this guide's Tinkar Base Model chapter
+                        describes for k:TinkarBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[].""");
 
         set.concept("Navigation vertex (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -213,7 +244,15 @@ final class NarrativeContentSet {
                         authored ledger that has never been classified — this starter set's own, today — has
                         stated *axioms* (k:Axioms[] below) but no stated *navigation* at all yet, which is
                         exactly why this set's own documentation tooling reads taxonomy structure from stated
-                        axioms directly rather than from navigation.""");
+                        axioms directly rather than from navigation.
+
+                        k:StatedNavigationPattern[] and k:InferredNavigationPattern[] share one identical
+                        shape, differing only in which store each populates: both carry a referenced-component
+                        meaning and purpose of k:IsA[], and two fields, each serving as both its own meaning
+                        and purpose — k:RelationshipDestination[] (the child-ward direction) and
+                        k:RelationshipOrigin[] (the parent-ward direction) — the same relationship-direction
+                        vocabulary this guide's Object Properties chapter names as the generic idea these two
+                        fields specialize.""");
 
         set.concept("Axioms").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN, PublicIds.of(set.uuidFor("Narrative: Axioms (EL++ Concepts)")), """
@@ -310,7 +349,19 @@ final class NarrativeContentSet {
                         a k:Partial[] one, and k:DirectedGraph[] is the parent of k:ELDigraph[] — the directed
                         graph that results from classifying a full set of EL++ axioms, the data shape
                         k:SnoRocketClassifier[] itself produces and k:InferredNavigation[] is ultimately
-                        derived from.""");
+                        derived from.
+
+                        The stated/inferred split has its own pair of patterns beneath it: k:ELStatedAxiomsPattern[]
+                        carries a referenced-component meaning of k:StatedDefinition[] and purpose of
+                        k:LogicalDefinition[], with one field, k:ELStatedTerminologicalAxioms[], serving as
+                        both meaning and purpose; k:ELInferredAxiomsPattern[] is its inferred-side twin —
+                        meaning k:InferredDefinition[], purpose k:LogicalDefinition[] again, field
+                        k:ELInferredTerminologicalAxioms[] — the two concrete patterns
+                        k:StatedAssemblageForLogicCoordinate[] and k:InferredAssemblageForLogicCoordinate[]
+                        (named in the Logic Coordinates chapter) actually point at. k:OWLAxiomSyntaxPattern[]
+                        is smaller still: a referenced-component meaning and purpose of k:AxiomSyntax[] and
+                        k:ExpressAxiomSyntax[] respectively, with one field, k:AxiomSyntax[] itself, holding
+                        the OWL functional-syntax text an axiom can optionally also be expressed in.""");
 
         // Semantic Field Model chapter (IKE-Network/ike-issues#880): the field-level meta-schema
         // — what kind of value a field holds, how it renders, and what its value can mean —
@@ -497,13 +548,60 @@ final class NarrativeContentSet {
                         (its own birth identity), k:SemanticListForChronicle[] (every semantic attached to
                         it), k:VersionListForChronicle[] (its own version history). k:ComponentChronologyPattern[]
                         and k:ComponentVersionPattern[] name the generic shape every chronicle/version pair
-                        takes; k:ConceptVersionPattern[], k:PatternChronologyPattern[]/k:PatternVersionPattern[],
-                        k:SemanticChronologyPattern[], and k:STAMPChronologyPattern[] specialize that shape for
-                        each of the four component kinds this guide has already named. k:TinkarBaseModelComponentPattern[]
-                        and k:KometBaseModelComponentPattern[] are membership tags, not shape descriptions: a
-                        semantic of one of these patterns marks a component as belonging to Tinkar's own base
-                        vocabulary or Komet's own — the same tagging convention k:SOLORConceptAssemblage[]
-                        uses to mark a component as part of the SOLOR concept assemblage.
+                        takes; k:ConceptFieldPattern[]/k:ConceptVersionPattern[],
+                        k:PatternChronologyPattern[]/k:PatternVersionPattern[],
+                        k:SemanticChronologyPattern[]/k:SementicVersionFieldPattern[], and
+                        k:STAMPChronologyPattern[]/k:STAMPVersionFieldPattern[] specialize that shape for
+                        each of the four component kinds this guide has already named.
+                        k:TinkarBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[] are
+                        membership tags, not shape descriptions — both carrying a referenced-component meaning
+                        of k:StarterDataAuthoring[] and purpose of k:MembershipSemantic[], with no fields of
+                        their own: a semantic of one of these patterns marks a component as belonging to
+                        Tinkar's own base vocabulary or Komet's own — the same tagging convention
+                        k:SOLORConceptAssemblage[] uses (discussed in the Logic Coordinates chapter) to mark
+                        a component as part of the SOLOR concept assemblage.
+
+                        Each chronicle-shape pattern's own referenced component and fields make that
+                        specialization concrete. k:ComponentChronologyPattern[] — the base shape — carries a
+                        referenced-component meaning and purpose of k:ComponentField[], and two fields, each
+                        with its own meaning and purpose concept: k:PublicIDField[] (meaning) for
+                        k:UniquelyIdentifyKnowledgeGraphComponents[] (purpose), and k:ComponentVersionsField[]
+                        (meaning) for k:ComponentVersionsSet[] (purpose) — every chronicle's own identity plus
+                        its version list. k:ConceptFieldPattern[] and k:PatternChronologyPattern[] specialize
+                        that same two-field shape for concepts and patterns respectively (referenced-component
+                        meaning/purpose k:ConceptField[] and k:PatternField[] in turn, fields
+                        k:PublicIDField[]/k:ConceptVersionsField[] or
+                        k:PublicIDField[]/k:PatternVersionsField[]). k:SemanticChronologyPattern[] carries two
+                        fields more than its siblings — a semantic's own chronicle must also record which
+                        pattern it is a semantic *of* and what it is *attached to* — a referenced-component
+                        meaning and purpose of k:SemanticField[], and four fields:
+                        k:PublicIDField[]/k:UniquelyIdentifyKnowledgeGraphComponents[],
+                        k:SemanticPatternField[] serving as both its own meaning and purpose, likewise
+                        k:SemanticReferencedComponentField[], and k:SemanticVersionsSet[] likewise.
+                        k:STAMPChronologyPattern[] rounds out the family — meaning/purpose k:STAMPField[],
+                        fields k:PublicIDField[]/k:UniquelyIdentifyKnowledgeGraphComponents[] and
+                        k:STAMPVersionsField[]/k:STAMPVersionsSet[].
+
+                        The version side mirrors this. k:ComponentVersionPattern[] and k:ConceptVersionPattern[]
+                        each carry a referenced-component meaning and purpose of k:ComponentVersionsField[] or
+                        k:ConceptVersionsField[] respectively, with a single field, k:STAMPField[], serving as
+                        both meaning and purpose — a version, at its simplest, is just its own STAMP.
+                        k:SementicVersionFieldPattern[] adds a second field to that base shape — meaning and
+                        purpose k:SemanticVersionsField[], fields k:STAMPField[] and (meaning
+                        k:SemanticFieldField[], purpose k:SemanticFieldFieldsSet[]) — a semantic's own version
+                        must also carry the actual field values that version holds. k:STAMPVersionFieldPattern[]
+                        is the richest of the chronicle/version family: meaning and purpose
+                        k:STAMPVersionsField[], and six fields — k:STAMPField[] itself, plus k:StatusField[],
+                        k:TimeField[] (data type k:StringDisplayField[]), k:AuthorField[], k:ModuleField[], and
+                        k:PathField[] — the base-model-level shape this guide's own STAMP pattern (see the
+                        STAMP Concepts chapter) specializes into a single, more directly authored five-field
+                        pattern. k:PatternVersionPattern[] is richer still: meaning and purpose
+                        k:PatternVersionsField[], and four fields — k:STAMPField[], k:PatternMeaningField[],
+                        k:PatternPurposeField[], and k:FieldDefinitionField[] (purpose
+                        k:FieldDefinitionsSet[], data type k:ComponentIdDisplaySet[]) — literally the shape
+                        behind every pattern declaration in this starter set's own source: the meaning,
+                        purpose, and field-definition list every pattern this guide names is itself an
+                        instance of.
 
                         A semantic's own properties are named separately from its host chronicle's:
                         k:SemanticProperties[] groups k:ComponentForSemantic[] (which pattern it is of),
@@ -643,6 +741,21 @@ final class NarrativeContentSet {
                         and k:KometIssue[] is Komet's own specialization — an annotation type Komet itself
                         defines, layered on top of the generic annotation vocabulary. k:AnnotationPropertySet[]
                         names the SOLOR-imported set these annotation properties draw from.
+
+                        As a pattern, k:CommentPattern[] itself carries a referenced-component meaning and
+                        purpose of k:Comment[] — the same concept names both the pattern's own subject and
+                        the field it declares — with one field, k:Comment[] again, serving as both its own
+                        meaning and purpose, data type k:StringDisplayField[]: free text, and nothing more
+                        structured. Two more small patterns round out this starter set's own editorial
+                        metadata: k:StarterSetAuthorRosterPattern[] (this guide's own illustrative value-set
+                        example, introduced in the Semantic Field Model chapter) carries a referenced-component
+                        meaning and purpose of k:StarterSetAuthorRoster[], and two fields — k:RosterAuthor[]
+                        (meaning and purpose) and k:RosterOrder[] (meaning and purpose, data type k:Long[]) —
+                        the sort-order field that makes it a genuine two-field worked example for value-set
+                        field disambiguation. k:PreferredReviewerPattern[] carries a referenced-component
+                        meaning and purpose of k:PreferredReviewerAssignment[], and one field,
+                        k:PreferredReviewer[], serving as both meaning and purpose — which author is the
+                        preferred reviewer for a given component's future edits.
 
                         k:CorrelationProperties[] groups a different kind of metadata: characteristics
                         describing the relationship *between* two or more variables, rather than an
