@@ -50,6 +50,14 @@ allowed states, the module preference and exclusion, and a position (path plus t
 is both on an allowed path (at or before the coordinate's time) and in an allowed
 state — "latest state," computed the same way every time the same coordinate is used.
 
+As a pattern, k:STAMPPattern[] itself carries a referenced-component meaning and
+purpose of k:VersionProperties[], and five fields, each with its own meaning and
+purpose concept: k:StatusValue[] (meaning) for k:StatusForVersion[] (purpose),
+k:TimeForVersion[] serving as both its own field's meaning and purpose, and
+k:AuthorForVersion[], k:ModuleForVersion[], and k:PathForVersion[] each likewise
+serving as both — the same four koncepts named above, plus time, restated here by
+their exact field-meaning identity.
+
 == Logic Coordinates
 
 koncept-narrative::LogicCoordinateProperties[]

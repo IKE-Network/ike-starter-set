@@ -104,7 +104,15 @@ final class NarrativeContentSet {
                         final tie-break when two descriptions are otherwise equally preferred). The calculator
                         matches language first, then walks description-type order, then prefers a dialect
                         acceptability of k:Preferred[] matching the dialect preference order, then breaks any
-                        remaining tie by module preference.""");
+                        remaining tie by module preference.
+
+                        As a pattern, k:DescriptionPattern[] itself carries a referenced-component meaning and
+                        purpose of k:DescriptionSemantic[] — "purpose and meaning for the description pattern
+                        and dialect patterns," in its own words — and four fields, each with its own meaning
+                        and purpose concept: k:LanguageConceptNidForDescription[] (meaning) for k:Language[]
+                        (purpose), k:TextForDescription[] (meaning) for k:Description[] (purpose), and
+                        k:DescriptionCaseSignificance[] and k:DescriptionType[], each serving as both its own
+                        field's meaning and purpose.""");
 
         set.concept("Status value").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -397,12 +405,16 @@ final class NarrativeContentSet {
                         field-definition model above expresses that restriction — a field's declared data
                         type says it holds *a* concept, never *which* concepts.
 
-                        k:ConceptFieldConstraint[] closes that gap. A semantic of this pattern attaches to
-                        the pattern being constrained and carries five fields: k:ConstrainedField[] (which
-                        field, named by that field's own meaning concept), k:ConstraintKind[] (which rule
-                        applies), k:ConstraintAnchorConcept[] (the taxonomy anchor, for the four
-                        taxonomy-relative kinds), and k:ValueSetPattern[]/k:ValueSetField[] (for the fifth
-                        kind, value-set membership). Concretely, this starter set's own STAMP pattern carries
+                        k:ConceptFieldConstraint[] closes that gap. As a pattern, k:ConceptFieldConstraintPattern[]
+                        carries a referenced-component meaning and purpose of k:ConceptFieldConstraint[]
+                        itself — the same concept names both the pattern's own subject and this whole
+                        mechanism — and five fields, each serving as both its own field's meaning and
+                        purpose: k:ConstrainedField[] (which field, named by that field's own meaning
+                        concept), k:ConstraintKind[] (which rule applies), k:ConstraintAnchorConcept[] (the
+                        taxonomy anchor, for the four taxonomy-relative kinds), and
+                        k:ValueSetPattern[]/k:ValueSetField[] (for the fifth kind, value-set membership). A
+                        semantic of this pattern attaches to the pattern being constrained. Concretely, this
+                        starter set's own STAMP pattern carries
                         a semantic whose five fields read: constrained field = k:AuthorForVersion[], kind =
                         k:KindOfFieldConstraint[], anchor = k:Author[] — and nothing else, since the two
                         value-set fields don't apply to a kind-of constraint and are set to the shared
@@ -549,6 +561,14 @@ final class NarrativeContentSet {
                         framing k:ConceptFieldConstraint[] uses for concept-typed fields, just one domain
                         over.
 
+                        As a pattern, k:ValueConstraintPattern[] itself carries a referenced-component meaning
+                        and purpose of k:ValueConstraint[], and six fields, each with its own meaning and
+                        purpose concept: k:ValueConstraintSource[] serving as both its own field's meaning and
+                        purpose; k:MinimumValueOperator[] and k:MaximumValueOperator[] (meaning) for
+                        k:ConcreteValueOperator[] (purpose); k:ReferenceRangeMinimum[] and
+                        k:ReferenceRangeMaximum[] (meaning) for k:ReferenceRange[] (purpose); and
+                        k:ExampleUCUMUnits[] serving as both its own field's meaning and purpose.
+
                         k:DescriptionLogicProfile[] names the description-logic profile a set of axioms
                         classifies against — k:ELLogicProfile[] is this starter set's own (EL++, already
                         introduced in the EL++ Concepts chapter) — grouped here because it is, like
@@ -649,7 +669,13 @@ final class NarrativeContentSet {
                         uniquely represents a concept in Tinkar independent of any external terminology's own
                         identifier scheme. k:IdentifierValue[] names the field holding the literal identifier
                         string once a source has been chosen — an SCTID, an external code, or, for the
-                        universally-unique-identifier source, the UUID's own text form.""");
+                        universally-unique-identifier source, the UUID's own text form.
+
+                        As a pattern, k:IdentifierPattern[] itself carries a referenced-component meaning and
+                        purpose of k:IdentifierSource[] — the same concept the field-purpose discussion above
+                        already named — and two fields, each serving as both its own field's meaning and
+                        purpose: k:IdentifierSource[] (which authority issued the identifier) and
+                        k:IdentifierValue[] (the identifier's own literal text).""");
 
         set.concept("Language coordinate properties (SOLOR)").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
