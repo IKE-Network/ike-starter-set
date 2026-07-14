@@ -118,5 +118,45 @@ koncept-narrative::TinkarModelConcept[]
 
 koncept-narrative::Object[]
 
+== Value Constraints and Reference Ranges
+
+koncept-narrative::ValueConstraint[]
+
+== Authoring Actions and Legacy Constraints
+
+koncept-narrative::ActionProperties[]
+
+== Feature-Based and Intrinsic Roles
+
+koncept-narrative::DescriptionType[]
+
+== Annotations, Correlations and Editor Focus
+
+koncept-narrative::AnnotationType[]
+
+== Identifiers
+
+koncept-narrative::IdentifierSource[]
+
+== Coordinate Properties: Language and Path
+
+koncept-narrative::LanguageCoordinateProperties[]
+
+== Tree Amalgams
+
+koncept-narrative::TreeAmalgamProperties[]
+
+== Clinical Phenomena and Domain Content
+
+koncept-narrative::Phenomenon[]
+
+== Object Properties and Relationships
+
+koncept-narrative::ObjectProperties[]
+
+== Provenance and Root
+
+koncept-narrative::IntegratedKnowledgeManagement[]
+
 // The comprehensive, alphabetical Koncept Glossary is appended automatically
 // (koncept-glossary-all) as the final chapter.

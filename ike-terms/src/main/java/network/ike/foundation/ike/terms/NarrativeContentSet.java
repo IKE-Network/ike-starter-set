@@ -520,5 +520,230 @@ final class NarrativeContentSet {
                         relates A to B and B to C, also relates A to C — mathematical characteristics a
                         role's own semantics can carry, layered on top of the role vocabulary this guide's
                         EL++ Concepts chapter already named.""");
+
+        // Chapters 11-20 (IKE-Network/ike-issues#880, second pass): the remaining taxonomy
+        // groups deferred from the first manuscript-expansion pass.
+
+        set.concept("Value Constraint (SOLOR)").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: ValueConstraint (Value Constraints and Reference Ranges)")), """
+                        Where k:ConceptFieldConstraint[] restricts which *concepts* are legal for a field,
+                        k:ValueConstraint[] restricts which *literal values* are legal — the numeric-domain
+                        counterpart, and a much older idea in this starter set: k:ValueConstraintPattern[]
+                        (introduced in the EL++ Concepts chapter's Concrete Value Operators subsection) is
+                        the pattern that carries it. k:ValueConstraintSource[] names the organization that
+                        specifies the constraint — a reference-range source, for instance — and
+                        k:ReferenceRange[] groups the two endpoints a numeric constraint actually bounds:
+                        k:ReferenceRangeMinimum[] and k:ReferenceRangeMaximum[]. Together with
+                        k:ConcreteValueOperator[]'s comparison operators, these vocabularies are what a
+                        lab-value or dose constraint is actually built from — a component "has specific value
+                        requirements that need to be met," in k:ValueConstraint[]'s own words, exactly the
+                        framing k:ConceptFieldConstraint[] uses for concept-typed fields, just one domain
+                        over.
+
+                        k:DescriptionLogicProfile[] names the description-logic profile a set of axioms
+                        classifies against — k:ELLogicProfile[] is this starter set's own (EL++, already
+                        introduced in the EL++ Concepts chapter) — grouped here because it is, like
+                        k:ValueConstraint[], a property *of* a component's logical shape rather than a
+                        taxonomy-organizing concept in its own right.""");
+
+        set.concept("Action properties (SOLOR)").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: ActionProperties (Authoring Actions and Legacy Constraints)")), """
+                        k:ActionProperties[] groups the attributes of an authoring *action* — a step Komet
+                        or another editor takes on the author's behalf, rather than a property of the
+                        content itself. k:ConceptToFind[] names a concept a search action is looking for;
+                        k:ConditionalTriggers[] names conditions, based on actions or the reasoner, that fire
+                        further behavior; k:RoleTypeToAdd[] names the role type an "add role" action would
+                        insert.
+
+                        k:ConceptConstraints[] deserves particular attention here, having already been named
+                        once in this guide's Semantic Field Model chapter: a real, if long-dormant, SOLOR
+                        concept defined simply as "defined filters for a given concept" — a gloss close
+                        enough to k:ConceptFieldConstraint[]'s own purpose that the two are worth contrasting
+                        directly. k:ConceptConstraints[] carries no field shape, no worked example, and no
+                        consuming code anywhere in this ecosystem; it is a name for the idea of constraining
+                        a concept, sitting here among other action-related SOLOR imports, never wired to
+                        anything. k:ConceptFieldConstraint[] is the KB-native mechanism this starter set
+                        actually built and demonstrated once that same need became concrete — reusing
+                        k:ConceptConstraints[]'s identity was considered and deliberately declined, precisely
+                        because a name alone, unaccompanied by any real structure, is not enough to safely
+                        resume.""");
+
+        set.concept("Description type").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: DescriptionType (Feature-Based and Intrinsic Roles)")), """
+                        k:DescriptionType[] is best known from the Language Concepts chapter as the parent of
+                        k:FullyQualifiedNameDescriptionType[], k:RegularNameDescriptionType[], and
+                        k:DefinitionDescriptionType[] — but its remaining children are a different family
+                        entirely: feature- and role-modeling refinements imported from SOLOR alongside the
+                        description-type vocabulary, not further description types themselves.
+                        k:IntrinsicRole[] and k:UnmodeledRoleConcept[] extend this guide's own EL++ Concepts
+                        chapter — an intrinsic role is one inherent to a concept's own definition rather than
+                        externally imposed, while an unmodeled role concept marks a relationship SNOMED CT or
+                        Tinkar has not yet formally captured as a role. k:PropertySet[] and k:Feature[]
+                        describe concrete-domain properties a concept can carry — the same family
+                        k:ConcreteValueOperator[] and k:ValueConstraint[] operate on — and
+                        k:PropertyPatternImplication[] and k:ConceptAssemblageForLogicCoordinate[] round out
+                        the property-modeling side.
+
+                        k:ExtendedRelationshipType[] and k:InverseName[] handle terminology-import edge
+                        cases: a relationship type from an imported terminology that maps onto a SNOMED
+                        relationship (such as is-a), and a description explicitly marked as the inverse of
+                        an association's own name. k:DynamicReferencedComponentRestriction[] narrows which
+                        component types a dynamic field's referenced component may legally be — the same
+                        restriction idea the Roles and Role Operators subsection's
+                        k:ReferencedComponentTypeRestriction[]/k:ReferencedComponentSubtypeRestriction[]
+                        already introduced, here at the field-validation level rather than the axiom level.
+                        k:SOLORModule[] and k:SOLOROverlayModule[] name the module and overlay-module SOLOR's
+                        own imported content is stamped with — SOLOR's counterpart to this starter set's own
+                        k:DevelopmentModule[]/k:PrimordialModule[]. k:DescriptionCoreType[] and
+                        k:ExtendedDescriptionType[] close the loop back to descriptions proper: a marker for
+                        a non-SNOMED description that still matches one of SNOMED's core types, and one that
+                        does not.""");
+
+        set.concept("Annotation type (SOLOR)").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: AnnotationType (Annotations, Correlations and Editor Focus)")), """
+                        k:AnnotationType[] groups metadata *about* a component rather than the component's
+                        own defining content: k:Comment[] is free text an author attaches when something
+                        needs explaining (this starter set's own k:CommentPattern[] carries exactly this),
+                        and k:KometIssue[] is Komet's own specialization — an annotation type Komet itself
+                        defines, layered on top of the generic annotation vocabulary. k:AnnotationPropertySet[]
+                        names the SOLOR-imported set these annotation properties draw from.
+
+                        k:CorrelationProperties[] groups a different kind of metadata: characteristics
+                        describing the relationship *between* two or more variables, rather than an
+                        annotation on one component alone. k:CorrelationExpression[] and
+                        k:CorrelationReferenceExpression[] name the value and the reference value a
+                        correlation compares.
+
+                        k:ComponentTypeFocus[] names which kind of component an editor's attention is
+                        currently on — k:AxiomFocus[], k:ConceptFocus[], and k:DescriptionFocus[] — a
+                        UI-facing concern distinct from any of the component-kind vocabularies (concept,
+                        pattern, semantic) this guide's Tinkar Base Model chapter already named, since
+                        "focus" describes where an author is looking, not what a component is.
+                        k:ConceptDetailsTreeTable[] names the tree-table view Komet renders a concept's
+                        details in — one editor surface among several a concept's data can project
+                        through.""");
+
+        set.concept("Identifier Source").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor("Narrative: IdentifierSource (Identifiers)")), """
+                        k:IdentifierSource[] names which identifier-issuing authority a component's
+                        alternate identifier came from — the field-purpose concept k:IdentifierPattern[]
+                        itself declares a field for. k:UNIVERSALLYUNIQUEIDENTIFIER[] is the one identifier
+                        source every component in this starter set actually carries: the UUID itself, which
+                        uniquely represents a concept in Tinkar independent of any external terminology's own
+                        identifier scheme. k:IdentifierValue[] names the field holding the literal identifier
+                        string once a source has been chosen — an SCTID, an external code, or, for the
+                        universally-unique-identifier source, the UUID's own text form.""");
+
+        set.concept("Language coordinate properties (SOLOR)").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: LanguageCoordinateProperties (Coordinate Properties: Language and"
+                                        + " Path)")), """
+                        The Language Concepts chapter already named k:LanguageCoordinateProperties[]'s own
+                        four preference-list fields in the course of explaining how a `LanguageCoordinate`
+                        resolves a description; k:LanguageCoordinateName[] and
+                        k:DialectAssemblagePreferenceListForLanguageCoordinate[] are two of that same
+                        coordinate's own field-meaning concepts, named here directly as members of the
+                        property group they belong to, rather than only implicitly through the
+                        preference-list discussion.
+
+                        k:PathCoordinateProperties[] plays the analogous role for k:Path[]:
+                        k:PathCoordinateName[] names the coordinate's own name field, and k:PathOrigins[]
+                        names which path a path itself branched from — the same idea the STAMP Concepts
+                        chapter's Path subsection already introduced as k:PathOriginsForStampPath[], here at
+                        the coordinate-property level rather than the individual-path level.""");
+
+        set.concept("Tree amalgam properties (SOLOR)").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor("Narrative: TreeAmalgamProperties (Tree Amalgams)")), """
+                        k:TreeAmalgamProperties[] names the property group behind a composite navigation
+                        tree — a view that blends more than one taxonomy tree into a single presentation,
+                        rather than walking one k:NavigationVertex[] structure alone. k:TreeList[] names the
+                        member trees an amalgam combines, and k:InverseTreeList[] names the same idea
+                        inverted — the trees an amalgam excludes, or walks in reverse, depending on how a
+                        particular amalgam is configured. Komet's own multi-hierarchy navigation views (a
+                        concept's SNOMED-style parents alongside its Tinkar-model parents, say, blended into
+                        one tree) are exactly the kind of view this property group exists to support.""");
+
+        set.concept("Phenomenon").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: Phenomenon (Clinical Phenomena and Domain Content)")), """
+                        Every chapter so far has described this starter set's own meta-schema — the
+                        vocabulary Tinkar and this starter set use to describe knowledge, not any particular
+                        domain's content. k:Phenomenon[] is different: it groups genuine, if sparse, seed
+                        *domain* content — "a unique thought, fact, or circumstance," in its own words —
+                        included here to show what real authored content looks like sitting on top of
+                        everything the rest of this guide describes. k:HealthConcept[] and
+                        k:UncategorizedPhenomenon[] are its two organizing children, and
+                        k:ExampleUCUMUnits[] names a field carrying example Unified Code for Units of Measure
+                        values for a given term — the concrete-value vocabulary the EL++ Concepts chapter's
+                        Concrete Value Operators subsection already introduced, applied here to real
+                        measurement content rather than described only in the abstract.
+
+                        k:HasActiveIngredient[], k:HasDoseForm[], and k:Laterality[] are three more seed
+                        domain attributes, each a SOLOR-imported relationship type rather than a meta-schema
+                        concept: a medicinal product's active ingredient, its dose form, and a finding or
+                        procedure's left/right/bilateral sidedness — small, recognizable examples of exactly
+                        the kind of role this guide's Roles and Role Operators subsection described in the
+                        abstract, now anchored to real clinical content.""");
+
+        set.concept("Object Properties (SOLOR)").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: ObjectProperties (Object Properties and Relationships)")), """
+                        k:ObjectProperties[] names the general property-holding vocabulary every more
+                        specific property group in this guide — k:ChronicleProperties[],
+                        k:SemanticProperties[], k:ActionProperties[], k:CorrelationProperties[],
+                        k:LanguageCoordinateProperties[], k:PathCoordinateProperties[],
+                        k:TreeAmalgamProperties[], k:AnnotationPropertySet[], k:DataPropertySet[], and
+                        k:PropertySequenceImplication[] among them — ultimately descends from: "objects are
+                        instances of classes; properties describe the data an object can have," in its own
+                        words.
+
+                        k:RelationshipDestination[] and k:RelationshipOrigin[] name the two directions a
+                        relationship between concepts can be walked: destination toward more specific, child
+                        concepts, and origin toward more general, parent concepts — the same is-a direction
+                        this guide's Navigation Coordinates chapter already described through
+                        k:NavigationVertex[]'s own parent/child fields, named here as the generic
+                        relationship-direction vocabulary those fields draw from. k:DataPropertySet[] and
+                        k:PropertySequenceImplication[] close out the property family: a set of data-carrying
+                        properties, and an implication one property sequence carries for another.""");
+
+        set.concept("Integrated Knowledge Management (SOLOR)").at(expansion)
+                .semantic(PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor("Narrative: IntegratedKnowledgeManagement (Provenance and Root)")),
+                        """
+                        k:IntegratedKnowledgeManagement[] is the concept nearly every root-level vocabulary
+                        in this guide ultimately descends from — k:ModelConcept[], k:Author[], k:Module[],
+                        k:Path[], k:StatusValue[], k:Object[], k:AnnotationType[], k:Phenomenon[], and
+                        k:CreativeCommonsBYLicense[] among them — "terminologies represented in a harmonized
+                        manner," in its own words: the single organizing idea that this starter set,
+                        Tinkar's own base model, and SOLOR's imported vocabulary are all, ultimately, one
+                        coherent knowledge representation rather than three unrelated things bolted together.
+
+                        k:IkeFoundationRoot[] is this starter set's own root, by contrast — the concept this
+                        guide's very first chapter named as the anchor its whole append-only ledger is
+                        rooted at, a child of k:ModelConcept[] rather than of
+                        k:IntegratedKnowledgeManagement[] directly, since it is IKE's own specific starter
+                        content, not a generic model concept. k:CreativeCommonsBYLicense[] names the license
+                        this starter set's own content is released under.
+
+                        A handful of component-chronicle-level fields round out this guide's coverage:
+                        k:ConceptVersion[] captures which version of a source terminology a concept came
+                        from, and k:Description[], k:DescriptionListForConcept[], k:DescriptionSemantic[],
+                        and k:TextForDescription[] name the description-pattern fields the Language Concepts
+                        chapter's own prose already explained in practice — cited here directly, by their own
+                        field-meaning identity, for a reader who arrived at this guide's final chapter
+                        looking for exactly this list.""");
     }
 }
