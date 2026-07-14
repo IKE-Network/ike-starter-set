@@ -100,6 +100,11 @@ koncept-narrative::Meaning[]
 
 koncept-narrative::ConceptFieldConstraint[]
 
+[koncept-tree]
+----
+kindof: Author
+----
+
 == Tinkar Base Model
 
 This chapter describes the component/chronicle/pattern-of-patterns meta-model every

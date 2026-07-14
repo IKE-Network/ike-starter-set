@@ -386,29 +386,76 @@ final class NarrativeContentSet {
                         Some of the concept-typed field kinds above — k:AuthorField[], k:ModuleField[],
                         k:StatusField[], and others — are conventionally restricted to a known, bounded set
                         of legal values: only concepts kind-of k:Author[] make sense as a STAMP's author
-                        field, only k:ActiveState[] and its k:StatusValue[] siblings as its status. Nothing in
-                        the field-definition model above expresses that restriction — a field's declared data
-                        type says it holds *a* concept, never *which* concepts. k:ConceptFieldConstraint[]
-                        closes that gap: a semantic of this pattern, attached to the pattern being
-                        constrained, names which of its fields is governed (k:ConstrainedField[], by that
-                        field's own meaning concept) and which rule applies (k:ConstraintKind[]) — one of
-                        k:KindOfFieldConstraint[] (the anchor concept plus every descendant, self included),
-                        k:DescendantFieldConstraint[] (descendants only), k:LeafDescendantFieldConstraint[]
-                        (leaf descendants only — excluding grouping concepts that exist only to organize
-                        others), k:ImmediateChildFieldConstraint[] (direct children only), or
+                        field, only the immediate children of k:StatusValue[] as its status. Nothing in the
+                        field-definition model above expresses that restriction — a field's declared data
+                        type says it holds *a* concept, never *which* concepts.
+
+                        k:ConceptFieldConstraint[] closes that gap. A semantic of this pattern attaches to
+                        the pattern being constrained and carries five fields: k:ConstrainedField[] (which
+                        field, named by that field's own meaning concept), k:ConstraintKind[] (which rule
+                        applies), k:ConstraintAnchorConcept[] (the taxonomy anchor, for the four
+                        taxonomy-relative kinds), and k:ValueSetPattern[]/k:ValueSetField[] (for the fifth
+                        kind, value-set membership). Concretely, this starter set's own STAMP pattern carries
+                        a semantic whose five fields read: constrained field = k:AuthorForVersion[], kind =
+                        k:KindOfFieldConstraint[], anchor = k:Author[] — and nothing else, since the two
+                        value-set fields don't apply to a kind-of constraint and are set to the shared
+                        k:BlankConcept[] sentinel rather than left null (the store rejects null field values
+                        outright, so every semantic populates all five). Its status field carries the fourth
+                        kind instead: constrained field = k:StatusValue[] itself, kind =
+                        k:ImmediateChildFieldConstraint[], anchor = k:StatusValue[] again — a concept can
+                        serve as both a field's own meaning and a constraint's own anchor without conflict,
+                        since the two roles are read from different fields entirely.
+
+                        k:ConstraintKind[]'s own five legal values are k:FieldConstraintKind[]'s five
+                        children: k:KindOfFieldConstraint[] (the anchor plus every descendant, self
+                        included), k:DescendantFieldConstraint[] (descendants only), k:LeafDescendantFieldConstraint[]
+                        (leaf descendants only — excluding grouping concepts that exist solely to organize
+                        others), k:ImmediateChildFieldConstraint[] (direct children only), and
                         k:ValueSetFieldConstraint[] (membership in a named value set: every concept named by
                         an active semantic of another pattern, with k:ValueSetField[] naming which of that
                         pattern's own fields actually holds the concept, since it may carry other fields —
-                        a sort order, for instance).
+                        a sort order, for instance, exactly as this starter set's own illustrative
+                        k:StarterSetAuthorRoster[] pattern demonstrates: each roster entry is a semantic with
+                        *two* fields, k:RosterAuthor[] and k:RosterOrder[], and only the first is the value a
+                        value-set constraint would actually collect).
 
-                        This starter set's own STAMP pattern demonstrates the taxonomy-relative kinds
-                        directly: its author, module, and path fields are each constrained kind-of
-                        k:Author[], k:Module[], and k:Path[] respectively, and its status field is
-                        constrained to the immediate children of k:StatusValue[]. No tinkar-core code change
-                        was needed to represent any of this — every constraint kind composes directly from
-                        graph-walk operations a navigation calculator already provides; reading and enforcing
-                        these constraints (in Komet's own concept-field editor, for instance) is a
-                        deliberately separate, later concern from representing them.""");
+                        Why one shared pattern with a kind field, rather than five separate patterns —
+                        matching this starter set's own convention elsewhere, where k:USDialectPattern[] and
+                        k:GBDialectPattern[] are separate patterns, not one with a country field? Because the
+                        five kinds don't share one uniform field shape the way dialect or stated/inferred
+                        axioms do: four of the five need only an anchor concept, while the fifth needs a
+                        value-set pattern and field instead. A shared pattern with a small number of
+                        kind-specific, sometimes-unused fields models that variability more directly than
+                        five near-duplicate patterns would, and keeps "which kind is this" answerable from
+                        one field rather than from which pattern a semantic happens to belong to.
+
+                        Why mint fresh identity, rather than adopting k:ConceptConstraints[] — a real, if
+                        long-dormant, SOLOR concept whose own definition, "defined filters for a given
+                        concept," reads almost as if it were written for this exact mechanism? Because it
+                        carries no live semantics anywhere in this ecosystem to confirm what "defined
+                        filters" actually meant — no field shape, no worked example, no consuming code — and
+                        adopting an identity on the strength of a plausible-sounding one-line gloss risks
+                        importing an unintended meaning later, if that dormant concept's real intent turns
+                        out to differ from what is built here. k:ConceptConstraints[] remains exactly where
+                        it was — cited here as legacy prior art rather than resumed identity, a distinction
+                        worth drawing plainly, since the rest of this starter set leans hard the other way
+                        (adopting existing identity, as with k:AuthorForVersion[] and every other
+                        SOLOR-sourced concept named in this guide) whenever a real, checkable definition
+                        backs the reuse rather than merely a plausible-sounding name.
+
+                        No tinkar-core code change was needed to represent any of this: every constraint
+                        kind composes directly from graph-walk operations a navigation calculator already
+                        provides — k:KindOfFieldConstraint[] from `kindOf`, k:DescendantFieldConstraint[]
+                        from `descendentsOf`, k:ImmediateChildFieldConstraint[] from `childrenOf`, and
+                        k:LeafDescendantFieldConstraint[] by filtering `descendentsOf` down to the nodes
+                        `childrenOf` finds empty. Reading and *enforcing* these constraints — in Komet's own
+                        concept-field editor, for instance, which today has no such notion at all — is a
+                        deliberately separate, later concern from representing them; what the representation
+                        already makes possible today is exactly the candidate set a reader would want to
+                        see, computed fresh every render, with no separate authoring step — the live listing
+                        just below is every concept a k:KindOfFieldConstraint[] anchored at k:Author[] would
+                        accept, walked from the same k:Author[] broader relationship the constraint's own
+                        definition points at.""");
 
         // Tinkar Base Model chapter (IKE-Network/ike-issues#880): the component/chronicle/
         // pattern-of-patterns meta-model every other chapter's own vocabulary ultimately
