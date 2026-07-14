@@ -43,6 +43,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // (a new PatternVersion layered on top) -- it must run last, after every other
         // scope that touches the patterns it revises.
         PatternShapeRefinementSet.compose(Ike.SET);
+        // AssemblageTerminologySet retires "assemblage" from this set's own vocabulary --
+        // it must run last, after every other scope that touches the concepts/patterns
+        // it revises.
+        AssemblageTerminologySet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;

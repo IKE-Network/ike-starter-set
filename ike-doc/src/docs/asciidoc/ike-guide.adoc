@@ -14,9 +14,10 @@ coordinates, EL++, the field-level meta-schema, and the base component/chronicle
 model itself — each naming the actual koncepts involved. The Koncept Glossary at the
 end lists every koncept in the set, alphabetically, for lookup.
 
-Every pattern in the set is a semantic assemblage: a referenced-component meaning and
-purpose, plus a declared, ordered list of fields, each with its own meaning, purpose,
-and data type. The list below indexes all of them — a List of Patterns, the same book
+Every pattern in the set is defined by a referenced-component meaning and purpose,
+plus a declared, ordered list of fields, each with its own meaning, purpose, and data
+type — a pattern's own semantics are exactly the set of components carrying that
+pattern's public id. The list below indexes all of them — a List of Patterns, the same book
 convention as a List of Tables or a List of Figures, styled like the table of contents
 above — each entry linking to that pattern's own full shape, rendered as a table in the
 Koncept Glossary.
@@ -59,13 +60,15 @@ allowed states, the module preference and exclusion, and a position (path plus t
 is both on an allowed path (at or before the coordinate's time) and in an allowed
 state — "latest state," computed the same way every time the same coordinate is used.
 
-As a pattern, k:STAMPPattern[] itself carries a referenced-component meaning and
-purpose of k:VersionProperties[], and five fields, each with its own meaning and
-purpose concept: k:StatusValue[] (meaning) for k:StatusForVersion[] (purpose),
-k:TimeForVersion[] serving as both its own field's meaning and purpose, and
-k:AuthorForVersion[], k:ModuleForVersion[], and k:PathForVersion[] each likewise
-serving as both — the same four koncepts named above, plus time, restated here by
-their exact field-meaning identity.
+As a pattern, k:STAMPPattern[] itself carries a referenced-component meaning of
+k:VersionProperties[] and a purpose of k:CommitProvenance[] — why the pattern exists:
+to record who committed a version, in what state, module, path, and when. Five fields
+each carry their own meaning and purpose concept: k:StatusValue[] (meaning) for
+k:StatusForVersion[] (purpose), k:Time[] (meaning) for k:TimeForVersion[] (purpose),
+and k:Author[], k:Module[], and k:Path[] (meaning) for k:AuthorForVersion[],
+k:ModuleForVersion[], and k:PathForVersion[] (purpose) respectively — the same four
+koncepts named above, plus time, now restated here by their own exact field-meaning
+identity.
 
 == Logic Coordinates
 

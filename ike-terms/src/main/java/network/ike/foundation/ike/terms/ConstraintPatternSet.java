@@ -249,15 +249,15 @@ final class ConstraintPatternSet {
         set.pattern("STAMP pattern").at(inception)
                 .semantic(conceptFieldConstraintPattern,
                         PublicIds.of(set.uuidFor("Constraint: STAMP pattern Author field kind-of Author")),
-                        set.conceptRef("Author for version (SOLOR)"), kindOf, set.conceptRef("Author"),
+                        set.conceptRef("Author"), kindOf, set.conceptRef("Author"),
                         notApplicable, notApplicable)
                 .semantic(conceptFieldConstraintPattern,
                         PublicIds.of(set.uuidFor("Constraint: STAMP pattern Module field kind-of Module")),
-                        set.conceptRef("Module for version (SOLOR)"), kindOf, set.conceptRef("Module"),
+                        set.conceptRef("Module"), kindOf, set.conceptRef("Module"),
                         notApplicable, notApplicable)
                 .semantic(conceptFieldConstraintPattern,
                         PublicIds.of(set.uuidFor("Constraint: STAMP pattern Path field kind-of Path")),
-                        set.conceptRef("Path for version"), kindOf, set.conceptRef("Path"),
+                        set.conceptRef("Path"), kindOf, set.conceptRef("Path"),
                         notApplicable, notApplicable)
                 .semantic(conceptFieldConstraintPattern,
                         PublicIds.of(set.uuidFor(
@@ -293,13 +293,36 @@ final class ConstraintPatternSet {
                         + " disambiguates against.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
+        // Meaning/purpose rigor (IKE-Network/ike-issues#880): the pattern's own
+        // referenced-component meaning stays "Starter set author roster" (it correctly
+        // names what the roster is); purpose and each field's purpose get their own
+        // distinct concept instead of repeating that same meaning.
+        set.concept("Roster Membership (IkeFoundation)").at(inception)
+                .synonym("Roster Membership")
+                .definition("Why a Starter Set Author Roster Pattern semantic exists: to"
+                        + " enumerate this starter set's own author roster as a value-set"
+                        + " source.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Roster Entry (IkeFoundation)").at(inception)
+                .synonym("Roster Entry")
+                .definition("Why a roster author value is recorded: to name one member of"
+                        + " the roster.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Display Sequence (IkeFoundation)").at(inception)
+                .synonym("Display Sequence")
+                .definition("Why a roster order value is recorded: to say where this entry"
+                        + " falls in the roster's own display order.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
         set.pattern("Starter Set Author Roster Pattern (IkeFoundation)").at(inception)
                 .meaning(set.conceptRef("Starter set author roster (IkeFoundation)"))
-                .purpose(set.conceptRef("Starter set author roster (IkeFoundation)"))
+                .purpose(set.conceptRef("Roster Membership (IkeFoundation)"))
                 .field(set.conceptRef("Roster author (IkeFoundation)"),
-                        set.conceptRef("Roster author (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                        set.conceptRef("Roster Entry (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("Roster order (IkeFoundation)"),
-                        set.conceptRef("Roster order (IkeFoundation)"), IkeTerm.LONG)
+                        set.conceptRef("Display Sequence (IkeFoundation)"), IkeTerm.LONG)
                 .semantic(set.patternRef("Starter Set Author Roster Pattern (IkeFoundation)"),
                         PublicIds.of(set.uuidFor("Roster entry: Gretel")),
                         set.conceptRef("Gretel (User)"), 1L)
@@ -325,11 +348,26 @@ final class ConstraintPatternSet {
                         + " Value-set field constraint end to end.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
+        // Meaning/purpose rigor (IKE-Network/ike-issues#880): meaning stays "Preferred
+        // reviewer assignment" (it correctly names what the referenced component is);
+        // purpose and the field's purpose get their own distinct concepts.
+        set.concept("Review Routing (IkeFoundation)").at(inception)
+                .synonym("Review Routing")
+                .definition("Why a Preferred Reviewer Pattern semantic exists: to direct a"
+                        + " component's future edits to a specific reviewer.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Assigned Reviewer (IkeFoundation)").at(inception)
+                .synonym("Assigned Reviewer")
+                .definition("Why a preferred reviewer value is recorded: to name which"
+                        + " author is the preferred reviewer.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
         set.pattern("Preferred Reviewer Pattern (IkeFoundation)").at(inception)
                 .meaning(set.conceptRef("Preferred reviewer assignment (IkeFoundation)"))
-                .purpose(set.conceptRef("Preferred reviewer assignment (IkeFoundation)"))
+                .purpose(set.conceptRef("Review Routing (IkeFoundation)"))
                 .field(set.conceptRef("Preferred reviewer (IkeFoundation)"),
-                        set.conceptRef("Preferred reviewer (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                        set.conceptRef("Assigned Reviewer (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .semantic(conceptFieldConstraintPattern,
                         PublicIds.of(set.uuidFor(
                                 "Constraint: Preferred Reviewer Pattern reviewer field value-set roster")),
