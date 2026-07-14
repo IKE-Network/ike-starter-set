@@ -191,7 +191,10 @@ final class NarrativeContentSet {
                         Where a `LogicCoordinate` answers "what are this concept's axioms," a
                         `NavigationCoordinate` answers "what are this concept's parents and children" — a
                         faster question to ask repeatedly than re-deriving it from axioms every time.
-                        k:StatedNavigationPattern[] and k:InferredNavigationPattern[] are the two caches
+                        k:IsA[] is the relationship both questions are ultimately about — "designates the
+                        parent-child relationship," in its own words, the one every k:NavigationVertex[]
+                        exists to make fast to walk. k:StatedNavigationPattern[] and
+                        k:InferredNavigationPattern[] are the two caches
                         navigation can be read from — k:InferredNavigation[] the concrete pattern a
                         coordinate actually points at by default — each k:NavigationVertex[] recording a
                         concept's direct parents and children, filtered to whichever k:VertexStateSet[]
@@ -289,6 +292,10 @@ final class NarrativeContentSet {
                         axiom's own definition status carries — k:ELStatedConceptDefinition[] for what was
                         authored, k:ElInferredConceptDefinition[] for what the classifier concluded, mirroring
                         the same stated-versus-inferred split k:Axioms[] itself organizes around.
+                        k:StatedDefinition[] and k:InferredDefinition[] name the underlying relationship sets
+                        those definition-status values describe — "relationships/axioms of a concept that
+                        have been explicitly stated" versus "inferred," the same distinction spelled out at
+                        the level of individual relationships rather than a definition's overall status.
 
                         Two smaller, related vocabularies round out this set: k:Grouping[] distinguishes an
                         k:Exact[] match (source and target that are semantically or lexically identical) from
@@ -586,8 +593,9 @@ final class NarrativeContentSet {
                         externally imposed, while an unmodeled role concept marks a relationship SNOMED CT or
                         Tinkar has not yet formally captured as a role. k:PropertySet[] and k:Feature[]
                         describe concrete-domain properties a concept can carry — the same family
-                        k:ConcreteValueOperator[] and k:ValueConstraint[] operate on — and
-                        k:PropertyPatternImplication[] and k:ConceptAssemblageForLogicCoordinate[] round out
+                        k:ConcreteValueOperator[] and k:ValueConstraint[] operate on, with k:FeatureType[]
+                        naming which kind of feature a given one is — and k:PropertyPatternImplication[] and
+                        k:ConceptAssemblageForLogicCoordinate[] round out
                         the property-modeling side.
 
                         k:ExtendedRelationshipType[] and k:InverseName[] handle terminology-import edge
