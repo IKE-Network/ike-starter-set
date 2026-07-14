@@ -16,11 +16,12 @@ end lists every koncept in the set, alphabetically, for lookup.
 
 Every pattern in the set is a semantic assemblage: a referenced-component meaning and
 purpose, plus a declared, ordered list of fields, each with its own meaning, purpose,
-and data type. The table below indexes all of them — a table of patterns, the way the
-table of contents indexes chapters — each row linking to that pattern's full shape in
-the Koncept Glossary.
+and data type. The list below indexes all of them — a List of Patterns, the same book
+convention as a List of Tables or a List of Figures, styled like the table of contents
+above — each entry linking to that pattern's own full shape, rendered as a table in the
+Koncept Glossary.
 
-koncept-pattern-table::[]
+koncept-pattern-list::[]
 
 == Language Concepts
 
