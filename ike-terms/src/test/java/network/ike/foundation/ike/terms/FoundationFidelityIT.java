@@ -75,11 +75,12 @@ class FoundationFidelityIT {
     /** New concepts the identity-exact ingest itself mints: the module, the root, IKE Community. */
     private static final int INGEST_BOOTSTRAP_CONCEPTS = 3;
     /**
-     * New concepts {@code ConstraintPatternSet} (17, IKE-Network/ike-issues#880) and
-     * {@code PatternShapeRefinementSet} (2 — Subject of Commentary, Editorial
-     * Clarification) deliberately author.
+     * New concepts {@code ConstraintPatternSet} (17 original + 7 meaning/purpose-rigor
+     * concepts added revising Concept Field Constraint Pattern's own shape, both
+     * IKE-Network/ike-issues#880) and {@code PatternShapeRefinementSet} (2 — Subject of
+     * Commentary, Editorial Clarification) deliberately author.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 19;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 26;
     /** New patterns {@code ConstraintPatternSet} deliberately authors (IKE-Network/ike-issues#880). */
     private static final int AUTHORED_CONTENT_PATTERNS = 3;
 

@@ -156,20 +156,80 @@ final class ConstraintPatternSet {
                         + " immediate-child) or to membership in a value set.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
+        // ── The pattern's own referenced-component and field-purpose concepts ──
+        // A first pass minted this pattern with meaning = purpose at every slot (KEC
+        // flagged the same weakness reviewing the rendered pattern-shape table for
+        // Comment pattern, IKE-Network/ike-issues#880): each field's own MEANING concept
+        // above (Constrained field, Constraint kind, ...) already correctly names what
+        // kind of selector value the field holds, so it stays unchanged; only PURPOSE —
+        // why that value is recorded — needed a distinct concept. The referenced
+        // component's own meaning was worse than merely repeated: naming it "Concept
+        // field constraint" described the constraint *mechanism*, not the role the
+        // referenced component (the pattern being constrained) actually plays.
+        set.concept("Constrained Pattern (IkeFoundation)").at(inception)
+                .synonym("Constrained Pattern")
+                .definition("The referenced-component role a Concept Field Constraint Pattern"
+                        + " semantic's attachment target plays: the pattern that has one of its"
+                        + " own fields constrained — distinct from Concept field constraint,"
+                        + " which names the constraint mechanism itself, not the pattern it is"
+                        + " applied to.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Field Value Restriction (IkeFoundation)").at(inception)
+                .synonym("Field Value Restriction")
+                .definition("Why a Concept Field Constraint Pattern semantic exists: to restrict"
+                        + " which concepts are legal values for one of the constrained pattern's"
+                        + " own fields.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Constraint Scope (IkeFoundation)").at(inception)
+                .synonym("Constraint Scope")
+                .definition("Why the Constrained field value is recorded: to say which field of"
+                        + " the constrained pattern this rule applies to.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Constraint Rule (IkeFoundation)").at(inception)
+                .synonym("Constraint Rule")
+                .definition("Why the Constraint kind value is recorded: to say which rule —"
+                        + " kind-of, descendant, leaf-descendant, immediate-child, or"
+                        + " value-set — applies.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Taxonomy Reference Point (IkeFoundation)").at(inception)
+                .synonym("Taxonomy Reference Point")
+                .definition("Why the Constraint anchor concept value is recorded: to give a"
+                        + " kind-of, descendant, leaf-descendant, or immediate-child rule"
+                        + " something concrete to measure against.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Legal Value Source (IkeFoundation)").at(inception)
+                .synonym("Legal Value Source")
+                .definition("Why the Value-set pattern value is recorded: to name the pattern"
+                        + " whose active semantics enumerate the legal concepts for a value-set"
+                        + " constraint.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Value Disambiguation (IkeFoundation)").at(inception)
+                .synonym("Value Disambiguation")
+                .definition("Why the Value-set field value is recorded: to say which field of"
+                        + " the value-set pattern actually holds the concept, when that pattern"
+                        + " carries other fields too, such as a sort order.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
         // ── The pattern itself ───────────────────────────────────────────
         set.pattern("Concept Field Constraint Pattern (IkeFoundation)").at(inception)
-                .meaning(set.conceptRef("Concept field constraint (IkeFoundation)"))
-                .purpose(set.conceptRef("Concept field constraint (IkeFoundation)"))
+                .meaning(set.conceptRef("Constrained Pattern (IkeFoundation)"))
+                .purpose(set.conceptRef("Field Value Restriction (IkeFoundation)"))
                 .field(set.conceptRef("Constrained field (IkeFoundation)"),
-                        set.conceptRef("Constrained field (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                        set.conceptRef("Constraint Scope (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("Constraint kind (IkeFoundation)"),
-                        set.conceptRef("Constraint kind (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                        set.conceptRef("Constraint Rule (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("Constraint anchor concept (IkeFoundation)"),
-                        set.conceptRef("Constraint anchor concept (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                        set.conceptRef("Taxonomy Reference Point (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("Value-set pattern (IkeFoundation)"),
-                        set.conceptRef("Value-set pattern (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                        set.conceptRef("Legal Value Source (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("Value-set field (IkeFoundation)"),
-                        set.conceptRef("Value-set field (IkeFoundation)"), IkeTerm.COMPONENT_FIELD);
+                        set.conceptRef("Value Disambiguation (IkeFoundation)"), IkeTerm.COMPONENT_FIELD);
 
         EntityProxy.Pattern conceptFieldConstraintPattern =
                 set.patternRef("Concept Field Constraint Pattern (IkeFoundation)");

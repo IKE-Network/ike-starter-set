@@ -457,14 +457,18 @@ final class NarrativeContentSet {
                         type says it holds *a* concept, never *which* concepts.
 
                         k:ConceptFieldConstraint[] closes that gap. As a pattern, k:ConceptFieldConstraintPattern[]
-                        carries a referenced-component meaning and purpose of k:ConceptFieldConstraint[]
-                        itself — the same concept names both the pattern's own subject and this whole
-                        mechanism — and five fields, each serving as both its own field's meaning and
-                        purpose: k:ConstrainedField[] (which field, named by that field's own meaning
-                        concept), k:ConstraintKind[] (which rule applies), k:ConstraintAnchorConcept[] (the
-                        taxonomy anchor, for the four taxonomy-relative kinds), and
-                        k:ValueSetPattern[]/k:ValueSetField[] (for the fifth kind, value-set membership). A
-                        semantic of this pattern attaches to the pattern being constrained. Concretely, this
+                        carries a referenced-component meaning of k:ConstrainedPattern[] — the referenced
+                        component's own role: the pattern that has one of its fields constrained — and a
+                        purpose of k:FieldValueRestriction[]: two distinct concepts, unlike a first pass
+                        that named both k:ConceptFieldConstraint[] itself, describing the constraint
+                        mechanism rather than the role the constrained pattern actually plays. Five fields
+                        carry that same meaning-versus-purpose distinction through: k:ConstrainedField[]
+                        (meaning) for k:ConstraintScope[] (purpose — which field this rule governs);
+                        k:ConstraintKind[] for k:ConstraintRule[] (which rule applies);
+                        k:ConstraintAnchorConcept[] for k:TaxonomyReferencePoint[] (the taxonomy anchor, for
+                        the four taxonomy-relative kinds); and k:ValueSetPattern[]/k:ValueSetField[] for
+                        k:LegalValueSource[]/k:ValueDisambiguation[] (for the fifth kind, value-set
+                        membership). A semantic of this pattern attaches to the pattern being constrained. Concretely, this
                         starter set's own STAMP pattern carries
                         a semantic whose five fields read: constrained field = k:AuthorForVersion[], kind =
                         k:KindOfFieldConstraint[], anchor = k:Author[] — and nothing else, since the two
