@@ -10,8 +10,9 @@ the same materialized store as the released change set.
 
 The chapters that follow describe how this set's own concepts support the platform's
 core mechanisms — language and dialect, STAMP versioning, logical and navigational
-coordinates, and EL++ — each naming the actual koncepts involved. The Koncept Glossary
-at the end lists every koncept in the set, alphabetically, for lookup.
+coordinates, EL++, the field-level meta-schema, and the base component/chronicle
+model itself — each naming the actual koncepts involved. The Koncept Glossary at the
+end lists every koncept in the set, alphabetically, for lookup.
 
 == Language Concepts
 
@@ -39,6 +40,10 @@ koncept-narrative::Module[]
 
 koncept-narrative::Path[]
 
+=== Edit Coordinate
+
+koncept-narrative::AuthorForEditCoordinate[]
+
 Put together, a `StampCoordinate` is exactly these four dimensions plus a time: the
 allowed states, the module preference and exclusion, and a position (path plus time).
 `StampCalculator` walks a component's version history and returns whichever version
@@ -56,6 +61,57 @@ koncept-narrative::NavigationVertex[]
 == EL++ Concepts
 
 koncept-narrative::Axioms[]
+
+=== Roles and Role Operators
+
+koncept-narrative::Role[]
+
+=== Inclusion, Necessary, and Sufficient Sets
+
+koncept-narrative::InclusionSet[]
+
+=== Concrete Value Operators
+
+koncept-narrative::ConcreteValueOperator[]
+
+=== Logical Definitions and Grouping
+
+koncept-narrative::LogicalDefinition[]
+
+== Semantic Field Model
+
+This chapter describes the field-level meta-schema: what kind of value a pattern's
+field holds, how that value renders in Komet's UI, what its value can mean, and how
+a concept-typed field's legal values can be constrained.
+
+=== Field Categories
+
+koncept-narrative::FieldCategories[]
+
+=== Display Fields
+
+koncept-narrative::DisplayFields[]
+
+=== Field Value Vocabulary
+
+koncept-narrative::Meaning[]
+
+=== Constraining Concept Fields
+
+koncept-narrative::ConceptFieldConstraint[]
+
+== Tinkar Base Model
+
+This chapter describes the component/chronicle/pattern-of-patterns meta-model every
+other chapter's own vocabulary ultimately descends from.
+
+=== Components and Chronicles
+
+koncept-narrative::TinkarModelConcept[]
+
+=== Base Model Primitives
+
+koncept-narrative::Object[]
 
 // The comprehensive, alphabetical Koncept Glossary is appended automatically
 // (koncept-glossary-all) as the final chapter.

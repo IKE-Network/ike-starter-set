@@ -33,6 +33,11 @@ public final class IkeSource implements KnowledgeSetSource {
     public KnowledgeSet compose() {
         ConceptSet.compose(Ike.SET);
         FoundationSet.compose(Ike.SET);
+        // ConstraintPatternSet mints Concept Field Constraint Pattern, which
+        // NarrativeContentSet's Semantic Field Model chapter writes about — the pattern
+        // must exist before its own narrative resumes it (ledger scopes are chronological
+        // across the whole session, not independently per source file).
+        ConstraintPatternSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).

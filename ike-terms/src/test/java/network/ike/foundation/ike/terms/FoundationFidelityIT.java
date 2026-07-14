@@ -71,6 +71,13 @@ class FoundationFidelityIT {
     private static int conceptsBefore;
     private static int patternsBefore;
 
+    /** New concepts the identity-exact ingest itself mints: the module, the root, IKE Community. */
+    private static final int INGEST_BOOTSTRAP_CONCEPTS = 3;
+    /** New concepts {@code ConstraintPatternSet} deliberately authors (IKE-Network/ike-issues#880). */
+    private static final int AUTHORED_CONTENT_CONCEPTS = 17;
+    /** New patterns {@code ConstraintPatternSet} deliberately authors (IKE-Network/ike-issues#880). */
+    private static final int AUTHORED_CONTENT_PATTERNS = 3;
+
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
      * than one distinct (simpleIsA, parents) shape — detected directly from the raw
@@ -223,9 +230,14 @@ class FoundationFidelityIT {
         EntityService.get().forEachConceptEntity(concept -> conceptsAfter[0]++);
         int[] patternsAfter = {0};
         EntityService.get().forEachPatternEntity(pattern -> patternsAfter[0]++);
-        assertEquals(conceptsBefore + 3, conceptsAfter[0],
-                "expected exactly 3 new concepts: module, root, IKE Community — no other minting");
-        assertEquals(patternsBefore, patternsAfter[0], "identity-exact ingest mints no new patterns");
+        assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS, conceptsAfter[0],
+                "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
+                        + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
+                        + " new concepts (ConstraintPatternSet, IKE-Network/ike-issues#880) — no other minting");
+        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS, patternsAfter[0],
+                "identity-exact ingest mints no new patterns; ConstraintPatternSet deliberately mints "
+                        + AUTHORED_CONTENT_PATTERNS + " (Concept Field Constraint Pattern, Starter Set Author"
+                        + " Roster Pattern, Preferred Reviewer Pattern)");
     }
 
     @Test
