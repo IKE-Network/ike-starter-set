@@ -39,6 +39,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // across the whole session, not independently per source file).
         ConstraintPatternSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
+        // PatternShapeRefinementSet revises already-adopted patterns' own meaning/purpose
+        // (a new PatternVersion layered on top) -- it must run last, after every other
+        // scope that touches the patterns it revises.
+        PatternShapeRefinementSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;

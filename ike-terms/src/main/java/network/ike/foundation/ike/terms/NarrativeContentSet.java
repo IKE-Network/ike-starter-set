@@ -742,11 +742,23 @@ final class NarrativeContentSet {
                         defines, layered on top of the generic annotation vocabulary. k:AnnotationPropertySet[]
                         names the SOLOR-imported set these annotation properties draw from.
 
-                        As a pattern, k:CommentPattern[] itself carries a referenced-component meaning and
-                        purpose of k:Comment[] — the same concept names both the pattern's own subject and
-                        the field it declares — with one field, k:Comment[] again, serving as both its own
-                        meaning and purpose, data type k:StringDisplayField[]: free text, and nothing more
-                        structured. Two more small patterns round out this starter set's own editorial
+                        As a pattern, k:CommentPattern[] originally carried, straight from its SOLOR
+                        source, a referenced-component meaning and purpose of k:Comment[] for both slots,
+                        with its single field also using k:Comment[] as both its own meaning and purpose —
+                        four slots, one concept, conflating "what the field holds" (a comment) with "what
+                        role the referenced component plays" (the subject that commentary is about). A
+                        later revision splits these apart: the pattern's referenced-component meaning is now
+                        k:SubjectOfCommentary[] — the referenced component's role, distinct from the
+                        commentary's own content type — and its purpose is k:EditorialClarification[] — why
+                        the commentary exists: to explain an authoring decision or provide context a formal
+                        field can't capture. The field itself keeps k:Comment[] as its meaning (that part was
+                        always correct — the field genuinely does hold a comment) but now carries
+                        k:EditorialClarification[] as its purpose too, the same concept reused at both
+                        levels; its data type, k:StringDisplayField[], is unchanged. Tinkar's own
+                        `PatternVersion` model supports this cleanly: the original SOLOR-sourced version
+                        stays in history untouched, and a `StampCoordinate` positioned after the revision
+                        simply resolves the newer one. Two more small patterns round out this starter set's
+                        own editorial
                         metadata: k:StarterSetAuthorRosterPattern[] (this guide's own illustrative value-set
                         example, introduced in the Semantic Field Model chapter) carries a referenced-component
                         meaning and purpose of k:StarterSetAuthorRoster[], and two fields — k:RosterAuthor[]

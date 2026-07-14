@@ -43,6 +43,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.UUID;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -73,8 +74,12 @@ class FoundationFidelityIT {
 
     /** New concepts the identity-exact ingest itself mints: the module, the root, IKE Community. */
     private static final int INGEST_BOOTSTRAP_CONCEPTS = 3;
-    /** New concepts {@code ConstraintPatternSet} deliberately authors (IKE-Network/ike-issues#880). */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 17;
+    /**
+     * New concepts {@code ConstraintPatternSet} (17, IKE-Network/ike-issues#880) and
+     * {@code PatternShapeRefinementSet} (2 — Subject of Commentary, Editorial
+     * Clarification) deliberately author.
+     */
+    private static final int AUTHORED_CONTENT_CONCEPTS = 19;
     /** New patterns {@code ConstraintPatternSet} deliberately authors (IKE-Network/ike-issues#880). */
     private static final int AUTHORED_CONTENT_PATTERNS = 3;
 
@@ -101,6 +106,17 @@ class FoundationFidelityIT {
      */
     private static final Set<Integer> HISTORICALLY_AMBIGUOUS_AXIOM_NIDS = new HashSet<>();
 
+    /**
+     * UUIDs of pre-existing patterns {@code PatternShapeRefinementSet} deliberately
+     * gives a <em>second</em> new version, beyond the identity-exact ingest's own
+     * inception version (IKE-Network/ike-issues#880) — Comment pattern, revised to
+     * split its degenerate meaning=purpose into distinct concepts. Resolved to nids
+     * once the baseline store is up, in {@link #loadAndSnapshot()}.
+     */
+    private static final Set<UUID> DELIBERATELY_REVISED_TWICE_UUIDS =
+            Set.of(UUID.fromString("3734fb0a-4c14-5831-9a61-4743af609e7a"));
+    private static final Set<Integer> DELIBERATELY_REVISED_TWICE_NIDS = new HashSet<>();
+
     @BeforeAll
     static void loadAndSnapshot() throws Exception {
         CachingService.clearAll();
@@ -109,6 +125,10 @@ class FoundationFidelityIT {
         PrimitiveData.start();
         File baseline = Path.of("target", "data", "tinkar-starter-data-unreasoned-pb.zip").toFile();
         new LoadEntitiesFromProtobufFile(baseline).compute();
+
+        for (UUID uuid : DELIBERATELY_REVISED_TWICE_UUIDS) {
+            DELIBERATELY_REVISED_TWICE_NIDS.add(PrimitiveData.nid(uuid));
+        }
 
         calculator = Calculators.Stamp.DevelopmentLatestActiveOnly();
         languageCalculator = Calculators.Language.UsEnglishFullyQualifiedName(calculator.stampCoordinate());
@@ -210,7 +230,9 @@ class FoundationFidelityIT {
     }
 
     @Test
-    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge")
+    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge"
+            + " — except DELIBERATELY_REVISED_TWICE_NIDS, which gain a second, deliberately-authored"
+            + " revision on top")
     void versionCountIncreasesByExactlyOne() {
         for (Map.Entry<Integer, Integer> entry : VERSION_COUNT_BEFORE.entrySet()) {
             int nid = entry.getKey();
@@ -218,8 +240,9 @@ class FoundationFidelityIT {
             int versionsAfter = isPattern
                     ? EntityHandle.get(nid).expectPattern().versions().size()
                     : EntityHandle.get(nid).expectConcept().versions().size();
-            assertEquals(entry.getValue() + 1, versionsAfter,
-                    "version count did not increase by exactly 1 for nid " + nid);
+            int expectedIncrease = DELIBERATELY_REVISED_TWICE_NIDS.contains(nid) ? 2 : 1;
+            assertEquals(entry.getValue() + expectedIncrease, versionsAfter,
+                    "version count did not increase by exactly " + expectedIncrease + " for nid " + nid);
         }
     }
 
