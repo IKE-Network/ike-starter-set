@@ -2,28 +2,7 @@
 :toc: left
 :sectnums:
 
-== What This Set Provides
-
-The IkeFoundation knowledge set declares its content as an append-only ledger, rooted
-at k:IkeFoundationRoot[]; this guide and its comprehensive glossary are generated from
-the same materialized store as the released change set.
-
-The chapters that follow describe how this set's own concepts support the platform's
-core mechanisms — language and dialect, STAMP versioning, logical and navigational
-coordinates, EL++, the field-level meta-schema, and the base component/chronicle
-model itself — each naming the actual koncepts involved. The Koncept Glossary at the
-end lists every koncept in the set, alphabetically, for lookup.
-
-Every pattern in the set is defined by a referenced-component meaning and purpose,
-plus a declared, ordered list of fields, each with its own meaning, purpose, and data
-type — a pattern's own semantics are exactly the set of components carrying that
-pattern's public id. The list below indexes all of them — a List of Patterns, the same book
-convention as a List of Tables or a List of Figures, styled like the table of contents
-above — each entry linking to that pattern's own full shape, rendered as a table in the
-Koncept Glossary.
-
-koncept-pattern-list::[]
-
+[preface]
 == How to Read This Guide
 
 Every formally identified term in this guide renders as a *Koncept Badge*: a small
@@ -54,25 +33,25 @@ itself with a sigil ahead of the identicon.
 axioms. Most badges in this guide are concepts.
 
 | Pattern
-| violet P — e.g. k:DescriptionPattern[]
+| koncept-sigil:pattern[] violet P — e.g. k:DescriptionPattern[]
 | The schema for a family of semantics: what a semantic of this pattern means as a
 whole, and the ordered fields it carries — each with its own meaning, purpose, and
 data type. Every pattern in this set has its own shape table (see below).
 
 | Description
-| amber D
+| koncept-sigil:description[] amber D
 | Human-readable text bound to a concept — itself a semantic, of
 k:DescriptionPattern[] or a dialect pattern. Every name rendered in this guide,
 including the text inside each badge, is a description in the knowledge base.
 
 | Semantic
-| green S
+| koncept-sigil:semantic[] green S
 | A structured assertion attached to any component, instantiating exactly one
 pattern: its fields hold the values, in the pattern's declared order. The _e.g._
 rows in the shape tables are read from real semantics.
 
 | STAMP
-| grey pentagon
+| koncept-sigil:stamp[] grey pentagon
 | The provenance every version of every component carries: status, time, author,
 module, and path. The point-up pentagon is a five-dimensional radar — one reading
 per STAMP dimension — rather than an identicon, because a STAMP is provenance, not
@@ -83,8 +62,8 @@ In this guide's own chapters you will mostly meet bare concept badges and
 P-marked pattern badges; the D, S, and pentagon sigils appear on live surfaces
 that render individual semantics and versions (Komet itself, chat and mail
 integrations), and are listed here because the badge language is one vocabulary
-across all of them. A red `?` sigil marks a reference whose kind could not be
-determined.
+across all of them. A red question-mark sigil (koncept-sigil:unknown[]) marks a
+reference whose kind could not be determined.
 
 === Pattern-Shape Tables
 
@@ -114,9 +93,31 @@ field, 1-indexed, in declared order.
 Every koncept referenced anywhere in this guide has an entry in the comprehensive,
 alphabetical Koncept Glossary that closes the book — definition, axioms,
 identifiers, and taxonomy links to parents and children. The List of Patterns
-above indexes every pattern's glossary entry, the same book convention as a List
-of Tables or a List of Figures. Occasional indented concept trees show a live
-taxonomy subtree of the knowledge base, each node a badge.
+closing the first chapter indexes every pattern's glossary entry, the same book
+convention as a List of Tables or a List of Figures. Occasional indented concept
+trees show a live taxonomy subtree of the knowledge base, each node a badge.
+
+== What This Set Provides
+
+The IkeFoundation knowledge set declares its content as an append-only ledger, rooted
+at k:IkeFoundationRoot[]; this guide and its comprehensive glossary are generated from
+the same materialized store as the released change set.
+
+The chapters that follow describe how this set's own concepts support the platform's
+core mechanisms — language and dialect, STAMP versioning, logical and navigational
+coordinates, EL++, the field-level meta-schema, and the base component/chronicle
+model itself — each naming the actual koncepts involved. The Koncept Glossary at the
+end lists every koncept in the set, alphabetically, for lookup.
+
+Every pattern in the set is defined by a referenced-component meaning and purpose,
+plus a declared, ordered list of fields, each with its own meaning, purpose, and data
+type — a pattern's own semantics are exactly the set of components carrying that
+pattern's public id. The list below indexes all of them — a List of Patterns, the same book
+convention as a List of Tables or a List of Figures, styled like the table of contents
+above — each entry linking to that pattern's own full shape, rendered as a table in the
+Koncept Glossary.
+
+koncept-pattern-list::[]
 
 == Language Concepts
 
