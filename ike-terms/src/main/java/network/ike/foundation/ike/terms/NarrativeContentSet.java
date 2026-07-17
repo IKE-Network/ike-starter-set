@@ -417,21 +417,32 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: DisplayFields (Semantic Field Model — Display Fields)")), """
-                        k:DisplayFields[] captures a field's human-readable rendering in Komet's UI — display
-                        type, not storage type: k:ConceptDisplayField[] shows a concept's human-readable
-                        description rather than its raw identity, k:ComponentDisplayField[] the analogous
-                        rendering for any component; k:ComponentIdDisplayList[] and k:ComponentIdDisplaySet[]
-                        render an ordered or unordered collection of concept references, respectively.
-                        k:StringDisplayField[], k:BooleanDisplayField[], k:IntegerDisplayField[],
-                        k:FloatDisplayField[], k:DecimalDisplayField[], k:DoubleDisplayField[], and
-                        k:ByteArrayDisplayField[] each render one of the primitive storage types;
-                        k:ImageDisplayField[] and k:UUIDDisplayField[] round out the primitive display kinds.
+                        k:DisplayFields[] is a pattern's own field's declared data type — confirmed by
+                        identity against `ConceptToDataType` (`dev.ikm.tinkar.terms`, tinkar-core), which
+                        resolves exactly this family's members to their real `FieldDataType`, and exactly
+                        what a pattern's own `.field(meaning, purpose, dataType)` declaration draws its
+                        third argument from throughout this starter set's own source. Several members
+                        carried misleading "display field" wording, as if a separate "how does this render"
+                        concept sat behind some other, truer storage type — it does not, and five
+                        confirmed-in-use members have been renamed to say so plainly: k:ConceptDataType[]
+                        shows a concept's identity, k:ComponentDataType[] the analogous case for any
+                        component (concept, semantic, pattern, or STAMP, not restricted to concepts);
+                        k:ComponentIdDisplayList[] and k:ComponentIdDisplaySet[] hold an ordered or
+                        unordered collection of component references. k:StringDataType[] and
+                        k:FloatDataType[] hold a sequence of characters and a fractional number,
+                        respectively; k:BooleanDisplayField[], k:IntegerDisplayField[],
+                        k:DecimalDisplayField[], k:DoubleDisplayField[], and k:ByteArrayDisplayField[]
+                        round out the primitive kinds by name, and k:ImageDisplayField[] and
+                        k:UUIDDisplayField[] the non-numeric ones — this pass only renamed identities
+                        independently confirmed against real field usage in this starter set, so these
+                        keep their current names until each is checked the same way.
 
-                        Two structural kinds render graphs directly: k:DiGraphDisplayField[] (an ordered-pair
-                        directed graph — the same shape k:ELDigraph[] takes) and k:DiTreeDisplayField[] (an
-                        undirected tree with one designated root). k:LogicalExpressionDisplayField[] and
-                        k:SemanticDisplayFieldType[] round out the set — a rendered axiom expression, and a
-                        rendered list of a semantic's own fields, respectively.""");
+                        Two structural kinds hold graphs directly: k:DiGraphDisplayField[] (an ordered-pair
+                        directed graph — the same shape k:ELDigraph[] takes) and k:DiTreeDataType[] (a
+                        directed tree obtained from an undirected one, one designated root, likewise
+                        renamed). k:LogicalExpressionDisplayField[] and k:SemanticDisplayFieldType[] round
+                        out the set — a rendered axiom expression, and a rendered list of a semantic's own
+                        fields, respectively.""");
 
         set.concept("Meaning").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -439,13 +450,17 @@ final class NarrativeContentSet {
                                 "Narrative: Meaning (Semantic Field Model — Field Value Vocabulary)")), """
                         k:Meaning[] is the broadest of these three groups: the vocabulary a pattern or
                         semantic's field draws its *interpretation* from, distinct from the field *category*
-                        (k:FieldCategories[]) or *display* rendering (k:DisplayFields[]) vocabularies above.
-                        k:DynamicColumnDataTypes[] names the actual storage data types a field's value can
-                        take — k:Boolean[], k:Decimal[], k:Float[], k:Double[], k:Long[],
-                        k:SignedInteger[], k:Array[], k:ByteArray[], and k:UUIDDataType[] — the same set a
-                        pattern's own field declaration draws its data type from (`IkeTerm.LONG`,
-                        `IkeTerm.STRING`, `IkeTerm.COMPONENT_FIELD`, and so on, throughout this starter set's
-                        own source).
+                        (k:FieldCategories[]) or declared *data type* (k:DisplayFields[]) vocabularies above.
+                        k:DynamicColumnDataTypes[] — k:Boolean[], k:Decimal[], k:Float[], k:Double[],
+                        k:Long[], k:SignedInteger[], k:Array[], k:ByteArray[], and k:UUIDDataType[] — looks
+                        like it should be the same family k:DisplayFields[] draws from, but it is a
+                        separate, disjoint one: Komet's own pattern-authoring UI (`PatternFieldsController`,
+                        kview) draws its "choose a data type" list from this branch, while a pattern's real
+                        field declaration draws its `dataType` tag from k:DisplayFields[] instead
+                        (`IkeTerm.LONG`, `IkeTerm.STRING`, `IkeTerm.COMPONENT_FIELD`, and so on, throughout
+                        this starter set's own source) — two families that happen to describe the same idea
+                        twice, not one. Reparented under k:Legacy[] here as a deprecation signal; the
+                        disconnect on the komet side is tracked as ikmdev/komet#880.
 
                         k:LiteralValue[] groups the value shapes a concrete field literal can take —
                         k:BooleanLiteral[] (TRUE/FALSE/UNKNOWN), k:FloatLiteral[], k:InstantLiteral[] — while
@@ -623,7 +638,7 @@ final class NarrativeContentSet {
                         k:STAMPVersionFieldPattern[] is the richest of the chronicle/version family: meaning
                         k:STAMPVersionsField[], the same shared purpose, and six fields —
                         k:STAMPField[]/k:VersionProvenance[], plus k:StatusField[]/k:StatusForVersion[],
-                        k:TimeField[]/k:TimeForVersion[] (data type k:StringDisplayField[]),
+                        k:TimeField[]/k:TimeForVersion[] (data type k:StringDataType[]),
                         k:AuthorField[]/k:AuthorForVersion[], k:ModuleField[]/k:ModuleForVersion[], and
                         k:PathField[]/k:PathForVersion[] — the same k:StatusForVersion[]/k:AuthorForVersion[]/
                         k:ModuleForVersion[]/k:PathForVersion[]/k:TimeForVersion[] purpose concepts this guide's
@@ -792,7 +807,7 @@ final class NarrativeContentSet {
                         field can't capture. The field itself keeps k:Comment[] as its meaning (that part was
                         always correct — the field genuinely does hold a comment) but now carries
                         k:EditorialClarification[] as its purpose too, the same concept reused at both
-                        levels; its data type, k:StringDisplayField[], is unchanged. Tinkar's own
+                        levels; its data type, k:StringDataType[], is unchanged. Tinkar's own
                         `PatternVersion` model supports this cleanly: the original SOLOR-sourced version
                         stays in history untouched, and a `StampCoordinate` positioned after the revision
                         simply resolves the newer one. Two more small patterns round out this starter set's

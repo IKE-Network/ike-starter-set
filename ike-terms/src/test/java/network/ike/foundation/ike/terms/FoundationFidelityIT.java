@@ -78,12 +78,13 @@ class FoundationFidelityIT {
      * New concepts {@code ConstraintPatternSet} (17 original + 7 for Concept Field
      * Constraint Pattern + 5 for Preferred Reviewer/Starter Set Author Roster Pattern =
      * 29), {@code PatternShapeRefinementSet} (2 for Comment pattern + 23 for the
-     * remaining 16 revised patterns = 25), and {@code AssemblageTerminologySet} (1 — Set
-     * membership) deliberately author, all IKE-Network/ike-issues#880 (meaning/purpose
-     * rigor across the pattern-shape audit, then retiring "assemblage" from this set's
-     * own vocabulary).
+     * remaining 16 revised patterns = 25), {@code AssemblageTerminologySet} (1 — Set
+     * membership), and {@code LegacyTerminologySet} (1 — Legacy) deliberately author, all
+     * IKE-Network/ike-issues#880 (meaning/purpose rigor across the pattern-shape audit,
+     * retiring "assemblage" from this set's own vocabulary, then flagging dormant/
+     * superseded content as Legacy).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 55;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 56;
     /**
      * New patterns {@code ConstraintPatternSet} (3, IKE-Network/ike-issues#880) and
      * {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the IKE-native
@@ -160,14 +161,34 @@ class FoundationFidelityIT {
      * FQN text. {@link #fqnTextUnchanged()} asserts against this text for exactly these
      * nids, instead of the pre-replay snapshot every other component is held to.
      */
-    private static final Map<UUID, String> DELIBERATELY_RENAMED_FQNS = Map.of(
-            UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"), "Concept pattern for logic coordinate",
-            UUID.fromString("cfd2a47e-8169-5e71-9122-d5b73efd990a"), "Stated pattern for logic coordinate",
-            UUID.fromString("9ecf4d76-4346-5e5d-8316-bdff48a5c154"), "Inferred pattern for logic coordinate",
-            UUID.fromString("c060ffbf-e95f-5960-b296-8a3255c820ac"),
-                    "Dialect pattern preference list for language coordinate"
+    private static final Map<UUID, String> DELIBERATELY_RENAMED_FQNS = Map.ofEntries(
+            Map.entry(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"), "Concept pattern for logic coordinate"),
+            Map.entry(UUID.fromString("cfd2a47e-8169-5e71-9122-d5b73efd990a"), "Stated pattern for logic coordinate"),
+            Map.entry(UUID.fromString("9ecf4d76-4346-5e5d-8316-bdff48a5c154"), "Inferred pattern for logic coordinate"),
+            Map.entry(UUID.fromString("c060ffbf-e95f-5960-b296-8a3255c820ac"),
+                    "Dialect pattern preference list for language coordinate"),
+            // DataTypeTerminologySet: dropping misleading "display field" wording (#880 follow-up).
+            Map.entry(UUID.fromString("a46aaf11-b37a-32d6-abdc-707f084ec8f5"), "String data type"),
+            Map.entry(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"), "Component data type"),
+            Map.entry(UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"), "Concept data type"),
+            Map.entry(UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"), "DiTree data type"),
+            Map.entry(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"), "Float data type")
     );
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
+
+    /**
+     * UUID of the one pre-existing concept {@code LegacyTerminologySet} deliberately
+     * reparents — {@code Dynamic column data types (SOLOR)}, moved under the new
+     * {@code Legacy} branch as a deprecation signal (IKE-Network/ike-issues#880 follow-up)
+     * — mapped to its expected post-replay isA parent's own UUID. {@link #isAParentsUnchanged()}
+     * asserts against this single new parent for exactly this nid, instead of the
+     * pre-replay snapshot every other component is held to.
+     */
+    private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.of(
+            UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
+            UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")  // Legacy (IkeFoundation)
+    );
+    private static final Map<Integer, Integer> DELIBERATELY_REPARENTED_ISA_BY_NID = new HashMap<>();
 
     @BeforeAll
     static void loadAndSnapshot() throws Exception {
@@ -183,6 +204,10 @@ class FoundationFidelityIT {
         }
         for (Map.Entry<UUID, String> entry : DELIBERATELY_RENAMED_FQNS.entrySet()) {
             DELIBERATELY_RENAMED_FQNS_BY_NID.put(PrimitiveData.nid(entry.getKey()), entry.getValue());
+        }
+        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_REPARENTED_ISA.entrySet()) {
+            DELIBERATELY_REPARENTED_ISA_BY_NID.put(
+                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
         }
 
         calculator = Calculators.Stamp.DevelopmentLatestActiveOnly();
@@ -275,14 +300,17 @@ class FoundationFidelityIT {
 
     @Test
     @DisplayName("Every pre-existing component's latest isA parent set is unchanged after replay"
-            + " (except components with ambiguous axiom history — see HISTORICALLY_AMBIGUOUS_AXIOM_NIDS)")
+            + " (except components with ambiguous axiom history, see HISTORICALLY_AMBIGUOUS_AXIOM_NIDS,"
+            + " and DELIBERATELY_REPARENTED_ISA, which get their new, expected parent)")
     void isAParentsUnchanged() {
         for (Map.Entry<Integer, Set<Integer>> entry : IS_A_PARENTS_BEFORE.entrySet()) {
             int nid = entry.getKey();
             if (HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.contains(nid)) {
                 continue;
             }
-            assertEquals(entry.getValue(), latestIsAParents(nid), "isA parents drifted for nid " + nid);
+            Integer newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);
+            Set<Integer> expected = newParentNid != null ? Set.of(newParentNid) : entry.getValue();
+            assertEquals(expected, latestIsAParents(nid), "isA parents drifted for nid " + nid);
         }
     }
 

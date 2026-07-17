@@ -47,6 +47,14 @@ public final class IkeSource implements KnowledgeSetSource {
         // it must run last, after every other scope that touches the concepts/patterns
         // it revises.
         AssemblageTerminologySet.compose(Ike.SET);
+        // LegacyTerminologySet reparents dormant/superseded content under a new Legacy
+        // branch -- it must run last of all, after every other scope that touches the
+        // concepts it reparents.
+        LegacyTerminologySet.compose(Ike.SET);
+        // DataTypeTerminologySet drops misleading "display field" wording from the
+        // confirmed real-data-type concepts -- it must run last of all, after every other
+        // scope that touches the concepts it revises.
+        DataTypeTerminologySet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;
