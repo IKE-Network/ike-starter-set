@@ -24,6 +24,100 @@ Koncept Glossary.
 
 koncept-pattern-list::[]
 
+== How to Read This Guide
+
+Every formally identified term in this guide renders as a *Koncept Badge*: a small
+identicon — a deterministic visual hash of the component's own public identity, so
+the same component draws the same identicon everywhere it appears, here or in
+Komet — followed by the component's name in small caps. A badge is not styling; it
+is a reference to one exact component in the knowledge base, and it links to that
+koncept's entry in the Koncept Glossary at the end of this book, where its
+definition, axioms, and identifiers live. The prose is knowledge-base-native too:
+each chapter's narrative is itself stored in the knowledge base and rendered here,
+so the same content backs this guide and every other surface that reads the set.
+
+=== The Component Kinds
+
+Everything in the knowledge base is one of a small set of component kinds, and a
+badge is honest about which kind it names. The scheme is _concept bare, everything
+else marked_: a concept badge carries no extra mark, and every other kind announces
+itself with a sigil ahead of the identicon.
+
+.The component kinds and their badge sigils
+[cols="1,2,4",options="header"]
+|===
+| Kind | Badge sigil | What it is
+
+| Concept
+| none — bare, e.g. k:EnglishLanguage[]
+| A unit of meaning: identified, versioned, and defined by its descriptions and
+axioms. Most badges in this guide are concepts.
+
+| Pattern
+| violet P — e.g. k:DescriptionPattern[]
+| The schema for a family of semantics: what a semantic of this pattern means as a
+whole, and the ordered fields it carries — each with its own meaning, purpose, and
+data type. Every pattern in this set has its own shape table (see below).
+
+| Description
+| amber D
+| Human-readable text bound to a concept — itself a semantic, of
+k:DescriptionPattern[] or a dialect pattern. Every name rendered in this guide,
+including the text inside each badge, is a description in the knowledge base.
+
+| Semantic
+| green S
+| A structured assertion attached to any component, instantiating exactly one
+pattern: its fields hold the values, in the pattern's declared order. The _e.g._
+rows in the shape tables are read from real semantics.
+
+| STAMP
+| grey pentagon
+| The provenance every version of every component carries: status, time, author,
+module, and path. The point-up pentagon is a five-dimensional radar — one reading
+per STAMP dimension — rather than an identicon, because a STAMP is provenance, not
+a named term.
+|===
+
+In this guide's own chapters you will mostly meet bare concept badges and
+P-marked pattern badges; the D, S, and pentagon sigils appear on live surfaces
+that render individual semantics and versions (Komet itself, chat and mail
+integrations), and are listed here because the badge language is one vocabulary
+across all of them. A red `?` sigil marks a reference whose kind could not be
+determined.
+
+=== Pattern-Shape Tables
+
+Each pattern's chapter renders its shape as a numbered table — for example
+<<koncept-pattern-table-DescriptionPattern>> — organized as one three-row group per
+*Model Feature*: first the pattern's referenced component, then each declared
+field, 1-indexed, in declared order.
+
+* An italic label row names the feature: _Referenced component_ (the component —
+  concept, semantic, pattern, or STAMP — this pattern's semantics attach to) or
+  _Field N_. The referenced component is never numbered "Field 0" because it is
+  not part of the fields array: it is a chronicle-level property of the semantic,
+  structurally separate from the field values.
+* A content row names the feature's *Meaning* — the concept saying what a value of
+  this feature is — its *Purpose* — the concept saying why the pattern carries
+  it — and its *Data type*, drawn from the closed set of data-type concepts the
+  platform actually resolves. The referenced component has no data type, so that
+  cell is an em dash.
+* An indented _e.g._ row shows the feature's value on one real semantic already in
+  the knowledge base — deterministically the earliest-authored one, so the example
+  is stable across regenerations — rendered as a badge when the value is itself an
+  identified component, and as plain text otherwise. A pattern with no semantics
+  yet simply has no e.g. rows.
+
+=== The Glossary and the List of Patterns
+
+Every koncept referenced anywhere in this guide has an entry in the comprehensive,
+alphabetical Koncept Glossary that closes the book — definition, axioms,
+identifiers, and taxonomy links to parents and children. The List of Patterns
+above indexes every pattern's glossary entry, the same book convention as a List
+of Tables or a List of Figures. Occasional indented concept trees show a live
+taxonomy subtree of the knowledge base, each node a badge.
+
 == Language Concepts
 
 koncept-narrative::DescriptionPattern[]
