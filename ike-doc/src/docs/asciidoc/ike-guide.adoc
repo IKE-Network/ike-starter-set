@@ -36,6 +36,18 @@ so the same content backs this guide and every other surface that reads the set.
 .Anatomy of a Koncept Badge — Description Pattern's badge, dissected
 koncept-badge-anatomy::DescriptionPattern[]
 
+A STAMP badge follows the same anatomy with provenance in place of a name — shown
+here for this set's own inception STAMP, declared in the ledger source as
+Active · 2026-07-12T00:00:00Z · IKE Community · IkeFoundation module ·
+Development path.
+
+// The set's declared inception stamp (ConceptSet.compose(): Stamp.active("2026-07-12T00:00:00Z",
+// IKE Community, IkeFoundation module, Development path)). Stamp identity is derived from the
+// tuple itself — Stamp.stampUuid = T5(STAMP_NAMESPACE, status|time|author|module|path) — so this
+// UUID is the stamp's real, replay-stable PublicId, computed from the declared constituents.
+.Anatomy of a STAMP badge — the set's inception stamp, dissected
+koncept-badge-anatomy::uuid=1e041b79-2aa5-5d19-ad09-05a079cb396f[kind=stamp, label="Active · 2026-07-12 00:00 · IKE Community"]
+
 === The Component Kinds
 
 Everything in the knowledge base is one of a small set of component kinds, and a
