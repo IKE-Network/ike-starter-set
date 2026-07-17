@@ -20,20 +20,21 @@ name and the sigil carry that.
 
 === Koncept Badges
 
-Every formally identified term in this guide renders as a *Koncept Badge*: the
-identicon, followed by the component's name in small caps, preceded by a kind sigil
-when the kind calls for one (next section). A badge is not styling; it is a
-reference to one exact component in the knowledge base, and it links to that
-koncept's entry in the Koncept Glossary at the end of this book, where its
-definition, axioms, and identifiers live. The prose is knowledge-base-native too:
+Every formally identified term in this guide renders as a *Koncept Badge*: a kind
+sigil when the kind calls for one (next section), then the identicon, then the
+component's name in small caps. A sigil always immediately precedes an identicon —
+it marks what kind of thing the identicon identifies, and never stands alone in a
+badge. A badge is not styling; it is a reference to one exact component in the
+knowledge base, and it links to that koncept's entry in the Koncept Glossary at
+the end of this book, where its definition, axioms, and identifiers live. The prose is knowledge-base-native too:
 each chapter's narrative is itself stored in the knowledge base and rendered here,
 so the same content backs this guide and every other surface that reads the set.
 
 === The Component Kinds
 
 Everything in the knowledge base is one of a small set of component kinds, and a
-badge is honest about which kind it names. The scheme is _concept bare, everything
-else marked_: a concept badge carries no extra mark, and every other kind announces
+badge is honest about which kind it names. The scheme is _Koncept bare, everything
+else marked_: a Koncept badge carries no extra mark, and every other kind announces
 itself with a sigil ahead of the identicon.
 
 .The component kinds, their badge sigils, and a concrete example of each
@@ -41,40 +42,46 @@ itself with a sigil ahead of the identicon.
 |===
 | Kind | Badge | What it is
 
-| Concept
+| Koncept
 | no sigil — bare +
 e.g. k:EnglishLanguage[]
-| A unit of meaning: identified, versioned, and defined by its descriptions and
-axioms. Most badges in this guide are concepts.
+| A *Koncept* — with a K — is the formal construct in the knowledge base,
+deliberately distinct from a concept in the mind. A concept is the thought a
+person holds; a Koncept is the identified, versioned construct that carries
+descriptions (its names) and a logical definition (its meaning) — formally, the
+referent of the semiotic triangle: the thing the badge's name symbolizes and a
+reader's concept refers to. Most badges in this guide are Koncepts.
 
 | Pattern
-| koncept-sigil:pattern[] violet P +
+| koncept-sigil:pattern[scale=1.5] violet P +
 e.g. k:DescriptionPattern[]
 | The schema for a family of semantics: what a semantic of this pattern means as a
 whole, and the ordered fields it carries — each with its own meaning, purpose, and
 data type. Every pattern in this set has its own shape table (see below).
 
 | Description
-| koncept-sigil:description[] amber D +
+| koncept-sigil:description[scale=1.5] amber D +
 e.g. koncept-sigil:description[Uninitialized Component (SOLOR)]
 | Human-readable text bound to a concept — itself a semantic, of
 k:DescriptionPattern[] or a dialect pattern. Every name rendered in this guide,
 including the text inside each badge, is a description in the knowledge base.
 
 | Semantic
-| koncept-sigil:semantic[] green S +
+| koncept-sigil:semantic[scale=1.5] green S +
 e.g. koncept-sigil:semantic[Gretel]
 | A structured assertion attached to any component, instantiating exactly one
 pattern: its fields hold the values, in the pattern's declared order. The _e.g._
 rows in the shape tables are read from real semantics.
 
 | STAMP
-| koncept-sigil:stamp[] grey pentagon +
+| koncept-sigil:stamp[scale=1.5] grey pentagon +
 e.g. koncept-sigil:stamp[Active · Inception · Tinkar Starter Data Author]
 | The provenance every version of every component carries: status, time, author,
-module, and path. The pentagon shows beside the compact provenance text — status,
-time, author — in place of a name, because a STAMP is provenance, not a named term.
-The point-up pentagon is a five-dimensional radar: one reading per STAMP dimension.
+module, and path. A STAMP badge leads with the pentagon sigil — a point-up
+five-dimensional radar, one reading per STAMP dimension — then the STAMP's own
+identicon, which tells one STAMP from another at a glance, then the compact
+provenance text (status, time, author) in place of a name: a STAMP is identified
+like every component, but what it says is provenance.
 |===
 
 The concept and pattern examples are live badges — click either to visit its
