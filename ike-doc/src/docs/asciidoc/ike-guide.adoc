@@ -35,6 +35,14 @@ semantic already in the set.
 
 koncept-pattern-table::DescriptionPattern[]
 
+The dialect patterns that layer acceptability on top of a description are shown in
+<<koncept-pattern-table-USDialectPattern>> and
+<<koncept-pattern-table-GBDialectPattern>>.
+
+koncept-pattern-table::USDialectPattern[]
+
+koncept-pattern-table::GBDialectPattern[]
+
 == STAMP Concepts
 
 Every version of every component carries a STAMP: a (status, author, module, path,
@@ -53,9 +61,22 @@ koncept-narrative::Author[]
 
 koncept-narrative::Module[]
 
+<<koncept-pattern-table-ModuleOriginsPattern>> shows the module-origins pattern's
+shape.
+
+koncept-pattern-table::ModuleOriginsPattern[]
+
 === Path
 
 koncept-narrative::Path[]
+
+<<koncept-pattern-table-PathOriginsPattern>> and
+<<koncept-pattern-table-VersionControlPathPattern>> show the two path patterns'
+shapes.
+
+koncept-pattern-table::PathOriginsPattern[]
+
+koncept-pattern-table::VersionControlPathPattern[]
 
 === Edit Coordinate
 
@@ -75,15 +96,34 @@ k:StatusForVersion[] (purpose), k:Time[] (meaning) for k:TimeForVersion[] (purpo
 and k:Author[], k:Module[], and k:Path[] (meaning) for k:AuthorForVersion[],
 k:ModuleForVersion[], and k:PathForVersion[] (purpose) respectively — the same four
 koncepts named above, plus time, now restated here by their own exact field-meaning
-identity.
+identity. That shape, feature by feature, is <<koncept-pattern-table-STAMPPattern>>.
+
+koncept-pattern-table::STAMPPattern[]
 
 == Logic Coordinates
 
 koncept-narrative::LogicCoordinateProperties[]
 
+<<koncept-pattern-table-SolorConceptsPattern>> and
+<<koncept-pattern-table-SOLORConceptAssemblage>> show the membership patterns named
+here — the fresh Solor Concepts Pattern and the dormant legacy SOLOR concept
+assemblage it supersedes.
+
+koncept-pattern-table::SolorConceptsPattern[]
+
+koncept-pattern-table::SOLORConceptAssemblage[]
+
 == Navigation Coordinates
 
 koncept-narrative::NavigationVertex[]
+
+<<koncept-pattern-table-StatedNavigationPattern>> and
+<<koncept-pattern-table-InferredNavigationPattern>> show the two navigation
+patterns' shapes.
+
+koncept-pattern-table::StatedNavigationPattern[]
+
+koncept-pattern-table::InferredNavigationPattern[]
 
 == EL++ Concepts
 
@@ -104,6 +144,17 @@ koncept-narrative::ConcreteValueOperator[]
 === Logical Definitions and Grouping
 
 koncept-narrative::LogicalDefinition[]
+
+<<koncept-pattern-table-ELStatedAxiomsPattern>>,
+<<koncept-pattern-table-ELInferredAxiomsPattern>>, and
+<<koncept-pattern-table-OWLAxiomSyntaxPattern>> show the three axiom patterns'
+shapes.
+
+koncept-pattern-table::ELStatedAxiomsPattern[]
+
+koncept-pattern-table::ELInferredAxiomsPattern[]
+
+koncept-pattern-table::OWLAxiomSyntaxPattern[]
 
 == Semantic Field Model
 
@@ -127,6 +178,11 @@ koncept-narrative::Meaning[]
 
 koncept-narrative::ConceptFieldConstraint[]
 
+<<koncept-pattern-table-ConceptFieldConstraintPattern>> shows the constraint
+pattern's shape.
+
+koncept-pattern-table::ConceptFieldConstraintPattern[]
+
 [koncept-tree]
 ----
 kindof: Author
@@ -141,6 +197,34 @@ other chapter's own vocabulary ultimately descends from.
 
 koncept-narrative::TinkarModelConcept[]
 
+The base-model shape patterns' own tables follow, in the order the narrative names
+them: the chronicle and version shapes for components, concepts, patterns,
+semantics, and STAMPs, then the base-model membership patterns.
+
+koncept-pattern-table::ComponentChronologyPattern[]
+
+koncept-pattern-table::ComponentVersionPattern[]
+
+koncept-pattern-table::ConceptFieldPattern[]
+
+koncept-pattern-table::ConceptVersionPattern[]
+
+koncept-pattern-table::PatternChronologyPattern[]
+
+koncept-pattern-table::PatternVersionPattern[]
+
+koncept-pattern-table::SemanticChronologyPattern[]
+
+koncept-pattern-table::SementicVersionFieldPattern[]
+
+koncept-pattern-table::STAMPChronologyPattern[]
+
+koncept-pattern-table::STAMPVersionFieldPattern[]
+
+koncept-pattern-table::TinkarBaseModelComponentPattern[]
+
+koncept-pattern-table::KometBaseModelComponentPattern[]
+
 === Base Model Primitives
 
 koncept-narrative::Object[]
@@ -148,6 +232,10 @@ koncept-narrative::Object[]
 == Value Constraints and Reference Ranges
 
 koncept-narrative::ValueConstraint[]
+
+<<koncept-pattern-table-ValueConstraintPattern>> shows the pattern's shape.
+
+koncept-pattern-table::ValueConstraintPattern[]
 
 == Authoring Actions and Legacy Constraints
 
@@ -161,9 +249,24 @@ koncept-narrative::DescriptionType[]
 
 koncept-narrative::AnnotationType[]
 
+<<koncept-pattern-table-CommentPattern>>,
+<<koncept-pattern-table-StarterSetAuthorRosterPattern>>, and
+<<koncept-pattern-table-PreferredReviewerPattern>> show these three patterns'
+shapes.
+
+koncept-pattern-table::CommentPattern[]
+
+koncept-pattern-table::StarterSetAuthorRosterPattern[]
+
+koncept-pattern-table::PreferredReviewerPattern[]
+
 == Identifiers
 
 koncept-narrative::IdentifierSource[]
+
+<<koncept-pattern-table-IdentifierPattern>> shows the identifier pattern's shape.
+
+koncept-pattern-table::IdentifierPattern[]
 
 == Coordinate Properties: Language and Path
 
