@@ -18,6 +18,9 @@ references name the same thing, before reading a word. Because it is derived fro
 identity alone, an identicon carries no meaning about what the component is; the
 name and the sigil carry that.
 
+.The identicon of English Language, computed from its public identifier — the same image wherever this component appears
+koncept-identicon-figure::EnglishLanguage[width=96]
+
 === Koncept Badges
 
 Every formally identified term in this guide renders as a *Koncept Badge*: a kind
@@ -29,6 +32,9 @@ knowledge base, and it links to that koncept's entry in the Koncept Glossary at
 the end of this book, where its definition, axioms, and identifiers live. The prose is knowledge-base-native too:
 each chapter's narrative is itself stored in the knowledge base and rendered here,
 so the same content backs this guide and every other surface that reads the set.
+
+.Anatomy of a Koncept Badge — Description Pattern's badge, dissected
+koncept-badge-anatomy::DescriptionPattern[]
 
 === The Component Kinds
 
