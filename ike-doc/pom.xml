@@ -34,6 +34,15 @@
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Same unreleased-ike-docs pilot override as koncept-asciidoc-extension
+             above: the pattern-table row styles live in the shared docinfo, ahead
+             of the pinned ike-docs release. Drop both when the pin catches up. -->
+        <dependency>
+            <groupId>network.ike.docs</groupId>
+            <artifactId>ike-doc-resources</artifactId>
+            <version>${koncept-asciidoc-extension.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

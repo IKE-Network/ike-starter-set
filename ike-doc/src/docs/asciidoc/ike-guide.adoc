@@ -28,6 +28,13 @@ koncept-pattern-list::[]
 
 koncept-narrative::DescriptionPattern[]
 
+<<koncept-pattern-table-DescriptionPattern>> shows the pattern's full shape: each
+Model Feature — the referenced component, then each field in declared order — with
+its meaning, purpose, and data type, and a live example value drawn from a real
+semantic already in the set.
+
+koncept-pattern-table::DescriptionPattern[]
+
 == STAMP Concepts
 
 Every version of every component carries a STAMP: a (status, author, module, path,
