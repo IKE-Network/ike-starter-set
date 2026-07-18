@@ -164,11 +164,12 @@ final class NarrativeContentSet {
                         ignore outright).
 
                         A module's own lineage is tracked the same way a path's is: k:ModuleOriginsPattern[]
-                        carries a referenced-component meaning of k:ModuleOrigins[] and a purpose of
-                        k:ModuleLineage[] — why the record exists: to track which modules a given module
-                        originated from — with one field, k:ModuleOrigins[] (meaning) for k:ModuleLineage[]
-                        (purpose, the same concept reused), holding the set of modules a given module
-                        originated from — the module-level counterpart to k:PathOriginsPattern[] below.""");
+                        carries a referenced-component meaning of k:OriginatedModule[] — the module whose
+                        origins are declared — and a purpose of k:ModuleLineage[] — why the record exists:
+                        to track which modules a given module originated from — with one field,
+                        k:ModuleOrigins[] (meaning) for k:OriginModuleSet[] (purpose), holding the set of
+                        modules this module originated from — the module-level counterpart to
+                        k:PathOriginsPattern[] below.""");
 
         set.concept("Path").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -180,11 +181,13 @@ final class NarrativeContentSet {
                         versions committed on an ancestor path before the branch point.
 
                         As a pattern, k:PathOriginsPattern[] itself carries a referenced-component meaning
-                        of k:PathOrigins[] and a purpose of k:PathLineage[] — why the record exists: to
-                        track which path it branched from, and when — and two fields: k:PathConcept[]
-                        (meaning) for k:OriginSubject[] (purpose — which path this origin record is about)
-                        and k:PathOrigins[] (meaning) for k:PathLineage[] again (purpose — the origin time
-                        and ancestor path, the same concept reused). k:VersionControlPathPattern[]
+                        of k:OriginatedPath[] — the path whose branch point is declared — and a purpose of
+                        k:PathLineage[] — why the record exists: to track which path it branched from, and
+                        when — and two fields: k:PathConcept[] (meaning) for k:BranchSource[] (purpose —
+                        which path this path branched from; the record's subject is the referenced
+                        component, never this field) and k:PathOrigins[] (meaning) for k:BranchPoint[]
+                        (purpose — the moment this path branched, up to which the origin path's versions
+                        are visible from it). k:VersionControlPathPattern[]
                         is simpler still — a referenced-component meaning of k:Path[] and purpose of
                         k:SetMembership[], with no fields of its own: a semantic of it merely marks a
                         component as belonging to version-control path management, the same bare
@@ -381,9 +384,11 @@ final class NarrativeContentSet {
                         k:ELInferredTerminologicalAxioms[] — the two concrete patterns
                         k:StatedPatternForLogicCoordinate[] and k:InferredPatternForLogicCoordinate[]
                         (named in the Logic Coordinates chapter) actually point at. k:OWLAxiomSyntaxPattern[]
-                        is smaller still: a referenced-component meaning and purpose of k:AxiomSyntax[] and
-                        k:ExpressAxiomSyntax[] respectively, with one field, k:AxiomSyntax[] itself, holding
-                        the OWL functional-syntax text an axiom can optionally also be expressed in.""");
+                        is smaller still: a referenced-component meaning of k:AxiomatizedComponent[] — the
+                        component whose definitional axioms the semantic expresses — and a purpose of
+                        k:AxiomExpression[], with one field, k:AxiomSyntax[] for k:ExpressAxiomSyntax[],
+                        holding the OWL functional-syntax text an axiom can optionally also be expressed
+                        in.""");
 
         // Semantic Field Model chapter (IKE-Network/ike-issues#880): the field-level meta-schema
         // — what kind of value a field holds, how it renders, and what its value can mean —
@@ -892,13 +897,14 @@ final class NarrativeContentSet {
                         universally-unique-identifier source, the UUID's own text form.
 
                         As a pattern, k:IdentifierPattern[] itself carries a referenced-component meaning of
-                        k:IdentifierSource[] — the same concept the field discussion above already named —
-                        and a purpose of k:ExternalIdentityMapping[]: why the pattern exists, to record an
-                        alternate identifier a component carries in an external terminology's own identifier
-                        scheme. Two fields each carry their own meaning and purpose: k:IdentifierSource[]
-                        (meaning) for k:IdentifierAuthority[] (purpose — which authority issued the
-                        identifier) and k:IdentifierValue[] (meaning) for k:IdentifierText[] (purpose — the
-                        identifier's own literal text).""");
+                        k:IdentifiedComponent[] — the component an external identifier names, distinct from
+                        the field-level k:IdentifierSource[] the discussion above named — and a purpose of
+                        k:ExternalIdentityMapping[]: why the pattern exists, to record an alternate
+                        identifier a component carries in an external terminology's own identifier scheme.
+                        Two fields each carry their own meaning and purpose: k:IdentifierSource[] (meaning)
+                        for k:IdentifierAuthority[] (purpose — which authority issued the identifier) and
+                        k:IdentifierValue[] (meaning) for k:IdentifierText[] (purpose — the identifier's own
+                        literal text).""");
 
         set.concept("Language coordinate properties (SOLOR)").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,

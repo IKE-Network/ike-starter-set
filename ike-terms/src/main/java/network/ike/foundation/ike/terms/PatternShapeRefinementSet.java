@@ -333,16 +333,34 @@ final class PatternShapeRefinementSet {
                         IkeTerm.COMPONENT_ID_SET_FIELD);
 
         // ── Base Tinkar meta-model: module/path origins ─────────────────
+        // Referenced-component meanings are distinct concepts (IKE-Network/ike-issues#891
+        // — the Model-Feature pointer invariant: a pattern's referenced-component meaning
+        // must differ from every field meaning), and each field carries its own purpose
+        // rather than repeating the pattern's.
         set.concept("Module Lineage (IkeFoundation)").at(refinement)
                 .synonym("Module Lineage")
                 .definition("Why a module's own origin record is captured: to track which"
                         + " modules a given module originated from.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
+        set.concept("Originated Module (IkeFoundation)").at(refinement)
+                .synonym("Originated Module")
+                .definition("What a Module origins pattern semantic's referenced component"
+                        + " is: the module whose origins are declared — the module that"
+                        + " originated from the modules the semantic names, distinct from"
+                        + " Module origins, which names the origin-set value itself.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Origin Module Set (IkeFoundation)").at(refinement)
+                .synonym("Origin Module Set")
+                .definition("Why a module's origin set value is recorded: to name the"
+                        + " modules this module originated from.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
         set.pattern("Module origins pattern (SOLOR)").at(refinement)
-                .meaning(IkeTerm.MODULE_ORIGINS)
+                .meaning(set.conceptRef("Originated Module (IkeFoundation)"))
                 .purpose(set.conceptRef("Module Lineage (IkeFoundation)"))
-                .field(IkeTerm.MODULE_ORIGINS, set.conceptRef("Module Lineage (IkeFoundation)"),
+                .field(IkeTerm.MODULE_ORIGINS, set.conceptRef("Origin Module Set (IkeFoundation)"),
                         IkeTerm.COMPONENT_ID_SET_FIELD);
 
         set.concept("Path Lineage (IkeFoundation)").at(refinement)
@@ -351,17 +369,33 @@ final class PatternShapeRefinementSet {
                         + " path it branched from, and when.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
-        set.concept("Origin Subject (IkeFoundation)").at(refinement)
-                .synonym("Origin Subject")
-                .definition("Why a Path origins pattern's Path concept field is recorded:"
-                        + " to say which path this origin record is about.")
+        set.concept("Originated Path (IkeFoundation)").at(refinement)
+                .synonym("Originated Path")
+                .definition("What a Path origins pattern semantic's referenced component"
+                        + " is: the path whose branch point is declared — the path that"
+                        + " originated from the path the semantic names, distinct from"
+                        + " Path origins, which names the origin-record value itself.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Branch Source (IkeFoundation)").at(refinement)
+                .synonym("Branch Source")
+                .definition("Why the origin path value is recorded: to say which path this"
+                        + " path branched from. The record's subject is the referenced"
+                        + " component — the originated path — never this field.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Branch Point (IkeFoundation)").at(refinement)
+                .synonym("Branch Point")
+                .definition("Why the origin instant is recorded: to fix the moment this"
+                        + " path branched from its origin — the point up to which the"
+                        + " origin path's versions are visible from this path.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
         set.pattern("Path origins pattern (SOLOR)").at(refinement)
-                .meaning(IkeTerm.PATH_ORIGINS)
+                .meaning(set.conceptRef("Originated Path (IkeFoundation)"))
                 .purpose(set.conceptRef("Path Lineage (IkeFoundation)"))
-                .field(IkeTerm.PATH_CONCEPT, set.conceptRef("Origin Subject (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
-                .field(IkeTerm.PATH_ORIGINS, set.conceptRef("Path Lineage (IkeFoundation)"), IkeTerm.INSTANT_LITERAL);
+                .field(IkeTerm.PATH_CONCEPT, set.conceptRef("Branch Source (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                .field(IkeTerm.PATH_ORIGINS, set.conceptRef("Branch Point (IkeFoundation)"), IkeTerm.INSTANT_LITERAL);
 
         // ── STAMP pattern (domain) ───────────────────────────────────────
         // Status was already correct (StatusValue meaning / StatusForVersion purpose).
@@ -443,11 +477,49 @@ final class PatternShapeRefinementSet {
                         + " own literal text, once a source has been chosen.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
+        set.concept("Identified Component (IkeFoundation)").at(refinement)
+                .synonym("Identified Component")
+                .definition("What an Identifier Pattern semantic's referenced component"
+                        + " is: the component an external identifier names — the carrier"
+                        + " of an alternate identity in another identifier scheme,"
+                        + " distinct from Identifier source, which names the field value"
+                        + " saying where that identifier came from"
+                        + " (IKE-Network/ike-issues#891).")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
         set.pattern("Identifier Pattern").at(refinement)
-                .meaning(IkeTerm.IDENTIFIER_SOURCE)
+                .meaning(set.conceptRef("Identified Component (IkeFoundation)"))
                 .purpose(set.conceptRef("External Identity Mapping (IkeFoundation)"))
                 .field(IkeTerm.IDENTIFIER_SOURCE, set.conceptRef("Identifier Authority (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(IkeTerm.IDENTIFIER_VALUE, set.conceptRef("Identifier Text (IkeFoundation)"), IkeTerm.STRING);
+
+        // ── OWL Axiom Syntax Pattern (domain) ────────────────────────────
+        // The one still-untouched SOLOR baseline shape (Section71 is
+        // regeneration-locked, so this is its first refinement revision,
+        // IKE-Network/ike-issues#891): the inherited version uses Axiom syntax as both
+        // the referenced-component meaning and the field meaning, and Express axiom
+        // syntax as both purposes. The field keeps both inherited concepts — its value
+        // genuinely is axiom syntax text, recorded to express the axioms — while the
+        // referenced component gets its own role concepts.
+        set.concept("Axiomatized Component (IkeFoundation)").at(refinement)
+                .synonym("Axiomatized Component")
+                .definition("What an OWL Axiom Syntax Pattern semantic's referenced"
+                        + " component is: the component whose definitional axioms the"
+                        + " semantic expresses — distinct from Axiom syntax, which names"
+                        + " the syntax text the field holds.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("Axiom Expression (IkeFoundation)").at(refinement)
+                .synonym("Axiom Expression")
+                .definition("Why an OWL Axiom Syntax Pattern semantic exists: to express"
+                        + " a component's definitional axioms as OWL functional-syntax"
+                        + " text.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.pattern("OWL Axiom Syntax Pattern").at(refinement)
+                .meaning(set.conceptRef("Axiomatized Component (IkeFoundation)"))
+                .purpose(set.conceptRef("Axiom Expression (IkeFoundation)"))
+                .field(IkeTerm.AXIOM_SYNTAX, IkeTerm.EXPRESS_AXIOM_SYNTAX, IkeTerm.STRING);
 
         // ── Value Constraint Pattern (domain) ────────────────────────────
         // Min/max operator and reference-range fields were already correct (their

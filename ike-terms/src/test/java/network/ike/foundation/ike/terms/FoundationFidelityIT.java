@@ -97,7 +97,12 @@ class FoundationFidelityIT {
     /**
      * New concepts {@code ConstraintPatternSet} (30 — see below),
      * {@code PatternShapeRefinementSet} (2 for Comment pattern + 23 for the
-     * remaining 16 revised patterns = 25), {@code AssemblageTerminologySet} (1 — Set
+     * remaining 16 revised patterns + 7 for the IKE-Network/ike-issues#891
+     * Model-Feature pointer fixes = 32 — the #891 fixes mint Originated Module,
+     * Origin Module Set, Originated Path, Branch Source, Branch Point, Identified
+     * Component, Axiomatized Component, and Axiom Expression (+8) while Origin
+     * Subject — whose definition misdescribed the origin-path field as naming the
+     * record's subject — is never created (−1)), {@code AssemblageTerminologySet} (1 — Set
      * membership), and {@code LegacyTerminologySet} (1 — Legacy) deliberately author, all
      * IKE-Network/ike-issues#880 (meaning/purpose rigor across the pattern-shape audit,
      * retiring "assemblage" from this set's own vocabulary, then flagging dormant/
@@ -117,7 +122,7 @@ class FoundationFidelityIT {
      * match relation seam mints "Member match relation", "Equal match relation", and the
      * "Match Discipline" field purpose (+3).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 79;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 86;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -189,7 +194,11 @@ class FoundationFidelityIT {
             UUID.fromString("922697f7-36ba-4afc-9dd5-f29d54b0fdec"), // Value Constraint Pattern
             UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9"), // Tinkar base model component pattern
             UUID.fromString("bbbbf1fe-00f0-55e0-a19c-6300dbaab9b2"), // Komet base model component pattern
-            UUID.fromString("add1db57-72fe-53c8-a528-1614bda20ec6")  // Version control path pattern
+            UUID.fromString("add1db57-72fe-53c8-a528-1614bda20ec6"), // Version control path pattern
+            // The last SOLOR baseline shape to get its refinement revision — the
+            // IKE-Network/ike-issues#891 Model-Feature pointer fix (Axiomatized
+            // Component meaning / Axiom Expression purpose).
+            UUID.fromString("c0ca180b-aae2-5fa1-9ab7-4a24f2dfe16b")  // OWL Axiom Syntax Pattern
     );
     private static final Set<Integer> DELIBERATELY_REVISED_TWICE_NIDS = new HashSet<>();
 
@@ -728,34 +737,15 @@ class FoundationFidelityIT {
                 relationNids, "exactly the Equal match relation is admitted today");
     }
 
-    /**
-     * UUIDs of ledger-declared patterns whose latest shape carries a pre-existing,
-     * SOLOR-inherited collision between the pattern's referenced-component meaning and
-     * one of its own field meanings — violating the Model-Feature pointer invariant
-     * {@link #referencedComponentMeaningDiffersFromEveryFieldMeaning()} asserts
-     * (IKE-Network/ike-issues#890): OWL Axiom Syntax Pattern (meaning and single field
-     * meaning are both Axiom syntax — the untouched SOLOR baseline shape), and the
-     * Identifier / Module origins / Path origins patterns, whose #880 shape revisions
-     * adopted the inherited SOLOR concept as both the pattern meaning and a field
-     * meaning (Identifier source, Module origins, Path origins respectively). These
-     * pre-bronze inherited shapes are registered — not endorsed — pending KEC's ruling
-     * in the standing text pass; a shape fix must also shrink this registry, so a
-     * collision can never creep back in silently. Every other declared pattern,
-     * including both #890 constraint patterns and every value-set source, must satisfy
-     * the invariant outright.
-     */
-    private static final Set<UUID> SOLOR_INHERITED_MEANING_FIELD_COLLISION_UUIDS = Set.of(
-            UUID.fromString("c0ca180b-aae2-5fa1-9ab7-4a24f2dfe16b"), // OWL Axiom Syntax Pattern
-            UUID.fromString("5d60e14b-c410-5172-9559-3c4253278ae2"), // Identifier Pattern
-            UUID.fromString("536b0ec4-4974-47ae-93a6-ae6c4d169780"), // Module origins pattern (SOLOR)
-            UUID.fromString("70f89dd5-2cdb-59bb-bbaa-98527513547c")  // Path origins pattern (SOLOR)
-    );
-
     @Test
     @DisplayName("Every ledger-declared pattern's referenced-component meaning differs from every one"
             + " of its own field meanings — the Model-Feature pointer invariant"
-            + " (IKE-Network/ike-issues#890) — except the registered SOLOR-inherited collisions")
+            + " (IKE-Network/ike-issues#890)")
     void referencedComponentMeaningDiffersFromEveryFieldMeaning() {
+        // Unconditional since IKE-Network/ike-issues#891: the four SOLOR-inherited
+        // collisions (OWL Axiom Syntax, Identifier, Module origins, Path origins) were
+        // fixed with distinct referenced-component meanings in PatternShapeRefinementSet,
+        // and the exemption registry that pinned them is gone — no pattern may collide.
         Set<UUID> colliding = new HashSet<>();
         for (KnowledgeSet.Declaration declaration : Ike.SET.declarations()) {
             if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
@@ -773,12 +763,11 @@ class FoundationFidelityIT {
                 }
             }
         }
-        assertEquals(SOLOR_INHERITED_MEANING_FIELD_COLLISION_UUIDS, colliding,
+        assertEquals(Set.of(), colliding,
                 "a pattern's referenced-component meaning must differ from every one of its own"
                         + " field meanings, so the Value-set field Model-Feature pointer — a field's"
                         + " meaning, or the referenced-component meaning for membership patterns — is"
-                        + " unambiguous (IKE-Network/ike-issues#890); only the registered"
-                        + " SOLOR-inherited shapes may collide, and fixing one must also shrink the"
-                        + " registry");
+                        + " unambiguous (IKE-Network/ike-issues#890, collisions fixed by"
+                        + " IKE-Network/ike-issues#891)");
     }
 }
