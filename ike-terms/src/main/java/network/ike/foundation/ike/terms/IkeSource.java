@@ -59,6 +59,12 @@ public final class IkeSource implements KnowledgeSetSource {
         // (IKE-Network/ike-issues#885) -- fresh content under the latest declared stamps,
         // composed after every revision pass so the session stays time-major.
         DefaultsAndTemplatesSet.compose(Ike.SET);
+        // DataTypeDefaultsSet mints the Data Type Defaults Pattern -- the apparatus's
+        // first full-breadth consumer: sixteen fields, one loud default per
+        // ConceptToDataType-recognized data type, plus the display-field renames its
+        // field declarations anchor (IKE-Network/ike-issues#885). Composed immediately
+        // after the apparatus it extends, under later stamps still.
+        DataTypeDefaultsSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;

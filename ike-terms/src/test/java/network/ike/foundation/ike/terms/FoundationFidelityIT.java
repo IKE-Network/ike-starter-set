@@ -15,6 +15,9 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.IntIdList;
+import dev.ikm.tinkar.common.id.IntIdSet;
+import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.EntityCountSummary;
 import dev.ikm.tinkar.common.service.PrimitiveData;
@@ -32,8 +35,10 @@ import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.aggregator.TemporalEntityAggregator;
 import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.entity.export.ExportEntitiesToProtobufFile;
+import dev.ikm.tinkar.entity.graph.DiGraphEntity;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.load.LoadEntitiesFromProtobufFile;
+import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.AfterAll;
@@ -53,6 +58,7 @@ import java.util.UUID;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -92,15 +98,19 @@ class FoundationFidelityIT {
      * retiring "assemblage" from this set's own vocabulary, then flagging dormant/
      * superseded content as Legacy); plus {@code DefaultsAndTemplatesSet} (3 — Default
      * value concept, Template concept, Defaults and templates module,
-     * IKE-Network/ike-issues#885).
+     * IKE-Network/ike-issues#885); plus {@code DataTypeDefaultsSet} (19 — sixteen field
+     * meaning concepts, one shared field purpose, and the Data Type Defaults Pattern's
+     * own meaning and purpose, IKE-Network/ike-issues#885).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 59;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 78;
     /**
-     * New patterns {@code ConstraintPatternSet} (3, IKE-Network/ike-issues#880) and
+     * New patterns {@code ConstraintPatternSet} (3, IKE-Network/ike-issues#880),
      * {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the IKE-native
-     * replacement for the dormant SOLORConceptAssemblage) deliberately author.
+     * replacement for the dormant SOLORConceptAssemblage), and
+     * {@code DataTypeDefaultsSet} (1 — Data Type Defaults Pattern,
+     * IKE-Network/ike-issues#885) deliberately author.
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 4;
+    private static final int AUTHORED_CONTENT_PATTERNS = 5;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
@@ -182,7 +192,20 @@ class FoundationFidelityIT {
             Map.entry(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"), "Component data type"),
             Map.entry(UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"), "Concept data type"),
             Map.entry(UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"), "DiTree data type"),
-            Map.entry(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"), "Float data type")
+            Map.entry(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"), "Float data type"),
+            // DataTypeDefaultsSet: the seven more "display field" FQNs the Data Type
+            // Defaults Pattern's field declarations anchor by UUID (IKE-Network/ike-issues#885).
+            Map.entry(UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32"), "Boolean data type"),
+            Map.entry(UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f"), "Integer data type"),
+            Map.entry(UUID.fromString("b413fe94-4ada-4aee-96f9-22be19699d40"), "Decimal data type"),
+            Map.entry(UUID.fromString("dbdd8df2-aec3-596b-88fc-7b83b5594a45"), "Byte array data type"),
+            Map.entry(UUID.fromString("b168ad04-f814-5036-b886-fd4913de88c8"), "Array data type"),
+            Map.entry(UUID.fromString("60113dfe-2bad-11eb-adc1-0242ac120002"), "DiGraph data type"),
+            Map.entry(UUID.fromString("9c3dfc88-51e4-5e51-a59a-88dd580162b7"), "Semantic data type"),
+            // The Component Id pair (KEC-decided): "display list"/"display set" FQNs evaded
+            // the textual "display field" rule on grammar, not merit (IKE-Network/ike-issues#885).
+            Map.entry(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"), "Component Id list data type"),
+            Map.entry(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"), "Component Id set data type")
     );
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
 
@@ -380,11 +403,13 @@ class FoundationFidelityIT {
         assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS, conceptsAfter[0],
                 "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
                         + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
-                        + " new concepts (ConstraintPatternSet, IKE-Network/ike-issues#880) — no other minting");
+                        + " new concepts (see AUTHORED_CONTENT_CONCEPTS,"
+                        + " IKE-Network/ike-issues#880 and #885) — no other minting");
         assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS, patternsAfter[0],
-                "identity-exact ingest mints no new patterns; ConstraintPatternSet deliberately mints "
+                "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
                         + AUTHORED_CONTENT_PATTERNS + " (Concept Field Constraint Pattern, Starter Set Author"
-                        + " Roster Pattern, Preferred Reviewer Pattern)");
+                        + " Roster Pattern, Preferred Reviewer Pattern, Solor Concepts Pattern,"
+                        + " Data Type Defaults Pattern)");
     }
 
     @Test
@@ -506,10 +531,12 @@ class FoundationFidelityIT {
                                 + " has a version outside the Defaults and templates module");
             }
         });
-        assertEquals(1, contentSemantics[0],
-                "expected exactly the one worked-example default value semantic"
-                        + " (Preferred Reviewer Pattern, DefaultsAndTemplatesSet) as"
-                        + " defaults/template content");
+        assertEquals(2, contentSemantics[0],
+                "expected exactly two default value semantics as defaults/template content:"
+                        + " the worked example (Preferred Reviewer Pattern,"
+                        + " DefaultsAndTemplatesSet) and the sixteen-type loud-defaults tuple"
+                        + " (Data Type Defaults Pattern, DataTypeDefaultsSet,"
+                        + " IKE-Network/ike-issues#885)");
     }
 
     @Test
@@ -581,5 +608,64 @@ class FoundationFidelityIT {
         assertTrue(activePerPair.containsKey(
                         List.of(preferredReviewerPatternNid, defaultValueConceptNid())),
                 "the worked-example default value semantic for Preferred Reviewer Pattern is missing");
+        int dataTypeDefaultsPatternNid =
+                PrimitiveData.nid(Ike.SET.uuidFor("Data Type Defaults Pattern (IkeFoundation)"));
+        assertTrue(activePerPair.containsKey(
+                        List.of(dataTypeDefaultsPatternNid, defaultValueConceptNid())),
+                "the sixteen-type default value semantic for Data Type Defaults Pattern is missing"
+                        + " (IKE-Network/ike-issues#885)");
+    }
+
+    @Test
+    @DisplayName("The Data Type Defaults tuple reads back with all sixteen decided loud defaults"
+            + " — the store's byte round trip of every field data type (IKE-Network/ike-issues#885)")
+    void dataTypeDefaultsTupleCarriesTheDecidedLoudDefaults() {
+        UUID tupleUuid = UuidT5Generator.singleSemanticUuid(
+                PublicIds.of(Ike.SET.uuidFor("Data Type Defaults Pattern (IkeFoundation)")),
+                PublicIds.of(Ike.SET.uuidFor("Default value concept (IkeFoundation)")));
+        SemanticEntity<?> tuple = EntityHandle.get(PrimitiveData.nid(tupleUuid)).expectSemantic();
+        assertEquals(1, tuple.versions().size(), "the defaults tuple has exactly its one authored version");
+        List<Object> values = tuple.versions().get(0).fieldValues().castToList();
+        assertEquals(16, values.size(), "one field per ConceptToDataType-recognized data type");
+
+        int uninitializedNid = PrimitiveData.nid(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"));
+        assertEquals("UNINITIALIZED", values.get(0), "String default");
+        assertEquals(uninitializedNid, ((EntityFacade) values.get(1)).nid(), "Component default");
+        IntIdSet idSet = (IntIdSet) values.get(2);
+        assertEquals(1, idSet.size(), "ComponentIdSet default is a singleton");
+        assertTrue(idSet.contains(uninitializedNid), "ComponentIdSet default holds Uninitialized Component");
+        IntIdList idList = (IntIdList) values.get(3);
+        assertEquals(1, idList.size(), "ComponentIdList default is a singleton");
+        assertEquals(uninitializedNid, idList.get(0), "ComponentIdList default holds Uninitialized Component");
+        DiTreeEntity tree = (DiTreeEntity) values.get(4);
+        assertEquals(1, tree.vertexMap().size(), "DiTree default is a single-vertex tree");
+        assertEquals(uninitializedNid, tree.root().getMeaningNid(),
+                "DiTree default's vertex means Uninitialized Component");
+        DiGraphEntity<?> graph = (DiGraphEntity<?>) values.get(5);
+        assertEquals(2, graph.vertexMap().size(), "DiGraph default has two vertices");
+        assertEquals(0, graph.roots().size(), "DiGraph default is a pure cycle — no roots");
+        assertEquals(uninitializedNid, graph.vertexMap().get(0).getMeaningNid(),
+                "DiGraph default's first vertex means Uninitialized Component");
+        assertEquals(uninitializedNid, graph.vertexMap().get(1).getMeaningNid(),
+                "DiGraph default's second vertex means Uninitialized Component");
+        assertEquals(1, graph.successorMap().get(0).getFirst(), "DiGraph default carries edge A → B");
+        assertEquals(0, graph.successorMap().get(1).getFirst(), "DiGraph default carries edge B → A");
+        assertEquals(uninitializedNid, ((EntityFacade) values.get(6)).nid(), "Concept default");
+        assertEquals(PrimitiveData.nid(UUID.fromString("f600187f-94a9-4baf-8b44-46baba8d928a")),
+                ((EntityFacade) values.get(7)).nid(),
+                "Semantic default is Uninitialized Component's FQN description semantic");
+        assertEquals(777_777_777, values.get(8), "Integer default is the nine-sevens sentinel");
+        assertTrue(((Float) values.get(9)).isNaN(), "Float default is the native non-value NaN");
+        assertEquals(Boolean.FALSE, values.get(10), "Boolean default is the flagged-compromise false");
+        assertArrayEquals("UNINITIALIZED".getBytes(java.nio.charset.StandardCharsets.UTF_8),
+                (byte[]) values.get(11), "ByteArray default is the loud String default in byte form");
+        assertArrayEquals(new Object[]{"UNINITIALIZED"}, (Object[]) values.get(12),
+                "Array default is the one-element loud array");
+        assertEquals(PrimitiveData.PREMUNDANE_INSTANT, values.get(13),
+                "Instant default is the premundane instant");
+        assertEquals(777_777_777_777_777_777L, values.get(14),
+                "Long default is the eighteen-sevens sentinel");
+        assertEquals(new java.math.BigDecimal("777777777.777"), values.get(15),
+                "Decimal default is the stretched-sevens decimal");
     }
 }

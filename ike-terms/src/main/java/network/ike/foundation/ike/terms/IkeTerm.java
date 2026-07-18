@@ -31,6 +31,10 @@ public final class IkeTerm {
     public static final EntityProxy.Concept ANNOTATION_TYPE =
             EntityProxy.Concept.make("Annotation type (SOLOR)", PublicIds.of(UUID.fromString("3fe77951-58c9-51b3-8e7e-65edcf7ace0a")));
 
+    /** {@code Array field (SOLOR)} — same identity as {@code TinkarTerm.ARRAY_FIELD}. */
+    public static final EntityProxy.Concept ARRAY_FIELD =
+            EntityProxy.Concept.make("Array field (SOLOR)", PublicIds.of(UUID.fromString("b168ad04-f814-5036-b886-fd4913de88c8")));
+
     /** {@code Author for version (SOLOR)} — same identity as {@code TinkarTerm.AUTHOR_FOR_VERSION}. */
     public static final EntityProxy.Concept AUTHOR_FOR_VERSION =
             EntityProxy.Concept.make("Author for version (SOLOR)", PublicIds.of(UUID.fromString("4eb9de0d-7486-5f18-a9b4-82e3432f4103")));
@@ -43,6 +47,14 @@ public final class IkeTerm {
     public static final EntityProxy.Concept AXIOM_SYNTAX =
             EntityProxy.Concept.make("Axiom Syntax (SOLOR)", PublicIds.of(UUID.fromString("8da1c508-c2a2-4899-b26d-87f8b98a7558")));
 
+    /** {@code Boolean field (SOLOR)} — same identity as {@code TinkarTerm.BOOLEAN_FIELD}. */
+    public static final EntityProxy.Concept BOOLEAN_FIELD =
+            EntityProxy.Concept.make("Boolean field (SOLOR)", PublicIds.of(UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32")));
+
+    /** {@code Byte array field (SOLOR)} — same identity as {@code TinkarTerm.BYTE_ARRAY_FIELD}. */
+    public static final EntityProxy.Concept BYTE_ARRAY_FIELD =
+            EntityProxy.Concept.make("Byte array field (SOLOR)", PublicIds.of(UUID.fromString("dbdd8df2-aec3-596b-88fc-7b83b5594a45")));
+
     /** {@code Chronicle properties (SOLOR)} — same identity as {@code TinkarTerm.CHRONICLE_PROPERTIES}. */
     public static final EntityProxy.Concept CHRONICLE_PROPERTIES =
             EntityProxy.Concept.make("Chronicle properties (SOLOR)", PublicIds.of(UUID.fromString("2ba2ef47-30af-57ec-9073-38693f020d7e")));
@@ -54,6 +66,10 @@ public final class IkeTerm {
     /** {@code Component field (SOLOR)} — same identity as {@code TinkarTerm.COMPONENT_FIELD}. */
     public static final EntityProxy.Concept COMPONENT_FIELD =
             EntityProxy.Concept.make("Component field (SOLOR)", PublicIds.of(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3")));
+
+    /** {@code Component Id list field (SOLOR)} — same identity as {@code TinkarTerm.COMPONENT_ID_LIST_FIELD}. */
+    public static final EntityProxy.Concept COMPONENT_ID_LIST_FIELD =
+            EntityProxy.Concept.make("Component Id list field (SOLOR)", PublicIds.of(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292")));
 
     /** {@code Component Id set field (SOLOR)} — same identity as {@code TinkarTerm.COMPONENT_ID_SET_FIELD}. */
     public static final EntityProxy.Concept COMPONENT_ID_SET_FIELD =
@@ -86,6 +102,10 @@ public final class IkeTerm {
     /** {@code Correlation properties (SOLOR)} — same identity as {@code TinkarTerm.CORRELATION_PROPERTIES}. */
     public static final EntityProxy.Concept CORRELATION_PROPERTIES =
             EntityProxy.Concept.make("Correlation properties (SOLOR)", PublicIds.of(UUID.fromString("8f682e00-3d9e-5506-bd19-b2169d6c8752")));
+
+    /** {@code Decimal field (SOLOR)} — same identity as {@code TinkarTerm.DECIMAL_FIELD}. */
+    public static final EntityProxy.Concept DECIMAL_FIELD =
+            EntityProxy.Concept.make("Decimal field (SOLOR)", PublicIds.of(UUID.fromString("b413fe94-4ada-4aee-96f9-22be19699d40")));
 
     /** {@code Definition description type (SOLOR)} — same identity as {@code TinkarTerm.DEFINITION_DESCRIPTION_TYPE}. */
     public static final EntityProxy.Concept DEFINITION_DESCRIPTION_TYPE =
@@ -138,6 +158,10 @@ public final class IkeTerm {
     /** {@code Dialect assemblage (SOLOR)} — same identity as {@code TinkarTerm.DIALECT_ASSEMBLAGE}. */
     public static final EntityProxy.Concept DIALECT_ASSEMBLAGE =
             EntityProxy.Concept.make("Dialect assemblage (SOLOR)", PublicIds.of(UUID.fromString("b9c34574-c9ac-503b-aa24-456a0ec949a2")));
+
+    /** {@code DiGraph field (SOLOR)} — same identity as {@code TinkarTerm.DIGRAPH_FIELD}. */
+    public static final EntityProxy.Concept DIGRAPH_FIELD =
+            EntityProxy.Concept.make("DiGraph field (SOLOR)", PublicIds.of(UUID.fromString("60113dfe-2bad-11eb-adc1-0242ac120002")));
 
     /** {@code Directed graph (SOLOR)} — same identity as {@code TinkarTerm.DIRECTED_GRAPH}. */
     public static final EntityProxy.Concept DIRECTED_GRAPH =
@@ -230,6 +254,10 @@ public final class IkeTerm {
     /** {@code Instant literal (SOLOR)} — same identity as {@code TinkarTerm.INSTANT_LITERAL}. */
     public static final EntityProxy.Concept INSTANT_LITERAL =
             EntityProxy.Concept.make("Instant literal (SOLOR)", PublicIds.of(UUID.fromString("1fbf42e2-42b7-591f-b7fd-ba5de659529e")));
+
+    /** {@code Integer field (SOLOR)} — same identity as {@code TinkarTerm.INTEGER_FIELD}. */
+    public static final EntityProxy.Concept INTEGER_FIELD =
+            EntityProxy.Concept.make("Integer field (SOLOR)", PublicIds.of(UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f")));
 
     /** {@code Is-a (SOLOR)} — same identity as {@code TinkarTerm.IS_A}. */
     public static final EntityProxy.Concept IS_A =
@@ -419,6 +447,10 @@ public final class IkeTerm {
     public static final EntityProxy.Concept SANDBOX_PATH =
             EntityProxy.Concept.make("Sandbox path (SOLOR)", PublicIds.of(UUID.fromString("80710ea6-983c-5fa0-8908-e479f1f03ea9")));
 
+    /** {@code Semantic field type (SOLOR)} — same identity as {@code TinkarTerm.SEMANTIC_FIELD_TYPE}. */
+    public static final EntityProxy.Concept SEMANTIC_FIELD_TYPE =
+            EntityProxy.Concept.make("Semantic field type (SOLOR)", PublicIds.of(UUID.fromString("9c3dfc88-51e4-5e51-a59a-88dd580162b7")));
+
     /** {@code Semantic properties (SOLOR)} — same identity as {@code TinkarTerm.SEMANTIC_PROPERTIES}. */
     public static final EntityProxy.Concept SEMANTIC_PROPERTIES =
             EntityProxy.Concept.make("Semantic properties (SOLOR)", PublicIds.of(UUID.fromString("b717ae48-5488-5dda-a980-97855001cc99")));
@@ -478,6 +510,10 @@ public final class IkeTerm {
     /** {@code Tree amalgam properties (SOLOR)} — same identity as {@code TinkarTerm.TREE_AMALGAM_PROPERTIES}. */
     public static final EntityProxy.Concept TREE_AMALGAM_PROPERTIES =
             EntityProxy.Concept.make("Tree amalgam properties (SOLOR)", PublicIds.of(UUID.fromString("d6151a47-4610-5a5c-abd0-42c82be9b633")));
+
+    /** {@code Uninitialized component (SOLOR)} — same identity as {@code TinkarTerm.UNINITIALIZED_COMPONENT}. */
+    public static final EntityProxy.Concept UNINITIALIZED_COMPONENT =
+            EntityProxy.Concept.make("Uninitialized component (SOLOR)", PublicIds.of(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656")));
 
     /** {@code Universally Unique Identifier (SOLOR)} — same identity as {@code TinkarTerm.UNIVERSALLY_UNIQUE_IDENTIFIER}. */
     public static final EntityProxy.Concept UNIVERSALLY_UNIQUE_IDENTIFIER =

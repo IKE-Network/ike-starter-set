@@ -41,16 +41,20 @@ import java.util.UUID;
  * the definition doesn't contradict the new name; the other three's definitions already
  * described the data type itself without that framing, so they are left untouched.
  * <p>
- * Deliberately not touched: the remaining {@code DisplayFields} members
- * ({@code Boolean}/{@code Integer}/{@code Decimal}/{@code Double}/{@code ByteArray}/
- * {@code Image}/{@code UUID display field}, {@code ComponentIdDisplayList}/
- * {@code ComponentIdDisplaySet}, {@code DiGraphDisplayField}, {@code LogicalExpressionDisplayField},
- * {@code SemanticDisplayFieldType}) — this pass only renames identities independently
- * confirmed against real field usage in this starter set; the rest keep their current names
- * until each is checked the same way. Also not touched: {@code Dynamic column data types}
- * and its own children, a separate, disjoint family now reparented under {@code Legacy} by
- * {@link LegacyTerminologySet} — never what a pattern's own field declaration draws from,
- * regardless of the confusingly similar names.
+ * Deliberately not touched here: the remaining {@code DisplayFields} members — this pass
+ * only renames identities independently confirmed against real field usage in this
+ * starter set; the rest keep their current names until each is checked the same way.
+ * {@link DataTypeDefaultsSet} later performs that check for seven more
+ * ({@code Boolean}/{@code Integer}/{@code Decimal}/{@code Byte array}/{@code Array}/
+ * {@code DiGraph display field} and {@code Semantic display field type}), anchored by
+ * the Data Type Defaults Pattern's own field declarations
+ * (IKE-Network/ike-issues#885); {@code Double}/{@code Image}/{@code UUID display field},
+ * {@code Logical expression display field}, and {@code ComponentIdDisplayList}/
+ * {@code ComponentIdDisplaySet} remain unrenamed. Also not touched:
+ * {@code Dynamic column data types} and its own children, a separate, disjoint family
+ * now reparented under {@code Legacy} by {@link LegacyTerminologySet} — never what a
+ * pattern's own field declaration draws from, regardless of the confusingly similar
+ * names.
  */
 final class DataTypeTerminologySet {
 

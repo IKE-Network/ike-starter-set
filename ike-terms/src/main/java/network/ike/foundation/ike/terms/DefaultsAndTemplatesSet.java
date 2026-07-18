@@ -57,9 +57,9 @@ import java.util.UUID;
  * <p>
  * Deliberately out of scope here: StampCalculator accessors and the version-iteration
  * exclusion ({@code getDefault}/{@code getTemplate} — tinkar-core,
- * IKE-Network/ike-issues#886), the seeded GB-dialect semantic's disposition
- * (IKE-Network/ike-issues#887), and the proposed Data Type Demonstration Pattern
- * (pending KEC confirmation).
+ * IKE-Network/ike-issues#886), and the seeded GB-dialect semantic's disposition
+ * (IKE-Network/ike-issues#887). The sixteen-type exemplar this apparatus was designed
+ * for lives in {@link DataTypeDefaultsSet}, composed immediately after this file.
  */
 final class DefaultsAndTemplatesSet {
 
