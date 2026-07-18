@@ -33,8 +33,9 @@ public final class IkeSource implements KnowledgeSetSource {
     public KnowledgeSet compose() {
         ConceptSet.compose(Ike.SET);
         FoundationSet.compose(Ike.SET);
-        // ConstraintPatternSet mints Concept Field Constraint Pattern, which
-        // NarrativeContentSet's Semantic Field Model chapter writes about — the pattern
+        // ConstraintPatternSet mints the field constraint apparatus (the Taxonomy and
+        // Value-set Field Constraint Patterns, IKE-Network/ike-issues#890), which
+        // NarrativeContentSet's Semantic Field Model chapter writes about — the apparatus
         // must exist before its own narrative resumes it (ledger scopes are chronological
         // across the whole session, not independently per source file).
         ConstraintPatternSet.compose(Ike.SET);

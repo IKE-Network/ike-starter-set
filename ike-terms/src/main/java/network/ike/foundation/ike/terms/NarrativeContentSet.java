@@ -387,8 +387,9 @@ final class NarrativeContentSet {
 
         // Semantic Field Model chapter (IKE-Network/ike-issues#880): the field-level meta-schema
         // — what kind of value a field holds, how it renders, and what its value can mean —
-        // capped by Constraining Concept Fields, which introduces the new
-        // ConceptFieldConstraintPattern (ConstraintPatternSet) this chapter is the natural home for.
+        // capped by Constraining Fields, which introduces the field constraint apparatus
+        // (ConstraintPatternSet, refactored per IKE-Network/ike-issues#890) this chapter is the
+        // natural home for.
         set.concept("Field categories").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
@@ -481,66 +482,93 @@ final class NarrativeContentSet {
                         k:LogicalExpressionSemantic[]) names what kind of thing a whole semantic — not just
                         one field — represents.""");
 
-        set.concept("Concept field constraint (IkeFoundation)").at(expansion)
+        set.concept("Constrained Pattern (IkeFoundation)").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
-                                "Narrative: ConceptFieldConstraint (Semantic Field Model — Constraining"
-                                        + " Concept Fields)")), """
+                                "Narrative: ConstrainedPattern (Semantic Field Model — Constraining"
+                                        + " Fields)")), """
                         Some of the concept-typed field kinds above — k:AuthorField[], k:ModuleField[],
                         k:StatusField[], and others — are conventionally restricted to a known, bounded set
                         of legal values: only concepts kind-of k:Author[] make sense as a STAMP's author
                         field, only the immediate children of k:StatusValue[] as its status. Nothing in the
                         field-definition model above expresses that restriction — a field's declared data
-                        type says it holds *a* concept, never *which* concepts.
+                        type says it holds *a* concept, never *which* concepts, and the same holds for
+                        every other data type.
 
-                        k:ConceptFieldConstraint[] closes that gap. As a pattern, k:ConceptFieldConstraintPattern[]
-                        carries a referenced-component meaning of k:ConstrainedPattern[] — the referenced
-                        component's own role: the pattern that has one of its fields constrained — and a
-                        purpose of k:FieldValueRestriction[]: two distinct concepts, unlike a first pass
-                        that named both k:ConceptFieldConstraint[] itself, describing the constraint
-                        mechanism rather than the role the constrained pattern actually plays. Five fields
-                        carry that same meaning-versus-purpose distinction through: k:ConstrainedField[]
-                        (meaning) for k:ConstraintScope[] (purpose — which field this rule governs);
-                        k:ConstraintKind[] for k:ConstraintRule[] (which rule applies);
-                        k:ConstraintAnchorConcept[] for k:TaxonomyReferencePoint[] (the taxonomy anchor, for
-                        the four taxonomy-relative kinds); and k:ValueSetPattern[]/k:ValueSetField[] for
-                        k:LegalValueSource[]/k:ValueDisambiguation[] (for the fifth kind, value-set
-                        membership). A semantic of this pattern attaches to the pattern being constrained. Concretely, this
-                        starter set's own STAMP pattern carries
-                        a semantic whose five fields read: constrained field = k:Author[], kind =
-                        k:KindOfFieldConstraint[], anchor = k:Author[] — the same concept identifies both the
-                        field and the anchor here, since a later revision (IKE-Network/ike-issues#880) gave
-                        the Author field itself k:Author[] as its own meaning — and nothing else, since the two
-                        value-set fields don't apply to a kind-of constraint and are set to the shared
-                        k:BlankConcept[] sentinel rather than left null (the store rejects null field values
-                        outright, so every semantic populates all five). Its status field carries the fourth
-                        kind instead: constrained field = k:StatusValue[] itself, kind =
-                        k:ImmediateChildFieldConstraint[], anchor = k:StatusValue[] again — a concept can
-                        serve as both a field's own meaning and a constraint's own anchor without conflict,
-                        since the two roles are read from different fields entirely.
+                        Two constraint patterns close that gap, one per parameter shape — the pattern axis
+                        is the parameter shape, never the datatype, and never a union carried by sentinel
+                        values. Both attach to the pattern being constrained, and both share a
+                        referenced-component meaning of k:ConstrainedPattern[] — the attachment target's
+                        role: the pattern that has one of its own fields constrained, identical for both
+                        shapes — and a purpose of k:FieldValueRestriction[]. A pattern's constraint
+                        semantics compose conjunctively: each semantic is one conjunct, and a value is legal
+                        only when every conjunct on its field holds.
 
-                        k:ConstraintKind[]'s own five legal values are k:FieldConstraintKind[]'s five
-                        children: k:KindOfFieldConstraint[] (the anchor plus every descendant, self
-                        included), k:DescendantFieldConstraint[] (descendants only), k:LeafDescendantFieldConstraint[]
-                        (leaf descendants only — excluding grouping concepts that exist solely to organize
-                        others), k:ImmediateChildFieldConstraint[] (direct children only), and
-                        k:ValueSetFieldConstraint[] (membership in a named value set: every concept named by
-                        an active semantic of another pattern, with k:ValueSetField[] naming which of that
-                        pattern's own fields actually holds the concept, since it may carry other fields —
-                        a sort order, for instance, exactly as this starter set's own illustrative
-                        k:StarterSetAuthorRoster[] pattern demonstrates: each roster entry is a semantic with
-                        *two* fields, k:RosterAuthor[] and k:RosterOrder[], and only the first is the value a
-                        value-set constraint would actually collect).
+                        k:TaxonomyFieldConstraintPattern[] is the intensional shape: the legal set is
+                        derived from the taxonomy under the checking view. Its three fields each carry
+                        their own meaning and purpose concept: k:ConstrainedField[] (meaning) for
+                        k:ConstraintScope[] (purpose — which field this rule governs); k:ConstraintKind[]
+                        for k:ConstraintRule[] (which rule applies); and k:ConstraintAnchorConcept[] for
+                        k:TaxonomyReferencePoint[] (the concept the rule measures against).
+                        k:ConstraintKind[]'s legal values are k:TaxonomyFieldConstraintKind[]'s four
+                        children — k:KindOfFieldConstraint[] (the anchor plus every descendant, self
+                        included), k:DescendantFieldConstraint[] (descendants only),
+                        k:LeafDescendantFieldConstraint[] (leaf descendants only — excluding grouping
+                        concepts that exist solely to organize others), and
+                        k:ImmediateChildFieldConstraint[] (direct children only) — an identical tuple for
+                        all four, which is exactly why they are kinds within one pattern rather than four
+                        patterns. Concretely, this starter set's own STAMP pattern carries four such
+                        semantics: constrained field = k:Author[], kind = k:KindOfFieldConstraint[],
+                        anchor = k:Author[] — the same concept identifies both the field and the anchor
+                        here, since a later revision (IKE-Network/ike-issues#880) gave the Author field
+                        itself k:Author[] as its own meaning — likewise Module and Path, and a fourth
+                        whose tuple reads constrained field = k:StatusValue[], kind =
+                        k:ImmediateChildFieldConstraint[], anchor = k:StatusValue[] again: a concept can
+                        serve as both a field's own meaning and a constraint's own anchor without
+                        conflict, since the two roles are read from different fields entirely.
 
-                        Why one shared pattern with a kind field, rather than five separate patterns —
-                        matching this starter set's own convention elsewhere, where k:USDialectPattern[] and
-                        k:GBDialectPattern[] are separate patterns, not one with a country field? Because the
-                        five kinds don't share one uniform field shape the way dialect or stated/inferred
-                        axioms do: four of the five need only an anchor concept, while the fifth needs a
-                        value-set pattern and field instead. A shared pattern with a small number of
-                        kind-specific, sometimes-unused fields models that variability more directly than
-                        five near-duplicate patterns would, and keeps "which kind is this" answerable from
-                        one field rather than from which pattern a semantic happens to belong to.
+                        k:ValueSetFieldConstraintPattern[] is the extensional shape, and it is
+                        datatype-universal: the members are enumerated as data, and the member type is
+                        whatever the source pattern's named Model Feature declares, so this one shape
+                        yields closed enumerations of any field datatype. Its four fields:
+                        k:ConstrainedField[] for k:ConstraintScope[] again; k:ValueSetPattern[] (meaning)
+                        for k:LegalValueSource[] (purpose — the pattern whose active semantics enumerate
+                        the legal values); k:ValueSetField[] for k:ValueDisambiguation[] — naming the
+                        Model Feature that holds the member value by its meaning concept, either a
+                        declared field's meaning or the source pattern's referenced-component meaning
+                        (membership patterns supported, no sentinel); and k:MemberMatchRelation[] for
+                        k:MatchDiscipline[] (purpose — how a value must match a member). The constraint is
+                        satisfied when some member active under the checking view matches the value under
+                        the named relation — membership itself carries the ordinary STAMP lifecycle, so
+                        adding a member is authoring and removing one is retiring. This starter set's own
+                        illustrative k:StarterSetAuthorRosterPattern[] shows why the Model-Feature pointer
+                        is needed: each roster entry is a semantic with *two* fields, k:RosterAuthor[] and
+                        k:RosterOrder[], and only the first is the value a member is matched against. The
+                        worked constraint on k:PreferredReviewerPattern[] reads: constrained field =
+                        k:PreferredReviewer[], value-set pattern = k:StarterSetAuthorRosterPattern[],
+                        value-set field = k:RosterAuthor[], relation = k:EqualMatchRelation[].
+
+                        How a value must match an enumerated member is itself a concept, never invented
+                        syntax: k:MemberMatchRelation[] is a closed taxonomy whose relations are directed
+                        and named in full. Evaluation dispatch stays code-sovereign — each relation's
+                        evaluator declares its relation concept's identity in code, so code points at
+                        knowledge and knowledge never carries an operative pointer at code: imported
+                        content can never redirect what constraint checking executes. Admission is a
+                        bijection, enforced by test: relation concepts correspond one-to-one with the
+                        shipped evaluators, so minting a relation without shipping its evaluator fails,
+                        and shipping an evaluator without minting its relation fails.
+                        k:EqualMatchRelation[] is the sole admitted relation today: equality by the member
+                        datatype's natural equality — entity references by identity, scalars by value,
+                        byte arrays by content, Decimal by numeric equality, and Float by IEEE
+                        comparison, so NaN matches nothing, keeping the loud-defaults coherence (an
+                        unrevised NaN default fails its constraint until revised); graph types await the
+                        isomorphic relations.
+
+                        The apparatus constrains itself, as ordinary content: a
+                        k:TaxonomyFieldConstraintPattern[] semantic on each constraint pattern holds its
+                        own discriminator field to its closed taxonomy — k:ConstraintKind[]
+                        immediate-child of k:TaxonomyFieldConstraintKind[], and the
+                        k:MemberMatchRelation[] field immediate-child of k:MemberMatchRelation[].
 
                         Why mint fresh identity, rather than adopting k:ConceptConstraints[] — a real, if
                         long-dormant, SOLOR concept whose own definition, "defined filters for a given
@@ -556,13 +584,14 @@ final class NarrativeContentSet {
                         SOLOR-sourced concept named in this guide) whenever a real, checkable definition
                         backs the reuse rather than merely a plausible-sounding name.
 
-                        No tinkar-core code change was needed to represent any of this: every constraint
-                        kind composes directly from graph-walk operations a navigation calculator already
-                        provides — k:KindOfFieldConstraint[] from `kindOf`, k:DescendantFieldConstraint[]
-                        from `descendentsOf`, k:ImmediateChildFieldConstraint[] from `childrenOf`, and
+                        No pattern-model change was needed to represent any of this: every taxonomy
+                        constraint kind composes directly from graph-walk operations a navigation
+                        calculator already provides — k:KindOfFieldConstraint[] from `kindOf`,
+                        k:DescendantFieldConstraint[] from `descendentsOf`,
+                        k:ImmediateChildFieldConstraint[] from `childrenOf`, and
                         k:LeafDescendantFieldConstraint[] by filtering `descendentsOf` down to the nodes
                         `childrenOf` finds empty. Reading and *enforcing* these constraints — in Komet's own
-                        concept-field editor, for instance, which today has no such notion at all — is a
+                        field editors, for instance, which today have no such notion at all — is a
                         deliberately separate, later concern from representing them; what the representation
                         already makes possible today is exactly the candidate set a reader would want to
                         see, computed fresh every render, with no separate authoring step — the live listing
@@ -682,9 +711,9 @@ final class NarrativeContentSet {
 
                         Three further concepts under k:Object[] are sentinels, not real modeled content:
                         k:BlankConcept[] is a placeholder meaning no meaningful concept value applies to a
-                        field — this starter set's own k:ConceptFieldConstraint[] semantics reuse exactly this
-                        concept for the fields a given constraint kind doesn't use, rather than minting a
-                        near-duplicate — while k:SandboxComponent[] and k:UninitializedComponent[] mark a
+                        field — this starter set's own constraint apparatus deliberately carries no such
+                        sentinel: one constraint pattern per parameter shape means every field of every
+                        constraint semantic is meaningful — while k:SandboxComponent[] and k:UninitializedComponent[] mark a
                         component as belonging to a sandbox authoring session or as not yet initialized,
                         respectively, rather than describing any real, committed content.
 
@@ -702,19 +731,21 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ValueConstraint (Value Constraints and Reference Ranges)")), """
-                        Where k:ConceptFieldConstraint[] restricts which *concepts* are legal for a field,
-                        k:ValueConstraint[] restricts which *literal values* are legal — the numeric-domain
-                        counterpart, and a much older idea in this starter set: k:ValueConstraintPattern[]
+                        Where k:TaxonomyFieldConstraintPattern[] and k:ValueSetFieldConstraintPattern[]
+                        restrict which values are legal for a *pattern field*,
+                        k:ValueConstraint[] restricts which *literal values* are legal for a component —
+                        a numeric-domain cousin, and a much older idea in this starter set:
+                        k:ValueConstraintPattern[]
                         (introduced in the EL++ Concepts chapter's Concrete Value Operators subsection) is
                         the pattern that carries it. k:ValueConstraintSource[] names the organization that
                         specifies the constraint — a reference-range source, for instance — and
                         k:ReferenceRange[] groups the two endpoints a numeric constraint actually bounds:
                         k:ReferenceRangeMinimum[] and k:ReferenceRangeMaximum[]. Together with
-                        k:ConcreteValueOperator[]'s comparison operators, these vocabularies are what a
+                        k:ConcreteValueOperator[]'s comparison operators, this terminology is what a
                         lab-value or dose constraint is actually built from — a component "has specific value
                         requirements that need to be met," in k:ValueConstraint[]'s own words, exactly the
-                        framing k:ConceptFieldConstraint[] uses for concept-typed fields, just one domain
-                        over.
+                        framing the Semantic Field Model chapter's constraint patterns use for pattern
+                        fields, just one domain over.
 
                         As a pattern, k:ValueConstraintPattern[] itself carries a referenced-component meaning
                         of k:ValueConstraint[] and a purpose of k:NumericValueRestriction[] — the
@@ -747,11 +778,12 @@ final class NarrativeContentSet {
                         k:ConceptConstraints[] deserves particular attention here, having already been named
                         once in this guide's Semantic Field Model chapter: a real, if long-dormant, SOLOR
                         concept defined simply as "defined filters for a given concept" — a gloss close
-                        enough to k:ConceptFieldConstraint[]'s own purpose that the two are worth contrasting
+                        enough to the constraint patterns' own purpose that the two are worth contrasting
                         directly. k:ConceptConstraints[] carries no field shape, no worked example, and no
                         consuming code anywhere in this ecosystem; it is a name for the idea of constraining
                         a concept, sitting here among other action-related SOLOR imports, never wired to
-                        anything. k:ConceptFieldConstraint[] is the KB-native mechanism this starter set
+                        anything. k:TaxonomyFieldConstraintPattern[] and k:ValueSetFieldConstraintPattern[]
+                        are the KB-native mechanism this starter set
                         actually built and demonstrated once that same need became concrete — reusing
                         k:ConceptConstraints[]'s identity was considered and deliberately declined, precisely
                         because a name alone, unaccompanied by any real structure, is not enough to safely

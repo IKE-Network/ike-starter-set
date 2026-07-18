@@ -306,7 +306,7 @@ koncept-pattern-table::OWLAxiomSyntaxPattern[]
 
 This chapter describes the field-level meta-schema: what kind of value a pattern's
 field holds, how that value renders in Komet's UI, what its value can mean, and how
-a concept-typed field's legal values can be constrained.
+a field's legal values can be constrained.
 
 === Field Categories
 
@@ -320,14 +320,17 @@ koncept-narrative::DisplayFields[]
 
 koncept-narrative::Meaning[]
 
-=== Constraining Concept Fields
+=== Constraining Fields
 
-koncept-narrative::ConceptFieldConstraint[]
+koncept-narrative::ConstrainedPattern[]
 
-<<koncept-pattern-table-ConceptFieldConstraintPattern>> shows the constraint
-pattern's shape.
+<<koncept-pattern-table-TaxonomyFieldConstraintPattern>> and
+<<koncept-pattern-table-ValueSetFieldConstraintPattern>> show the two constraint
+patterns' shapes.
 
-koncept-pattern-table::ConceptFieldConstraintPattern[]
+koncept-pattern-table::TaxonomyFieldConstraintPattern[]
+
+koncept-pattern-table::ValueSetFieldConstraintPattern[]
 
 [koncept-tree]
 ----

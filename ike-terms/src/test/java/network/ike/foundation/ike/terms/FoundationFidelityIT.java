@@ -20,20 +20,26 @@ import dev.ikm.tinkar.common.id.IntIdSet;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.EntityCountSummary;
+import dev.ikm.tinkar.common.service.PluggableService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
 import dev.ikm.tinkar.common.service.ServiceProperties;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.language.calculator.LanguageCalculator;
+import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.EntityVersion;
+import dev.ikm.tinkar.entity.FieldDefinitionForEntity;
+import dev.ikm.tinkar.entity.PatternEntityVersion;
 import dev.ikm.tinkar.entity.SemanticEntity;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.aggregator.TemporalEntityAggregator;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
+import dev.ikm.tinkar.entity.constraint.MemberMatchEvaluator;
 import dev.ikm.tinkar.entity.export.ExportEntitiesToProtobufFile;
 import dev.ikm.tinkar.entity.graph.DiGraphEntity;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
@@ -89,9 +95,8 @@ class FoundationFidelityIT {
     /** New concepts the identity-exact ingest itself mints: the module, the root, IKE Community. */
     private static final int INGEST_BOOTSTRAP_CONCEPTS = 3;
     /**
-     * New concepts {@code ConstraintPatternSet} (17 original + 7 for Concept Field
-     * Constraint Pattern + 5 for Preferred Reviewer/Starter Set Author Roster Pattern =
-     * 29), {@code PatternShapeRefinementSet} (2 for Comment pattern + 23 for the
+     * New concepts {@code ConstraintPatternSet} (30 — see below),
+     * {@code PatternShapeRefinementSet} (2 for Comment pattern + 23 for the
      * remaining 16 revised patterns = 25), {@code AssemblageTerminologySet} (1 — Set
      * membership), and {@code LegacyTerminologySet} (1 — Legacy) deliberately author, all
      * IKE-Network/ike-issues#880 (meaning/purpose rigor across the pattern-shape audit,
@@ -101,16 +106,30 @@ class FoundationFidelityIT {
      * IKE-Network/ike-issues#885); plus {@code DataTypeDefaultsSet} (19 — sixteen field
      * meaning concepts, one shared field purpose, and the Data Type Defaults Pattern's
      * own meaning and purpose, IKE-Network/ike-issues#885).
+     * <p>
+     * {@code ConstraintPatternSet}'s 30 was 29 before the IKE-Network/ike-issues#890
+     * one-pattern-per-parameter-shape refactor: under the pre-bronze never-created
+     * doctrine, the "Field constraint kind" umbrella is replaced by "Taxonomy field
+     * constraint kind" (count-neutral rename-as-new-identity), the "Value-set field
+     * constraint" kind concept and the "Concept field constraint" mechanism concept are
+     * never created (−2 — value-set membership is now a pattern shape, not a kind, and
+     * the mechanism concept's narrative moved to Constrained Pattern), and the member
+     * match relation seam mints "Member match relation", "Equal match relation", and the
+     * "Match Discipline" field purpose (+3).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 78;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 79;
     /**
-     * New patterns {@code ConstraintPatternSet} (3, IKE-Network/ike-issues#880),
-     * {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the IKE-native
-     * replacement for the dormant SOLORConceptAssemblage), and
+     * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
+     * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
+     * Constraint Pattern's union-by-sentinel shape is split into the Taxonomy Field
+     * Constraint Pattern and the Value-set Field Constraint Pattern, one per parameter
+     * shape, alongside the Starter Set Author Roster and Preferred Reviewer worked
+     * examples), {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the
+     * IKE-native replacement for the dormant SOLORConceptAssemblage), and
      * {@code DataTypeDefaultsSet} (1 — Data Type Defaults Pattern,
      * IKE-Network/ike-issues#885) deliberately author.
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 5;
+    private static final int AUTHORED_CONTENT_PATTERNS = 6;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
@@ -407,9 +426,9 @@ class FoundationFidelityIT {
                         + " IKE-Network/ike-issues#880 and #885) — no other minting");
         assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS, patternsAfter[0],
                 "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
-                        + AUTHORED_CONTENT_PATTERNS + " (Concept Field Constraint Pattern, Starter Set Author"
-                        + " Roster Pattern, Preferred Reviewer Pattern, Solor Concepts Pattern,"
-                        + " Data Type Defaults Pattern)");
+                        + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
+                        + " Constraint Pattern, Starter Set Author Roster Pattern, Preferred Reviewer"
+                        + " Pattern, Solor Concepts Pattern, Data Type Defaults Pattern)");
     }
 
     @Test
@@ -674,5 +693,92 @@ class FoundationFidelityIT {
                 "Long default is the eighteen-sevens sentinel");
         assertEquals(new java.math.BigDecimal("777777777.777"), values.get(15),
                 "Decimal default is the stretched-sevens decimal");
+    }
+
+    // ------------------------------------------------------------ field constraints (#890)
+
+    @Test
+    @DisplayName("Member match relation admission is a bijection: relation concepts (children of"
+            + " Member match relation under the checking view) correspond one-to-one with the"
+            + " service-loaded MemberMatchEvaluators (IKE-Network/ike-issues#890)")
+    void memberMatchRelationsBijectServiceLoadedEvaluators() {
+        int parentNid = PrimitiveData.nid(Ike.SET.uuidFor("Member match relation (IkeFoundation)"));
+        Set<Integer> relationNids = new HashSet<>();
+        EntityService.get().forEachConceptEntity(concept -> {
+            if (latestIsAParents(concept.nid()).contains(parentNid)) {
+                relationNids.add(concept.nid());
+            }
+        });
+
+        Set<Integer> evaluatorRelationNids = new HashSet<>();
+        for (MemberMatchEvaluator evaluator : PluggableService.load(MemberMatchEvaluator.class)) {
+            assertTrue(evaluatorRelationNids.add(PrimitiveData.nid(evaluator.relation().publicId())),
+                    "two service-loaded evaluators declare the same relation \""
+                            + evaluator.relation().description() + "\" — dispatch would be ambiguous");
+        }
+
+        assertEquals(relationNids, evaluatorRelationNids,
+                "the admission gate is a bijection: minting a relation concept without shipping its"
+                        + " evaluator must fail, and shipping an evaluator without minting its relation"
+                        + " must fail (IKE-Network/ike-issues#890)");
+        // Today's admitted set is exactly Equal, on both sides. Grow this assertion
+        // deliberately, in the same change that mints a new relation concept and ships
+        // its evaluator — never separately.
+        assertEquals(Set.of(PrimitiveData.nid(Ike.SET.uuidFor("Equal match relation (IkeFoundation)"))),
+                relationNids, "exactly the Equal match relation is admitted today");
+    }
+
+    /**
+     * UUIDs of ledger-declared patterns whose latest shape carries a pre-existing,
+     * SOLOR-inherited collision between the pattern's referenced-component meaning and
+     * one of its own field meanings — violating the Model-Feature pointer invariant
+     * {@link #referencedComponentMeaningDiffersFromEveryFieldMeaning()} asserts
+     * (IKE-Network/ike-issues#890): OWL Axiom Syntax Pattern (meaning and single field
+     * meaning are both Axiom syntax — the untouched SOLOR baseline shape), and the
+     * Identifier / Module origins / Path origins patterns, whose #880 shape revisions
+     * adopted the inherited SOLOR concept as both the pattern meaning and a field
+     * meaning (Identifier source, Module origins, Path origins respectively). These
+     * pre-bronze inherited shapes are registered — not endorsed — pending KEC's ruling
+     * in the standing text pass; a shape fix must also shrink this registry, so a
+     * collision can never creep back in silently. Every other declared pattern,
+     * including both #890 constraint patterns and every value-set source, must satisfy
+     * the invariant outright.
+     */
+    private static final Set<UUID> SOLOR_INHERITED_MEANING_FIELD_COLLISION_UUIDS = Set.of(
+            UUID.fromString("c0ca180b-aae2-5fa1-9ab7-4a24f2dfe16b"), // OWL Axiom Syntax Pattern
+            UUID.fromString("5d60e14b-c410-5172-9559-3c4253278ae2"), // Identifier Pattern
+            UUID.fromString("536b0ec4-4974-47ae-93a6-ae6c4d169780"), // Module origins pattern (SOLOR)
+            UUID.fromString("70f89dd5-2cdb-59bb-bbaa-98527513547c")  // Path origins pattern (SOLOR)
+    );
+
+    @Test
+    @DisplayName("Every ledger-declared pattern's referenced-component meaning differs from every one"
+            + " of its own field meanings — the Model-Feature pointer invariant"
+            + " (IKE-Network/ike-issues#890) — except the registered SOLOR-inherited collisions")
+    void referencedComponentMeaningDiffersFromEveryFieldMeaning() {
+        Set<UUID> colliding = new HashSet<>();
+        for (KnowledgeSet.Declaration declaration : Ike.SET.declarations()) {
+            if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
+                continue;
+            }
+            int patternNid = PrimitiveData.nid(declaration.publicId());
+            Latest<PatternEntityVersion> latest = calculator.latest(patternNid);
+            if (!latest.isPresent()) {
+                continue;
+            }
+            PatternEntityVersion version = latest.get();
+            for (FieldDefinitionForEntity field : version.fieldDefinitions()) {
+                if (field.meaningNid() == version.semanticMeaningNid()) {
+                    colliding.add(declaration.publicId().asUuidArray()[0]);
+                }
+            }
+        }
+        assertEquals(SOLOR_INHERITED_MEANING_FIELD_COLLISION_UUIDS, colliding,
+                "a pattern's referenced-component meaning must differ from every one of its own"
+                        + " field meanings, so the Value-set field Model-Feature pointer — a field's"
+                        + " meaning, or the referenced-component meaning for membership patterns — is"
+                        + " unambiguous (IKE-Network/ike-issues#890); only the registered"
+                        + " SOLOR-inherited shapes may collide, and fixing one must also shrink the"
+                        + " registry");
     }
 }
