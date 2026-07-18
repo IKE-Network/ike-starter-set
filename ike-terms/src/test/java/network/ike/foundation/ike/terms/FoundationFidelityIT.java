@@ -20,11 +20,15 @@ import dev.ikm.tinkar.common.service.EntityCountSummary;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
 import dev.ikm.tinkar.common.service.ServiceProperties;
+import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.language.calculator.LanguageCalculator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
+import dev.ikm.tinkar.entity.EntityVersion;
+import dev.ikm.tinkar.entity.SemanticEntity;
+import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.aggregator.TemporalEntityAggregator;
 import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.entity.export.ExportEntitiesToProtobufFile;
@@ -40,13 +44,17 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -82,9 +90,11 @@ class FoundationFidelityIT {
      * membership), and {@code LegacyTerminologySet} (1 — Legacy) deliberately author, all
      * IKE-Network/ike-issues#880 (meaning/purpose rigor across the pattern-shape audit,
      * retiring "assemblage" from this set's own vocabulary, then flagging dormant/
-     * superseded content as Legacy).
+     * superseded content as Legacy); plus {@code DefaultsAndTemplatesSet} (3 — Default
+     * value concept, Template concept, Defaults and templates module,
+     * IKE-Network/ike-issues#885).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 56;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 59;
     /**
      * New patterns {@code ConstraintPatternSet} (3, IKE-Network/ike-issues#880) and
      * {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the IKE-native
@@ -190,6 +200,29 @@ class FoundationFidelityIT {
     );
     private static final Map<Integer, Integer> DELIBERATELY_REPARENTED_ISA_BY_NID = new HashMap<>();
 
+    /**
+     * UUIDs of the three upstream placeholder seed semantics on {@code Default Data
+     * Concept} — a GB-dialect and a US-dialect semantic whose field value is the
+     * {@code Blank Concept} placeholder, and an identifier semantic ("Default Data -
+     * Identifier Value") — that the upstream baseline contains but the ingest
+     * deliberately does not adopt (pre-bronze editorial: the starter set is
+     * pre-release, so erroneous seeds are simply never created;
+     * IKE-Network/ike-issues#887). This class loads the baseline into the same store
+     * the ledger then replays into, so the seeds are necessarily <em>present</em> here
+     * (empirically confirmed: the baseline itself carries them); what the ingest
+     * controls is adoption — the replay must add no version, no IKE provenance, on top
+     * of the untouched baseline chronologies. The version-count assertions cover
+     * concepts and patterns only, so this semantic-level deviation gets its own
+     * assertion: {@link #notAdoptedSeedSemanticsAreNeverAuthored()}, against the
+     * pre-replay counts snapshotted in {@link #NOT_ADOPTED_SEED_VERSIONS_BEFORE}.
+     */
+    private static final Set<UUID> DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS = Set.of(
+            UUID.fromString("17c5b61f-e121-4c54-9eb3-e106f3983417"), // GB dialect seed
+            UUID.fromString("8b7b452c-6de1-47b8-81fb-2e4cf58ca213"), // identifier seed
+            UUID.fromString("92548331-a460-4bdb-aa32-7162f2fb4f0d")  // US dialect seed
+    );
+    private static final Map<UUID, Integer> NOT_ADOPTED_SEED_VERSIONS_BEFORE = new HashMap<>();
+
     @BeforeAll
     static void loadAndSnapshot() throws Exception {
         CachingService.clearAll();
@@ -208,6 +241,12 @@ class FoundationFidelityIT {
         for (Map.Entry<UUID, UUID> entry : DELIBERATELY_REPARENTED_ISA.entrySet()) {
             DELIBERATELY_REPARENTED_ISA_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
+        }
+        for (UUID uuid : DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS) {
+            // expectSemantic doubles as a baseline-presence check: the seeds must come
+            // from the upstream baseline, and only from there (IKE-Network/ike-issues#887).
+            NOT_ADOPTED_SEED_VERSIONS_BEFORE.put(uuid,
+                    EntityHandle.get(PrimitiveData.nid(uuid)).expectSemantic().versions().size());
         }
 
         calculator = Calculators.Stamp.DevelopmentLatestActiveOnly();
@@ -359,5 +398,188 @@ class FoundationFidelityIT {
         assertTrue(summary.conceptCount() > 0, "export produced no concepts");
         assertEquals(conceptsAfter[0], summary.conceptCount(),
                 "export's concept count must reconcile with the post-replay store");
+    }
+
+    @Test
+    @DisplayName("The three upstream placeholder seeds on Default Data Concept are never adopted"
+            + " — replay adds no version to the untouched baseline chronologies"
+            + " (IKE-Network/ike-issues#887)")
+    void notAdoptedSeedSemanticsAreNeverAuthored() {
+        for (Map.Entry<UUID, Integer> entry : NOT_ADOPTED_SEED_VERSIONS_BEFORE.entrySet()) {
+            assertEquals(entry.getValue(),
+                    EntityHandle.get(PrimitiveData.nid(entry.getKey())).expectSemantic().versions().size(),
+                    "upstream placeholder seed semantic " + entry.getKey() + " gained a version"
+                            + " from replay — the ingest must not adopt it (IKE-Network/ike-issues#887)");
+        }
+    }
+
+    // ---------------------------------------------------- defaults and templates (#885)
+
+    /**
+     * Patterns whose semantics are a concept's own naming/axiom apparatus — the
+     * descriptions and stated axioms every named concept carries. Attached to a
+     * defaults/templates attachment concept they are that concept's foundation-module
+     * terminology, not defaults/template content, so the module invariants exempt them:
+     * the apparatus concepts stamp in the foundation module, and only default value and
+     * template semantics stamp in the Defaults and templates module
+     * (IKE-Network/ike-issues#885). A pattern attached to an attachment concept outside
+     * this registry is defaults/template content and must obey the module invariants.
+     *
+     * @return the nids of the naming-apparatus patterns
+     */
+    private static Set<Integer> namingApparatusPatternNids() {
+        return Set.of(TinkarTerm.DESCRIPTION_PATTERN.nid(),
+                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
+    }
+
+    /**
+     * Resolves the nid of {@code Default value concept (IkeFoundation)} — the attachment
+     * point every default value semantic references (IKE-Network/ike-issues#885).
+     *
+     * @return the attachment concept's nid in the post-replay store
+     */
+    private static int defaultValueConceptNid() {
+        return PrimitiveData.nid(Ike.SET.uuidFor("Default value concept (IkeFoundation)"));
+    }
+
+    /**
+     * Resolves the nid of {@code Defaults and templates module (IkeFoundation)} — the
+     * module every defaults/template chronology lives and dies in
+     * (IKE-Network/ike-issues#885).
+     *
+     * @return the module concept's nid in the post-replay store
+     */
+    private static int defaultsModuleNid() {
+        return PrimitiveData.nid(Ike.SET.uuidFor("Defaults and templates module (IkeFoundation)"));
+    }
+
+    /**
+     * The defaults/templates attachment concepts: {@code Default value concept} plus
+     * every latest child of {@code Template concept} — the per-purpose template
+     * attachment points, minted per purpose as each is needed
+     * (IKE-Network/ike-issues#885).
+     *
+     * @return the attachment concepts' nids in the post-replay store
+     */
+    private static Set<Integer> attachmentConceptNids() {
+        Set<Integer> attachments = new HashSet<>();
+        attachments.add(defaultValueConceptNid());
+        int templateConceptNid = PrimitiveData.nid(Ike.SET.uuidFor("Template concept (IkeFoundation)"));
+        EntityService.get().forEachConceptEntity(concept -> {
+            if (latestIsAParents(concept.nid()).contains(templateConceptNid)) {
+                attachments.add(concept.nid());
+            }
+        });
+        return attachments;
+    }
+
+    /**
+     * Applies the consumer to every defaults/template content semantic in the store:
+     * semantics attached to an attachment concept, naming apparatus excluded.
+     *
+     * @param consumer receives each defaults/template semantic
+     */
+    private static void forEachDefaultsOrTemplateSemantic(Consumer<SemanticEntity<?>> consumer) {
+        Set<Integer> attachments = attachmentConceptNids();
+        Set<Integer> namingApparatus = namingApparatusPatternNids();
+        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
+            SemanticEntity<?> semantic = EntityHandle.get(semanticNid).expectSemantic();
+            if (attachments.contains(semantic.referencedComponentNid())
+                    && !namingApparatus.contains(semantic.patternNid())) {
+                consumer.accept(semantic);
+            }
+        });
+    }
+
+    @Test
+    @DisplayName("Every defaults/template semantic has all versions in the Defaults and templates"
+            + " module — the live side of the live-and-die invariant (IKE-Network/ike-issues#885)")
+    void defaultsAndTemplatesContentLivesWhollyInModule() {
+        int moduleNid = defaultsModuleNid();
+        int[] contentSemantics = {0};
+        forEachDefaultsOrTemplateSemantic(semantic -> {
+            contentSemantics[0]++;
+            for (SemanticEntityVersion version : semantic.versions()) {
+                assertEquals(moduleNid,
+                        EntityHandle.get(version.stampNid()).expectStamp().moduleNid(),
+                        "defaults/template semantic " + semantic.publicId()
+                                + " has a version outside the Defaults and templates module");
+            }
+        });
+        assertEquals(1, contentSemantics[0],
+                "expected exactly the one worked-example default value semantic"
+                        + " (Preferred Reviewer Pattern, DefaultsAndTemplatesSet) as"
+                        + " defaults/template content");
+    }
+
+    @Test
+    @DisplayName("The Defaults and templates module holds only defaults/template semantics — the"
+            + " die side of the live-and-die invariant (IKE-Network/ike-issues#885)")
+    void defaultsModuleHoldsOnlyDefaultsAndTemplatesContent() {
+        Set<Integer> attachments = attachmentConceptNids();
+        Set<Integer> namingApparatus = namingApparatusPatternNids();
+        int moduleNid = defaultsModuleNid();
+        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
+            SemanticEntity<?> semantic = EntityHandle.get(semanticNid).expectSemantic();
+            for (SemanticEntityVersion version : semantic.versions()) {
+                if (EntityHandle.get(version.stampNid()).expectStamp().moduleNid() != moduleNid) {
+                    continue;
+                }
+                assertTrue(attachments.contains(semantic.referencedComponentNid()),
+                        "semantic " + semantic.publicId() + " has a version in the Defaults and"
+                                + " templates module but references neither Default value concept"
+                                + " nor a child of Template concept");
+                assertFalse(namingApparatus.contains(semantic.patternNid()),
+                        "naming-apparatus semantic " + semantic.publicId() + " (descriptions and"
+                                + " stated axioms are foundation-module terminology) must not"
+                                + " version in the Defaults and templates module");
+            }
+        });
+        // The module holds only support *semantics* — no concept or pattern chronology
+        // versions in it, ever: a concept is terminology, never a default.
+        EntityService.get().forEachConceptEntity(concept -> {
+            for (EntityVersion version : concept.versions()) {
+                assertFalse(EntityHandle.get(version.stampNid()).expectStamp().moduleNid() == moduleNid,
+                        "concept " + concept.publicId()
+                                + " has a version in the Defaults and templates module");
+            }
+        });
+        EntityService.get().forEachPatternEntity(pattern -> {
+            for (EntityVersion version : pattern.versions()) {
+                assertFalse(EntityHandle.get(version.stampNid()).expectStamp().moduleNid() == moduleNid,
+                        "pattern " + pattern.publicId()
+                                + " has a version in the Defaults and templates module");
+            }
+        });
+    }
+
+    @Test
+    @DisplayName("At most one active defaults/template semantic per (pattern, attachment concept)"
+            + " pair, under the computed singleSemanticUuid identity (IKE-Network/ike-issues#885)")
+    void defaultValueIdentityIsComputedAndUnique() {
+        Map<List<Integer>, Integer> activePerPair = new HashMap<>();
+        forEachDefaultsOrTemplateSemantic(semantic -> {
+            if (!calculator.latestIsActive(semantic.nid())) {
+                return;
+            }
+            activePerPair.merge(
+                    List.of(semantic.patternNid(), semantic.referencedComponentNid()), 1, Integer::sum);
+            UUID expected = UuidT5Generator.singleSemanticUuid(
+                    EntityHandle.get(semantic.patternNid()).expectPattern().publicId(),
+                    EntityHandle.get(semantic.referencedComponentNid()).expectConcept().publicId());
+            assertEquals(List.of(expected), Arrays.asList(semantic.publicId().asUuidArray()),
+                    "active defaults/template semantic " + semantic.publicId() + " must carry the"
+                            + " computed singleSemanticUuid(pattern, attachment concept) identity");
+        });
+        for (Map.Entry<List<Integer>, Integer> entry : activePerPair.entrySet()) {
+            assertEquals(1, entry.getValue().intValue(),
+                    "more than one active defaults/template semantic for the"
+                            + " (pattern, attachment concept) pair " + entry.getKey());
+        }
+        int preferredReviewerPatternNid =
+                PrimitiveData.nid(Ike.SET.uuidFor("Preferred Reviewer Pattern (IkeFoundation)"));
+        assertTrue(activePerPair.containsKey(
+                        List.of(preferredReviewerPatternNid, defaultValueConceptNid())),
+                "the worked-example default value semantic for Preferred Reviewer Pattern is missing");
     }
 }

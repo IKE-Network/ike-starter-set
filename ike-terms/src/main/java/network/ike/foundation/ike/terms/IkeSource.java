@@ -55,6 +55,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // confirmed real-data-type concepts -- it must run last of all, after every other
         // scope that touches the concepts it revises.
         DataTypeTerminologySet.compose(Ike.SET);
+        // DefaultsAndTemplatesSet mints the defaults/templates apparatus and its module
+        // (IKE-Network/ike-issues#885) -- fresh content under the latest declared stamps,
+        // composed after every revision pass so the session stays time-major.
+        DefaultsAndTemplatesSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;

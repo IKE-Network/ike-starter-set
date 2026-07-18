@@ -91,9 +91,11 @@ final class Section71 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("246e55f7-c359-42ce-ac5d-79fd4fb1f088")), IkeTerm.ENGLISH_LANGUAGE, "Default Data Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("bce173b8-a806-4a98-953b-6abad7090d11")), IkeTerm.ENGLISH_LANGUAGE, "Default Data FQN", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("32c891e1-5a78-4922-a166-06400d088dea")), IkeTerm.ENGLISH_LANGUAGE, "Default Data - Other Name", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.GB_DIALECT_PATTERN, PublicIds.of(UUID.fromString("17c5b61f-e121-4c54-9eb3-e106f3983417")), EntityProxy.Concept.make("Blank Concept", PublicIds.of(UUID.fromString("cd23d88d-2fcd-4007-8829-97e37bf336aa"))))
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("8b7b452c-6de1-47b8-81fb-2e4cf58ca213")), EntityProxy.Concept.make("Blank Concept", PublicIds.of(UUID.fromString("cd23d88d-2fcd-4007-8829-97e37bf336aa"))), "Default Data - Identifier Value")
-                .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("92548331-a460-4bdb-aa32-7162f2fb4f0d")), EntityProxy.Concept.make("Blank Concept", PublicIds.of(UUID.fromString("cd23d88d-2fcd-4007-8829-97e37bf336aa"))))
+                // Three upstream placeholder seeds (a GB-dialect semantic 17c5b61f-e121-4c54-9eb3-e106f3983417,
+                // an identifier semantic 8b7b452c-6de1-47b8-81fb-2e4cf58ca213, and a US-dialect semantic
+                // 92548331-a460-4bdb-aa32-7162f2fb4f0d, all carrying Blank Concept placeholders) are
+                // deliberately not adopted here — pre-bronze editorial: the starter set is pre-release,
+                // so erroneous seeds are simply never created (Refs: IKE-Network/ike-issues#887).
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("bfa087e5-5e6e-5032-b204-03b22b931672")))
                 ;
 
