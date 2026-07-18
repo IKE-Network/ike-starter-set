@@ -120,7 +120,7 @@ class FoundationFidelityIT {
      * never created (−2 — value-set membership is now a pattern shape, not a kind, and
      * the mechanism concept's narrative moved to Constrained Pattern), and the member
      * match relation seam mints "Member match relation", "Equal match relation", and the
-     * "Match Discipline" field purpose (+3).
+     * "Match Rule" field purpose (+3).
      */
     private static final int AUTHORED_CONTENT_CONCEPTS = 86;
     /**

@@ -344,16 +344,17 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: ConcreteValueOperator (EL++ Concepts — Concrete"
                                 + " Value Operators)")), """
-                        Not every constraint in an EL++ definition names another concept — some constrain a
-                        *literal* value instead: a lab reference range's upper bound, a dose's numeric
-                        strength. k:ConcreteValueOperator[] is the parent of the comparison operators that
-                        express these concrete-domain constraints: k:EqualTo[], k:GreaterThan[],
-                        k:GreaterThanOrEqualTo[], k:LessThan[], k:LessThanOrEqualTo[], and the two range
-                        endpoints k:MinimumValueOperator[] and k:MaximumValueOperator[]. These are exactly the
-                        vocabulary k:ValueConstraintPattern[] draws on for its own min/max reference-range
-                        fields (see the Semantic Field Model chapter) — concrete-domain reasoning is what lets
-                        EL++ classification stay tractable even when a definition depends on a numeric
-                        threshold, rather than requiring a distinct concept for every possible value.""");
+                        Not every constraint in an EL{plus}{plus} definition names another concept — some
+                        constrain a *literal* value instead: a lab reference range's upper bound, a dose's
+                        numeric strength. k:ConcreteValueOperator[] is the parent of the comparison
+                        operators that express these concrete-domain constraints: k:EqualTo[],
+                        k:GreaterThan[], k:GreaterThanOrEqualTo[], k:LessThan[], k:LessThanOrEqualTo[], and
+                        the two range endpoints k:MinimumValueOperator[] and k:MaximumValueOperator[].
+                        These are exactly the operator concepts k:ValueConstraintPattern[] draws on for its
+                        own min/max reference-range fields (see the Semantic Field Model chapter) —
+                        concrete-domain reasoning is what lets EL{plus}{plus} classification stay tractable
+                        even when a definition depends on a numeric threshold, rather than requiring a
+                        distinct concept for every possible value.""");
 
         set.concept("Logical Definition").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -542,7 +543,7 @@ final class NarrativeContentSet {
                         Model Feature that holds the member value by its meaning concept, either a
                         declared field's meaning or the source pattern's referenced-component meaning
                         (membership patterns supported, no sentinel); and k:MemberMatchRelation[] for
-                        k:MatchDiscipline[] (purpose — how a value must match a member). The constraint is
+                        k:MatchRule[] (purpose — how a value must match a member). The constraint is
                         satisfied when some member active under the checking view matches the value under
                         the named relation — membership itself carries the ordinary STAMP lifecycle, so
                         adding a member is authoring and removing one is retiring. This starter set's own

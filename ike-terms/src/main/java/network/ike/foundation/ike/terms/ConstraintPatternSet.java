@@ -303,8 +303,10 @@ final class ConstraintPatternSet {
                         + " sort order.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
-        set.concept("Match Discipline (IkeFoundation)").at(inception)
-                .synonym("Match Discipline")
+        // "Match Rule" parallels "Constraint Rule": each names why a discriminator
+        // field's value is recorded — which rule applies (text pass, 2026-07-18).
+        set.concept("Match Rule (IkeFoundation)").at(inception)
+                .synonym("Match Rule")
                 .definition("Why the Member match relation value is recorded: to say how a"
                         + " constrained field's value must match an enumerated member —"
                         + " which member match relation the constraint holds under.")
@@ -362,7 +364,7 @@ final class ConstraintPatternSet {
                 .field(set.conceptRef("Value-set field (IkeFoundation)"),
                         set.conceptRef("Value Disambiguation (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(memberMatchRelation,
-                        set.conceptRef("Match Discipline (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                        set.conceptRef("Match Rule (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 // Curated narrative (IKE-Network/ike-issues#888) — see the taxonomy
                 // pattern's note above.
                 .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,

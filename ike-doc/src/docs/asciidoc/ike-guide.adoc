@@ -109,7 +109,7 @@ author roster's first entry, and the set's inception provenance — shown unlink
 and without identicons because those components are not named terms in this
 guide's glossary. On live surfaces that render individual semantics and versions
 (Komet itself, chat and mail integrations) the D, S, and pentagon badges appear
-in full, identicons included; the badge language is one vocabulary across all of
+in full, identicons included; the badge language is the same across all of
 them. A red question-mark sigil (koncept-sigil:unknown[]) marks a reference whose
 kind could not be determined.
 
@@ -567,7 +567,7 @@ computed identity, and the same value renders as the _default_ row of
 == Tinkar Base Model
 
 This chapter describes the component/chronicle/pattern-of-patterns meta-model every
-other chapter's own vocabulary ultimately descends from.
+other chapter's own terminology ultimately descends from.
 
 === Components and Chronicles
 
