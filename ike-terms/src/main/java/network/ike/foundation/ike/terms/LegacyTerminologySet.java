@@ -71,7 +71,7 @@ final class LegacyTerminologySet {
                         + " for removal in a near-future revision. Being under Legacy says"
                         + " nothing about whether the content is still resolvable or"
                         + " referenced elsewhere -- it may well be -- only that it is no"
-                        + " longer this project's preferred vocabulary going forward.")
+                        + " longer this project's preferred terminology going forward.")
                 .isA(set.conceptRef("Integrated Knowledge Management (SOLOR)"));
 
         // Reparent Dynamic column data types under Legacy -- restating its own declared

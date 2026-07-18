@@ -316,7 +316,7 @@ koncept-narrative::FieldCategories[]
 
 koncept-narrative::DisplayFields[]
 
-=== Field Value Vocabulary
+=== Field Value Terminology
 
 koncept-narrative::Meaning[]
 
@@ -591,7 +591,7 @@ koncept-pattern-table::PatternVersionPattern[]
 
 koncept-pattern-table::SemanticChronologyPattern[]
 
-koncept-pattern-table::SementicVersionFieldPattern[]
+koncept-pattern-table::SemanticVersionFieldPattern[]
 
 koncept-pattern-table::STAMPChronologyPattern[]
 

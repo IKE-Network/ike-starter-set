@@ -132,7 +132,7 @@ final class Section70 {
         set.concept("Axioms", PublicIds.of(UUID.fromString("20746b91-521a-45a6-89da-0fe32384a67f"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1e0fc030-ec28-4e18-b021-ceaa1d1e3ee4")), IkeTerm.ENGLISH_LANGUAGE, "Axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .definition("""
-                        Groups the logical-axiom meta-schema concepts: the vocabulary for \
+                        Groups the logical-axiom meta-schema concepts: the terminology for \
                         expressing a concept's formal, machine-processable meaning — EL++ \
                         terminological axioms, interval-set axioms, and their syntax and \
                         origin.""")
@@ -299,7 +299,7 @@ final class Section70 {
         set.concept("Field categories", PublicIds.of(UUID.fromString("ed230c7c-20f9-470d-8566-5057f92748a5"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("64478cb5-6d8e-4e02-9f80-f084cb15df8e")), IkeTerm.ENGLISH_LANGUAGE, "Field categories", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .definition("""
-                        Groups the field-level meta-schema concepts: the vocabulary \
+                        Groups the field-level meta-schema concepts: the terminology \
                         describing what kind of value — a component, a field definition, a \
                         semantic field, or a set of these — a semantic's field can hold.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("f2446156-e60e-4a7f-a859-0558b282903b")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))

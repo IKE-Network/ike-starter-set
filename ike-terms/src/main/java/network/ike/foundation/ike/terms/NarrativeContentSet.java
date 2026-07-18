@@ -127,9 +127,10 @@ final class NarrativeContentSet {
                         The two dialect patterns named above share one shape, differing only in which
                         national dialect each is attached to: k:USDialectPattern[] and k:GBDialectPattern[]
                         each carry a referenced-component meaning of k:DescriptionAcceptability[] and a
-                        purpose of k:DescriptionSemantic[], with one field serving as both its own meaning
-                        and purpose — k:UnitedStatesOfAmericaEnglishDialect[] for the US pattern,
-                        k:GreatBritainEnglishDialect[] for the GB one — the field a description's
+                        purpose of k:DescriptionSemantic[], with one field — its meaning
+                        k:UnitedStatesOfAmericaEnglishDialect[] for the US pattern,
+                        k:GreatBritainEnglishDialect[] for the GB one, its purpose
+                        k:DescriptionAcceptability[] in both — the field a description's
                         k:Preferred[]/k:Acceptable[] acceptability value is actually recorded against.""");
 
         set.concept("Status value").at(inception)
@@ -276,7 +277,7 @@ final class NarrativeContentSet {
                         time — and two fields, each already correctly distinguishing meaning from purpose:
                         k:RelationshipDestination[] (meaning) for k:IsA[] (purpose, the child-ward direction)
                         and k:RelationshipOrigin[] (meaning) for k:IsA[] again (the parent-ward direction) —
-                        the same relationship-direction vocabulary this guide's Object Properties chapter
+                        the same relationship-direction terminology this guide's Object Properties chapter
                         names as the generic idea these two fields specialize.""");
 
         set.concept("Axioms").at(inception)
@@ -295,7 +296,7 @@ final class NarrativeContentSet {
                         concrete-value constraints), restricted enough that classification stays tractable at
                         hundreds of thousands of concepts. This starter set can describe its own logic
                         because the identity-exact ingest (IKE-Network/ike-issues#872) brought in Tinkar's
-                        entire EL++ vocabulary — the classifier, the axiom patterns, the profile concept
+                        entire EL++ terminology — the classifier, the axiom patterns, the profile concept
                         itself — as part of the same "fork and own" ingest that gave every other concept in
                         this guide its identity.""");
 
@@ -370,7 +371,7 @@ final class NarrativeContentSet {
                         have been explicitly stated" versus "inferred," the same distinction spelled out at
                         the level of individual relationships rather than a definition's overall status.
 
-                        Two smaller, related vocabularies round out this set: k:Grouping[] distinguishes an
+                        Two smaller, related concept families round out this set: k:Grouping[] distinguishes an
                         k:Exact[] match (source and target that are semantically or lexically identical) from
                         a k:Partial[] one, and k:DirectedGraph[] is the parent of k:ELDigraph[] — the directed
                         graph that results from classifying a full set of EL++ axioms, the data shape
@@ -379,10 +380,11 @@ final class NarrativeContentSet {
 
                         The stated/inferred split has its own pair of patterns beneath it: k:ELStatedAxiomsPattern[]
                         carries a referenced-component meaning of k:StatedDefinition[] and purpose of
-                        k:LogicalDefinition[], with one field, k:ELStatedTerminologicalAxioms[], serving as
-                        both meaning and purpose; k:ELInferredAxiomsPattern[] is its inferred-side twin —
-                        meaning k:InferredDefinition[], purpose k:LogicalDefinition[] again, field
-                        k:ELInferredTerminologicalAxioms[] — the two concrete patterns
+                        k:LogicalDefinition[], with one field, k:ELStatedTerminologicalAxioms[] (meaning)
+                        for k:LogicalDefinition[] (purpose); k:ELInferredAxiomsPattern[] is its
+                        inferred-side twin — meaning k:InferredDefinition[], purpose k:LogicalDefinition[]
+                        again, its field k:ELInferredTerminologicalAxioms[] for k:LogicalDefinition[]
+                        likewise — the two concrete patterns
                         k:StatedPatternForLogicCoordinate[] and k:InferredPatternForLogicCoordinate[]
                         (named in the Logic Coordinates chapter) actually point at. k:OWLAxiomSyntaxPattern[]
                         is smaller still: a referenced-component meaning of k:AxiomatizedComponent[] — the
@@ -400,7 +402,7 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: FieldCategories (Semantic Field Model — Field Categories)")), """
-                        k:FieldCategories[] groups the field-level meta-schema concepts: the vocabulary
+                        k:FieldCategories[] groups the field-level meta-schema concepts: the terminology
                         describing what *kind* of value a pattern's field holds, distinct from that field's
                         own particular meaning and purpose in any one pattern declaration.
                         k:ComponentField[] is the parent of every field kind whose value is a reference to
@@ -409,7 +411,7 @@ final class NarrativeContentSet {
                         already named — k:AuthorField[], k:ModuleField[], k:PathField[], k:StatusField[] —
                         plus k:FieldDefinitionMeaningField[] and k:FieldDefinitionPurposeField[], the field
                         kinds a pattern's own field definitions use to record each field's meaning and
-                        purpose concepts: the same vocabulary every pattern declaration in this starter set's
+                        purpose concepts: the same terminology every pattern declaration in this starter set's
                         own source populates when it names a field's meaning, purpose, and data type.
                         k:PatternField[], k:SemanticField[], and k:STAMPField[] are the parallel
                         component-field kinds for referencing a pattern, a semantic, or a STAMP directly, each
@@ -437,34 +439,33 @@ final class NarrativeContentSet {
                         what a pattern's own `.field(meaning, purpose, dataType)` declaration draws its
                         third argument from throughout this starter set's own source. Several members
                         carried misleading "display field" wording, as if a separate "how does this render"
-                        concept sat behind some other, truer storage type — it does not, and five
-                        confirmed-in-use members have been renamed to say so plainly: k:ConceptDataType[]
-                        shows a concept's identity, k:ComponentDataType[] the analogous case for any
-                        component (concept, semantic, pattern, or STAMP, not restricted to concepts);
-                        k:ComponentIdDisplayList[] and k:ComponentIdDisplaySet[] hold an ordered or
-                        unordered collection of component references. k:StringDataType[] and
+                        concept sat behind some other, truer storage type — it does not, and every member
+                        confirmed in use through `ConceptToDataType` has been renamed to say so plainly:
+                        k:ConceptDataType[] holds a concept's identity, k:ComponentDataType[] the analogous
+                        case for any component (concept, semantic, pattern, or STAMP, not restricted to
+                        concepts); k:ComponentIdListDataType[] and k:ComponentIdSetDataType[] hold an
+                        ordered or unordered collection of component references. k:StringDataType[] and
                         k:FloatDataType[] hold a sequence of characters and a fractional number,
-                        respectively; k:BooleanDisplayField[], k:IntegerDisplayField[],
-                        k:DecimalDisplayField[], k:DoubleDisplayField[], and k:ByteArrayDisplayField[]
-                        round out the primitive kinds by name, and k:ImageDisplayField[] and
-                        k:UUIDDisplayField[] the non-numeric ones — this pass only renamed identities
-                        independently confirmed against real field usage in this starter set, so these
-                        keep their current names until each is checked the same way.
+                        respectively; k:BooleanDataType[], k:IntegerDataType[], k:DecimalDataType[],
+                        k:ByteArrayDataType[], and k:ArrayDataType[] round out the renamed primitive and
+                        collection kinds, and k:SemanticDataType[] holds a reference to a semantic. Only
+                        the members `ConceptToDataType` does not recognize keep their display-era names
+                        until each is checked the same way: k:DoubleDisplayField[], k:ImageDisplayField[],
+                        k:UUIDDisplayField[], and k:LogicalExpressionDisplayField[] (a rendered axiom
+                        expression).
 
-                        Two structural kinds hold graphs directly: k:DiGraphDisplayField[] (an ordered-pair
+                        Two structural kinds hold graphs directly: k:DiGraphDataType[] (an ordered-pair
                         directed graph — the same shape k:ELDigraph[] takes) and k:DiTreeDataType[] (a
-                        directed tree obtained from an undirected one, one designated root, likewise
-                        renamed). k:LogicalExpressionDisplayField[] and k:SemanticDisplayFieldType[] round
-                        out the set — a rendered axiom expression, and a rendered list of a semantic's own
-                        fields, respectively.""");
+                        directed tree obtained from an undirected one, one designated root), both likewise
+                        renamed.""");
 
         set.concept("Meaning").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
-                                "Narrative: Meaning (Semantic Field Model — Field Value Vocabulary)")), """
-                        k:Meaning[] is the broadest of these three groups: the vocabulary a pattern or
+                                "Narrative: Meaning (Semantic Field Model — Field Value Terminology)")), """
+                        k:Meaning[] is the broadest of these three groups: the terminology a pattern or
                         semantic's field draws its *interpretation* from, distinct from the field *category*
-                        (k:FieldCategories[]) or declared *data type* (k:DisplayFields[]) vocabularies above.
+                        (k:FieldCategories[]) or declared *data type* (k:DisplayFields[]) concept families above.
                         k:DynamicColumnDataTypes[] — k:Boolean[], k:Decimal[], k:Float[], k:Double[],
                         k:Long[], k:SignedInteger[], k:Array[], k:ByteArray[], and k:UUIDDataType[] — looks
                         like it should be the same family k:DisplayFields[] draws from, but it is a
@@ -483,7 +484,7 @@ final class NarrativeContentSet {
                         k:InstantSubstitution[] each name what kind of value fills a placeholder when a
                         stored query actually runs. k:ConnectiveOperator[] (k:And[], k:Or[], k:PartOf[],
                         k:DisjointWith[]) and k:TaxonomyOperator[] (k:LogicallyEquivalentTo[]) round out the
-                        operator vocabulary a field's meaning can name, and k:SemanticType[]
+                        operator concepts a field's meaning can name, and k:SemanticType[]
                         (k:ConceptSemantic[], k:ComponentSemantic[], k:MembershipSemantic[],
                         k:LogicalExpressionSemantic[]) names what kind of thing a whole semantic — not just
                         one field — represents.""");
@@ -606,7 +607,7 @@ final class NarrativeContentSet {
                         definition points at.""");
 
         // Tinkar Base Model chapter (IKE-Network/ike-issues#880): the component/chronicle/
-        // pattern-of-patterns meta-model every other chapter's own vocabulary ultimately
+        // pattern-of-patterns meta-model every other chapter's own terminology ultimately
         // descends from.
         set.concept("Tinkar Model concept").at(expansion)
                 .semantic(PROSE_ELEMENT_PATTERN,
@@ -616,7 +617,7 @@ final class NarrativeContentSet {
                         k:ModelConcept[] anchors every concept in this guide that describes the knowledge
                         base's own structure rather than a domain it represents — the model-versus-data
                         distinction k:DataConcept[] draws on the other side (k:DefaultDataConcept[] and its
-                        siblings group actual data values, not structural vocabulary). k:TinkarModelConcept[]
+                        siblings group actual data values, not structural terminology). k:TinkarModelConcept[]
                         is the root of Tinkar's own meta-schema specifically: components, descriptions,
                         dialects, fields, and axioms — every chapter in this guide, from k:DescriptionPattern[]
                         to k:Axioms[] to k:FieldCategories[], ultimately descends from this one concept.
@@ -628,14 +629,14 @@ final class NarrativeContentSet {
                         and k:ComponentVersionPattern[] name the generic shape every chronicle/version pair
                         takes; k:ConceptFieldPattern[]/k:ConceptVersionPattern[],
                         k:PatternChronologyPattern[]/k:PatternVersionPattern[],
-                        k:SemanticChronologyPattern[]/k:SementicVersionFieldPattern[], and
+                        k:SemanticChronologyPattern[]/k:SemanticVersionFieldPattern[], and
                         k:STAMPChronologyPattern[]/k:STAMPVersionFieldPattern[] specialize that shape for
                         each of the four component kinds this guide has already named.
                         k:TinkarBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[] are
                         membership patterns, not shape descriptions — both carrying a referenced-component
                         meaning of k:StarterDataAuthoring[] and purpose of k:SetMembership[], with no fields
                         of their own: a semantic of one of these patterns marks a component as belonging to
-                        Tinkar's own base vocabulary or Komet's own — the same membership-pattern convention
+                        Tinkar's own base terminology or Komet's own — the same membership-pattern convention
                         k:SolorConceptsPattern[] uses (discussed in the Logic Coordinates chapter) to mark
                         a component as part of the SOLOR concept space.
 
@@ -672,7 +673,7 @@ final class NarrativeContentSet {
                         exists: to record one point-in-time state of a chronicle. Each has a single field,
                         k:STAMPField[] (meaning) for k:VersionProvenance[] (purpose) — a version, at its
                         simplest, is just its own STAMP, recorded for provenance: who committed it, in what
-                        state, module, path, and when. k:SementicVersionFieldPattern[] adds a second field to
+                        state, module, path, and when. k:SemanticVersionFieldPattern[] adds a second field to
                         that base shape — meaning k:SemanticVersionsField[], the same shared purpose, fields
                         k:STAMPField[]/k:VersionProvenance[] and (already correctly distinct) meaning
                         k:SemanticFieldField[] for purpose k:SemanticFieldFieldsSet[] — a semantic's own
@@ -691,7 +692,7 @@ final class NarrativeContentSet {
                         k:PatternMeaningField[] (meaning) for k:MeaningDeclaration[] (purpose),
                         k:PatternPurposeField[] (meaning) for k:PurposeDeclaration[] (purpose), and
                         k:FieldDefinitionField[] (purpose k:FieldDefinitionsSet[], data type
-                        k:ComponentIdDisplaySet[]) — literally the shape behind every pattern declaration in
+                        k:ComponentIdSetDataType[]) — literally the shape behind every pattern declaration in
                         this starter set's own source: the meaning, purpose, and field-definition list every
                         pattern this guide names is itself an instance of.
 
@@ -727,7 +728,7 @@ final class NarrativeContentSet {
                         base model with description-logic property characteristics inherited from SOLOR: a
                         reflexive property relates every concept to itself; a transitive property, if it
                         relates A to B and B to C, also relates A to C — mathematical characteristics a
-                        role's own semantics can carry, layered on top of the role vocabulary this guide's
+                        role's own semantics can carry, layered on top of the role terminology this guide's
                         EL++ Concepts chapter already named.""");
 
         // Chapters 11-20 (IKE-Network/ike-issues#880, second pass): the remaining taxonomy
@@ -803,7 +804,7 @@ final class NarrativeContentSet {
                         k:FullyQualifiedNameDescriptionType[], k:RegularNameDescriptionType[], and
                         k:DefinitionDescriptionType[] — but its remaining children are a different family
                         entirely: feature- and role-modeling refinements imported from SOLOR alongside the
-                        description-type vocabulary, not further description types themselves.
+                        description-type terminology, not further description types themselves.
                         k:IntrinsicRole[] and k:UnmodeledRoleConcept[] extend this guide's own EL++ Concepts
                         chapter — an intrinsic role is one inherent to a concept's own definition rather than
                         externally imposed, while an unmodeled role concept marks a relationship SNOMED CT or
@@ -837,7 +838,7 @@ final class NarrativeContentSet {
                         own defining content: k:Comment[] is free text an author attaches when something
                         needs explaining (this starter set's own k:CommentPattern[] carries exactly this),
                         and k:KometIssue[] is Komet's own specialization — an annotation type Komet itself
-                        defines, layered on top of the generic annotation vocabulary. k:AnnotationPropertySet[]
+                        defines, layered on top of the generic annotation terminology. k:AnnotationPropertySet[]
                         names the SOLOR-imported set these annotation properties draw from.
 
                         As a pattern, k:CommentPattern[] originally carried, straight from its SOLOR
@@ -878,7 +879,7 @@ final class NarrativeContentSet {
 
                         k:ComponentTypeFocus[] names which kind of component an editor's attention is
                         currently on — k:AxiomFocus[], k:ConceptFocus[], and k:DescriptionFocus[] — a
-                        UI-facing concern distinct from any of the component-kind vocabularies (concept,
+                        UI-facing concern distinct from any of the component-kind concept families (concept,
                         pattern, semantic) this guide's Tinkar Base Model chapter already named, since
                         "focus" describes where an author is looking, not what a component is.
                         k:ConceptDetailsTreeTable[] names the tree-table view Komet renders a concept's
@@ -943,14 +944,14 @@ final class NarrativeContentSet {
                         PublicIds.of(set.uuidFor(
                                 "Narrative: Phenomenon (Clinical Phenomena and Domain Content)")), """
                         Every chapter so far has described this starter set's own meta-schema — the
-                        vocabulary Tinkar and this starter set use to describe knowledge, not any particular
+                        terminology Tinkar and this starter set use to describe knowledge, not any particular
                         domain's content. k:Phenomenon[] is different: it groups genuine, if sparse, seed
                         *domain* content — "a unique thought, fact, or circumstance," in its own words —
                         included here to show what real authored content looks like sitting on top of
                         everything the rest of this guide describes. k:HealthConcept[] and
                         k:UncategorizedPhenomenon[] are its two organizing children, and
                         k:ExampleUCUMUnits[] names a field carrying example Unified Code for Units of Measure
-                        values for a given term — the concrete-value vocabulary the EL++ Concepts chapter's
+                        values for a given term — the concrete-value terminology the EL++ Concepts chapter's
                         Concrete Value Operators subsection already introduced, applied here to real
                         measurement content rather than described only in the abstract.
 
@@ -965,7 +966,7 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ObjectProperties (Object Properties and Relationships)")), """
-                        k:ObjectProperties[] names the general property-holding vocabulary every more
+                        k:ObjectProperties[] names the general property-holding terminology every more
                         specific property group in this guide — k:ChronicleProperties[],
                         k:SemanticProperties[], k:ActionProperties[], k:CorrelationProperties[],
                         k:LanguageCoordinateProperties[], k:PathCoordinateProperties[],
@@ -979,7 +980,7 @@ final class NarrativeContentSet {
                         concepts, and origin toward more general, parent concepts — the same is-a direction
                         this guide's Navigation Coordinates chapter already described through
                         k:NavigationVertex[]'s own parent/child fields, named here as the generic
-                        relationship-direction vocabulary those fields draw from. k:DataPropertySet[] and
+                        relationship-direction terminology those fields draw from. k:DataPropertySet[] and
                         k:PropertySequenceImplication[] close out the property family: a set of data-carrying
                         properties, and an implication one property sequence carries for another.""");
 
@@ -987,12 +988,12 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: IntegratedKnowledgeManagement (Provenance and Root)")),
                         """
-                        k:IntegratedKnowledgeManagement[] is the concept nearly every root-level vocabulary
+                        k:IntegratedKnowledgeManagement[] is the concept nearly every root-level concept family
                         in this guide ultimately descends from — k:ModelConcept[], k:Author[], k:Module[],
                         k:Path[], k:StatusValue[], k:Object[], k:AnnotationType[], k:Phenomenon[], and
                         k:CreativeCommonsBYLicense[] among them — "terminologies represented in a harmonized
                         manner," in its own words: the single organizing idea that this starter set,
-                        Tinkar's own base model, and SOLOR's imported vocabulary are all, ultimately, one
+                        Tinkar's own base model, and SOLOR's imported terminology are all, ultimately, one
                         coherent knowledge representation rather than three unrelated things bolted together.
 
                         k:IkeFoundationRoot[] is this starter set's own root, by contrast — the concept this
