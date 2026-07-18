@@ -60,7 +60,10 @@ import dev.ikm.tinkar.terms.EntityProxy;
  * Prose element pattern — there is no established meaning to confidently adopt here.
  * Reading and enforcing these constraints (e.g. in Komet's field editors) is
  * explicitly out of scope: this file mints the representation, the worked examples,
- * and the apparatus's own bootstrap self-constraints.
+ * the apparatus's own bootstrap self-constraints, and the apparatus koncepts' curated
+ * narratives for the guide's Field Constraints chapter (IKE-Network/ike-issues#888),
+ * which complement the Constrained Pattern hub narrative in
+ * {@link NarrativeContentSet}.
  */
 final class ConstraintPatternSet {
 
@@ -175,7 +178,34 @@ final class ConstraintPatternSet {
                         + " full, and a relation is admitted only when its evaluator ships"
                         + " in code: relation concepts correspond one-to-one with the"
                         + " service-loaded evaluators — the bijection gate.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(IkeTerm.MODEL_CONCEPT)
+                // Curated narrative (IKE-Network/ike-issues#888): domain description OF
+                // this koncept, complementing the Constrained Pattern hub narrative
+                // (NarrativeContentSet).
+                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: MemberMatchRelation (Field Constraints — The Member"
+                                        + " Match Relation)")), """
+                        k:MemberMatchRelation[] is the closed taxonomy of relations a
+                        k:ValueSetFieldConstraintPattern[] semantic can require between a constrained
+                        field's value and an enumerated member — and it is also that pattern's fourth
+                        field's own meaning: the field's value *is* a relation from this taxonomy. How
+                        a value must match a member is a concept, never invented syntax, and relations
+                        are directed and named in full — a value containing a member fragment and a
+                        value contained in a member would be different relations, each with its own
+                        name.
+
+                        Admission is evaluator-backed. Dispatch stays code-sovereign through a typed
+                        `MemberMatchEvaluator` service seam: each evaluator declares in code which
+                        relation concept it evaluates — code points at knowledge, never knowledge at
+                        operative code pointers, so imported content can never redirect what
+                        constraint checking executes — and each evaluator states its own operand type
+                        discipline, since what "the types must agree" means is itself
+                        relation-relative. The admission gate is a bijection, enforced by test: the
+                        relations — this concept's children under the checking view — correspond
+                        one-to-one with the service-loaded evaluators, so minting a relation without
+                        shipping its evaluator fails, and shipping an evaluator without minting its
+                        relation fails.""");
         EntityProxy.Concept memberMatchRelation = set.conceptRef("Member match relation (IkeFoundation)");
 
         set.concept("Equal match relation (IkeFoundation)").at(inception)
@@ -189,7 +219,29 @@ final class ConstraintPatternSet {
                         + " unrevised NaN default fails its constraint until revised. Graph"
                         + " types are outside this relation's operand conformance — graph"
                         + " enumerations await the isomorphic relations.")
-                .isA(memberMatchRelation);
+                .isA(memberMatchRelation)
+                // Curated narrative (IKE-Network/ike-issues#888) — see the parent
+                // relation's note above.
+                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: EqualMatchRelation (Field Constraints — The Member"
+                                        + " Match Relation)")), """
+                        k:EqualMatchRelation[] — Equal, the sole relation admitted today — matches a
+                        value to a member when they are equal by the member datatype's natural
+                        equality, with the rulings made deliberately, datatype by datatype: entity
+                        references match by identity, whatever facade form carries them; String,
+                        Boolean, Integer, Long, and Instant match by value; byte arrays by content;
+                        arrays elementwise; id lists by order-sensitive element identity and id sets
+                        by membership. Decimal matches by numeric equality — `compareTo == 0`, so 2.5
+                        admits 2.50 — an identical-representation rule would be its own relation,
+                        never an ambiguity inside this one. Float compares by IEEE semantics, so `NaN`
+                        matches nothing, itself included — keeping the loud-defaults coherence: an
+                        unrevised `NaN` default fails its constraint until someone chooses a real
+                        value.
+
+                        Graph types sit outside Equal's operand conformance: graph enumerations await
+                        the isomorphic relations, which is where the canonical-form equality question
+                        belongs — deferred, never silently decided here.""");
 
         // ── The patterns' referenced-component and field-purpose concepts ──
         // Meaning/purpose rigor (IKE-Network/ike-issues#880): each field's own MEANING
@@ -267,7 +319,37 @@ final class ConstraintPatternSet {
                 .field(set.conceptRef("Constraint kind (IkeFoundation)"),
                         set.conceptRef("Constraint Rule (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("Constraint anchor concept (IkeFoundation)"),
-                        set.conceptRef("Taxonomy Reference Point (IkeFoundation)"), IkeTerm.COMPONENT_FIELD);
+                        set.conceptRef("Taxonomy Reference Point (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                // Curated narrative (IKE-Network/ike-issues#888): domain description OF
+                // this pattern, complementing — never repeating — the Constrained
+                // Pattern hub narrative (NarrativeContentSet), which carries the
+                // shape-level, field-by-field walk-through for both constraint shapes.
+                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: TaxonomyFieldConstraintPattern (Field Constraints — The"
+                                        + " Taxonomy Field Constraint)")), """
+                        k:TaxonomyFieldConstraintPattern[] is the intensional constraint shape: a
+                        semantic of it stores a rule, never a list. The legal set for the
+                        k:ConstrainedField[] is derived from the knowledge graph under the checking
+                        view's navigation coordinate — walked from the k:ConstraintAnchorConcept[] by
+                        whichever of k:TaxonomyFieldConstraintKind[]'s four children the
+                        k:ConstraintKind[] field names. The four kinds are four editorial intents about
+                        a taxonomy region: k:KindOfFieldConstraint[] says the anchor is itself a legal
+                        value, alongside everything beneath it; k:DescendantFieldConstraint[] says the
+                        anchor is a header — legal values sit strictly beneath it;
+                        k:LeafDescendantFieldConstraint[] says only the concrete leaves qualify, never
+                        the grouping concepts that exist to organize them; and
+                        k:ImmediateChildFieldConstraint[] says the taxonomy is a closed one-level value
+                        list — exactly how the STAMP pattern's status field holds to the immediate
+                        children of k:StatusValue[].
+
+                        Because the legal set is derived rather than copied, governing it moves to
+                        whoever governs that taxonomy region: minting a new kind of k:Author[] extends
+                        what every author-constrained field accepts, with no constraint edit anywhere.
+                        And because the derivation runs under a view, the legal set is view-relative —
+                        two checking views can answer differently — so checking is an authoring-time
+                        and QA-time calculator operation, never a property a stored value carries with
+                        it.""");
 
         // ── The value-set-shape pattern ──────────────────────────────────
         set.pattern("Value-set Field Constraint Pattern (IkeFoundation)").at(inception)
@@ -280,7 +362,30 @@ final class ConstraintPatternSet {
                 .field(set.conceptRef("Value-set field (IkeFoundation)"),
                         set.conceptRef("Value Disambiguation (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 .field(memberMatchRelation,
-                        set.conceptRef("Match Discipline (IkeFoundation)"), IkeTerm.COMPONENT_FIELD);
+                        set.conceptRef("Match Discipline (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                // Curated narrative (IKE-Network/ike-issues#888) — see the taxonomy
+                // pattern's note above.
+                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: ValueSetFieldConstraintPattern (Field Constraints — The"
+                                        + " Value-set Field Constraint)")), """
+                        k:ValueSetFieldConstraintPattern[] is the extensional constraint shape: the
+                        legal values are enumerated as data — the active semantics of the named
+                        k:ValueSetPattern[] — and the constraint is satisfied when some member active
+                        under the checking view matches the constrained field's value under the named
+                        k:MemberMatchRelation[]. The shape is datatype-universal: the member type rides
+                        the source pattern's own declared Model Feature, the one the k:ValueSetField[]
+                        pointer names by its meaning concept, so this one four-field shape yields
+                        closed enumerations of any field datatype — allowed Strings, allowed Integers,
+                        allowed concepts — never a pattern per datatype.
+
+                        Membership carries the ordinary STAMP lifecycle, member by member: adding a
+                        member is authoring a semantic of the value-set pattern, removing one is
+                        retiring it, and every membership change carries its own provenance — who,
+                        when, in which module, on which path. What the value set contains is answered
+                        through the stamp calculus — active-under-the-checking-view membership — so
+                        the legal set evolves version by version, with no edit to the constraint
+                        semantic itself.""");
 
         EntityProxy.Pattern taxonomyConstraintPattern =
                 set.patternRef("Taxonomy Field Constraint Pattern (IkeFoundation)");

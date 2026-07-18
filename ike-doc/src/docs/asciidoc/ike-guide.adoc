@@ -324,18 +324,157 @@ koncept-narrative::Meaning[]
 
 koncept-narrative::ConstrainedPattern[]
 
-<<koncept-pattern-table-TaxonomyFieldConstraintPattern>> and
-<<koncept-pattern-table-ValueSetFieldConstraintPattern>> show the two constraint
-patterns' shapes.
-
-koncept-pattern-table::TaxonomyFieldConstraintPattern[]
-
-koncept-pattern-table::ValueSetFieldConstraintPattern[]
-
 [koncept-tree]
 ----
 kindof: Author
 ----
+
+This section is the shape-level introduction. The Field Constraints chapter, next,
+describes how the starter set supports constraints in practice — authoring and
+retrieval, conjunctive composition, each shape's legal-set derivation, the member
+match relations, and coherence with default values — and renders the two constraint
+patterns' shapes as <<koncept-pattern-table-TaxonomyFieldConstraintPattern>> and
+<<koncept-pattern-table-ValueSetFieldConstraintPattern>>.
+
+== Field Constraints
+
+Where the Semantic Field Model chapter's Constraining Fields section introduces the
+constraint apparatus — two patterns, one per parameter shape, both attaching to the
+pattern whose field they constrain — this chapter describes how the starter set
+supports constraints in practice: what authoring one looks like, how several
+constraints on one field compose, how each shape derives its legal set, and how
+constraints and default values cohere.
+
+A constraint is first-class content of the pattern it constrains. Unlike a default
+value — which needs the Defaults and templates module as its category boundary (see
+the Default Values chapter) — a constraint needs no machinery at all: no special
+module, no exclusion from any read path, no dedicated accessor. Each constraint
+semantic attaches to the constrained pattern as its referenced component, and reading
+a pattern's constraints is retrieval by enumeration: walk the semantics attached to
+the pattern that are of the two constraint patterns. Identity is declared
+descriptively, so the ledger reads as prose — the STAMP author constraint below is
+declared as "Taxonomy Field Constraint: STAMP pattern Author field kind-of Author",
+the rule's own name saying exactly what it asserts.
+
+Constraint semantics compose conjunctively. Each semantic is one conjunct, and a value
+is legal only when every conjunct on its field holds — no override, no precedence, no
+disjunction to reason about. A field may carry constraints of both shapes at once, a
+taxonomy constraint and a value-set constraint intersecting: legal then means inside
+the taxonomy region *and* matching an enumerated member.
+
+The pattern axis is the parameter shape: one constraint pattern per parameter tuple,
+never one per datatype, and never a union carried by sentinel values. A kind or
+relation field earns its place as a genuine parameter only when every field of the
+tuple stays meaningful for every one of its values — the four taxonomy kinds share one
+identical (field, kind, anchor) tuple, so one pattern carries all four; value-set
+membership carries a different tuple entirely, so it is a pattern of its own — a
+shape, never a fifth kind. Every field of every constraint semantic is meaningful: no
+k:BlankConcept[] sentinel anywhere in this story.
+
+=== The Taxonomy Field Constraint
+
+koncept-narrative::TaxonomyFieldConstraintPattern[]
+
+<<koncept-pattern-table-TaxonomyFieldConstraintPattern>> shows the pattern's shape.
+
+koncept-pattern-table::TaxonomyFieldConstraintPattern[]
+
+The starter set carries five taxonomy constraints on real, long-standing patterns —
+the four STAMP dimensions and the Description Pattern's language field
+(<<koncept-pattern-table-STAMPPattern>> and <<koncept-pattern-table-DescriptionPattern>>
+show the constrained patterns' own shapes):
+
+* k:STAMPPattern[]'s author, module, and path fields are each kind-of constrained to
+  their own dimension's taxonomy — anchors k:Author[], k:Module[], and k:Path[] — the
+  anchor itself a legal value, and every new author, module, or path minted beneath it
+  a legal value from the moment it exists.
+* k:STAMPPattern[]'s status field is immediate-child constrained to k:StatusValue[]:
+  STAMP status is a closed, one-level value list — exactly k:ActiveState[],
+  k:InactiveState[], k:PrimordialState[], k:CanceledState[], and k:WithdrawnState[] —
+  and the constraint says so as data.
+* k:DescriptionPattern[]'s language field (meaning
+  k:LanguageConceptNidForDescription[]) is kind-of constrained to k:Language[]: any
+  language concept, at any depth, is a legal description language.
+
+=== The Value-set Field Constraint
+
+koncept-narrative::ValueSetFieldConstraintPattern[]
+
+<<koncept-pattern-table-ValueSetFieldConstraintPattern>> shows the pattern's shape.
+
+koncept-pattern-table::ValueSetFieldConstraintPattern[]
+
+The set's worked value-set constraint is the one the Default Values chapter's worked
+default already satisfies: k:PreferredReviewerPattern[]'s single field,
+k:PreferredReviewer[], is constrained to membership in the starter set author roster.
+The constraint's four fields read: constrained field = k:PreferredReviewer[],
+value-set pattern = k:StarterSetAuthorRosterPattern[], value-set field =
+k:RosterAuthor[], member match relation = k:EqualMatchRelation[]
+(<<koncept-pattern-table-PreferredReviewerPattern>> and
+<<koncept-pattern-table-StarterSetAuthorRosterPattern>> show both patterns' shapes).
+
+The roster is why the k:ValueSetField[] pointer exists. Each roster entry is a
+semantic with two fields — k:RosterAuthor[], the member, and k:RosterOrder[], a
+display order — and only the first is what a candidate value is matched against:
+k:RosterOrder[] is a characteristic of the entry, not the member. The pointer names
+the member-bearing Model Feature by its meaning concept — a declared field's meaning,
+or, for a membership pattern whose members are the referenced components themselves,
+the source pattern's referenced-component meaning — so any pattern whose active
+semantics enumerate things can serve as a value set, with no value-set-specific
+machinery on the source side.
+
+=== The Member Match Relation
+
+koncept-narrative::MemberMatchRelation[]
+
+One relation is admitted today:
+
+koncept-narrative::EqualMatchRelation[]
+
+=== The Apparatus Constrains Itself
+
+The apparatus's own discriminator fields are exactly the closed one-level value lists
+the immediate-child kind exists for, and the set constrains them accordingly — as
+ordinary content, through the same pattern any other constraint uses:
+
+* "Taxonomy Field Constraint: Taxonomy Field Constraint Pattern Constraint kind field
+  immediate-child of Taxonomy field constraint kind" — constrained field =
+  k:ConstraintKind[], kind = k:ImmediateChildFieldConstraint[], anchor =
+  k:TaxonomyFieldConstraintKind[]: the kind field of every taxonomy constraint holds
+  one of the four kinds, and nothing else.
+* "Taxonomy Field Constraint: Value-set Field Constraint Pattern Member match relation
+  field immediate-child of Member match relation" — constrained field =
+  k:MemberMatchRelation[], kind = k:ImmediateChildFieldConstraint[], anchor =
+  k:MemberMatchRelation[] again: the relation field of every value-set constraint
+  holds an admitted relation, and nothing else — the same concept serving as the
+  field's meaning and the constraint's anchor without conflict, the two roles read
+  from different fields entirely.
+
+Nothing marks these two semantics as special: they are taxonomy constraints like the
+STAMP pattern's four, retrieved the same way, composed the same way. Growing either
+closed list is authoring: mint the child concept, and the existing constraint admits
+it without being touched — for a relation, the bijection gate additionally requires
+its evaluator to ship in the same change.
+
+=== Constraints and Defaults
+
+Constraints and defaults meet at one coherence rule: a default value must satisfy its
+field's constraints — a fresh semantic pre-populated from defaults should be legal
+where a curator has finished choosing, and loudly illegal where they have not.
+
+k:PreferredReviewerPattern[] shows the finished side: its authored default,
+k:Gretel[], is the roster's own first entry, so the default satisfies the value-set
+constraint on the very field it fills — a real, constraint-satisfying value, visible
+as the _default_ row of <<koncept-pattern-table-PreferredReviewerPattern>> (the
+Default Values chapter walks the full round trip).
+
+The loud defaults show the unfinished side, deliberately. k:UninitializedComponent[]
+belongs to no domain taxonomy region and no curated value set, and `NaN` matches
+nothing under k:EqualMatchRelation[], itself included. So wherever a constrained field
+still carries its loud default, constraint checking fails it until someone chooses a
+real value — the same machinery that validates finished data announces unfinished
+data, the loud-defaults principle of the Default Values chapter restated from the
+checking side.
 
 == Default Values
 
@@ -417,7 +556,7 @@ The sixteen decided defaults group into a small number of strategies:
 k:PreferredReviewerPattern[] carries the set's other default value semantic — the
 minimal end-to-end demonstration the sixteen-type exemplar generalizes. Its single
 field, k:PreferredReviewer[], is value-set constrained to the
-k:StarterSetAuthorRosterPattern[] roster (see the Semantic Field Model chapter), and
+k:StarterSetAuthorRosterPattern[] roster (see the Field Constraints chapter), and
 its authored default is k:Gretel[], that roster's first entry — a real,
 constraint-satisfying default value, not a placeholder. The full round trip is visible
 in this guide itself: the default is authored as ordinary ledger content in the
