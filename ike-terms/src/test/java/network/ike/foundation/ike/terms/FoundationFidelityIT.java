@@ -59,6 +59,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.Set;
@@ -183,7 +184,9 @@ class FoundationFidelityIT {
             UUID.fromString("5f0ad6ca-638e-4052-82b0-3f564ac99b3f"), // Semantic Chronology Pattern
             UUID.fromString("a38b7d2d-8fa5-4206-9185-a1af9f81be2c"), // Component Version Pattern
             UUID.fromString("7943a5f1-538b-4fda-8acb-019e0bec125b"), // Concept Version Pattern
-            UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), // Sementic version field pattern
+            // Born "Sementic version field pattern"; the FQN typo is fixed by
+            // DefinitionCompletionSet (IKE-Network/ike-issues#892).
+            UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), // Semantic version field pattern
             UUID.fromString("73c798cf-bc77-49a2-84f7-4c0f4bc4c012"), // STAMP version field pattern
             UUID.fromString("a90f8a4d-ae13-476b-98b8-814914f9704e"), // Pattern Version Pattern
             UUID.fromString("536b0ec4-4974-47ae-93a6-ae6c4d169780"), // Module origins pattern (SOLOR)
@@ -233,7 +236,13 @@ class FoundationFidelityIT {
             // The Component Id pair (KEC-decided): "display list"/"display set" FQNs evaded
             // the textual "display field" rule on grammar, not merit (IKE-Network/ike-issues#885).
             Map.entry(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"), "Component Id list data type"),
-            Map.entry(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"), "Component Id set data type")
+            Map.entry(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"), "Component Id set data type"),
+            // DefinitionCompletionSet: the "Sementic version field pattern" FQN typo fix
+            // (IKE-Network/ike-issues#892). A pattern, not a concept — fqnTextUnchanged's
+            // snapshot covers concepts only, so this entry records the deliberate rename
+            // for the registry's own completeness (and gates it, should pattern FQNs ever
+            // join the snapshot).
+            Map.entry(UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), "Semantic version field pattern")
     );
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
 
@@ -769,5 +778,103 @@ class FoundationFidelityIT {
                         + " meaning, or the referenced-component meaning for membership patterns — is"
                         + " unambiguous (IKE-Network/ike-issues#890, collisions fixed by"
                         + " IKE-Network/ike-issues#891)");
+    }
+
+    // ------------------------------------------------- meaning/purpose audit (#892)
+
+    /**
+     * Normalizes description text for the label-echo comparison: lowercase, alphanumeric
+     * characters only — so "EL++ Stated terminological axioms" and "EL Stated
+     * Terminological Axioms!" read as the same echo (IKE-Network/ike-issues#892).
+     *
+     * @param text the description text to normalize
+     * @return the lowercase, alphanumeric-only form of {@code text}
+     */
+    private static String normalized(String text) {
+        StringBuilder normalized = new StringBuilder(text.length());
+        for (char c : text.toLowerCase(Locale.ROOT).toCharArray()) {
+            if (Character.isLetterOrDigit(c)) {
+                normalized.append(c);
+            }
+        }
+        return normalized.toString();
+    }
+
+    @Test
+    @DisplayName("Every ledger-declared pattern's latest version keeps meaning distinct from"
+            + " purpose — for its referenced component and for every one of its fields"
+            + " (IKE-Network/ike-issues#892)")
+    void everyModelFeatureMeaningDiffersFromItsPurpose() {
+        // Unconditional, no registry: the IKE-Network/ike-issues#880/#890/#891 passes
+        // eliminated every meaning=purpose collapse, and this gate keeps them out.
+        for (KnowledgeSet.Declaration declaration : Ike.SET.declarations()) {
+            if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
+                continue;
+            }
+            int patternNid = PrimitiveData.nid(declaration.publicId());
+            Latest<PatternEntityVersion> latest = calculator.latest(patternNid);
+            if (!latest.isPresent()) {
+                continue;
+            }
+            PatternEntityVersion version = latest.get();
+            assertFalse(version.semanticMeaningNid() == version.semanticPurposeNid(),
+                    "pattern " + declaration.publicId() + " collapses its referenced-component"
+                            + " meaning and purpose into one concept — meaning names what kind of"
+                            + " thing this is; purpose names why it is captured"
+                            + " (IKE-Network/ike-issues#892)");
+            for (FieldDefinitionForEntity field : version.fieldDefinitions()) {
+                assertFalse(field.meaningNid() == field.purposeNid(),
+                        "pattern " + declaration.publicId() + " field \"" + field.meaning().description()
+                                + "\" collapses its meaning and purpose into one concept"
+                                + " (IKE-Network/ike-issues#892)");
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Every meaning and purpose concept any ledger-declared pattern's latest version"
+            + " names carries an active definition whose normalized text differs from its FQN and"
+            + " regular name — label echoes cannot return (IKE-Network/ike-issues#892)")
+    void everyMeaningAndPurposeCarriesARealDefinition() {
+        // Unconditional, no registry: DefinitionCompletionSet authored the 25 missing
+        // definitions and revised the 9 label echoes; this gate keeps the inventory at
+        // zero for both defect classes.
+        Set<Integer> meaningAndPurposeNids = new HashSet<>();
+        for (KnowledgeSet.Declaration declaration : Ike.SET.declarations()) {
+            if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
+                continue;
+            }
+            Latest<PatternEntityVersion> latest = calculator.latest(PrimitiveData.nid(declaration.publicId()));
+            if (!latest.isPresent()) {
+                continue;
+            }
+            PatternEntityVersion version = latest.get();
+            meaningAndPurposeNids.add(version.semanticMeaningNid());
+            meaningAndPurposeNids.add(version.semanticPurposeNid());
+            for (FieldDefinitionForEntity field : version.fieldDefinitions()) {
+                meaningAndPurposeNids.add(field.meaningNid());
+                meaningAndPurposeNids.add(field.purposeNid());
+            }
+        }
+        for (int nid : meaningAndPurposeNids) {
+            String label = languageCalculator.getFullyQualifiedNameText(nid)
+                    .map(FoundationFidelityIT::normalized).orElse("");
+            String regularName = languageCalculator.getRegularDescriptionText(nid)
+                    .map(FoundationFidelityIT::normalized).orElse("");
+            boolean hasRealDefinition = false;
+            for (SemanticEntityVersion definitionVersion : languageCalculator
+                    .getDescriptionsForComponentOfType(nid, TinkarTerm.DEFINITION_DESCRIPTION_TYPE.nid())) {
+                String definition = languageCalculator.getTextFromSemanticVersion(definitionVersion)
+                        .map(FoundationFidelityIT::normalized).orElse("");
+                if (!definition.isEmpty() && !definition.equals(label) && !definition.equals(regularName)) {
+                    hasRealDefinition = true;
+                }
+            }
+            assertTrue(hasRealDefinition,
+                    "meaning/purpose concept \"" + languageCalculator.getFullyQualifiedNameText(nid).orElse("nid " + nid)
+                            + "\" carries no active definition description whose text says more than its"
+                            + " own label — every meaning and purpose must carry a real definition"
+                            + " (IKE-Network/ike-issues#892)");
+        }
     }
 }

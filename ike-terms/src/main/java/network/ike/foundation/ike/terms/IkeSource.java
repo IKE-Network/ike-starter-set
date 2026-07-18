@@ -66,6 +66,12 @@ public final class IkeSource implements KnowledgeSetSource {
         // field declarations anchor (IKE-Network/ike-issues#885). Composed immediately
         // after the apparatus it extends, under later stamps still.
         DataTypeDefaultsSet.compose(Ike.SET);
+        // DefinitionCompletionSet completes the meaning/purpose definition audit
+        // (IKE-Network/ike-issues#892) -- missing definitions, label-echo revisions, and
+        // the "Sementic" FQN typo fix on components nearly every earlier scope already
+        // touches. Composed last of all, at the latest stamp, so the session stays
+        // time-major.
+        DefinitionCompletionSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;
