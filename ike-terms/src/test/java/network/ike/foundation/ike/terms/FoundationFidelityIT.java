@@ -442,7 +442,8 @@ class FoundationFidelityIT {
 
     /**
      * Patterns whose semantics are a concept's own naming/axiom apparatus — the
-     * descriptions and stated axioms every named concept carries. Attached to a
+     * descriptions and stated axioms every named concept carries, plus the curated
+     * narrative prose the guide renders (IKE-Network/ike-issues#888). Attached to a
      * defaults/templates attachment concept they are that concept's foundation-module
      * terminology, not defaults/template content, so the module invariants exempt them:
      * the apparatus concepts stamp in the foundation module, and only default value and
@@ -454,7 +455,13 @@ class FoundationFidelityIT {
      */
     private static Set<Integer> namingApparatusPatternNids() {
         return Set.of(TinkarTerm.DESCRIPTION_PATTERN.nid(),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid());
+                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(),
+                // The Prose element pattern: DefaultsAndTemplatesSet authors a curated
+                // narrative ABOUT Default value concept (a domain description of the
+                // koncept, IKE-Network/ike-issues#888) — foundation-module terminology
+                // exactly like its descriptions, never defaults/template content, so the
+                // defaults-module content count below stays 2.
+                NarrativeContentSet.PROSE_ELEMENT_PATTERN.nid());
     }
 
     /**

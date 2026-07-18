@@ -49,7 +49,14 @@ import java.util.UUID;
  */
 final class NarrativeContentSet {
 
-    private static final EntityProxy.Pattern PROSE_ELEMENT_PATTERN = EntityProxy.Pattern.make(
+    /**
+     * The shared ecosystem-wide pattern for curated narrative prose (see the class
+     * javadoc). Package-private: {@link DefaultsAndTemplatesSet} and
+     * {@link DataTypeDefaultsSet} author their own koncepts' narratives against the same
+     * identity — those koncepts are minted after this file composes, so their narratives
+     * cannot live here without breaking the session's time-major reading order.
+     */
+    static final EntityProxy.Pattern PROSE_ELEMENT_PATTERN = EntityProxy.Pattern.make(
             "Prose element pattern (RichSurfaceTerms)",
             PublicIds.of(UUID.fromString("89b831a1-e773-5f83-87a6-2cfc8e107fb0")));
 

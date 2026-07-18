@@ -135,6 +135,9 @@ field, 1-indexed, in declared order.
   is stable across regenerations — rendered as a badge when the value is itself an
   identified component, and as plain text otherwise. A pattern with no semantics
   yet simply has no e.g. rows.
+* An indented _default_ row shows the field's value from the pattern's default
+  value semantic (see the Default Values chapter), rendered the same way. Only a
+  pattern with an authored default carries these rows.
 
 === The Glossary and the List of Patterns
 
@@ -330,6 +333,94 @@ koncept-pattern-table::ConceptFieldConstraintPattern[]
 ----
 kindof: Author
 ----
+
+== Default Values
+
+An editor opening a fresh semantic needs a starting value for every field — the store
+rejects null field values outright. This chapter describes how the starter set supports
+default values with no defaults-specific machinery in the model at all: a default is
+ordinary working-path content — a complete semantic of the target pattern — kept out of
+domain reads by two structural dimensions the model already has, its referenced
+component and its module.
+
+=== The Default Value Semantic
+
+koncept-narrative::DefaultValueConcept[]
+
+=== The Defaults and Templates Module
+
+koncept-narrative::DefaultsAndTemplatesModule[]
+
+=== Templates
+
+koncept-narrative::TemplateConcept[]
+
+=== Loud Defaults for Every Data Type
+
+What value should a default actually carry? The governing principle is *loud defaults*:
+a default must work as an initial value while reading as obviously needing revision —
+never Java's silent zero-values, which disappear into real data instead of announcing
+themselves. The starter set demonstrates the principle at full breadth with one
+pattern carrying a loud default for every data type a pattern field can declare.
+
+koncept-narrative::DataTypeDefaultsPattern[]
+
+<<koncept-pattern-table-DataTypeDefaultsPattern>> shows the pattern's full shape; the
+indented _default_ row under each field is read live from the pattern's own default
+value semantic, through the same computed identity any editor would resolve.
+
+koncept-pattern-table::DataTypeDefaultsPattern[]
+
+The sixteen decided defaults group into a small number of strategies:
+
+* *The UNINITIALIZED string forms.* String is the literal `UNINITIALIZED`; ByteArray is
+  the UTF-8 bytes of `UNINITIALIZED` — the loud String default carried in byte form;
+  Array is an array of exactly one element, the String `UNINITIALIZED` — present and
+  non-empty, since an empty array would be a silent zero-value.
+* *The loud placeholder component.* Component and Concept default to
+  k:UninitializedComponent[], the base set's own loud placeholder for a value still
+  owed — deliberately not k:BlankConcept[]: Blank means a deliberate not-applicable, a
+  quiet, legitimate state, while Uninitialized means a value still owed. ComponentIdSet
+  and ComponentIdList are the singleton set and list holding k:UninitializedComponent[]
+  — present and non-empty, their one member itself the loud placeholder.
+* *Native non-values.* Types whose value space offers a true non-value use it — a
+  non-value is louder still, because it cannot be mistaken for data at all. Float is
+  `NaN`, which also propagates through arithmetic, so any computation over an unrevised
+  default stays loudly not-a-number; Instant is the premundane instant, the time type's
+  own before-all-recorded-time marker, chosen over a sentinel date because a true
+  non-value cannot be mistaken for a real timestamp.
+* *Stretched-sevens sentinels.* Numeric types without a native non-value use a planted
+  repdigit: Integer is `777777777` (nine sevens), Long is `777777777777777777`
+  (eighteen sevens), and Decimal is `777777777.777` — nine sevens, a decimal point,
+  three more sevens, the decimal point placed deliberately to demonstrate the type's
+  distinguishing property: a scaled decimal, not an integer. A repdigit signature reads
+  as deliberately planted and cannot plausibly occur as natural data, where `MIN_VALUE`
+  would read as an overflow bug.
+* *Structural values that prove their type.* DiGraph is a deliberate simple cycle — two
+  vertices, both k:UninitializedComponent[], with edges in both directions: a cycle can
+  never be a tree, so the value proves the field truly holds a graph and not a tree.
+  DiTree is the smallest well-formed tree — a single vertex, the loud placeholder at
+  its root.
+* *A real, resolvable semantic.* The Semantic field's default is the fully qualified
+  name description semantic of k:UninitializedComponent[] — a real, resolvable semantic
+  whose subject is itself the loud placeholder, so the reference is valid yet plainly
+  unrevised.
+* *The flagged compromise.* Boolean is `false`: a two-valued type has no loud member,
+  so no Boolean default can announce itself as unrevised; `false` is offered as the
+  initial value with that limitation stated rather than hidden.
+
+=== A Worked Default: Preferred Reviewer
+
+k:PreferredReviewerPattern[] carries the set's other default value semantic — the
+minimal end-to-end demonstration the sixteen-type exemplar generalizes. Its single
+field, k:PreferredReviewer[], is value-set constrained to the
+k:StarterSetAuthorRosterPattern[] roster (see the Semantic Field Model chapter), and
+its authored default is k:Gretel[], that roster's first entry — a real,
+constraint-satisfying default value, not a placeholder. The full round trip is visible
+in this guide itself: the default is authored as ordinary ledger content in the
+Defaults and templates module, `StampCalculator.getDefault(pattern)` resolves it by
+computed identity, and the same value renders as the _default_ row of
+<<koncept-pattern-table-PreferredReviewerPattern>>.
 
 == Tinkar Base Model
 

@@ -381,7 +381,30 @@ final class DataTypeDefaultsSet {
                 .field(set.conceptRef("Array default (IkeFoundation)"), exemplar, IkeTerm.ARRAY_FIELD)
                 .field(set.conceptRef("Instant default (IkeFoundation)"), exemplar, IkeTerm.INSTANT_LITERAL)
                 .field(set.conceptRef("Long default (IkeFoundation)"), exemplar, IkeTerm.LONG)
-                .field(set.conceptRef("Decimal default (IkeFoundation)"), exemplar, IkeTerm.DECIMAL_FIELD);
+                .field(set.conceptRef("Decimal default (IkeFoundation)"), exemplar, IkeTerm.DECIMAL_FIELD)
+                // Curated narrative (IKE-Network/ike-issues#888): domain description OF
+                // this pattern — foundation-module terminology like its descriptions,
+                // never defaults/template content (the module's live-and-die invariant
+                // holds; only the default value semantic below stamps in the module).
+                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                        PublicIds.of(set.uuidFor(
+                                "Narrative: DataTypeDefaultsPattern (Default Values — Loud Defaults for"
+                                        + " Every Data Type)")), """
+                        k:DataTypeDefaultsPattern[] is the defaults apparatus applied at full breadth: one
+                        pattern with sixteen fields, one per data type the platform's field-type resolver
+                        (`ConceptToDataType`, tinkar-core) actually recognizes, declared in that resolver's
+                        own order — String, Component, ComponentIdSet, ComponentIdList, DiTree, DiGraph,
+                        Concept, Semantic, Integer, Float, Boolean, ByteArray, Array, Instant, Long,
+                        Decimal. All sixteen fields share one purpose, k:DataTypeDefaultExemplar[]: every
+                        field exists for the identical reason — to carry its data type's loud default — so
+                        distinct per-field purposes would be manufactured variety.
+
+                        The pattern's single semantic is its own default value semantic: referenced
+                        component k:DefaultValueConcept[], computed identity, every version in
+                        k:DefaultsAndTemplatesModule[]. Each field's value is its data type's loud default
+                        — a value that works as an initial value but reads as obviously needing revision,
+                        never Java's silent zero-values. Replaying that one semantic writes and reads every
+                        field data type the store supports — the ledger's serialization smoke test.""");
 
         // ── The default value semantic (Defaults and templates module) ──
         // Instance content stamps in the defaults module — the module IS the category
