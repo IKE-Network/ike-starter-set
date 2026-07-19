@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section59 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Has Dose Form (SOLOR)", PublicIds.of(UUID.fromString("072e7737-e22e-36b5-89d2-4815f0529c63"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("07c5cd2c-f7a6-4b73-b3f2-1869d022fcbe")), IkeTerm.ENGLISH_LANGUAGE, "Has Dose Form (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)

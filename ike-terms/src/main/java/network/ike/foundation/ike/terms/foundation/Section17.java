@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section17 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Laterality (SOLOR)", PublicIds.of(UUID.fromString("26ca4590-bbe5-327c-a40a-ba56dc86996b"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("960f2aa1-4844-4b6c-aadb-15a2c8b62596")), IkeTerm.ENGLISH_LANGUAGE, "Laterality (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)

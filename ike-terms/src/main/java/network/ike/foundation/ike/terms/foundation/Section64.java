@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section64 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Purpose", PublicIds.of(UUID.fromString("c3dffc48-6493-54df-a2f0-14be8ba03091"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f0b05661-0bff-4bf2-9568-5ae5e3dc94f5")), IkeTerm.ENGLISH_LANGUAGE, "Purpose", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)

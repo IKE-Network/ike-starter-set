@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section9 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Concept type (SOLOR)", PublicIds.of(UUID.fromString("106f3ba1-63b8-5596-8dbe-524fa2e89fc0"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("bd9173e4-36ff-43c2-b1a7-aaaadf6f0d26")), IkeTerm.ENGLISH_LANGUAGE, "Concept type (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
@@ -46,7 +44,8 @@ final class Section9 {
         set.concept("Path concept (SOLOR)", PublicIds.of(UUID.fromString("1b9d9f95-fc0a-55ac-b2e6-7c8b37660046"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("59df2d01-eabe-482f-bfd9-b42bf714b998")), IkeTerm.ENGLISH_LANGUAGE, "Path concept (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("14275036-cd69-4513-a001-7c365c6f8907")), IkeTerm.ENGLISH_LANGUAGE, "Path concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e371f3da-583a-48f2-b91b-7a15da88ba07")), IkeTerm.ENGLISH_LANGUAGE, "Path concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e371f3da-583a-48f2-b91b-7a15da88ba07")), IkeTerm.ENGLISH_LANGUAGE, "A concept that is itself a version-control path — the concept kind a path is represented by. As the Path origins pattern's first field meaning it names the field holding the origin path a path branched from.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("e7709db3-c541-4506-9054-9b21de7ee390")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "1b9d9f95-fc0a-55ac-b2e6-7c8b37660046")
                 .statedAxioms(PublicIds.of(UUID.fromString("1ee07fee-643a-5c0e-bb14-3ccdfb3b315d")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCEPT_TYPE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("06473ccc-3b24-4c37-886a-9de35ef642b3")))

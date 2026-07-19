@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section22 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Logic coordinate properties (SOLOR)", PublicIds.of(UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("bc1a1259-121e-4ef0-8964-d6740761ab0e")), IkeTerm.ENGLISH_LANGUAGE, "Logic coordinate properties (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
@@ -34,7 +32,8 @@ final class Section22 {
         set.concept("Module origins (SOLOR)", PublicIds.of(UUID.fromString("462862d4-5df9-426e-b785-a1264e24769f"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a3cf1284-f9ab-4cd9-ba4f-340218b31490")), IkeTerm.ENGLISH_LANGUAGE, "Module origins (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("664b13d0-506f-4f95-823b-c94369ec0d0b")), IkeTerm.ENGLISH_LANGUAGE, "Module origins", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("899291eb-daea-40c6-8f5f-6f939d0d5a47")), IkeTerm.ENGLISH_LANGUAGE, "Module origins", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("899291eb-daea-40c6-8f5f-6f939d0d5a47")), IkeTerm.ENGLISH_LANGUAGE, "The origin-set value a Module origins pattern semantic carries: the set of modules a module originated from — what the pattern's one field holds, distinct from Originated Module, the module whose origins are declared.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("711e9637-5d8a-4f22-a430-5dde79b4dbaf")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "462862d4-5df9-426e-b785-a1264e24769f")
                 .statedAxioms(PublicIds.of(UUID.fromString("89439dbb-6bbb-5a13-b407-1ea42986f6b2")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.LOGIC_COORDINATE_PROPERTIES))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("a324bfb5-1828-4f34-adcd-7fb01c133b4e")))

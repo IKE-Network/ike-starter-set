@@ -19,7 +19,6 @@ import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 import java.util.UUID;
@@ -72,12 +71,10 @@ final class DefaultsAndTemplatesSet {
      * @param set the knowledge set (the session)
      */
     static void compose(KnowledgeSet set) {
-        // Later than every other authoring pass in this project (2026-07-12/-13/-15/
-        // -16/-17/-18/-19): a fresh apparatus composed after every revision pass, so
-        // the session keeps reading time-major and no earlier scope on a shared
-        // component can follow one of these stamps.
-        ActiveStamp apparatus = Stamp.active("2026-07-20T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894): apparatus concepts are foundation terminology,
+        // so they stamp in the foundation module.
+        ActiveStamp apparatus = Ike.INCEPTION;
 
         // ── Apparatus concepts (foundation module) ──────────────────────
         set.concept("Default value concept (IkeFoundation)").at(apparatus)
@@ -185,12 +182,10 @@ final class DefaultsAndTemplatesSet {
 
         // ── Worked example: one default value semantic (new module) ─────
         // Instance content stamps in the new module — the module IS the category
-        // boundary. Same author/path as the apparatus stamp; the later time keeps this
-        // ledger's two scopes on Default value concept chronological (apparatus first,
-        // content second).
-        ActiveStamp defaults = Stamp.active("2026-07-20T12:00:00Z", Ike.IKE_COMMUNITY,
-                set.conceptRef("Defaults and templates module (IkeFoundation)"),
-                IkeTerm.DEVELOPMENT_PATH);
+        // boundary. The Defaults-module counterpart of the inception stamp: same
+        // declared time, author, and path; only the module dimension separates support
+        // content (IKE-Network/ike-issues#894).
+        ActiveStamp defaults = Ike.DEFAULTS_INCEPTION;
 
         EntityProxy.Pattern preferredReviewerPattern =
                 set.patternRef("Preferred Reviewer Pattern (IkeFoundation)");

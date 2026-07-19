@@ -15,48 +15,28 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
-
-import java.util.UUID;
 
 /**
- * Completes the meaning/purpose definition audit (IKE-Network/ike-issues#892): every
- * concept any ledger-declared pattern's latest version names as a meaning or purpose —
- * referenced component or field — must carry a textual definition that says something a
- * reader could not already read off the label. The audited inventory (34 patterns, 154
- * distinct meaning/purpose concepts) found three defect classes, each corrected here:
- * <ul>
- *   <li><b>25 missing definitions</b> — the base-model chronicle/version field concepts
- *   (Public ID field, the five chronicle-kind fields, the five versions field/set pairs,
- *   the pattern-version declaration fields, the semantic-version fields, STAMP field,
- *   Time field) never carried a definition description at all. Each is resumed by its
- *   birth FQN (all were opened by the foundation sections' identity-exact ingest) and
- *   given one, grounded in how the chronicle/version meta-model actually uses it.</li>
- *   <li><b>9 label echoes</b> — Author, Module, Path concept, Module origins, Path
- *   origins, Version Properties, Membership semantic, and the EL++ Stated/Inferred
- *   terminological axioms each carried a definition description whose text merely
- *   repeats the label. Each established definition description is revised in place by
- *   declared-identity restatement — the {@link DataTypeDefaultsSet} rename mechanism,
- *   here aimed at the definition rather than the fully qualified name — so the original
- *   echo stays in history and a later-positioned view resolves the real text. The
- *   garbled inherited "Semantic data type" definition ("List of fields-  semantic")
- *   rides along, revised the same way.</li>
- *   <li><b>One FQN typo</b> — "Sementic version field pattern"
- *   ({@code 82f93e84-cee1-44bc-bb6d-4cc2a722048b}) is renamed to "Semantic version
- *   field pattern". The pattern's descriptions were declared with their established
- *   identities in {@code foundation.Section71}, so the rename restates both established
- *   FQN description semantics rather than using {@code reviseFullyQualifiedName} (the
- *   builder rejects the convenience verb once descriptions are explicit). The registry
- *   key stays the birth FQN.</li>
- * </ul>
- * Composed last of all, at a stamp later than every other scope in the session, so the
- * ledger keeps reading time-major: this file revises components nearly every earlier
- * scope has already touched.
+ * The definition completions of the meaning/purpose audit (IKE-Network/ike-issues#892):
+ * every concept any ledger-declared pattern's latest version names as a meaning or
+ * purpose — referenced component or field — must carry a textual definition that says
+ * something a reader could not already read off the label. The audited inventory (34
+ * patterns, 154 distinct meaning/purpose concepts) found 25 base-model chronicle/version
+ * field concepts (Public ID field, the five chronicle-kind fields, the five versions
+ * field/set pairs, the pattern-version declaration fields, the semantic-version fields,
+ * STAMP field, Time field) that never carried a definition description at all. Each is
+ * resumed here by its birth FQN (all were opened by the foundation sections'
+ * identity-exact ingest) and given its first — and only — definition, grounded in how
+ * the chronicle/version meta-model actually uses it.
  * <p>
- * Two {@code FoundationFidelityIT} gates hold this audit closed: every Model Feature's
+ * The audit's other defect classes — the label echoes, the terminology-rule revisions
+ * (IKE-Network/ike-issues#893), the garbled Semantic data type definition, and the
+ * "Sementic" FQN typo — are corrected in place at their section declarations under the
+ * inception flatten (IKE-Network/ike-issues#894), so no restatement lives here.
+ * <p>
+ * Two {@code FoundationFidelityIT} gates hold the audit closed: every Model Feature's
  * meaning differs from its purpose, and every meaning/purpose concept carries a
  * definition whose normalized text differs from its labels — echoes cannot return.
  */
@@ -71,11 +51,9 @@ final class DefinitionCompletionSet {
      * @param set the knowledge set (the session)
      */
     static void compose(KnowledgeSet set) {
-        // Later than every other authoring pass in this project (2026-07-12 through
-        // 2026-07-21T12): this file completes definitions on components nearly every
-        // earlier scope already touches, so it composes last, at the latest stamp.
-        ActiveStamp completion = Stamp.active("2026-07-23T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894).
+        ActiveStamp completion = Ike.INCEPTION;
 
         // ── The 25 missing definitions: chronicle-shape fields ──────────
         // Each concept below is resumed by its birth FQN (opened by the foundation
@@ -234,159 +212,5 @@ final class DefinitionCompletionSet {
                 .definition("A component field whose value identifies the component a"
                         + " semantic is attached to — the field a semantic chronicle"
                         + " records for its attachment target.");
-
-        // ── The 9 label-echo revisions ──────────────────────────────────
-        // Each concept's established definition description (declared with its
-        // established identity in the foundation sections) is revised in place: a new
-        // version of the same description semantic, real text replacing the label echo
-        // (the DataTypeDefaultsSet declared-identity restatement mechanism,
-        // IKE-Network/ike-issues#892). Field order verified against DataTypeDefaultsSet.
-
-        set.concept("Author").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("a2892585-1d62-4ea6-9cd5-f93cbf4a37a9")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "The concept identifying who committed a version — the author"
-                                + " dimension of a STAMP, and the root of the value space an"
-                                + " author field's concept is drawn from; distinct from Author"
-                                + " for version, which names why the field is recorded.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("Module").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("10933c80-b2cc-4569-8d23-b4d512e6459e")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "The concept identifying the export or authoring boundary a"
-                                + " version belongs to — the module dimension of a STAMP, and"
-                                + " the root of the value space a module field's concept is"
-                                + " drawn from; distinct from Module for version, which names"
-                                + " why the field is recorded.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("Path concept (SOLOR)").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("e371f3da-583a-48f2-b91b-7a15da88ba07")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "A concept that is itself a version-control path — the concept"
-                                + " kind a path is represented by. As the Path origins"
-                                + " pattern's first field meaning it names the field holding"
-                                + " the origin path a path branched from.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("Module origins (SOLOR)").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("899291eb-daea-40c6-8f5f-6f939d0d5a47")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "The origin-set value a Module origins pattern semantic carries:"
-                                + " the set of modules a module originated from — what the"
-                                + " pattern's one field holds, distinct from Originated"
-                                + " Module, the module whose origins are declared.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("Path origins (SOLOR)").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("8218d3af-ef97-4717-8f68-2bc3ed36c335")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "A path's own origin record — the path-coordinate property saying"
-                                + " where a path branched from. As the Path origins pattern's"
-                                + " second field meaning it names the origin instant that"
-                                + " record fixes: the branch point up to which the origin"
-                                + " path's versions are visible.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("Version Properties (SOLOR)").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("834597b6-cc91-4b1a-af82-f5f210d92959")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "What a STAMP pattern semantic means: the five-dimension"
-                                + " provenance tuple of a version — status, time, author,"
-                                + " module, and path together, as one value; the properties"
-                                + " every version carries, rather than any single dimension"
-                                + " alone.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("Membership semantic (SOLOR)").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("ad8203ec-3758-4011-9d6b-2540e67cf971")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "The semantic type carrying no fields: a semantic whose entire"
-                                + " content is that its referenced component belongs to the"
-                                + " pattern's own set. The SOLOR-era name for what this"
-                                + " starter set's own content now calls Set membership.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        // ── Terminology-rule revisions (IKE-Network/ike-issues#893) ─────
-        // Two established definition descriptions use "vocabulary"; the one-rigorous-term
-        // rule says terminology. Same restatement mechanism as the echoes above.
-        set.concept("Model concept").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("3e65ef28-f915-4773-beb5-a068361499b3")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "A concept representing a model construct within Integrated"
-                                + " Knowledge Management — the structural and data-type"
-                                + " terminology a knowledge base uses to describe itself, as"
-                                + " distinct from the domain content it represents.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("Tinkar Model concept").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("06d1eb76-87b4-440a-98c1-d0037f76a936")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "Root of Tinkar's own meta-schema terminology: the concepts Tinkar"
-                                + " uses to describe its data model itself — components,"
-                                + " descriptions, dialects, fields, and axioms — rather than"
-                                + " any modeled domain.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("EL++ Stated terminological axioms").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("03f08d3b-f7e9-4feb-87f0-f9e5620ed277")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "The stated side of a concept's EL++ terminological axioms: the"
-                                + " definitional axioms an author actually wrote — necessary"
-                                + " and sufficient sets, role restrictions — as distinct from"
-                                + " what a classifier later infers. The EL++ Stated Axioms"
-                                + " Pattern's one field carries them as a directed tree.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        set.concept("EL++ Inferred terminological axioms").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("f85df6dd-2c5c-4d11-bc0c-a145a042fa32")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "The inferred side of a concept's EL++ terminological axioms: the"
-                                + " definitional axioms a classifier concluded follow from"
-                                + " what was stated — computed, never hand-written. The EL++"
-                                + " Inferred Axioms Pattern's one field carries them as a"
-                                + " directed tree.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        // The garbled inherited definition ("List of fields-  semantic") on the Semantic
-        // data type concept — not a meaning/purpose concept, but the same defect class,
-        // fixed the same way (IKE-Network/ike-issues#892). The concept's FQN was already
-        // revised to "Semantic data type" by DataTypeDefaultsSet; this aligns its
-        // definition with that name and with its ConceptToDataType role.
-        set.concept("Semantic display field type (SOLOR)").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("284f4bfa-5d38-4a7a-bcab-9df6710bcc94")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "A field that holds a reference to a semantic.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        // ── The "Sementic" FQN typo ─────────────────────────────────────
-        // The pattern's descriptions were declared with their established identities in
-        // foundation.Section71, so reviseFullyQualifiedName is unavailable by design
-        // (the builder directs explicit-description components to restate the
-        // established semantic instead). Both established FQN descriptions carry the
-        // typo; both are revised to the corrected text. The registry key stays the
-        // birth FQN, "Sementic version field pattern".
-        set.pattern("Sementic version field pattern").at(completion)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("d47fdb46-8ce0-4405-943a-b2420c7480f8")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Semantic version field pattern",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("2caeaa6d-865c-4e61-8d48-c003487ee067")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Semantic version field pattern",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
     }
 }

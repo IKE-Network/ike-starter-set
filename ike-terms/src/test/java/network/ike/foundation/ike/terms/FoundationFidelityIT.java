@@ -38,6 +38,7 @@ import dev.ikm.tinkar.entity.SemanticEntity;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.aggregator.TemporalEntityAggregator;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.entity.constraint.MemberMatchEvaluator;
 import dev.ikm.tinkar.entity.export.ExportEntitiesToProtobufFile;
@@ -106,7 +107,7 @@ class FoundationFidelityIT {
      * record's subject — is never created (−1)), {@code AssemblageTerminologySet} (1 — Set
      * membership), and {@code LegacyTerminologySet} (1 — Legacy) deliberately author, all
      * IKE-Network/ike-issues#880 (meaning/purpose rigor across the pattern-shape audit,
-     * retiring "assemblage" from this set's own vocabulary, then flagging dormant/
+     * retiring "assemblage" from this set's own terminology, then flagging dormant/
      * superseded content as Legacy); plus {@code DefaultsAndTemplatesSet} (3 — Default
      * value concept, Template concept, Defaults and templates module,
      * IKE-Network/ike-issues#885); plus {@code DataTypeDefaultsSet} (19 — sixteen field
@@ -161,70 +162,38 @@ class FoundationFidelityIT {
     private static final Set<Integer> HISTORICALLY_AMBIGUOUS_AXIOM_NIDS = new HashSet<>();
 
     /**
-     * UUIDs of pre-existing patterns {@code PatternShapeRefinementSet} or
-     * {@code AssemblageTerminologySet} deliberately give a <em>second</em> new version,
-     * beyond the identity-exact ingest's own inception version (IKE-Network/ike-issues#880)
-     * — most revised to split degenerate meaning=purpose into distinct concepts (Comment
-     * pattern, the two navigation patterns, the five chronicle-shape and five
-     * version-shape base-model patterns, Module/Path origins, and
-     * STAMP/Description/Identifier/Value Constraint Pattern); the last three revised
-     * instead to replace their purpose, {@code Membership semantic (SOLOR)}, with the
-     * modern {@code Set membership (IkeFoundation)} as part of retiring "assemblage" from
-     * this set's own vocabulary. Resolved to nids once the baseline store is up, in
-     * {@link #loadAndSnapshot()}.
+     * The stamp nids present in the baseline store before replay — every stamp any
+     * concept, pattern, or semantic version references. Snapshotted in
+     * {@link #loadAndSnapshot()}; {@link #replayIntroducesExactlyTheInceptionStampPair()}
+     * asserts the replay adds exactly the two inception stamps beyond these
+     * (IKE-Network/ike-issues#894).
      */
-    private static final Set<UUID> DELIBERATELY_REVISED_TWICE_UUIDS = Set.of(
-            UUID.fromString("3734fb0a-4c14-5831-9a61-4743af609e7a"), // Comment pattern
-            UUID.fromString("a53cc42d-c07e-5934-96b3-2ede3264474e"), // Inferred Navigation Pattern
-            UUID.fromString("d02957d6-132d-5b3c-adba-505f5778d998"), // Stated Navigation Pattern
-            UUID.fromString("c48db76d-5eb0-4ff5-84d0-5c3c4ec77767"), // Component Chronology Pattern
-            UUID.fromString("3e510cb9-1666-4676-9334-d288a56bf155"), // Concept field pattern
-            UUID.fromString("5bc93adb-9d39-43fe-a7a4-1492245b7efb"), // Pattern Chronology Pattern
-            UUID.fromString("e16abc7a-2a7b-42af-b168-d77aec8116ea"), // STAMP Chronology Pattern
-            UUID.fromString("5f0ad6ca-638e-4052-82b0-3f564ac99b3f"), // Semantic Chronology Pattern
-            UUID.fromString("a38b7d2d-8fa5-4206-9185-a1af9f81be2c"), // Component Version Pattern
-            UUID.fromString("7943a5f1-538b-4fda-8acb-019e0bec125b"), // Concept Version Pattern
-            // Born "Sementic version field pattern"; the FQN typo is fixed by
-            // DefinitionCompletionSet (IKE-Network/ike-issues#892).
-            UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), // Semantic version field pattern
-            UUID.fromString("73c798cf-bc77-49a2-84f7-4c0f4bc4c012"), // STAMP version field pattern
-            UUID.fromString("a90f8a4d-ae13-476b-98b8-814914f9704e"), // Pattern Version Pattern
-            UUID.fromString("536b0ec4-4974-47ae-93a6-ae6c4d169780"), // Module origins pattern (SOLOR)
-            UUID.fromString("70f89dd5-2cdb-59bb-bbaa-98527513547c"), // Path origins pattern (SOLOR)
-            UUID.fromString("9fd67fee-abf9-551d-9d0e-76a4b1e8b4ee"), // STAMP pattern
-            UUID.fromString("a4de0039-2625-5842-8a4c-d1ce6aebf021"), // Description Pattern
-            UUID.fromString("5d60e14b-c410-5172-9559-3c4253278ae2"), // Identifier Pattern
-            UUID.fromString("922697f7-36ba-4afc-9dd5-f29d54b0fdec"), // Value Constraint Pattern
-            UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9"), // Tinkar base model component pattern
-            UUID.fromString("bbbbf1fe-00f0-55e0-a19c-6300dbaab9b2"), // Komet base model component pattern
-            UUID.fromString("add1db57-72fe-53c8-a528-1614bda20ec6"), // Version control path pattern
-            // The last SOLOR baseline shape to get its refinement revision — the
-            // IKE-Network/ike-issues#891 Model-Feature pointer fix (Axiomatized
-            // Component meaning / Axiom Expression purpose).
-            UUID.fromString("c0ca180b-aae2-5fa1-9ab7-4a24f2dfe16b")  // OWL Axiom Syntax Pattern
-    );
-    private static final Set<Integer> DELIBERATELY_REVISED_TWICE_NIDS = new HashSet<>();
+    private static final Set<Integer> BASELINE_STAMP_NIDS = new HashSet<>();
 
     /**
-     * UUIDs of pre-existing concepts {@code AssemblageTerminologySet} deliberately gives
-     * a new, later-active fully qualified name — retiring "assemblage" from this set's
-     * own vocabulary (IKE-Network/ike-issues#880) — mapped to the expected post-revision
-     * FQN text. {@link #fqnTextUnchanged()} asserts against this text for exactly these
-     * nids, instead of the pre-replay snapshot every other component is held to.
+     * UUIDs of pre-existing concepts whose declared fully qualified name deliberately
+     * diverges from the baseline artifact — each written in place at its section
+     * declaration under the inception flatten (IKE-Network/ike-issues#894) — mapped to
+     * the expected FQN text. {@link #fqnTextUnchanged()} asserts against this text for
+     * exactly these nids, instead of the pre-replay snapshot every other component is
+     * held to. This registry is the durable record of the baseline divergence.
      */
     private static final Map<UUID, String> DELIBERATELY_RENAMED_FQNS = Map.ofEntries(
+            // foundation.Section3/13/18: retiring "assemblage" from this set's own
+            // terminology (IKE-Network/ike-issues#880).
             Map.entry(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"), "Concept pattern for logic coordinate"),
             Map.entry(UUID.fromString("cfd2a47e-8169-5e71-9122-d5b73efd990a"), "Stated pattern for logic coordinate"),
             Map.entry(UUID.fromString("9ecf4d76-4346-5e5d-8316-bdff48a5c154"), "Inferred pattern for logic coordinate"),
             Map.entry(UUID.fromString("c060ffbf-e95f-5960-b296-8a3255c820ac"),
                     "Dialect pattern preference list for language coordinate"),
-            // DataTypeTerminologySet: dropping misleading "display field" wording (#880 follow-up).
+            // foundation.Section19: dropping misleading "display field" wording from the
+            // five ConceptToDataType-confirmed concepts (#880 follow-up).
             Map.entry(UUID.fromString("a46aaf11-b37a-32d6-abdc-707f084ec8f5"), "String data type"),
             Map.entry(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"), "Component data type"),
             Map.entry(UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"), "Concept data type"),
             Map.entry(UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"), "DiTree data type"),
             Map.entry(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"), "Float data type"),
-            // DataTypeDefaultsSet: the seven more "display field" FQNs the Data Type
+            // foundation.Section19: the seven more "display field" FQNs the Data Type
             // Defaults Pattern's field declarations anchor by UUID (IKE-Network/ike-issues#885).
             Map.entry(UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32"), "Boolean data type"),
             Map.entry(UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f"), "Integer data type"),
@@ -237,7 +206,7 @@ class FoundationFidelityIT {
             // the textual "display field" rule on grammar, not merit (IKE-Network/ike-issues#885).
             Map.entry(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"), "Component Id list data type"),
             Map.entry(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"), "Component Id set data type"),
-            // DefinitionCompletionSet: the "Sementic version field pattern" FQN typo fix
+            // foundation.Section71: the "Sementic version field pattern" FQN typo fix
             // (IKE-Network/ike-issues#892). A pattern, not a concept — fqnTextUnchanged's
             // snapshot covers concepts only, so this entry records the deliberate rename
             // for the registry's own completeness (and gates it, should pattern FQNs ever
@@ -247,12 +216,13 @@ class FoundationFidelityIT {
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
 
     /**
-     * UUID of the one pre-existing concept {@code LegacyTerminologySet} deliberately
-     * reparents — {@code Dynamic column data types (SOLOR)}, moved under the new
-     * {@code Legacy} branch as a deprecation signal (IKE-Network/ike-issues#880 follow-up)
-     * — mapped to its expected post-replay isA parent's own UUID. {@link #isAParentsUnchanged()}
-     * asserts against this single new parent for exactly this nid, instead of the
-     * pre-replay snapshot every other component is held to.
+     * UUID of the one pre-existing concept whose declared stated parent deliberately
+     * diverges from the baseline artifact — {@code Dynamic column data types (SOLOR)},
+     * filed under the new {@code Legacy} branch as a deprecation signal at its section
+     * declaration ({@code foundation.Section41}, IKE-Network/ike-issues#880 follow-up,
+     * #894) — mapped to its expected post-replay isA parent's own UUID.
+     * {@link #isAParentsUnchanged()} asserts against this single new parent for exactly
+     * this nid, instead of the pre-replay snapshot every other component is held to.
      */
     private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.of(
             UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
@@ -292,9 +262,6 @@ class FoundationFidelityIT {
         File baseline = Path.of("target", "data", "tinkar-starter-data-unreasoned-pb.zip").toFile();
         new LoadEntitiesFromProtobufFile(baseline).compute();
 
-        for (UUID uuid : DELIBERATELY_REVISED_TWICE_UUIDS) {
-            DELIBERATELY_REVISED_TWICE_NIDS.add(PrimitiveData.nid(uuid));
-        }
         for (Map.Entry<UUID, String> entry : DELIBERATELY_RENAMED_FQNS.entrySet()) {
             DELIBERATELY_RENAMED_FQNS_BY_NID.put(PrimitiveData.nid(entry.getKey()), entry.getValue());
         }
@@ -334,6 +301,8 @@ class FoundationFidelityIT {
         });
         patternsBefore = patternCount[0];
 
+        BASELINE_STAMP_NIDS.addAll(versionStampNids());
+
         if (!HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.isEmpty()) {
             System.out.println("FoundationFidelityIT: " + HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.size()
                     + " component(s) excluded from isAParentsUnchanged (ambiguous axiom history, see"
@@ -348,6 +317,34 @@ class FoundationFidelityIT {
     @AfterAll
     static void stop() {
         PrimitiveData.stop();
+    }
+
+    /**
+     * Every stamp nid any concept, pattern, or semantic version in the store references.
+     * Every stamp the replay writes carries at least one content version, so the
+     * difference between the post-replay and baseline snapshots of this set is exactly
+     * the set of replay-introduced stamps (IKE-Network/ike-issues#894).
+     *
+     * @return the stamp nids in use by content versions
+     */
+    private static Set<Integer> versionStampNids() {
+        Set<Integer> stampNids = new HashSet<>();
+        EntityService.get().forEachConceptEntity(concept -> {
+            for (EntityVersion version : concept.versions()) {
+                stampNids.add(version.stampNid());
+            }
+        });
+        EntityService.get().forEachPatternEntity(pattern -> {
+            for (EntityVersion version : pattern.versions()) {
+                stampNids.add(version.stampNid());
+            }
+        });
+        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
+            for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
+                stampNids.add(((SemanticEntityVersion) versionObj).stampNid());
+            }
+        });
+        return stampNids;
     }
 
     private static Set<Integer> latestIsAParents(int componentNid) {
@@ -414,9 +411,9 @@ class FoundationFidelityIT {
     }
 
     @Test
-    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge"
-            + " — except DELIBERATELY_REVISED_TWICE_NIDS, which gain a second, deliberately-authored"
-            + " revision on top")
+    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge,"
+            + " no exceptions: pre-release, the ledger carries no revision layering"
+            + " (IKE-Network/ike-issues#894)")
     void versionCountIncreasesByExactlyOne() {
         for (Map.Entry<Integer, Integer> entry : VERSION_COUNT_BEFORE.entrySet()) {
             int nid = entry.getKey();
@@ -424,10 +421,34 @@ class FoundationFidelityIT {
             int versionsAfter = isPattern
                     ? EntityHandle.get(nid).expectPattern().versions().size()
                     : EntityHandle.get(nid).expectConcept().versions().size();
-            int expectedIncrease = DELIBERATELY_REVISED_TWICE_NIDS.contains(nid) ? 2 : 1;
-            assertEquals(entry.getValue() + expectedIncrease, versionsAfter,
-                    "version count did not increase by exactly " + expectedIncrease + " for nid " + nid);
+            assertEquals(entry.getValue() + 1, versionsAfter,
+                    "version count did not increase by exactly one for nid " + nid);
         }
+    }
+
+    @Test
+    @DisplayName("Replay introduces exactly the inception stamp pair: the foundation-module stamp"
+            + " and its Defaults-module counterpart, both at the one declared inception time"
+            + " the platform's named inception instant (IKE-Network/ike-issues#894)")
+    void replayIntroducesExactlyTheInceptionStampPair() {
+        assertEquals(PrimitiveData.INCEPTION_EPOCH, Ike.INCEPTION.time(),
+                "the pair's declared time is the platform's named inception instant, which"
+                        + " renders as the word \"Inception\" on every surface (KEC ruling,"
+                        + " IKE-Network/ike-issues#894)");
+        assertEquals(UUID.fromString("45b13d09-7c50-5495-8460-aef66a2ae615"),
+                Ike.INCEPTION.publicId().asUuidArray()[0],
+                "the foundation inception tuple must derive the stamp identity the guide's"
+                        + " badge-anatomy figure features — the tuple is part of the published"
+                        + " knowledge-state");
+
+        Set<Integer> introduced = new HashSet<>(versionStampNids());
+        introduced.removeAll(BASELINE_STAMP_NIDS);
+        assertEquals(Set.of(PrimitiveData.nid(Ike.INCEPTION.publicId()),
+                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId())),
+                introduced,
+                "replay must write versions under exactly the two inception stamps — any other"
+                        + " stamp means a working-day or revision layer survived the flatten"
+                        + " (IKE-Network/ike-issues#894)");
     }
 
     @Test

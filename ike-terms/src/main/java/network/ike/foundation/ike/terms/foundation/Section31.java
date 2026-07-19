@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,12 +15,13 @@ final class Section31 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Version Properties (SOLOR)", PublicIds.of(UUID.fromString("93f844df-38e5-5167-ba94-2c948b8bd07c"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5f40e275-bd89-4471-9bfc-ccae8105cdca")), IkeTerm.ENGLISH_LANGUAGE, "Version Properties (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("91e3d35c-1ce6-4ec9-b77e-3bbba94926b1")), IkeTerm.ENGLISH_LANGUAGE, "Version properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("834597b6-cc91-4b1a-af82-f5f210d92959")), IkeTerm.ENGLISH_LANGUAGE, "Version Properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("834597b6-cc91-4b1a-af82-f5f210d92959")), IkeTerm.ENGLISH_LANGUAGE, "What a STAMP pattern semantic means: the five-dimension provenance tuple of a version — status, time, author, module, and path together, as one value; the properties every version carries, rather than any single dimension alone.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("59643315-47c2-4273-9cb1-da0d8819ea3f")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "93f844df-38e5-5167-ba94-2c948b8bd07c")
                 .statedAxioms(PublicIds.of(UUID.fromString("d95584e0-8382-5536-959b-55dd12b05d45")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT_PROPERTIES))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("ed709dcf-45d1-4c13-8ee9-7e1f328e5329")))

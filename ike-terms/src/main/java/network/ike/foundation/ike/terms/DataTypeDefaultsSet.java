@@ -21,7 +21,6 @@ import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.GraphFieldValue;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 import java.math.BigDecimal;
@@ -36,9 +35,8 @@ import java.util.UUID;
  * Component, ComponentIdSet, ComponentIdList, DiTree, DiGraph, Concept, Semantic,
  * Integer, Float, Boolean, ByteArray, Array, Instant, Long, Decimal. Each field's
  * {@code dataType} is the concept {@code ConceptToDataType} actually recognizes for that
- * type, verified by UUID against its {@code TinkarTerm} references (the
- * {@link DataTypeTerminologySet} discipline) and bound through {@link IkeTerm}'s
- * declared identities. The pattern's single semantic is its own default value semantic
+ * type, verified by UUID against its {@code TinkarTerm} references and bound through
+ * {@link IkeTerm}'s declared identities. The pattern's single semantic is its own default value semantic
  * ({@link DefaultsAndTemplatesSet}'s apparatus, extended here in a sibling file composed
  * immediately after it — the apparatus file mints the category; this file is its first
  * full-breadth consumer): referenced component {@code Default value concept}, computed
@@ -59,18 +57,11 @@ import java.util.UUID;
  * deliberate two-vertex simple cycle: a cycle can never be a tree, so the value proves
  * the field truly carries a graph.
  * <p>
- * <b>Renames riding along</b>: the pattern's field declarations anchor, by UUID, seven
- * more of the {@code DisplayFields}-family concepts whose fully qualified names still
- * carried "display field" wording — Boolean, Integer, Decimal, Byte array, Array,
- * DiGraph, and Semantic ("Semantic display field type"). Each is revised to
- * "&lt;Type&gt; data type" by declared-identity revision of its established FQN
- * description, mirroring {@link DataTypeTerminologySet}; DiGraph's definition also
- * carried the "display field" framing and is revised alongside its FQN. The
- * {@code Component Id display list}/{@code display set} pair — whose FQNs evaded the
- * textual "display field" rule on grammar, not merit — is renamed by KEC decision to
- * {@code Component Id list data type}/{@code Component Id set data type}, with their
- * concept-vs-component definition defect corrected (the types hold component ids, not
- * concept ids; a set is not a "list"). End state: every anchored datatype concept is
+ * <b>The datatype-concept renames</b> the anchored {@code DisplayFields}-family
+ * concepts carry ("&lt;Type&gt; data type" in place of the misleading "display field"
+ * wording) live at their section declarations ({@code foundation.Section19}, registered
+ * in {@code DELIBERATELY_RENAMED_FQNS}) under the inception flatten
+ * (IKE-Network/ike-issues#894). Every ConceptToDataType-anchored datatype concept is
  * named "... data type"; deliberately untouched are only the unanchored
  * {@code Double}/{@code Image}/{@code UUID display field} and
  * {@code Logical expression display field}, which {@code ConceptToDataType} does not
@@ -87,113 +78,10 @@ final class DataTypeDefaultsSet {
      * @param set the knowledge set (the session)
      */
     static void compose(KnowledgeSet set) {
-        // Later than every other authoring pass in this project (2026-07-12/-13/-15/-16/
-        // -17/-18/-19/-20): a fresh apparatus stamp composed after DefaultsAndTemplatesSet,
-        // so the session keeps reading time-major and this file's scopes on shared
-        // components (the Section19 data-type concepts, Default value concept) follow
-        // every earlier scope chronologically.
-        ActiveStamp apparatus = Stamp.active("2026-07-21T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
-
-        // ── Renames riding along (declared-identity revisions) ──────────
-        // Each concept is UUID-confirmed against ConceptToDataType before renaming:
-        // the birth FQN resumed below belongs to the same identity the pattern's field
-        // declaration anchors through IkeTerm.
-
-        // d6b9e2cc-31c6-5e80-91b7-7537690aae32 = TinkarTerm.BOOLEAN_FIELD → FieldDataType.BOOLEAN
-        set.concept("Boolean display field (SOLOR)").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("3344f24a-e9fd-48cd-a709-b2ea2def893e")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Boolean data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-
-        // ff59c300-9c4e-5e77-a35d-6a133eb3440f = TinkarTerm.INTEGER_FIELD → FieldDataType.INTEGER
-        set.concept("Integer display Field").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("a28c2f47-376b-4b28-a0d7-e8036989072c")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Integer data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-
-        // b413fe94-4ada-4aee-96f9-22be19699d40 = TinkarTerm.DECIMAL_FIELD → FieldDataType.DECIMAL
-        set.concept("Decimal display field").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("0d3129bb-6402-468b-806e-7e2f376b3855")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Decimal data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-
-        // dbdd8df2-aec3-596b-88fc-7b83b5594a45 = TinkarTerm.BYTE_ARRAY_FIELD → FieldDataType.BYTE_ARRAY
-        set.concept("Byte array display field (SOLOR)").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("36f3d937-c58b-425c-bb05-302bb3770734")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Byte array data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-
-        // b168ad04-f814-5036-b886-fd4913de88c8 = TinkarTerm.ARRAY_FIELD → FieldDataType.OBJECT_ARRAY
-        set.concept("Array display field (Solor)").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("a4cae3de-908d-47cd-9d3a-754c88dd2c96")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Array data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-
-        // 60113dfe-2bad-11eb-adc1-0242ac120002 = TinkarTerm.DIGRAPH_FIELD → FieldDataType.DIGRAPH.
-        // Its definition also carried the "display field" framing, revised here alongside
-        // the FQN so the definition doesn't contradict the new name (the DataTypeTerminologySet
-        // move for Component and DiTree).
-        set.concept("DiGraph display field").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("ffa4ed98-142d-49dc-a0ad-2bb72397527c")),
-                        IkeTerm.ENGLISH_LANGUAGE, "DiGraph data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("242ac229-b3f9-4562-a320-87fa74b77638")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "A field that holds a directed graph whose edges are ordered pairs of"
-                                + " vertices. Each edge can be followed from one vertex to another"
-                                + " vertex.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        // 9c3dfc88-51e4-5e51-a59a-88dd580162b7 = TinkarTerm.SEMANTIC_FIELD_TYPE → FieldDataType.SEMANTIC
-        set.concept("Semantic display field type (SOLOR)").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("59a6ae3f-6b53-4926-8b0b-fd49dae999d5")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Semantic data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-
-        // ── The Component Id pair (KEC-decided follow-up to the seven above) ────
-        // Their FQNs say "display list"/"display set" rather than "display field", so
-        // the textual rename rule missed them — same display-era framing, different
-        // grammar. Both are the real code-recognized identities
-        // (TinkarTerm.COMPONENT_ID_LIST_FIELD / COMPONENT_ID_SET_FIELD →
-        // FieldDataType.COMPONENT_ID_LIST / COMPONENT_ID_SET), and both definitions
-        // carried the concept-vs-component defect the original audit corrected on
-        // "Component display field" (the types hold component ids, not concept ids —
-        // and a set is not a "list"). After these, every anchored datatype concept is
-        // named "... data type"; only the four genuinely unanchored display-era names
-        // remain (Double/Image/UUID/Logical expression).
-
-        // e553d3f1-63e1-4292-a3a9-af646fe44292 = TinkarTerm.COMPONENT_ID_LIST_FIELD → FieldDataType.COMPONENT_ID_LIST
-        set.concept("Component Id display list").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("02047230-d771-4a21-b17c-19d94ddb2fc8")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Component Id list data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("e8c9285f-a7e1-4d30-9f19-92e9cedf3719")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "An ordered list of component ids.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
-
-        // e283af51-2e8f-44fa-9bf1-89a99a7c7631 = TinkarTerm.COMPONENT_ID_SET_FIELD → FieldDataType.COMPONENT_ID_SET
-        set.concept("Component Id display set").at(apparatus)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("9335dd4d-c3d9-4d1e-b17b-3edc6f2e3151")),
-                        IkeTerm.ENGLISH_LANGUAGE, "Component Id set data type",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN,
-                        PublicIds.of(UUID.fromString("9ab0315d-c338-4a40-86f9-9df320c51feb")),
-                        IkeTerm.ENGLISH_LANGUAGE,
-                        "An unordered set of component ids.",
-                        IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE);
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894): apparatus concepts are foundation terminology,
+        // so they stamp in the foundation module.
+        ActiveStamp apparatus = Ike.INCEPTION;
 
         // ── The sixteen field meaning concepts ──────────────────────────
         set.concept("String default (IkeFoundation)").at(apparatus)
@@ -408,11 +296,9 @@ final class DataTypeDefaultsSet {
 
         // ── The default value semantic (Defaults and templates module) ──
         // Instance content stamps in the defaults module — the module IS the category
-        // boundary. The later time keeps this ledger's scopes on Default value concept
-        // chronological (apparatus 07-20, worked example 07-20T12, this 07-21T12).
-        ActiveStamp defaults = Stamp.active("2026-07-21T12:00:00Z", Ike.IKE_COMMUNITY,
-                set.conceptRef("Defaults and templates module (IkeFoundation)"),
-                IkeTerm.DEVELOPMENT_PATH);
+        // boundary. The Defaults-module counterpart of the inception stamp: same
+        // declared time, author, and path (IKE-Network/ike-issues#894).
+        ActiveStamp defaults = Ike.DEFAULTS_INCEPTION;
 
         EntityProxy.Pattern dataTypeDefaultsPattern =
                 set.patternRef("Data Type Defaults Pattern (IkeFoundation)");

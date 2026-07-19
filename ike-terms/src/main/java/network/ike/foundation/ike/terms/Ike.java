@@ -15,7 +15,11 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.service.PrimitiveData;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.entity.builder.Stamp;
+import dev.ikm.tinkar.terms.DefaultsTemplateTerm;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
@@ -52,4 +56,29 @@ public final class Ike {
      */
     public static final EntityProxy.Concept IKE_COMMUNITY =
             SET.conceptRef("IKE Community (IkeFoundation)");
+
+    /**
+     * The pre-release set's ONE declared inception stamp (IKE-Network/ike-issues#894):
+     * every version this ledger writes outside the Defaults and templates module carries
+     * it. The time is the platform's named inception instant,
+     * {@link PrimitiveData#INCEPTION_EPOCH} — a sentinel that renders as the word
+     * "Inception" on every surface, timezone-proof — per KEC's ruling (2026-07-18): the
+     * set has not been released, so all of it is still at inception. Declaring the pair
+     * here, once, is what makes "one set of inception stamps" compiler-visible; a third
+     * IKE stamp cannot appear without editing this class, and the fidelity stamp-pair
+     * gate would refuse it.
+     */
+    public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
+            IKE_COMMUNITY, MODULE, IkeTerm.DEVELOPMENT_PATH);
+
+    /**
+     * The inception stamp's Defaults-and-templates-module counterpart, at the same
+     * declared time: the module dimension alone separates support content (the Data Type
+     * Defaults tuple, the worked Preferred Reviewer default) from the foundation
+     * terminology — see the live-and-die invariant on
+     * {@link DefaultsTemplateTerm#DEFAULTS_AND_TEMPLATES_MODULE}.
+     */
+    public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
+            IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
+            IkeTerm.DEVELOPMENT_PATH);
 }

@@ -22,6 +22,15 @@ import network.ike.foundation.ike.terms.foundation.FoundationSet;
 /**
  * The IkeFoundation ledger's composition entry: build tooling discovers this source,
  * composes the sections, and replays the session.
+ * <p>
+ * The whole pre-release set is authored at the one declared inception time,
+ * the platform's named inception instant ({@code PrimitiveData.INCEPTION_EPOCH},
+ * rendered as the word "Inception"), under exactly two stamps — the foundation-module
+ * inception stamp and its Defaults-and-templates-module counterpart
+ * (IKE-Network/ike-issues#894). No chronology carries more than one version, so
+ * composition order below is constrained only by the declaration-before-reference rule
+ * for declared-identity components; derived-identity references ({@code conceptRef})
+ * are order-free.
  */
 public final class IkeSource implements KnowledgeSetSource {
 
@@ -31,46 +40,39 @@ public final class IkeSource implements KnowledgeSetSource {
 
     @Override
     public KnowledgeSet compose() {
-        ConceptSet.compose(Ike.SET);
+        // The ingested foundation composes first: with every scope at the one inception
+        // time, "earliest authored" ties resolve by composition order, and the
+        // deterministically chosen live examples (KonceptExtractor) must stay the
+        // baseline's own first content (Uninitialized Component), not this set's
+        // bootstrap concepts.
         FoundationSet.compose(Ike.SET);
+        ConceptSet.compose(Ike.SET);
         // ConstraintPatternSet mints the field constraint apparatus (the Taxonomy and
-        // Value-set Field Constraint Patterns, IKE-Network/ike-issues#890), which
-        // NarrativeContentSet's Semantic Field Model chapter writes about — the apparatus
-        // must exist before its own narrative resumes it (ledger scopes are chronological
-        // across the whole session, not independently per source file).
+        // Value-set Field Constraint Patterns, IKE-Network/ike-issues#890); its worked
+        // examples attach to declared-identity components the foundation sections open,
+        // so it composes after FoundationSet.
         ConstraintPatternSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
-        // PatternShapeRefinementSet revises already-adopted patterns' own meaning/purpose
-        // (a new PatternVersion layered on top) -- it must run last, after every other
-        // scope that touches the patterns it revises.
+        // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
+        // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,
+        // #891, #894).
         PatternShapeRefinementSet.compose(Ike.SET);
-        // AssemblageTerminologySet retires "assemblage" from this set's own vocabulary --
-        // it must run last, after every other scope that touches the concepts/patterns
-        // it revises.
+        // AssemblageTerminologySet mints Set membership and the Solor Concepts Pattern —
+        // the modern membership-pattern terminology (IKE-Network/ike-issues#880).
         AssemblageTerminologySet.compose(Ike.SET);
-        // LegacyTerminologySet reparents dormant/superseded content under a new Legacy
-        // branch -- it must run last of all, after every other scope that touches the
-        // concepts it reparents.
+        // LegacyTerminologySet mints the Legacy branch the Section41 reparent targets by
+        // derived identity (IKE-Network/ike-issues#880 follow-up).
         LegacyTerminologySet.compose(Ike.SET);
-        // DataTypeTerminologySet drops misleading "display field" wording from the
-        // confirmed real-data-type concepts -- it must run last of all, after every other
-        // scope that touches the concepts it revises.
-        DataTypeTerminologySet.compose(Ike.SET);
         // DefaultsAndTemplatesSet mints the defaults/templates apparatus and its module
-        // (IKE-Network/ike-issues#885) -- fresh content under the latest declared stamps,
-        // composed after every revision pass so the session stays time-major.
+        // (IKE-Network/ike-issues#885); the module concept must be declared before
+        // DataTypeDefaultsSet stamps content in it.
         DefaultsAndTemplatesSet.compose(Ike.SET);
-        // DataTypeDefaultsSet mints the Data Type Defaults Pattern -- the apparatus's
+        // DataTypeDefaultsSet mints the Data Type Defaults Pattern — the apparatus's
         // first full-breadth consumer: sixteen fields, one loud default per
-        // ConceptToDataType-recognized data type, plus the display-field renames its
-        // field declarations anchor (IKE-Network/ike-issues#885). Composed immediately
-        // after the apparatus it extends, under later stamps still.
+        // ConceptToDataType-recognized data type (IKE-Network/ike-issues#885).
         DataTypeDefaultsSet.compose(Ike.SET);
-        // DefinitionCompletionSet completes the meaning/purpose definition audit
-        // (IKE-Network/ike-issues#892) -- missing definitions, label-echo revisions, and
-        // the "Sementic" FQN typo fix on components nearly every earlier scope already
-        // touches. Composed last of all, at the latest stamp, so the session stays
-        // time-major.
+        // DefinitionCompletionSet authors the 25 first definitions of the base-model
+        // chronicle/version field concepts (IKE-Network/ike-issues#892).
         DefinitionCompletionSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).

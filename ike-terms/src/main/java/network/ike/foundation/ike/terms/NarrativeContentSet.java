@@ -18,7 +18,6 @@ package network.ike.foundation.ike.terms;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 import java.util.UUID;
@@ -53,8 +52,7 @@ final class NarrativeContentSet {
      * The shared ecosystem-wide pattern for curated narrative prose (see the class
      * javadoc). Package-private: {@link DefaultsAndTemplatesSet} and
      * {@link DataTypeDefaultsSet} author their own koncepts' narratives against the same
-     * identity — those koncepts are minted after this file composes, so their narratives
-     * cannot live here without breaking the session's time-major reading order.
+     * identity, each in the file that mints the koncept the narrative describes.
      */
     static final EntityProxy.Pattern PROSE_ELEMENT_PATTERN = EntityProxy.Pattern.make(
             "Prose element pattern (RichSurfaceTerms)",
@@ -69,12 +67,11 @@ final class NarrativeContentSet {
      * @param set the knowledge set (the session)
      */
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active("2026-07-13T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
-        // A distinct, later authoring pass (IKE-Network/ike-issues#880): the manuscript
-        // expansion chapters/subsections below, added after the pilot five above.
-        ActiveStamp expansion = Stamp.active("2026-07-15T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894): the pilot chapters and the later manuscript
+        // expansion collapse onto it — pre-release, the ledger carries no working-day
+        // history.
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         // The guide's five manuscript chapters (IKE-Network/ike-issues#879), each attached to
         // the hub koncept its own prose is centered on. The EL++ Concepts chapter (Axioms) was
@@ -195,7 +192,7 @@ final class NarrativeContentSet {
                         membership-pattern convention this guide's Tinkar Base Model chapter describes for
                         k:TinkarBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[].""");
 
-        set.concept("Author for edit coordinate (SOLOR)").at(expansion)
+        set.concept("Author for edit coordinate (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: AuthorForEditCoordinate (STAMP Concepts — Edit"
                                 + " Coordinate)")), """
@@ -303,7 +300,7 @@ final class NarrativeContentSet {
         // EL++ Concepts expansion (IKE-Network/ike-issues#880): the pilot narrative above named
         // the organizing categories; these four subsections describe what an axiom is actually
         // built from.
-        set.concept("Role").at(expansion)
+        set.concept("Role").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: Role (EL++ Concepts — Roles and Role Operators)")), """
                         A role is EL++'s mechanism for a relationship between a defined concept and another
@@ -323,7 +320,7 @@ final class NarrativeContentSet {
                         rely on to keep, for example, two different findings' own laterality from
                         cross-combining.""");
 
-        set.concept("Inclusion set").at(expansion)
+        set.concept("Inclusion set").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: InclusionSet (EL++ Concepts — Inclusion, Necessary, Sufficient Sets)")),
@@ -341,7 +338,7 @@ final class NarrativeContentSet {
                         sufficiency — the everyday case for most authored content, since fully-differentiating,
                         sufficient definitions are the exception in any real terminology, not the rule.""");
 
-        set.concept("Concrete value operator (SOLOR)").at(expansion)
+        set.concept("Concrete value operator (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: ConcreteValueOperator (EL++ Concepts — Concrete"
                                 + " Value Operators)")), """
@@ -357,7 +354,7 @@ final class NarrativeContentSet {
                         even when a definition depends on a numeric threshold, rather than requiring a
                         distinct concept for every possible value.""");
 
-        set.concept("Logical Definition").at(expansion)
+        set.concept("Logical Definition").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: LogicalDefinition (EL++ Concepts — Logical Definitions and Grouping)")),
@@ -398,7 +395,7 @@ final class NarrativeContentSet {
         // capped by Constraining Fields, which introduces the field constraint apparatus
         // (ConstraintPatternSet, refactored per IKE-Network/ike-issues#890) this chapter is the
         // natural home for.
-        set.concept("Field categories").at(expansion)
+        set.concept("Field categories").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: FieldCategories (Semantic Field Model — Field Categories)")), """
@@ -429,7 +426,7 @@ final class NarrativeContentSet {
                         same definition-versus-instance distinction that separates a pattern's own field
                         declarations from the values a semantic of it actually carries.""");
 
-        set.concept("Display Fields").at(expansion)
+        set.concept("Display Fields").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: DisplayFields (Semantic Field Model — Display Fields)")), """
@@ -459,7 +456,7 @@ final class NarrativeContentSet {
                         directed tree obtained from an undirected one, one designated root), both likewise
                         renamed.""");
 
-        set.concept("Meaning").at(expansion)
+        set.concept("Meaning").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: Meaning (Semantic Field Model — Field Value Terminology)")), """
@@ -489,7 +486,7 @@ final class NarrativeContentSet {
                         k:LogicalExpressionSemantic[]) names what kind of thing a whole semantic — not just
                         one field — represents.""");
 
-        set.concept("Constrained Pattern (IkeFoundation)").at(expansion)
+        set.concept("Constrained Pattern (IkeFoundation)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ConstrainedPattern (Semantic Field Model — Constraining"
@@ -609,7 +606,7 @@ final class NarrativeContentSet {
         // Tinkar Base Model chapter (IKE-Network/ike-issues#880): the component/chronicle/
         // pattern-of-patterns meta-model every other chapter's own terminology ultimately
         // descends from.
-        set.concept("Tinkar Model concept").at(expansion)
+        set.concept("Tinkar Model concept").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: TinkarModelConcept (Tinkar Base Model — Components and Chronicles)")),
@@ -706,7 +703,7 @@ final class NarrativeContentSet {
                         k:SemanticFieldConcepts[] (a concept minted to serve as one semantic's field
                         value).""");
 
-        set.concept("Object (SOLOR)").at(expansion)
+        set.concept("Object (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: Object (Tinkar Base Model — Base Model Primitives)")), """
@@ -734,7 +731,7 @@ final class NarrativeContentSet {
         // Chapters 11-20 (IKE-Network/ike-issues#880, second pass): the remaining taxonomy
         // groups deferred from the first manuscript-expansion pass.
 
-        set.concept("Value Constraint (SOLOR)").at(expansion)
+        set.concept("Value Constraint (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ValueConstraint (Value Constraints and Reference Ranges)")), """
@@ -771,7 +768,7 @@ final class NarrativeContentSet {
                         k:ValueConstraint[], a property *of* a component's logical shape rather than a
                         taxonomy-organizing concept in its own right.""");
 
-        set.concept("Action properties (SOLOR)").at(expansion)
+        set.concept("Action properties (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ActionProperties (Authoring Actions and Legacy Constraints)")), """
@@ -796,7 +793,7 @@ final class NarrativeContentSet {
                         because a name alone, unaccompanied by any real structure, is not enough to safely
                         resume.""");
 
-        set.concept("Description type").at(expansion)
+        set.concept("Description type").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: DescriptionType (Feature-Based and Intrinsic Roles)")), """
@@ -830,7 +827,7 @@ final class NarrativeContentSet {
                         a non-SNOMED description that still matches one of SNOMED's core types, and one that
                         does not.""");
 
-        set.concept("Annotation type (SOLOR)").at(expansion)
+        set.concept("Annotation type (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: AnnotationType (Annotations, Correlations and Editor Focus)")), """
@@ -886,7 +883,7 @@ final class NarrativeContentSet {
                         details in — one editor surface among several a concept's data can project
                         through.""");
 
-        set.concept("Identifier Source").at(expansion)
+        set.concept("Identifier Source").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: IdentifierSource (Identifiers)")), """
                         k:IdentifierSource[] names which identifier-issuing authority a component's
@@ -908,7 +905,7 @@ final class NarrativeContentSet {
                         k:IdentifierValue[] (meaning) for k:IdentifierText[] (purpose — the identifier's own
                         literal text).""");
 
-        set.concept("Language coordinate properties (SOLOR)").at(expansion)
+        set.concept("Language coordinate properties (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: LanguageCoordinateProperties (Coordinate Properties: Language and"
@@ -927,7 +924,7 @@ final class NarrativeContentSet {
                         chapter's Path subsection already introduced as k:PathOriginsForStampPath[], here at
                         the coordinate-property level rather than the individual-path level.""");
 
-        set.concept("Tree amalgam properties (SOLOR)").at(expansion)
+        set.concept("Tree amalgam properties (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: TreeAmalgamProperties (Tree Amalgams)")), """
                         k:TreeAmalgamProperties[] names the property group behind a composite navigation
@@ -939,7 +936,7 @@ final class NarrativeContentSet {
                         concept's SNOMED-style parents alongside its Tinkar-model parents, say, blended into
                         one tree) are exactly the kind of view this property group exists to support.""");
 
-        set.concept("Phenomenon").at(expansion)
+        set.concept("Phenomenon").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: Phenomenon (Clinical Phenomena and Domain Content)")), """
@@ -962,7 +959,7 @@ final class NarrativeContentSet {
                         the kind of role this guide's Roles and Role Operators subsection described in the
                         abstract, now anchored to real clinical content.""");
 
-        set.concept("Object Properties (SOLOR)").at(expansion)
+        set.concept("Object Properties (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ObjectProperties (Object Properties and Relationships)")), """
@@ -984,7 +981,7 @@ final class NarrativeContentSet {
                         k:PropertySequenceImplication[] close out the property family: a set of data-carrying
                         properties, and an implication one property sequence carries for another.""");
 
-        set.concept("Integrated Knowledge Management (SOLOR)").at(expansion)
+        set.concept("Integrated Knowledge Management (SOLOR)").at(inception)
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: IntegratedKnowledgeManagement (Provenance and Root)")),
                         """

@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,12 +15,13 @@ final class Section56 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Module", PublicIds.of(UUID.fromString("40d1c869-b509-32f8-b735-836eac577a67"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9bfa067d-05c5-42a1-a701-a22bc62c8748")), IkeTerm.ENGLISH_LANGUAGE, "Module", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a875ca51-1fb1-4ba8-8196-4f5181865583")), IkeTerm.ENGLISH_LANGUAGE, "Module", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("10933c80-b2cc-4569-8d23-b4d512e6459e")), IkeTerm.ENGLISH_LANGUAGE, "Module", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("10933c80-b2cc-4569-8d23-b4d512e6459e")), IkeTerm.ENGLISH_LANGUAGE, "The concept identifying the export or authoring boundary a version belongs to — the module dimension of a STAMP, and the root of the value space a module field's concept is drawn from; distinct from Module for version, which names why the field is recorded.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("ff7b7589-ae0e-4736-802d-b4d89b9ad008")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "40d1c869-b509-32f8-b735-836eac577a67")
                 .statedAxioms(PublicIds.of(UUID.fromString("08ddbdb2-4c9b-51df-ac3f-b7f6031e57a8")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROOT_VERTEX))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("05d9ccd8-cc6a-45e0-82cd-aa42f56751cc")))

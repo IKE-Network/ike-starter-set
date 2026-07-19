@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section19 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Display Fields", PublicIds.of(UUID.fromString("4e627b9c-cecb-5563-82fc-cb0ee25113b1"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a257e851-3b27-4a70-81cc-2d65b75dba97")), IkeTerm.ENGLISH_LANGUAGE, "Display Fields", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
@@ -67,8 +65,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("e26cbd32-d2b2-4852-8e85-63a87d1365ff")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("4e86de1d-6d65-4d90-840a-61df832fcf6c")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Integer display Field", PublicIds.of(UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a28c2f47-376b-4b28-a0d7-e8036989072c")), IkeTerm.ENGLISH_LANGUAGE, "Integer display Field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Integer display Field"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Integer data type", PublicIds.of(UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a28c2f47-376b-4b28-a0d7-e8036989072c")), IkeTerm.ENGLISH_LANGUAGE, "Integer data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e3bfdc5f-4b60-484c-93db-cdcff43616c3")), IkeTerm.ENGLISH_LANGUAGE, "Integer display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("33f4e9cb-3030-4d04-9ed3-f26180fc58e8")), IkeTerm.ENGLISH_LANGUAGE, "Data type that represents some range of mathematical integers", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("09432660-b8dd-4b24-b68e-717cf418fa25")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "ff59c300-9c4e-5e77-a35d-6a133eb3440f")
@@ -79,10 +80,13 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("33f4e9cb-3030-4d04-9ed3-f26180fc58e8")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("f763a947-3dff-4d1f-ae3b-36b904a8747f")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Component display field", PublicIds.of(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("09cf7374-aa84-4ea9-91cc-793182cca0da")), IkeTerm.ENGLISH_LANGUAGE, "Component display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Component display field"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#880, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Component data type", PublicIds.of(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("09cf7374-aa84-4ea9-91cc-793182cca0da")), IkeTerm.ENGLISH_LANGUAGE, "Component data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("7484b839-09c3-4f92-8e67-a25cce1b131c")), IkeTerm.ENGLISH_LANGUAGE, "Component display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3ed2ec1f-e5a4-42d0-916e-f7f555f58204")), IkeTerm.ENGLISH_LANGUAGE, "A display field type that references a concept ID.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3ed2ec1f-e5a4-42d0-916e-f7f555f58204")), IkeTerm.ENGLISH_LANGUAGE, "A field that identifies any component -- concept, semantic, pattern, or STAMP -- by reference, not restricted to concepts.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("119bf1b5-5207-48f8-8ba0-0a37f6d0dfe2")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3")
                 .statedAxioms(PublicIds.of(UUID.fromString("60079b55-1394-5683-8038-497783c513d4")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DISPLAY_FIELDS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("07696f02-835b-47fe-971f-db40ff457bcf")))
@@ -91,8 +95,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("3ed2ec1f-e5a4-42d0-916e-f7f555f58204")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("519c53ea-1d60-4df1-bf77-40dca51b3e25")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("String display field", PublicIds.of(UUID.fromString("a46aaf11-b37a-32d6-abdc-707f084ec8f5"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("26bed67f-21b7-4623-a6b9-246afe790e95")), IkeTerm.ENGLISH_LANGUAGE, "String display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "String display field"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#880, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("String data type", PublicIds.of(UUID.fromString("a46aaf11-b37a-32d6-abdc-707f084ec8f5"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("26bed67f-21b7-4623-a6b9-246afe790e95")), IkeTerm.ENGLISH_LANGUAGE, "String data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("d2afae18-d526-4bd4-a7d7-758d0b73757a")), IkeTerm.ENGLISH_LANGUAGE, "String display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3062c285-a7b4-4760-ac8d-97204f8ce8cc")), IkeTerm.ENGLISH_LANGUAGE, "A sequence of characters, either as a literal constant or as a variable. Strings could be used to represent terms from code systems or URLs, textual definitions, etc.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("fd05e7ae-54ad-47f9-8f3d-a7d0511c2dc3")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "a46aaf11-b37a-32d6-abdc-707f084ec8f5")
@@ -103,8 +110,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("3062c285-a7b4-4760-ac8d-97204f8ce8cc")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b3668f7e-4b96-42ac-905c-4249df546aab")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Concept display field (SOLOR)", PublicIds.of(UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ff9a1615-8006-4168-8417-921f0fe5ee15")), IkeTerm.ENGLISH_LANGUAGE, "Concept display field (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Concept display field (SOLOR)"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#880, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Concept data type", PublicIds.of(UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ff9a1615-8006-4168-8417-921f0fe5ee15")), IkeTerm.ENGLISH_LANGUAGE, "Concept data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("2eb35bda-1edf-487c-9fc9-3527df29be58")), IkeTerm.ENGLISH_LANGUAGE, "Concept display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("626c0837-b710-4cf0-9b3f-193754768492")), IkeTerm.ENGLISH_LANGUAGE, "Field for the human readable description for the given concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("96199db4-a984-45b7-8b38-8ba84483b9ba")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557")
@@ -127,10 +137,13 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("869eb45e-0287-496a-bf07-894d65b5c97c")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("3138e759-b18c-4ee1-82af-0f6b6ac1ea0c")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Component Id display list", PublicIds.of(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("02047230-d771-4a21-b17c-19d94ddb2fc8")), IkeTerm.ENGLISH_LANGUAGE, "Component Id display list", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Component Id display list"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Component Id list data type", PublicIds.of(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("02047230-d771-4a21-b17c-19d94ddb2fc8")), IkeTerm.ENGLISH_LANGUAGE, "Component Id list data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("54ebd96c-b3d1-44be-af7d-285757b7bd1a")), IkeTerm.ENGLISH_LANGUAGE, "Component Id display list", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e8c9285f-a7e1-4d30-9f19-92e9cedf3719")), IkeTerm.ENGLISH_LANGUAGE, "A display field that references an ordered list of Concept IDs.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e8c9285f-a7e1-4d30-9f19-92e9cedf3719")), IkeTerm.ENGLISH_LANGUAGE, "An ordered list of component ids.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("87c0844e-ca78-4dbc-a090-b0210ec4a78c")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "e553d3f1-63e1-4292-a3a9-af646fe44292")
                 .statedAxioms(PublicIds.of(UUID.fromString("858200bb-0fe1-5b5a-a439-f3c0f2d85a76")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DISPLAY_FIELDS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("4717a0e8-944c-40f9-b14d-28425baff6b6")))
@@ -139,10 +152,13 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("e8c9285f-a7e1-4d30-9f19-92e9cedf3719")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("d43f9c6e-5384-4d08-a258-6ed37729cd27")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("DiGraph display field", PublicIds.of(UUID.fromString("60113dfe-2bad-11eb-adc1-0242ac120002"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ffa4ed98-142d-49dc-a0ad-2bb72397527c")), IkeTerm.ENGLISH_LANGUAGE, "DiGraph display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "DiGraph display field"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("DiGraph data type", PublicIds.of(UUID.fromString("60113dfe-2bad-11eb-adc1-0242ac120002"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ffa4ed98-142d-49dc-a0ad-2bb72397527c")), IkeTerm.ENGLISH_LANGUAGE, "DiGraph data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a72c6e67-6781-46c6-89a0-7e4d021b8ec6")), IkeTerm.ENGLISH_LANGUAGE, "DiGraph display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("242ac229-b3f9-4562-a320-87fa74b77638")), IkeTerm.ENGLISH_LANGUAGE, "A display field that references a di-graph whose edges are ordered pairs of vertices. Each edge can be followed from one vertex to another vertex.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("242ac229-b3f9-4562-a320-87fa74b77638")), IkeTerm.ENGLISH_LANGUAGE, "A field that holds a directed graph whose edges are ordered pairs of vertices. Each edge can be followed from one vertex to another vertex.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("45db3644-68d0-4007-80c2-835681537053")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "60113dfe-2bad-11eb-adc1-0242ac120002")
                 .statedAxioms(PublicIds.of(UUID.fromString("e02e29ae-b70b-5388-8578-0028d029bb60")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DISPLAY_FIELDS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("ab6d0083-1ad9-49d1-aa9d-c5e528fd548d")))
@@ -163,10 +179,13 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("cbd56fe8-6ec2-4c17-bd40-a7c25363bb68")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b0117baa-5a02-4d35-b2d2-a1af0b4af6f9")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Component Id display set", PublicIds.of(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9335dd4d-c3d9-4d1e-b17b-3edc6f2e3151")), IkeTerm.ENGLISH_LANGUAGE, "Component Id display set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Component Id display set"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Component Id set data type", PublicIds.of(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9335dd4d-c3d9-4d1e-b17b-3edc6f2e3151")), IkeTerm.ENGLISH_LANGUAGE, "Component Id set data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0fa46b23-cfd6-4a0c-8e3c-80d8b7e1e5f4")), IkeTerm.ENGLISH_LANGUAGE, "Component Id display set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9ab0315d-c338-4a40-86f9-9df320c51feb")), IkeTerm.ENGLISH_LANGUAGE, "A display field that references an unordered list of Concept IDs.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9ab0315d-c338-4a40-86f9-9df320c51feb")), IkeTerm.ENGLISH_LANGUAGE, "An unordered set of component ids.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("32729b6a-d45b-4c83-a797-b89a6167753d")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "e283af51-2e8f-44fa-9bf1-89a99a7c7631")
                 .statedAxioms(PublicIds.of(UUID.fromString("3aa0a60d-a946-501f-9cc7-ec21cfac08e2")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DISPLAY_FIELDS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("241e6dde-1c8c-4b99-b968-08ea4be83ede")))
@@ -175,8 +194,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("9ab0315d-c338-4a40-86f9-9df320c51feb")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("ada05080-070e-490e-9086-b60a1d8eea02")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Boolean display field (SOLOR)", PublicIds.of(UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3344f24a-e9fd-48cd-a709-b2ea2def893e")), IkeTerm.ENGLISH_LANGUAGE, "Boolean display field (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Boolean display field (SOLOR)"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Boolean data type", PublicIds.of(UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3344f24a-e9fd-48cd-a709-b2ea2def893e")), IkeTerm.ENGLISH_LANGUAGE, "Boolean data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("c4d49fb5-afe9-4e0a-843b-e54d4e7b80ce")), IkeTerm.ENGLISH_LANGUAGE, "Boolean display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f5d91bb8-9343-48aa-a551-0e357b656a95")), IkeTerm.ENGLISH_LANGUAGE, "True (1) or false (0)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("4a1796ba-61e9-4a73-ace3-86e6a5e9d326")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "d6b9e2cc-31c6-5e80-91b7-7537690aae32")
@@ -187,10 +209,13 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("f5d91bb8-9343-48aa-a551-0e357b656a95")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("6fc28210-7ec9-4a8f-bb1a-d6922682813f")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Semantic display field type (SOLOR)", PublicIds.of(UUID.fromString("9c3dfc88-51e4-5e51-a59a-88dd580162b7"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("59a6ae3f-6b53-4926-8b0b-fd49dae999d5")), IkeTerm.ENGLISH_LANGUAGE, "Semantic display field type (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Semantic display field type (SOLOR)"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Semantic data type", PublicIds.of(UUID.fromString("9c3dfc88-51e4-5e51-a59a-88dd580162b7"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("59a6ae3f-6b53-4926-8b0b-fd49dae999d5")), IkeTerm.ENGLISH_LANGUAGE, "Semantic data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0c5b1d71-7ce1-4cea-adce-03c02ee6233e")), IkeTerm.ENGLISH_LANGUAGE, "Semantic display field type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("284f4bfa-5d38-4a7a-bcab-9df6710bcc94")), IkeTerm.ENGLISH_LANGUAGE, "List of fields-  semantic", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("284f4bfa-5d38-4a7a-bcab-9df6710bcc94")), IkeTerm.ENGLISH_LANGUAGE, "A field that holds a reference to a semantic.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("f911e1a9-559f-4cc4-8fb1-69b3518daa6e")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "9c3dfc88-51e4-5e51-a59a-88dd580162b7")
                 .statedAxioms(PublicIds.of(UUID.fromString("fcb232b0-bc6e-5806-bda1-1cbcd4fc3a07")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DISPLAY_FIELDS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("a7632b06-777e-45c7-981d-12f86bb3eaaf")))
@@ -199,8 +224,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("284f4bfa-5d38-4a7a-bcab-9df6710bcc94")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("3a433939-3bab-424d-97e9-e59d84e30fb0")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Decimal display field", PublicIds.of(UUID.fromString("b413fe94-4ada-4aee-96f9-22be19699d40"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0d3129bb-6402-468b-806e-7e2f376b3855")), IkeTerm.ENGLISH_LANGUAGE, "Decimal display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Decimal display field"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Decimal data type", PublicIds.of(UUID.fromString("b413fe94-4ada-4aee-96f9-22be19699d40"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0d3129bb-6402-468b-806e-7e2f376b3855")), IkeTerm.ENGLISH_LANGUAGE, "Decimal data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5e1647a9-1ccd-48a2-a906-348bdab3bc67")), IkeTerm.ENGLISH_LANGUAGE, "Decimal display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("635b6a1e-67c5-41e2-b3bb-e02049e00d40")), IkeTerm.ENGLISH_LANGUAGE, "Represents values as high-precision decimal values.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("363d7cb7-1cd5-4df4-9487-68f8669f879a")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "b413fe94-4ada-4aee-96f9-22be19699d40")
@@ -211,8 +239,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("635b6a1e-67c5-41e2-b3bb-e02049e00d40")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("bad571fc-7c09-4f8d-9498-e5aff87b40be")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Array display field (Solor)", PublicIds.of(UUID.fromString("b168ad04-f814-5036-b886-fd4913de88c8"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a4cae3de-908d-47cd-9d3a-754c88dd2c96")), IkeTerm.ENGLISH_LANGUAGE, "Array display field (Solor)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Array display field (Solor)"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Array data type", PublicIds.of(UUID.fromString("b168ad04-f814-5036-b886-fd4913de88c8"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a4cae3de-908d-47cd-9d3a-754c88dd2c96")), IkeTerm.ENGLISH_LANGUAGE, "Array data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("db44e027-8834-47eb-bf74-11421ac598d6")), IkeTerm.ENGLISH_LANGUAGE, "Array display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1af49208-c703-4a9e-9861-c3778ef0634d")), IkeTerm.ENGLISH_LANGUAGE, "A lexical set of semantically related elements/items", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("48ca16b5-f8b6-46e3-a27f-64a774b32803")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "b168ad04-f814-5036-b886-fd4913de88c8")
@@ -223,8 +254,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("1af49208-c703-4a9e-9861-c3778ef0634d")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("a614d04a-9e15-4d1e-b83d-3acc16e85560")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Float display field", PublicIds.of(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("176c19e5-cd96-4a35-9d69-b2cfdaa95bb4")), IkeTerm.ENGLISH_LANGUAGE, "Float display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Float display field"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#880, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Float data type", PublicIds.of(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("176c19e5-cd96-4a35-9d69-b2cfdaa95bb4")), IkeTerm.ENGLISH_LANGUAGE, "Float data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("c1538df2-a302-46a6-bfd6-c448ea963f69")), IkeTerm.ENGLISH_LANGUAGE, "Float display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("42895bb6-91e1-4161-b40f-af5b7898231b")), IkeTerm.ENGLISH_LANGUAGE, "Represents values as high-precision fractional values.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("f8236c8a-016f-4ddc-934d-4d456a6ea54b")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "6efe7087-3e3c-5b45-8109-90d7652b1506")
@@ -235,8 +269,11 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("42895bb6-91e1-4161-b40f-af5b7898231b")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("e7d2653c-ef1f-4396-9af5-1d1c4dd18f14")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Byte array display field (SOLOR)", PublicIds.of(UUID.fromString("dbdd8df2-aec3-596b-88fc-7b83b5594a45"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("36f3d937-c58b-425c-bb05-302bb3770734")), IkeTerm.ENGLISH_LANGUAGE, "Byte array display field (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Byte array display field (SOLOR)"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#885, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Byte array data type", PublicIds.of(UUID.fromString("dbdd8df2-aec3-596b-88fc-7b83b5594a45"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("36f3d937-c58b-425c-bb05-302bb3770734")), IkeTerm.ENGLISH_LANGUAGE, "Byte array data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("713d1666-1c64-41f3-8ea4-c90076a3392b")), IkeTerm.ENGLISH_LANGUAGE, "Byte array display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("cbc98f10-b9c5-40fa-9ad1-56be6a0929e4")), IkeTerm.ENGLISH_LANGUAGE, "An array of bytes", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("0c6df78e-07d2-4876-b2ab-b09209ebc910")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "dbdd8df2-aec3-596b-88fc-7b83b5594a45")
@@ -247,10 +284,13 @@ final class Section19 {
                 .semanticOn(PublicIds.of(UUID.fromString("cbc98f10-b9c5-40fa-9ad1-56be6a0929e4")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("f08e6139-1ac9-4ab6-802d-07029224ca3c")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("DiTree display field", PublicIds.of(UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("42547119-239c-4901-82d9-e49c6e2734fb")), IkeTerm.ENGLISH_LANGUAGE, "DiTree display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "DiTree display field"):
+        // ConceptToDataType-confirmed real data type, flattened in place
+        // (IKE-Network/ike-issues#880, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("DiTree data type", PublicIds.of(UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("42547119-239c-4901-82d9-e49c6e2734fb")), IkeTerm.ENGLISH_LANGUAGE, "DiTree data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("adc7696a-c864-47e8-8f32-d3b4f639354d")), IkeTerm.ENGLISH_LANGUAGE, "DiTree display field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("2eca023f-90a9-4aaf-a835-b19d8ea1c8a7")), IkeTerm.ENGLISH_LANGUAGE, "A display field that references a graph obtained from an undirected tree by replacing each undirected edge by two directed edges with opposite directions.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("2eca023f-90a9-4aaf-a835-b19d8ea1c8a7")), IkeTerm.ENGLISH_LANGUAGE, "A field that holds a directed tree graph obtained from an undirected tree by replacing each undirected edge with two directed edges of opposite direction.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("43eb2671-2823-48f8-9a06-65dbe7ec08a9")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "32f64fc6-5371-11eb-ae93-0242ac130002")
                 .statedAxioms(PublicIds.of(UUID.fromString("8aed1bc4-43a9-5f76-9f2f-c2b2039f2759")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DISPLAY_FIELDS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("9ab05525-f643-422f-be9b-3f8679296b4b")))

@@ -18,7 +18,6 @@ package network.ike.foundation.ike.terms;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
@@ -76,15 +75,10 @@ final class ConstraintPatternSet {
      * @param set the knowledge set (the session)
      */
     static void compose(KnowledgeSet set) {
-        // Earlier than NarrativeContentSet's own stamps (2026-07-13 / -07-15): this file
-        // mints the constraint apparatus NarrativeContentSet's Semantic Field Model
-        // chapter writes about, and also adds semantics to "STAMP pattern"/
-        // "Description Pattern" — components NarrativeContentSet's original narratives also
-        // touch. Ledger scopes on one component must be strictly chronological across the
-        // whole session, so this file's stamp must precede every stamp that touches the
-        // same shared components.
-        ActiveStamp inception = Stamp.active("2026-07-12T12:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        // The one declared inception stamp of the pre-release set: every scope of every
+        // file authors at this time, so ledger chronology (non-decreasing stamp times per
+        // component) holds trivially (IKE-Network/ike-issues#894).
+        ActiveStamp inception = Ike.INCEPTION;
 
         // ── Taxonomy field constraint kind + its 4 values ───────────────
         // The four taxonomy-relative kinds share one identical parameter tuple, so one

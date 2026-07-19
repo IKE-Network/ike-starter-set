@@ -15,29 +15,27 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
-
-import java.util.UUID;
 
 /**
- * Mints a top-level {@code Legacy} branch and moves dormant/superseded content there as a
- * visible deprecation signal (IKE-Network/ike-issues#880 follow-up) — reparenting, not
- * retiring: the content stays live and resolvable, just flagged in the taxonomy as a
- * near-future removal candidate rather than left silently mixed in among current vocabulary.
+ * Mints the top-level {@code Legacy} branch — a visible deprecation signal for
+ * dormant/superseded content (IKE-Network/ike-issues#880 follow-up). Content filed here
+ * stays live and resolvable, just flagged in the taxonomy as a near-future removal
+ * candidate rather than left silently mixed in among current terminology.
  * <p>
  * First occupant: {@code Dynamic column data types (SOLOR)} ({@code DynamicColumnDataTypes}
  * and its 9 children — Boolean/Decimal/Float/Double/Long/Array/ByteArray/SignedInteger/
- * UUIDDataType). Investigation (this session) found it is <em>not</em> dead: {@code komet}'s
+ * UUIDDataType). Investigation found it is <em>not</em> dead: {@code komet}'s
  * {@code PatternFieldsController} (kview) walks its descendants to populate a pattern-authoring
  * "choose a data type" list — but that list is disconnected from {@code ConceptToDataType}'s
- * own 15-concept recognized set (the {@code ...field}/{@code ...display field} family a
- * pattern's real field declarations actually use), so picking from it would produce a field
- * whose declared dataType throws {@code UnsupportedOperationException} if ever resolved. Filed
- * as ikmdev/komet#{@code TODO} to track elimination on the komet side; reparenting here just
- * flags the starter-set content as legacy in the meantime, it doesn't fix the komet-side gap.
+ * own recognized set (the family a pattern's real field declarations actually use), so
+ * picking from it would produce a field whose declared dataType throws
+ * {@code UnsupportedOperationException} if ever resolved. Under the inception flatten
+ * (IKE-Network/ike-issues#894) the reparent is written in place at the concept's section
+ * declaration ({@code foundation.Section41}, registered in
+ * {@code DELIBERATELY_REPARENTED_ISA}); this file contributes only the branch concept,
+ * which that declaration cites by derived identity.
  * <p>
  * {@code Legacy} sits directly under {@code Integrated Knowledge Management (SOLOR)} — the
  * true root nearly every top-level branch in this guide descends from (see
@@ -58,13 +56,11 @@ final class LegacyTerminologySet {
      * @param set the knowledge set (the session)
      */
     static void compose(KnowledgeSet set) {
-        // Later than every other authoring pass in this project (2026-07-12/-13/-15/-16/-17):
-        // this file revises an already-adopted concept's own stated axioms, so it must follow
-        // every scope that already touches it.
-        ActiveStamp legacy = Stamp.active("2026-07-18T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894).
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
-        set.concept("Legacy (IkeFoundation)").at(legacy)
+        set.concept("Legacy (IkeFoundation)").at(inception)
                 .synonym("Legacy")
                 .definition("A visible deprecation signal, not a functional restriction:"
                         + " content reparented here is dormant or superseded and a candidate"
@@ -73,14 +69,5 @@ final class LegacyTerminologySet {
                         + " referenced elsewhere -- it may well be -- only that it is no"
                         + " longer this project's preferred terminology going forward.")
                 .isA(set.conceptRef("Integrated Knowledge Management (SOLOR)"));
-
-        // Reparent Dynamic column data types under Legacy -- restating its own declared
-        // stated-axioms UUID (from foundation.Section41) with new content is a new version of
-        // the same semantic, exactly the mechanism AssemblageTerminologySet already used for
-        // description revisions, applied here to an axiom revision instead.
-        set.concept("Dynamic column data types (SOLOR)").at(legacy)
-                .statedAxioms(PublicIds.of(UUID.fromString("32b38296-36d0-55f4-b372-da94e78be9da")),
-                        leb -> leb.NecessarySet(leb.And(
-                                leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))));
     }
 }

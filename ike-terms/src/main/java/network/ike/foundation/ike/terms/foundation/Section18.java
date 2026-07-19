@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section18 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Description type", PublicIds.of(UUID.fromString("ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0f94e2ba-1c89-441e-9c83-972ce9b15d78")), IkeTerm.ENGLISH_LANGUAGE, "Description type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
@@ -79,10 +77,13 @@ final class Section18 {
                 .semanticOn(PublicIds.of(UUID.fromString("bccfbab3-45d5-44a1-9947-e78e61758a8f")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("6d19df1e-9f27-49ac-8a0f-299bbce2d736")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Concept assemblage for logic coordinate (SOLOR)", PublicIds.of(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a4575d99-48d9-4d4e-a8d3-e658d426ef49")), IkeTerm.ENGLISH_LANGUAGE, "Concept assemblage for logic coordinate (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        // Declared FQN and definition diverge from the baseline artifact (was "Concept assemblage for logic coordinate (SOLOR)"):
+        // "assemblage" retired from this set's own terminology, flattened in place
+        // (IKE-Network/ike-issues#880, #894; registered in DELIBERATELY_RENAMED_FQNS).
+        set.concept("Concept pattern for logic coordinate", PublicIds.of(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a4575d99-48d9-4d4e-a8d3-e658d426ef49")), IkeTerm.ENGLISH_LANGUAGE, "Concept pattern for logic coordinate", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("c6a2ef78-a7b5-4e6a-8822-a6f4cbcb0a77")), IkeTerm.ENGLISH_LANGUAGE, "Concepts to classify", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3edd7840-34a7-4175-885f-cbe9edfa4e9c")), IkeTerm.ENGLISH_LANGUAGE, "Concept assemblage for logic coordinate (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3edd7840-34a7-4175-885f-cbe9edfa4e9c")), IkeTerm.ENGLISH_LANGUAGE, "The pattern whose active semantics enumerate the SOLOR concepts a Logic Coordinate reasons over.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("566142d4-4e10-4dde-8871-dcd818d49e00")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "16486419-5d1c-574f-bde6-21910ad66f44")
                 .statedAxioms(PublicIds.of(UUID.fromString("e022cd8c-be2a-5aa3-95c4-6022417547cd")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_TYPE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("c43d2bd5-e5fa-45bd-a12e-2687e21b2e08")))

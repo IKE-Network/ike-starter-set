@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section27 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Path coordinate properties (SOLOR)", PublicIds.of(UUID.fromString("ec41e427-f009-5e45-a643-6dc658d63d83"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("d3735b57-99c4-48bc-a31d-8ec8b906cd7b")), IkeTerm.ENGLISH_LANGUAGE, "Path coordinate properties (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
@@ -46,7 +44,8 @@ final class Section27 {
         set.concept("Path origins (SOLOR)", PublicIds.of(UUID.fromString("6e6a112e-7d8c-53c7-aaf1-c46e2d69743c"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("8198f0c0-c544-4b2d-bc3c-03561b082680")), IkeTerm.ENGLISH_LANGUAGE, "Path origins (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("81065d85-7058-4cdc-b545-3629317918df")), IkeTerm.ENGLISH_LANGUAGE, "Path origins", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("8218d3af-ef97-4717-8f68-2bc3ed36c335")), IkeTerm.ENGLISH_LANGUAGE, "Path origins", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("8218d3af-ef97-4717-8f68-2bc3ed36c335")), IkeTerm.ENGLISH_LANGUAGE, "A path's own origin record — the path-coordinate property saying where a path branched from. As the Path origins pattern's second field meaning it names the origin instant that record fixes: the branch point up to which the origin path's versions are visible.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("b7f3e045-e847-48c2-b95a-dc563e6d6523")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "6e6a112e-7d8c-53c7-aaf1-c46e2d69743c")
                 .statedAxioms(PublicIds.of(UUID.fromString("623faf95-7376-54d2-92e3-3ead825748eb")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH_COORDINATE_PROPERTIES))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("7f48d9d0-53ee-481e-944e-0033c193e212")))

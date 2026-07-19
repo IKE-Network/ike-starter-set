@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section41 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Meaning", PublicIds.of(UUID.fromString("a06158ff-e08a-5d7d-bcfa-6cbfdb138910"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5159cb5c-0b50-44f3-90d5-f066bdbc02cd")), IkeTerm.ENGLISH_LANGUAGE, "Meaning", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
@@ -31,12 +29,15 @@ final class Section41 {
                 .semanticOn(PublicIds.of(UUID.fromString("cf7fe351-36b9-4b4d-a47a-b701537a8e77")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("3fa8ee39-ba79-4179-8cc5-7481ba6e86dd")), IkeTerm.PREFERRED)
                 ;
 
+        // Stated parent diverges from the baseline artifact (was Meaning): reparented under
+        // Legacy as a deprecation signal, flattened in place (IKE-Network/ike-issues#880, #894;
+        // registered in DELIBERATELY_REPARENTED_ISA).
         set.concept("Dynamic column data types (SOLOR)", PublicIds.of(UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("2d43598c-8817-4d49-81fd-1de7361fc864")), IkeTerm.ENGLISH_LANGUAGE, "Dynamic column data types (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("82f089bc-26de-442c-9d56-577c24132c6e")), IkeTerm.ENGLISH_LANGUAGE, "Dynamic column data types", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5ae43eb1-3f7b-4519-be55-c6e54c22665a")), IkeTerm.ENGLISH_LANGUAGE, "Data storage system where the structure of the data can be altered or extended dynamically?", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("4ec70de8-4467-4295-8f8a-e5f40d09e2b0")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "61da7e50-f606-5ba0-a0df-83fd524951e7")
-                .statedAxioms(PublicIds.of(UUID.fromString("32b38296-36d0-55f4-b372-da94e78be9da")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MEANING))))
+                .statedAxioms(PublicIds.of(UUID.fromString("32b38296-36d0-55f4-b372-da94e78be9da")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("1ac52dfa-5a1f-45fb-8f41-c901a113e26e")))
                 .semanticOn(PublicIds.of(UUID.fromString("2d43598c-8817-4d49-81fd-1de7361fc864")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5800ff31-b0cc-4d40-b6b3-a8e46741fd59")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("82f089bc-26de-442c-9d56-577c24132c6e")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("9ac15959-49f9-4b39-aea4-0f4ebf93aa7a")), IkeTerm.PREFERRED)
@@ -406,7 +407,8 @@ final class Section41 {
         set.concept("Membership semantic (SOLOR)", PublicIds.of(UUID.fromString("4fa29287-a80e-5f83-abab-4b587973e7b7"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1999d47f-ad03-46e4-89e4-b6321a66ef46")), IkeTerm.ENGLISH_LANGUAGE, "Membership semantic (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("043e8209-636a-478b-b77c-dddae5c83b54")), IkeTerm.ENGLISH_LANGUAGE, "Membership semantic", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ad8203ec-3758-4011-9d6b-2540e67cf971")), IkeTerm.ENGLISH_LANGUAGE, "Membership semantic", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ad8203ec-3758-4011-9d6b-2540e67cf971")), IkeTerm.ENGLISH_LANGUAGE, "The semantic type carrying no fields: a semantic whose entire content is that its referenced component belongs to the pattern's own set. The SOLOR-era name for what this starter set's own content now calls Set membership.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("704fd75a-22fd-418d-a689-931eb699e624")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "4fa29287-a80e-5f83-abab-4b587973e7b7")
                 .statedAxioms(PublicIds.of(UUID.fromString("a59d2482-f28e-5012-a3fa-800ac95f4caa")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_TYPE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("039dd526-8474-4d53-9af1-e7d326f973a7")))

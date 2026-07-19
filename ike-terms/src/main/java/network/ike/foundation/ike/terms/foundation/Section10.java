@@ -1,10 +1,8 @@
 package network.ike.foundation.ike.terms.foundation;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
@@ -17,7 +15,7 @@ final class Section10 {
     }
 
     static void compose(KnowledgeSet set) {
-        ActiveStamp inception = Stamp.active(PrimitiveData.INCEPTION_EPOCH, network.ike.foundation.ike.terms.Ike.IKE_COMMUNITY, network.ike.foundation.ike.terms.Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("EL++ terminological axioms", PublicIds.of(UUID.fromString("b3ec50c4-e8cf-4720-b192-31374705f3b7"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9af7194a-fcc8-4be4-b3ad-c33e0265389e")), IkeTerm.ENGLISH_LANGUAGE, "EL++ terminological axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
@@ -34,7 +32,8 @@ final class Section10 {
         set.concept("EL++ Inferred terminological axioms", PublicIds.of(UUID.fromString("b6d3be7d-1d7f-5c44-a425-5357f878c212"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a4a4599b-6e3a-43a9-a3bc-27ea285af7d3")), IkeTerm.ENGLISH_LANGUAGE, "EL++ Inferred terminological axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("2fd741ec-9142-4985-b64a-b4a3c12d2fb0")), IkeTerm.ENGLISH_LANGUAGE, "EL++ Inferred terminological axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f85df6dd-2c5c-4d11-bc0c-a145a042fa32")), IkeTerm.ENGLISH_LANGUAGE, "EL++ Inferred terminological axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f85df6dd-2c5c-4d11-bc0c-a145a042fa32")), IkeTerm.ENGLISH_LANGUAGE, "The inferred side of a concept's EL++ terminological axioms: the definitional axioms a classifier concluded follow from what was stated — computed, never hand-written. The EL++ Inferred Axioms Pattern's one field carries them as a directed tree.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("4904979b-3c30-42a4-bc11-ca2e37b0a00e")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "b6d3be7d-1d7f-5c44-a425-5357f878c212")
                 .statedAxioms(PublicIds.of(UUID.fromString("0d4bd9b8-63d9-5573-9f5a-3e36e960ef63")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("d850a9c6-e1ec-4fe9-a626-2abe782e5044")))
@@ -203,7 +202,8 @@ final class Section10 {
         set.concept("EL++ Stated terminological axioms", PublicIds.of(UUID.fromString("1412bd09-eb0c-5107-9756-10c1c417d385"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("d6fd661d-2e5d-4816-b973-382f4aba81de")), IkeTerm.ENGLISH_LANGUAGE, "EL++ Stated terminological axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e180c86b-64b1-46a1-b3da-6e59b9bc3533")), IkeTerm.ENGLISH_LANGUAGE, "EL++ Stated terminological axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("03f08d3b-f7e9-4feb-87f0-f9e5620ed277")), IkeTerm.ENGLISH_LANGUAGE, "EL++ Stated terminological axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("03f08d3b-f7e9-4feb-87f0-f9e5620ed277")), IkeTerm.ENGLISH_LANGUAGE, "The stated side of a concept's EL++ terminological axioms: the definitional axioms an author actually wrote — necessary and sufficient sets, role restrictions — as distinct from what a classifier later infers. The EL++ Stated Axioms Pattern's one field carries them as a directed tree.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("7c8d0f75-7f21-43d8-a612-8df903e5e6b6")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "1412bd09-eb0c-5107-9756-10c1c417d385")
                 .statedAxioms(PublicIds.of(UUID.fromString("f009cf0f-2f60-5cd6-b291-07f8137a2362")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("111fc35a-ea12-4f7c-b804-0ba80a84cc64")))

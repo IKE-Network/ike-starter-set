@@ -38,15 +38,18 @@ koncept-badge-anatomy::DescriptionPattern[]
 
 A STAMP badge follows the same anatomy with provenance in place of a name — shown
 here for this set's own inception STAMP, declared in the ledger source as
-Active · 2026-07-12T00:00:00Z · IKE Community · IkeFoundation module ·
-Development path.
+Active · Inception · IKE Community · IkeFoundation module · Development path.
+Inception is the platform's own named instant for time before any release — every
+version in this pre-release set carries it, and it renders as the word rather
+than a date on every surface.
 
-// The set's declared inception stamp (ConceptSet.compose(): Stamp.active("2026-07-12T00:00:00Z",
+// The set's ONE declared inception stamp (Ike.INCEPTION: Stamp.active(PrimitiveData.INCEPTION_EPOCH,
 // IKE Community, IkeFoundation module, Development path)). Stamp identity is derived from the
 // tuple itself — Stamp.stampUuid = T5(STAMP_NAMESPACE, status|time|author|module|path) — so this
-// UUID is the stamp's real, replay-stable PublicId, computed from the declared constituents.
+// UUID is the stamp's real, replay-stable PublicId, computed from the declared constituents;
+// FoundationFidelityIT's stamp-pair gate pins it (IKE-Network/ike-issues#894).
 .Anatomy of a STAMP badge — the set's inception stamp, dissected
-koncept-badge-anatomy::uuid=1e041b79-2aa5-5d19-ad09-05a079cb396f[kind=stamp, label="Active · 2026-07-12 00:00 · IKE Community"]
+koncept-badge-anatomy::uuid=45b13d09-7c50-5495-8460-aef66a2ae615[kind=stamp, label="Active · Inception · IKE Community"]
 
 === The Component Kinds
 

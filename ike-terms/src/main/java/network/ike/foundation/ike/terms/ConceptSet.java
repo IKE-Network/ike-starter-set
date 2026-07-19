@@ -17,7 +17,6 @@ package network.ike.foundation.ike.terms;
 
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
 
 /**
  * The concept section of the IkeFoundation ledger: the module concept, the set root, and
@@ -39,8 +38,7 @@ final class ConceptSet {
         // a derived-identity reference (T5 of the birth FQN), so citing it here,
         // before its own set.concept(...) call runs, is exactly as safe as the
         // forward reference to Ike.MODULE on the same line (IKE-Network/ike-issues#872).
-        ActiveStamp inception = Stamp.active("2026-07-12T00:00:00Z",
-                Ike.IKE_COMMUNITY, Ike.MODULE, IkeTerm.DEVELOPMENT_PATH);
+        ActiveStamp inception = Ike.INCEPTION;
 
         // Both anchor into the base taxonomy so a KB that loads base + this set
         // navigates to it from the root — no orphan forest.
