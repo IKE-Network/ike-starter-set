@@ -117,7 +117,10 @@ class BaselineIdentityAuditIT {
             Map.entry(UUID.fromString("ee04d7db-3407-568f-9b93-7b1f9f5bb0fc"), "EL++ ditree"),
             Map.entry(UUID.fromString("cd56cceb-8507-5ae5-a928-16079fe6f832"), "Language for description"),
             Map.entry(UUID.fromString("a9ba4749-c11f-5f35-a991-21796fb89ddc"), "Referenced component for semantic"),
-            Map.entry(UUID.fromString("845274b5-9644-3799-94c6-e0ea37e7d1a4"), "Universally unique identifier")
+            Map.entry(UUID.fromString("845274b5-9644-3799-94c6-e0ea37e7d1a4"), "Universally unique identifier"),
+            // #923: the baseline FQN was literally "KOMET user list (SOLOR" — missing its
+            // closing paren; renamed plain, dropping the qualifier like prior renames.
+            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), "KOMET user list")
     );
 
     /**
@@ -267,6 +270,27 @@ class BaselineIdentityAuditIT {
             // Property sequence implication axiom meaning)
             Map.entry(UUID.fromString("e0de0d09-6e27-5738-bc8f-0fc94bb115fc"),
                     UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Order for axiom attachments -> View coordinate model (#923; a display preference is not an author)
+            Map.entry(UUID.fromString("abcb0946-20e1-5483-8469-3e8fa0ce20c4"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // Order for concept attachments -> View coordinate model (#923)
+            Map.entry(UUID.fromString("6167efcb-50e8-534d-9827-fdd60b02ae00"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // Order for description attachments -> View coordinate model (#923)
+            Map.entry(UUID.fromString("69ee3f13-e2ba-5a96-9b91-5eecfad8e587"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // Module for user -> View coordinate model (#923; a per-user edit default is not an author)
+            Map.entry(UUID.fromString("c8fd4f1b-d842-5245-9a7d-a58dc0ac1c11"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // Path for user -> View coordinate model (#923)
+            Map.entry(UUID.fromString("12131382-1535-5a77-928b-6eacad221ea2"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // KOMET user list -> Editorial model (#923; roster machinery is not an author)
+            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"),
+                    UUID.fromString("6dec60bc-67e5-5af7-8228-bb5161feffee")),
+            // Starter Data Authoring -> Provenance model (#923; a process marker is not an author)
+            Map.entry(UUID.fromString("070deb74-acc5-46bf-b9c6-eaee1b58ef52"),
+                    UUID.fromString("a93e37fd-7333-5577-8cba-8cd4a0823612")),
             // Uninitialized Component -> Chronicle and version model (#918)
             Map.entry(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"),
                     UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),
