@@ -107,7 +107,7 @@ final class Section10 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1212c7a7-8ba3-4ab2-8e66-896047c18e12"), IkeTerm.ENGLISH_LANGUAGE, "Role operator", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("09466eae-c6a2-412a-83e6-0495e4ab8f25"), IkeTerm.ENGLISH_LANGUAGE, "Concept that is used to describe universal vs existential restrictions.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("58931507-3054-4db1-8292-ee5bb6617258"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f")
-                .statedAxioms(PublicIds.of("5fd317e2-fe68-5607-ba34-3a7c652a7df0"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_GROUP))))
+                .statedAxioms(PublicIds.of("5fd317e2-fe68-5607-ba34-3a7c652a7df0"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical expression model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("8e0f2420-38fc-4587-9860-fc90b40ed9e1"))
                 .semanticOn(PublicIds.of("b09bb49f-8f58-4872-bf08-2022b1bfcbc8"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("96e10e72-c90c-493a-90a3-e160fae881c1"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("1212c7a7-8ba3-4ab2-8e66-896047c18e12"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("a58f2a29-467e-43cf-b4c9-97ed9065f54b"), IkeTerm.PREFERRED)

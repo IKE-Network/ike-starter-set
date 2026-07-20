@@ -192,7 +192,7 @@ final class Section18 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("3381c2e0-851c-4f99-a4a8-ee0131e6ebd3"), IkeTerm.ENGLISH_LANGUAGE, "SOLOR overlay module", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("fd55236f-de37-45d0-bd51-0b9ded34d5e4"), IkeTerm.ENGLISH_LANGUAGE, "The module for SOLOR overlay content: upstream additions layered over the core module.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("58ca0b84-82b4-43e6-808f-10a14240f7c2"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "9ecc154c-e490-5cf8-805d-d2865d62aef3")
-                .statedAxioms(PublicIds.of("dfd2cb5a-c93d-5cca-be14-50704fdd5987"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_TYPE))))
+                .statedAxioms(PublicIds.of("dfd2cb5a-c93d-5cca-be14-50704fdd5987"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODULE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("2759aa9b-b709-4d27-8b65-290b06439574"))
                 .semanticOn(PublicIds.of("8153389f-6806-429e-b5b2-9adf47ad0728"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("8f817ba7-4a71-40f3-ab34-f49d8bc47f00"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("3381c2e0-851c-4f99-a4a8-ee0131e6ebd3"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("54dea1c2-c145-45be-b233-3174df784483"), IkeTerm.PREFERRED)

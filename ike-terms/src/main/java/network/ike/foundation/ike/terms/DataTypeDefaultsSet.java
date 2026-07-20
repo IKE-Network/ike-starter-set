@@ -261,7 +261,7 @@ final class DataTypeDefaultsSet {
                         IkeTerm.COMPONENT_ID_LIST_FIELD)
                 .field(set.conceptRef("DiTree default (IkeFoundation)"), exemplar, IkeTerm.DITREE_FIELD)
                 .field(set.conceptRef("DiGraph default (IkeFoundation)"), exemplar, IkeTerm.DIGRAPH_FIELD)
-                .field(set.conceptRef("Concept default (IkeFoundation)"), exemplar, IkeTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Concept default (IkeFoundation)"), exemplar, IkeTerm.CONCEPT_DATA_TYPE)
                 .field(set.conceptRef("Semantic default (IkeFoundation)"), exemplar, IkeTerm.SEMANTIC_FIELD_TYPE)
                 .field(set.conceptRef("Integer default (IkeFoundation)"), exemplar, IkeTerm.INTEGER_FIELD)
                 .field(set.conceptRef("Float default (IkeFoundation)"), exemplar, IkeTerm.FLOAT_FIELD)

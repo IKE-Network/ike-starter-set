@@ -291,6 +291,18 @@ class BaselineIdentityAuditIT {
             // Starter Data Authoring -> Provenance model (#923; a process marker is not an author)
             Map.entry(UUID.fromString("070deb74-acc5-46bf-b9c6-eaee1b58ef52"),
                     UUID.fromString("a93e37fd-7333-5577-8cba-8cd4a0823612")),
+            // Role operator -> Logical expression model (#925; an operator vocabulary is not a role type)
+            Map.entry(UUID.fromString("f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f"),
+                    UUID.fromString("048b509b-7446-5adb-a81b-245386981760")),
+            // SOLOR overlay module -> Module (#925; the Description-type squatter #922 missed)
+            Map.entry(UUID.fromString("9ecc154c-e490-5cf8-805d-d2865d62aef3"),
+                    UUID.fromString("40d1c869-b509-32f8-b735-836eac577a67")),
+            // Module origins -> Provenance model (#925; module lineage is not a logic-coordinate property)
+            Map.entry(UUID.fromString("462862d4-5df9-426e-b785-a1264e24769f"),
+                    UUID.fromString("a93e37fd-7333-5577-8cba-8cd4a0823612")),
+            // Path origins -> Provenance model (#925; path lineage is version-control machinery, not coordinate configuration)
+            Map.entry(UUID.fromString("6e6a112e-7d8c-53c7-aaf1-c46e2d69743c"),
+                    UUID.fromString("a93e37fd-7333-5577-8cba-8cd4a0823612")),
             // Uninitialized Component -> Chronicle and version model (#918)
             Map.entry(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"),
                     UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),
@@ -357,9 +369,10 @@ class BaselineIdentityAuditIT {
             // Annotation property set -> Logical expression model (#918)
             Map.entry(UUID.fromString("cb9e33de-f82c-495d-89fa-69afecbcd47d"),
                     UUID.fromString("048b509b-7446-5adb-a81b-245386981760")),
-            // Tree amalgam properties -> Graph model (#918)
+            // Tree amalgam properties -> Legacy model concepts (#925; ISAAC relic family,
+            // zero code references — the #918 Graph-model placement was a category error)
             Map.entry(UUID.fromString("d6151a47-4610-5a5c-abd0-42c82be9b633"),
-                    UUID.fromString("c99b70a6-e563-5c8a-b3d9-5f599d0ee9bd")),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
             // Action properties -> Legacy model concepts (#918; dormant ISAAC relic)
             Map.entry(UUID.fromString("80ba281c-7d47-57cf-8100-82b69bce998b"),
                     UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),

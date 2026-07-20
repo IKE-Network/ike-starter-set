@@ -21,7 +21,7 @@ final class Section47 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("2db53a64-94af-4249-b34e-d384e50c8a69"), IkeTerm.ENGLISH_LANGUAGE, "Tree amalgam properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("3d975372-6d96-4665-92e7-0abbda229104"), IkeTerm.ENGLISH_LANGUAGE, "Data structure that consists of nodes connected by edges (a mixture or blend of different elements)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("641939e5-9e62-462c-aea0-2b5ded2feada"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "d6151a47-4610-5a5c-abd0-42c82be9b633")
-                .statedAxioms(PublicIds.of("3114faa0-2e1b-572b-83b3-d02ce25d6000"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Graph model (IkeFoundation)")))))
+                .statedAxioms(PublicIds.of("3114faa0-2e1b-572b-83b3-d02ce25d6000"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy model concepts (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("5c8aab7d-b5b7-443c-97a5-c4b802a20a3b"))
                 .semanticOn(PublicIds.of("bd734afa-e892-4e80-83eb-871e8dc3007b"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("47099522-a380-485a-ab58-824352f43df3"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("2db53a64-94af-4249-b34e-d384e50c8a69"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("3c733170-0ba5-47af-a0df-89385a29dad6"), IkeTerm.PREFERRED)

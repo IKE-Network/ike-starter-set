@@ -81,7 +81,7 @@ final class PatternShapeRefinementSet {
                 .definition("Why a navigation pattern's referenced component carries an IsA"
                         + " semantic: a pre-computed parent/child structure so traversal"
                         + " doesn't require re-deriving from axioms every time.")
-                .isA(set.conceptRef("Graph model (IkeFoundation)"), IkeTerm.PURPOSE);
+                .isA(IkeTerm.NAVIGATION, IkeTerm.PURPOSE);
 
         // ── Base Tinkar meta-model: chronicle-shape family ──────────────
         // One shared purpose concept covers why every chronicle-shape pattern exists.

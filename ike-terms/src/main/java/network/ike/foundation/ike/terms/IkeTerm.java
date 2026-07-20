@@ -83,9 +83,12 @@ public final class IkeTerm {
     public static final EntityProxy.Concept CONCEPT_ASSEMBLAGE_FOR_LOGIC_COORDINATE =
             EntityProxy.Concept.make("Concept assemblage for logic coordinate (SOLOR)", PublicIds.of("16486419-5d1c-574f-bde6-21910ad66f44"));
 
-    /** {@code Concept field (SOLOR)} — same identity as {@code TinkarTerm.CONCEPT_FIELD}. */
-    public static final EntityProxy.Concept CONCEPT_FIELD =
-            EntityProxy.Concept.make("Concept field (SOLOR)", PublicIds.of("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"));
+    /** {@code Concept data type} — same identity as {@code TinkarTerm.CONCEPT_FIELD}. */
+    // Renamed from CONCEPT_FIELD (IKE-Network/ike-issues#925): the identity is the
+    // Concept DATA TYPE concept — correct as a field data-type argument, never as an
+    // isA parent for field-meaning concepts (that is "Concept field", ebe2aa74).
+    public static final EntityProxy.Concept CONCEPT_DATA_TYPE =
+            EntityProxy.Concept.make("Concept data type", PublicIds.of("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"));
 
     /** {@code Concept type (SOLOR)} — same identity as {@code TinkarTerm.CONCEPT_TYPE}. */
     public static final EntityProxy.Concept CONCEPT_TYPE =

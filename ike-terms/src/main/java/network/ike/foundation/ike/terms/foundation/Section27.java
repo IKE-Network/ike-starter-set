@@ -46,7 +46,7 @@ final class Section27 {
                 // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("8218d3af-ef97-4717-8f68-2bc3ed36c335"), IkeTerm.ENGLISH_LANGUAGE, "A path's own origin record — the path-coordinate property saying where a path branched from. As the Path origins pattern's second field meaning it names the origin instant that record fixes: the branch point up to which the origin path's versions are visible.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("b7f3e045-e847-48c2-b95a-dc563e6d6523"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "6e6a112e-7d8c-53c7-aaf1-c46e2d69743c")
-                .statedAxioms(PublicIds.of("623faf95-7376-54d2-92e3-3ead825748eb"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH_COORDINATE_PROPERTIES), leb.ConceptAxiom(IkeTerm.MEANING))))
+                .statedAxioms(PublicIds.of("623faf95-7376-54d2-92e3-3ead825748eb"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Provenance model (IkeFoundation)")), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("7f48d9d0-53ee-481e-944e-0033c193e212"))
                 .semanticOn(PublicIds.of("8198f0c0-c544-4b2d-bc3c-03561b082680"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("c3bf143b-564d-4e1b-86aa-a128df2739e0"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("81065d85-7058-4cdc-b545-3629317918df"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("f9be5cfa-8489-4f97-a63e-7c87294239ce"), IkeTerm.PREFERRED)
