@@ -14,11 +14,16 @@
 
     <name>Ike Knowledge Base</name>
     <description>
-        The full-cycle knowledge base: the base plus this set's change set,
-        assembled and classified by ike:kb-assemble and installed into the
-        data-source directory for verification in Komet. Verification edits are
-        captured under the installed store's changeSets directory and feed the
-        next iteration as CHANGESET file inputs below.
+        The full-cycle knowledge base: this set's change set alone, assembled
+        and classified by ike:kb-assemble and installed into the data-source
+        directory for verification in Komet. Ledger-only by doctrine
+        (IKE-Network/ike-issues#909, #921): the Tinkar starter data was a
+        one-time input whose value is captured in the ledger's declarations,
+        so the store is single-version by construction — every chronology at
+        the inception stamp pair, exactly what LedgerGatesIT's whole-store
+        stamp gate pins. Verification edits are captured under the installed
+        store's changeSets directory and feed the next iteration as CHANGESET
+        file inputs below.
     </description>
 
     <dependencies>
@@ -51,7 +56,10 @@
                         </goals>
                         <configuration>
                             <inputs>
-                                <input>PB dev.ikm.data.tinkar:tinkar-starter-data:zip:reasoned-pb:20251009</input>
+                                <!-- No baseline seed: ledger-only per the #909 product-store
+                                     doctrine (the one-time input's value is captured; consumers
+                                     with existing stores are modeled by ConsumerMergeIT, not by
+                                     this store). -->
                                 <input>CHANGESET ${project.basedir}/../ike-changeset/target/ike-changeset-${project.version}-changeset.zip</input>
                                 <!-- Next iteration: change sets captured during Komet
                                      verification load on top, e.g.
