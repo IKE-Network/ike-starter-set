@@ -19,7 +19,7 @@ final class Section59 {
         set.concept("Has Dose Form (SOLOR)", PublicIds.of("072e7737-e22e-36b5-89d2-4815f0529c63")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("07c5cd2c-f7a6-4b73-b3f2-1869d022fcbe"), IkeTerm.ENGLISH_LANGUAGE, "Has Dose Form (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("d1f3ea71-bb37-460c-af24-9df9a669bc9b"), IkeTerm.ENGLISH_LANGUAGE, "Has Dose Form", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("30e80350-e1fa-4a94-8cac-20ca18e6dc5a"), IkeTerm.ENGLISH_LANGUAGE, "Has dose form (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("30e80350-e1fa-4a94-8cac-20ca18e6dc5a"), IkeTerm.ENGLISH_LANGUAGE, "A domain role type from the medication model: relates a product to its dose form. Held as a SNOMED-heritage example; migrates to a domain starter set when one exists.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("16488072-3849-4755-9db0-0f69e5f2ef15"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "072e7737-e22e-36b5-89d2-4815f0529c63")
                 .statedAxioms(PublicIds.of("9f399e84-a89d-582f-827b-3fddc70bcc5f"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_TYPE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("5f28d10f-3f04-4f6d-af9e-d41229f22d58"))

@@ -24,7 +24,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * purpose — referenced component or field — must carry a textual definition that says
  * something a reader could not already read off the label. The audited inventory (34
  * patterns, 154 distinct meaning/purpose concepts) found 25 base-model chronicle/version
- * field concepts (Public ID field, the five chronicle-kind fields, the five versions
+ * field concepts, plus the 27 the IKE-Network/ike-issues#922 sweep found undefined (Public ID field, the five chronicle-kind fields, the five versions
  * field/set pairs, the pattern-version declaration fields, the semantic-version fields,
  * STAMP field, Time field) that never carried a definition description at all. Each is
  * resumed here by its birth FQN (all were opened by the foundation sections'
@@ -212,5 +212,88 @@ final class DefinitionCompletionSet {
                 .definition("A component field whose value identifies the component a"
                         + " semantic is attached to — the field a semantic chronicle"
                         + " records for its attachment target.");
+
+        // ── The #922 name-fidelity wave: the 27 concepts the sweep found with no
+        // definition at all — the interval-axiom vocabulary, the field kinds the
+        // original 25 did not reach, the baseline axiom groupings, and two module-era
+        // anchors. Same resume-by-birth-FQN idiom as above.
+        set.concept("Interval Set Axioms").at(completion)
+                .definition("Groups the interval-axiom vocabulary: the bound values, openness markers, and unit of measure an interval-valued assertion carries.");
+
+        set.concept("Interval Lower Bound").at(completion)
+                .definition("The field holding an interval's lower bound value.");
+
+        set.concept("Interval Upper Bound").at(completion)
+                .definition("The field holding an interval's upper bound value.");
+
+        set.concept("Include Lower Bound").at(completion)
+                .definition("The field saying whether an interval includes its lower bound: closed when included, open when not.");
+
+        set.concept("Include Upper Bound").at(completion)
+                .definition("The field saying whether an interval includes its upper bound: closed when included, open when not.");
+
+        set.concept("Lower Bound Open").at(completion)
+                .definition("The marker that an interval's lower bound is open: the bound value itself lies outside the interval.");
+
+        set.concept("Upper Bound Open").at(completion)
+                .definition("The marker that an interval's upper bound is open: the bound value itself lies outside the interval.");
+
+        set.concept("Unit of Measure").at(completion)
+                .definition("The field naming the unit an interval's bounds are expressed in.");
+
+        set.concept("Interval Type").at(completion)
+                .definition("The concept naming which kind of interval an interval assertion carries.");
+
+        set.concept("Temporal Axiom").at(completion)
+                .definition("Groups axioms about time: the temporal counterpart of the interval-axiom vocabulary.");
+
+        set.concept("Interval role").at(completion)
+                .definition("The typed atom asserting a role bounded to an interval: a role whose filler is constrained by interval bounds. Mirrors LogicalAxiom.Atom.TypedAtom.IntervalRole in the sealed hierarchy.");
+
+        set.concept("Interval property set").at(completion)
+                .definition("The logical set grouping interval-property axioms under a definition root. Mirrors LogicalAxiom.LogicalSet.IntervalPropertySet in the sealed hierarchy.");
+
+        set.concept("Interval Role Type").at(completion)
+                .definition("The role-type vocabulary for interval roles: names which relation an interval role asserts.");
+
+        set.concept("Feature Role Type").at(completion)
+                .definition("The role type marking a role as feature-valued: the bridge between role machinery and concrete-domain features.");
+
+        set.concept("Property set Axioms").at(completion)
+                .definition("A baseline grouping for property-set axioms, retained for identity compatibility: the platform's set meaning is Property set.");
+
+        set.concept("Data Property Set Axioms").at(completion)
+                .definition("A baseline grouping for data-property-set axioms, retained for identity compatibility: the platform's set meaning is Data property set.");
+
+        set.concept("Implication set").at(completion)
+                .definition("A baseline grouping for implication axioms, retained for identity compatibility: property-sequence implications are the atoms it grouped.");
+
+        set.concept("Boolean field").at(completion)
+                .definition("The field kind for boolean-valued fields: a pattern field holding true or false.");
+
+        set.concept("Integer field").at(completion)
+                .definition("The field kind for integer-valued fields: a pattern field holding a whole number.");
+
+        set.concept("String field").at(completion)
+                .definition("The field kind for string-valued fields: a pattern field holding text.");
+
+        set.concept("Instant field").at(completion)
+                .definition("The field kind for instant-valued fields: a pattern field holding a point in time.");
+
+        set.concept("Field definition data type field").at(completion)
+                .definition("The field kind naming a field definition's data type slot: which data type a pattern declares for one of its fields.");
+
+        set.concept("Field definition meaning field").at(completion)
+                .definition("The field kind naming a field definition's meaning slot: the concept saying what the declared field is.");
+
+        set.concept("Field definition purpose field").at(completion)
+                .definition("The field kind naming a field definition's purpose slot: the concept saying why the declared field is recorded.");
+
+        set.concept("Field value field").at(completion)
+                .definition("The field kind for one field value a semantic version actually carries, as distinct from the field definition its pattern declares.");
+
+        set.concept("Default Data Concept").at(completion)
+                .definition("The baseline's placeholder anchor for default data, retained for identity compatibility with upstream stores; its placeholder seeds are deliberately not adopted here.");
+
     }
 }

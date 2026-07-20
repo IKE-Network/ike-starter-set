@@ -20,7 +20,7 @@ final class Section65 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("319a091a-8f84-4544-a6d7-8666bfe8aa8e"), IkeTerm.ENGLISH_LANGUAGE, "Property Sequence (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("b124d5f9-f887-41c6-85cb-46f23c665f8a"), IkeTerm.ENGLISH_LANGUAGE, "Property Sequence", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of("984a9210-2972-4f1a-a495-8451287afac9"), IkeTerm.PREFERRED)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("8981cb20-2dbe-4a86-8fe0-82e65b621dd3"), IkeTerm.ENGLISH_LANGUAGE, "Property sequence (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("8981cb20-2dbe-4a86-8fe0-82e65b621dd3"), IkeTerm.ENGLISH_LANGUAGE, "An ordered sequence of properties, as used by a property-sequence implication: the chain whose composition is asserted to imply another property.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("10aef8b3-994f-44b2-bb2b-5335c065586d"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "d0d759fd-510f-475a-900e-b1439b4536e1")
                 .statedAxioms(PublicIds.of("c6489041-4b83-518d-9dd0-0c21e706ca50"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical expression model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("c12be094-b8e8-41bc-bf81-67e7b8de02fd"))

@@ -29,8 +29,8 @@ final class Section61 {
                 .semanticOn(PublicIds.of("c629f584-ae95-4c94-9f50-60a0ce8304f8"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("3116d029-198b-46fb-bea3-96b36b78becc"), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("UNIVERSALLY_UNIQUE_IDENTIFIER", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("d974705e-465f-4cf3-b56c-69307fa9c24b"), IkeTerm.ENGLISH_LANGUAGE, "UNIVERSALLY_UNIQUE_IDENTIFIER", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        set.concept("Universally unique identifier", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("d974705e-465f-4cf3-b56c-69307fa9c24b"), IkeTerm.ENGLISH_LANGUAGE, "Universally unique identifier", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("99a356ec-3e20-4c5b-bf2c-ea5efb00f871"), IkeTerm.ENGLISH_LANGUAGE, "UUID", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("afaf9d6a-e9c4-4a6c-bf72-6db6eb50f20c"), IkeTerm.ENGLISH_LANGUAGE, "A universally unique identifier that uniquely represents a concept in Tinkar", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("e91aa7fa-8113-4c9d-8826-120e6ea3a701"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "845274b5-9644-3799-94c6-e0ea37e7d1a4")

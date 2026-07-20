@@ -19,7 +19,7 @@ final class Section17 {
         set.concept("Laterality (SOLOR)", PublicIds.of("26ca4590-bbe5-327c-a40a-ba56dc86996b")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("960f2aa1-4844-4b6c-aadb-15a2c8b62596"), IkeTerm.ENGLISH_LANGUAGE, "Laterality (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f6eb6e3e-09de-47a7-be73-141527d6d5f1"), IkeTerm.ENGLISH_LANGUAGE, "Laterality", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("3622b35a-e8b8-48e0-afdb-4179c7061ac9"), IkeTerm.ENGLISH_LANGUAGE, "Laterality (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("3622b35a-e8b8-48e0-afdb-4179c7061ac9"), IkeTerm.ENGLISH_LANGUAGE, "A domain role type from the anatomy model: distinguishes sided body structures, left from right. Held as a SNOMED-heritage example; migrates to a domain starter set when one exists.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("17f1d7ea-056b-4801-a9e1-117dbb5f3ca6"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "26ca4590-bbe5-327c-a40a-ba56dc86996b")
                 .statedAxioms(PublicIds.of("a531fcdd-db58-5110-8303-7a90d8539dbb"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_TYPE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("5db743cf-d96b-4d9a-8027-32f5d77d387b"))

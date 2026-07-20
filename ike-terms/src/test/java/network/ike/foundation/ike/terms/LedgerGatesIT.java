@@ -674,4 +674,60 @@ class LedgerGatesIT {
             }
         });
     }
+
+    /**
+     * The IKE-Network/ike-issues#922 name-fidelity lock: every concept carries at least
+     * one definition, and no definition merely echoes the concept's own labels. The
+     * sweep paid down the whole debt (84 echo rewrites, 27 first definitions); these
+     * gates keep it paid — the set-wide generalization of the meaning/purpose-only
+     * definition gate from IKE-Network/ike-issues#892.
+     */
+    @Test
+    @DisplayName("Every concept has a definition, and no definition echoes its labels"
+            + " (IKE-Network/ike-issues#922)")
+    void everyConceptHasANonEchoDefinition() {
+        int defType = TinkarTerm.DEFINITION_DESCRIPTION_TYPE.nid();
+        int fqnType = TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE.nid();
+        int regType = TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid();
+        java.util.List<String> missing = new java.util.ArrayList<>();
+        java.util.List<String> echoes = new java.util.ArrayList<>();
+        EntityService.get().forEachConceptEntity(concept -> {
+            java.util.List<String> labels = new java.util.ArrayList<>();
+            java.util.List<String> definitions = new java.util.ArrayList<>();
+            EntityService.get().forEachSemanticForComponentOfPattern(concept.nid(),
+                    TinkarTerm.DESCRIPTION_PATTERN.nid(), semantic ->
+                calculator.latest(semantic).ifPresent(version -> {
+                    SemanticEntityVersion semanticVersion = (SemanticEntityVersion) version;
+                    String text = (String) semanticVersion.fieldValues().get(1);
+                    int type = ((EntityFacade) semanticVersion.fieldValues().get(3)).nid();
+                    if (type == defType) {
+                        definitions.add(text);
+                    } else if (type == fqnType || type == regType) {
+                        labels.add(text);
+                    }
+                }));
+            if (definitions.isEmpty()) {
+                missing.add(PrimitiveData.text(concept.nid()));
+                return;
+            }
+            for (String definition : definitions) {
+                String normalizedDefinition = normalizeLabel(definition);
+                if (normalizedDefinition.isEmpty()
+                        || labels.stream().anyMatch(label -> normalizeLabel(label).equals(normalizedDefinition))) {
+                    echoes.add(PrimitiveData.text(concept.nid()) + " := \"" + definition + "\"");
+                }
+            }
+        });
+        assertEquals(java.util.List.of(), missing,
+                "concepts without any definition — every concept must say what it is");
+        assertEquals(java.util.List.of(), echoes,
+                "definitions that echo the concept's own labels say nothing — write a real one");
+    }
+
+    /** Case-, punctuation-, and qualifier-insensitive label normalization for the echo gate. */
+    private static String normalizeLabel(String text) {
+        String withoutQualifier = text.replaceAll(
+                "\\s*\\((SOLOR|Solor|IkeFoundation|IKE|User|Language|foundation metadata concept)\\)\\s*$", "");
+        return withoutQualifier.toLowerCase().replaceAll("[^a-z0-9]+", " ").trim();
+    }
 }

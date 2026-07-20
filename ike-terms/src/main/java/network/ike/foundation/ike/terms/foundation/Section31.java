@@ -161,8 +161,8 @@ final class Section31 {
                 .semanticOn(PublicIds.of("a19b7be5-3be7-4f2f-ad35-aaedd630aace"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("5baf333c-fa6a-4512-acc0-93ce96c0b954"), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Language concept nid for description (SOLOR)", PublicIds.of("cd56cceb-8507-5ae5-a928-16079fe6f832")).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("343a0310-ed60-4031-902a-3d4cbb1e194d"), IkeTerm.ENGLISH_LANGUAGE, "Language concept nid for description (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+        set.concept("Language for description", PublicIds.of("cd56cceb-8507-5ae5-a928-16079fe6f832")).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("343a0310-ed60-4031-902a-3d4cbb1e194d"), IkeTerm.ENGLISH_LANGUAGE, "Language for description", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("372e4ea1-62ed-4e33-80e4-9d42a3fcfc9f"), IkeTerm.ENGLISH_LANGUAGE, "Language for description", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("962b4b5b-d2a8-4c19-8020-1cd9180bd047"), IkeTerm.ENGLISH_LANGUAGE, "Captures the language code for a description", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("331b25c6-6e54-4f69-802a-e02c82250e91"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "cd56cceb-8507-5ae5-a928-16079fe6f832")

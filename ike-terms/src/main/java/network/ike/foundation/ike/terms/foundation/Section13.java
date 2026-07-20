@@ -31,7 +31,7 @@ final class Section13 {
         set.concept("Language coordinate name (SOLOR)", PublicIds.of("42dff20f-5ed2-559a-91ad-91d44a573c63")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("a024b465-af14-4908-93d3-d2bc71ea18bd"), IkeTerm.ENGLISH_LANGUAGE, "Language coordinate name (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("b056834e-79af-4aec-bc01-0401feb12f94"), IkeTerm.ENGLISH_LANGUAGE, "Language coordinate name", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("2c8958d4-6d4d-49b8-a542-28a3943c3455"), IkeTerm.ENGLISH_LANGUAGE, "Language coordinate name", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("2c8958d4-6d4d-49b8-a542-28a3943c3455"), IkeTerm.ENGLISH_LANGUAGE, "The field naming a stored language coordinate, so a surface can present saved coordinates by name.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("214d74a7-b80b-4616-9c06-9cd40ed7d831"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "42dff20f-5ed2-559a-91ad-91d44a573c63")
                 .statedAxioms(PublicIds.of("cca164f4-4786-5f44-a18f-3e64c45b4113"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.LANGUAGE_COORDINATE_PROPERTIES))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("e4ad43c1-bc12-4cdc-a110-76dc25f1f3ed"))

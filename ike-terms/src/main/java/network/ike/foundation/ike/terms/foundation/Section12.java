@@ -19,7 +19,7 @@ final class Section12 {
         set.concept("Description-logic profile (SOLOR)", PublicIds.of("14eadb10-fbd0-5999-af37-05728a8503af")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f312cb55-2104-483e-8dcf-9fddf944550a"), IkeTerm.ENGLISH_LANGUAGE, "Description-logic profile (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("5e59b5f6-353d-4297-b1a0-e8cdd42f8664"), IkeTerm.ENGLISH_LANGUAGE, "Description-logic profile", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f57a49ab-d651-4061-996a-8cef9dac1627"), IkeTerm.ENGLISH_LANGUAGE, "Description-logic profile", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f57a49ab-d651-4061-996a-8cef9dac1627"), IkeTerm.ENGLISH_LANGUAGE, "The family of description-logic profiles: a profile fixes which logical operators definitions may use; this set's profile is EL++.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("188ab10f-7a9d-42c5-a9c8-d05ec409fdd6"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "14eadb10-fbd0-5999-af37-05728a8503af")
                 .statedAxioms(PublicIds.of("d351e33f-6494-56e5-9289-b0eb650dcd79"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("8ba07217-ecbf-46a8-a3a2-4466e8522845"))

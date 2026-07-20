@@ -19,7 +19,7 @@ final class Section38 {
         set.concept("Grouping (SOLOR)", PublicIds.of("8d76ead7-6c75-5d25-84d4-ca76d928f8a6")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("e273ad36-3e0c-422f-8118-42b42e873492"), IkeTerm.ENGLISH_LANGUAGE, "Grouping (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9117bc68-e104-4945-b26b-2034a0c87f67"), IkeTerm.ENGLISH_LANGUAGE, "Grouping", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f11b11e8-3da3-4f6f-9481-a7cde788b3c1"), IkeTerm.ENGLISH_LANGUAGE, "Grouping", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f11b11e8-3da3-4f6f-9481-a7cde788b3c1"), IkeTerm.ENGLISH_LANGUAGE, "Groups the correlation match markers: whether an expression correlation is exact or partial.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("080955e7-2531-4cac-ab76-740fe6f483ba"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "8d76ead7-6c75-5d25-84d4-ca76d928f8a6")
                 .statedAxioms(PublicIds.of("036f72e0-499c-5561-96cc-dfc91110d52f"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("5b6f5ae3-2f9a-452c-9353-8f7645a47f3a"))

@@ -42,7 +42,7 @@ final class Section39 {
 
         set.concept("Inferred premise type (SOLOR)", PublicIds.of("a4c6bf72-8fb6-11db-b606-0800200c9a66", "1290e6ba-48d0-31d2-8d62-e133373c63f5")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("673de880-2c35-42c0-a374-657feed7b1d6"), IkeTerm.ENGLISH_LANGUAGE, "Inferred premise type (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("2049c4a3-cef5-489b-ad58-8630908007c9"), IkeTerm.ENGLISH_LANGUAGE, "Inferred relationship / Inferred", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("2049c4a3-cef5-489b-ad58-8630908007c9"), IkeTerm.ENGLISH_LANGUAGE, "Inferred premise", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("a2f28409-132a-4a82-8158-7e43af2d40b2"), IkeTerm.ENGLISH_LANGUAGE, "The axiom view following the application of the reasoner", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("b63b2d32-c577-4663-8bf9-fe810ecc6b38"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "a4c6bf72-8fb6-11db-b606-0800200c9a66")
                 .statedAxioms(PublicIds.of("7ed6053d-28f1-5065-85c5-061491e681c6"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.AXIOM_ORIGIN))))

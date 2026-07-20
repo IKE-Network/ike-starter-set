@@ -55,7 +55,7 @@ final class Section67 {
         set.concept("Health concept (SOLOR)", PublicIds.of("a892950a-0847-300c-b477-4e3cbb945225", "ee9ac5d2-a07c-3981-a57a-f7f26baf38d8", "f6daf03a-93d6-5bab-8dc9-f60c327cf012")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("8924df61-b461-457d-a84c-cac12611b672"), IkeTerm.ENGLISH_LANGUAGE, "Health concept (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("449763d9-282f-413a-87f3-76512cd8f997"), IkeTerm.ENGLISH_LANGUAGE, "Health concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9ff8c075-dc38-4b57-a600-9da437b68185"), IkeTerm.ENGLISH_LANGUAGE, "Health concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9ff8c075-dc38-4b57-a600-9da437b68185"), IkeTerm.ENGLISH_LANGUAGE, "The domain anchor for health-related content under Phenomenon. Held as a SNOMED-heritage example; domain content grows in domain starter sets.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("df69b5d4-991a-4fab-842b-842f36e09054"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "a892950a-0847-300c-b477-4e3cbb945225")
                 .statedAxioms(PublicIds.of("4c314321-94ac-56bf-bc12-77768ea59836"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PHENOMENON))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("8e1fe424-f7f9-4812-b381-03d8657e0e68"))

@@ -110,7 +110,14 @@ class BaselineIdentityAuditIT {
             // foundation.Section71: the "Sementic version field pattern" FQN typo fix
             // (IKE-Network/ike-issues#892). A pattern — the fixture covers patterns too,
             // so this entry now gates the rename directly.
-            Map.entry(UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), "Semantic version field pattern")
+            Map.entry(UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), "Semantic version field pattern"),
+            // #922 name-fidelity sweep: EL++ expressions are DiTree-carried (B1, KEC's pick);
+            // "nid" is raw-int language that never belongs in a name (C3); a constant-case
+            // string is not an FQN (C4).
+            Map.entry(UUID.fromString("ee04d7db-3407-568f-9b93-7b1f9f5bb0fc"), "EL++ ditree"),
+            Map.entry(UUID.fromString("cd56cceb-8507-5ae5-a928-16079fe6f832"), "Language for description"),
+            Map.entry(UUID.fromString("a9ba4749-c11f-5f35-a991-21796fb89ddc"), "Referenced component for semantic"),
+            Map.entry(UUID.fromString("845274b5-9644-3799-94c6-e0ea37e7d1a4"), "Universally unique identifier")
     );
 
     /**
@@ -220,6 +227,46 @@ class BaselineIdentityAuditIT {
             // Data property set -> Logical set (#915)
             Map.entry(UUID.fromString("6b8ed642-de72-4aee-953d-42e5db92c0ab"),
                     UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // EL++ ditree -> Tree (#922 B1)
+            Map.entry(UUID.fromString("ee04d7db-3407-568f-9b93-7b1f9f5bb0fc"),
+                    UUID.fromString("5a233bd9-2650-5217-bc3e-5d01a5ad50ce")),
+            // Stated navigation -> Navigation (#922 B2; was misfiled under Description type)
+            Map.entry(UUID.fromString("614017af-9903-53d9-aab4-15fd02193dce"),
+                    UUID.fromString("4d9707d8-adf0-5b15-89fc-039e4ff6fec8")),
+            // Inferred navigation -> Navigation (#922 B2)
+            Map.entry(UUID.fromString("4bc6c333-7fc9-52f1-942d-f8decba19dc2"),
+                    UUID.fromString("4d9707d8-adf0-5b15-89fc-039e4ff6fec8")),
+            // Is-a stated navigation -> Legacy (#922 B2; zero code references, dormant twin)
+            Map.entry(UUID.fromString("d555dde9-c97e-5480-819a-7472eda3dbfa"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Is-a inferred navigation -> Legacy (#922 B2)
+            Map.entry(UUID.fromString("b620768f-1479-5afa-a027-5a9ae6caf0d5"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // SOLOR module -> Module (#922 B3; was misfiled under Description type)
+            Map.entry(UUID.fromString("f680c868-f7e5-5d0e-91f2-615eca8f8fd2"),
+                    UUID.fromString("40d1c869-b509-32f8-b735-836eac577a67")),
+            // SnoRocket classifier -> Author (#922 B4; classifiers author inferred content)
+            Map.entry(UUID.fromString("1f201fac-960e-11e5-8994-feff819cdc9f"),
+                    UUID.fromString("f7495b58-6630-3499-a44e-2052b5fcf06c")),
+            // Concept pattern for logic coordinate -> ImmutableCoordinate Properties (#922 B5)
+            Map.entry(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"),
+                    UUID.fromString("ab41a788-8a83-5452-8dc0-2d8375e0bfe6")),
+            // Unmodeled role concept -> Legacy (#922 B6)
+            Map.entry(UUID.fromString("4be7118f-e6ab-5dc7-bcba-b2cc8b028492"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Dynamic referenced component restriction -> Legacy (#922 B6)
+            Map.entry(UUID.fromString("0d94ceeb-e24f-5f1a-84b2-1ac35f671db5"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Intrinsic role -> Legacy (#922 B6)
+            Map.entry(UUID.fromString("a2d37d2d-ac49-589f-ba36-ac9b8808b00b"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Extended relationship type -> Legacy (#922 B6)
+            Map.entry(UUID.fromString("d41d928f-8a97-55c1-aa6c-a289b413fbfd"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Property pattern implication -> Legacy (#922 B6; near-duplicate of the code's
+            // Property sequence implication axiom meaning)
+            Map.entry(UUID.fromString("e0de0d09-6e27-5738-bc8f-0fc94bb115fc"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
             // Uninitialized Component -> Chronicle and version model (#918)
             Map.entry(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"),
                     UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),

@@ -28,9 +28,9 @@ final class Section24 {
                 .semanticOn(PublicIds.of("16ac69ca-0dd7-44f5-8185-24d7e5f85b3b"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("37116e60-c413-41e6-a59d-6c9e7ad761d3"), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Referenced component nid for semantic (SOLOR)", PublicIds.of("a9ba4749-c11f-5f35-a991-21796fb89ddc")).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("447541ca-8c02-4c3b-ac65-caa263f9fb5a"), IkeTerm.ENGLISH_LANGUAGE, "Referenced component nid for semantic (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("91e611b8-d42c-4123-a65f-c3933f572219"), IkeTerm.ENGLISH_LANGUAGE, "Referenced component id", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+        set.concept("Referenced component for semantic", PublicIds.of("a9ba4749-c11f-5f35-a991-21796fb89ddc")).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("447541ca-8c02-4c3b-ac65-caa263f9fb5a"), IkeTerm.ENGLISH_LANGUAGE, "Referenced component for semantic", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("91e611b8-d42c-4123-a65f-c3933f572219"), IkeTerm.ENGLISH_LANGUAGE, "Referenced component", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("b2322b09-b1a9-4cf9-a62e-cbc46a87d088"), IkeTerm.ENGLISH_LANGUAGE, "Component id Referenced", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("11a238b8-e3d7-452e-ac7b-003e356b696f"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "a9ba4749-c11f-5f35-a991-21796fb89ddc")
                 .statedAxioms(PublicIds.of("3e4e3641-efbb-5362-b5d8-5d6494fd0143"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_PROPERTIES))))
@@ -43,7 +43,7 @@ final class Section24 {
         set.concept("Component for semantic (SOLOR)", PublicIds.of("0bc32c16-698e-5719-8bd5-efa099c7d782")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("802f1865-bdf7-43ba-b285-57f420ba667a"), IkeTerm.ENGLISH_LANGUAGE, "Component for semantic (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9c2b55e7-d80a-41bf-8535-c44b74230311"), IkeTerm.ENGLISH_LANGUAGE, "Component", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1dffac55-e9cc-4dfa-97b2-f6eaa24178c6"), IkeTerm.ENGLISH_LANGUAGE, "Component for semantic", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1dffac55-e9cc-4dfa-97b2-f6eaa24178c6"), IkeTerm.ENGLISH_LANGUAGE, "The field naming the component a semantic is attached to: its attachment target.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("fb7b4cd0-6f74-4019-90e7-5190d86b3ada"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "0bc32c16-698e-5719-8bd5-efa099c7d782")
                 .statedAxioms(PublicIds.of("8946c895-34dc-59fb-8d5d-de6f100a2468"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_PROPERTIES))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("78945800-8094-4589-8fa2-a2825c42b671"))

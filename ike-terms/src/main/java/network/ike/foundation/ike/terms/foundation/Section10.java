@@ -165,7 +165,7 @@ final class Section10 {
         set.concept("Role restriction (SOLOR)", PublicIds.of("988bb02a-9b4a-4ef9-937e-fa8a6afc6c42")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9c30a496-3fc7-41c4-994d-627d5573c4f3"), IkeTerm.ENGLISH_LANGUAGE, "Role restriction (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("254bb31e-14eb-4133-bf29-0d0136d4020f"), IkeTerm.ENGLISH_LANGUAGE, "Role value", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("bd1981e4-c208-41f0-9086-ee708966a30c"), IkeTerm.ENGLISH_LANGUAGE, "Role restriction", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("bd1981e4-c208-41f0-9086-ee708966a30c"), IkeTerm.ENGLISH_LANGUAGE, "A restriction on which concepts may fill a role: the legacy carrier of role-value constraints.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("e1297b0a-d7ae-47b8-b02c-b0864c375e02"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "988bb02a-9b4a-4ef9-937e-fa8a6afc6c42")
                 .statedAxioms(PublicIds.of("d770960d-83da-5c4b-8020-80f74bf073c9"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("9138f75c-772b-455f-a478-71f93185787b"))

@@ -68,7 +68,7 @@ final class Section56 {
         set.concept("Primordial module", PublicIds.of("c2012321-3903-532e-8a5f-b13e4ca46e86")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("43c3dd2c-cf9f-4332-b6e7-def8d64ed50a"), IkeTerm.ENGLISH_LANGUAGE, "Primordial module", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("464700eb-9ebe-44ce-8b9c-c7615653abf5"), IkeTerm.ENGLISH_LANGUAGE, "Primordial module", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("5dbcabc3-7845-4848-85e7-cfbec95dc617"), IkeTerm.ENGLISH_LANGUAGE, "", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("5dbcabc3-7845-4848-85e7-cfbec95dc617"), IkeTerm.ENGLISH_LANGUAGE, "The module for content present from a store's beginning: the baseline's bootstrap module dimension.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("ee0307fc-8ab3-4eed-9ebd-c1c4534772fd"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c2012321-3903-532e-8a5f-b13e4ca46e86")
                 .statedAxioms(PublicIds.of("4051b732-5032-55f9-8e0c-122a42a27ff8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODULE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("8a0b3eff-2860-45b2-86c4-4c3fd2623e21"))

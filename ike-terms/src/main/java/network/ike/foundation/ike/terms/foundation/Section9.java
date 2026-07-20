@@ -56,7 +56,7 @@ final class Section9 {
         set.concept("Semantic field concepts (SOLOR)", PublicIds.of("b4316cb8-14fe-5b32-b03b-f5f966c87819")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("44326fea-270c-4e02-980a-c6647d6006af"), IkeTerm.ENGLISH_LANGUAGE, "Semantic field concepts (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("4b0567e0-9385-4f8f-bbc4-240431bcc05d"), IkeTerm.ENGLISH_LANGUAGE, "Semantic field concepts", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("adc5c6a6-e04c-4479-ac65-b908a10fc7bc"), IkeTerm.ENGLISH_LANGUAGE, "Semantic field concepts", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("adc5c6a6-e04c-4479-ac65-b908a10fc7bc"), IkeTerm.ENGLISH_LANGUAGE, "The concept type for concepts that serve as semantic field values in the base model.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("6df82d36-6256-442c-8709-7639c0e888a4"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "b4316cb8-14fe-5b32-b03b-f5f966c87819")
                 .statedAxioms(PublicIds.of("ecea102a-9c57-55f5-89d9-100260eccf8d"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCEPT_TYPE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("755022a5-339d-4409-8158-d7e99e2d7d24"))
