@@ -34,7 +34,7 @@ import java.util.UUID;
  * boundary and the import/export packaging</b>: every version of a defaults or template
  * chronology lives in the {@code Defaults and templates module}, and that module holds
  * only such content — the bidirectional live-and-die invariant
- * {@code FoundationFidelityIT} enforces. Consumers scope affirmatively (member set
+ * {@code LedgerGatesIT} enforces. Consumers scope affirmatively (member set
  * crossed with pattern); the attachment concepts never join domain member sets, so a
  * support declaration can never read as a domain assertion.
  * <p>

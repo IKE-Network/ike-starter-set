@@ -43,7 +43,7 @@ import dev.ikm.tinkar.terms.EntityProxy;
  *       match relation taxonomy below; evaluation dispatch stays code-sovereign via
  *       the {@code MemberMatchEvaluator} service seam whose {@code ConstraintTerm}
  *       bindings restate these identities in code (IKE-Network/ike-issues#889),
- *       admission gated by the bijection test in {@code FoundationFidelityIT}.</li>
+ *       admission gated by the bijection test in {@code LedgerGatesIT}.</li>
  * </ul>
  * A constraint semantic attaches to the <b>pattern being constrained</b> (its
  * referencedComponent) and is first-class content of that pattern: no module, no

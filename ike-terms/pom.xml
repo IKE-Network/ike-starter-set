@@ -20,7 +20,8 @@
     </description>
 
     <properties>
-        <!-- The exact artifact FoundationFidelityIT's baseline compares against —
+        <!-- The exact baseline artifact ConsumerMergeIT layers under the ledger and
+             BaselineIdentityFixtureGeneratorIT froze the identity-audit fixture from —
              the same coordinates the #869 generator was proven against
              (tinkar-core's GeneratorEndToEndIT). -->
         <tinkar-starter-data.version>20251009</tinkar-starter-data.version>
@@ -78,8 +79,9 @@
                 </executions>
             </plugin>
             <!-- ike-parent's pluginManagement pins the version/config but binds no
-                 executions by default — FoundationFidelityIT (*IT) needs this bound
-                 explicitly to run under `mvn verify`. -->
+                 executions by default — the *IT suites (LedgerGatesIT,
+                 BaselineIdentityAuditIT, ConsumerMergeIT) need this bound explicitly
+                 to run under `mvn verify`. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>

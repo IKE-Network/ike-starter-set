@@ -36,7 +36,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * "Sementic" FQN typo — are corrected in place at their section declarations under the
  * inception flatten (IKE-Network/ike-issues#894), so no restatement lives here.
  * <p>
- * Two {@code FoundationFidelityIT} gates hold the audit closed: every Model Feature's
+ * Two {@code LedgerGatesIT} gates hold the audit closed: every Model Feature's
  * meaning differs from its purpose, and every meaning/purpose concept carries a
  * definition whose normalized text differs from its labels — echoes cannot return.
  */

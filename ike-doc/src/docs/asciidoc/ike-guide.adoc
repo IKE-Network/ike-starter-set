@@ -47,7 +47,7 @@ than a date on every surface.
 // IKE Community, IkeFoundation module, Development path)). Stamp identity is derived from the
 // tuple itself — Stamp.stampUuid = T5(STAMP_NAMESPACE, status|time|author|module|path) — so this
 // UUID is the stamp's real, replay-stable PublicId, computed from the declared constituents;
-// FoundationFidelityIT's stamp-pair gate pins it (IKE-Network/ike-issues#894).
+// LedgerGatesIT's stamp-pair gate pins it (IKE-Network/ike-issues#894).
 .Anatomy of a STAMP badge — the set's inception stamp, dissected
 koncept-badge-anatomy::uuid=45b13d09-7c50-5495-8460-aef66a2ae615[kind=stamp, label="Active · Inception · IKE Community"]
 

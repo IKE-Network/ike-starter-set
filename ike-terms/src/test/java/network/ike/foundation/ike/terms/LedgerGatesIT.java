@@ -19,7 +19,6 @@ import dev.ikm.tinkar.common.id.IntIdList;
 import dev.ikm.tinkar.common.id.IntIdSet;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.service.CachingService;
-import dev.ikm.tinkar.common.service.EntityCountSummary;
 import dev.ikm.tinkar.common.service.PluggableService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -36,34 +35,26 @@ import dev.ikm.tinkar.entity.FieldDefinitionForEntity;
 import dev.ikm.tinkar.entity.PatternEntityVersion;
 import dev.ikm.tinkar.entity.SemanticEntity;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
-import dev.ikm.tinkar.entity.aggregator.TemporalEntityAggregator;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.entity.builder.Stamp;
-import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.entity.constraint.MemberMatchEvaluator;
-import dev.ikm.tinkar.entity.export.ExportEntitiesToProtobufFile;
 import dev.ikm.tinkar.entity.graph.DiGraphEntity;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
-import dev.ikm.tinkar.entity.load.LoadEntitiesFromProtobufFile;
 import dev.ikm.tinkar.terms.EntityFacade;
-import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -72,246 +63,67 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * The round-trip fidelity gate for the full starter-set ingest (IKE-Network/ike-issues#872):
- * replay the ingested ledger into a fresh store, export, and compare entity-for-entity
- * against the original unreasoned starter artifact — {@code GeneratorEndToEndIT}'s own
- * content-equivalence check (FQN text, isA parents), generalized from 3 hand-picked
- * samples to every one of the ~407 pre-existing components, run against the real,
- * committed {@link IkeSource} rather than a temp-dir/in-process-compiled stand-in.
+ * The default content-gate suite for the IkeFoundation ledger
+ * (IKE-Network/ike-issues#909): every gate here interrogates OUR authored content, in
+ * absolute terms, against an ephemeral ledger-only store — the {@link IkeSource} replayed
+ * into a fresh store exactly the way {@link LedgerReplayTest} and every product store
+ * (the extraction, ike-kb, the release changeset) is built. No baseline artifact is
+ * loaded: the Tinkar starter data was a one-time input whose value is captured in the
+ * ledger (KEC ruling, 2026-07-19), so these gates are free of every layered-store
+ * resolution quirk (the IKE-Network/ike-issues#875 class) and answer faster than the
+ * retired {@code FoundationFidelityIT} replay scaffold they descend from.
+ * <p>
+ * The other two purposes that scaffold served now live in cleanly-split homes:
+ * {@link BaselineIdentityAuditIT} carries the enduring interop guarantee (identity
+ * compatibility with the installed base, against a frozen fixture), and
+ * {@link ConsumerMergeIT} models the in-the-field merge a consumer performs
+ * (release-gate cadence).
  * <p>
  * One store lifecycle for the whole class (a second {@code PrimitiveData} lifecycle
- * cannot start once the first stops within a JVM): the baseline is loaded and
- * snapshotted once in {@link #loadAndSnapshot()}, then every {@code @Test} method
- * inspects that same already-replayed store.
+ * cannot start once the first stops within a JVM; surefire/failsafe fork one JVM per
+ * class): the ledger is replayed once in {@link #replayLedger()}, then every
+ * {@code @Test} method inspects that same store.
  */
-class FoundationFidelityIT {
+class LedgerGatesIT {
 
     private static StampCalculator calculator;
     private static LanguageCalculator languageCalculator;
-    private static final Map<Integer, String> FQN_BEFORE = new HashMap<>();
-    private static final Map<Integer, Set<Integer>> IS_A_PARENTS_BEFORE = new HashMap<>();
-    private static final Map<Integer, Integer> VERSION_COUNT_BEFORE = new HashMap<>();
-    private static int conceptsBefore;
-    private static int patternsBefore;
-
-    /** New concepts the identity-exact ingest itself mints: the module, the root, IKE Community. */
-    private static final int INGEST_BOOTSTRAP_CONCEPTS = 3;
-    /**
-     * New concepts {@code ConstraintPatternSet} (30 — see below),
-     * {@code PatternShapeRefinementSet} (2 for Comment pattern + 23 for the
-     * remaining 16 revised patterns + 7 for the IKE-Network/ike-issues#891
-     * Model-Feature pointer fixes = 32 — the #891 fixes mint Originated Module,
-     * Origin Module Set, Originated Path, Branch Source, Branch Point, Identified
-     * Component, Axiomatized Component, and Axiom Expression (+8) while Origin
-     * Subject — whose definition misdescribed the origin-path field as naming the
-     * record's subject — is never created (−1)), {@code AssemblageTerminologySet} (1 — Set
-     * membership), and {@code LegacyTerminologySet} (1 — Legacy) deliberately author, all
-     * IKE-Network/ike-issues#880 (meaning/purpose rigor across the pattern-shape audit,
-     * retiring "assemblage" from this set's own terminology, then flagging dormant/
-     * superseded content as Legacy); plus {@code DefaultsAndTemplatesSet} (3 — Default
-     * value concept, Template concept, Defaults and templates module,
-     * IKE-Network/ike-issues#885); plus {@code DataTypeDefaultsSet} (19 — sixteen field
-     * meaning concepts, one shared field purpose, and the Data Type Defaults Pattern's
-     * own meaning and purpose, IKE-Network/ike-issues#885).
-     * <p>
-     * {@code ConstraintPatternSet}'s 30 was 29 before the IKE-Network/ike-issues#890
-     * one-pattern-per-parameter-shape refactor: under the pre-bronze never-created
-     * doctrine, the "Field constraint kind" umbrella is replaced by "Taxonomy field
-     * constraint kind" (count-neutral rename-as-new-identity), the "Value-set field
-     * constraint" kind concept and the "Concept field constraint" mechanism concept are
-     * never created (−2 — value-set membership is now a pattern shape, not a kind, and
-     * the mechanism concept's narrative moved to Constrained Pattern), and the member
-     * match relation seam mints "Member match relation", "Equal match relation", and the
-     * "Match Rule" field purpose (+3).
-     */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 86;
-    /**
-     * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
-     * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
-     * Constraint Pattern's union-by-sentinel shape is split into the Taxonomy Field
-     * Constraint Pattern and the Value-set Field Constraint Pattern, one per parameter
-     * shape, alongside the Starter Set Author Roster and Preferred Reviewer worked
-     * examples), {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the
-     * IKE-native replacement for the dormant SOLORConceptAssemblage), and
-     * {@code DataTypeDefaultsSet} (1 — Data Type Defaults Pattern,
-     * IKE-Network/ike-issues#885) deliberately author.
-     */
-    private static final int AUTHORED_CONTENT_PATTERNS = 6;
 
     /**
-     * Components whose stated-axiom semantic's own historical versions resolve to more
-     * than one distinct (simpleIsA, parents) shape — detected directly from the raw
-     * version history (bypassing calculator "latest" resolution), before replay.
-     * Excluded from {@link #isAParentsUnchanged()}: for exactly these components,
-     * {@code Calculators.Stamp.DevelopmentLatestActiveOnly()}'s "latest" resolution is
-     * observed to answer differently before vs. after replay, even though replay adds
-     * no new version to their axiom semantic (confirmed empirically — same version
-     * count before and after). The likely cause is a path-coordinate bootstrap
-     * characteristic: before replay, no stamp anywhere in this store is on
-     * {@code TinkarTerm.DEVELOPMENT_PATH} (the raw starter data is entirely on
-     * Primordial path), so "latest on development" has no real cutoff to resolve
-     * against for a component whose own history spans more than one shape; after
-     * replay stamps ~407 new Development-path versions (this ledger's own inception
-     * stamps), a real cutoff exists for the first time and the true latest
-     * Primordial-path version becomes resolvable. This is a calculator/path-coordinate
-     * characteristic, not a defect in the #869 generator — nothing was silently
-     * generated wrong (no manifest note was dropped for these components; their axiom
-     * semantics gained no new version). Logged, not silently dropped; tracked as
-     * IKE-Network/ike-issues#875 for deeper investigation rather than fixed here.
+     * The absolute concept count of the ledger-only store — the
+     * IKE-Network/ike-issues#909 reframing of the retired baseline-relative arithmetic
+     * ({@code conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS}):
+     * 379 concepts transcribed from the one-time starter-data input, plus the 3
+     * identity-exact-ingest bootstrap concepts (the module, the root, IKE Community,
+     * IKE-Network/ike-issues#872), plus the 86 deliberately-authored new concepts whose
+     * composition {@link ConsumerMergeIT#AUTHORED_CONTENT_CONCEPTS} itemizes
+     * set-by-set (IKE-Network/ike-issues#880, #885, #890, #891). Grow this number only
+     * in the same change that authors new concepts — the gate refuses accidental
+     * minting and accidental loss alike.
      */
-    private static final Set<Integer> HISTORICALLY_AMBIGUOUS_AXIOM_NIDS = new HashSet<>();
+    private static final int LEDGER_CONCEPTS = 468;
 
     /**
-     * The stamp nids present in the baseline store before replay — every stamp any
-     * concept, pattern, or semantic version references. Snapshotted in
-     * {@link #loadAndSnapshot()}; {@link #replayIntroducesExactlyTheInceptionStampPair()}
-     * asserts the replay adds exactly the two inception stamps beyond these
-     * (IKE-Network/ike-issues#894).
+     * The absolute pattern count of the ledger-only store: 28 patterns transcribed from
+     * the one-time starter-data input plus the 6 deliberately-authored new patterns
+     * {@link ConsumerMergeIT#AUTHORED_CONTENT_PATTERNS} itemizes (Taxonomy Field
+     * Constraint Pattern, Value-set Field Constraint Pattern, Starter Set Author Roster
+     * Pattern, Preferred Reviewer Pattern, Solor Concepts Pattern, Data Type Defaults
+     * Pattern — IKE-Network/ike-issues#880, #885, #890).
      */
-    private static final Set<Integer> BASELINE_STAMP_NIDS = new HashSet<>();
-
-    /**
-     * UUIDs of pre-existing concepts whose declared fully qualified name deliberately
-     * diverges from the baseline artifact — each written in place at its section
-     * declaration under the inception flatten (IKE-Network/ike-issues#894) — mapped to
-     * the expected FQN text. {@link #fqnTextUnchanged()} asserts against this text for
-     * exactly these nids, instead of the pre-replay snapshot every other component is
-     * held to. This registry is the durable record of the baseline divergence.
-     */
-    private static final Map<UUID, String> DELIBERATELY_RENAMED_FQNS = Map.ofEntries(
-            // foundation.Section3/13/18: retiring "assemblage" from this set's own
-            // terminology (IKE-Network/ike-issues#880).
-            Map.entry(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"), "Concept pattern for logic coordinate"),
-            Map.entry(UUID.fromString("cfd2a47e-8169-5e71-9122-d5b73efd990a"), "Stated pattern for logic coordinate"),
-            Map.entry(UUID.fromString("9ecf4d76-4346-5e5d-8316-bdff48a5c154"), "Inferred pattern for logic coordinate"),
-            Map.entry(UUID.fromString("c060ffbf-e95f-5960-b296-8a3255c820ac"),
-                    "Dialect pattern preference list for language coordinate"),
-            // foundation.Section19: dropping misleading "display field" wording from the
-            // five ConceptToDataType-confirmed concepts (#880 follow-up).
-            Map.entry(UUID.fromString("a46aaf11-b37a-32d6-abdc-707f084ec8f5"), "String data type"),
-            Map.entry(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"), "Component data type"),
-            Map.entry(UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"), "Concept data type"),
-            Map.entry(UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"), "DiTree data type"),
-            Map.entry(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"), "Float data type"),
-            // foundation.Section19: the seven more "display field" FQNs the Data Type
-            // Defaults Pattern's field declarations anchor by UUID (IKE-Network/ike-issues#885).
-            Map.entry(UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32"), "Boolean data type"),
-            Map.entry(UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f"), "Integer data type"),
-            Map.entry(UUID.fromString("b413fe94-4ada-4aee-96f9-22be19699d40"), "Decimal data type"),
-            Map.entry(UUID.fromString("dbdd8df2-aec3-596b-88fc-7b83b5594a45"), "Byte array data type"),
-            Map.entry(UUID.fromString("b168ad04-f814-5036-b886-fd4913de88c8"), "Array data type"),
-            Map.entry(UUID.fromString("60113dfe-2bad-11eb-adc1-0242ac120002"), "DiGraph data type"),
-            Map.entry(UUID.fromString("9c3dfc88-51e4-5e51-a59a-88dd580162b7"), "Semantic data type"),
-            // The Component Id pair (KEC-decided): "display list"/"display set" FQNs evaded
-            // the textual "display field" rule on grammar, not merit (IKE-Network/ike-issues#885).
-            Map.entry(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"), "Component Id list data type"),
-            Map.entry(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"), "Component Id set data type"),
-            // foundation.Section71: the "Sementic version field pattern" FQN typo fix
-            // (IKE-Network/ike-issues#892). A pattern, not a concept — fqnTextUnchanged's
-            // snapshot covers concepts only, so this entry records the deliberate rename
-            // for the registry's own completeness (and gates it, should pattern FQNs ever
-            // join the snapshot).
-            Map.entry(UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), "Semantic version field pattern")
-    );
-    private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
-
-    /**
-     * UUID of the one pre-existing concept whose declared stated parent deliberately
-     * diverges from the baseline artifact — {@code Dynamic column data types (SOLOR)},
-     * filed under the new {@code Legacy} branch as a deprecation signal at its section
-     * declaration ({@code foundation.Section41}, IKE-Network/ike-issues#880 follow-up,
-     * #894) — mapped to its expected post-replay isA parent's own UUID.
-     * {@link #isAParentsUnchanged()} asserts against this single new parent for exactly
-     * this nid, instead of the pre-replay snapshot every other component is held to.
-     */
-    private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.of(
-            UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
-            UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")  // Legacy (IkeFoundation)
-    );
-    private static final Map<Integer, Integer> DELIBERATELY_REPARENTED_ISA_BY_NID = new HashMap<>();
-
-    /**
-     * UUIDs of the three upstream placeholder seed semantics on {@code Default Data
-     * Concept} — a GB-dialect and a US-dialect semantic whose field value is the
-     * {@code Blank Concept} placeholder, and an identifier semantic ("Default Data -
-     * Identifier Value") — that the upstream baseline contains but the ingest
-     * deliberately does not adopt (pre-bronze editorial: the starter set is
-     * pre-release, so erroneous seeds are simply never created;
-     * IKE-Network/ike-issues#887). This class loads the baseline into the same store
-     * the ledger then replays into, so the seeds are necessarily <em>present</em> here
-     * (empirically confirmed: the baseline itself carries them); what the ingest
-     * controls is adoption — the replay must add no version, no IKE provenance, on top
-     * of the untouched baseline chronologies. The version-count assertions cover
-     * concepts and patterns only, so this semantic-level deviation gets its own
-     * assertion: {@link #notAdoptedSeedSemanticsAreNeverAuthored()}, against the
-     * pre-replay counts snapshotted in {@link #NOT_ADOPTED_SEED_VERSIONS_BEFORE}.
-     */
-    private static final Set<UUID> DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS = Set.of(
-            UUID.fromString("17c5b61f-e121-4c54-9eb3-e106f3983417"), // GB dialect seed
-            UUID.fromString("8b7b452c-6de1-47b8-81fb-2e4cf58ca213"), // identifier seed
-            UUID.fromString("92548331-a460-4bdb-aa32-7162f2fb4f0d")  // US dialect seed
-    );
-    private static final Map<UUID, Integer> NOT_ADOPTED_SEED_VERSIONS_BEFORE = new HashMap<>();
+    private static final int LEDGER_PATTERNS = 34;
 
     @BeforeAll
-    static void loadAndSnapshot() throws Exception {
+    static void replayLedger() throws Exception {
         CachingService.clearAll();
-        ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT, Files.createTempDirectory("ike-fidelity").toFile());
+        ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT,
+                Files.createTempDirectory("ike-ledger-gates").toFile());
         PrimitiveData.selectControllerByName("Load Ephemeral Store");
         PrimitiveData.start();
-        File baseline = Path.of("target", "data", "tinkar-starter-data-unreasoned-pb.zip").toFile();
-        new LoadEntitiesFromProtobufFile(baseline).compute();
-
-        for (Map.Entry<UUID, String> entry : DELIBERATELY_RENAMED_FQNS.entrySet()) {
-            DELIBERATELY_RENAMED_FQNS_BY_NID.put(PrimitiveData.nid(entry.getKey()), entry.getValue());
-        }
-        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_REPARENTED_ISA.entrySet()) {
-            DELIBERATELY_REPARENTED_ISA_BY_NID.put(
-                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
-        }
-        for (UUID uuid : DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS) {
-            // expectSemantic doubles as a baseline-presence check: the seeds must come
-            // from the upstream baseline, and only from there (IKE-Network/ike-issues#887).
-            NOT_ADOPTED_SEED_VERSIONS_BEFORE.put(uuid,
-                    EntityHandle.get(PrimitiveData.nid(uuid)).expectSemantic().versions().size());
-        }
-
-        calculator = Calculators.Stamp.DevelopmentLatestActiveOnly();
-        languageCalculator = Calculators.Language.UsEnglishFullyQualifiedName(calculator.stampCoordinate());
-
-        int[] conceptCount = {0};
-        EntityService.get().forEachConceptEntity(concept -> {
-            conceptCount[0]++;
-            int nid = concept.nid();
-            languageCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
-                    .ifPresent(fqn -> FQN_BEFORE.put(nid, fqn));
-            IS_A_PARENTS_BEFORE.put(nid, latestIsAParents(nid));
-            VERSION_COUNT_BEFORE.put(nid, EntityHandle.get(nid).expectConcept().versions().size());
-            if (hasAmbiguousAxiomHistory(nid)) {
-                HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.add(nid);
-            }
-        });
-        conceptsBefore = conceptCount[0];
-
-        int[] patternCount = {0};
-        EntityService.get().forEachPatternEntity(pattern -> {
-            patternCount[0]++;
-            VERSION_COUNT_BEFORE.put(pattern.nid(),
-                    EntityHandle.get(pattern.nid()).expectPattern().versions().size());
-        });
-        patternsBefore = patternCount[0];
-
-        BASELINE_STAMP_NIDS.addAll(versionStampNids());
-
-        if (!HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.isEmpty()) {
-            System.out.println("FoundationFidelityIT: " + HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.size()
-                    + " component(s) excluded from isAParentsUnchanged (ambiguous axiom history, see"
-                    + " HISTORICALLY_AMBIGUOUS_AXIOM_NIDS javadoc): "
-                    + HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.stream().map(FQN_BEFORE::get).toList());
-        }
-
         // The real, compiled, committed source — not a temp-dir stand-in.
         new IkeSource().compose().write();
+        calculator = Calculators.Stamp.DevelopmentLatestActiveOnly();
+        languageCalculator = Calculators.Language.UsEnglishFullyQualifiedName(calculator.stampCoordinate());
     }
 
     @AfterAll
@@ -319,118 +131,42 @@ class FoundationFidelityIT {
         PrimitiveData.stop();
     }
 
-    /**
-     * Every stamp nid any concept, pattern, or semantic version in the store references.
-     * Every stamp the replay writes carries at least one content version, so the
-     * difference between the post-replay and baseline snapshots of this set is exactly
-     * the set of replay-introduced stamps (IKE-Network/ike-issues#894).
-     *
-     * @return the stamp nids in use by content versions
-     */
-    private static Set<Integer> versionStampNids() {
-        Set<Integer> stampNids = new HashSet<>();
-        EntityService.get().forEachConceptEntity(concept -> {
-            for (EntityVersion version : concept.versions()) {
-                stampNids.add(version.stampNid());
-            }
-        });
-        EntityService.get().forEachPatternEntity(pattern -> {
-            for (EntityVersion version : pattern.versions()) {
-                stampNids.add(version.stampNid());
-            }
-        });
-        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
-            for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
-                stampNids.add(((SemanticEntityVersion) versionObj).stampNid());
-            }
-        });
-        return stampNids;
-    }
+    @Test
+    @DisplayName("The store holds exactly the declared ledger: chronology counts equal declaration"
+            + " counts, at the pinned absolute numbers (IKE-Network/ike-issues#909)")
+    void storeHoldsExactlyTheDeclaredLedger() {
+        long declaredConcepts = Ike.SET.declarations().stream()
+                .filter(declaration -> declaration.kind() == KnowledgeSet.Declaration.Kind.CONCEPT)
+                .count();
+        long declaredPatterns = Ike.SET.declarations().stream()
+                .filter(declaration -> declaration.kind() == KnowledgeSet.Declaration.Kind.PATTERN)
+                .count();
+        int[] conceptChronologies = {0};
+        EntityService.get().forEachConceptEntity(concept -> conceptChronologies[0]++);
+        int[] patternChronologies = {0};
+        EntityService.get().forEachPatternEntity(pattern -> patternChronologies[0]++);
 
-    private static Set<Integer> latestIsAParents(int componentNid) {
-        Set<Integer> parents = new HashSet<>();
-        calculator.forEachSemanticVersionForComponentOfPattern(
-                EntityProxy.Concept.make(componentNid),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
-                (semanticVersion, entityVersion, patternVersion) -> {
-                    DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
-                    AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
-                    if (result.simpleIsA()) {
-                        result.parents().forEach(parent -> parents.add(parent.nid()));
-                    }
-                });
-        return parents;
-    }
-
-    /** Whether any of this component's raw stated-axiom semantic versions (not just
-     * calculator-latest) resolve to more than one distinct (simpleIsA, parents) shape. */
-    private static boolean hasAmbiguousAxiomHistory(int componentNid) {
-        Set<Object> distinctShapes = new HashSet<>();
-        for (int semanticNid : EntityService.get()
-                .semanticNidsForComponentOfPattern(componentNid, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid())) {
-            for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
-                dev.ikm.tinkar.entity.SemanticEntityVersion version =
-                        (dev.ikm.tinkar.entity.SemanticEntityVersion) versionObj;
-                DiTreeEntity tree = (DiTreeEntity) version.fieldValues().get(0);
-                AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
-                distinctShapes.add(result.simpleIsA()
-                        ? Set.copyOf(result.parents().stream().map(p -> p.nid()).toList())
-                        : "not-simple");
-            }
-        }
-        return distinctShapes.size() > 1;
+        assertEquals(declaredConcepts, conceptChronologies[0],
+                "every declared concept writes exactly one chronology and nothing else may mint"
+                        + " one — a mismatch means the replay minted or lost a concept");
+        assertEquals(declaredPatterns, patternChronologies[0],
+                "every declared pattern writes exactly one chronology and nothing else may mint"
+                        + " one — a mismatch means the replay minted or lost a pattern");
+        assertEquals(LEDGER_CONCEPTS, declaredConcepts,
+                "the ledger declares exactly " + LEDGER_CONCEPTS + " concepts (379 transcribed"
+                        + " + 3 ingest bootstrap + 86 authored — see LEDGER_CONCEPTS); grow the pin"
+                        + " only in the same change that deliberately authors new concepts");
+        assertEquals(LEDGER_PATTERNS, declaredPatterns,
+                "the ledger declares exactly " + LEDGER_PATTERNS + " patterns (28 transcribed"
+                        + " + 6 authored — see LEDGER_PATTERNS); grow the pin only in the same"
+                        + " change that deliberately authors new patterns");
     }
 
     @Test
-    @DisplayName("Every pre-existing component's FQN text is unchanged after replay"
-            + " — except DELIBERATELY_RENAMED_FQNS, which get their new, expected text")
-    void fqnTextUnchanged() {
-        for (Map.Entry<Integer, String> entry : FQN_BEFORE.entrySet()) {
-            int nid = entry.getKey();
-            String fqnAfter = languageCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
-                    .orElseThrow(() -> new AssertionError("FQN disappeared for nid " + nid));
-            String expected = DELIBERATELY_RENAMED_FQNS_BY_NID.getOrDefault(nid, entry.getValue());
-            assertEquals(expected, fqnAfter, "FQN drifted for nid " + nid);
-        }
-    }
-
-    @Test
-    @DisplayName("Every pre-existing component's latest isA parent set is unchanged after replay"
-            + " (except components with ambiguous axiom history, see HISTORICALLY_AMBIGUOUS_AXIOM_NIDS,"
-            + " and DELIBERATELY_REPARENTED_ISA, which get their new, expected parent)")
-    void isAParentsUnchanged() {
-        for (Map.Entry<Integer, Set<Integer>> entry : IS_A_PARENTS_BEFORE.entrySet()) {
-            int nid = entry.getKey();
-            if (HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.contains(nid)) {
-                continue;
-            }
-            Integer newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);
-            Set<Integer> expected = newParentNid != null ? Set.of(newParentNid) : entry.getValue();
-            assertEquals(expected, latestIsAParents(nid), "isA parents drifted for nid " + nid);
-        }
-    }
-
-    @Test
-    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge,"
-            + " no exceptions: pre-release, the ledger carries no revision layering"
-            + " (IKE-Network/ike-issues#894)")
-    void versionCountIncreasesByExactlyOne() {
-        for (Map.Entry<Integer, Integer> entry : VERSION_COUNT_BEFORE.entrySet()) {
-            int nid = entry.getKey();
-            boolean isPattern = EntityHandle.get(nid).isPattern();
-            int versionsAfter = isPattern
-                    ? EntityHandle.get(nid).expectPattern().versions().size()
-                    : EntityHandle.get(nid).expectConcept().versions().size();
-            assertEquals(entry.getValue() + 1, versionsAfter,
-                    "version count did not increase by exactly one for nid " + nid);
-        }
-    }
-
-    @Test
-    @DisplayName("Replay introduces exactly the inception stamp pair: the foundation-module stamp"
-            + " and its Defaults-module counterpart, both at the one declared inception time"
-            + " the platform's named inception instant (IKE-Network/ike-issues#894)")
-    void replayIntroducesExactlyTheInceptionStampPair() {
+    @DisplayName("The store's entire stamp set is exactly the inception pair: the foundation-module"
+            + " stamp and its Defaults-module counterpart, both at the platform's named inception"
+            + " instant (IKE-Network/ike-issues#894, reframed ledger-only by #909)")
+    void storeStampSetIsExactlyTheInceptionPair() {
         assertEquals(PrimitiveData.INCEPTION_EPOCH, Ike.INCEPTION.time(),
                 "the pair's declared time is the platform's named inception instant, which"
                         + " renders as the word \"Inception\" on every surface (KEC ruling,"
@@ -441,58 +177,41 @@ class FoundationFidelityIT {
                         + " badge-anatomy figure features — the tuple is part of the published"
                         + " knowledge-state");
 
-        Set<Integer> introduced = new HashSet<>(versionStampNids());
-        introduced.removeAll(BASELINE_STAMP_NIDS);
-        assertEquals(Set.of(PrimitiveData.nid(Ike.INCEPTION.publicId()),
-                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId())),
-                introduced,
-                "replay must write versions under exactly the two inception stamps — any other"
-                        + " stamp means a working-day or revision layer survived the flatten"
+        Set<Integer> inceptionPair = Set.of(PrimitiveData.nid(Ike.INCEPTION.publicId()),
+                PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId()));
+        // Stronger than the retired replay-introduced-versus-baseline difference: in a
+        // ledger-only store there is no "before", so the WHOLE stamp inventory must be
+        // the pair — any other stamp entity means a working-day or revision layer
+        // survived the flatten, or a third stamp appeared without editing Ike. One
+        // platform sentinel is exempt: StampRecord.nonExistentStamp()
+        // (PrimitiveData.NONEXISTENT_STAMP_UUID — Primordial · Pre-inception · Author ·
+        // Uninitialized · Uninitialized), which the entity write machinery mints to mark
+        // "not yet created at any visible point in history". It is bookkeeping, not
+        // provenance; the footprint assertion below proves it carries no content version.
+        Set<Integer> allStampNids = new HashSet<>();
+        PrimitiveData.get().forEachStampNid(allStampNids::add);
+        allStampNids.remove(PrimitiveData.nid(PrimitiveData.NONEXISTENT_STAMP_UUID));
+        assertEquals(inceptionPair, allStampNids,
+                "the ledger store's entire stamp inventory (platform non-existent-stamp sentinel"
+                        + " aside) must be exactly the two declared inception stamps"
                         + " (IKE-Network/ike-issues#894)");
+        assertEquals(inceptionPair, StoreInspection.versionStampNids(),
+                "every concept, pattern, and semantic version must carry one of the two declared"
+                        + " inception stamps — nothing, not even the platform sentinel, may stamp"
+                        + " content otherwise (IKE-Network/ike-issues#894)");
     }
 
     @Test
-    @DisplayName("Identity-exact ingest mints exactly the 3 hand-authored concepts (module, root, IKE Community), zero new patterns")
-    void noUnexpectedNewComponents() {
-        int[] conceptsAfter = {0};
-        EntityService.get().forEachConceptEntity(concept -> conceptsAfter[0]++);
-        int[] patternsAfter = {0};
-        EntityService.get().forEachPatternEntity(pattern -> patternsAfter[0]++);
-        assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS, conceptsAfter[0],
-                "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
-                        + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
-                        + " new concepts (see AUTHORED_CONTENT_CONCEPTS,"
-                        + " IKE-Network/ike-issues#880 and #885) — no other minting");
-        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS, patternsAfter[0],
-                "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
-                        + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
-                        + " Constraint Pattern, Starter Set Author Roster Pattern, Preferred Reviewer"
-                        + " Pattern, Solor Concepts Pattern, Data Type Defaults Pattern)");
-    }
-
-    @Test
-    @DisplayName("Export completes and accounts for every concept in the post-replay store")
-    void exportReconciles() throws Exception {
-        Path outFile = Files.createTempFile("ike-fidelity-export", ".zip");
-        EntityCountSummary summary = new ExportEntitiesToProtobufFile(outFile.toFile(),
-                new TemporalEntityAggregator(0L, Long.MAX_VALUE)).compute();
-        int[] conceptsAfter = {0};
-        EntityService.get().forEachConceptEntity(concept -> conceptsAfter[0]++);
-        assertTrue(summary.conceptCount() > 0, "export produced no concepts");
-        assertEquals(conceptsAfter[0], summary.conceptCount(),
-                "export's concept count must reconcile with the post-replay store");
-    }
-
-    @Test
-    @DisplayName("The three upstream placeholder seeds on Default Data Concept are never adopted"
-            + " — replay adds no version to the untouched baseline chronologies"
-            + " (IKE-Network/ike-issues#887)")
-    void notAdoptedSeedSemanticsAreNeverAuthored() {
-        for (Map.Entry<UUID, Integer> entry : NOT_ADOPTED_SEED_VERSIONS_BEFORE.entrySet()) {
-            assertEquals(entry.getValue(),
-                    EntityHandle.get(PrimitiveData.nid(entry.getKey())).expectSemantic().versions().size(),
-                    "upstream placeholder seed semantic " + entry.getKey() + " gained a version"
-                            + " from replay — the ingest must not adopt it (IKE-Network/ike-issues#887)");
+    @DisplayName("The three upstream placeholder seeds on Default Data Concept are absent from the"
+            + " ledger — never referenced, never authored (IKE-Network/ike-issues#887, reframed"
+            + " ledger-only by #909)")
+    void notAdoptedSeedsAreAbsentFromTheLedger() {
+        for (UUID uuid : BaselineIdentityAuditIT.DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS) {
+            assertFalse(PrimitiveData.get().hasUuid(uuid),
+                    "upstream placeholder seed semantic " + uuid + " is known to the ledger store"
+                            + " — the ledger must neither author nor reference it"
+                            + " (IKE-Network/ike-issues#887); only a consumer's baseline artifact"
+                            + " may carry it (see ConsumerMergeIT)");
         }
     }
 
@@ -526,7 +245,7 @@ class FoundationFidelityIT {
      * Resolves the nid of {@code Default value concept (IkeFoundation)} — the attachment
      * point every default value semantic references (IKE-Network/ike-issues#885).
      *
-     * @return the attachment concept's nid in the post-replay store
+     * @return the attachment concept's nid in the ledger store
      */
     private static int defaultValueConceptNid() {
         return PrimitiveData.nid(Ike.SET.uuidFor("Default value concept (IkeFoundation)"));
@@ -537,7 +256,7 @@ class FoundationFidelityIT {
      * module every defaults/template chronology lives and dies in
      * (IKE-Network/ike-issues#885).
      *
-     * @return the module concept's nid in the post-replay store
+     * @return the module concept's nid in the ledger store
      */
     private static int defaultsModuleNid() {
         return PrimitiveData.nid(Ike.SET.uuidFor("Defaults and templates module (IkeFoundation)"));
@@ -549,14 +268,14 @@ class FoundationFidelityIT {
      * attachment points, minted per purpose as each is needed
      * (IKE-Network/ike-issues#885).
      *
-     * @return the attachment concepts' nids in the post-replay store
+     * @return the attachment concepts' nids in the ledger store
      */
     private static Set<Integer> attachmentConceptNids() {
         Set<Integer> attachments = new HashSet<>();
         attachments.add(defaultValueConceptNid());
         int templateConceptNid = PrimitiveData.nid(Ike.SET.uuidFor("Template concept (IkeFoundation)"));
         EntityService.get().forEachConceptEntity(concept -> {
-            if (latestIsAParents(concept.nid()).contains(templateConceptNid)) {
+            if (StoreInspection.latestIsAParents(calculator, concept.nid()).contains(templateConceptNid)) {
                 attachments.add(concept.nid());
             }
         });
@@ -744,7 +463,7 @@ class FoundationFidelityIT {
         int parentNid = PrimitiveData.nid(Ike.SET.uuidFor("Member match relation (IkeFoundation)"));
         Set<Integer> relationNids = new HashSet<>();
         EntityService.get().forEachConceptEntity(concept -> {
-            if (latestIsAParents(concept.nid()).contains(parentNid)) {
+            if (StoreInspection.latestIsAParents(calculator, concept.nid()).contains(parentNid)) {
                 relationNids.add(concept.nid());
             }
         });
@@ -879,14 +598,14 @@ class FoundationFidelityIT {
         }
         for (int nid : meaningAndPurposeNids) {
             String label = languageCalculator.getFullyQualifiedNameText(nid)
-                    .map(FoundationFidelityIT::normalized).orElse("");
+                    .map(LedgerGatesIT::normalized).orElse("");
             String regularName = languageCalculator.getRegularDescriptionText(nid)
-                    .map(FoundationFidelityIT::normalized).orElse("");
+                    .map(LedgerGatesIT::normalized).orElse("");
             boolean hasRealDefinition = false;
             for (SemanticEntityVersion definitionVersion : languageCalculator
                     .getDescriptionsForComponentOfType(nid, TinkarTerm.DEFINITION_DESCRIPTION_TYPE.nid())) {
                 String definition = languageCalculator.getTextFromSemanticVersion(definitionVersion)
-                        .map(FoundationFidelityIT::normalized).orElse("");
+                        .map(LedgerGatesIT::normalized).orElse("");
                 if (!definition.isEmpty() && !definition.equals(label) && !definition.equals(regularName)) {
                     hasRealDefinition = true;
                 }

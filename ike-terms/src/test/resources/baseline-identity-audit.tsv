@@ -1,0 +1,411 @@
+# Frozen baseline identity fixture (IKE-Network/ike-issues#909) — DO NOT EDIT.
+# One row per baseline concept/pattern chronology of the pinned tinkar-starter-data unreasoned-pb artifact.
+# Columns: kind <tab> publicId UUIDs (comma, canonical order) <tab> rendered FQN (may be empty) <tab> latest isA parents (parents joined by '|', each parent's UUIDs comma-joined, sorted) <tab> ambiguous-history flag ('-' or 'ambiguous-history', the IKE-Network/ike-issues#875 class).
+# Regenerate ONLY when the pinned baseline artifact changes — see BaselineIdentityFixtureGeneratorIT.
+CONCEPT	00791270-77c9-32b6-b34f-d932569bd2bf,5e1fe940-8faf-11db-b606-0800200c9a66	Fully qualified name description type	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	02018e5a-46ba-5297-92f1-6931b9f98a12,06d905ea-c647-3af9-bfe5-2514e135b558,45021920-9567-11e5-8994-feff819cdc9f	English Language	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	02273b53-fce7-4cbe-921d-2cff67e81ad5	Field definition data type field	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	03004053-c23e-5206-8514-fb551dd328f4	Inactive state	10b873e2-8247-5ab5-9dec-4edef37fc219	-
+CONCEPT	03559f9d-f1e4-5485-894b-4d457f145d54	Boolean substitution (SOLOR)	8fdce1aa-ca82-5abc-8cfa-230c14688abc	-
+CONCEPT	0608e233-d79d-5076-985b-9b1ea4e14b4c	Status for version (SOLOR)	93f844df-38e5-5167-ba94-2c948b8bd07c	-
+CONCEPT	070deb74-acc5-46bf-b9c6-eaee1b58ef52	Starter Data Authoring (SOLOR)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	072e7737-e22e-36b5-89d2-4815f0529c63	Has Dose Form (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	081273cd-92dd-593c-9d9b-63d33838e70b	Concept constraints(SOLOR)	80ba281c-7d47-57cf-8100-82b69bce998b	-
+CONCEPT	0818dbb7-3fe1-59d7-99c2-c8dc42ff2cce	Russian language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	08f2fb74-980d-5157-b92c-4ff1eac6a506	Boolean (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	09aa031a-6290-4ec9-a44c-23928a767da3	Value Constraint Source (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	09f12001-0e4f-51e2-9852-44862a4a0db4	Active state	10b873e2-8247-5ab5-9dec-4edef37fc219	-
+CONCEPT	0bc32c16-698e-5719-8bd5-efa099c7d782	Component for semantic (SOLOR)	b717ae48-5488-5dda-a980-97855001cc99	-
+CONCEPT	0c3ca846-0374-5a5c-8da4-67e0e2e28868	Role type to add (SOLOR)	80ba281c-7d47-57cf-8100-82b69bce998b	-
+CONCEPT	0c464a4a-a0bc-53ef-9c01-ef5a049f2656	EL++ Stated Concept Definition (SOLOR)	7dccd042-b0b8-5cec-a1bc-6de676b92f4b	-
+CONCEPT	0d94ceeb-e24f-5f1a-84b2-1ac35f671db5	Dynamic referenced component restriction (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	0def37bc-7e1b-384b-a6a3-3e3ceee9c52e	Description case sensitive	c3dde9ea-b144-5f49-845a-20cc7d305250,f30b0312-2c85-3e65-8609-2d89f8437d34	-
+CONCEPT	0fcf44fb-d0a7-3a67-bc9f-eb3065ed3c8e,45021c36-9567-11e5-8994-feff819cdc9f	Spanish language	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	106f3ba1-63b8-5596-8dbe-524fa2e89fc0	Concept type (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	10b873e2-8247-5ab5-9dec-4edef37fc219	Status value	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	1137767a-ad8b-5bc5-9842-a1f9b09d1ecc	Description for dialect/description pair (SOLOR)	a27bbbf8-57b5-590c-8650-1247f6f963eb	-
+CONCEPT	12131382-1535-5a77-928b-6eacad221ea2	Path for user (SOLOR)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	127e7274-0b88-5519-a9db-85d4b9ce6a4a	Component semantic (SOLOR)	3daac6c4-78c5-5271-9c63-6e28f80e0c52	-
+CONCEPT	12b9e103-060e-3256-9982-18c1191af60e	Acceptable (foundation metadata concept)	96b61063-0d29-5aea-9652-3f5f328aadc3	-
+CONCEPT	1402d311-0b4b-4014-81d2-e715c6696346	Data Property Set Axioms	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	ambiguous-history
+CONCEPT	1412bd09-eb0c-5107-9756-10c1c417d385	EL++ Stated terminological axioms	b3ec50c4-e8cf-4720-b192-31374705f3b7	-
+CONCEPT	14171f07-e74f-409a-b555-06b478818f76	Field definition field	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	1464f995-d658-5e9d-86e0-8308a6fa57eb	Korean Language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	147832d4-b9b8-5062-8891-19f9c4e4760a	Comment (SOLOR)	3fe77951-58c9-51b3-8e7e-65edcf7ace0a	-
+CONCEPT	14eadb10-fbd0-5999-af37-05728a8503af	Description-logic profile (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	15293325-c16b-4f2e-8109-5b22b3355bcd	Time field	e9bde1bc-aa72-430a-afe1-aa8aec8833b4	ambiguous-history
+CONCEPT	15489c68-673d-503e-bff7-e9d59e5dc15c	Semantic field name (SOLOR)	b717ae48-5488-5dda-a980-97855001cc99	-
+CONCEPT	16486419-5d1c-574f-bde6-21910ad66f44	Concept assemblage for logic coordinate (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	1655edd8-7b73-52c5-98b0-263d1ab3a90b	Concept details tree table (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	1711815f-99a1-5d1a-8f1e-75dc7bf41928	Correlation expression (SOLOR)	8f682e00-3d9e-5506-bd19-b2169d6c8752	-
+CONCEPT	17915e0d-ed38-3488-a35c-cda966db306a	Description initial character case sensitive (SOLOR)	c3dde9ea-b144-5f49-845a-20cc7d305250,f30b0312-2c85-3e65-8609-2d89f8437d34	-
+CONCEPT	19305aff-95d9-55d9-b015-825cc68eadc7	Module options for edit coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	196838c5-55f4-4e40-8618-b9ce60685c2f	Public ID field	27d3905b-b19a-41ff-bed1-fc55f49f8ce4	ambiguous-history
+CONCEPT	19dd5dd3-1075-4113-a437-5f1f7c2d55bc	Semantic pattern field	751790c7-e1e4-42bc-b531-54c54bd6eebd	ambiguous-history
+CONCEPT	1a852426-422a-48db-a618-c906ac4c8e6c	Component versions field	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	1b9d9f95-fc0a-55ac-b2e6-7c8b37660046	Path concept (SOLOR)	106f3ba1-63b8-5596-8dbe-524fa2e89fc0	-
+CONCEPT	1c0023ed-559e-3311-9e55-bd4bd9e5628f	Gretel (User)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	1cdacc80-0dea-580f-a77b-8a6b273eb673	Digraph for logic coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	1d1c2073-d98b-3dd3-8aad-a19c65aa5a0c	Signed integer (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	1f200ca6-960e-11e5-8994-feff819cdc9f	Development path	4459d8cf-5a6f-3952-9458-6d64324b27b7	-
+CONCEPT	1f20134a-960e-11e5-8994-feff819cdc9f,2faa9260-8fb2-11db-b606-0800200c9a66	Master path	4459d8cf-5a6f-3952-9458-6d64324b27b7	-
+CONCEPT	1f201e12-960e-11e5-8994-feff819cdc9f	EL++ logic profile (SOLOR)	14eadb10-fbd0-5999-af37-05728a8503af	-
+CONCEPT	1f201fac-960e-11e5-8994-feff819cdc9f	SnoRocket classifier (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	1fa63819-5ac1-5938-95b1-47871a5f2b17	Logic coordinate properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	1fbf42e2-42b7-591f-b7fd-ba5de659529e	Instant literal (SOLOR)	208a40a7-e615-5efa-9de0-2e2a5a8488b7	-
+CONCEPT	20746b91-521a-45a6-89da-0fe32384a67f	Axioms	bc59d656-83d3-47d8-9507-0e656ea95463	ambiguous-history
+CONCEPT	208a40a7-e615-5efa-9de0-2e2a5a8488b7	Literal value (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	2110c10c-9174-55aa-8ffe-91650c77d0b3	Path options for edit coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	21d11bd1-3dab-5034-9625-81b9ae2bd8e7,45022280-9567-11e5-8994-feff819cdc9f,674ad858-0224-3f90-bcf0-bc4cab753d2d	Dutch language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	2300a210-d722-48af-8c36-118a3f980312	Include Lower Bound		ambiguous-history
+CONCEPT	23483990-b738-5f43-bc03-befd43928a37	Concept substitution (SOLOR)	8fdce1aa-ca82-5abc-8cfa-230c14688abc	-
+CONCEPT	2352b7a2-11fd-5a68-8ece-fcb3b36570da	El profile set operator (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	23f69f6f-a502-5876-a835-2b1b4d5ce91e	Allowed states for stamp coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	266f1bc3-3361-39f3-bffe-69db9daea56e	Preferred (SOLOR)	96b61063-0d29-5aea-9652-3f5f328aadc3	-
+CONCEPT	26ca4590-bbe5-327c-a40a-ba56dc86996b	Laterality (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	27d3905b-b19a-41ff-bed1-fc55f49f8ce4	String field	02273b53-fce7-4cbe-921d-2cff67e81ad5	ambiguous-history
+CONCEPT	28608bd3-ac73-4fe8-a5f0-1efe0d6650a8	Stated Definition (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	2ba2ef47-30af-57ec-9073-38693f020d7e	Chronicle properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	2c940bcf-22a8-5fc9-b232-580021e758ed	Or (SOLOR)	3fdcaadc-d972-58e9-84f1-b3a39903b076	-
+CONCEPT	2faa9262-8fb2-11db-b606-0800200c9a66,680f3f6c-7a2a-365d-b527-8c9a96dd1a94	UUID data type (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	300126d1-2604-579f-a59b-e3c1179a173a	Russian dialect (SOLOR)	b9c34574-c9ac-503b-aa24-456a0ec949a2	-
+CONCEPT	31173582-a49d-51c6-813f-f42d0976aaea	Position on path (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	315cd879-1557-5a30-b325-a5d3df9e1c2b	Polish dialect (SOLOR)	b9c34574-c9ac-503b-aa24-456a0ec949a2	-
+CONCEPT	318622e6-dd7a-5651-851d-2d5c2af85767	Array (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	32f64fc6-5371-11eb-ae93-0242ac130002	DiTree display field	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	337e93ba-531b-59a4-8153-57dca00e58d2	Author for edit coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	33aa2d26-0541-557c-b796-904cbf245101	Czech language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	3415a972-7850-57cd-aa86-a572ca1c2ceb	Creative Commons BY license (SOLOR)	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	347cd3f2-8130-5032-8960-091e194e9afe	Vertex state set (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	349161ba-9a6a-5c9c-a78f-281f19cfc057	Users module (SOLOR)	40d1c869-b509-32f8-b735-836eac577a67	-
+CONCEPT	349cfd1d-10fd-5f8d-a0a5-d5ef0932b4da	Destination module for edit coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	34a6dae3-e5e9-50db-a9ee-69c1067911d8	KOMET module (SOLOR)	40d1c869-b509-32f8-b735-836eac577a67	-
+CONCEPT	351955ff-30f4-5806-a0a5-5dda79756377	Description core type (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	352c821b-7a11-454c-a127-48ad3206573d	Pattern purpose field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	35fd4750-6e43-5fa3-ba7f-f2ad376052bc	Withdrawn state	10b873e2-8247-5ab5-9dec-4edef37fc219	-
+CONCEPT	3642d9a3-8e23-5289-836b-366c0b1e2900	Logically equivalent to (Solor)	e9252365-7a43-57ea-bf94-3f23bab4ef99	-
+CONCEPT	37c35a88-9e27-42ca-b626-186773c4b612	Reference Range Minimum (SOLOR)	87ce975b-309b-47f4-a6c6-4ae6df6649a1	-
+CONCEPT	38e0c7b8-1e33-56a2-9eb2-ee20c4960684	Language nid for language coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	3a08b5f1-f17e-4db5-8cf9-c6540f26f241	Concept versions field	1a852426-422a-48db-a618-c906ac4c8e6c	ambiguous-history
+CONCEPT	3b0dbd3b-2e53-3a30-8576-6c7fa7773060,3fde38f6-e079-3cdc-a819-eda3ec74732d	Stated premise type (SOLOR)	b868bd83-5cd4-5d84-9cf7-b08674fbc79b	-
+CONCEPT	3d821e64-a2ee-4414-8949-1bc92ef5d5b6	STAMP field	8bd36a0c-d05d-46b7-a79a-d11477705cc1	ambiguous-history
+CONCEPT	3daac6c4-78c5-5271-9c63-6e28f80e0c52	Semantic type (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	3e56c6b6-5371-11eb-ae93-0242ac130002	Vertex display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	3ef4311c-70c0-5149-9e06-53d745f85b15	Object Properties (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	3fdcaadc-d972-58e9-84f1-b3a39903b076	Connective operator (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	3fe047f0-33b0-5254-91c2-43e65f90d30b	Module exclusion set for stamp coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	3fe77951-58c9-51b3-8e7e-65edcf7ace0a	Annotation type (SOLOR)	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	40afdda5-89d6-4b80-8181-1ddd6eb92dc8	Unit of Measure	b253e725-d7cd-46e3-bc3a-5db8b3ffbd52	ambiguous-history
+CONCEPT	40d1c869-b509-32f8-b735-836eac577a67	Module	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	4111ba1e-c818-4c5d-9fed-34d07298d009	Semantic referenced component field	8bd36a0c-d05d-46b7-a79a-d11477705cc1	ambiguous-history
+CONCEPT	4211cf36-bd75-586a-805c-51f059e2eaaa	View coordinate key (SOLOR)	4905348c-ba1d-58ae-821f-52877d9acee3	-
+CONCEPT	4229683e-8772-4936-abd5-edc5a180f4d1	Boolean field	02273b53-fce7-4cbe-921d-2cff67e81ad5	ambiguous-history
+CONCEPT	42dff20f-5ed2-559a-91ad-91d44a573c63	Language coordinate name (SOLOR)	ea1a52f7-0305-5487-8766-e846330f167a	-
+CONCEPT	4459d8cf-5a6f-3952-9458-6d64324b27b7	Path	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	44c7eab6-fdb8-5427-9d7a-52ab63f7a6f9	Description type preference list for language coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	45167fb6-e01d-53a8-8be3-768aae18729d	Inverse tree list (SOLOR)	d6151a47-4610-5a5c-abd0-42c82be9b633	-
+CONCEPT	462862d4-5df9-426e-b785-a1264e24769f	Module origins (SOLOR)	1fa63819-5ac1-5938-95b1-47871a5f2b17	-
+CONCEPT	46ae9325-dd24-5008-8fda-80cf1f0977c7	Role	1412bd09-eb0c-5107-9756-10c1c417d385|a63f4bf2-a040-11e5-8994-feff819cdc9f,f97abff6-a221-57a1-9cd6-e79e723bfe2a,051fbfed-3c40-3130-8c09-889cb7b7b5b6|b6d3be7d-1d7f-5c44-a425-5357f878c212	-
+CONCEPT	47a787a7-bdce-528d-bfcc-fde1add8d599	Directed graph (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	4905348c-ba1d-58ae-821f-52877d9acee3	Query clauses (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	49f41695-66a7-5471-846d-21c168f54c19	Boolean literal (SOLOR)	208a40a7-e615-5efa-9de0-2e2a5a8488b7	-
+CONCEPT	4a32d2ad-baca-42b5-a432-4c4ae6431668	Default Data Concept	ae7069d1-67fa-4470-a56f-0d24a8fcea83	ambiguous-history
+CONCEPT	4b90e89d-2a0e-5ca3-8ae5-7498d148a9d2	Classifier for logic coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	4bc6c333-7fc9-52f1-942d-f8decba19dc2	Inferred navigation (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	4be7118f-e6ab-5dc7-bcba-b2cc8b028492	Unmodeled role concept (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	4d9707d8-adf0-5b15-89fc-039e4ff6fec8	Navigation (SOLOR)	c3dffc48-6493-54df-a2f0-14be8ba03091	-
+CONCEPT	4e627b9c-cecb-5563-82fc-cb0ee25113b1	Display Fields	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	4eb9de0d-7486-5f18-a9b4-82e3432f4103	Author for version (SOLOR)	93f844df-38e5-5167-ba94-2c948b8bd07c	-
+CONCEPT	4fa29287-a80e-5f83-abab-4b587973e7b7	Membership semantic (SOLOR)	3daac6c4-78c5-5271-9c63-6e28f80e0c52	-
+CONCEPT	4fd69aed-556f-4938-94cc-ea7ea707ccef	Semantic versions set	54d670f1-234d-485a-a354-e1fa7eea1bf2	ambiguous-history
+CONCEPT	4fda23b8-b016-5d2a-97d5-7ff779d60701	Author for stamp coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	5144d836-18d8-4881-a377-2d4640b710a9	Temporal Axiom		ambiguous-history
+CONCEPT	529a7069-bd33-59e6-b2ce-537fa874360a	Development module (SOLOR)	40d1c869-b509-32f8-b735-836eac577a67	-
+CONCEPT	52b3e38a-fccb-4779-aa61-4e87abd56419	Interval Lower Bound	b253e725-d7cd-46e3-bc3a-5db8b3ffbd52	ambiguous-history
+CONCEPT	53f866d0-fd61-5c85-a16c-150bd619a0ac	Transitive Feature (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	54d670f1-234d-485a-a354-e1fa7eea1bf2	Component versions set	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	55f74246-0a25-57ac-9473-a788d08fb656	Uninitialized Component (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	56599345-31c5-5817-9d36-57dd3a626b3a	Instant substitution (SOLOR)	8fdce1aa-ca82-5abc-8cfa-230c14688abc	-
+CONCEPT	57271621-3f3c-58dd-8148-2674bc11b7e5	Case significance concept nid for description (SOLOR)	732aad24-4add-59d6-bbc9-840a8b9dc754	-
+CONCEPT	58e82fc4-1492-5cf8-8997-43800360bbd6	Irish language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	5a2e7786-3e41-11dc-8314-0800200c9a66	Extended description type (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	5a87935c-d654-548f-82a2-0c06e3801162	Identifier Source	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	5c9b5844-1434-5111-83d5-cb7cb0be12d9	Equal to (SOLOR)	843b0b55-8785-5544-93f6-581da9cf1ff3	-
+CONCEPT	5e76a88e-794a-5fdd-8eb2-4a9e4b1386b6	Feature (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	5e77558d-97d0-52b6-adf0-d54beb97b3a6	KOMET user list (SOLOR	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	5f144b18-76a8-5c7e-8480-55a5030d707f	German Language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	60113dfe-2bad-11eb-adc1-0242ac120002	DiGraph display field	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	614017af-9903-53d9-aab4-15fd02193dce	Stated navigation (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	6167efcb-50e8-534d-9827-fdd60b02ae00	Order for concept attachments  (SOLOR)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	61c1a544-2acf-58cd-8cc0-9ac581d4227e	KOMET user (SOLOR)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	61da7e50-f606-5ba0-a0df-83fd524951e7	Dynamic column data types (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	6565f774-ff6c-4882-832f-31ddc462adf7	Interval Upper Bound	b253e725-d7cd-46e3-bc3a-5db8b3ffbd52	ambiguous-history
+CONCEPT	65af466b-360c-58b2-8b7d-2854150029a8	Greater than (SOLOR)	843b0b55-8785-5544-93f6-581da9cf1ff3	-
+CONCEPT	65bf3b7f-c854-36b5-81c3-4915461020a8	Has Active Ingredient (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	6622a391-e2e6-45a0-97e1-c58cd0184092	Path field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	67cd64f1-96d7-5110-b847-556c055ac063	Module for version (SOLOR)	93f844df-38e5-5167-ba94-2c948b8bd07c	-
+CONCEPT	6979e268-0b59-542f-bac0-313c5ddf6a2e	Czech dialect (SOLOR)	b9c34574-c9ac-503b-aa24-456a0ec949a2	-
+CONCEPT	69ee3f13-e2ba-5a96-9b91-5eecfad8e587	Order for description attachments (SOLOR)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	6b8ed642-de72-4aee-953d-42e5db92c0ab	Data property set	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	6d9cd46e-8a8f-310a-a298-3e55dcf7a986	Sufficient concept definition (SOLOR)	dfa80f36-dbe6-5006-8509-c497a26ceab5	-
+CONCEPT	6dfacbd5-8344-5794-9fda-bec95b2aa6c9	Less than or equal to (SOLOR)	843b0b55-8785-5544-93f6-581da9cf1ff3	-
+CONCEPT	6e447636-1085-32ff-bc36-6748a45255de	US Nursing dialect (SOLOR)	bca0a686-3516-3daf-8fcf-fe396d13cfad	-
+CONCEPT	6e6a112e-7d8c-53c7-aaf1-c46e2d69743c	Path origins (SOLOR)	ec41e427-f009-5e45-a643-6dc658d63d83	-
+CONCEPT	6edf734d-7f57-5430-9164-6ee0824fd94b	Description focus (SOLOR)	f1f179d0-26af-5123-9b29-9fc6cd01dd29	-
+CONCEPT	6efe7087-3e3c-5b45-8109-90d7652b1506	Float display field	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	6f96e8cf-5568-5e49-8a90-aa6c65125ee9	Less than (SOLOR)	843b0b55-8785-5544-93f6-581da9cf1ff3	-
+CONCEPT	6fa58611-af37-402e-a0c2-6ee1d6068651	Interval Role Type	76320274-be2a-5ba0-b3e8-e6d2e383ee6a	ambiguous-history
+CONCEPT	6fb2eb9c-fb9e-5959-802c-fb17bcba3079	Korean dialect (SOLOR)	b9c34574-c9ac-503b-aa24-456a0ec949a2	-
+CONCEPT	700546a3-09c7-3fc2-9eb9-53d318659a09	Definition description type	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	715bd36d-6090-5b37-8ae7-88c9e532010e	Sandbox path module (SOLOR)	c5daf0e9-30dc-5b3e-a521-d6e6e72c8a95	-
+CONCEPT	7172e6ac-a05a-5a34-8275-aef430b18207	Double (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	722f5ac8-1f5c-5d8f-96bb-370d79596f66	Uncategorized phenomenon (SOLOR)	c2e8bc47-3353-5e02-b0d1-2a5916efed4d	-
+CONCEPT	72765109-6b53-3814-9b05-34ebddd16592	Object (SOLOR)	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	72d58983-b1e1-4ca9-833f-0e40c1defd39	Reference Range Maximum (SOLOR)	87ce975b-309b-47f4-a6c6-4ae6df6649a1	-
+CONCEPT	732aad24-4add-59d6-bbc9-840a8b9dc754	Description version properties (SOLOR)	93f844df-38e5-5167-ba94-2c948b8bd07c	-
+CONCEPT	748e073c-fea7-58dd-8aa3-f18fdd82ddfc	Path for path coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	74bbdaff-f061-5807-b334-3c88ac3e9421	Case insensitive evaluation (SOLOR)	b1531e68-4e7a-5194-b1f9-9aaace269372	-
+CONCEPT	74dffbed-0bef-44a4-8ad6-8cff84fe47ae	Field definition meaning field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	751790c7-e1e4-42bc-b531-54c54bd6eebd	Pattern field	8bd36a0c-d05d-46b7-a79a-d11477705cc1	ambiguous-history
+CONCEPT	75d00a0d-8e46-5e42-ad34-3e46269b28a3	French dialect (SOLOR)	b9c34574-c9ac-503b-aa24-456a0ec949a2	-
+CONCEPT	76320274-be2a-5ba0-b3e8-e6d2e383ee6a	Role type	46ae9325-dd24-5008-8fda-80cf1f0977c7	-
+CONCEPT	78972f14-e0f6-5f72-bf82-59310b5f7b26	Logic coordinate name (SOLOR)	1fa63819-5ac1-5938-95b1-47871a5f2b17	-
+CONCEPT	7b8916ab-fd50-41df-8fc2-0b2a7a78be6d	Maximum Value Operator (SOLOR)	843b0b55-8785-5544-93f6-581da9cf1ff3	-
+CONCEPT	7b8ecbbf-55b4-41bc-acbf-51824e74446a	Pattern versions field	1a852426-422a-48db-a618-c906ac4c8e6c	ambiguous-history
+CONCEPT	7bbd4210-381c-11e7-9598-0800200c9a66	Model concept	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	7c21b6c5-cf11-5af9-893b-743f004c97f5	Integrated Knowledge Management (SOLOR)	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	7dccd042-b0b8-5cec-a1bc-6de676b92f4b	Logical Definition	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	7e4a96fc-0522-4d74-a7d1-ca74be3bc236	Field value field	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	7e779e4a-61ed-5c4a-aacc-03cf524b7c73	Reflexive Feature (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	806c7f9f-52f9-4b53-9758-122899b28a76	Concept versions set	54d670f1-234d-485a-a354-e1fa7eea1bf2	ambiguous-history
+CONCEPT	80710ea6-983c-5fa0-8908-e479f1f03ea9	Sandbox path	4459d8cf-5a6f-3952-9458-6d64324b27b7	-
+CONCEPT	80ba281c-7d47-57cf-8100-82b69bce998b	Action properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	80cd4978-314d-46e3-bc13-9980280ae955	Example UCUM Units (SOLOR)	c2e8bc47-3353-5e02-b0d1-2a5916efed4d	-
+CONCEPT	81487d5f-6115-51e2-a3b3-93d783888eb8	Description semantic	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	843b0b55-8785-5544-93f6-581da9cf1ff3	Concrete value operator (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	845274b5-9644-3799-94c6-e0ea37e7d1a4	UNIVERSALLY_UNIQUE_IDENTIFIER	5a87935c-d654-548f-82a2-0c06e3801162	-
+CONCEPT	850bc47d-5235-5bce-99f4-c41f8a163d69	Dialect for dialect/description pair (SOLOR)	a27bbbf8-57b5-590c-8650-1247f6f963eb	-
+CONCEPT	85ff6e8f-9151-5428-a5f0-e07844b69260	Double display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	862cc189-bbcb-51a0-89a4-16e1854be247	Root for logic coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	87118daf-d28c-55fb-8657-cd6bc8425600	Description	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	87ce975b-309b-47f4-a6c6-4ae6df6649a1	Reference Range (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	8aa48cfd-485b-5140-beb9-0d122f7812d9	Sufficient set	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	-
+CONCEPT	8aa6421d-4966-5230-ae5f-aca96ee9c2c1	Exact (SOLOR)	8d76ead7-6c75-5d25-84d4-ca76d928f8a6	-
+CONCEPT	8af1045e-1122-5072-9f29-ce7da9337915	Referenced component subtype restriction (SOLOR)	f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f	-
+CONCEPT	8b23e636-a0bd-30fb-b8e2-1f77eaa3a87e,01707e47-5f6d-555e-80af-3c1ffb297eaa,45021dbc-9567-11e5-8994-feff819cdc9f	French Language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	8b6c69d7-a5aa-4db2-bcea-8c7b2817b02f	Semantic field	8bd36a0c-d05d-46b7-a79a-d11477705cc1	ambiguous-history
+CONCEPT	8bd36a0c-d05d-46b7-a79a-d11477705cc1	Component field	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	8bdcbe5d-e92e-5c10-845e-b585e6061672	Text for description	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	8bfba944-3965-3946-9bcb-1e80a5da63a2,d6fad981-7df6-3388-94d8-238cc0465a79	Regular name description type	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	8c55fb86-92d8-42a9-ad70-1e23abbf7eec	Value Constraint (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	8d76ead7-6c75-5d25-84d4-ca76d928f8a6	Grouping (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	8da1c508-c2a2-4899-b26d-87f8b98a7558	Axiom Syntax (SOLOR)	20746b91-521a-45a6-89da-0fe32384a67f	ambiguous-history
+CONCEPT	8dcfc1a1-31f2-46f7-8247-0a17a6d7c6c0	Semantic field fields set	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	8f682e00-3d9e-5506-bd19-b2169d6c8752	Correlation properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	8fa63274-70e3-5b11-9669-1b7bdb372b1a,e9645d95-8a1f-3825-8feb-0bc2ee825694,45022410-9567-11e5-8994-feff819cdc9f	Lithuanian language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	8fdce1aa-ca82-5abc-8cfa-230c14688abc	Field substitution (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	902f97b6-2ef4-59d7-b6f9-01278a00061c	Referenced component type restriction (SOLOR)	f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f	-
+CONCEPT	91687b29-3bbb-540b-9de6-91246c75afd0	Concept to find (SOLOR)	80ba281c-7d47-57cf-8100-82b69bce998b	-
+CONCEPT	91e9080f-78f6-5d23-891d-f5b6e77995c8	Existential restriction	f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f	-
+CONCEPT	927da7ac-3403-5ccc-b07b-88f60cc3a5f8	Any component (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	93239959-50e6-4645-b5fc-6d47da92e666	Field definition purpose field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	93f844df-38e5-5167-ba94-2c948b8bd07c	Version Properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	96b61063-0d29-5aea-9652-3f5f328aadc3	Description acceptability	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	975de83e-ab99-4a9e-9051-4cbf310a2123	Field definitions set	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	9784a791-8fdb-32f7-88da-74ab135fe4e3,45022848-9567-11e5-8994-feff819cdc9f	Swedish language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	987681fb-f3ef-595d-90e2-067baf2bc71f,45021f10-9567-11e5-8994-feff819cdc9f,7e462e33-6d94-38ae-a044-492a857a6853	Danish language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	988bb02a-9b4a-4ef9-937e-fa8a6afc6c42	Role restriction (SOLOR)	46ae9325-dd24-5008-8fda-80cf1f0977c7	-
+CONCEPT	990b7e1d-3dcc-4c6e-a068-e30400607d50	Include Upper Bound		ambiguous-history
+CONCEPT	996d0023-a355-422f-a84d-16dda6ece1b0	Pattern meaning field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	9a47a5db-42a6-49ee-9083-54bc305a9456	Property sequence implication	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	9a84fecf-708d-5de4-9c5f-e17973229e0f	Byte array (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	9afc988a-3724-4754-8b74-651426472b19	Interval property set	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	ambiguous-history
+CONCEPT	9c3dfc88-51e4-5e51-a59a-88dd580162b7	Semantic display field type (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	9c6fbddd-58bd-5881-b926-c813bbff849b	Axiom focus (SOLOR)	f1f179d0-26af-5123-9b29-9fc6cd01dd29	-
+CONCEPT	9ecc154c-e490-5cf8-805d-d2865d62aef3,1f2016a6-960e-11e5-8994-feff819cdc9f	SOLOR overlay module (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	9ecf4d76-4346-5e5d-8316-bdff48a5c154	Inferred assemblage for logic coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	a0096ba1-0718-4c03-ad8f-8143c44091e7	Lower Bound Open	b253e725-d7cd-46e3-bc3a-5db8b3ffbd52	ambiguous-history
+CONCEPT	a00c5ad7-5b8a-5592-a28c-64057dd3caab	Description type for description (SOLOR)	732aad24-4add-59d6-bbc9-840a8b9dc754	-
+CONCEPT	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	Meaning	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	a254ccee-ef02-4504-9645-0a2ed7af955d	Pattern versions set	54d670f1-234d-485a-a354-e1fa7eea1bf2	ambiguous-history
+CONCEPT	a27bbbf8-57b5-590c-8650-1247f6f963eb	Description dialect pair (SOLOR)	732aad24-4add-59d6-bbc9-840a8b9dc754	-
+CONCEPT	a293a9a0-eb1e-5418-83c7-bec376b62245	Path coordinate name (SOLOR)	ec41e427-f009-5e45-a643-6dc658d63d83	-
+CONCEPT	a2d37d2d-ac49-589f-ba36-ac9b8808b00b	Intrinsic role (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	a3dd69af-355c-54ce-ba13-2902a7ae9551	Relationship destination	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	a3e4ac54-db82-5345-8713-7e0da98bbb0a	Conditional triggers (SOLOR)	80ba281c-7d47-57cf-8100-82b69bce998b	-
+CONCEPT	a46aaf11-b37a-32d6-abdc-707f084ec8f5	String display field	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	a4c6bf72-8fb6-11db-b606-0800200c9a66,1290e6ba-48d0-31d2-8d62-e133373c63f5	Inferred premise type (SOLOR)	b868bd83-5cd4-5d84-9cf7-b08674fbc79b	-
+CONCEPT	a63f4bf2-a040-11e5-8994-feff819cdc9f,f97abff6-a221-57a1-9cd6-e79e723bfe2a,051fbfed-3c40-3130-8c09-889cb7b7b5b6	Role group	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	-
+CONCEPT	a7f9574c-8e8b-515d-9c21-9896063cc3b8	Partial (SOLOR)	8d76ead7-6c75-5d25-84d4-ca76d928f8a6	-
+CONCEPT	a892950a-0847-300c-b477-4e3cbb945225,ee9ac5d2-a07c-3981-a57a-f7f26baf38d8,f6daf03a-93d6-5bab-8dc9-f60c327cf012	Health concept (SOLOR)	c2e8bc47-3353-5e02-b0d1-2a5916efed4d	-
+CONCEPT	a9210ad6-cc48-47df-86e5-2192d56704a6	Author field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	a95e5dbc-a179-57f9-9cdd-6de8c026396d	Case sensitive evaluation (SOLOR)	b1531e68-4e7a-5194-b1f9-9aaace269372	-
+CONCEPT	a9b0dfb2-f463-5dae-8ba8-7f2e8385571b	Time for version (SOLOR)	93f844df-38e5-5167-ba94-2c948b8bd07c	-
+CONCEPT	a9ba4749-c11f-5f35-a991-21796fb89ddc	Referenced component nid for semantic (SOLOR)	b717ae48-5488-5dda-a980-97855001cc99	-
+CONCEPT	aacbc859-e9a0-5e01-b6a9-9a255a47b0c9,ba2efe6b-fe56-3d91-ae0f-3b389628f74c,45022532-9567-11e5-8994-feff819cdc9f	Chinese language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	ab3e8771-7c7c-5e57-8acf-147b16da36e2	Description list for concept (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	ImmutableCoordinate Properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	abcb0946-20e1-5483-8469-3e8fa0ce20c4	Order for axiom attachments (SOLOR)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557	Concept display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	acaa2eba-8364-5493-b24c-b3884d34bb60	Necessary set	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	-
+CONCEPT	acb73d95-7c96-590c-9f24-23da54f95ff2	Correlation reference expression (SOLOR)	8f682e00-3d9e-5506-bd19-b2169d6c8752	-
+CONCEPT	acb8d47e-adac-491d-bc60-78e94cacd312	Feature Role Type	76320274-be2a-5ba0-b3e8-e6d2e383ee6a	ambiguous-history
+CONCEPT	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	Description type	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	ad22d43b-3ee7-550b-9660-a6e68af347c2	Relationship origin	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	ad3dd2dd-ddb0-584c-bea4-c6d9b91d461f	Path for version	93f844df-38e5-5167-ba94-2c948b8bd07c	-
+CONCEPT	ae7069d1-67fa-4470-a56f-0d24a8fcea83	Data Concept	7bbd4210-381c-11e7-9598-0800200c9a66	ambiguous-history
+CONCEPT	aeb73410-a679-4ea8-93fe-7c4785599778	Semantic versions field	1a852426-422a-48db-a618-c906ac4c8e6c	ambiguous-history
+CONCEPT	aef80e34-b2dd-5dca-a989-3e0ee2699be3	Description logic profile for logic coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	b0ad4d77-e1bc-5fd1-922e-5fad675e9bfd	Language specification for language coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	b1531e68-4e7a-5194-b1f9-9aaace269372	Text comparison measure semantic (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	b168ad04-f814-5036-b886-fd4913de88c8	Array display field (Solor)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	b17bde5d-98ed-5416-97cf-2d837d75159d	Primordial state	10b873e2-8247-5ab5-9dec-4edef37fc219	-
+CONCEPT	b1abf4dc-9838-4b46-ac55-10c4f92ba10b	Inferred Definition (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	b253e725-d7cd-46e3-bc3a-5db8b3ffbd52	Interval Set Axioms	20746b91-521a-45a6-89da-0fe32384a67f	ambiguous-history
+CONCEPT	b2897aa0-a697-5bf2-9156-7a437c6a5057	El++ Inferred Concept Definition (SOLOR)	7dccd042-b0b8-5cec-a1bc-6de676b92f4b	-
+CONCEPT	b32dd26b-c3fc-487e-987e-16ace71a0d0f	Identifier Value (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	b3ec50c4-e8cf-4720-b192-31374705f3b7	EL++ terminological axioms	20746b91-521a-45a6-89da-0fe32384a67f	ambiguous-history
+CONCEPT	b413fe94-4ada-4aee-96f9-22be19699d40	Decimal display field	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	b42c1948-7645-5da8-a888-de6ec020ab98	Canceled state	10b873e2-8247-5ab5-9dec-4edef37fc219	-
+CONCEPT	b4316cb8-14fe-5b32-b03b-f5f966c87819	Semantic field concepts (SOLOR)	106f3ba1-63b8-5596-8dbe-524fa2e89fc0	-
+CONCEPT	b4c3f6f9-6937-30fd-8412-d0c77f8a7f73	Part of (SOLOR)	3fdcaadc-d972-58e9-84f1-b3a39903b076	-
+CONCEPT	b620768f-1479-5afa-a027-5a9ae6caf0d5	Is-a inferred navigation (SOLOR)	4d9707d8-adf0-5b15-89fc-039e4ff6fec8	-
+CONCEPT	b6d3be7d-1d7f-5c44-a425-5357f878c212	EL++ Inferred terminological axioms	b3ec50c4-e8cf-4720-b192-31374705f3b7	-
+CONCEPT	b717ae48-5488-5dda-a980-97855001cc99	Semantic properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	b8251bea-4248-4a46-8b4a-349500693a9f	STAMP versions field	1a852426-422a-48db-a618-c906ac4c8e6c	ambiguous-history
+CONCEPT	b868bd83-5cd4-5d84-9cf7-b08674fbc79b	Axiom origin (SOLOR)	20746b91-521a-45a6-89da-0fe32384a67f	ambiguous-history
+CONCEPT	b9c34574-c9ac-503b-aa24-456a0ec949a2	Dialect	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	ba3191ee-a260-41a6-99fd-74a22fdc937e	Interval Type		ambiguous-history
+CONCEPT	bc59d656-83d3-47d8-9507-0e656ea95463	Tinkar Model concept	7bbd4210-381c-11e7-9598-0800200c9a66	-
+CONCEPT	bca0a686-3516-3daf-8fcf-fe396d13cfad	United States of America English dialect (SOLOR)	c0836284-f631-3c86-8cfc-56a67814efab	-
+CONCEPT	bdd59458-381a-5818-8577-60525f11ac6c	Italian Language (SOLOR)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	bf69c4f1-95c9-5956-a10a-d3ba9276c019	Modules for stamp coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	c060ffbf-e95f-5960-b296-8a3255c820ac	Dialect assemblage preference list for language coordinate (SOLOR)	ea1a52f7-0305-5487-8766-e846330f167a	-
+CONCEPT	c0836284-f631-3c86-8cfc-56a67814efab	English Dialect	b9c34574-c9ac-503b-aa24-456a0ec949a2	-
+CONCEPT	c0f77638-6274-5b40-b832-ac1cba7ec515	Irish dialect (SOLOR)	b9c34574-c9ac-503b-aa24-456a0ec949a2	-
+CONCEPT	c11dd7a1-0ba1-5378-81d6-3efdba1e074b	Tree list (SOLOR)	d6151a47-4610-5a5c-abd0-42c82be9b633	-
+CONCEPT	c16eb414-8840-54f8-9bd2-e2f1ab37e19d	Logical expression display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	c1baba19-e918-5d2c-8fa4-b0ad93e03186	Greater than or equal to (SOLOR)	843b0b55-8785-5544-93f6-581da9cf1ff3	-
+CONCEPT	c2012321-3903-532e-8a5f-b13e4ca46e86	Primordial module	40d1c869-b509-32f8-b735-836eac577a67	-
+CONCEPT	c202f992-3f4b-5f30-9b32-e376f68367d1	Concept version (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	c20b3b1e-112f-4cb2-b901-4046db844629	Upper Bound Open	b253e725-d7cd-46e3-bc3a-5db8b3ffbd52	ambiguous-history
+CONCEPT	c2e8bc47-3353-5e02-b0d1-2a5916efed4d	Phenomenon	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	c342d18a-ec1c-5583-bfe3-59e6324ae189	Inverse name (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	c3dde9ea-b144-5f49-845a-20cc7d305250,f30b0312-2c85-3e65-8609-2d89f8437d34	Description case significance	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	c3dffc48-6493-54df-a2f0-14be8ba03091	Purpose	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	c5daf0e9-30dc-5b3e-a521-d6e6e72c8a95	Sandbox module (SOLOR)	40d1c869-b509-32f8-b735-836eac577a67|c93829b2-aa78-5a84-ac9a-c34307844166	-
+CONCEPT	c7f01834-34ca-5f8b-8f80-193fbeb12eae	Navigation vertex (SOLOR)	4d9707d8-adf0-5b15-89fc-039e4ff6fec8	-
+CONCEPT	c809b2c0-9235-5f64-bbda-34210d91bdf8	Semantic list for chronicle (SOLOR)	2ba2ef47-30af-57ec-9073-38693f020d7e	-
+CONCEPT	c8fd4f1b-d842-5245-9a7d-a58dc0ac1c11	Module for user (SOLOR)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	c9120d8b-1acc-5267-9f33-fa716abdb69d	Feature Type (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	c924b887-da88-3a72-b8ea-fa86990467c9,45022140-9567-11e5-8994-feff819cdc9f	Polish Language (Language)	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	-
+CONCEPT	c93829b2-aa78-5a84-ac9a-c34307844166	Sandbox component (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	c93a30b9-ba77-3adb-a9b8-4589c9f8fb25,46bccdc4-8fb6-11db-b606-0800200c9a66	Is-a	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	ca2fdefd-0481-41cb-8074-41a78f94034d	Property set Axioms	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	ambiguous-history
+CONCEPT	cb9e33de-f82c-495d-89fa-69afecbcd47d	Annotation property set	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	cd23d88d-2fcd-4007-8829-97e37bf336aa	Blank Concept	bc59d656-83d3-47d8-9507-0e656ea95463	ambiguous-history
+CONCEPT	cd56cceb-8507-5ae5-a928-16079fe6f832	Language concept nid for description (SOLOR)	732aad24-4add-59d6-bbc9-840a8b9dc754	-
+CONCEPT	cd9ea037-0af9-586b-9369-7bc044cdb8f7	Image display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	cf18fe25-bd21-586e-9da4-da6cb335fd12	Float substitution (SOLOR)	8fdce1aa-ca82-5abc-8cfa-230c14688abc	-
+CONCEPT	cfd2a47e-8169-5e71-9122-d5b73efd990a	Stated assemblage for logic coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	d0d759fd-510f-475a-900e-b1439b4536e1	Property Sequence (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	d19306b1-4744-5028-a715-17ca4a4d657f	Logical expression semantic (SOLOR)	3daac6c4-78c5-5271-9c63-6e28f80e0c52	-
+CONCEPT	d1a17272-9785-51aa-8bde-cc556ab32ebb	NID (SOLOR)	72765109-6b53-3814-9b05-34ebddd16592	-
+CONCEPT	d41d928f-8a97-55c1-aa6c-a289b413fbfd	Extended relationship type (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	d4cc29ae-c0c1-563a-985d-5165a768dd44	Not Applicable (SOLOR)	c3dde9ea-b144-5f49-845a-20cc7d305250,f30b0312-2c85-3e65-8609-2d89f8437d34	-
+CONCEPT	d555dde9-c97e-5480-819a-7472eda3dbfa	Is-a stated navigation (SOLOR)	4d9707d8-adf0-5b15-89fc-039e4ff6fec8	-
+CONCEPT	d6151a47-4610-5a5c-abd0-42c82be9b633	Tree amalgam properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	d6b9e2cc-31c6-5e80-91b7-7537690aae32	Boolean display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	d6f27f80-8e20-58fe-8d69-66ad4644f969	Version list for chronicle (SOLOR)	2ba2ef47-30af-57ec-9073-38693f020d7e	-
+CONCEPT	da754dd9-9961-5819-91f5-8245d49850b4	Float literal (SOLOR)	208a40a7-e615-5efa-9de0-2e2a5a8488b7	-
+CONCEPT	db124d3b-c1bb-530e-8fd4-577f570355be	Promotion Path for Edit Coordinate (SOLOR)	ec41e427-f009-5e45-a643-6dc658d63d83	-
+CONCEPT	db249d1f-ea2e-4608-ae13-166ed20ca825	Integer field	02273b53-fce7-4cbe-921d-2cff67e81ad5	ambiguous-history
+CONCEPT	db55557c-e9ee-4504-aae3-df695b6d6c57	Express axiom syntax (SOLOR)	8da1c508-c2a2-4899-b26d-87f8b98a7558	-
+CONCEPT	dbdd8df2-aec3-596b-88fc-7b83b5594a45	Byte array display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	dca9854d-9e4c-5e8a-8b30-6c1af6901bb8	Concept focus (SOLOR)	f1f179d0-26af-5123-9b29-9fc6cd01dd29	-
+CONCEPT	dccb0476-3b63-3d48-b5a2-85bd0ad2fa61	Decimal (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	dd96b2ea-6d7b-3791-ad74-bbdc67c493c1	Tinkar Starter Data Author (User)	f7495b58-6630-3499-a44e-2052b5fcf06c	-
+CONCEPT	dde9a93d-250c-449b-bea0-ba1133d1387b	Uniquely identify knowledge graph components	b717ae48-5488-5dda-a980-97855001cc99	ambiguous-history
+CONCEPT	ddeda759-e89c-5186-aa40-d63070756ab4	Module preference order for stamp coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	de49d207-a26e-5f8a-b905-953a4dd13c21	Boolean reference (SOLOR)	4905348c-ba1d-58ae-821f-52877d9acee3	-
+CONCEPT	dea8cb0f-9bb5-56bb-af27-a14943cb24ba	UUID display field (SOLOR)	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	dea8cdf1-de75-5991-9791-79714e4a964d	Long (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	ded98e42-f74a-4432-9ae7-01b94dc2fdea	Minimum Value Operator (SOLOR)	843b0b55-8785-5544-93f6-581da9cf1ff3	-
+CONCEPT	def77c09-e1eb-40f2-931a-e7cf2ce0e597	Inclusion set	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	-
+CONCEPT	dfa80f36-dbe6-5006-8509-c497a26ceab5	Sufficient concept definition operator (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	e0de0d09-6e27-5738-bc8f-0fc94bb115fc	Property pattern implication (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	e0fcafbc-7191-5cdc-b14a-19d4d97f71bd	Primordial UUID for chronicle (SOLOR)	2ba2ef47-30af-57ec-9073-38693f020d7e	-
+CONCEPT	e1a12059-3b01-3296-9532-d10e49d0afc3	Necessary but not sufficient concept definition (SOLOR)	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	-
+CONCEPT	e1dd7bf2-224d-53a5-a5fb-7b25b05d17a6	Komet issue (SOLOR)	3fe77951-58c9-51b3-8e7e-65edcf7ace0a	-
+CONCEPT	e273b5c0-c012-5e53-990c-aec5c2cb33a7	Property set (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	e283af51-2e8f-44fa-9bf1-89a99a7c7631	Component Id display set	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	e553d3f1-63e1-4292-a3a9-af646fe44292	Component Id display list	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	e6359a86-a1df-4721-8a1a-1f1f075ec3d9	Module field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	e7271c01-6ed4-5240-963f-34d1f24153b0	Definition root (SOLOR)	3fdcaadc-d972-58e9-84f1-b3a39903b076	-
+CONCEPT	e83d322c-e275-5392-a5db-1de5fe98acb5	Default module for edit coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	e86d3887-717b-545f-b6b5-611210913b23	Presentation unit different (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	e89148c7-4fe2-52f8-abb9-6a53605d20cb	Concept reference (SOLOR)	3fdcaadc-d972-58e9-84f1-b3a39903b076	-
+CONCEPT	e9252365-7a43-57ea-bf94-3f23bab4ef99	Taxonomy operator (SOLOR)	a06158ff-e08a-5d7d-bcfa-6cbfdb138910	-
+CONCEPT	e95b6718-f824-5540-817b-8e79544eb97a	Primordial path	4459d8cf-5a6f-3952-9458-6d64324b27b7	-
+CONCEPT	e973f077-a99d-59e6-b7bd-804e87e0e639	Vertex sort (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	e9bde1bc-aa72-430a-afe1-aa8aec8833b4	Instant field	02273b53-fce7-4cbe-921d-2cff67e81ad5	ambiguous-history
+CONCEPT	ea1a52f7-0305-5487-8766-e846330f167a	Language coordinate properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	eb9a5e42-3cba-356d-b623-3ed472e20b30	Great Britain English dialect	c0836284-f631-3c86-8cfc-56a67814efab	-
+CONCEPT	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	Concept field	8bd36a0c-d05d-46b7-a79a-d11477705cc1	ambiguous-history
+CONCEPT	ec41e427-f009-5e45-a643-6dc658d63d83	Path coordinate properties (SOLOR)	3ef4311c-70c0-5149-9e06-53d745f85b15	-
+CONCEPT	ecea41a2-f596-3d98-99d1-771b667e55b8	Description not case sensitive	c3dde9ea-b144-5f49-845a-20cc7d305250,f30b0312-2c85-3e65-8609-2d89f8437d34	-
+CONCEPT	ed230c7c-20f9-470d-8566-5057f92748a5	Field categories	bc59d656-83d3-47d8-9507-0e656ea95463	ambiguous-history
+CONCEPT	ed9d3506-65ad-48ea-bd01-95474fecdbc4	Interval role	46ae9325-dd24-5008-8fda-80cf1f0977c7	ambiguous-history
+CONCEPT	edb90567-7822-4129-a406-b359b825f922	STAMP versions set	54d670f1-234d-485a-a354-e1fa7eea1bf2	ambiguous-history
+CONCEPT	ee04d7db-3407-568f-9b93-7b1f9f5bb0fc	EL++ digraph (SOLOR)	47a787a7-bdce-528d-bfcc-fde1add8d599	-
+CONCEPT	ee467a5b-9292-4e0a-a165-3b1a359a8c98	Implication set	1412bd09-eb0c-5107-9756-10c1c417d385|b6d3be7d-1d7f-5c44-a425-5357f878c212	ambiguous-history
+CONCEPT	f1f179d0-26af-5123-9b29-9fc6cd01dd29	Component type focus (SOLOR)	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	f2c79ebb-3095-44ea-831f-992aed48801f	Status field	ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e	ambiguous-history
+CONCEPT	f33e1668-34dd-53dd-8728-31b29934b482	Path origins for stamp path (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	f36e7ca6-34a2-58b5-8b25-736457515f9c	Module preference list for language coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	f56ef2df-6758-5271-a587-317a4fed6c2e	Module preference list for stamp coordinate (SOLOR)	ab41a788-8a83-5452-8dc0-2d8375e0bfe6	-
+CONCEPT	f56fa231-10f9-5e7f-a86d-a1d61b5b56e3	Language	bc59d656-83d3-47d8-9507-0e656ea95463	-
+CONCEPT	f6572c76-b5c0-41da-99c0-4344694e7e3c	Semantic field field	ed230c7c-20f9-470d-8566-5057f92748a5	ambiguous-history
+CONCEPT	f680c868-f7e5-5d0e-91f2-615eca8f8fd2	SOLOR module (SOLOR)	ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb	-
+CONCEPT	f7495b58-6630-3499-a44e-2052b5fcf06c	Author	7c21b6c5-cf11-5af9-893b-743f004c97f5	-
+CONCEPT	f8433993-9a2d-5377-b564-80a45c7b7824	Disjoint with (SOLOR)	3fdcaadc-d972-58e9-84f1-b3a39903b076	-
+CONCEPT	f8e3238e-7424-5a40-8649-a8d164382fec	UUID list for component (SOLOR)	2ba2ef47-30af-57ec-9073-38693f020d7e	-
+CONCEPT	f8f936d4-3ac7-5629-9f65-9452608056a1	Anonymous concept (SOLOR)	106f3ba1-63b8-5596-8dbe-524fa2e89fc0	-
+CONCEPT	f90722cc-5e40-5b9b-a2a6-f4dfa312a6a9	Standard Korean dialect (SOLOR)	6fb2eb9c-fb9e-5959-802c-fb17bcba3079	-
+CONCEPT	f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f	Role operator	a63f4bf2-a040-11e5-8994-feff819cdc9f,f97abff6-a221-57a1-9cd6-e79e723bfe2a,051fbfed-3c40-3130-8c09-889cb7b7b5b6	ambiguous-history
+CONCEPT	fa113d51-07d2-587c-8930-0bce207d506d	And (SOLOR)	3fdcaadc-d972-58e9-84f1-b3a39903b076	-
+CONCEPT	fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3	Component display field	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+CONCEPT	fb591801-7b37-525d-980d-98a1c63ceee0	Float (SOLOR)	61da7e50-f606-5ba0-a0df-83fd524951e7	-
+CONCEPT	fbf054fb-ceaf-5ab8-b946-bbcc4835ce07	Concept semantic (SOLOR)	3daac6c4-78c5-5271-9c63-6e28f80e0c52	-
+CONCEPT	fc18c082-c6ad-52d2-b568-cc9568ace6c9	Universal Restriction	f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f	-
+CONCEPT	fc2a0662-2396-575b-95f0-e9b38a418620	Logic graph for semantic (SOLOR)	b717ae48-5488-5dda-a980-97855001cc99	-
+CONCEPT	fc965c5d-ad17-555e-bcb5-b78fd45c8c5f	Navigation concept set (SOLOR)	4d9707d8-adf0-5b15-89fc-039e4ff6fec8	-
+CONCEPT	ff59c300-9c4e-5e77-a35d-6a133eb3440f	Integer display Field	4e627b9c-cecb-5563-82fc-cb0ee25113b1	-
+PATTERN	08f9112c-c041-56d3-b89b-63258f070074	US Dialect Pattern		-
+PATTERN	3734fb0a-4c14-5831-9a61-4743af609e7a	Comment pattern		-
+PATTERN	3e510cb9-1666-4676-9334-d288a56bf155	Concept field pattern		-
+PATTERN	536b0ec4-4974-47ae-93a6-ae6c4d169780	Module origins pattern (SOLOR)		-
+PATTERN	561f817a-130e-5e56-984d-910e9991558c	GB Dialect Pattern		-
+PATTERN	5bc93adb-9d39-43fe-a7a4-1492245b7efb	Pattern Chronology Pattern		-
+PATTERN	5d60e14b-c410-5172-9559-3c4253278ae2	Identifier Pattern		-
+PATTERN	5f0ad6ca-638e-4052-82b0-3f564ac99b3f	Semantic Chronology Pattern		-
+PATTERN	6070f6f5-893d-5144-adce-7d305c391cf9	Tinkar base model component pattern		-
+PATTERN	70f89dd5-2cdb-59bb-bbaa-98527513547c	Path origins pattern (SOLOR)		-
+PATTERN	73c798cf-bc77-49a2-84f7-4c0f4bc4c012	STAMP version field pattern		-
+PATTERN	7943a5f1-538b-4fda-8acb-019e0bec125b	Concept Version Pattern		-
+PATTERN	82f93e84-cee1-44bc-bb6d-4cc2a722048b	Sementic version field pattern		-
+PATTERN	922697f7-36ba-4afc-9dd5-f29d54b0fdec	Value Constraint Pattern		-
+PATTERN	9f011812-15c9-5b1b-85f8-bb262bc1b2a2	EL++ Inferred Axioms Pattern		-
+PATTERN	9fd67fee-abf9-551d-9d0e-76a4b1e8b4ee	STAMP pattern		-
+PATTERN	a38b7d2d-8fa5-4206-9185-a1af9f81be2c	Component Version Pattern		-
+PATTERN	a4de0039-2625-5842-8a4c-d1ce6aebf021	Description Pattern		-
+PATTERN	a53cc42d-c07e-5934-96b3-2ede3264474e	Inferred Navigation Pattern		-
+PATTERN	a90f8a4d-ae13-476b-98b8-814914f9704e	Pattern Version Pattern		-
+PATTERN	add1db57-72fe-53c8-a528-1614bda20ec6	Version control path pattern		-
+PATTERN	bbbbf1fe-00f0-55e0-a19c-6300dbaab9b2	Komet base model component pattern		-
+PATTERN	c0ca180b-aae2-5fa1-9ab7-4a24f2dfe16b	OWL Axiom Syntax Pattern		-
+PATTERN	c48db76d-5eb0-4ff5-84d0-5c3c4ec77767	Component Chronology Pattern		-
+PATTERN	d02957d6-132d-5b3c-adba-505f5778d998	Stated Navigation Pattern		-
+PATTERN	d39b3ecd-9a80-5009-a8ac-0b947f95ca7c	SOLOR concept assemblage (SOLOR)		-
+PATTERN	e16abc7a-2a7b-42af-b168-d77aec8116ea	STAMP Chronology Pattern		-
+PATTERN	e813eb92-7d07-5035-8d43-e81249f5b36e	EL++ Stated Axioms Pattern		-
