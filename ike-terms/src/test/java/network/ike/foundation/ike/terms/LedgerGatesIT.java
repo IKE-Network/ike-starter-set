@@ -171,7 +171,7 @@ class LedgerGatesIT {
                 "the pair's declared time is the platform's named inception instant, which"
                         + " renders as the word \"Inception\" on every surface (KEC ruling,"
                         + " IKE-Network/ike-issues#894)");
-        assertEquals(UUID.fromString("45b13d09-7c50-5495-8460-aef66a2ae615"),
+        assertEquals(UUID.fromString("770cba9b-6970-5a98-8049-e82383905086"),
                 Ike.INCEPTION.publicId().asUuidArray()[0],
                 "the foundation inception tuple must derive the stamp identity the guide's"
                         + " badge-anatomy figure features — the tuple is part of the published"

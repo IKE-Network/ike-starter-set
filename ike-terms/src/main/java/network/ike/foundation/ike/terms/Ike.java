@@ -66,10 +66,13 @@ public final class Ike {
      * set has not been released, so all of it is still at inception. Declaring the pair
      * here, once, is what makes "one set of inception stamps" compiler-visible; a third
      * IKE stamp cannot appear without editing this class, and the fidelity stamp-pair
-     * gate would refuse it.
+     * gate would refuse it. The path dimension is the Primordial path — the root
+     * all other paths fork from, where releases of this knowledge land, beginning
+     * with the inception release; after 1.0, editing moves to the Development path
+     * and never returns here at inception (IKE-Network/ike-issues#910).
      */
     public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
-            IKE_COMMUNITY, MODULE, IkeTerm.DEVELOPMENT_PATH);
+            IKE_COMMUNITY, MODULE, IkeTerm.PRIMORDIAL_PATH);
 
     /**
      * The inception stamp's Defaults-and-templates-module counterpart, at the same
@@ -80,5 +83,5 @@ public final class Ike {
      */
     public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
-            IkeTerm.DEVELOPMENT_PATH);
+            IkeTerm.PRIMORDIAL_PATH);
 }

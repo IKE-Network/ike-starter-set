@@ -20,9 +20,15 @@ import dev.ikm.tinkar.common.service.EntityCountSummary;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
 import dev.ikm.tinkar.common.service.ServiceProperties;
+import dev.ikm.tinkar.common.id.IntIds;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.language.calculator.LanguageCalculator;
+import dev.ikm.tinkar.coordinate.stamp.StampCoordinateRecord;
+import dev.ikm.tinkar.coordinate.stamp.StampPositionRecord;
+import dev.ikm.tinkar.coordinate.stamp.StateSet;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculatorWithCache;
+import dev.ikm.tinkar.terms.TinkarTerm;
 import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.aggregator.TemporalEntityAggregator;
@@ -143,14 +149,11 @@ class ConsumerMergeIT {
      * {@code Calculators.Stamp.DevelopmentLatestActiveOnly()}'s "latest" resolution is
      * observed to answer differently before vs. after replay, even though replay adds
      * no new version to their axiom semantic (confirmed empirically — same version
-     * count before and after). The likely cause is a path-coordinate bootstrap
-     * characteristic: before replay, no stamp anywhere in this store is on
-     * {@code TinkarTerm.DEVELOPMENT_PATH} (the raw starter data is entirely on
-     * Primordial path), so "latest on development" has no real cutoff to resolve
-     * against for a component whose own history spans more than one shape; after
-     * replay stamps ~407 new Development-path versions (this ledger's own inception
-     * stamps), a real cutoff exists for the first time and the true latest
-     * Primordial-path version becomes resolvable. This is a calculator/path-coordinate
+     * count before and after). Stamp-census facts (probed IKE-Network/ike-issues#911):
+     * the baseline's stamps are mixed-path — Primordial path AND Development path,
+     * every time in July–August 2025, all before {@code PrimitiveData.INCEPTION_EPOCH}
+     * — so layered "latest" for a component whose own history spans more than one
+     * shape is genuinely coordinate-sensitive. This is a calculator/path-coordinate
      * characteristic, not a defect in the #869 generator — nothing was silently
      * generated wrong (no manifest note was dropped for these components; their axiom
      * semantics gained no new version). Logged, not silently dropped; tracked as
@@ -167,6 +170,45 @@ class ConsumerMergeIT {
      * instead of the pre-replay snapshot every other component is held to.
      */
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
+
+    /**
+     * The renamed components whose rename the merged store's <em>Development</em> view
+     * does NOT show — pinned exactly, so a change in either direction fails loudly.
+     * <p>
+     * Since the ledger stamps on the Primordial path at inception
+     * (IKE-Network/ike-issues#910), a rename reaches a Development view only through
+     * Development's path origin (Primordial at Latest, IKE-Network/ike-issues#911).
+     * Path semantics make anything committed <em>on</em> a path shadow what the path
+     * inherits from its origin, regardless of time — the same way a branch's own
+     * commits override upstream. The baseline's FQN versions for exactly these 14
+     * components (the "display field" → "data type" family) were committed on the
+     * Development path in August 2025 (see the stamp census in
+     * {@link #HISTORICALLY_AMBIGUOUS_AXIOM_NIDS}), so a consumer's Development view
+     * keeps the baseline label for them; every other rename's baseline version sits on
+     * Primordial and resolves to the new text. No reparent is shadowed — all reparented
+     * axiom semantics' baseline versions are on Primordial.
+     * {@link #renamedFqnsResolveOnTheInceptionReleaseView()} proves all 14 renames ARE
+     * the resolved content of the inception release itself (a Primordial-positioned
+     * view). Consumer guidance for the release model: IKE-Network/ike-issues#912.
+     */
+    private static final Set<UUID> DEV_VIEW_SHADOWED_RENAME_UUIDS = Set.of(
+            UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32"),  // Boolean data type
+            UUID.fromString("dbdd8df2-aec3-596b-88fc-7b83b5594a45"),  // Byte array data type
+            UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"),  // Component data type
+            UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"),  // Component Id list data type
+            UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"),  // Component Id set data type
+            UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"),  // Concept data type
+            UUID.fromString("b413fe94-4ada-4aee-96f9-22be19699d40"),  // Decimal data type
+            UUID.fromString("60113dfe-2bad-11eb-adc1-0242ac120002"),  // DiGraph data type
+            UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"),  // DiTree data type
+            UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"),  // Float data type
+            UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f"),  // Integer data type
+            UUID.fromString("9c3dfc88-51e4-5e51-a59a-88dd580162b7"),  // Semantic data type
+            UUID.fromString("a46aaf11-b37a-32d6-abdc-707f084ec8f5"),  // String data type
+            UUID.fromString("b168ad04-f814-5036-b886-fd4913de88c8")); // Array data type
+
+    /** {@link #DEV_VIEW_SHADOWED_RENAME_UUIDS} resolved to nids in {@link #loadAndSnapshot()}. */
+    private static final Set<Integer> DEV_VIEW_SHADOWED_RENAME_NIDS = new HashSet<>();
 
     /**
      * {@link BaselineIdentityAuditIT#DELIBERATELY_REPARENTED_ISA} — the durable
@@ -202,6 +244,9 @@ class ConsumerMergeIT {
 
         for (Map.Entry<UUID, String> entry : BaselineIdentityAuditIT.DELIBERATELY_RENAMED_FQNS.entrySet()) {
             DELIBERATELY_RENAMED_FQNS_BY_NID.put(PrimitiveData.nid(entry.getKey()), entry.getValue());
+        }
+        for (UUID uuid : DEV_VIEW_SHADOWED_RENAME_UUIDS) {
+            DEV_VIEW_SHADOWED_RENAME_NIDS.add(PrimitiveData.nid(uuid));
         }
         for (Map.Entry<UUID, UUID> entry : BaselineIdentityAuditIT.DELIBERATELY_REPARENTED_ISA.entrySet()) {
             DELIBERATELY_REPARENTED_ISA_BY_NID.put(
@@ -257,14 +302,37 @@ class ConsumerMergeIT {
 
     @Test
     @DisplayName("Every pre-existing component's FQN text is unchanged after replay"
-            + " — except DELIBERATELY_RENAMED_FQNS, which get their new, expected text")
+            + " — except DELIBERATELY_RENAMED_FQNS, which get their new, expected text"
+            + " (unless DEV_VIEW_SHADOWED_RENAME_UUIDS pins them as path-shadowed on this view)")
     void fqnTextUnchanged() {
         for (Map.Entry<Integer, String> entry : FQN_BEFORE.entrySet()) {
             int nid = entry.getKey();
             String fqnAfter = languageCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
                     .orElseThrow(() -> new AssertionError("FQN disappeared for nid " + nid));
-            String expected = DELIBERATELY_RENAMED_FQNS_BY_NID.getOrDefault(nid, entry.getValue());
+            String expected = DEV_VIEW_SHADOWED_RENAME_NIDS.contains(nid)
+                    ? entry.getValue()  // the baseline's own Development-path version shadows the rename
+                    : DELIBERATELY_RENAMED_FQNS_BY_NID.getOrDefault(nid, entry.getValue());
             assertEquals(expected, fqnAfter, "FQN drifted for nid " + nid);
+        }
+    }
+
+    @Test
+    @DisplayName("Every deliberate rename — including the 14 Development-view-shadowed ones — is the"
+            + " resolved content of the inception release view (Primordial at Latest,"
+            + " IKE-Network/ike-issues#910)")
+    void renamedFqnsResolveOnTheInceptionReleaseView() {
+        StampCalculator inceptionRelease = StampCalculatorWithCache.getCalculator(
+                StampCoordinateRecord.make(StateSet.ACTIVE,
+                        StampPositionRecord.make(Long.MAX_VALUE, TinkarTerm.PRIMORDIAL_PATH),
+                        IntIds.set.empty()));
+        LanguageCalculator releaseLanguage =
+                Calculators.Language.UsEnglishFullyQualifiedName(inceptionRelease.stampCoordinate());
+        for (Map.Entry<Integer, String> entry : DELIBERATELY_RENAMED_FQNS_BY_NID.entrySet()) {
+            assertEquals(entry.getValue(),
+                    releaseLanguage.getFullyQualifiedNameText(EntityProxy.Concept.make(entry.getKey()))
+                            .orElseThrow(() -> new AssertionError(
+                                    "FQN unresolvable on the release view for nid " + entry.getKey())),
+                    "rename not resolved on the inception release view for nid " + entry.getKey());
         }
     }
 

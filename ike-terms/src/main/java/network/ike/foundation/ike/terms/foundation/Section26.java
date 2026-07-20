@@ -8,7 +8,16 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
 import java.util.UUID;
 
-/** The "Path" section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+/**
+ * The "Path" section — a taxonomy subtree of the retrofitted starter set
+ * (IKE-Network/ike-issues#869). The origin graph is corrected from the inherited
+ * starter data (IKE-Network/ike-issues#911): Primordial is the root (no origin);
+ * Development originates from Primordial at Latest, so a Development view inherits
+ * every release landed on Primordial; Sandbox forks off Development at Latest for
+ * experimentation. Master's inherited Development-at-Latest origin stands until the
+ * release model replaces inheritance with per-release promotion
+ * (IKE-Network/ike-issues#912).
+ */
 final class Section26 {
 
     private Section26() {
@@ -51,7 +60,7 @@ final class Section26 {
                 .statedAxioms(PublicIds.of(UUID.fromString("ba2e7ff0-4d2a-5f6b-a407-fcc0350cca09")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("44af3e12-965c-4a2c-a24e-96938eee080c")))
                 .semantic(IkeTerm.PATHS_PATTERN, PublicIds.of(UUID.fromString("7c99f30d-2bd5-408c-b7a8-bbb7e36ecb89")))
-                .semantic(IkeTerm.PATH_ORIGINS_PATTERN, PublicIds.of(UUID.fromString("ca7413ed-07be-4180-bdcd-3b3e3d527cfa")), IkeTerm.SANDBOX_PATH, Instant.parse("+1000000000-12-31T23:59:59.999999999Z"))
+                .semantic(IkeTerm.PATH_ORIGINS_PATTERN, PublicIds.of(UUID.fromString("ca7413ed-07be-4180-bdcd-3b3e3d527cfa")), IkeTerm.PRIMORDIAL_PATH, Instant.parse("+1000000000-12-31T23:59:59.999999999Z"))
                 .semanticOn(PublicIds.of(UUID.fromString("333ef58d-125a-42e5-bf65-2d03d6e4e855")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b9be3b80-134c-4f74-a212-6121e22104b7")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("fb302b4f-5636-477e-86c3-1ea2463ff2ae")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("7e171b0e-dfc5-4d5e-9ce5-c20a1422a0a1")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("dc7be243-26af-4d7d-8f18-d0846e27d6b1")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("59a8b2fa-0575-4d16-8564-fcc4300579c6")), IkeTerm.PREFERRED)
@@ -60,7 +69,7 @@ final class Section26 {
         set.concept("Primordial path", PublicIds.of(UUID.fromString("e95b6718-f824-5540-817b-8e79544eb97a"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("c0f148bf-180e-428c-ad9f-9e60c342db94")), IkeTerm.ENGLISH_LANGUAGE, "Primordial path", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5ef4d507-d9fc-4d5a-9eff-4e6c715dba06")), IkeTerm.ENGLISH_LANGUAGE, "Primordial path", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a72faca5-91ad-43bc-9d0f-900a831ae69a")), IkeTerm.ENGLISH_LANGUAGE, "", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("a72faca5-91ad-43bc-9d0f-900a831ae69a")), IkeTerm.ENGLISH_LANGUAGE, "The root of the path graph: the path from which every other path ultimately originates, and the one no path precedes. Released foundational knowledge lands here, beginning with a knowledge set's inception release, stamped at the Inception instant. Time on this path before inception is pre-inception (historically, premundane).", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("4e9c7067-9dad-4550-8063-ae853e9c5c58")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "e95b6718-f824-5540-817b-8e79544eb97a")
                 .statedAxioms(PublicIds.of(UUID.fromString("d516f6dc-8f53-5f1d-b72b-2c0da0271ab2")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("158b91be-0c52-43e1-aeba-011780fe20f6")))
@@ -78,7 +87,7 @@ final class Section26 {
                 .statedAxioms(PublicIds.of(UUID.fromString("5537a301-3234-5275-8a07-1ab457695bc2")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("bcd053e4-14d7-4519-a101-940a662a5b18")))
                 .semantic(IkeTerm.PATHS_PATTERN, PublicIds.of(UUID.fromString("a7d7489b-3c83-4a7d-a832-d0594f7ee90b")))
-                .semantic(IkeTerm.PATH_ORIGINS_PATTERN, PublicIds.of(UUID.fromString("fa3d2b4f-98e0-4578-8050-1a7432b4ae85")), IkeTerm.PRIMORDIAL_PATH, Instant.parse("+1000000000-12-31T23:59:59.999999999Z"))
+                .semantic(IkeTerm.PATH_ORIGINS_PATTERN, PublicIds.of(UUID.fromString("fa3d2b4f-98e0-4578-8050-1a7432b4ae85")), IkeTerm.DEVELOPMENT_PATH, Instant.parse("+1000000000-12-31T23:59:59.999999999Z"))
                 .semanticOn(PublicIds.of(UUID.fromString("5bf59a7c-2427-4fa4-a7b5-b01157c18d9d")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("e41e940a-4695-4be7-bd8b-dbd8d5f6f6ee")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("7cc385dc-fa1e-435b-88d5-4bc9e3249f92")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("2550b6f3-3e09-4972-93f4-d68006164756")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("610e9752-498b-4e10-acbd-49da77e51c82")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("e72b798a-c452-4117-b255-caed2c0f8965")), IkeTerm.PREFERRED)

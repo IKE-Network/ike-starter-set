@@ -38,18 +38,18 @@ koncept-badge-anatomy::DescriptionPattern[]
 
 A STAMP badge follows the same anatomy with provenance in place of a name — shown
 here for this set's own inception STAMP, declared in the ledger source as
-Active · Inception · IKE Community · IkeFoundation module · Development path.
+Active · Inception · IKE Community · IkeFoundation module · Primordial path.
 Inception is the platform's own named instant for time before any release — every
 version in this pre-release set carries it, and it renders as the word rather
 than a date on every surface.
 
 // The set's ONE declared inception stamp (Ike.INCEPTION: Stamp.active(PrimitiveData.INCEPTION_EPOCH,
-// IKE Community, IkeFoundation module, Development path)). Stamp identity is derived from the
+// IKE Community, IkeFoundation module, Primordial path)). Stamp identity is derived from the
 // tuple itself — Stamp.stampUuid = T5(STAMP_NAMESPACE, status|time|author|module|path) — so this
 // UUID is the stamp's real, replay-stable PublicId, computed from the declared constituents;
 // LedgerGatesIT's stamp-pair gate pins it (IKE-Network/ike-issues#894).
 .Anatomy of a STAMP badge — the set's inception stamp, dissected
-koncept-badge-anatomy::uuid=45b13d09-7c50-5495-8460-aef66a2ae615[kind=stamp, label="Active · Inception · IKE Community"]
+koncept-badge-anatomy::uuid=770cba9b-6970-5a98-8049-e82383905086[kind=stamp, label="Active · Inception · IKE Community"]
 
 === The Component Kinds
 
@@ -96,7 +96,7 @@ rows in the shape tables are read from real semantics.
 
 | STAMP
 | koncept-sigil:stamp[scale=1.5] grey pentagon +
-e.g. koncept-sigil:stamp[Active · Inception · Tinkar Starter Data Author]
+e.g. koncept-sigil:stamp[Active · Inception · IKE Community]
 | The provenance every version of every component carries: status, time, author,
 module, and path. A STAMP badge leads with the pentagon sigil — a point-up
 five-dimensional radar, one reading per STAMP dimension — then the STAMP's own

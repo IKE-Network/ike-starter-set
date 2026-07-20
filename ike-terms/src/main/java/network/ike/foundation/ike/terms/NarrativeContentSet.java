@@ -173,10 +173,18 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: Path (STAMP Concepts — Path)")), """
                         k:Path[] is the version-control lineage a version was committed on — the
-                        k:PathField[] concept field. k:DevelopmentPath[] and k:PrimordialPath[] are this
-                        starter set's own two paths; k:PathOriginsForStampPath[] records which path a path
-                        itself branched from, so a `StampCoordinate` positioned on one path can still resolve
-                        versions committed on an ancestor path before the branch point.
+                        k:PathField[] concept field. This starter set declares four paths and their origin
+                        graph: k:PrimordialPath[] is the root — no path precedes it, and released
+                        foundational knowledge lands on it, beginning with this set's own inception release
+                        (every version in this pre-release set carries the inception stamp pair, on
+                        Primordial); k:DevelopmentPath[] originates from Primordial at Latest, so a view
+                        positioned on Development inherits every release beneath it — after the 1.0 seal,
+                        editing moves to Development and never returns to Primordial at inception;
+                        k:SandboxPath[] forks off Development at Latest, keeping experiments visible over
+                        mainline content without ever being inherited by it; and k:MasterPath[] carries
+                        released consumer-facing content. k:PathOriginsForStampPath[] records which path a
+                        path itself branched from, so a `StampCoordinate` positioned on one path can still
+                        resolve versions committed on an ancestor path before the branch point.
 
                         As a pattern, k:PathOriginsPattern[] itself carries a referenced-component meaning
                         of k:OriginatedPath[] — the path whose branch point is declared — and a purpose of
