@@ -64,14 +64,14 @@ final class PatternShapeRefinementSet {
                         + " attachment target plays: the subject free-text commentary is"
                         + " about — distinct from Comment, which names the commentary's"
                         + " own content type, not the component being commented on.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
 
         set.concept("Editorial Clarification (IkeFoundation)").at(inception)
                 .synonym("Editorial Clarification")
                 .definition("Why a free-text comment is captured: to explain an authoring"
                         + " decision or provide context a formal field cannot, for a future"
                         + " reviewer or maintainer.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
 
         // ── Navigation: Inferred/Stated Navigation Pattern ──────────────
         // Both share one identical shape (meaning = IsA), so one purpose concept serves
@@ -81,7 +81,7 @@ final class PatternShapeRefinementSet {
                 .definition("Why a navigation pattern's referenced component carries an IsA"
                         + " semantic: a pre-computed parent/child structure so traversal"
                         + " doesn't require re-deriving from axioms every time.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Graph model (IkeFoundation)"));
 
         // ── Base Tinkar meta-model: chronicle-shape family ──────────────
         // One shared purpose concept covers why every chronicle-shape pattern exists.
@@ -90,21 +90,21 @@ final class PatternShapeRefinementSet {
                 .definition("Why a chronicle-shape pattern's referenced component carries"
                         + " this semantic: to record that component's own identity"
                         + " (public id) alongside its complete version history.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
 
         set.concept("Pattern Membership (IkeFoundation)").at(inception)
                 .synonym("Pattern Membership")
                 .definition("Why a Semantic Chronology Pattern's Semantic pattern field is"
                         + " recorded: to identify which pattern this semantic is an"
                         + " instance of.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
 
         set.concept("Attachment Target (IkeFoundation)").at(inception)
                 .synonym("Attachment Target")
                 .definition("Why a Semantic Chronology Pattern's Semantic referenced"
                         + " component field is recorded: to identify what component this"
                         + " semantic is attached to.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
 
         set.concept("Version History (IkeFoundation)").at(inception)
                 .synonym("Version History")
@@ -112,7 +112,7 @@ final class PatternShapeRefinementSet {
                         + " recorded: to hold every version of this semantic, in order —"
                         + " the semantic-level counterpart to the versions-field/set pair"
                         + " every other chronicle-shape pattern already names distinctly.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
 
         // ── Base Tinkar meta-model: version-shape family ────────────────
         // Two shared purpose concepts cover the whole family.
@@ -122,28 +122,28 @@ final class PatternShapeRefinementSet {
                         + " this semantic: to record one point-in-time state of a"
                         + " chronicle — the STAMP it was committed with, plus whatever"
                         + " field values were true then.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
 
         set.concept("Version Provenance (IkeFoundation)").at(inception)
                 .synonym("Version Provenance")
                 .definition("Why a version-shape pattern's own STAMP field is recorded: to"
                         + " say who committed this version, in what state, module, path,"
                         + " and when.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         set.concept("Meaning Declaration (IkeFoundation)").at(inception)
                 .synonym("Meaning Declaration")
                 .definition("Why a Pattern Version Pattern's Pattern meaning field is"
                         + " recorded: to hold this pattern-version's own declared meaning"
                         + " concept.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
 
         set.concept("Purpose Declaration (IkeFoundation)").at(inception)
                 .synonym("Purpose Declaration")
                 .definition("Why a Pattern Version Pattern's Pattern purpose field is"
                         + " recorded: to hold this pattern-version's own declared purpose"
                         + " concept.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
 
         // ── Base Tinkar meta-model: module/path origins ─────────────────
         // Referenced-component meanings are distinct concepts (IKE-Network/ike-issues#891
@@ -154,7 +154,7 @@ final class PatternShapeRefinementSet {
                 .synonym("Module Lineage")
                 .definition("Why a module's own origin record is captured: to track which"
                         + " modules a given module originated from.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         set.concept("Originated Module (IkeFoundation)").at(inception)
                 .synonym("Originated Module")
@@ -162,19 +162,19 @@ final class PatternShapeRefinementSet {
                         + " is: the module whose origins are declared — the module that"
                         + " originated from the modules the semantic names, distinct from"
                         + " Module origins, which names the origin-set value itself.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         set.concept("Origin Module Set (IkeFoundation)").at(inception)
                 .synonym("Origin Module Set")
                 .definition("Why a module's origin set value is recorded: to name the"
                         + " modules this module originated from.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         set.concept("Path Lineage (IkeFoundation)").at(inception)
                 .synonym("Path Lineage")
                 .definition("Why a path's own origin record is captured: to track which"
                         + " path it branched from, and when.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         set.concept("Originated Path (IkeFoundation)").at(inception)
                 .synonym("Originated Path")
@@ -182,21 +182,21 @@ final class PatternShapeRefinementSet {
                         + " is: the path whose branch point is declared — the path that"
                         + " originated from the path the semantic names, distinct from"
                         + " Path origins, which names the origin-record value itself.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         set.concept("Branch Source (IkeFoundation)").at(inception)
                 .synonym("Branch Source")
                 .definition("Why the origin path value is recorded: to say which path this"
                         + " path branched from. The record's subject is the referenced"
                         + " component — the originated path — never this field.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         set.concept("Branch Point (IkeFoundation)").at(inception)
                 .synonym("Branch Point")
                 .definition("Why the origin instant is recorded: to fix the moment this"
                         + " path branched from its origin — the point up to which the"
                         + " origin path's versions are visible from this path.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         // ── STAMP pattern (domain) ───────────────────────────────────────
         // Status was already correct (StatusValue meaning / StatusForVersion purpose).
@@ -208,33 +208,33 @@ final class PatternShapeRefinementSet {
                         + " counterpart to Status value/Author/Module/Path: what kind of"
                         + " value a STAMP's time field holds, distinct from"
                         + " TimeForVersion, which names why it is recorded.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("STAMP dimensions (IkeFoundation)"));
 
         set.concept("Commit Provenance (IkeFoundation)").at(inception)
                 .synonym("Commit Provenance")
                 .definition("Why a STAMP pattern semantic exists: to record who committed"
                         + " a version, in what state, module, path, and when.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Provenance model (IkeFoundation)"));
 
         // ── Description Pattern (domain) ────────────────────────────────
         set.concept("Description Attachment (IkeFoundation)").at(inception)
                 .synonym("Description Attachment")
                 .definition("Why a Description Pattern semantic exists: to attach a"
                         + " human-readable name or definition to a concept.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Description model (IkeFoundation)"));
 
         set.concept("Case Sensitivity Rule (IkeFoundation)").at(inception)
                 .synonym("Case Sensitivity Rule")
                 .definition("Why a description's case significance value is recorded: to"
                         + " say whether the description's text is case-sensitive.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Description model (IkeFoundation)"));
 
         set.concept("Description Role (IkeFoundation)").at(inception)
                 .synonym("Description Role")
                 .definition("Why a description's type value is recorded: to say which of"
                         + " the three description roles — fully qualified name, regular"
                         + " name, or definition — this description plays.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Description model (IkeFoundation)"));
 
         // ── Identifier Pattern (domain) ──────────────────────────────────
         set.concept("External Identity Mapping (IkeFoundation)").at(inception)
@@ -242,19 +242,19 @@ final class PatternShapeRefinementSet {
                 .definition("Why an Identifier Pattern semantic exists: to record an"
                         + " alternate identifier a component carries in an external"
                         + " terminology's own identifier scheme.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Identifier model (IkeFoundation)"));
 
         set.concept("Identifier Authority (IkeFoundation)").at(inception)
                 .synonym("Identifier Authority")
                 .definition("Why an identifier source value is recorded: to say which"
                         + " identifier-issuing authority the identifier came from.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Identifier model (IkeFoundation)"));
 
         set.concept("Identifier Text (IkeFoundation)").at(inception)
                 .synonym("Identifier Text")
                 .definition("Why an identifier value is recorded: to hold the identifier's"
                         + " own literal text, once a source has been chosen.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Identifier model (IkeFoundation)"));
 
         set.concept("Identified Component (IkeFoundation)").at(inception)
                 .synonym("Identified Component")
@@ -264,7 +264,7 @@ final class PatternShapeRefinementSet {
                         + " distinct from Identifier source, which names the field value"
                         + " saying where that identifier came from"
                         + " (IKE-Network/ike-issues#891).")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Identifier model (IkeFoundation)"));
 
         // ── OWL Axiom Syntax Pattern (domain) ────────────────────────────
         set.concept("Axiomatized Component (IkeFoundation)").at(inception)
@@ -273,14 +273,14 @@ final class PatternShapeRefinementSet {
                         + " component is: the component whose definitional axioms the"
                         + " semantic expresses — distinct from Axiom syntax, which names"
                         + " the syntax text the field holds.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Logical expression model (IkeFoundation)"));
 
         set.concept("Axiom Expression (IkeFoundation)").at(inception)
                 .synonym("Axiom Expression")
                 .definition("Why an OWL Axiom Syntax Pattern semantic exists: to express"
                         + " a component's definitional axioms as OWL functional-syntax"
                         + " text.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Logical expression model (IkeFoundation)"));
 
         // ── Value Constraint Pattern (domain) ────────────────────────────
         set.concept("Numeric Value Restriction (IkeFoundation)").at(inception)
@@ -288,19 +288,19 @@ final class PatternShapeRefinementSet {
                 .definition("Why a Value Constraint Pattern semantic exists: to restrict"
                         + " which literal values are legal for a component — the"
                         + " numeric-domain counterpart to Field Value Restriction.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
 
         set.concept("Reference Range Authority (IkeFoundation)").at(inception)
                 .synonym("Reference Range Authority")
                 .definition("Why a value constraint's source value is recorded: to name"
                         + " the organization that specifies the constraint.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
 
         set.concept("Unit Example (IkeFoundation)").at(inception)
                 .synonym("Unit Example")
                 .definition("Why example UCUM units are recorded on a value constraint: to"
                         + " show a representative unit of measure for the constrained"
                         + " value, for a reader's reference.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
     }
 }

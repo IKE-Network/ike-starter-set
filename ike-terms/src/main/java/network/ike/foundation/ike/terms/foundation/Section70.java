@@ -19,7 +19,7 @@ final class Section70 {
 
         set.concept("Interval role", PublicIds.of(UUID.fromString("ed9d3506-65ad-48ea-bd01-95474fecdbc4"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f610144f-c698-4b6c-b726-349e10c899dc")), IkeTerm.ENGLISH_LANGUAGE, "Interval role", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of(UUID.fromString("81f96e15-1880-4106-a935-11fbbd07a1e5")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE))))
+                .statedAxioms(PublicIds.of(UUID.fromString("81f96e15-1880-4106-a935-11fbbd07a1e5")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Typed atom (IkeFoundation)")))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5a26885c-eb3b-42cd-9490-c6764d03e780")), IkeTerm.ENGLISH_LANGUAGE, "Interval role", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("cdeb2f92-ee84-54d9-9f51-a3ae68c74a60")))
                 ;
@@ -43,6 +43,7 @@ final class Section70 {
                 ;
 
         set.concept("Interval Type", PublicIds.of(UUID.fromString("ba3191ee-a260-41a6-99fd-74a22fdc937e"))).at(inception)
+                .statedAxioms(PublicIds.of(set.uuidFor("Stated axioms: Interval Type")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Interval Set Axioms", PublicIds.of(UUID.fromString("b253e725-d7cd-46e3-bc3a-5db8b3ffbd52")))))))
                 ;
 
         set.concept("Upper Bound Open", PublicIds.of(UUID.fromString("c20b3b1e-112f-4cb2-b901-4046db844629"))).at(inception)
@@ -68,6 +69,7 @@ final class Section70 {
                 ;
 
         set.concept("Include Lower Bound", PublicIds.of(UUID.fromString("2300a210-d722-48af-8c36-118a3f980312"))).at(inception)
+                .statedAxioms(PublicIds.of(set.uuidFor("Stated axioms: Include Lower Bound")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Interval Set Axioms", PublicIds.of(UUID.fromString("b253e725-d7cd-46e3-bc3a-5db8b3ffbd52")))))))
                 ;
 
         set.concept("Concept field", PublicIds.of(UUID.fromString("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))).at(inception)
@@ -150,6 +152,7 @@ final class Section70 {
                 ;
 
         set.concept("Temporal Axiom", PublicIds.of(UUID.fromString("5144d836-18d8-4881-a377-2d4640b710a9"))).at(inception)
+                .statedAxioms(PublicIds.of(set.uuidFor("Stated axioms: Temporal Axiom")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Axioms", PublicIds.of(UUID.fromString("20746b91-521a-45a6-89da-0fe32384a67f")))))))
                 ;
 
         set.concept("Interval Role Type", PublicIds.of(UUID.fromString("6fa58611-af37-402e-a0c2-6ee1d6068651"))).at(inception)
@@ -169,7 +172,7 @@ final class Section70 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("c0cf1277-9f8e-40e9-9f7d-a334c853ab0e")), IkeTerm.ENGLISH_LANGUAGE, "Property set Axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("39b5c17f-09d4-5153-8da5-9da71b5d73bb")))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("682373f9-fd96-46bd-820f-b44960290e6a")), IkeTerm.ENGLISH_LANGUAGE, "Property set Axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of(UUID.fromString("a1bf12b7-2faf-4fd6-ad8f-e86d0e0775f6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS), leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_STATED_TERMINOLOGICAL_AXIOMS))))
+                .statedAxioms(PublicIds.of(UUID.fromString("a1bf12b7-2faf-4fd6-ad8f-e86d0e0775f6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical set (IkeFoundation)")))))
                 ;
 
         set.concept("Public ID field", PublicIds.of(UUID.fromString("196838c5-55f4-4e40-8618-b9ce60685c2f"))).at(inception)
@@ -251,7 +254,7 @@ final class Section70 {
         set.concept("Interval property set", PublicIds.of(UUID.fromString("9afc988a-3724-4754-8b74-651426472b19"))).at(inception)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("282c95a7-41cf-5b1b-95ef-ed71e4493ae1")))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("774d6b87-b69c-4f0a-a1db-9dc11979d173")), IkeTerm.ENGLISH_LANGUAGE, "Interval property set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of(UUID.fromString("55e609b4-111c-474d-8b71-fb1a1bea1201")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS), leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_STATED_TERMINOLOGICAL_AXIOMS))))
+                .statedAxioms(PublicIds.of(UUID.fromString("55e609b4-111c-474d-8b71-fb1a1bea1201")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical set (IkeFoundation)")))))
                 ;
 
         set.concept("Semantic pattern field", PublicIds.of(UUID.fromString("19dd5dd3-1075-4113-a437-5f1f7c2d55bc"))).at(inception)
@@ -286,6 +289,7 @@ final class Section70 {
                 ;
 
         set.concept("Include Upper Bound", PublicIds.of(UUID.fromString("990b7e1d-3dcc-4c6e-a068-e30400607d50"))).at(inception)
+                .statedAxioms(PublicIds.of(set.uuidFor("Stated axioms: Include Upper Bound")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Interval Set Axioms", PublicIds.of(UUID.fromString("b253e725-d7cd-46e3-bc3a-5db8b3ffbd52")))))))
                 ;
 
         set.concept("Field definition field", PublicIds.of(UUID.fromString("14171f07-e74f-409a-b555-06b478818f76"))).at(inception)
@@ -326,7 +330,7 @@ final class Section70 {
         set.concept("Implication set", PublicIds.of(UUID.fromString("ee467a5b-9292-4e0a-a165-3b1a359a8c98"))).at(inception)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("4eb568f9-3448-56ac-ad8e-66560500babb")))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("537c11d3-af91-4eb3-8b30-ffd171ee8156")), IkeTerm.ENGLISH_LANGUAGE, "Implication set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of(UUID.fromString("7d9d85e7-5d00-461a-8d74-30efb1455a87")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS), leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_STATED_TERMINOLOGICAL_AXIOMS))))
+                .statedAxioms(PublicIds.of(UUID.fromString("7d9d85e7-5d00-461a-8d74-30efb1455a87")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical set (IkeFoundation)")))))
                 ;
 
         set.concept("Integrated Knowledge Management (SOLOR)", PublicIds.of(UUID.fromString("7c21b6c5-cf11-5af9-893b-743f004c97f5"))).at(inception)

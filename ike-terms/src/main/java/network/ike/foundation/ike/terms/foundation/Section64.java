@@ -58,7 +58,7 @@ final class Section64 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6930ec4d-dc6a-4d67-8df1-fbc2ae3d42fa")), IkeTerm.ENGLISH_LANGUAGE, "Navigation vertex", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5f73add0-258c-457c-b95f-97ccf0a34e7d")), IkeTerm.ENGLISH_LANGUAGE, "Navigation vertex", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("909d36f0-2927-4ea0-b8fa-bb148ac86c0b")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c7f01834-34ca-5f8b-8f80-193fbeb12eae")
-                .statedAxioms(PublicIds.of(UUID.fromString("c9153e98-2218-5a5a-aa86-6b961f3ba8c6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.NAVIGATION))))
+                .statedAxioms(PublicIds.of(UUID.fromString("c9153e98-2218-5a5a-aa86-6b961f3ba8c6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Vertex (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("66352f99-addb-4059-aa99-bd72fd5fb02f")))
                 .semanticOn(PublicIds.of(UUID.fromString("294959ce-e10d-4909-9250-94d80b9d646f")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("8ba626d3-c8d2-42cd-8172-ce2bee6f2b0f")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("6930ec4d-dc6a-4d67-8df1-fbc2ae3d42fa")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("82d15b6e-140c-4dc1-9e59-5ed15f21b846")), IkeTerm.PREFERRED)

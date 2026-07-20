@@ -22,7 +22,7 @@ final class Section66 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1e514d14-6863-433f-8beb-211eacede6a4")), IkeTerm.ENGLISH_LANGUAGE, "NavigationCoordinate/Directed graph", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("7411c406-b6d5-4778-8636-5a503bdbb421")), IkeTerm.ENGLISH_LANGUAGE, "Directed graph", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("4d6537f2-7063-40d2-88e7-fa379e903f81")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "47a787a7-bdce-528d-bfcc-fde1add8d599")
-                .statedAxioms(PublicIds.of(UUID.fromString("1ec82607-cfb1-5716-8efd-4c052dd58c64")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
+                .statedAxioms(PublicIds.of(UUID.fromString("1ec82607-cfb1-5716-8efd-4c052dd58c64")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Graph (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("4e7c45a6-f138-4a2f-a000-8331d034db3c")))
                 .semanticOn(PublicIds.of(UUID.fromString("b68615c2-a0ad-49c0-a143-3dded633a60f")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("8921d76e-8357-4f56-a933-2cb8772721ab")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("1e514d14-6863-433f-8beb-211eacede6a4")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("6629d5f5-0c8d-4024-ba6e-d21996b73298")), IkeTerm.PREFERRED)

@@ -114,19 +114,106 @@ class BaselineIdentityAuditIT {
     );
 
     /**
-     * UUID of the one pre-existing concept whose declared stated parent deliberately
-     * diverges from the baseline artifact — {@code Dynamic column data types (SOLOR)},
-     * filed under the new {@code Legacy} branch as a deprecation signal at its section
-     * declaration ({@code foundation.Section41}, IKE-Network/ike-issues#880 follow-up,
-     * #894) — mapped to its expected isA parent's own UUID.
+     * The pre-existing concepts whose declared stated parent deliberately diverges from
+     * the baseline artifact, each mapped to its expected new isA parent's UUID.
+     * {@code Dynamic column data types (SOLOR)} filed under the {@code Legacy} branch
+     * as a deprecation signal (IKE-Network/ike-issues#880 follow-up, #894); the rest
+     * are the taxonomy-organization revision (IKE-Network/ike-issues#915): the four
+     * STAMP dimension roots move from the taxonomy root to the STAMP dimensions
+     * organizer, the EL++ axiom concepts reorganize under the sealed-LogicalAxiom
+     * mirror parents (Logical axiom, Atom, Typed atom, Logical set — collapsing the
+     * duplicated EL++ Stated/Inferred multi-parentage and the inverted Role group
+     * subtree), Part of moves to the taxonomy-operator vocabulary it belongs to, and
+     * the graph concepts (Directed graph, Navigation vertex) move under the new Graph
+     * model section.
      * {@link #everyBaselineIsAParentageIsPreservedOrRegisteredAsReparented()} asserts
-     * this single new parent for exactly this identity, instead of the frozen baseline
-     * parentage every other component is held to; {@link ConsumerMergeIT} applies the
-     * same exemption to its merged-store drift check.
+     * exactly the registered new parent for these identities, instead of the frozen
+     * baseline parentage every other component is held to; {@link ConsumerMergeIT}
+     * applies the same exemption to its merged-store drift check.
      */
-    static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.of(
-            UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
-            UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")  // Legacy (IkeFoundation)
+    static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.ofEntries(
+            // Dynamic column data types -> Legacy (#880)
+            Map.entry(UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"),
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            // Author -> STAMP dimensions (#915)
+            Map.entry(UUID.fromString("f7495b58-6630-3499-a44e-2052b5fcf06c"),
+                    UUID.fromString("aea9ca27-3c50-522f-acda-ae881f954603")),
+            // Status value -> STAMP dimensions (#915)
+            Map.entry(UUID.fromString("10b873e2-8247-5ab5-9dec-4edef37fc219"),
+                    UUID.fromString("aea9ca27-3c50-522f-acda-ae881f954603")),
+            // Module -> STAMP dimensions (#915)
+            Map.entry(UUID.fromString("40d1c869-b509-32f8-b735-836eac577a67"),
+                    UUID.fromString("aea9ca27-3c50-522f-acda-ae881f954603")),
+            // Path -> STAMP dimensions (#915)
+            Map.entry(UUID.fromString("4459d8cf-5a6f-3952-9458-6d64324b27b7"),
+                    UUID.fromString("aea9ca27-3c50-522f-acda-ae881f954603")),
+            // Necessary set -> Logical set (#915)
+            Map.entry(UUID.fromString("acaa2eba-8364-5493-b24c-b3884d34bb60"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Inclusion set -> Logical set (#915)
+            Map.entry(UUID.fromString("def77c09-e1eb-40f2-931a-e7cf2ce0e597"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Sufficient set -> Logical set (#915)
+            Map.entry(UUID.fromString("8aa48cfd-485b-5140-beb9-0d122f7812d9"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Necessary but not sufficient concept definition -> Logical set (#915)
+            Map.entry(UUID.fromString("e1a12059-3b01-3296-9532-d10e49d0afc3"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Property set Axioms -> Logical set (#915)
+            Map.entry(UUID.fromString("ca2fdefd-0481-41cb-8074-41a78f94034d"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Interval property set -> Logical set (#915)
+            Map.entry(UUID.fromString("9afc988a-3724-4754-8b74-651426472b19"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Implication set -> Logical set (#915)
+            Map.entry(UUID.fromString("ee467a5b-9292-4e0a-a165-3b1a359a8c98"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Data Property Set Axioms -> Logical set (#915)
+            Map.entry(UUID.fromString("1402d311-0b4b-4014-81d2-e715c6696346"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Role group -> Role type (#915)
+            Map.entry(UUID.fromString("a63f4bf2-a040-11e5-8994-feff819cdc9f"),
+                    UUID.fromString("76320274-be2a-5ba0-b3e8-e6d2e383ee6a")),
+            // Role -> Typed atom (#915)
+            Map.entry(UUID.fromString("46ae9325-dd24-5008-8fda-80cf1f0977c7"),
+                    UUID.fromString("62538a4c-cc26-514a-a3ef-a59c66c2bc42")),
+            // Interval role -> Typed atom (#915)
+            Map.entry(UUID.fromString("ed9d3506-65ad-48ea-bd01-95474fecdbc4"),
+                    UUID.fromString("62538a4c-cc26-514a-a3ef-a59c66c2bc42")),
+            // Property sequence implication -> Atom (#915)
+            Map.entry(UUID.fromString("9a47a5db-42a6-49ee-9083-54bc305a9456"),
+                    UUID.fromString("e9d6a6d4-b509-5852-9ef7-8b4d2e637461")),
+            // Connective operator -> Atom (#915)
+            Map.entry(UUID.fromString("3fdcaadc-d972-58e9-84f1-b3a39903b076"),
+                    UUID.fromString("e9d6a6d4-b509-5852-9ef7-8b4d2e637461")),
+            // Concept reference -> Atom (#915)
+            Map.entry(UUID.fromString("e89148c7-4fe2-52f8-abb9-6a53605d20cb"),
+                    UUID.fromString("e9d6a6d4-b509-5852-9ef7-8b4d2e637461")),
+            // Disjoint with -> Atom (#915)
+            Map.entry(UUID.fromString("f8433993-9a2d-5377-b564-80a45c7b7824"),
+                    UUID.fromString("e9d6a6d4-b509-5852-9ef7-8b4d2e637461")),
+            // Part of -> Taxonomy operator (#915)
+            Map.entry(UUID.fromString("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73"),
+                    UUID.fromString("e9252365-7a43-57ea-bf94-3f23bab4ef99")),
+            // Definition root -> Logical axiom (#915)
+            Map.entry(UUID.fromString("e7271c01-6ed4-5240-963f-34d1f24153b0"),
+                    UUID.fromString("9f622a2f-ed85-57a1-a1b0-c448127fb906")),
+            // Navigation vertex -> Vertex (#915)
+            Map.entry(UUID.fromString("c7f01834-34ca-5f8b-8f80-193fbeb12eae"),
+                    UUID.fromString("2185c628-0fb7-588a-8c39-76be9da2fb95")),
+            // Directed graph -> Graph (#915)
+            Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"),
+                    UUID.fromString("da454dbd-ed6e-55cf-af5a-0d51b40d7640")),
+            // Feature -> Typed atom (#915; the code's Feature axiom meaning,
+            // LogicalAxiomSemantic.FEATURE, was baseline-misfiled under Description type)
+            Map.entry(UUID.fromString("5e76a88e-794a-5fdd-8eb2-4a9e4b1386b6"),
+                    UUID.fromString("62538a4c-cc26-514a-a3ef-a59c66c2bc42")),
+            // Property set -> Logical set (#915; also baseline-misfiled under Description type)
+            Map.entry(UUID.fromString("e273b5c0-c012-5e53-990c-aec5c2cb33a7"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Data property set -> Logical set (#915)
+            Map.entry(UUID.fromString("6b8ed642-de72-4aee-953d-42e5db92c0ab"),
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b"))
     );
 
     /**

@@ -74,6 +74,12 @@ public final class IkeSource implements KnowledgeSetSource {
         // DefinitionCompletionSet authors the 25 first definitions of the base-model
         // chronicle/version field concepts (IKE-Network/ike-issues#892).
         DefinitionCompletionSet.compose(Ike.SET);
+        // ModelOrganizationSet mints the taxonomy-organization structural concepts —
+        // STAMP dimensions, the nine Model-concept subsystem organizers, the sealed
+        // LogicalAxiom mirror parents, and the graph-representation concepts — that the
+        // reorganized isA edits across the other sets target by derived identity
+        // (IKE-Network/ike-issues#915).
+        ModelOrganizationSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;

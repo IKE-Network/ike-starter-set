@@ -22,7 +22,7 @@ final class Section16 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("b9c331be-aff2-477e-9a29-47ca1acf6ac5")), IkeTerm.ENGLISH_LANGUAGE, "Status", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("07161dbe-3622-4d9c-b09e-2fbaf4f40831")), IkeTerm.ENGLISH_LANGUAGE, "The status of the STAMP Coordinate(Active, Cancelled, Inactive, Primordial)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("6fe50533-e0e9-4d5b-be11-897538b5c252")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "10b873e2-8247-5ab5-9dec-4edef37fc219")
-                .statedAxioms(PublicIds.of(UUID.fromString("8cb9b059-8df3-565b-b1c9-824b652ba0c5")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROOT_VERTEX))))
+                .statedAxioms(PublicIds.of(UUID.fromString("8cb9b059-8df3-565b-b1c9-824b652ba0c5")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("STAMP dimensions (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("494ca9e1-b326-45a4-a984-3914bd35e400")))
                 .semanticOn(PublicIds.of(UUID.fromString("51fb950f-13f1-47af-aead-b96bfade0d0d")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("48568678-884a-4e56-843e-a0a8bdf03f94")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("b9c331be-aff2-477e-9a29-47ca1acf6ac5")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("0e98943d-f9f0-4c8a-a3ef-4c5d7ae78a4d")), IkeTerm.PREFERRED)

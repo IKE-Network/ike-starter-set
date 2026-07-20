@@ -86,7 +86,7 @@ final class DefaultsAndTemplatesSet {
                         + " fields. Attachment here is a support declaration only — never"
                         + " a domain assertion about this concept or any other component"
                         + " — and this concept never joins a domain member set.")
-                .isA(IkeTerm.MODEL_CONCEPT)
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"))
                 // Curated narrative (IKE-Network/ike-issues#888): domain description OF
                 // this koncept — foundation-module terminology, exactly like its
                 // descriptions above, never defaults/template content (the module's
@@ -122,7 +122,7 @@ final class DefaultsAndTemplatesSet {
                         + " with a default value semantic, attachment there is a support"
                         + " declaration, never a domain assertion, and no child joins a"
                         + " domain member set.")
-                .isA(IkeTerm.MODEL_CONCEPT)
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"))
                 .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: TemplateConcept (Default Values — Templates)")), """

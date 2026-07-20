@@ -97,11 +97,13 @@ class LedgerGatesIT {
      * identity-exact-ingest bootstrap concepts (the module, the root, IKE Community,
      * IKE-Network/ike-issues#872), plus the 86 deliberately-authored new concepts whose
      * composition {@link ConsumerMergeIT#AUTHORED_CONTENT_CONCEPTS} itemizes
-     * set-by-set (IKE-Network/ike-issues#880, #885, #890, #891). Grow this number only
+     * set-by-set (IKE-Network/ike-issues#880, #885, #890, #891), plus the 20
+     * taxonomy-organization structural concepts {@code ModelOrganizationSet} mints
+     * (IKE-Network/ike-issues#915). Grow this number only
      * in the same change that authors new concepts — the gate refuses accidental
      * minting and accidental loss alike.
      */
-    private static final int LEDGER_CONCEPTS = 468;
+    private static final int LEDGER_CONCEPTS = 488;
 
     /**
      * The absolute pattern count of the ledger-only store: 28 patterns transcribed from

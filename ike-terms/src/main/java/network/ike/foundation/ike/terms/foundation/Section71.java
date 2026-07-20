@@ -33,7 +33,7 @@ final class Section71 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("01e7bccd-a632-46e5-ab25-9ce3b0ee3113")), IkeTerm.ENGLISH_LANGUAGE, "Data Property Set Axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("a6335d66-ec82-5fc1-8b86-d06926a3a2b7")))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f7a7bcb6-afbe-4617-9a28-773907fd2a70")), IkeTerm.ENGLISH_LANGUAGE, "Data Property Set Axioms", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of(UUID.fromString("e01e07cd-c205-4e9d-97db-2d61a115ae9d")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS), leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_STATED_TERMINOLOGICAL_AXIOMS))))
+                .statedAxioms(PublicIds.of(UUID.fromString("e01e07cd-c205-4e9d-97db-2d61a115ae9d")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical set (IkeFoundation)")))))
                 ;
 
         set.concept("STAMP versions field", PublicIds.of(UUID.fromString("b8251bea-4248-4a46-8b4a-349500693a9f"))).at(inception)

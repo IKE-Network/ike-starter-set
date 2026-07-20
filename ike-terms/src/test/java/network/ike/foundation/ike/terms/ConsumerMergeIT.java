@@ -123,10 +123,20 @@ class ConsumerMergeIT {
      * match relation seam mints "Member match relation", "Equal match relation", and the
      * "Match Rule" field purpose (+3).
      * <p>
+     * Plus {@code ModelOrganizationSet} (20, IKE-Network/ike-issues#915 — the
+     * taxonomy-organization revision): the root-level STAMP dimensions organizer, the
+     * nine Model-concept subsystem organizers (Chronicle and version, Description,
+     * Identifier, Provenance, Logical expression, Graph, Constraint, Defaults and
+     * templates, Editorial), the four sealed-LogicalAxiom mirror parents (Logical
+     * axiom, Atom, Typed atom, Logical set — Feature needs no minting: the code's own
+     * Feature meaning is the historic concept, reorganized under Typed atom), and the
+     * six graph-representation concepts (Graph, Tree, Vertex, Edge, Vertex meaning,
+     * Vertex property).
+     * <p>
      * {@link LedgerGatesIT#LEDGER_CONCEPTS} pins the same content absolutely — grow the
      * two in the same change.
      */
-    static final int AUTHORED_CONTENT_CONCEPTS = 86;
+    static final int AUTHORED_CONTENT_CONCEPTS = 106;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
