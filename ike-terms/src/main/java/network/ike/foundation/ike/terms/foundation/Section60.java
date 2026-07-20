@@ -21,7 +21,7 @@ final class Section60 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("105cffed-fdd4-407b-ba57-e061b06b8de2"), IkeTerm.ENGLISH_LANGUAGE, "Logical Definition", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("6190514d-13aa-4e0a-a4ce-ff39251bb63f"), IkeTerm.ENGLISH_LANGUAGE, "The semantic value describing the purpose of the stated and inferred terminological axioms.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("fcd3d05f-6588-4bac-a2db-460b98e06ef0"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "7dccd042-b0b8-5cec-a1bc-6de676b92f4b")
-                .statedAxioms(PublicIds.of("feb495c1-8a7b-5196-9930-38ddf89def89"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
+                .statedAxioms(PublicIds.of("feb495c1-8a7b-5196-9930-38ddf89def89"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("35512707-9c3e-4a17-92f9-f1c65b561cd9"))
                 .semanticOn(PublicIds.of("c844ccda-edec-497b-893e-e1383b990bbb"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("d1a5704c-1755-4caf-b16a-81b3e1168757"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("105cffed-fdd4-407b-ba57-e061b06b8de2"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("af3c8eeb-eb54-433f-948a-da5151161aa2"), IkeTerm.PREFERRED)

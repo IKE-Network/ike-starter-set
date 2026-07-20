@@ -21,7 +21,7 @@ final class Section36 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("dd06c997-f501-4efa-8289-93d065256a3f"), IkeTerm.ENGLISH_LANGUAGE, "Correlation properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("ad46376b-b4b0-4697-aa64-a24de9cd184b"), IkeTerm.ENGLISH_LANGUAGE, "Characteristics or measures that describe the relationship between two or more variables", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("da8c76a2-2d14-47d1-87c7-d3809011d51b"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "8f682e00-3d9e-5506-bd19-b2169d6c8752")
-                .statedAxioms(PublicIds.of("9d9248b0-b71c-5599-b620-8b6030e59749"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT_PROPERTIES))))
+                .statedAxioms(PublicIds.of("9d9248b0-b71c-5599-b620-8b6030e59749"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy model concepts (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("bbb285e7-816c-4ac0-9a13-10556db2c259"))
                 .semanticOn(PublicIds.of("f3261683-394f-4558-a9cb-ad54d40e6061"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("05df2c63-4cf2-4b5f-973c-6d281e02677f"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("dd06c997-f501-4efa-8289-93d065256a3f"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("a6c4b3a7-6580-4ef7-ae1a-8917d61e64b4"), IkeTerm.PREFERRED)

@@ -33,7 +33,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * Author, Module, Path — gather under a root-level organizer. A root's double duty as a
  * STAMP field meaning does not make its subtree meta-schema: the Path subtree is the
  * actual version-control lineage graph, not a description of one.</li>
- * <li><b>Model concept fans out by subsystem.</b> Nine organizers replace the 75-way
+ * <li><b>Model concept fans out by subsystem.</b> The subsystem organizers replace the 75-way
  * flat fan-out, one per model subsystem, so the taxonomy under Model concept reads as a
  * table of contents of the meta-schema itself.</li>
  * <li><b>The logical-expression taxonomy mirrors the sealed {@code LogicalAxiom}
@@ -60,18 +60,22 @@ final class ModelOrganizationSet {
         // (IKE-Network/ike-issues#894).
         ActiveStamp inception = Ike.INCEPTION;
 
-        // ── Root level: the STAMP dimensions organizer ──────────────────
+        // ── The STAMP dimensions organizer ──────────────────────────────
+        // Machinery, so it files under Model concept (KEC ruling, 2026-07-19: the
+        // taxonomy root is the domain's front page — IKE-Network/ike-issues#918);
+        // the operational-vs-meta-schema distinction lives on in the definition.
         set.concept("STAMP dimensions (IkeFoundation)").at(inception)
                 .synonym("STAMP dimensions")
                 .definition("The five value spaces the versioning machinery selects a"
                         + " version's STAMP constituents from: Status value, Time,"
-                        + " Author, Module, and Path. Each dimension's subtree is"
-                        + " operational content — the statuses versions actually carry,"
-                        + " the authors who actually commit, the modules and paths"
-                        + " content actually lives on — distinct from Model concept's"
-                        + " meta-schema: a dimension root's double duty as a STAMP field"
-                        + " meaning does not make its subtree meta-schema.")
-                .isA(IkeTerm.ROOT_VERTEX);
+                        + " Author, Module, and Path. Machinery, so it files under"
+                        + " Model concept — yet each dimension's subtree is operational"
+                        + " content, not meta-schema: the statuses versions actually"
+                        + " carry, the authors who actually commit, the modules and"
+                        + " paths content actually lives on. A dimension root's double"
+                        + " duty as a STAMP field meaning does not make its subtree a"
+                        + " description of anything.")
+                .isA(IkeTerm.MODEL_CONCEPT);
 
         // ── The nine subsystem organizers under Model concept ───────────
         set.concept("Chronicle and version model (IkeFoundation)").at(inception)
@@ -160,6 +164,16 @@ final class ModelOrganizationSet {
                         + " Data Type Defaults apparatus declares. Support content"
                         + " itself lives in the Defaults and templates module; these"
                         + " are the foundation concepts that describe it.")
+                .isA(IkeTerm.MODEL_CONCEPT);
+
+        set.concept("View coordinate model (IkeFoundation)").at(inception)
+                .synonym("View coordinate model")
+                .definition("The meta-schema of views: the coordinate property families"
+                        + " a rendering or editing surface assembles into a reproducible"
+                        + " way of looking — stamp, language, logic, and path coordinate"
+                        + " properties, and the immutable-coordinate property"
+                        + " vocabulary. A coordinate's constituents are dimensions;"
+                        + " these concepts name them.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
         set.concept("Editorial model (IkeFoundation)").at(inception)

@@ -60,7 +60,7 @@ public final class IkeSource implements KnowledgeSetSource {
         // AssemblageTerminologySet mints Set membership and the Solor Concepts Pattern —
         // the modern membership-pattern terminology (IKE-Network/ike-issues#880).
         AssemblageTerminologySet.compose(Ike.SET);
-        // LegacyTerminologySet mints the Legacy branch the Section41 reparent targets by
+        // LegacyTerminologySet mints the Legacy model concepts branch the Section41 reparent targets by
         // derived identity (IKE-Network/ike-issues#880 follow-up).
         LegacyTerminologySet.compose(Ike.SET);
         // DefaultsAndTemplatesSet mints the defaults/templates apparatus and its module

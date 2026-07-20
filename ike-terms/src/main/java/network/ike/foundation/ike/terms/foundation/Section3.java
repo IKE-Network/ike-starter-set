@@ -21,7 +21,7 @@ final class Section3 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("d98d0918-6a09-49d5-9189-1f7c049e8b20"), IkeTerm.ENGLISH_LANGUAGE, "ImmutableCoordinate properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("fc46591a-e6a9-4d60-9968-353311f0e5f9"), IkeTerm.ENGLISH_LANGUAGE, "A set of values or data representing a point in space that one established cannot be changed?", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("81e3fd1f-2aef-435c-8725-7b3c4c01ba97"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "ab41a788-8a83-5452-8dc0-2d8375e0bfe6")
-                .statedAxioms(PublicIds.of("f94bf621-829c-5b10-987e-0fc45d2eccba"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT_PROPERTIES))))
+                .statedAxioms(PublicIds.of("f94bf621-829c-5b10-987e-0fc45d2eccba"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("64171dfa-d826-4f0a-823e-450768f32c36"))
                 .semanticOn(PublicIds.of("62231913-b106-434a-a158-fba8e420d79c"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("500b1360-6aff-4b91-bcce-5451b1d44566"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("d98d0918-6a09-49d5-9189-1f7c049e8b20"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("01ec688e-f981-4fc9-9dbf-8230955a20f6"), IkeTerm.PREFERRED)

@@ -34,7 +34,7 @@ final class Section10 {
                 // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f85df6dd-2c5c-4d11-bc0c-a145a042fa32"), IkeTerm.ENGLISH_LANGUAGE, "The inferred side of a concept's EL++ terminological axioms: the definitional axioms a classifier concluded follow from what was stated — computed, never hand-written. The EL++ Inferred Axioms Pattern's one field carries them as a directed tree.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("4904979b-3c30-42a4-bc11-ca2e37b0a00e"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "b6d3be7d-1d7f-5c44-a425-5357f878c212")
-                .statedAxioms(PublicIds.of("0d4bd9b8-63d9-5573-9f5a-3e36e960ef63"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS))))
+                .statedAxioms(PublicIds.of("0d4bd9b8-63d9-5573-9f5a-3e36e960ef63"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("d850a9c6-e1ec-4fe9-a626-2abe782e5044"))
                 .semanticOn(PublicIds.of("a4a4599b-6e3a-43a9-a3bc-27ea285af7d3"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("c947791d-387b-4cd2-be27-1612ebd9f3c0"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("2fd741ec-9142-4985-b64a-b4a3c12d2fb0"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("14be2795-a810-4b50-bce0-83c0001d8776"), IkeTerm.PREFERRED)
@@ -204,7 +204,7 @@ final class Section10 {
                 // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("03f08d3b-f7e9-4feb-87f0-f9e5620ed277"), IkeTerm.ENGLISH_LANGUAGE, "The stated side of a concept's EL++ terminological axioms: the definitional axioms an author actually wrote — necessary and sufficient sets, role restrictions — as distinct from what a classifier later infers. The EL++ Stated Axioms Pattern's one field carries them as a directed tree.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("7c8d0f75-7f21-43d8-a612-8df903e5e6b6"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "1412bd09-eb0c-5107-9756-10c1c417d385")
-                .statedAxioms(PublicIds.of("f009cf0f-2f60-5cd6-b291-07f8137a2362"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS))))
+                .statedAxioms(PublicIds.of("f009cf0f-2f60-5cd6-b291-07f8137a2362"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("111fc35a-ea12-4f7c-b804-0ba80a84cc64"))
                 .semanticOn(PublicIds.of("d6fd661d-2e5d-4816-b973-382f4aba81de"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("070a47ce-b990-4b66-83d7-0317fee101be"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("e180c86b-64b1-46a1-b3da-6e59b9bc3533"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("453acf84-1bc6-4642-9acc-0a9a66555caf"), IkeTerm.PREFERRED)

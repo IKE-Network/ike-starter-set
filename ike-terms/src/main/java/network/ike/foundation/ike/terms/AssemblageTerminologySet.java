@@ -65,7 +65,7 @@ final class AssemblageTerminologySet {
                 .definition("A component's role as an element of a pattern's own set of"
                         + " semantics — the modern replacement for the deprecated SOLOR term"
                         + " Membership semantic.")
-                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"));
+                .isA(set.conceptRef("Chronicle and version model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         // ── Solor Concepts Pattern: the IKE-native replacement for the dormant ──
         // SOLORConceptAssemblage — untouched, cited as legacy prior art only.

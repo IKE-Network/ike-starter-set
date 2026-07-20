@@ -24,7 +24,7 @@ final class Section71 {
 
         set.concept("STAMP versions set", PublicIds.of("edb90567-7822-4129-a406-b359b825f922")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("5e1ce34f-77ec-46ef-8f15-1c292e77c008"), IkeTerm.ENGLISH_LANGUAGE, "STAMP versions set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("0afed167-46a1-4470-99bf-2bd6d907f3c5"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))))))
+                .statedAxioms(PublicIds.of("0afed167-46a1-4470-99bf-2bd6d907f3c5"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("fcab1c2e-35c9-5879-9f56-40667f046b04"))
                 ;
 
@@ -37,7 +37,7 @@ final class Section71 {
 
         set.concept("STAMP versions field", PublicIds.of("b8251bea-4248-4a46-8b4a-349500693a9f")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("cb751cf0-8d3f-4357-9df8-b17928c4a85f"), IkeTerm.ENGLISH_LANGUAGE, "STAMP versions field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("0ee2cdc9-6cc0-40ac-91fd-de2b12c60aac"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))))))
+                .statedAxioms(PublicIds.of("0ee2cdc9-6cc0-40ac-91fd-de2b12c60aac"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("af493b91-d6e7-5ae4-b1b9-6a36a6554c52"))
                 ;
 
@@ -47,13 +47,13 @@ final class Section71 {
                         A concept field whose value is the status dimension of a STAMP — \
                         the version's state (active, inactive, or otherwise) at the time \
                         it was committed.""")
-                .statedAxioms(PublicIds.of("a5c5ea2d-2d81-4275-ba18-ada4fb00448b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))))))
+                .statedAxioms(PublicIds.of("a5c5ea2d-2d81-4275-ba18-ada4fb00448b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("5de39a0b-0e4f-5d21-a97b-e9f454fea78a"))
                 ;
 
         set.concept("Time field", PublicIds.of("15293325-c16b-4f2e-8109-5b22b3355bcd")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("a3b04559-ed05-4eb9-bba1-35102d20d071"), IkeTerm.ENGLISH_LANGUAGE, "Time field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("e5a8de94-8552-4837-9f2c-217a0e815984"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Instant field", PublicIds.of("e9bde1bc-aa72-430a-afe1-aa8aec8833b4"))))))
+                .statedAxioms(PublicIds.of("e5a8de94-8552-4837-9f2c-217a0e815984"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Instant field", PublicIds.of("e9bde1bc-aa72-430a-afe1-aa8aec8833b4"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("35233caa-f648-4baf-a1d1-ec4c6f125ae4"), IkeTerm.ENGLISH_LANGUAGE, "Time field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("fac6a8f8-2d40-59db-9882-283aad90b647"))
                 ;
@@ -63,13 +63,13 @@ final class Section71 {
                 .definition("""
                         A concept field whose value is the author dimension of a STAMP — \
                         who committed the version.""")
-                .statedAxioms(PublicIds.of("cc364868-eabe-4a93-8381-7bdf84bb3df6"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))))))
+                .statedAxioms(PublicIds.of("cc364868-eabe-4a93-8381-7bdf84bb3df6"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("c8de0a4f-4868-53b0-909d-a4603b997e13"))
                 ;
 
         set.concept("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9cf3da8a-5214-4e20-9c77-198d1a7445a8"), IkeTerm.ENGLISH_LANGUAGE, "Component versions field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("15d5da72-8e12-4345-8962-1d14f652834b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))))))
+                .statedAxioms(PublicIds.of("15d5da72-8e12-4345-8962-1d14f652834b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("8e135ad6-6a8b-56b8-810b-6b45fbedddde"))
                 ;
 
@@ -78,7 +78,7 @@ final class Section71 {
                 .definition("""
                         A concept field whose value is the module dimension of a STAMP — \
                         the module the version belongs to.""")
-                .statedAxioms(PublicIds.of("90a4ace9-c128-435d-9060-79d8920e0bd8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))))))
+                .statedAxioms(PublicIds.of("90a4ace9-c128-435d-9060-79d8920e0bd8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("239dce52-c668-57a1-8316-b1c8bd276d0c"))
                 ;
 

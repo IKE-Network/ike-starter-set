@@ -22,7 +22,7 @@ final class Section6 {
                 // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("a2892585-1d62-4ea6-9cd5-f93cbf4a37a9"), IkeTerm.ENGLISH_LANGUAGE, "The concept identifying who committed a version — the author dimension of a STAMP, and the root of the value space an author field's concept is drawn from; distinct from Author for version, which names why the field is recorded.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("fc531f90-2ca7-4460-b38d-a037feffb526"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "f7495b58-6630-3499-a44e-2052b5fcf06c")
-                .statedAxioms(PublicIds.of("d6aedbb3-ae0b-59e7-958d-e788b91f3a1a"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("STAMP dimensions (IkeFoundation)")))))
+                .statedAxioms(PublicIds.of("d6aedbb3-ae0b-59e7-958d-e788b91f3a1a"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("STAMP dimensions (IkeFoundation)")), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("7c40bd16-aad2-4187-b4a8-4362d34da30f"))
                 .semanticOn(PublicIds.of("96657b21-6469-4a6c-b052-023b4e1dc085"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("a3aa1616-bd7a-424e-8671-3f63d3dd315d"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("c8246260-2401-4442-95fc-c5dd6ee5b037"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("48ce398d-efb1-4a68-b962-8eb42d7e2744"), IkeTerm.PREFERRED)
@@ -82,7 +82,7 @@ final class Section6 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("b5580a1a-6942-458e-9e9c-8b8e5d021b0c"), IkeTerm.ENGLISH_LANGUAGE, "Metadata Authoring", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("3ffd23e7-62ca-4b60-baea-8bf57b8319e7"), IkeTerm.ENGLISH_LANGUAGE, "Define necessary minimum viable concepts to use Tinkar Data", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("0731569a-ed24-47d1-8f4c-053a875e04b3"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "070deb74-acc5-46bf-b9c6-eaee1b58ef52")
-                .statedAxioms(PublicIds.of("4f899d97-b46b-5d9e-afe3-52b0e098c676"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.USER))))
+                .statedAxioms(PublicIds.of("4f899d97-b46b-5d9e-afe3-52b0e098c676"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.USER), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("c69d5dcf-f6a1-49a7-af1a-21968979d353"))
                 .semanticOn(PublicIds.of("66c6793d-4eae-4383-a60e-d56c5a9a3788"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("2c08299a-0966-42d1-84ad-8f1d2f090a22"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("b5580a1a-6942-458e-9e9c-8b8e5d021b0c"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("c21a63e2-3170-4b4b-9ccc-f5400674b212"), IkeTerm.PREFERRED)

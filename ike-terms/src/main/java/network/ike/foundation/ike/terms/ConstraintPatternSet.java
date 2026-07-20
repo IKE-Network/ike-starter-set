@@ -124,25 +124,25 @@ final class ConstraintPatternSet {
                 .synonym("Constrained field")
                 .definition("The field-meaning concept of the pattern field this constraint"
                         + " governs.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(IkeTerm.CONCEPT_FIELD, IkeTerm.MEANING);
 
         set.concept("Constraint kind (IkeFoundation)").at(inception)
                 .synonym("Constraint kind")
                 .definition("Which Taxonomy field constraint kind this constraint semantic"
                         + " expresses.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(IkeTerm.CONCEPT_FIELD, IkeTerm.MEANING);
 
         set.concept("Constraint anchor concept (IkeFoundation)").at(inception)
                 .synonym("Constraint anchor concept")
                 .definition("The concept a kind-of, descendant, leaf-descendant, or"
                         + " immediate-child constraint is relative to.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(IkeTerm.CONCEPT_FIELD, IkeTerm.MEANING);
 
         set.concept("Value-set pattern (IkeFoundation)").at(inception)
                 .synonym("Value-set pattern")
                 .definition("For a value-set constraint, the pattern whose active semantics"
                         + " enumerate the legal values.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(IkeTerm.CONCEPT_FIELD, IkeTerm.MEANING);
 
         set.concept("Value-set field (IkeFoundation)").at(inception)
                 .synonym("Value-set field")
@@ -152,7 +152,7 @@ final class ConstraintPatternSet {
                         + " referenced-component meaning when the members are the referenced"
                         + " components themselves (a membership pattern) — disambiguating"
                         + " when that pattern carries other fields, such as a sort order.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(IkeTerm.CONCEPT_FIELD, IkeTerm.MEANING);
 
         // ── The member match relation taxonomy ──────────────────────────
         // How a value must match an enumerated member is a concept, never invented
@@ -172,7 +172,7 @@ final class ConstraintPatternSet {
                         + " full, and a relation is admitted only when its evaluator ships"
                         + " in code: relation concepts correspond one-to-one with the"
                         + " service-loaded evaluators — the bijection gate.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"))
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.MEANING)
                 // Curated narrative (IKE-Network/ike-issues#888): domain description OF
                 // this koncept, complementing the Constrained Pattern hub narrative
                 // (NarrativeContentSet).
@@ -253,41 +253,41 @@ final class ConstraintPatternSet {
                         + " fields constrained — one attachment role, shared by the Taxonomy"
                         + " Field Constraint Pattern and the Value-set Field Constraint"
                         + " Pattern, and distinct from the constraint mechanisms themselves.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Field Value Restriction (IkeFoundation)").at(inception)
                 .synonym("Field Value Restriction")
                 .definition("Why a field constraint semantic exists: to restrict which"
                         + " values are legal for one of the constrained pattern's own"
                         + " fields.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Constraint Scope (IkeFoundation)").at(inception)
                 .synonym("Constraint Scope")
                 .definition("Why the Constrained field value is recorded: to say which field"
                         + " of the constrained pattern this rule applies to.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Constraint Rule (IkeFoundation)").at(inception)
                 .synonym("Constraint Rule")
                 .definition("Why the Constraint kind value is recorded: to say which"
                         + " taxonomy-relative rule — kind-of, descendant, leaf-descendant,"
                         + " or immediate-child — applies.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Taxonomy Reference Point (IkeFoundation)").at(inception)
                 .synonym("Taxonomy Reference Point")
                 .definition("Why the Constraint anchor concept value is recorded: to give a"
                         + " kind-of, descendant, leaf-descendant, or immediate-child rule"
                         + " something concrete to measure against.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Legal Value Source (IkeFoundation)").at(inception)
                 .synonym("Legal Value Source")
                 .definition("Why the Value-set pattern value is recorded: to name the pattern"
                         + " whose active semantics enumerate the legal values for a value-set"
                         + " constraint.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Value Disambiguation (IkeFoundation)").at(inception)
                 .synonym("Value Disambiguation")
@@ -295,7 +295,7 @@ final class ConstraintPatternSet {
                         + " Feature of the value-set pattern actually holds the member"
                         + " value, when that pattern carries other fields too, such as a"
                         + " sort order.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         // "Match Rule" parallels "Constraint Rule": each names why a discriminator
         // field's value is recorded — which rule applies (text pass, 2026-07-18).
@@ -304,7 +304,7 @@ final class ConstraintPatternSet {
                 .definition("Why the Member match relation value is recorded: to say how a"
                         + " constrained field's value must match an enumerated member —"
                         + " which member match relation the constraint holds under.")
-                .isA(set.conceptRef("Constraint model (IkeFoundation)"));
+                .isA(set.conceptRef("Constraint model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         // ── The taxonomy-shape pattern ───────────────────────────────────
         set.pattern("Taxonomy Field Constraint Pattern (IkeFoundation)").at(inception)
@@ -449,17 +449,17 @@ final class ConstraintPatternSet {
                 .definition("Illustrative value-set source: an ordered roster of this"
                         + " starter set's own authors, demonstrating a Value-set Field"
                         + " Constraint Pattern's value-set pattern.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.MEANING);
         set.concept("Roster author (IkeFoundation)").at(inception)
                 .synonym("Roster author")
                 .definition("The author concept named by one roster entry.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(IkeTerm.CONCEPT_FIELD, IkeTerm.MEANING);
         set.concept("Roster order (IkeFoundation)").at(inception)
                 .synonym("Roster order")
                 .definition("The roster entry's display order — the \"additional"
                         + " characteristic\" field a value-set constraint's Value-set field"
                         + " disambiguates against.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.MEANING);
 
         // Meaning/purpose rigor (IKE-Network/ike-issues#880): the pattern's own
         // referenced-component meaning stays "Starter set author roster" (it correctly
@@ -470,19 +470,19 @@ final class ConstraintPatternSet {
                 .definition("Why a Starter Set Author Roster Pattern semantic exists: to"
                         + " enumerate this starter set's own author roster as a value-set"
                         + " source.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Roster Entry (IkeFoundation)").at(inception)
                 .synonym("Roster Entry")
                 .definition("Why a roster author value is recorded: to name one member of"
                         + " the roster.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Display Sequence (IkeFoundation)").at(inception)
                 .synonym("Display Sequence")
                 .definition("Why a roster order value is recorded: to say where this entry"
                         + " falls in the roster's own display order.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.pattern("Starter Set Author Roster Pattern (IkeFoundation)").at(inception)
                 .meaning(set.conceptRef("Starter set author roster (IkeFoundation)"))
@@ -508,13 +508,13 @@ final class ConstraintPatternSet {
                 .synonym("Preferred reviewer")
                 .definition("Illustrative constrained field: the reviewer a"
                         + " Preferred Reviewer Pattern semantic names.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(IkeTerm.CONCEPT_FIELD, IkeTerm.MEANING);
         set.concept("Preferred reviewer assignment (IkeFoundation)").at(inception)
                 .synonym("Preferred reviewer assignment")
                 .definition("Illustrative pattern whose single field is constrained to"
                         + " membership in the starter set author roster, demonstrating a"
                         + " Value-set Field Constraint Pattern end to end.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.MEANING);
 
         // Meaning/purpose rigor (IKE-Network/ike-issues#880): meaning stays "Preferred
         // reviewer assignment" (it correctly names what the referenced component is);
@@ -523,13 +523,13 @@ final class ConstraintPatternSet {
                 .synonym("Review Routing")
                 .definition("Why a Preferred Reviewer Pattern semantic exists: to direct a"
                         + " component's future edits to a specific reviewer.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Assigned Reviewer (IkeFoundation)").at(inception)
                 .synonym("Assigned Reviewer")
                 .definition("Why a preferred reviewer value is recorded: to name which"
                         + " author is the preferred reviewer.")
-                .isA(set.conceptRef("Editorial model (IkeFoundation)"));
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.pattern("Preferred Reviewer Pattern (IkeFoundation)").at(inception)
                 .meaning(set.conceptRef("Preferred reviewer assignment (IkeFoundation)"))

@@ -60,14 +60,22 @@ final class LegacyTerminologySet {
         // (IKE-Network/ike-issues#894).
         ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
-        set.concept("Legacy (IkeFoundation)").at(inception)
-                .synonym("Legacy")
-                .definition("A visible deprecation signal, not a functional restriction:"
-                        + " content reparented here is dormant or superseded and a candidate"
-                        + " for removal in a near-future revision. Being under Legacy says"
-                        + " nothing about whether the content is still resolvable or"
-                        + " referenced elsewhere -- it may well be -- only that it is no"
-                        + " longer this project's preferred terminology going forward.")
-                .isA(set.conceptRef("Integrated Knowledge Management (SOLOR)"));
+        // Renamed from "Legacy" and moved under Model concept per KEC's root
+        // principle (IKE-Network/ike-issues#918): birth-FQN rename, so a new derived
+        // identity — under the pre-bronze never-created doctrine the shorter-named
+        // concept never existed.
+        set.concept("Legacy model concepts (IkeFoundation)").at(inception)
+                .synonym("Legacy model concepts")
+                .definition("A visible deprecation signal for model machinery, not a"
+                        + " functional restriction: content reparented here is dormant or"
+                        + " superseded and a candidate for removal in a near-future"
+                        + " revision. Being here says nothing about whether the content is"
+                        + " still resolvable or referenced elsewhere — it may well be —"
+                        + " only that it is no longer this set's preferred terminology"
+                        + " going forward. The scope is deliberate: machinery deprecates"
+                        + " in place, where its history stays browsable; domain content"
+                        + " that does not belong to this set migrates to its home starter"
+                        + " set instead, and is never marked legacy here.")
+                .isA(IkeTerm.MODEL_CONCEPT);
     }
 }

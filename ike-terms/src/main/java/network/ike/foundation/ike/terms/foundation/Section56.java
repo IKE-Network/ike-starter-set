@@ -22,7 +22,7 @@ final class Section56 {
                 // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("10933c80-b2cc-4569-8d23-b4d512e6459e"), IkeTerm.ENGLISH_LANGUAGE, "The concept identifying the export or authoring boundary a version belongs to — the module dimension of a STAMP, and the root of the value space a module field's concept is drawn from; distinct from Module for version, which names why the field is recorded.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("ff7b7589-ae0e-4736-802d-b4d89b9ad008"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "40d1c869-b509-32f8-b735-836eac577a67")
-                .statedAxioms(PublicIds.of("08ddbdb2-4c9b-51df-ac3f-b7f6031e57a8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("STAMP dimensions (IkeFoundation)")))))
+                .statedAxioms(PublicIds.of("08ddbdb2-4c9b-51df-ac3f-b7f6031e57a8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("STAMP dimensions (IkeFoundation)")), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("05d9ccd8-cc6a-45e0-82cd-aa42f56751cc"))
                 .semanticOn(PublicIds.of("9bfa067d-05c5-42a1-a701-a22bc62c8748"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("5154e5df-ed72-484c-8f24-c79f1a4fc834"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("a875ca51-1fb1-4ba8-8196-4f5181865583"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("9df90fb5-de00-41ec-9a69-0d9fce6d178a"), IkeTerm.PREFERRED)

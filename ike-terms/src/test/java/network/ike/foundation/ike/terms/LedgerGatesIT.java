@@ -97,13 +97,14 @@ class LedgerGatesIT {
      * identity-exact-ingest bootstrap concepts (the module, the root, IKE Community,
      * IKE-Network/ike-issues#872), plus the 86 deliberately-authored new concepts whose
      * composition {@link ConsumerMergeIT#AUTHORED_CONTENT_CONCEPTS} itemizes
-     * set-by-set (IKE-Network/ike-issues#880, #885, #890, #891), plus the 20
-     * taxonomy-organization structural concepts {@code ModelOrganizationSet} mints
+     * set-by-set (IKE-Network/ike-issues#880, #885, #890, #891), plus the 21
+     * taxonomy-organization structural concepts (20 from IKE-Network/ike-issues#915,
+     * View coordinate model from the #918 root refinement) {@code ModelOrganizationSet} mints
      * (IKE-Network/ike-issues#915). Grow this number only
      * in the same change that authors new concepts — the gate refuses accidental
      * minting and accidental loss alike.
      */
-    private static final int LEDGER_CONCEPTS = 488;
+    private static final int LEDGER_CONCEPTS = 489;
 
     /**
      * The absolute pattern count of the ledger-only store: 28 patterns transcribed from
@@ -618,5 +619,59 @@ class LedgerGatesIT {
                             + " own label — every meaning and purpose must carry a real definition"
                             + " (IKE-Network/ike-issues#892)");
         }
+    }
+
+    @Test
+    @DisplayName("Role dual-parents derive from pattern declarations: every concept a pattern's"
+            + " latest version uses as meaning/purpose carries that role umbrella as a parent, and"
+            + " no dual-parented concept asserts a role umbrella the declarations don't back"
+            + " (IKE-Network/ike-issues#918)")
+    void roleParentsDeriveFromPatternDeclarations() {
+        int meaningNid = PrimitiveData.nid(BaselineIdentityAuditIT.MEANING_UMBRELLA);
+        int purposeNid = PrimitiveData.nid(BaselineIdentityAuditIT.PURPOSE_UMBRELLA);
+        java.util.Set<Integer> derivedMeanings = new java.util.HashSet<>();
+        java.util.Set<Integer> derivedPurposes = new java.util.HashSet<>();
+        EntityService.get().forEachPatternEntity(pattern -> {
+            PatternEntityVersion version =
+                    calculator.latestPatternEntityVersion(pattern.nid()).get();
+            derivedMeanings.add(version.semanticMeaningNid());
+            derivedPurposes.add(version.semanticPurposeNid());
+            for (FieldDefinitionForEntity field : version.fieldDefinitions()) {
+                derivedMeanings.add(field.meaningNid());
+                derivedPurposes.add(field.purposeNid());
+            }
+        });
+        // Positive direction, in full: every in-use role concept asserts its umbrella.
+        for (int nid : derivedMeanings) {
+            assertTrue(StoreInspection.latestIsAParents(calculator, nid).contains(meaningNid),
+                    "in-use meaning concept lacks the Meaning role parent: "
+                            + PrimitiveData.text(nid));
+        }
+        for (int nid : derivedPurposes) {
+            assertTrue(StoreInspection.latestIsAParents(calculator, nid).contains(purposeNid),
+                    "in-use purpose concept lacks the Purpose role parent: "
+                            + PrimitiveData.text(nid));
+        }
+        // Reverse direction, over dual-parented concepts: a role umbrella asserted
+        // alongside any other parent must be backed by an actual declaration. The
+        // umbrellas' inherited single-parent vocabulary children (Literal value, Query
+        // clauses, ...) are legacy filing, not role assertions, and stay exempt — their
+        // rehoming is tracked follow-up, not silent tolerance.
+        EntityService.get().forEachConceptEntity(concept -> {
+            java.util.Set<Integer> parents = StoreInspection.latestIsAParents(calculator, concept.nid());
+            if (parents.size() < 2) {
+                return;
+            }
+            if (parents.contains(meaningNid)) {
+                assertTrue(derivedMeanings.contains(concept.nid()),
+                        "stale Meaning role parent — no pattern declaration backs it: "
+                                + PrimitiveData.text(concept.nid()));
+            }
+            if (parents.contains(purposeNid)) {
+                assertTrue(derivedPurposes.contains(concept.nid()),
+                        "stale Purpose role parent — no pattern declaration backs it: "
+                                + PrimitiveData.text(concept.nid()));
+            }
+        });
     }
 }

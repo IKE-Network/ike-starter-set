@@ -21,7 +21,7 @@ final class Section64 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9e815a92-6438-405f-a00e-2692bbf869c0"), IkeTerm.ENGLISH_LANGUAGE, "Purpose", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("0ecc5a56-ef03-4210-8dd2-bad08d94bad1"), IkeTerm.ENGLISH_LANGUAGE, "The reason for which a Tinkar value in a pattern was created or for which it exist.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("273fc3d5-bd50-4bc3-88c2-a87ebbd35a97"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c3dffc48-6493-54df-a2f0-14be8ba03091")
-                .statedAxioms(PublicIds.of("d67636a4-1d54-54eb-9840-74367968de97"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
+                .statedAxioms(PublicIds.of("d67636a4-1d54-54eb-9840-74367968de97"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("2327114e-720a-4648-9583-650477767e4f"))
                 .semanticOn(PublicIds.of("f0b05661-0bff-4bf2-9568-5ae5e3dc94f5"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("b5f7329e-f91a-4d8c-ad21-c9a761cf5184"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("9e815a92-6438-405f-a00e-2692bbf869c0"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("c0d1627a-3536-468a-a095-ac09fc17f255"), IkeTerm.PREFERRED)

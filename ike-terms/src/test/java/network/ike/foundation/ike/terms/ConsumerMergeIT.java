@@ -123,7 +123,9 @@ class ConsumerMergeIT {
      * match relation seam mints "Member match relation", "Equal match relation", and the
      * "Match Rule" field purpose (+3).
      * <p>
-     * Plus {@code ModelOrganizationSet} (20, IKE-Network/ike-issues#915 — the
+     * Plus {@code ModelOrganizationSet} (21: 20 from IKE-Network/ike-issues#915, plus
+     * the View coordinate model organizer the IKE-Network/ike-issues#918 root
+     * refinement mints when Object Properties dissolves — the
      * taxonomy-organization revision): the root-level STAMP dimensions organizer, the
      * nine Model-concept subsystem organizers (Chronicle and version, Description,
      * Identifier, Provenance, Logical expression, Graph, Constraint, Defaults and
@@ -136,7 +138,7 @@ class ConsumerMergeIT {
      * {@link LedgerGatesIT#LEDGER_CONCEPTS} pins the same content absolutely — grow the
      * two in the same change.
      */
-    static final int AUTHORED_CONTENT_CONCEPTS = 106;
+    static final int AUTHORED_CONTENT_CONCEPTS = 107;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -358,8 +360,22 @@ class ConsumerMergeIT {
             }
             Integer newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);
             Set<Integer> expected = newParentNid != null ? Set.of(newParentNid) : entry.getValue();
-            assertEquals(expected, StoreInspection.latestIsAParents(calculator, nid),
-                    "isA parents drifted for nid " + nid);
+            // Role umbrellas are a derivable divergence class, subtracted before the
+            // drift comparison — same exemption as the static audit
+            // (IKE-Network/ike-issues#918); LedgerGatesIT's derivability gate holds them
+            // to the pattern declarations.
+            // (spared when the umbrella is itself the expected parent — the umbrellas'
+            // own inherited vocabulary children)
+            Set<Integer> actual = new HashSet<>(StoreInspection.latestIsAParents(calculator, nid));
+            int meaningNid = PrimitiveData.nid(BaselineIdentityAuditIT.MEANING_UMBRELLA);
+            int purposeNid = PrimitiveData.nid(BaselineIdentityAuditIT.PURPOSE_UMBRELLA);
+            if (!expected.contains(meaningNid)) {
+                actual.remove(meaningNid);
+            }
+            if (!expected.contains(purposeNid)) {
+                actual.remove(purposeNid);
+            }
+            assertEquals(expected, actual, "isA parents drifted for nid " + nid);
         }
     }
 

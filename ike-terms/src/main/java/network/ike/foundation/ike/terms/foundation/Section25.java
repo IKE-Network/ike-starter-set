@@ -21,7 +21,7 @@ final class Section25 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("eefbcfa3-a607-4ffa-9f1e-e31ae15e84d1"), IkeTerm.ENGLISH_LANGUAGE, "Value Constraint Source", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("048579fe-498b-4a26-89d0-022a3ac8b457"), IkeTerm.ENGLISH_LANGUAGE, "The source organization of that specifies the constraint", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("3225f0d3-5552-4a55-9152-659b7f0cedca"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "09aa031a-6290-4ec9-a44c-23928a767da3")
-                .statedAxioms(PublicIds.of("cb07bca1-ec7c-5cee-9f36-631b9bbf6a70"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
+                .statedAxioms(PublicIds.of("cb07bca1-ec7c-5cee-9f36-631b9bbf6a70"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("b64c734a-a62c-44fe-a8ea-ac10d52d8eb4"))
                 .semanticOn(PublicIds.of("5a2b4035-b9b2-4ba7-94cc-2247d9da4ac7"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("23a9f3e6-155e-4373-8467-2494031f8d06"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("eefbcfa3-a607-4ffa-9f1e-e31ae15e84d1"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("aa7b524f-1863-4f8d-a347-3d999f052616"), IkeTerm.PREFERRED)

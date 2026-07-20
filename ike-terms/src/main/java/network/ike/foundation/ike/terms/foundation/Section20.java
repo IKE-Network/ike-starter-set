@@ -22,7 +22,7 @@ final class Section20 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("cac89c42-0838-49d3-ad10-91b40781a283"), IkeTerm.ENGLISH_LANGUAGE, "Chronicle properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("8e92e807-c018-4d19-80b1-46b6ed26f061"), IkeTerm.ENGLISH_LANGUAGE, "Attributes or characteristic associated with a historical record or an account of events (metadata, timestamps)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("ca672944-0c11-4c40-a0a9-15898d0d9774"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "2ba2ef47-30af-57ec-9073-38693f020d7e")
-                .statedAxioms(PublicIds.of("0fced50b-a581-5111-bbfc-cc1fcaf7f79f"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT_PROPERTIES))))
+                .statedAxioms(PublicIds.of("0fced50b-a581-5111-bbfc-cc1fcaf7f79f"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Chronicle and version model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("d222c85e-5f25-4fb3-898a-f01a36c859c2"))
                 .semanticOn(PublicIds.of("36542471-fa26-4192-ad5d-77dfd54d5f61"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("59bdd138-e690-4de1-a698-33b4f23d3a29"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("cac89c42-0838-49d3-ad10-91b40781a283"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("aeab0677-f035-47a5-bf57-2d4335b4aa85"), IkeTerm.PREFERRED)

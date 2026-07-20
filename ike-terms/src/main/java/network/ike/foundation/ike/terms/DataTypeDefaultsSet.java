@@ -89,7 +89,7 @@ final class DataTypeDefaultsSet {
                 .definition("The String field's loud default: the literal \"UNINITIALIZED\" —"
                         + " a value that works as an initial value but reads as obviously"
                         + " needing revision, never Java's silent empty string.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Component default (IkeFoundation)").at(apparatus)
                 .synonym("Component default")
@@ -97,7 +97,7 @@ final class DataTypeDefaultsSet {
                         + " (SOLOR), the base set's own loud placeholder for a component not"
                         + " yet chosen. Not Blank Concept — Blank means a deliberate"
                         + " not-applicable, while Uninitialized means a value still owed.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("ComponentIdSet default (IkeFoundation)").at(apparatus)
                 .synonym("ComponentIdSet default")
@@ -105,7 +105,7 @@ final class DataTypeDefaultsSet {
                         + " holding Uninitialized Component — present and non-empty (an empty"
                         + " set would be a silent zero-value), its one member itself the loud"
                         + " placeholder.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("ComponentIdList default (IkeFoundation)").at(apparatus)
                 .synonym("ComponentIdList default")
@@ -113,14 +113,14 @@ final class DataTypeDefaultsSet {
                         + " holding Uninitialized Component — present and non-empty (an empty"
                         + " list would be a silent zero-value), its one entry itself the loud"
                         + " placeholder.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("DiTree default (IkeFoundation)").at(apparatus)
                 .synonym("DiTree default")
                 .definition("The DiTree field's loud default: a single-vertex tree whose"
                         + " vertex meaning is Uninitialized Component — the smallest"
                         + " well-formed tree, carrying the loud placeholder at its root.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("DiGraph default (IkeFoundation)").at(apparatus)
                 .synonym("DiGraph default")
@@ -128,14 +128,14 @@ final class DataTypeDefaultsSet {
                         + " vertices, both Uninitialized Component, with edges in both"
                         + " directions. The cycle is deliberate: a cycle can never be a tree,"
                         + " so the value proves the field truly holds a graph and not a tree.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Concept default (IkeFoundation)").at(apparatus)
                 .synonym("Concept default")
                 .definition("The Concept field's loud default: Uninitialized Component"
                         + " (SOLOR) — the loud placeholder for a concept not yet chosen,"
                         + " obviously needing revision wherever it appears.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Semantic default (IkeFoundation)").at(apparatus)
                 .synonym("Semantic default")
@@ -143,7 +143,7 @@ final class DataTypeDefaultsSet {
                         + " description semantic of Uninitialized Component — a real,"
                         + " resolvable semantic whose subject is itself the loud placeholder,"
                         + " so the reference is valid yet plainly unrevised.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Integer default (IkeFoundation)").at(apparatus)
                 .synonym("Integer default")
@@ -152,7 +152,7 @@ final class DataTypeDefaultsSet {
                         + " deliberately planted and cannot plausibly occur as natural data,"
                         + " where Integer.MIN_VALUE would read as an overflow bug. Never"
                         + " Java's silent zero.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Float default (IkeFoundation)").at(apparatus)
                 .synonym("Float default")
@@ -161,7 +161,7 @@ final class DataTypeDefaultsSet {
                         + " true non-value is louder still: it cannot be mistaken for data at"
                         + " all, and it propagates through arithmetic, so any computation"
                         + " over an unrevised default stays loudly not-a-number.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Boolean default (IkeFoundation)").at(apparatus)
                 .synonym("Boolean default")
@@ -169,14 +169,14 @@ final class DataTypeDefaultsSet {
                         + " two-valued type has no loud member, so no Boolean default can"
                         + " announce itself as unrevised; false is offered as the initial"
                         + " value with that limitation stated rather than hidden.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("ByteArray default (IkeFoundation)").at(apparatus)
                 .synonym("ByteArray default")
                 .definition("The ByteArray field's loud default: the UTF-8 bytes of"
                         + " \"UNINITIALIZED\" — the loud String default carried in byte form,"
                         + " never a silent empty array.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Array default (IkeFoundation)").at(apparatus)
                 .synonym("Array default")
@@ -184,7 +184,7 @@ final class DataTypeDefaultsSet {
                         + " element, the String \"UNINITIALIZED\" — present and non-empty (an"
                         + " empty array would be a silent zero-value), its single element the"
                         + " loud String default.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Instant default (IkeFoundation)").at(apparatus)
                 .synonym("Instant default")
@@ -193,7 +193,7 @@ final class DataTypeDefaultsSet {
                         + " the platform's own before-all-recorded-time marker, chosen over"
                         + " a sentinel date because a true non-value cannot be mistaken for"
                         + " a real timestamp.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Long default (IkeFoundation)").at(apparatus)
                 .synonym("Long default")
@@ -203,7 +203,7 @@ final class DataTypeDefaultsSet {
                         + " natural data, where Long.MIN_VALUE would read as an overflow bug"
                         + " (and sits one away from the platform's pre-inception time sentinel)."
                         + " Never Java's silent zero.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Decimal default (IkeFoundation)").at(apparatus)
                 .synonym("Decimal default")
@@ -213,7 +213,7 @@ final class DataTypeDefaultsSet {
                         + " distinguishing property (a scaled decimal, not an integer) — the"
                         + " same move as the DiGraph cycle proving graph-ness. Never Java's"
                         + " silent zero.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         // ── The shared field purpose, and the pattern's own meaning/purpose ──
         // ONE purpose for all sixteen fields: every field exists for the identical
@@ -228,14 +228,14 @@ final class DataTypeDefaultsSet {
                         + " Java's silent zero-value. One purpose serves all sixteen fields"
                         + " because every field exists for this identical reason; distinct"
                         + " purposes would be manufactured variety.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         set.concept("Defaulted Data Types (IkeFoundation)").at(apparatus)
                 .synonym("Defaulted Data Types")
                 .definition("What a Data Type Defaults Pattern semantic means: the sixteen"
                         + " data types ConceptToDataType recognizes for pattern fields, each"
                         + " exemplified by one field carrying that type's loud default.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.MEANING);
 
         set.concept("Data Type Default Provision (IkeFoundation)").at(apparatus)
                 .synonym("Data Type Default Provision")
@@ -243,7 +243,7 @@ final class DataTypeDefaultsSet {
                         + " in one semantic, a loud default value for every data type a"
                         + " pattern field can declare — and, replayed, to exercise every"
                         + " field serialization path the store supports end to end.")
-                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"), IkeTerm.PURPOSE);
 
         // ── The pattern: sixteen fields in ConceptToDataType's convert order ──
         // Each field's dataType is the identity ConceptToDataType compares against,

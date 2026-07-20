@@ -22,7 +22,7 @@ final class Section28 {
                 .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of("d3bc16dc-6834-4256-8ff9-1bb796f92d29"), IkeTerm.PREFERRED)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("57e35be0-99b5-48c7-89f3-212956d5fcce"), IkeTerm.ENGLISH_LANGUAGE, "Feature type (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("7b022bae-e270-467b-86bb-7300b83fa58b"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c9120d8b-1acc-5267-9f33-fa716abdb69d")
-                .statedAxioms(PublicIds.of("bc18e5cc-0c66-5b8f-a287-c4625175d1bf"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT_PROPERTIES))))
+                .statedAxioms(PublicIds.of("bc18e5cc-0c66-5b8f-a287-c4625175d1bf"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical expression model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("e360e479-482c-4526-a21d-cc7ec5be7ba9"))
                 .semanticOn(PublicIds.of("02d88c2c-bc20-4008-b66b-24fd7d7583a3"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("119da844-1de7-48ee-bf2b-b9987331def3"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("57e35be0-99b5-48c7-89f3-212956d5fcce"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("b5e28b59-c0aa-40fa-ab4d-479c44be96ce"), IkeTerm.PREFERRED)

@@ -21,7 +21,7 @@ final class Section13 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("729cb02a-24fe-419d-994f-0b1f5f7c50da"), IkeTerm.ENGLISH_LANGUAGE, "Language coordinate properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("92c2cfd0-a05e-4c05-9be5-119334d94dc9"), IkeTerm.ENGLISH_LANGUAGE, "Spatial representation of language, attributes or language coordinates, programming language metadata?", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("302223eb-ef3f-4808-a8f6-d586496e639e"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "ea1a52f7-0305-5487-8766-e846330f167a")
-                .statedAxioms(PublicIds.of("c3261397-10af-5f97-8725-85911b6fbc81"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT_PROPERTIES))))
+                .statedAxioms(PublicIds.of("c3261397-10af-5f97-8725-85911b6fbc81"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("46c1bcec-0e5a-445a-b0d8-1dd6bb608325"))
                 .semanticOn(PublicIds.of("0a5fc215-4e5e-4201-a7a5-99cddd60a08d"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("d815a323-bf5c-4a26-bc24-eba50bb0ccad"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("729cb02a-24fe-419d-994f-0b1f5f7c50da"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("46293787-505a-4a94-96f6-45e0e7ab0589"), IkeTerm.PREFERRED)

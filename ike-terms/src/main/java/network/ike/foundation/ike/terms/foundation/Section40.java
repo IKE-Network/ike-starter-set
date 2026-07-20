@@ -21,7 +21,7 @@ final class Section40 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("55dc1c93-0dc1-4c23-bda2-79ba419919aa"), IkeTerm.ENGLISH_LANGUAGE, "Description acceptability", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("5106ab62-8cc5-485d-9a86-5ea2205423ef"), IkeTerm.ENGLISH_LANGUAGE, "Whether a given human readable text for a concept is permissible", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("2f394465-f048-4922-b06c-20db15af9711"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "96b61063-0d29-5aea-9652-3f5f328aadc3")
-                .statedAxioms(PublicIds.of("575aa454-9a66-5676-96a4-3af39800d0f9"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
+                .statedAxioms(PublicIds.of("575aa454-9a66-5676-96a4-3af39800d0f9"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.MEANING), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("29fd1ad4-f526-4c82-bb74-9da756c2db0e"))
                 .semanticOn(PublicIds.of("80efdccd-27a4-464e-8b45-a12f2cdcb596"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("901a9194-a5c5-49bf-94af-c273e002930c"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("55dc1c93-0dc1-4c23-bda2-79ba419919aa"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("31dbeb20-b045-4aa2-bbcb-8213bdc00e58"), IkeTerm.PREFERRED)

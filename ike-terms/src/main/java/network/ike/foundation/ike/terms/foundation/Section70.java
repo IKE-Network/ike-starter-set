@@ -64,7 +64,7 @@ final class Section70 {
                 .definition("""
                         A concept field whose value is the path dimension of a STAMP — \
                         the path the version was committed on.""")
-                .statedAxioms(PublicIds.of("98c878ac-8de4-4768-ac58-320e015daf02"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))))))
+                .statedAxioms(PublicIds.of("98c878ac-8de4-4768-ac58-320e015daf02"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("7475aa07-c8e5-50d6-bb31-334edd0ceff8"))
                 ;
 
@@ -74,26 +74,26 @@ final class Section70 {
 
         set.concept("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("f75590d7-49e1-42fc-afb0-490b7f8236cf"), IkeTerm.ENGLISH_LANGUAGE, "Concept field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("4e4ef60b-c909-4ac2-a993-12c5cffb3a98"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))))))
+                .statedAxioms(PublicIds.of("4e4ef60b-c909-4ac2-a993-12c5cffb3a98"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("30a298db-142e-5209-b294-dedf96d86f95"))
                 ;
 
         set.concept("Semantic versions field", PublicIds.of("aeb73410-a679-4ea8-93fe-7c4785599778")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("0c68481a-0d59-434d-802c-a1dd8268f536"), IkeTerm.ENGLISH_LANGUAGE, "Semantic versions field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("5fa410a1-c221-4e82-9987-e8fa032c75c1"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))))))
+                .statedAxioms(PublicIds.of("5fa410a1-c221-4e82-9987-e8fa032c75c1"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("02bd7335-4109-50d6-8539-09e2127949e3"))
                 ;
 
         set.concept("Semantic field field", PublicIds.of("f6572c76-b5c0-41da-99c0-4344694e7e3c")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("fc5eedd2-db8b-4a1c-8375-27335d57a7bc"), IkeTerm.ENGLISH_LANGUAGE, "Semantic field field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("cc3d0c0d-de28-4b9c-905c-53c16cd189cd"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))))))
+                .statedAxioms(PublicIds.of("cc3d0c0d-de28-4b9c-905c-53c16cd189cd"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("45395adb-9157-4710-8810-1a92b0bc1757"), IkeTerm.ENGLISH_LANGUAGE, "Semantic field field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("de300f46-a593-55b1-bb7d-194a4069b7ae"))
                 ;
 
         set.concept("Semantic field fields set", PublicIds.of("8dcfc1a1-31f2-46f7-8247-0a17a6d7c6c0")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9fc81e4e-ee6c-47e5-b450-8eec37c1489e"), IkeTerm.ENGLISH_LANGUAGE, "Semantic field fields set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("ab83903b-b4e2-41ba-9aec-db3913cfc80f"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))))))
+                .statedAxioms(PublicIds.of("ab83903b-b4e2-41ba-9aec-db3913cfc80f"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("20922df6-f4c5-5305-a34f-d2cfbfc9eb5c"))
                 ;
 
@@ -112,13 +112,13 @@ final class Section70 {
 
         set.concept("Pattern versions set", PublicIds.of("a254ccee-ef02-4504-9645-0a2ed7af955d")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("9ff7977c-e27d-4ebb-a494-f8e01f590d61"), IkeTerm.ENGLISH_LANGUAGE, "Pattern versions set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("fcdf7362-dcb4-4cbc-a066-ea08ae96ac14"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))))))
+                .statedAxioms(PublicIds.of("fcdf7362-dcb4-4cbc-a066-ea08ae96ac14"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("a3aed4d3-7817-5675-ad9f-fe690ba6b199"))
                 ;
 
         set.concept("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("77cef2f7-7515-4166-a289-83e20ed8bda5"), IkeTerm.ENGLISH_LANGUAGE, "Component versions set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("7a890c14-b8a2-468c-a29d-071af59797a1"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))))))
+                .statedAxioms(PublicIds.of("7a890c14-b8a2-468c-a29d-071af59797a1"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("fd4de866-ae89-56e5-b54a-2023ca848d5b"))
                 ;
 
@@ -164,7 +164,7 @@ final class Section70 {
 
         set.concept("Pattern meaning field", PublicIds.of("996d0023-a355-422f-a84d-16dda6ece1b0")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("22d8038d-bbe5-4626-aa64-59d617b06ed2"), IkeTerm.ENGLISH_LANGUAGE, "Pattern meaning field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("59a4c494-4f1f-407f-bc0e-50e124725ab7"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))))))
+                .statedAxioms(PublicIds.of("59a4c494-4f1f-407f-bc0e-50e124725ab7"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("75742c74-5b59-5069-94a3-af52a183fdb4"))
                 ;
 
@@ -177,26 +177,26 @@ final class Section70 {
 
         set.concept("Public ID field", PublicIds.of("196838c5-55f4-4e40-8618-b9ce60685c2f")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1d7c9dc9-5886-4c91-a39e-222296b7a3d3"), IkeTerm.ENGLISH_LANGUAGE, "Public ID field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("95a8f7f5-6e82-47a3-bdac-ffce75726494"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("String field", PublicIds.of("27d3905b-b19a-41ff-bed1-fc55f49f8ce4"))))))
+                .statedAxioms(PublicIds.of("95a8f7f5-6e82-47a3-bdac-ffce75726494"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("String field", PublicIds.of("27d3905b-b19a-41ff-bed1-fc55f49f8ce4"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("d3b567b8-599f-5a2d-8ab6-a6134e792176"))
                 ;
 
         set.concept("Uniquely identify knowledge graph components", PublicIds.of("dde9a93d-250c-449b-bea0-ba1133d1387b")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("84995eba-4c29-4461-8c95-7cec6f4f12c0"), IkeTerm.ENGLISH_LANGUAGE, "Uniquely identify knowledge graph components", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("5035431d-756f-476b-8684-b2d8776f491e"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_PROPERTIES))))
+                .statedAxioms(PublicIds.of("5035431d-756f-476b-8684-b2d8776f491e"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_PROPERTIES), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("3df98820-750e-440b-8dc0-b6181a732493"), IkeTerm.ENGLISH_LANGUAGE, "The purpose of this externally valid identifier—based on a list of UUIDs—is to provide a globally unique reference to each entity that is reliable across different systems and databases. This ensures consistent identification, serialization, and lookup of entities regardless of their storage location or implementation details.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("72282a9b-280f-5393-8cd7-4a59b0844fd9"))
                 ;
 
         set.concept("Concept versions field", PublicIds.of("3a08b5f1-f17e-4db5-8cf9-c6540f26f241")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("67271240-9116-45a4-9622-3cbe9149d355"), IkeTerm.ENGLISH_LANGUAGE, "Concept versions field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("585d09e9-3bbc-4806-9071-344ea449b5af"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))))))
+                .statedAxioms(PublicIds.of("585d09e9-3bbc-4806-9071-344ea449b5af"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("7b84bd4c-2e8e-5781-ab5a-3c7147359bca"))
                 ;
 
         set.concept("Concept versions set", PublicIds.of("806c7f9f-52f9-4b53-9758-122899b28a76")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("a1bcfd86-7970-4a54-922d-adad1895e061"), IkeTerm.ENGLISH_LANGUAGE, "Concept versions set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("9d107603-10a8-4928-a3be-2b26f854408b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))))))
+                .statedAxioms(PublicIds.of("9d107603-10a8-4928-a3be-2b26f854408b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("b2aa911a-e94b-5da6-af9a-8ef44d99cbdc"))
                 ;
 
@@ -208,19 +208,19 @@ final class Section70 {
 
         set.concept("Pattern purpose field", PublicIds.of("352c821b-7a11-454c-a127-48ad3206573d")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("18ec7dcd-fe02-4d3b-88b6-a446c5d04498"), IkeTerm.ENGLISH_LANGUAGE, "Pattern purpose field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("27ff9977-e815-490b-a26a-3407d5ee0548"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))))))
+                .statedAxioms(PublicIds.of("27ff9977-e815-490b-a26a-3407d5ee0548"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Concept field", PublicIds.of("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("29d1f0d4-537a-52e8-9771-de353141fb1d"))
                 ;
 
         set.concept("Pattern field", PublicIds.of("751790c7-e1e4-42bc-b531-54c54bd6eebd")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1edef18a-20a1-45e9-b351-89a84649426b"), IkeTerm.ENGLISH_LANGUAGE, "Pattern field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("172d9e69-6a3a-4303-9e28-7d2d2e3b5562"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))))))
+                .statedAxioms(PublicIds.of("172d9e69-6a3a-4303-9e28-7d2d2e3b5562"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("b2c9e0d2-0192-526e-b248-82e629525378"))
                 ;
 
         set.concept("Pattern versions field", PublicIds.of("7b8ecbbf-55b4-41bc-acbf-51824e74446a")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("03ef1ffa-2c30-4bd8-b1d0-bb4e17e01b2b"), IkeTerm.ENGLISH_LANGUAGE, "Pattern versions field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("6102d9a1-66a1-4468-a5da-705affc7710e"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))))))
+                .statedAxioms(PublicIds.of("6102d9a1-66a1-4468-a5da-705affc7710e"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions field", PublicIds.of("1a852426-422a-48db-a618-c906ac4c8e6c"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("fc925094-e901-4192-b641-fd1061c1a203"), IkeTerm.ENGLISH_LANGUAGE, "Pattern versions field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("4be32931-498f-5dd8-8e13-090a7faa0680"))
                 ;
@@ -234,7 +234,7 @@ final class Section70 {
 
         set.concept("Field definitions set", PublicIds.of("975de83e-ab99-4a9e-9051-4cbf310a2123")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("7639982f-9ccf-42c4-aad1-d9743ec59e39"), IkeTerm.ENGLISH_LANGUAGE, "Field definitions set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("ea7512bc-fd34-4ada-8833-cd121418da0c"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))))))
+                .statedAxioms(PublicIds.of("ea7512bc-fd34-4ada-8833-cd121418da0c"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))), leb.ConceptAxiom(IkeTerm.PURPOSE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("9ad1de67-18e1-550d-aef9-d85ecfa6fba5"))
                 ;
 
@@ -247,7 +247,7 @@ final class Section70 {
 
         set.concept("Semantic field", PublicIds.of("8b6c69d7-a5aa-4db2-bcea-8c7b2817b02f")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("d0b00d78-00df-4358-b2a3-e4b713f19a06"), IkeTerm.ENGLISH_LANGUAGE, "Semantic field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("1b48485e-ef4f-4de2-b30c-785b42f5d7c6"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))))))
+                .statedAxioms(PublicIds.of("1b48485e-ef4f-4de2-b30c-785b42f5d7c6"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("6027de68-e80c-58b0-8032-62a5bc6f51ea"))
                 ;
 
@@ -259,19 +259,19 @@ final class Section70 {
 
         set.concept("Semantic pattern field", PublicIds.of("19dd5dd3-1075-4113-a437-5f1f7c2d55bc")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("c6c8c1b3-95cc-485b-adbf-5c218cbf1241"), IkeTerm.ENGLISH_LANGUAGE, "Semantic pattern field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("d5e2fc81-268b-4510-b82e-c982f68bd975"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Pattern field", PublicIds.of("751790c7-e1e4-42bc-b531-54c54bd6eebd"))))))
+                .statedAxioms(PublicIds.of("d5e2fc81-268b-4510-b82e-c982f68bd975"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Pattern field", PublicIds.of("751790c7-e1e4-42bc-b531-54c54bd6eebd"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("9d1e6d38-030d-59d6-a6f7-bf180724cb66"))
                 ;
 
         set.concept("Semantic referenced component field", PublicIds.of("4111ba1e-c818-4c5d-9fed-34d07298d009")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("0562f9bf-867e-47d3-bcac-c37e170df2f2"), IkeTerm.ENGLISH_LANGUAGE, "Semantic referenced component field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("0fcea18e-0f47-46b8-b015-0a32404041a3"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))))))
+                .statedAxioms(PublicIds.of("0fcea18e-0f47-46b8-b015-0a32404041a3"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("f4800036-6f1d-5c09-8e0a-3410d9032dae"))
                 ;
 
         set.concept("Semantic versions set", PublicIds.of("4fd69aed-556f-4938-94cc-ea7ea707ccef")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("05e65c46-6c96-4eff-b10a-6200991da097"), IkeTerm.ENGLISH_LANGUAGE, "Semantic versions set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("b536e963-e938-4d7f-910f-eae3f8cc6ab2"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))))))
+                .statedAxioms(PublicIds.of("b536e963-e938-4d7f-910f-eae3f8cc6ab2"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component versions set", PublicIds.of("54d670f1-234d-485a-a354-e1fa7eea1bf2"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("d81283c1-cccb-5ac3-90f8-784dadca8313"))
                 ;
 
@@ -294,7 +294,7 @@ final class Section70 {
 
         set.concept("Field definition field", PublicIds.of("14171f07-e74f-409a-b555-06b478818f76")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("293a9980-baf8-4d28-a938-d102d04d1ef2"), IkeTerm.ENGLISH_LANGUAGE, "Field definition field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("334b5dc8-dcad-43d9-9a94-abb0dbd45363"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))))))
+                .statedAxioms(PublicIds.of("334b5dc8-dcad-43d9-9a94-abb0dbd45363"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("d7d3959f-0743-5e88-a6db-5de059a7ccdd"))
                 ;
 
@@ -317,13 +317,13 @@ final class Section70 {
 
         set.concept("STAMP field", PublicIds.of("3d821e64-a2ee-4414-8949-1bc92ef5d5b6")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("636175a0-1d83-43ba-bd94-1a4979ea17b2"), IkeTerm.ENGLISH_LANGUAGE, "STAMP field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("a7efeead-9f9a-4ae8-a029-eef2ba6f665d"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))))))
+                .statedAxioms(PublicIds.of("a7efeead-9f9a-4ae8-a029-eef2ba6f665d"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("d2948b12-e23f-5c0d-9741-a2613b849db8"))
                 ;
 
         set.concept("Component field", PublicIds.of("8bd36a0c-d05d-46b7-a79a-d11477705cc1")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("71037904-d49d-4bbd-a1f7-792c50e4593a"), IkeTerm.ENGLISH_LANGUAGE, "Component field", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .statedAxioms(PublicIds.of("4a691220-158e-44a3-8fcc-8582cf501a86"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))))))
+                .statedAxioms(PublicIds.of("4a691220-158e-44a3-8fcc-8582cf501a86"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Field categories", PublicIds.of("ed230c7c-20f9-470d-8566-5057f92748a5"))), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("73c02ad4-723b-5532-8ac7-440906695f8e"))
                 ;
 

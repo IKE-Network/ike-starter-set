@@ -479,7 +479,7 @@ final class NarrativeContentSet {
                         field declaration draws its `dataType` tag from k:DisplayFields[] instead
                         (`IkeTerm.LONG`, `IkeTerm.STRING`, `IkeTerm.COMPONENT_FIELD`, and so on, throughout
                         this starter set's own source) — two families that happen to describe the same idea
-                        twice, not one. Reparented under k:Legacy[] here as a deprecation signal; the
+                        twice, not one. Reparented under k:LegacyModelConcepts[] here as a deprecation signal; the
                         disconnect on the komet side is tracked as ikmdev/komet#880.
 
                         k:LiteralValue[] groups the value shapes a concrete field literal can take —

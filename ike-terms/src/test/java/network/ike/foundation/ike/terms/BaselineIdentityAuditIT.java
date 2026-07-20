@@ -131,10 +131,16 @@ class BaselineIdentityAuditIT {
      * baseline parentage every other component is held to; {@link ConsumerMergeIT}
      * applies the same exemption to its merged-store drift check.
      */
+    /** The Meaning role umbrella — see the derivable-divergence note in the parent audit. */
+    static final UUID MEANING_UMBRELLA = UUID.fromString("a06158ff-e08a-5d7d-bcfa-6cbfdb138910");
+    /** The Purpose role umbrella — see the derivable-divergence note in the parent audit. */
+    static final UUID PURPOSE_UMBRELLA = UUID.fromString("c3dffc48-6493-54df-a2f0-14be8ba03091");
+
     static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.ofEntries(
-            // Dynamic column data types -> Legacy (#880)
+            // Dynamic column data types -> Legacy model concepts (#880; parent identity
+            // re-derived by the #918 birth-FQN rename)
             Map.entry(UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"),
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
             // Author -> STAMP dimensions (#915)
             Map.entry(UUID.fromString("f7495b58-6630-3499-a44e-2052b5fcf06c"),
                     UUID.fromString("aea9ca27-3c50-522f-acda-ae881f954603")),
@@ -213,7 +219,100 @@ class BaselineIdentityAuditIT {
                     UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
             // Data property set -> Logical set (#915)
             Map.entry(UUID.fromString("6b8ed642-de72-4aee-953d-42e5db92c0ab"),
-                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b"))
+                    UUID.fromString("70eb421f-2489-5b4f-8699-686487e4593b")),
+            // Uninitialized Component -> Chronicle and version model (#918)
+            Map.entry(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"),
+                    UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),
+            // Any component -> Chronicle and version model (#918)
+            Map.entry(UUID.fromString("927da7ac-3403-5ccc-b07b-88f60cc3a5f8"),
+                    UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),
+            // NID -> Identifier model (#918)
+            Map.entry(UUID.fromString("d1a17272-9785-51aa-8bde-cc556ab32ebb"),
+                    UUID.fromString("ca825cab-4ea6-5ef2-824c-3ca40a98bf72")),
+            // Has Active Ingredient -> Role type (#918; migrates to a SNOMED starter set when one exists)
+            Map.entry(UUID.fromString("65bf3b7f-c854-36b5-81c3-4915461020a8"),
+                    UUID.fromString("76320274-be2a-5ba0-b3e8-e6d2e383ee6a")),
+            // Has Dose Form -> Role type (#918; same migration note)
+            Map.entry(UUID.fromString("072e7737-e22e-36b5-89d2-4815f0529c63"),
+                    UUID.fromString("76320274-be2a-5ba0-b3e8-e6d2e383ee6a")),
+            // Laterality -> Role type (#918; same migration note)
+            Map.entry(UUID.fromString("26ca4590-bbe5-327c-a40a-ba56dc86996b"),
+                    UUID.fromString("76320274-be2a-5ba0-b3e8-e6d2e383ee6a")),
+            // Sandbox component -> Legacy model concepts (#918)
+            Map.entry(UUID.fromString("c93829b2-aa78-5a84-ac9a-c34307844166"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Sandbox module single-homes under Module (#918; drops the Sandbox component parent)
+            Map.entry(UUID.fromString("c5daf0e9-30dc-5b3e-a521-d6e6e72c8a95"),
+                    UUID.fromString("40d1c869-b509-32f8-b735-836eac577a67")),
+            // Object -> Legacy model concepts (#918; grab bag dissolved)
+            Map.entry(UUID.fromString("72765109-6b53-3814-9b05-34ebddd16592"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Object Properties -> Legacy model concepts (#918; grab bag dissolved)
+            Map.entry(UUID.fromString("3ef4311c-70c0-5149-9e06-53d745f85b15"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Language coordinate properties -> View coordinate model (#918)
+            Map.entry(UUID.fromString("ea1a52f7-0305-5487-8766-e846330f167a"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // Logic coordinate properties -> View coordinate model (#918)
+            Map.entry(UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // Path coordinate properties -> View coordinate model (#918)
+            Map.entry(UUID.fromString("ec41e427-f009-5e45-a643-6dc658d63d83"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // ImmutableCoordinate Properties -> View coordinate model (#918)
+            Map.entry(UUID.fromString("ab41a788-8a83-5452-8dc0-2d8375e0bfe6"),
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            // Chronicle properties -> Chronicle and version model (#918)
+            Map.entry(UUID.fromString("2ba2ef47-30af-57ec-9073-38693f020d7e"),
+                    UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),
+            // Version Properties -> Chronicle and version model (#918)
+            Map.entry(UUID.fromString("93f844df-38e5-5167-ba94-2c948b8bd07c"),
+                    UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),
+            // Semantic properties -> Chronicle and version model (#918)
+            Map.entry(UUID.fromString("b717ae48-5488-5dda-a980-97855001cc99"),
+                    UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),
+            // Feature Type -> Logical expression model (#918)
+            Map.entry(UUID.fromString("c9120d8b-1acc-5267-9f33-fa716abdb69d"),
+                    UUID.fromString("048b509b-7446-5adb-a81b-245386981760")),
+            // Reflexive Feature -> Logical expression model (#918)
+            Map.entry(UUID.fromString("7e779e4a-61ed-5c4a-aacc-03cf524b7c73"),
+                    UUID.fromString("048b509b-7446-5adb-a81b-245386981760")),
+            // Transitive Feature -> Logical expression model (#918)
+            Map.entry(UUID.fromString("53f866d0-fd61-5c85-a16c-150bd619a0ac"),
+                    UUID.fromString("048b509b-7446-5adb-a81b-245386981760")),
+            // Property Sequence -> Logical expression model (#918)
+            Map.entry(UUID.fromString("d0d759fd-510f-475a-900e-b1439b4536e1"),
+                    UUID.fromString("048b509b-7446-5adb-a81b-245386981760")),
+            // Annotation property set -> Logical expression model (#918)
+            Map.entry(UUID.fromString("cb9e33de-f82c-495d-89fa-69afecbcd47d"),
+                    UUID.fromString("048b509b-7446-5adb-a81b-245386981760")),
+            // Tree amalgam properties -> Graph model (#918)
+            Map.entry(UUID.fromString("d6151a47-4610-5a5c-abd0-42c82be9b633"),
+                    UUID.fromString("c99b70a6-e563-5c8a-b3d9-5f599d0ee9bd")),
+            // Action properties -> Legacy model concepts (#918; dormant ISAAC relic)
+            Map.entry(UUID.fromString("80ba281c-7d47-57cf-8100-82b69bce998b"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Correlation properties -> Legacy model concepts (#918; dormant ISAAC relic)
+            Map.entry(UUID.fromString("8f682e00-3d9e-5506-bd19-b2169d6c8752"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Annotation type -> Legacy model concepts (#918; pre-pattern-era classifier)
+            Map.entry(UUID.fromString("3fe77951-58c9-51b3-8e7e-65edcf7ace0a"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Komet issue -> Legacy model concepts (#918; dormant)
+            Map.entry(UUID.fromString("e1dd7bf2-224d-53a5-a5fb-7b25b05d17a6"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Comment -> Editorial model (#918; live as the Comment Pattern field meaning)
+            Map.entry(UUID.fromString("147832d4-b9b8-5062-8891-19f9c4e4760a"),
+                    UUID.fromString("6dec60bc-67e5-5af7-8228-bb5161feffee")),
+            // Creative Commons BY license -> Provenance model (#918)
+            Map.entry(UUID.fromString("3415a972-7850-57cd-aa86-a572ca1c2ceb"),
+                    UUID.fromString("a93e37fd-7333-5577-8cba-8cd4a0823612")),
+            // Meaning umbrella -> Model concept (#918)
+            Map.entry(UUID.fromString("a06158ff-e08a-5d7d-bcfa-6cbfdb138910"),
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66")),
+            // Purpose umbrella -> Model concept (#918)
+            Map.entry(UUID.fromString("c3dffc48-6493-54df-a2f0-14be8ba03091"),
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66"))
     );
 
     /**
@@ -434,9 +533,25 @@ class BaselineIdentityAuditIT {
             List<Set<UUID>> expected = reparented != null
                     ? List.of(Set.of(reparented))
                     : row.parents();
+            // The Meaning/Purpose role umbrellas are a principled, DERIVABLE divergence
+            // class, not per-row registry rows (IKE-Network/ike-issues#918): any concept a
+            // ledger pattern's latest version declares as a meaning or purpose carries the
+            // role umbrella as an additional parent, and LedgerGatesIT's derivability gate
+            // holds that assertion to the pattern declarations in both directions. Here the
+            // umbrella parents are simply not part of the baseline comparison.
+            // (An umbrella that IS the expected baseline parent — the umbrellas' own
+            // inherited vocabulary children — is compared normally, not subtracted.)
             List<Set<UUID>> actual = new ArrayList<>();
             for (int parentNid : StoreInspection.latestIsAParents(calculator, nidOf(row))) {
-                actual.add(Set.of(PrimitiveData.publicId(parentNid).asUuidArray()));
+                Set<UUID> parent = Set.of(PrimitiveData.publicId(parentNid).asUuidArray());
+                boolean isRoleUmbrella =
+                        parent.contains(MEANING_UMBRELLA) || parent.contains(PURPOSE_UMBRELLA);
+                boolean expectedHasIt = expected.stream().anyMatch(
+                        expectedParent -> expectedParent.stream().anyMatch(parent::contains));
+                if (isRoleUmbrella && !expectedHasIt) {
+                    continue;
+                }
+                actual.add(parent);
             }
             assertEquals(expected.size(), actual.size(),
                     "isA parent count drifted for baseline component \"" + row.fqn() + "\" "

@@ -21,7 +21,7 @@ final class Section45 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("a460e8cc-74a9-460e-87db-b340d763f15b"), IkeTerm.ENGLISH_LANGUAGE, "Description case significance", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("ea380386-a5cb-4e1e-9419-6097f0411e69"), IkeTerm.ENGLISH_LANGUAGE, "Specifies how to handle the description text in terms of case sensitivity", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("0333c0ec-64a3-451c-b8e7-0ddddd0f1ad3"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c3dde9ea-b144-5f49-845a-20cc7d305250")
-                .statedAxioms(PublicIds.of("bc6d523f-953c-5e7a-b9ea-a30efcf8444b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
+                .statedAxioms(PublicIds.of("bc6d523f-953c-5e7a-b9ea-a30efcf8444b"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("5c68ac1a-d1a8-4e98-9675-8a7e019823af"))
                 .semanticOn(PublicIds.of("60e732f5-b3b4-4ebd-b6ae-66122fc4e76c"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("fabc6be1-7725-4fc4-98fa-747d9c2b610d"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("a460e8cc-74a9-460e-87db-b340d763f15b"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("a5fb88df-61bb-4c56-b06c-5a207d4ee3c6"), IkeTerm.PREFERRED)

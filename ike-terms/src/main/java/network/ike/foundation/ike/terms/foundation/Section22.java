@@ -21,7 +21,7 @@ final class Section22 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("6036c822-8ee6-462b-9e66-2f5c627384f8"), IkeTerm.ENGLISH_LANGUAGE, "Logic coordinate properties", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("54fa5cec-2dfa-468c-9d90-9d48ed7e9171"), IkeTerm.ENGLISH_LANGUAGE, "Structural characteristics of logical elements, Attributes of Logical coordinates, Mathematical Representation of logical relationships ?", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("3b3bc09e-b0d3-44e1-a2f1-f0b6354c639d"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "1fa63819-5ac1-5938-95b1-47871a5f2b17")
-                .statedAxioms(PublicIds.of("9fc148d7-7435-5d81-ac30-1920d697e039"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT_PROPERTIES))))
+                .statedAxioms(PublicIds.of("9fc148d7-7435-5d81-ac30-1920d697e039"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("61d88335-a658-40c5-a92f-d63ef7343f5d"))
                 .semanticOn(PublicIds.of("bc1a1259-121e-4ef0-8964-d6740761ab0e"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("5faac4a1-e121-4ee9-a727-fb35c2a9a4ee"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("6036c822-8ee6-462b-9e66-2f5c627384f8"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("2e672c86-4105-4cb5-931f-a9bf7f64ef6b"), IkeTerm.PREFERRED)
@@ -34,7 +34,7 @@ final class Section22 {
                 // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("899291eb-daea-40c6-8f5f-6f939d0d5a47"), IkeTerm.ENGLISH_LANGUAGE, "The origin-set value a Module origins pattern semantic carries: the set of modules a module originated from — what the pattern's one field holds, distinct from Originated Module, the module whose origins are declared.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("711e9637-5d8a-4f22-a430-5dde79b4dbaf"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "462862d4-5df9-426e-b785-a1264e24769f")
-                .statedAxioms(PublicIds.of("89439dbb-6bbb-5a13-b407-1ea42986f6b2"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.LOGIC_COORDINATE_PROPERTIES))))
+                .statedAxioms(PublicIds.of("89439dbb-6bbb-5a13-b407-1ea42986f6b2"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.LOGIC_COORDINATE_PROPERTIES), leb.ConceptAxiom(IkeTerm.MEANING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("a324bfb5-1828-4f34-adcd-7fb01c133b4e"))
                 .semanticOn(PublicIds.of("a3cf1284-f9ab-4cd9-ba4f-340218b31490"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("2c7d1f18-0c98-4186-bc7a-6f8141bf0bc8"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("664b13d0-506f-4f95-823b-c94369ec0d0b"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("835eb207-4b81-49dc-b159-ae4cea65eab5"), IkeTerm.PREFERRED)

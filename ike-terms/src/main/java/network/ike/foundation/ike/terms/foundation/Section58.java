@@ -21,7 +21,7 @@ final class Section58 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("56ac1e29-4b8f-4bb3-9ee8-1cc5d18b0196"), IkeTerm.ENGLISH_LANGUAGE, "Native Identifier", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("7d5321fe-8f3e-4fce-a360-aa66406d54e9"), IkeTerm.ENGLISH_LANGUAGE, "Data type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("722b1d3c-d7b4-4ecd-8a78-fdaaed924457"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "d1a17272-9785-51aa-8bde-cc556ab32ebb")
-                .statedAxioms(PublicIds.of("b46a332e-33db-5f04-85e7-baa5d63227a8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.OBJECT))))
+                .statedAxioms(PublicIds.of("b46a332e-33db-5f04-85e7-baa5d63227a8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Identifier model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("0ad01e4b-9661-4cf2-981e-c67b7aff014b"))
                 .semanticOn(PublicIds.of("12912da5-305a-44a0-ac4f-2b231863480f"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("13f035c5-90b3-4203-913a-90c8cd17c957"), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of("56ac1e29-4b8f-4bb3-9ee8-1cc5d18b0196"), IkeTerm.US_DIALECT_PATTERN, PublicIds.of("8d71faac-ff15-45c8-9031-ad09eceda32b"), IkeTerm.PREFERRED)
