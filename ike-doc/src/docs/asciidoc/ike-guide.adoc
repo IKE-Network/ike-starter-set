@@ -531,9 +531,9 @@ The sixteen decided defaults group into a small number of strategies:
 * *Native non-values.* Types whose value space offers a true non-value use it — a
   non-value is louder still, because it cannot be mistaken for data at all. Float is
   `NaN`, which also propagates through arithmetic, so any computation over an unrevised
-  default stays loudly not-a-number; Instant is the premundane instant, the time type's
-  own before-all-recorded-time marker, chosen over a sentinel date because a true
-  non-value cannot be mistaken for a real timestamp.
+  default stays loudly not-a-number; Instant is the pre-inception instant (historically
+  'premundane'), the time type's own before-all-recorded-time marker, chosen over a
+  sentinel date because a true non-value cannot be mistaken for a real timestamp.
 * *Stretched-sevens sentinels.* Numeric types without a native non-value use a planted
   repdigit: Integer is `777777777` (nine sevens), Long is `777777777777777777`
   (eighteen sevens), and Decimal is `777777777.777` — nine sevens, a decimal point,

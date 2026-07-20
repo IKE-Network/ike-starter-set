@@ -48,7 +48,7 @@ import java.util.UUID;
  * default works as an initial value but must read as obviously needing revision —
  * {@code "UNINITIALIZED"}, not {@code ""}; a planted repdigit, not {@code 0}. Types
  * whose value space offers a true non-value use it (Float's {@code NaN}, Instant's
- * premundane instant — a non-value cannot be mistaken for data at all, and {@code NaN}
+ * pre-inception instant — a non-value cannot be mistaken for data at all, and {@code NaN}
  * propagates through arithmetic); numeric types without one use the stretched-sevens
  * sentinel ({@code 777777777}, {@code 777777777777777777},
  * {@code 777777777.777} — repdigit signatures that read as deliberately planted, where
@@ -188,10 +188,11 @@ final class DataTypeDefaultsSet {
 
         set.concept("Instant default (IkeFoundation)").at(apparatus)
                 .synonym("Instant default")
-                .definition("The Instant field's loud default: the premundane instant, the"
-                        + " time type's native non-value — the platform's own before-all-"
-                        + "recorded-time marker, chosen over a sentinel date because a true"
-                        + " non-value cannot be mistaken for a real timestamp.")
+                .definition("The Instant field's loud default: the pre-inception instant"
+                        + " (historically 'premundane'), the time type's native non-value —"
+                        + " the platform's own before-all-recorded-time marker, chosen over"
+                        + " a sentinel date because a true non-value cannot be mistaken for"
+                        + " a real timestamp.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
         set.concept("Long default (IkeFoundation)").at(apparatus)
@@ -200,7 +201,7 @@ final class DataTypeDefaultsSet {
                         + " 777777777777777777 (eighteen sevens) — a repdigit signature that"
                         + " reads as deliberately planted and cannot plausibly occur as"
                         + " natural data, where Long.MIN_VALUE would read as an overflow bug"
-                        + " (and sits one away from the platform's premundane time sentinel)."
+                        + " (and sits one away from the platform's pre-inception time sentinel)."
                         + " Never Java's silent zero.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
@@ -357,8 +358,8 @@ final class DataTypeDefaultsSet {
                         "UNINITIALIZED".getBytes(StandardCharsets.UTF_8),
                         // Array — exactly one element, the loud String default
                         new Object[]{"UNINITIALIZED"},
-                        // Instant — the premundane instant, the time type's non-value
-                        PrimitiveData.PREMUNDANE_INSTANT,
+                        // Instant — the pre-inception instant, the time type's non-value
+                        PrimitiveData.PRE_INCEPTION_INSTANT,
                         // Long — stretched sevens (eighteen)
                         777_777_777_777_777_777L,
                         // Decimal — stretched sevens with the demonstrative decimal point
