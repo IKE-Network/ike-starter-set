@@ -56,7 +56,7 @@ final class NarrativeContentSet {
      */
     static final EntityProxy.Pattern PROSE_ELEMENT_PATTERN = EntityProxy.Pattern.make(
             "Prose element pattern (RichSurfaceTerms)",
-            PublicIds.of(UUID.fromString("89b831a1-e773-5f83-87a6-2cfc8e107fb0")));
+            PublicIds.of("89b831a1-e773-5f83-87a6-2cfc8e107fb0"));
 
     private NarrativeContentSet() {
     }

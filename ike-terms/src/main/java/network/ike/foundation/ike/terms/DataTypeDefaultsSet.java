@@ -314,7 +314,7 @@ final class DataTypeDefaultsSet {
         // description, not the "Uninitialized" synonym or the definition).
         EntityProxy.Semantic uninitializedFqnDescription = EntityProxy.Semantic.make(
                 "Uninitialized Component (SOLOR) fully qualified name description",
-                PublicIds.of(UUID.fromString("f600187f-94a9-4baf-8b44-46baba8d928a")));
+                PublicIds.of("f600187f-94a9-4baf-8b44-46baba8d928a"));
 
         set.concept("Default value concept (IkeFoundation)").at(defaults)
                 .semantic(dataTypeDefaultsPattern, PublicIds.of(defaultIdentity),
