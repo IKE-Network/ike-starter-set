@@ -40,7 +40,7 @@ final class Section26 {
         set.concept("Master path", PublicIds.of("1f20134a-960e-11e5-8994-feff819cdc9f", "2faa9260-8fb2-11db-b606-0800200c9a66")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("b6d5da66-493c-413d-8785-994e4b60e726"), IkeTerm.ENGLISH_LANGUAGE, "Master path", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("150339e7-75af-4872-9c88-dbb78b7e1565"), IkeTerm.ENGLISH_LANGUAGE, "Master path", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("e2eedff3-06a3-4469-a270-7f3e00b67e62"), IkeTerm.ENGLISH_LANGUAGE, "A default path for components", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("e2eedff3-06a3-4469-a270-7f3e00b67e62"), IkeTerm.ENGLISH_LANGUAGE, "The path released consumer-facing content lands on: the mainline other paths promote into.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("75b27dc0-582b-407e-b9a1-0d7e9d543696"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "1f20134a-960e-11e5-8994-feff819cdc9f")
                 .statedAxioms(PublicIds.of("8860bc79-e8ad-5963-9fe2-eb9305e32eae"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("e5f77409-fe87-4338-bb83-67ddd58765ae"))

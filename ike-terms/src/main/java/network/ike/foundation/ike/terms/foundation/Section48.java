@@ -19,7 +19,7 @@ final class Section48 {
         set.concept("Transitive Feature (SOLOR)", PublicIds.of("53f866d0-fd61-5c85-a16c-150bd619a0ac")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("8781d232-ce28-422c-9121-2c7d0df128ca"), IkeTerm.ENGLISH_LANGUAGE, "Transitive Feature (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("89740fb9-ee44-439e-9ccb-e12942d6440a"), IkeTerm.ENGLISH_LANGUAGE, "Transitive Feature", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("c3fd417e-e68a-4bb5-82c1-8b8d211477dd"), IkeTerm.ENGLISH_LANGUAGE, "Transitive property (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("c3fd417e-e68a-4bb5-82c1-8b8d211477dd"), IkeTerm.ENGLISH_LANGUAGE, "Marks a property as transitive: if it relates the first to the second and the second to the third, it relates the first to the third.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("c799493c-2579-47c2-b439-78c72e5062e4"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "53f866d0-fd61-5c85-a16c-150bd619a0ac")
                 .statedAxioms(PublicIds.of("70712d68-977d-517e-a64a-8cc555d42ea9"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical expression model (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("c24bb780-0931-42e8-a873-71cf6da39190"))

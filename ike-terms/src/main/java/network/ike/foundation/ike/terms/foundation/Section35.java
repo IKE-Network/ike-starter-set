@@ -19,7 +19,7 @@ final class Section35 {
         set.concept("Component type focus (SOLOR)", PublicIds.of("f1f179d0-26af-5123-9b29-9fc6cd01dd29")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("eb4bd537-5b29-449c-9798-aeb95d56cecd"), IkeTerm.ENGLISH_LANGUAGE, "Component type focus (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("0b65dda0-b2bd-48ae-a3ba-1e465daf4798"), IkeTerm.ENGLISH_LANGUAGE, "Component type focus", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("253fab55-ce5b-42e8-9eea-cc856e24b921"), IkeTerm.ENGLISH_LANGUAGE, "Focus type of component", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("253fab55-ce5b-42e8-9eea-cc856e24b921"), IkeTerm.ENGLISH_LANGUAGE, "Groups the component kinds a rule or action can be scoped to: concepts, descriptions, or axioms.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("4b3ed6e0-49ff-443e-a945-d6ca2c52796f"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "f1f179d0-26af-5123-9b29-9fc6cd01dd29")
                 .statedAxioms(PublicIds.of("0fbf89bc-93c2-55b0-ae6e-9649d2b8db63"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("f4cc29cc-bc14-4328-86ce-b86c0b54add3"))

@@ -303,6 +303,12 @@ class BaselineIdentityAuditIT {
             // Path origins -> Provenance model (#925; path lineage is version-control machinery, not coordinate configuration)
             Map.entry(UUID.fromString("6e6a112e-7d8c-53c7-aaf1-c46e2d69743c"),
                     UUID.fromString("a93e37fd-7333-5577-8cba-8cd4a0823612")),
+            // Component for semantic -> Legacy model concepts (#926; one of three concepts for the same meaning, zero code references)
+            Map.entry(UUID.fromString("0bc32c16-698e-5719-8bd5-efa099c7d782"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
+            // Referenced component for semantic -> Legacy model concepts (#926; same duplicate trio — the live kind is Semantic referenced component field)
+            Map.entry(UUID.fromString("a9ba4749-c11f-5f35-a991-21796fb89ddc"),
+                    UUID.fromString("7fd61405-6776-52e6-9e4e-3d21dfdf28ad")),
             // Uninitialized Component -> Chronicle and version model (#918)
             Map.entry(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"),
                     UUID.fromString("863dfaec-a508-5c9f-a51f-d8691ab38e8b")),

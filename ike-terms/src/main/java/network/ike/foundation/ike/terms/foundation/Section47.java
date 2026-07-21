@@ -43,7 +43,7 @@ final class Section47 {
         set.concept("Tree list (SOLOR)", PublicIds.of("c11dd7a1-0ba1-5378-81d6-3efdba1e074b")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("7d1475f7-3ad3-4bb3-886a-873600c56afe"), IkeTerm.ENGLISH_LANGUAGE, "Tree list (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("d5a0fdbd-2592-47e1-afe2-4cabafbac239"), IkeTerm.ENGLISH_LANGUAGE, "Tree list", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("2101fa61-d6c9-4bb8-a3e6-45385234da64"), IkeTerm.ENGLISH_LANGUAGE, "List - Tree", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("2101fa61-d6c9-4bb8-a3e6-45385234da64"), IkeTerm.ENGLISH_LANGUAGE, "The legacy tree-amalgam field holding a navigation tree's parent-to-child adjacency, paired with Inverse tree list.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("4a72b49a-a39f-4b2c-8249-35c01df67475"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c11dd7a1-0ba1-5378-81d6-3efdba1e074b")
                 .statedAxioms(PublicIds.of("61ad6a00-8451-5db4-8eed-5a3d7ce4ebd3"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TREE_AMALGAM_PROPERTIES))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("c29830b9-9f6c-4e11-9a1e-21fa3632f91f"))

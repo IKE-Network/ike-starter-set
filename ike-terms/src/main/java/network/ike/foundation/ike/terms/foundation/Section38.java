@@ -43,7 +43,7 @@ final class Section38 {
         set.concept("Partial (SOLOR)", PublicIds.of("a7f9574c-8e8b-515d-9c21-9896063cc3b8")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("b08b3e99-9ddc-4593-b8e8-fa7d4a87da2b"), IkeTerm.ENGLISH_LANGUAGE, "Partial (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("c9f297c1-c42e-4cf8-9cd8-fa0fabc83887"), IkeTerm.ENGLISH_LANGUAGE, "Partial", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("03dbbf93-4a35-4768-a766-76f5cd0a3c4b"), IkeTerm.ENGLISH_LANGUAGE, "Exists in/ Inclusion of ?", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("03dbbf93-4a35-4768-a766-76f5cd0a3c4b"), IkeTerm.ENGLISH_LANGUAGE, "The correlation grouping value for a partial match: the expressions correspond in some but not all of their parts, as opposed to an exact correspondence.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("38f0b479-5e18-48e3-8b29-d016616cac65"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "a7f9574c-8e8b-515d-9c21-9896063cc3b8")
                 .statedAxioms(PublicIds.of("ba2c4173-ec03-51df-9988-a9afef20029e"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.GROUPING))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("60d67466-a279-4735-92fa-02c8290a3866"))

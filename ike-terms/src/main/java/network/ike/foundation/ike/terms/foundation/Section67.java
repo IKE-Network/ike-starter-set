@@ -31,7 +31,7 @@ final class Section67 {
         set.concept("Uncategorized phenomenon (SOLOR)", PublicIds.of("722f5ac8-1f5c-5d8f-96bb-370d79596f66")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("e7999991-62cb-4409-83ba-742c43c404ef"), IkeTerm.ENGLISH_LANGUAGE, "Uncategorized phenomenon (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1a6c85a0-1382-49c2-ae4b-082c678416a0"), IkeTerm.ENGLISH_LANGUAGE, "Uncategorized phenomenon", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("801c0e27-5770-40f8-8eba-69af5864cac0"), IkeTerm.ENGLISH_LANGUAGE, "Unknown", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("801c0e27-5770-40f8-8eba-69af5864cac0"), IkeTerm.ENGLISH_LANGUAGE, "The domain placeholder for phenomena not yet classified into the model: content admitted before its category is settled.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("a0ca2cbf-0382-4888-8415-112c3defc202"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "722f5ac8-1f5c-5d8f-96bb-370d79596f66")
                 .statedAxioms(PublicIds.of("e189f26a-ebb1-5149-9885-68ded4a19dd4"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PHENOMENON))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("2e81f256-0b4d-43f4-963f-f239270ae273"))

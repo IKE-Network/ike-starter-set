@@ -31,7 +31,7 @@ final class Section40 {
         set.concept("Preferred (SOLOR)", PublicIds.of("266f1bc3-3361-39f3-bffe-69db9daea56e")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("dff6e3d1-e02c-4b44-8819-f90b8140fd7f"), IkeTerm.ENGLISH_LANGUAGE, "Preferred (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("a591be55-fc99-4feb-9d6c-7fc26c692dc6"), IkeTerm.ENGLISH_LANGUAGE, "Preferred", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("135bd64e-6118-4fde-9207-9c0b65a27619"), IkeTerm.ENGLISH_LANGUAGE, "Preferred( Foundation metadata concept)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("135bd64e-6118-4fde-9207-9c0b65a27619"), IkeTerm.ENGLISH_LANGUAGE, "The acceptability value marking a description as the one to show first in a dialect: at most one preferred description per description type per dialect.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("e0725ca0-f2a6-41a5-b09d-6ed5d524e03e"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "266f1bc3-3361-39f3-bffe-69db9daea56e")
                 .statedAxioms(PublicIds.of("192a1b8b-39c7-517d-8159-406d4533e9c0"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_ACCEPTABILITY))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("9ca806ad-9142-4d28-ac33-9166e7a35df2"))

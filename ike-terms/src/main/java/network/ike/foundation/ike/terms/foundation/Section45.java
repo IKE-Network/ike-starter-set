@@ -55,7 +55,7 @@ final class Section45 {
         set.concept("Not Applicable (SOLOR)", PublicIds.of("d4cc29ae-c0c1-563a-985d-5165a768dd44")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("5222f597-204b-42d0-b8e2-e8a417e3b51f"), IkeTerm.ENGLISH_LANGUAGE, "Not Applicable (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("825ee6e6-806d-47a0-a697-c10dbcf0c493"), IkeTerm.ENGLISH_LANGUAGE, "Not applicable", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("076f4b20-4e54-4128-8870-04c27b3332ac"), IkeTerm.ENGLISH_LANGUAGE, "Not available", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("076f4b20-4e54-4128-8870-04c27b3332ac"), IkeTerm.ENGLISH_LANGUAGE, "The case-significance value for text where case carries no meaning at all, so the question of sensitivity does not arise.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("63959872-7836-48b7-8ef2-0f6a0751f5c2"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "d4cc29ae-c0c1-563a-985d-5165a768dd44")
                 .statedAxioms(PublicIds.of("b0f9be37-3958-5347-bac3-c34d463e2641"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_CASE_SIGNIFICANCE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("ee6ca243-3edb-48a4-b2c9-872dfe64de14"))

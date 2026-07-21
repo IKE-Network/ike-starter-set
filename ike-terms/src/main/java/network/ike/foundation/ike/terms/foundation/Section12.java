@@ -31,7 +31,7 @@ final class Section12 {
         set.concept("EL++ logic profile (SOLOR)", PublicIds.of("1f201e12-960e-11e5-8994-feff819cdc9f")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("50877775-d8e3-47ea-b720-e9ad7f594cea"), IkeTerm.ENGLISH_LANGUAGE, "EL++ logic profile (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("88e752f6-d809-4b14-a2aa-eac57d1cab48"), IkeTerm.ENGLISH_LANGUAGE, "EL ++ logic profile", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("67d1b85b-b4c8-4d13-bfe6-bfba8144c528"), IkeTerm.ENGLISH_LANGUAGE, "EL ++ profile", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("67d1b85b-b4c8-4d13-bfe6-bfba8144c528"), IkeTerm.ENGLISH_LANGUAGE, "The EL++ description-logic profile: the expressivity this set's definitions stay within, chosen because classification remains tractable at terminology scale.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("186e1a51-1c91-4d8d-94f1-ef3f1fd7c7c7"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "1f201e12-960e-11e5-8994-feff819cdc9f")
                 .statedAxioms(PublicIds.of("fb1af2fa-d384-58b8-9cf0-f3e00ee88afe"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_LOGIC_PROFILE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("1352fa09-de8f-4b94-bc70-cdfb5cc961e9"))

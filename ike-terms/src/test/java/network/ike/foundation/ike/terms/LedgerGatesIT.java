@@ -691,6 +691,8 @@ class LedgerGatesIT {
         int regType = TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid();
         java.util.List<String> missing = new java.util.ArrayList<>();
         java.util.List<String> echoes = new java.util.ArrayList<>();
+        java.util.List<String> questions = new java.util.ArrayList<>();
+        java.util.List<String> stubs = new java.util.ArrayList<>();
         EntityService.get().forEachConceptEntity(concept -> {
             java.util.List<String> labels = new java.util.ArrayList<>();
             java.util.List<String> definitions = new java.util.ArrayList<>();
@@ -715,6 +717,23 @@ class LedgerGatesIT {
                 if (normalizedDefinition.isEmpty()
                         || labels.stream().anyMatch(label -> normalizeLabel(label).equals(normalizedDefinition))) {
                     echoes.add(PrimitiveData.text(concept.nid()) + " := \"" + definition + "\"");
+                    continue;
+                }
+                // A definition must DEFINE (IKE-Network/ike-issues#926). Two further
+                // failures the echo test alone lets through, both found in inherited
+                // baseline text: authoring uncertainty committed as knowledge, and
+                // stubs that restate the label in fewer words than the label itself.
+                if (definition.trim().endsWith("?")) {
+                    questions.add(PrimitiveData.text(concept.nid()) + " := \"" + definition + "\"");
+                    continue;
+                }
+                java.util.Set<String> definitionWords = substantiveWords(normalizedDefinition);
+                java.util.Set<String> labelWords = new java.util.HashSet<>();
+                labels.forEach(label -> labelWords.addAll(substantiveWords(normalizeLabel(label))));
+                java.util.Set<String> novelWords = new java.util.HashSet<>(definitionWords);
+                novelWords.removeAll(labelWords);
+                if (definitionWords.size() < MINIMUM_SUBSTANTIVE_WORDS || novelWords.isEmpty()) {
+                    stubs.add(PrimitiveData.text(concept.nid()) + " := \"" + definition + "\"");
                 }
             }
         });
@@ -722,6 +741,37 @@ class LedgerGatesIT {
                 "concepts without any definition — every concept must say what it is");
         assertEquals(java.util.List.of(), echoes,
                 "definitions that echo the concept's own labels say nothing — write a real one");
+        assertEquals(java.util.List.of(), questions,
+                "a definition ending in '?' is authoring uncertainty, not knowledge — settle it or leave"
+                        + " the concept undefined and file the question");
+        assertEquals(java.util.List.of(), stubs,
+                "definitions carrying fewer than " + MINIMUM_SUBSTANTIVE_WORDS + " substantive words beyond"
+                        + " the concept's own labels restate the name instead of defining it");
+    }
+
+    /**
+     * The substance floor: how many content words a definition must carry, on top of
+     * carrying at least one word its labels do not. Four is the empirical floor the
+     * IKE-Network/ike-issues#926 wave settled on — enough to reject "Data type",
+     * "Version time", and "Operator", low enough to admit terse but genuine definitions
+     * like "The field holding an interval's lower bound value".
+     */
+    private static final int MINIMUM_SUBSTANTIVE_WORDS = 4;
+
+    /** Content words of normalized text, with the grammatical filler dropped. */
+    private static java.util.Set<String> substantiveWords(String normalizedText) {
+        java.util.Set<String> filler = java.util.Set.of(
+                "the", "a", "an", "of", "for", "to", "in", "on", "and", "or", "is", "are", "be",
+                "by", "with", "that", "this", "it", "as", "at", "from", "its", "their", "which",
+                "what", "when", "how", "not", "no", "any", "each", "every", "one", "some", "such",
+                "other", "than", "then", "there", "these", "those", "concept", "used", "value");
+        java.util.Set<String> words = new java.util.HashSet<>();
+        for (String word : normalizedText.split(" ")) {
+            if (word.length() > 2 && !filler.contains(word)) {
+                words.add(word);
+            }
+        }
+        return words;
     }
 
     /** Case-, punctuation-, and qualifier-insensitive label normalization for the echo gate. */

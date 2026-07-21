@@ -43,7 +43,7 @@ final class Section64 {
         set.concept("Navigation concept set (SOLOR)", PublicIds.of("fc965c5d-ad17-555e-bcb5-b78fd45c8c5f")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("8e051e4f-72b3-4889-8e33-201556752813"), IkeTerm.ENGLISH_LANGUAGE, "Navigation concept set (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("36ff964b-1503-4a99-a1d0-2f5acc9c6820"), IkeTerm.ENGLISH_LANGUAGE, "Navigation set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("99253983-b68f-4193-90f3-12d354e4e6cb"), IkeTerm.ENGLISH_LANGUAGE, "Navigating sets of concepts?", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("99253983-b68f-4193-90f3-12d354e4e6cb"), IkeTerm.ENGLISH_LANGUAGE, "The navigation-coordinate dimension holding the concept set a navigator traverses, scoping navigation to a chosen part of the taxonomy.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("260629c1-3ce7-4149-b840-5314737cb7c4"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "fc965c5d-ad17-555e-bcb5-b78fd45c8c5f")
                 .statedAxioms(PublicIds.of("561e4bac-7fed-52a5-8be4-a48435f60bc8"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.NAVIGATION))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("88634391-20f0-4a6a-8b07-b7dcc739569b"))

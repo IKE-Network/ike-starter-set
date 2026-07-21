@@ -144,9 +144,7 @@ final class Section70 {
         set.concept("Blank Concept", PublicIds.of("cd23d88d-2fcd-4007-8829-97e37bf336aa")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("fddf5dfb-702a-4ef1-84a2-e2c8881f10b5"), IkeTerm.ENGLISH_LANGUAGE, "Blank Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .definition("""
-                        A sentinel concept used as a field value in place of a real concept \
-                        reference — a placeholder meaning no meaningful value applies here, \
-                        not a modeled domain concept itself.""")
+                        The editor's empty-value marker: what an editing surface writes into a component-valued field a person has deliberately cleared, and what it tests for when asking whether that field is empty. An authored, persisted value -- distinct from Uninitialized Component, the platform's null-object for a reference that was never set at all. Neither asserts anything about the world; a claim that no value applies would need a concept this set does not yet carry.""")
                 .statedAxioms(PublicIds.of("7b1742ae-98e7-4562-bd47-d20a0b35127e"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("395a8595-4e3a-5f2c-935f-28ab6c0d2fff"))
                 ;

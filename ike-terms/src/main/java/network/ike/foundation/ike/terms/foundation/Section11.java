@@ -19,7 +19,7 @@ final class Section11 {
         set.concept("Concept details tree table (SOLOR)", PublicIds.of("1655edd8-7b73-52c5-98b0-263d1ab3a90b")).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("d9f14a66-ee6a-42d6-8528-35235b05b1e1"), IkeTerm.ENGLISH_LANGUAGE, "Concept details tree table (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("38f00409-d08a-409c-b2a7-2990ae6e46c1"), IkeTerm.ENGLISH_LANGUAGE, "Concept details tree table", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1684fe7f-5be2-4f3f-97e6-52440a8ed3b5"), IkeTerm.ENGLISH_LANGUAGE, "Tree table with concept details", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of("1684fe7f-5be2-4f3f-97e6-52440a8ed3b5"), IkeTerm.ENGLISH_LANGUAGE, "The Komet surface presenting a concept's details as a tree table: descriptions, axioms, and attached semantics in one expandable view.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of("c04d191c-8d52-422d-bbae-174db5fb4df2"), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "1655edd8-7b73-52c5-98b0-263d1ab3a90b")
                 .statedAxioms(PublicIds.of("446fda85-53ab-5243-84dd-cb15fcec262c"), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of("6ea27f77-5bd9-406f-9b08-a7efa72cb3ad"))
