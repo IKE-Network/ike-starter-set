@@ -1,0 +1,25 @@
+# Ike Change Set
+
+> The released form of the IkeFoundation knowledge set: ike:knowledge-export replays
+> the ledger and attaches the protobuf change set (classifier: changeset). A
+> starter set is exactly this artifact applied to an empty base.
+
+## Other
+
+- [Dependencies (SBOM)](https://ike.network/ike-starter-set/ike-changeset/dependencies.html.md)
+- [Licenses (SPDX)](https://ike.network/ike-starter-set/ike-changeset/licenses.html.md)
+- [Built With](https://ike.network/ike-starter-set/ike-changeset/built-with.html.md)
+
+## Overview
+
+- [About](https://ike.network/ike-starter-set/ike-changeset/index.html.md)
+
+## Reports
+
+- [Project Summary](https://ike.network/ike-starter-set/ike-changeset/summary.html.md)
+- [Maven Coordinates](https://ike.network/ike-starter-set/ike-changeset/dependency-info.html.md)
+- [Project Dependency Management](https://ike.network/ike-starter-set/ike-changeset/dependency-management.html.md)
+- [Project Plugins](https://ike.network/ike-starter-set/ike-changeset/plugins.html.md)
+- [Project Plugin Management](https://ike.network/ike-starter-set/ike-changeset/plugin-management.html.md)
+- [Project Distribution Management](https://ike.network/ike-starter-set/ike-changeset/distribution-management.html.md)
+- [Project Information](https://ike.network/ike-starter-set/ike-changeset/project-info.html.md)

@@ -1,7 +1,7 @@
 ---
 date_published: 2026-07-02
 date_modified: 2026-07-02
-canonical_url: https://ike.network/ike-starter-set/ike-kb/dependency-info.html
+canonical_url: https://ike.network/ike-starter-set/dependency-info.html
 ---
 
 # Maven Coordinates
@@ -11,7 +11,7 @@ canonical_url: https://ike.network/ike-starter-set/ike-kb/dependency-info.html
 ```
 <dependency>
   <groupId>network.ike.foundation</groupId>
-  <artifactId>ike-kb</artifactId>
+  <artifactId>ike-starter-set</artifactId>
   <version>1-chronology-builder-SNAPSHOT</version>
   <type>pom</type>
 </dependency>
@@ -20,8 +20,8 @@ canonical_url: https://ike.network/ike-starter-set/ike-kb/dependency-info.html
 ## [Apache Ivy](#apache-ivy)
 
 ```
-<dependency org="network.ike.foundation" name="ike-kb" rev="1-chronology-builder-SNAPSHOT">
-  <artifact name="ike-kb" type="pom" />
+<dependency org="network.ike.foundation" name="ike-starter-set" rev="1-chronology-builder-SNAPSHOT">
+  <artifact name="ike-starter-set" type="pom" />
 </dependency>
 ```
 
@@ -29,24 +29,24 @@ canonical_url: https://ike.network/ike-starter-set/ike-kb/dependency-info.html
 
 ```
 @Grapes(
-@Grab(group='network.ike.foundation', module='ike-kb', version='1-chronology-builder-SNAPSHOT')
+@Grab(group='network.ike.foundation', module='ike-starter-set', version='1-chronology-builder-SNAPSHOT')
 )
 ```
 
 ## [Gradle/Grails](#gradle-grails)
 
 ```
-implementation 'network.ike.foundation:ike-kb:1-chronology-builder-SNAPSHOT'
+implementation 'network.ike.foundation:ike-starter-set:1-chronology-builder-SNAPSHOT'
 ```
 
 ## [Scala SBT](#scala-sbt)
 
 ```
-libraryDependencies += "network.ike.foundation" % "ike-kb" % "1-chronology-builder-SNAPSHOT"
+libraryDependencies += "network.ike.foundation" % "ike-starter-set" % "1-chronology-builder-SNAPSHOT"
 ```
 
 ## [Leiningen](#leiningen)
 
 ```
-[network.ike.foundation/ike-kb "1-chronology-builder-SNAPSHOT"]
+[network.ike.foundation/ike-starter-set "1-chronology-builder-SNAPSHOT"]
 ```

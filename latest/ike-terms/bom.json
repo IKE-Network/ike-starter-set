@@ -1,0 +1,1962 @@
+{
+  "bomFormat" : "CycloneDX",
+  "specVersion" : "1.6",
+  "serialNumber" : "urn:uuid:5702c825-3673-305a-826d-99c659f8e9e8",
+  "version" : 1,
+  "metadata" : {
+    "lifecycles" : [
+      {
+        "phase" : "build"
+      }
+    ],
+    "tools" : {
+      "components" : [
+        {
+          "type" : "library",
+          "author" : "OWASP Foundation",
+          "group" : "org.cyclonedx",
+          "name" : "cyclonedx-maven-plugin",
+          "version" : "2.9.0",
+          "description" : "CycloneDX Maven plugin",
+          "hashes" : [
+            {
+              "alg" : "MD5",
+              "content" : "dfaeab7ec837ce07874e2ee66fdc57d3"
+            },
+            {
+              "alg" : "SHA-1",
+              "content" : "8bab47bafc8183d0a5f37790ff55ed05ead1ae2d"
+            },
+            {
+              "alg" : "SHA-256",
+              "content" : "67117e03eae4a03ca8bab3add044995f4899aa21798a2510b8265ef8101e90ac"
+            },
+            {
+              "alg" : "SHA-512",
+              "content" : "ae6b706516bb76da806b7854aef9e348fa593f5159ae9d693ad38942165c0ebc0846d977a477f6029612d43468fd2cd73a5aa253c228a94fb8d184e0acefc3d2"
+            },
+            {
+              "alg" : "SHA-384",
+              "content" : "ee872354d8b0dcd6f9835a913b3aaba70d9365a46043be78020183282a1e9fca812e969246cbe31d642541591b46648b"
+            },
+            {
+              "alg" : "SHA3-384",
+              "content" : "e5167f9e7ceba3b7b4d1900c404543907868745334bedc69cdf79c271727148413033a3b1426b733b7549e612e44adee"
+            },
+            {
+              "alg" : "SHA3-256",
+              "content" : "41fc0bc2275f354e2c7da01041ce73ce677364799cba53920a180aa5d4571c63"
+            },
+            {
+              "alg" : "SHA3-512",
+              "content" : "ed7f97900b09b818dbc0b8a23c00a2843e1bc34e2e8eb5b6df52533af0a15b721de6f7d5c2fd9352b8d4fde768e080053b40a16f0f9f04c336fe9b44abe83fc0"
+            }
+          ]
+        }
+      ]
+    },
+    "component" : {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.foundation/ike-terms@1-chronology-builder-SNAPSHOT?type=jar",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.foundation",
+      "name" : "ike-terms",
+      "version" : "1-chronology-builder-SNAPSHOT",
+      "description" : "The IkeFoundation ledger: declared stamps inline, edits under each, authored with the chronology builders. Replay is verified over the in-memory store; the change-set module consumes this ledger.",
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.foundation/ike-terms@1-chronology-builder-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-starter-set/ike-terms/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-platform/ike-starter-set/ike-terms"
+        }
+      ]
+    },
+    "properties" : [
+      {
+        "name" : "maven.goal",
+        "value" : "makeBom"
+      },
+      {
+        "name" : "maven.scopes",
+        "value" : "compile,provided,runtime,system"
+      },
+      {
+        "name" : "cdx:reproducible",
+        "value" : "enabled"
+      }
+    ]
+  },
+  "components" : [
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.tinkar",
+      "name" : "entity",
+      "version" : "1.127.2-chronology-builder-SNAPSHOT",
+      "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "a8b2c15233d87edbf90b3af6d6b84ac8"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "04a8809079eb24584817affa79b9ca2379b3c4a6"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "eb40b133933be6ac71b6e9936795e6815708063fc7e9e22a3b3178a207bcb115"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "efbc08fcd4fbb0700719fbb778662785677e8645d43b282cd73c4ed7603e83a6681e1219bbd38e0b8ce72f972e030f535f527aa7ccc18096205fb4dd338110c7"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "375d18c95b83859327ca6a18513bb3fe10f5ce65d66bcc054de419c8a102a3fdf7568238f4a456ef7978c3c70e1642dd"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "d4a28fd0f43d5bbe18816bacb220a1e836591af04ab6b516e8e64fe534fe96c42efc34a6639f53cecd087d9ed18c9210"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "8edff5f0b2c3bb484f005a64714aaafe03909f1df598625e0dacb66da167d986"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "fc22ec0025cb21e095957da1cd304a8ded2bcf5c28fd52cd5d2635d558e876a4090800d46489170efa674fbc914a7e18167c4eeee590a68399e2d9a1c88ff5c3"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/entity"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/tinkar-core/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/tinkar-core/entity"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.tinkar",
+      "name" : "terms",
+      "version" : "1.127.2-chronology-builder-SNAPSHOT",
+      "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "83e0915b8716fa63752c06ebca8cd692"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "f25a2c878c11c8dc643edd49da23ff568f2b6a40"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "4ee8f13b03ee1155c9eea93b8ec38409b23651a3f208be67e9eff6c4fc060e85"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "0ae16688225e125945b0040c2d2ad0f1aeada6789b68a78a8b6356e9f06591b784611099c4b52363bb86d0a43bfb09b9d7fa3aa7e185633fe3270f3537bfc735"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "bf757859d1c3834528b0f4f2e494c396af96a008d050e5e867dee9798476a2e02610626d612fc1f7d6e5d6977105877b"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "ef91ba635163dcff76ff4d052b61957cb7efa627db540259cff93e9952612780263ed2aabf06df3d8623cdb503e6e32c"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "7b0680cb92db144108da85c1744286c74a6fa2154c3ec88e101a930decd7c386"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "29faa75c472ae981248de6ed5a188f5454ed1655098fcdc0aff080c49201a4dfc90743fcffa23ee35abaada1a37c9dc30b66a46b8f597abe0960586db8628fc0"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/terms"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/tinkar-core/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/tinkar-core/terms"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.tinkar",
+      "name" : "collection",
+      "version" : "1.127.2-chronology-builder-SNAPSHOT",
+      "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "44e31ef97cebf46eca6c8c74c0491768"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "52e71568c3f3e48776d73bd8a6367c2fb44de131"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "dcc92dcc57f92f3e367deae37103e4fec0b535783910cda4f5cebbc5d5eeda5c"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "d9ceb560efbee20ed059ed310b3ed6ad41b56a2c3da30bbd2ec8efada52c33e9c5e2f74df8f226b8413a75b5096416fd3610c3ce6bf325eeaf8b5eebbb78349b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "9024ebd67a17462a228319b79de7fe25322a0e6adc05de40c3550a41a7a5a43d6ab0b0687eefc124333d3d9ec8905431"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1272d0476a65a085c2c0ce479fa2198846fc0060ed4afcc9072275a93cc3cde3bf603633d9f2681cda01e0c85b4ea48d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "b2bca9e53993744fb2052aa5680ee4c4d79e41cd6f9783978dfa5c74a76202b6"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "0079048bbc15cfa9c56df0b5c38729f83a0f194dd919ba430e1b624aca6be228a12f5d08b6845a5f4da56145185be240d156d6462b1a419707e5d125b9c8b48f"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/collection"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/tinkar-core/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/tinkar-core/collection"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.tinkar",
+      "name" : "common",
+      "version" : "1.127.2-chronology-builder-SNAPSHOT",
+      "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "da65c21802e85497fe70cae5d11b9f74"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "d065a047b3bdb997d19cf23a012b64a1daf36b25"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "173a37f1f1d8790126cb481556153bf306c1204858e69b8f5aefa196818cf7f0"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "404dcc4cd501881abecf407d66553dea33d88f694db7dd0cdaa74990c24589f98186e5e947c0d7039460bbdff915c5891674ef590de5fd6a2e9b9e1adb50c99a"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "294cd869e7ce5916e9f3e5b3ccbbafcf3c1f45fafd34deb9d481db8f2966384978a8773470d35f72850b894acfddf34c"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "e5f487c46505f1519f782ffffbdf80f759bc79ccabd8798aa093c84c3aad45b4a8adedc4d4fc4cf4bba4d1a4424245f2"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "d2976ec9907ca3958b9daaef276b2d6b1c8c6bfb61e6c2b9e6a2c979d066f70c"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "7927178447d1b1857d4509beabc60f03ec9a8b69e96a5d0c024e5bad40b08070671ae9692cbc20c67d9db4e69598f3f95d6bf6b641837cc99d10bbd42afd42d5"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/common"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/tinkar-core/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/tinkar-core/common"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar",
+      "group" : "com.github.RoaringBitmap.RoaringBitmap",
+      "name" : "roaringbitmap",
+      "version" : "1.6.0",
+      "description" : "Roaring bitmaps are compressed bitmaps (also called bitsets) which tend to outperform conventional compressed bitmaps such as WAH or Concise.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f84df2a8329ecc084d65efebf3605c7f"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "86c9a44defed947bb4f28d65e537407156e5a682"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "89515bd403ff0eb321cb7a6f7ab12bdbffbc46ac2aac26a75067e59d74260600"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "a5d44930bd6b4f1a220e19e43046451fea70c16c7f319d722bd1be2004329d96c7a5736ec2956cd6c850e2e8e22510f2b49d48094fdca32a17fb677e551a57e8"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "6a650a1700e8bb263f0dbd1df75d8d81181cf60ce87b94d3d6bff3f67c519346b05d2f75afddb5a7ff4956fcf9a89a7f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "51cb8ed644508ee6a3b850faf73bdc4990628df5ab5540d7d89747326283ff5b0a930e373ea0c6300ed043f3b06d5694"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "80e9c062cac9577ca468edff09903210f3c11fe754df5b5dc7d4589a83c8bdb5"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "899b51830ac94bf89424b71bbea6e4a9af2607e28c49e9adf524692c62222b36fcac5152de84f0131a56ebde498a258a9f40af0d5de6ae5a014ac6408463d6ce"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/RoaringBitmap/RoaringBitmap"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/RoaringBitmap/RoaringBitmap/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/RoaringBitmap/RoaringBitmap"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.jpms",
+      "name" : "activej-common",
+      "version" : "4.3-r8",
+      "description" : "The General Parent that helps to define the build processes that should be used across projects, regardless of. Package type. This is versioned and if you want to use a different version of the pom, you can simply change the parent version and it will adjust all of the properties being used throughout, as the properties and plugins will be inherited by subprojects.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "15289e291d47bd3f50671d0d4c13a2f7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "e54b459c8307fcf4210ae6d1786b84623c62fec0"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "28d7f1d671be29906044497a963c1045c8d628da53eca088a45494f3baedf8e3"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "cc2a37a1e97e7325016675b950da36a5eeda9eafe345353f970ca3bf3d6fc83c075c908868c9815194f1ac451eeea754fe148b5c2acb720a4a3f8d7bf912bd1a"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "29e5e8c37cfe023fd34447395bc7b9a7fa24ccc8afbfec576adb73ec953d92b1deaa3e108397bdd778c49fe283487941"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "78c59d4aca6e6248012953f0c7374e196be3a2b4916aa33743060a3e8a277e2350910ab34bddac05953bd1265d653be4"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "b89bf0ca9334fdb89bdc8b9d0670457d1638aa59d7a74879805636229dff684a"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "106f5323b0b4dd0ac1a5d4dc3ed9d6c329991c5097f2c755574c51d83cdf18885393a6ca2bfdf0c4f706a70645d5cd9f7add66499c95a5abf17ca75ff708373a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/activej-common"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/build-parent/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/build-parent/activej-common"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.tinkar",
+      "name" : "component",
+      "version" : "1.127.2-chronology-builder-SNAPSHOT",
+      "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "8fba82ffa36b6fb06353d6ab765734ae"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "8c6215f28dcc313e070324dd87defc9f7eaf0b7b"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "24c59fb72b2bd84228ed06988ab17498fc13b41760bfa873fd09cdb6d50ccf2f"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "9b8eb601cbcf05ef99431c0e74081d7011f264519a301985810a3fc82d69fe020b37819e774bb746aa379a52b16220baae3e47ee1016a3ad18ede346522a218c"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "77f5aaea6f55b6df44a79639b8e57fc0346c2e4224617f3f593e691e94599d68bc2014a4748cc44f06bf7a3f5987ec0c"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "fc82be3a27f67c10b9bd1d9667243864326b7c786260988bdd2a7da658cfabac9297bd502da97efc3e87b703fc2c5aca"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "3c3c1773b2267d71c07885ec4d5cc36a549a8e80b2066f449db869c23f714a0b"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "dc17160af220d5911f1957040285d7ab15e1f6546138d2208d1968a16e8cf119240f6c43fc9706ae5f016abf32ca8c600db1b802e6072596f280408ee0d0f36e"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/component"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/tinkar-core/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/tinkar-core/component"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar",
+      "publisher" : "IKE Network",
+      "group" : "dev.ikm.tinkar",
+      "name" : "tinkar-schema",
+      "version" : "1.43.0-chronology-builder-SNAPSHOT",
+      "description" : "Standard parent POM for IKE Network projects. Inheriting this POM provides build conventions (Java 25 compiler, test harness, GPG signing, AsciiDoc documentation pipeline) from the ike-platform reactor root and centralized dependency version management declared inline. Declares ike-doc-maven-plugin (from network.ike.docs) with extensions=true to provide the ike-doc custom packaging type to external doc projects.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "19c6cba0f408d95d1a50250f266527c2"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "41c6b2fa36e9bd000a85e1df3d4496027fbd72f4"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "5e9f3745e7afb4e317da289015070bd9504bfca9ebd5eeb84cbdcfa8f70ccd95"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "19d5e67be4df75519ae7e5b8f8e93cfedd7820144e27d5f182bbdc73bcdc5abb13886f1e82a9ec2a7f61dbb656beb6c6e04860a103ad51834a8b7b1f0e4cce5b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "7948d9f1aa9a68f42b3128c65f4bc67b822a1939bfa423bb23d43552cc510d7f651ab593b390069b7d8d74d40f5f013e"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "8b10a1339a20485307db5698adb80912ff65defc161946e02d97f93a0ceef2ced512cd6156214258a0f194e04cbc1d94"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "48391db9c6f8d14f98cd61681ae6b805c2ee85df07d0f678f6b9dbc8951c95ed"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "04eb303357f4d5957241eaa0ff8fbdb92e021dcb24f9370dad11edb907506f15e68a02958eef74d3a9bb543bfcdc9070436172ccf6ca6f644f2402734c71b066"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/IKM/tinkar-proto"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-platform/tinkar-schema"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar",
+      "group" : "com.github.ben-manes.caffeine",
+      "name" : "caffeine",
+      "version" : "3.2.3",
+      "description" : "A high performance caching library",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "0258f45d43968523cc11beeb01b240f2"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c097f0f6d21a0e6db88ea55836e26419b30dfe19"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ca70c90a5d1ce1511880ce9c93d4ad22108f61111d3daf91eb52762b571bd179"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "7aa65de1cb087aa645d7217bd3162b3842fe40914b590238afc681b1d8b33647efb1fd948d21ed0210a40d4bbda882ed24f3e6d326f9a03131660ae9778bbb7b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "d5f32eb2dfc3a0dd1c60bf2a7b92b4e5fe90dd29c4a7bbd6b261f66976256e4026d4a6d60b2b81a774b28fde49901f2f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "811dd5fe983a606177060e218a4982e2e64cd5f1715f5ad436316cd8bfab67e2cd77d83b8901ab40c133c9ad052a5557"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "306d252b82f5bb4d028feb2769662fde46564fdd2947f7e4d2a275346391644c"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "be545922c67934d4bc1a88bcd7338830919de5518cd10e02e64922f10fd8c3615d34a4345ba2500b40afba4d75b466342dfc2dad9efa179c48bf9bebc67cc970"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/ben-manes/caffeine"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/ben-manes/caffeine"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+      "group" : "org.jspecify",
+      "name" : "jspecify",
+      "version" : "1.0.0",
+      "description" : "An artifact of well-named and well-specified annotations to power static analysis checks",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "9133aba420d0ca3b001dbb6ae9992cf6"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "7425a601c1c7ec76645a78d22b8c6a627edee507"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "efded31ef5b342f09422935076e599789076431e93a746685c0607e7de5592719ba6aacde0be670b3f064d1e85630d58d5bce6b34aed2a288fdb34f745efb7bc"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "814f860e5a44ead6c457676841eef471a8b87be31b84c60a8a4477a18a9cbcb6e3c2ae700969d5c5e52309d961e0537a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c8844e5b71e5ecfbb7366097ce34af2f5863d86d5ccc3f9ec384d8ade4b60ccc8124c7fc88664f1afd2b0962fc8775bf"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "4b4f08ad7606a3ac62997779484919a302267b26d26ee19125f8a7eea60e8a71"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "65c6845ebae981cb81b61107707ced39f5b377dae970b47606ef482aaf10e3729def0da40d9377c43abbfb483a5ceae039b0d51c129c50a6d36ad351a5d6b01e"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://jspecify.org/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/jspecify/jspecify/"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar",
+      "publisher" : "Google LLC",
+      "group" : "com.google.errorprone",
+      "name" : "error_prone_annotations",
+      "version" : "2.43.0",
+      "description" : "Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "59fe4a79ce3218423f4f8918f04ef22f"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "a4f9062316c31850b03085e45717f564fd563ceb"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "48272e75c16e1f7bdc7bd19529ccacd5ee170404701d7f5a23441bb5847957f5"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "1e9e8cc7e7eebdbb12c21ad94868c731c49533dd9ef5c6db6e93c421c57ca4e6a5a22e1830a41c65b19e4755c84d6450dccea0f8d23258a65a9d395dfd17405e"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "d735d664455177247d16437ac74a838b42ccdc98277153d27c8e0006f942194a3260527d4b3dcb8f056b2ac4ef4fa9fa"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "fecfff7371580a679cc3caf3f6a2ca61507e8e8103d076654d554843d9daf6b3667042058a5ae2876750b06e1f20d45d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "2ea4cfd5b7b2cf0e82ff2695db7164d4ed5a8b8c5805324c462e5b4ba681604c"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "9dcadf4ef206a7ed5da9466e97156df3f0b95cea0bf3b81cad8d5020475c6c0a99d80980d196512eaed27b2f15d41d5c9df6d10ff3c4e4e9b52311f4ecae8573"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://errorprone.info/error_prone_annotations"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/google/error-prone/error_prone_annotations"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.jpms",
+      "name" : "protobuf-java",
+      "version" : "4.30.2-r3",
+      "description" : "The General Parent that helps to define the build processes that should be used across projects, regardless of. Package type. This is versioned and if you want to use a different version of the pom, you can simply change the parent version and it will adjust all of the properties being used throughout, as the properties and plugins will be inherited by subprojects.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f8c7de2084cb97086774a66390dca80f"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "195aa9806ac10b2cee13e9de867a2585820b6e22"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ffe776723e52027862d319dbe2bbf2929c6c4ea532254331e52755f7fdeba306"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "75293cc1f3f9f238212152a31faa8d6b21bae9057a5e9662268fa137af61f24f220da4245fe7238b714a65d659096601897a326c5105404e703b34adff5b0dfc"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e406cd18797c058c8e733365c85e6546e993480830b2b576a5ea25f217a7c2e09a94b585018de71194bcb65d44604d21"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "fc84e5f727e0b996885a92b289c056d8d416df5d0db996962c3517c94d7498de89ce8f4d19873943e812f19ed3d4ef58"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "a5d1389aaded815dd17bb3e0f6377b29ba55913ebcf3e5f31a33c97e12e05662"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3c383c5ba9c9b3b74ff11fcdd41d9ce5fbc919a9f1f233b3a9eb53c21ef33aacaf171181b80d7efc350a995ac9d1bfdd8073c380b9d405353204ec9470dc7faa"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/HL7/tinkar-proto"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/build-parent/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/build-parent/protobuf-java"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.jpms",
+      "name" : "activej-bytebuf",
+      "version" : "4.3-r10",
+      "description" : "The General Parent that helps to define the build processes that should be used across projects, regardless of. Package type. This is versioned and if you want to use a different version of the pom, you can simply change the parent version and it will adjust all of the properties being used throughout, as the properties and plugins will be inherited by subprojects.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "228ff9c55d7e38ba7ee83873c7faaded"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "395c3de1aadf74f7ed97ccc29751d413772c8db0"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "72380e74a412d032b29658f02de586b313d2942a1df516f14025c60bec4d80c0"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "009aee57ac0ce0ee58fcf5694472439dbc0f1dd5741b577dd7da7f1a4457989c3330fa90a8c10f28ae1016ca6905128cf3923afe6dfeb1efed257dfcbcdb6520"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "4c7a09906c422733bc21866ba8efa9a31719ad039ecff6c82596cb7a7daae43fc35d0928b6a9c5363ad8264026bb70e4"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "f076ac9908a02599388190458c650e42385e88dc4f12789b48d5f03ebf76d120fece1cd18c2745baa0566240cf0acc64"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "ecc8c097b83a02a2f114fc3e476a123e432dd6b4eef1c4e16f2c0edb9dd49158"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "5bee23f115d76aa43b677cc380e40994baa873c55766aac8472374a578bc328bd2eb7bc425d16577b3cd374a59ba0c3a48ea43265dc56d041c49d4f1d7b48d71"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/activej-bytebuf"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/build-parent/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/build-parent/activej-bytebuf"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar",
+      "group" : "org.jgrapht",
+      "name" : "jgrapht-core",
+      "version" : "1.5.2",
+      "description" : "A Java class library for graph-theory data structures and algorithms.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "410df880b9c0d98e0d5645ac5d0f2b2a"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "bea9b92d4ff37111f8e3d58cd8cf0714e5c83774"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "dfa596e9f0d0838f1b5e81dd0cd60e3a76c2c290ac25a0a029ffde58cf5e4c14"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e409474f8b7293c23beed68b37d6ed86756bcef817e877111fed38b80579794395991e3f0845fd0bc88958f6d485e5b38ead9af4b6f368886ad82df16cdfe60b"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "2765e3d58f5537d547be9f3f281b7882073cf027526efa4dcccb9f863e05a2c9ae8988f797f7166377c2ca99a5c957f0"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "9acc44a3572ada500b5aae8a77b763c5a2165eb8ae482a19b934b8e83faef9391ff7966e86207191f40d544cb3c418af"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "eac070b2673dcbbdd41aa1d41b322874dd8428558fd96f07b445514cb1ab525b"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "7738a64ba23b23c959b2bd65131bdded77cfe54d6894682a581f5e30e55dfddcb953b7c82c58c962c86fc14a22f5ce51d1afd25736cfde30d9948ec0787034de"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "LGPL-2.1-only"
+          }
+        },
+        {
+          "license" : {
+            "name" : "Eclipse Public License (EPL) 2.0",
+            "url" : "http://www.eclipse.org/legal/epl-v20.html"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.jgrapht.org/jgrapht-core"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/jgrapht/jgrapht/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "http://lists.sourceforge.net/lists/listinfo/jgrapht-users"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/jgrapht/jgrapht.git/jgrapht-core"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+      "group" : "org.eclipse.collections",
+      "name" : "eclipse-collections-api",
+      "version" : "13.0.0",
+      "description" : "Eclipse Collections is a collections framework for Java. It has JDK-compatible List, Set and Map implementations with a rich API and set of utility classes that work with any JDK compatible Collections, Arrays, Maps or Strings. The iteration protocol was inspired by the Smalltalk collection framework.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "15a9046457810ea49271e50438f4568d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "b9ac55a5cb08375868fed573fbf32c68dbb658a3"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "2ede735db355b079fc08b0bc7657bd4f95d045416bdaa7ec5235853cf6f364d2"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "a8c087c7f2d8557a06c1aec7bd1a3f60df62a61a087bb44a974b4f8d58caf26bf53d2bba7b4a596fe6a55f857fceb27271404e51aa389e5d01adff01bdf3e84d"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e838b5b21b9824f47e4f87866661cd08b7666ef3aa2c9371f95466b482ea44e67b248cad67eb0a98633ff1d052d5bd18"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "78b413f8c867108d12e062554dd3b75c162c8236b91c2682406f815e4cdccb2205102d13526c57795ca1d148d5a7943c"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "7b52f90008609520a6c342e670609e68fad23798ffe25e776462905e64cce84d"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "1d8ad6f77c47bd0ec7b85930a09bab1e1aa9f0ed94f3ab86d7a6e495ce8c3b77e2c7842d90fd799647f0fd0567ec374c1052c22dbc97f63d1c6087544a140529"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "EPL-1.0"
+          }
+        },
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/eclipse/eclipse-collections/eclipse-collections-api"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/eclipse/eclipse-collections/actions"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/eclipse/eclipse-collections/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://dev.eclipse.org/mhonarc/lists/collections-dev"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/eclipse-collections/eclipse-collections-api"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+      "group" : "org.eclipse.collections",
+      "name" : "eclipse-collections",
+      "version" : "13.0.0",
+      "description" : "Eclipse Collections is a collections framework for Java. It has JDK-compatible List, Set and Map implementations with a rich API and set of utility classes that work with any JDK compatible Collections, Arrays, Maps or Strings. The iteration protocol was inspired by the Smalltalk collection framework.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "6d2cd661d6f29f7aa76b0a5009853402"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "bb4bbf421d0e9805cabe06ba5a4dc63f180b7041"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "4c1d2fc77eeb52325893337f4080c9f73cc53670956f80489b5f375fdc5bb6e1"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "9979afa1eef88b8a2ed6d4fa0119bc098cf7702969a0d22a78630c240729e95d12d65eaf5c3ccd39b7327ff0f4d981505c9c1bfac9d040b673b2651c758f70ac"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "1020a6787db77f969753237636b5d9ff5ed46d5d436fd20e2b55d8c5cf31d362ba4b2b66b59d04e6fdecadd40d9d2e3a"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "1fcc52b77b6c172b1febb14ee6e112260cb978477c6dc8688342da0396448ad788f53f4187f56a8502378998a7be8b93"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "39c0c2da7d8d006a599aad29f58e96e34decdb67b502f935ebcc17fb9caabeb8"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "349088fdba37efc1bac2c343f693ccbffa51761bf343d5534d94e57726decae02217905ee2abcc5325c0fc0cb809ee60eeb6c87afdf94db795dbb9efc5ac4687"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "EPL-1.0"
+          }
+        },
+        {
+          "license" : {
+            "id" : "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://github.com/eclipse/eclipse-collections/eclipse-collections"
+        },
+        {
+          "type" : "build-system",
+          "url" : "https://github.com/eclipse/eclipse-collections/actions"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/eclipse/eclipse-collections/issues"
+        },
+        {
+          "type" : "mailing-list",
+          "url" : "https://dev.eclipse.org/mhonarc/lists/collections-dev"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/eclipse/eclipse-collections/eclipse-collections"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.jpms",
+      "name" : "jheaps",
+      "version" : "0.14-r16",
+      "description" : "The General Parent that helps to define the build processes that should be used across projects, regardless of. Package type. This is versioned and if you want to use a different version of the pom, you can simply change the parent version and it will adjust all of the properties being used throughout, as the properties and plugins will be inherited by subprojects.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "80a875e982cb7fbf166c28b7ad5a9e0d"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "8f8dd51055e77eb40e461b587cf8c0d7b5e3d4aa"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "7392dbb2b95029fb36dbc9f8360b4f5a471237f95188393e148e115070fa119e"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "9f86ebe4453500c24076222e551d7ae05d1dc46c98c0ba1815f04357bedbfb66cdf78e65393ef29552dcec077758398b6bd484af24b8557f1971696bd72e3dc0"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "6470ccef7139ee2da23c0052cfa2065aa3e1956fd03cc687d997187042f62f78667948e273aadcf4d638d068e8bc3d29"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "d016432e71d09719f78490d374e3f5ea6dab6525cf1add18e771caa134652755ce5a17633fe7a1abccc2ca17175ca7ef"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "7484b462c506ea9204a479294cd122e73dd3320285c3bd38a72f06913572dded"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "9069fb98c35440a128d7e81274c815f29bb39046865da4103fa3962c0a7edf3fc4bdcddbbd79d351ee7f194eae5d37556b31ec962cf8b7997c88cdffe36f4597"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Apache Software License 2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/jheaps"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/build-parent/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/build-parent/jheaps"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar",
+      "publisher" : "Integrated Knowledge Management",
+      "group" : "dev.ikm.jpms",
+      "name" : "apfloat",
+      "version" : "1.14.0-r1",
+      "description" : "The General Parent that helps to define the build processes that should be used across projects, regardless of. Package type. This is versioned and if you want to use a different version of the pom, you can simply change the parent version and it will adjust all of the properties being used throughout, as the properties and plugins will be inherited by subprojects.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "8c93cadf2c34a844555542f2e6b356aa"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "e5f061808009994878d81a29508a198685840015"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "600cba631ae577bf30275a02c868fc7df17265a8af76a07bf1676af3d2b50d98"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "716b7be206130fc3a77c26352df74d8e1e981e17c8d18cabf45aa8a56c0b884fb8e98168f952af08a562f2fb7c959085ec6a384702839b47da34078fcb86c4e6"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "e8b8fb30884578b62c9dbfd2f0c30735279b3d840df3c3cfb5073f0bf9a6c77d159ad7771af0a4eebc44869ed03c9efb"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "c876d73c2d4fdca86a848b0cc4394210f9aaf2a6a82d35ee6b4c0d9ed7c89844b6c05eb5146a1aaa5302c9b0ad73c47a"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "1b9d60717bf1a437bd54e0fb4c076817362583fbd90702f1af7d9879554a1704"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "a3ad42ad7c05e85eedd1c8f8f9769893753fd17ac42be5336a575e317a774d53acfa6ad5e54a7aa586e08a7815dc5b7263f363a88a6661dbb08f4882cddeeea2"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "name" : "Apache Software License 2.0",
+            "url" : "https://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.ikm.dev/apfloat"
+        },
+        {
+          "type" : "issue-tracker",
+          "url" : "https://github.com/ikmdev/build-parent/issues"
+        },
+        {
+          "type" : "vcs",
+          "url" : "http://www.github.com/ikmdev/build-parent/apfloat"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar",
+      "publisher" : "QOS.ch",
+      "group" : "org.slf4j",
+      "name" : "slf4j-api",
+      "version" : "2.0.17",
+      "description" : "The slf4j API",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "b6480d114a23683498ac3f746f959d2f"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "d9e58ac9c7779ba3bf8142aff6c830617a7fe60f"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "9a3e79db6666a6096a3021bb2e1d918f30f589d8de51d6b600f8ebd92515a510ae2d8f87919cc2dfa8365d64f10194cac8dfa0fb950160eef0e9da06f6caaeb9"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "6ea24f814a9b6ece428cfd0535e2f3b8927005745ef61006b50fdb5a90126ee5ea05650155382b3b755c5bce38ef3944"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "9b1015052f0ec43f9be09764e131834157599611cb52f6fe591c4ac6a8ab4817518f2a4b8871e5e738c8678e93af5557"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "00559b4f4066b4917ba4fe2a6f23111eaeada321112d030910d218ced9084b5e"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "9579c2f7e7516e177c2d493ccc9eb8150978cf19f6f09b28d116f6935239fd56dc6af2b62b3336f79b0b462445550cd1fb5377a07001a6f44aaab6a32fa2fa47"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "MIT",
+            "url" : "https://opensource.org/license/mit/"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "http://www.slf4j.org"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/qos-ch/slf4j/slf4j-parent/slf4j-api"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "233",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "5fbfa1356ba446e1c04e74f6401d9e52"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "86e14e150b03ac345e6746f10642467ac46bbafc"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "794994abf5ae2b01f2e7d8b5e3c4033196e6d2872753ec193a77b947ce2506de"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "f3f4f0e19c2da8afaa14c98e2e59db0ab08585e4da5bbddbfe5afc88bc818af15794d80c1bdc7e3738f10cb1327dfa9e3b8b021577d62ec1beaaae47c11f22d2"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "9f2dcd97075c0cf5f9d555467a6580f71baa4a5ec383d3152455e5ed98de69c2697de919b504e7fe8919989a016ea3b7"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "d820324516267aad1911d0cf1bff1f43edc05bb149dcef3407107bc4e1f1b5f17643f9b941e3cc8ef55b643e81eef913"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "993c123674ac77c5d339a0f79f5688c1f3e2b8d22b03490f10524f3b103a8123"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "5a06f394c87e72379b23b0ae6f060c8c92626f350fc70ba04e09572e5e46103259a33426a11738750a4fe2a250e9c0c84197f1927cb8655bcd3b2b35b4d3b27f"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-tooling/ike-build-standards"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "233",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "c881511f84dcb61c0a8ece46416e9533"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "4ea04e5a46091cb3607a5433336832fdaf822f0a"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "10cb1ff39380445f520a13ce4a0485295c42a6da0682cfb3471447ab4602981e"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "98391c22f41515a06b97fc7e6330e5d536d8a20b0a12277f58a108cd1aa0fa6dc34aa060de0608d016742e148e194fe87672797423590c5e40ffffc2fdd6a3bf"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "44f03fdb887aa3510458664b3c0a8d2ce987c072fe8c131e8ce84ba670695f53ac0a8d8d3f254f25088067a0d78cfb0f"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "e23f972bded967f2aa6e025d5c0d416a6720de6b58189ab7090a493fa8d32d2b1b17d228d0769d13fed7aea06d5cfb85"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "362f354e58545573d747d35ba3ef4d081a0fe8233136fc62c791912adf67ff50"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "e1f95b0313eead238cf94bdfb27ddd057e759c40fc351d09c2e5bd00bd2c3d3f20ebb0db5a4356ed8860ff312a2a9959b9962b3f25c5c4d9b00b53bbf473f2e9"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-tooling/ike-build-standards"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "233",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "bcb82b1c46f23e44dcb05b2685a9305f"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "290b16e94b7decf6f210c6f8ef5c8ebeba41daaa"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "a008f86e0aa6dd9385fe0c6442e6e8f3825cb24655cd92cfe6414cc56786be25"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "07e3dce1bd839090101b742cfd192763e853bd9392d3df4cc24e8347e297440993237924e9a0bb9813cf0bf15db902d2b11369307fd3cd4dc74590a79b67e81d"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "f3ecf9b142d825b9a08a4c11e3b906754eaaab1721c7499aa5d4e64a5800a15d108196fa95154ebbb16e9374f8513df5"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "a59403dea7eb72a5cf093b8bbe83dffdb5287c8b1d33295e2918c1cd686262f360b9162a7cc6cfe259188ab7227fe421"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "df87091b361a928f257036da588f41bb693064d1f7a9107f84a9fa95ade849d1"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "7c55431997a92bb471062d67929a95022d255cd74d52799d3fc7517b890936a6d07cef1c450e3338502c5d338bacae395423069f8862748cca3088d627de3760"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-tooling/ike-build-standards"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike",
+      "name" : "ike-base-parent",
+      "version" : "15",
+      "description" : "Tier 0 foundation parent for the IKE Network — the apex of the parent inheritance forest, inherited by ike-tooling, ike-docs, and ike-platform. Carries shared publishing metadata, GPG signing, and Maven Central publishing configuration.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "4861c2d91f5315ae16e6d381ab776295"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "4afc8947e350270efb31619ea72252be9600400d"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "b0f1174b8b14d70f8993296cff2d83869ab68b36f7c0805224de1040f480af9b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "66f649231b69e41e582dddcaf5e5f49d98645f341b34a4563b12e5afd6fa562d573a96b915a233286f1d824a85a49d5f7441ce4c6a4376842e40f12c699debe7"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "671f0977a818e3b7857e4c2541bc70e53422db31de9aa06edf3bf28a60f471f4304fe94894d25a52739554c6dea55def"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2511991bcd905dcf6ec3f440fa6fef55b94e776c4fc36e6723e241bfa26c5b9b3ba903fa4b60452ec60552d6d48d9b48"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "7fecf8403f801f26fe771f150ffd242907d55fa5f88c76fa2a5ad51dc44cfe49"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "6c5465212bf0eed21f914ff15d2bc521e4075978dc48ee6383691e22ce9d82ac0ee4ab3901809b2cfc8710e6a756bbc862a0831b8a713b22976f861fe8e989ff"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-base-parent/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-base-parent"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "233",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "8a2faf7ae583f788646570ca36b0a4ef"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "c2250cc34d7714412415320dc84a41fc39cdbc3b"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "793b84d2b31370f8f1c9abf5a0dc6bbe896bbcb4010654f4aabf21baeca7f870"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "8a427009b3bd27b82e7efedf4eb10896670c44e5606f7e4cdeff4e611f40ffa6d91823cbca5b29344469ef0e4cdd996218935db5b2446aad433aaa520bfa8ace"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "444d5056357219edc138f32f69df14df3651b68f976347d7732856c629d021dd046c62e9af9cdd652b33ef925a2a9561"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "acc39ec2eadf60d28fb826ba783a894aad373896d79d673875d7b5dfb2021f7b6fd03faaf00a41afd299c8f80d1e0e36"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "db0df981acb6729ba534927c555a7d1455c8c8c914819d5c19c8c234fcce6c2d"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "17b7a6821926f638eea87c9791c434ac4cc126e7b8e6d36af13fc0498928ba0f715b0682fdcd9c944fe8ba32e42c0a82d6b42929913b475ad3a27c528ff41250"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-tooling/ike-build-standards"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "233",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "582010780f71081648dd63ebf3a03b8a"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "1d69b7054aefaab5df1c716654e36c5c1954664b"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ae2d482b6f54bcc1e132dfea6c839b46a3f2e6c1b46926d51c82e1c9201368de"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "e55e651e38109b929e3b45de615ce839a169d92a06942657afe476ddc9aebc8df5efff60621b729c6589f817ff90869083fce1b2cd1d90470bdf0b68fa170835"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "881f37cbc95b63557bf2356e7ac2da7c1c482fb312fb29b47d50ffd471f7cb1fc598abec04688ab2f38ce13812558382"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "51a2541f5f826bb0620cfeb1dee71fd65349671eb09ea7f3d394c45284246a826620867a405723517907e69a90b2ebfc"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "04871329a28191aa51c980c0e7877d87645c242b119f03bbc18862655df4f2b5"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "3c7adc49cacb9624a6d15fd366c527b1ee79fe47458883940750fe9e741a5cea7ee392fab42b0ae11e6518288017bd1edbd3a722bb3475e43a07902a693e2d0a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        },
+        {
+          "type" : "vcs",
+          "url" : "https://github.com/IKE-Network/ike-tooling/ike-build-standards"
+        }
+      ]
+    }
+  ],
+  "dependencies" : [
+    {
+      "ref" : "pkg:maven/network.ike.foundation/ike-terms@1-chronology-builder-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&type=zip",
+        "pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&type=zip"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar",
+        "pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar",
+        "pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar",
+        "pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+        "pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar",
+        "pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+        "pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar",
+        "pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar",
+        "pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar",
+      "dependsOn" : [
+        "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+        "pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&type=zip",
+      "dependsOn" : [ ]
+    }
+  ]
+}

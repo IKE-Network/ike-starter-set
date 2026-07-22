@@ -1,7 +1,7 @@
 ---
 date_published: 2026-07-02
 date_modified: 2026-07-02
-canonical_url: https://ike.network/ike-starter-set/ike-kb/dependency-management.html
+canonical_url: https://ike.network/ike-starter-set/dependency-management.html
 ---
 
 # Project Dependency Management

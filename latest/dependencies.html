@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Dependencies (SBOM) &ndash; $site.name</title>
+	<title>Dependencies (SBOM) &ndash; IKE Starter Set</title>
 
 	<meta name="keywords" content="starter set,knowledge set,change set,ledger,IKE Network,knowledge engineering,EL++" />
 	<meta name="generator" content="Maven Site Plugin, Doxia Site Renderer 2.0.0, Skin sentry-maven-skin 7.0.00, from asciidoc" />
@@ -14,7 +14,7 @@
 	<meta property="article:modified_time" content="2026-07-03T00:00:00" />
 
 
-	<link rel="canonical" href="https://ike.network/ike-starter-set/ike-kb/dependencies.html">
+	<link rel="canonical" href="https://ike.network/ike-starter-set/dependencies.html">
 	<link rel="alternate" type="text/markdown" href="dependencies.html.md">	<link rel="stylesheet" href="./css/main-combined.css">
 	<link rel="stylesheet" href="./css/site.css">
 
@@ -25,7 +25,7 @@
 	"headline": "Dependencies (SBOM)",
 	"datePublished": "2026-07-03T00:00:00",
 	"dateModified": "2026-07-03T00:00:00",
-	"mainEntityOfPage": "https://ike.network/ike-starter-set/ike-kb/dependencies.html",
+	"mainEntityOfPage": "https://ike.network/ike-starter-set/dependencies.html",
 }
 </script>
 </head>
@@ -59,7 +59,6 @@
 			<ul class="nav navbar-nav">
 <li><a href="https://ike.network/">IKE</a></li>
 <li><a href="index.html">IKE Starter Set</a></li>
-<li><a href="index.html">Ike Knowledge Base</a></li>
 			</ul>
 		</div>
 
@@ -81,16 +80,15 @@
 					<ol class="breadcrumb hidden-xs">
 <li><a href="https://ike.network/">IKE</a></li>
 <li><a href="index.html">IKE Starter Set</a></li>
-<li><a href="index.html">Ike Knowledge Base</a></li>
 						</ol>
-					<div class="header-title">$site.name</div>
+					<div class="header-title">IKE Starter Set</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
 							<span class="version">1-chronology-builder-SNAPSHOT</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
-						<div class="header-title">$site.name</div>
+						<div class="header-title">IKE Starter Set</div>
 						<div class="header-subtitle">
 							Version <strong>1-chronology-builder-SNAPSHOT</strong>
 						</div>
@@ -136,6 +134,29 @@
 		<div class="row display-flex">
 
 			<nav class="left-menu hidden-xs col-sm-4 col-md-3" role="navigation">
+		<h5 class="text-uppercase">Starter Set</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="index.html"><i class="fas fa-home"></i> Overview</a></li>
+<li><a href="ike-guide.html"><i class="fas fa-file-alt"></i> Guide (HTML)</a></li>
+<li><a href="ike-guide.pdf"><i class="fas fa-file-alt"></i> Guide (PDF)</a></li>
+<li><a href="built-with.html"><i class="fas fa-file-alt"></i> Built With</a></li>
+<li class="active"><a href="dependencies.html" ng-click="hideSubItems = !hideSubItems"><i class="fas fa-file-alt"></i> Software Bill of Materials</a></li>
+</ul>
+		<h5 class="text-uppercase">Modules</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="ike-terms/index.html"><i class="fas fa-file-alt"></i> Ike Terms</a></li>
+<li><a href="ike-bindings/index.html"><i class="fas fa-file-alt"></i> Ike Bindings</a></li>
+<li><a href="ike-changeset/index.html"><i class="fas fa-file-alt"></i> Ike Change Set</a></li>
+<li><a href="ike-doc/index.html"><i class="fas fa-file-alt"></i> Ike Starter Set — Guide</a></li>
+<li><a href="ike-kb/index.html"><i class="fas fa-file-alt"></i> Ike Knowledge Base</a></li>
+</ul>
+		<h5 class="text-uppercase">Reports</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="project-info.html"><i class="fas fa-folder"></i> Project Information <span class="badge">7</span></a></li>
+</ul>
 			</nav>
 
 			<main class="main-content col-xs-12 col-sm-8 col-md-9">
@@ -146,7 +167,7 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>IKE Starter Set</small><br/>							Ike Knowledge Base 1-chronology-builder-SNAPSHOT
+							<h3><small>IKE Starter Set</small><br/>							Ike Starter Set 1-chronology-builder-SNAPSHOT
 							</h3>
 						</div>
 						<div class="parents hidden-xs">
@@ -158,7 +179,8 @@
 										</a>
 									</li>
 								<!-- menus and items -->
-									</ol>
+										<li>Starter Set</li>
+												</ol>
 							</div>
 						<div class="parents-xs visible-xs">
 								<ul class="list-group">
@@ -167,21 +189,22 @@
 										<i class="fas fa-home"></i>Home
 									</a>
 									<!-- menus and items -->
-								</ul>
+										<li class="list-group-item"><i class="fas fa-level-up-alt fa-flip-horizontal"></i>Starter Set</li>
+											</ul>
 						</div>
 <h1 id="dependencies-sbom">Dependencies (SBOM)</h1>
-<p>Full transitive dependency graph for <code>ike-kb</code> 1-chronology-builder-SNAPSHOT, generated from <a href="bom.json">bom.json</a><sup class="visible-print-inline">[1]</sup> (CycloneDX 1.6) at build time. Same SBOM source as the SPDX-grouped <a href="licenses.html">licenses.html</a><sup class="visible-print-inline">[2]</sup> and the curated <a href="built-with.html">built-with.html</a><sup class="visible-print-inline">[3]</sup> — three views of the same data.</p>
+<p>Full transitive dependency graph for <code>ike-starter-set</code> 1-chronology-builder-SNAPSHOT, generated from <a href="bom.json">bom.json</a><sup class="visible-print-inline">[1]</sup> (CycloneDX 1.6) at build time. Same SBOM source as the SPDX-grouped <a href="licenses.html">licenses.html</a><sup class="visible-print-inline">[2]</sup> and the curated <a href="built-with.html">built-with.html</a><sup class="visible-print-inline">[3]</sup> — three views of the same data.</p>
 <div>
  <h2 id="summary"><a href="#summary"></a><a id="summary"></a>Summary</h2>
  <table class="bodyTable table table-striped table-hover" style="background: #FFFFFF">
   <tbody>
    <tr class="a">
     <td style="text-align: left;">Total components</td>
-    <td>56</td>
+    <td>6</td>
    </tr>
    <tr class="b">
     <td style="text-align: left;">Distinct license expressions</td>
-    <td>5</td>
+    <td>1</td>
    </tr>
   </tbody>
  </table>
@@ -201,258 +224,6 @@
   </thead>
   <tbody>
    <tr class="b">
-    <td style="text-align: left;"><code>com.github.RoaringBitmap.RoaringBitmap</code></td>
-    <td><code>roaringbitmap</code></td>
-    <td><code>1.6.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>com.github.ben-manes.caffeine</code></td>
-    <td><code>caffeine</code></td>
-    <td><code>3.2.3</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>com.google.errorprone</code></td>
-    <td><code>error_prone_annotations</code></td>
-    <td><code>2.43.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-owl-implementation</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-owl-model</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-reasoner</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-snomed</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-snomed-owl-el</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-snomed-reasoner</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-snomed-test</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-util-collections</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-util-common</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-util-concurrent</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-util-hashing</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-util-io</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.elk</code></td>
-    <td><code>elk-util-logging</code></td>
-    <td><code>0.40.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.jpms</code></td>
-    <td><code>activej-bytebuf</code></td>
-    <td><code>4.3-r10</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.jpms</code></td>
-    <td><code>activej-common</code></td>
-    <td><code>4.3-r8</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.jpms</code></td>
-    <td><code>antlr4-runtime</code></td>
-    <td><code>4.13.2-r5</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.jpms</code></td>
-    <td><code>apfloat</code></td>
-    <td><code>1.14.0-r1</code></td>
-    <td><code>Apache Software License 2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.jpms</code></td>
-    <td><code>jheaps</code></td>
-    <td><code>0.14-r16</code></td>
-    <td><code>Apache Software License 2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.jpms</code></td>
-    <td><code>protobuf-java</code></td>
-    <td><code>4.30.2-r3</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>collection</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>common</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>component</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>data-ephemeral-provider</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>data-spinedarray-provider</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>entity</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>entity-provider</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>executor-provider</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>reasoner-elk-snomed</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>reasoner-service</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>search-provider</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>terms</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>dev.ikm.tinkar</code></td>
-    <td><code>tinkar-schema</code></td>
-    <td><code>1.43.0-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>dev.ikm.tinkar.ext.owl</code></td>
-    <td><code>owl-extension</code></td>
-    <td><code>1.127.2-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
     <td style="text-align: left;"><code>network.ike</code></td>
     <td><code>ike-base-parent</code></td>
     <td><code>15</code></td>
@@ -460,23 +231,9 @@
     <td>library</td>
    </tr>
    <tr class="a">
-    <td style="text-align: left;"><code>network.ike.foundation</code></td>
-    <td><code>ike-changeset</code></td>
-    <td><code>1-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>network.ike.foundation</code></td>
-    <td><code>ike-terms</code></td>
-    <td><code>1-chronology-builder-SNAPSHOT</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>network.ike.knowledge</code></td>
-    <td><code>ike-knowledge-provider</code></td>
-    <td><code>1-chronology-builder-SNAPSHOT</code></td>
+    <td style="text-align: left;"><code>network.ike.tooling</code></td>
+    <td><code>ike-build-standards</code></td>
+    <td><code>233</code></td>
     <td><code>Apache-2.0</code></td>
     <td>library</td>
    </tr>
@@ -503,93 +260,9 @@
    </tr>
    <tr class="a">
     <td style="text-align: left;"><code>network.ike.tooling</code></td>
-    <td><code>ike-knowledge-spi</code></td>
-    <td><code>235-SNAPSHOT</code></td>
+    <td><code>ike-build-standards</code></td>
+    <td><code>233</code></td>
     <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>org.apache.lucene</code></td>
-    <td><code>lucene-core</code></td>
-    <td><code>10.4.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>org.apache.lucene</code></td>
-    <td><code>lucene-facet</code></td>
-    <td><code>10.4.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>org.apache.lucene</code></td>
-    <td><code>lucene-highlighter</code></td>
-    <td><code>10.4.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>org.apache.lucene</code></td>
-    <td><code>lucene-memory</code></td>
-    <td><code>10.4.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>org.apache.lucene</code></td>
-    <td><code>lucene-queries</code></td>
-    <td><code>10.4.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>org.apache.lucene</code></td>
-    <td><code>lucene-queryparser</code></td>
-    <td><code>10.4.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>org.apache.lucene</code></td>
-    <td><code>lucene-sandbox</code></td>
-    <td><code>10.4.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>org.eclipse.collections</code></td>
-    <td><code>eclipse-collections</code></td>
-    <td><code>13.0.0</code></td>
-    <td><code>BSD-3-Clause OR EPL-1.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>org.eclipse.collections</code></td>
-    <td><code>eclipse-collections-api</code></td>
-    <td><code>13.0.0</code></td>
-    <td><code>BSD-3-Clause OR EPL-1.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>org.jgrapht</code></td>
-    <td><code>jgrapht-core</code></td>
-    <td><code>1.5.2</code></td>
-    <td><code>Eclipse Public License (EPL) 2.0 OR LGPL-2.1-only</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="b">
-    <td style="text-align: left;"><code>org.jspecify</code></td>
-    <td><code>jspecify</code></td>
-    <td><code>1.0.0</code></td>
-    <td><code>Apache-2.0</code></td>
-    <td>library</td>
-   </tr>
-   <tr class="a">
-    <td style="text-align: left;"><code>org.slf4j</code></td>
-    <td><code>slf4j-api</code></td>
-    <td><code>2.0.17</code></td>
-    <td><code>MIT</code></td>
     <td>library</td>
    </tr>
   </tbody>
@@ -600,7 +273,7 @@
  <ul>
   <li><a href="bom.json">Software Bill of Materials (CycloneDX, JSON)</a><sup class="visible-print-inline">[1]</sup> — raw machine-readable form. Includes purls, hashes, and dependency-graph edges that this page summarizes.</li>
   <li><a href="bom.xml">bom.xml</a><sup class="visible-print-inline">[4]</sup> — same content in XML.</li>
-  <li>As a Maven artifact: pull <code>ike-kb:​1-chronology-builder-SNAPSHOT</code> with <code>&lt;classifier&gt;cyclonedx&lt;/classifier&gt;&lt;type&gt;json&lt;/type&gt;</code> from Nexus / Maven Central.</li>
+  <li>As a Maven artifact: pull <code>ike-starter-set:​1-chronology-builder-SNAPSHOT</code> with <code>&lt;classifier&gt;cyclonedx&lt;/classifier&gt;&lt;type&gt;json&lt;/type&gt;</code> from Nexus / Maven Central.</li>
  </ul>
 </div>
 <div>
@@ -632,7 +305,7 @@
 								<li>[5] https://github.com/IKE-Network/ike-issues/issues/341</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-07-21 21:28:25 -0700</strong></div>
+<div class="date">Date: <strong>2026-07-21 21:54:49 -0700</strong></div>
 						</div>
 						</div>
 					</div>
@@ -711,7 +384,7 @@
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>$site.name 1-chronology-builder-SNAPSHOT</strong>
+			<strong>IKE Starter Set 1-chronology-builder-SNAPSHOT</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
 			Documentation as of <strong><time datetime="2026-07-03">2026-07-03</time></strong>
 		</p>
@@ -750,6 +423,152 @@
 	<script>
 angular.module("sentry.site").constant("RELATIVE_ROOT", ".");
 angular.module("sentry.site").constant("SITE_MENU", [
+{
+	path: "index.html",
+	title: "Overview",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "ike-guide.html",
+	title: "Guide (HTML)",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "ike-guide.pdf",
+	title: "Guide (PDF)",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "built-with.html",
+	title: "Built With",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "dependencies.html",
+	title: "Software Bill of Materials",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "ike-terms/index.html",
+	title: "Ike Terms",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-bindings/index.html",
+	title: "Ike Bindings",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-changeset/index.html",
+	title: "Ike Change Set",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-doc/index.html",
+	title: "Ike Starter Set \u2014 Guide",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-kb/index.html",
+	title: "Ike Knowledge Base",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "/project-info.html",
+	title: "Project Information",
+	parents: [{ title: "Reports" }]
+},
+{
+	path: "index.html",
+	title: "About",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "summary.html",
+	title: "Summary",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "dependency-info.html",
+	title: "Maven Coordinates",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "dependency-management.html",
+	title: "Dependency Management",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "plugins.html",
+	title: "Plugins",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "plugin-management.html",
+	title: "Plugin Management",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "distribution-management.html",
+	title: "Distribution Management",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
 ]);
 
 	</script>

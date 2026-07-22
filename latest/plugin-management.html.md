@@ -1,7 +1,7 @@
 ---
 date_published: 2026-07-02
 date_modified: 2026-07-02
-canonical_url: https://ike.network/ike-starter-set/ike-kb/plugin-management.html
+canonical_url: https://ike.network/ike-starter-set/plugin-management.html
 ---
 
 # Project Plugin Management

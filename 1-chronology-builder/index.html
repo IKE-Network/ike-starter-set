@@ -6,15 +6,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>About &ndash; $site.name</title>
+	<title>IKE Starter Set &ndash; IKE Starter Set</title>
 
 	<meta name="keywords" content="starter set,knowledge set,change set,ledger,IKE Network,knowledge engineering,EL++" />
-	<meta name="generator" content="Maven Site Plugin, Doxia Site Renderer 2.0.0, Skin sentry-maven-skin 7.0.00, with org.apache.maven.plugins:maven-project-info-reports-plugin:3.9.0:index" />
+	<meta name="generator" content="Maven Site Plugin, Doxia Site Renderer 2.0.0, Skin sentry-maven-skin 7.0.00, from asciidoc" />
+	<meta name="author" content="IKE Network" />
 	<meta property="article:published_time" content="2026-07-03T00:00:00" />
 	<meta property="article:modified_time" content="2026-07-03T00:00:00" />
 
 
-	<link rel="canonical" href="https://ike.network/ike-starter-set/ike-kb/index.html">
+	<link rel="canonical" href="https://ike.network/ike-starter-set/index.html">
 	<link rel="alternate" type="text/markdown" href="index.html.md">	<link rel="stylesheet" href="./css/main-combined.css">
 	<link rel="stylesheet" href="./css/site.css">
 
@@ -22,10 +23,16 @@
 {
 	"@context": "https://schema.org",
 	"@type": "TechArticle",
-	"headline": "About",
+	"headline": "IKE Starter Set",
 	"datePublished": "2026-07-03T00:00:00",
 	"dateModified": "2026-07-03T00:00:00",
-	"mainEntityOfPage": "https://ike.network/ike-starter-set/ike-kb/index.html",
+	"mainEntityOfPage": "https://ike.network/ike-starter-set/index.html",
+	"author": [
+		{
+			"@type": "Person",
+			"name": "IKE Network"
+		}
+	]
 }
 </script>
 </head>
@@ -59,7 +66,6 @@
 			<ul class="nav navbar-nav">
 <li><a href="https://ike.network/">IKE</a></li>
 <li class="active"><a href="index.html">IKE Starter Set</a></li>
-<li class="active"><a href="index.html">Ike Knowledge Base</a></li>
 			</ul>
 		</div>
 
@@ -81,16 +87,15 @@
 					<ol class="breadcrumb hidden-xs">
 <li><a href="https://ike.network/">IKE</a></li>
 <li class="active"><a href="index.html">IKE Starter Set</a></li>
-<li class="active"><a href="index.html">Ike Knowledge Base</a></li>
 						</ol>
-					<div class="header-title">$site.name</div>
+					<div class="header-title">IKE Starter Set</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
 							<span class="version">1-chronology-builder-SNAPSHOT</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
-						<div class="header-title">$site.name</div>
+						<div class="header-title">IKE Starter Set</div>
 						<div class="header-subtitle">
 							Version <strong>1-chronology-builder-SNAPSHOT</strong>
 						</div>
@@ -136,6 +141,38 @@
 		<div class="row display-flex">
 
 			<nav class="left-menu hidden-xs col-sm-4 col-md-3" role="navigation">
+		<h5 class="text-uppercase">Starter Set</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li class="active"><a href="index.html" ng-click="hideSubItems = !hideSubItems"><i class="fas fa-home"></i> Overview</a></li>
+<li><a href="ike-guide.html"><i class="fas fa-file-alt"></i> Guide (HTML)</a></li>
+<li><a href="ike-guide.pdf"><i class="fas fa-file-alt"></i> Guide (PDF)</a></li>
+<li><a href="built-with.html"><i class="fas fa-file-alt"></i> Built With</a></li>
+<li><a href="dependencies.html"><i class="fas fa-file-alt"></i> Software Bill of Materials</a></li>
+</ul>
+		<h5 class="text-uppercase">Modules</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="ike-terms/index.html"><i class="fas fa-file-alt"></i> Ike Terms</a></li>
+<li><a href="ike-bindings/index.html"><i class="fas fa-file-alt"></i> Ike Bindings</a></li>
+<li><a href="ike-changeset/index.html"><i class="fas fa-file-alt"></i> Ike Change Set</a></li>
+<li><a href="ike-doc/index.html"><i class="fas fa-file-alt"></i> Ike Starter Set — Guide</a></li>
+<li><a href="ike-kb/index.html"><i class="fas fa-file-alt"></i> Ike Knowledge Base</a></li>
+</ul>
+		<h5 class="text-uppercase">Reports</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="project-info.html"><i ng-class="hideSubItems ? 'fas fa-folder' : 'fas fa-folder-open'"></i> Project Information <span class="badge">7</span></a></li>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="summary.html"><i class="fas fa-file-alt"></i> Summary</a></li>
+<li><a href="dependency-info.html"><i class="fas fa-file-alt"></i> Maven Coordinates</a></li>
+<li><a href="dependency-management.html"><i class="fas fa-file-alt"></i> Dependency Management</a></li>
+<li><a href="plugins.html"><i class="fas fa-file-alt"></i> Plugins</a></li>
+<li><a href="plugin-management.html"><i class="fas fa-file-alt"></i> Plugin Management</a></li>
+<li><a href="distribution-management.html"><i class="fas fa-file-alt"></i> Distribution Management</a></li>
+</ul>
+</ul>
 			</nav>
 
 			<main class="main-content col-xs-12 col-sm-8 col-md-9">
@@ -146,19 +183,118 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>IKE Starter Set</small><br/>							Ike Knowledge Base 1-chronology-builder-SNAPSHOT
+							<h3><small>IKE Starter Set</small><br/>							Ike Starter Set 1-chronology-builder-SNAPSHOT
 							</h3>
 						</div>
 								<div class="home-xs visible-xs">
 									<h1 title="Documentation Home"><i class="fas fa-home"></i></h1>
 									<ul class="list-group">
+										<li class="list-group-item"><i class="fas fa-folder-open"></i>Starter Set</li>
+												<a class="list-group-item" href="#ike-starter-set" du-smooth-scroll>
+													<i class="fas fa-home"></i>Overview
+													<i class="fas fa-angle-double-down pull-right"></i>
+												</a>
+												<a class="list-group-item" href="ike-guide.html">
+													<i class="fas fa-file-alt"></i>Guide (HTML)
+												</a>
+												<a class="list-group-item" href="ike-guide.pdf">
+													<i class="fas fa-file-alt"></i>Guide (PDF)
+												</a>
+												<a class="list-group-item" href="built-with.html">
+													<i class="fas fa-file-alt"></i>Built With
+												</a>
+												<a class="list-group-item" href="dependencies.html">
+													<i class="fas fa-file-alt"></i>Software Bill of Materials
+												</a>
+										<li class="list-group-item"><i class="fas fa-folder-open"></i>Modules</li>
+												<a class="list-group-item" href="ike-terms/index.html">
+													<i class="fas fa-file-alt"></i>Ike Terms
+												</a>
+												<a class="list-group-item" href="ike-bindings/index.html">
+													<i class="fas fa-file-alt"></i>Ike Bindings
+												</a>
+												<a class="list-group-item" href="ike-changeset/index.html">
+													<i class="fas fa-file-alt"></i>Ike Change Set
+												</a>
+												<a class="list-group-item" href="ike-doc/index.html">
+													<i class="fas fa-file-alt"></i>Ike Starter Set — Guide
+												</a>
+												<a class="list-group-item" href="ike-kb/index.html">
+													<i class="fas fa-file-alt"></i>Ike Knowledge Base
+												</a>
+										<li class="list-group-item"><i class="fas fa-folder-open"></i>Reports</li>
+												<a class="list-group-item" href="project-info.html">
+													<i class="fas fa-file-alt"></i>Project Information
+<span class="badge">7</span>												</a>
 									</ul>
 								</div>
-<section>
- <a id="about-ike-knowledge-base"></a>
- <h1 id="about-ike-knowledge-base">About Ike Knowledge Base</h1>
- <p>The full-cycle knowledge base: this set's change set alone, assembled and classified by ike:kb-assemble and installed into the data-source directory for verification in Komet. Ledger-only by doctrine (IKE-Network/ike-issues#909, #921): the Tinkar starter data was a one-time input whose value is captured in the ledger's declarations, so the store is single-version by construction — every chronology at the inception stamp pair, exactly what LedgerGatesIT's whole-store stamp gate pins. Verification edits are captured under the installed store's changeSets directory and feed the next iteration as CHANGESET file inputs below.</p>
-</section>
+<h1 id="ike-starter-set">IKE Starter Set</h1>
+<p><code>ike-starter-set</code> is the IKE Network’s foundational content set — the concepts, patterns, and axioms an IKE knowledge graph starts from.</p>
+<p>Its source is an <strong>append-only version ledger</strong>: content is authored as declared stamps with edits recorded under each. Building the project replays that ledger into a store; the released artifact is a <strong>change set</strong>. A starter set is exactly that change set applied to an empty base.</p>
+<div>
+ <h2 id="reading-the-set"><a href="#reading-the-set"></a><a id="reading-the-set"></a>Reading the Set</h2>
+ <p>The guide is generated from the same loaded store that produces the change set, so glossary and artifact never drift apart.</p>
+ <ul>
+  <li><a href="ike-guide.html">Guide — HTML</a><sup class="visible-print-inline">[1]</sup> — self-contained single file</li>
+  <li><a href="ike-guide.pdf">Guide — PDF</a><sup class="visible-print-inline">[2]</sup> — print/download</li>
+ </ul>
+</div>
+<div>
+ <h2 id="modules"><a href="#modules"></a><a id="modules"></a>Modules</h2>
+ <p>The reactor is organized as one module per <strong>projection</strong> of the ledger. The ledger is authored once; each projection renders it for a different consumer.</p>
+ <table class="bodyTable table table-striped table-hover" style="background: #FFFFFF">
+  <thead>
+   <tr class="a">
+    <th>Module</th>
+    <th>Role</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr class="b">
+    <td style="text-align: left;"><code>ike-terms</code></td>
+    <td>The ledger itself — declared stamps inline, edits under each, authored with the chronology builders. Replay is verified over an in-memory store.</td>
+   </tr>
+   <tr class="a">
+    <td style="text-align: left;"><code>ike-bindings</code></td>
+    <td>Generated Java bindings — resolved UUID literals with definitions as javadoc, autocompletable in any IDE. Depends only on the terms surface, so consumers stay light.</td>
+   </tr>
+   <tr class="b">
+    <td style="text-align: left;"><code>ike-changeset</code></td>
+    <td>The released form — <a href="https://ike.network/ike-tooling/latest/ike-maven-plugin/index.html#knowledge-export"><code>ike:knowledge-export</code></a> replays the ledger and attaches the protobuf change set (classifier <code>changeset</code>), plus the <code>koncepts.yml</code> the guide renders from.</td>
+   </tr>
+   <tr class="a">
+    <td style="text-align: left;"><code>ike-doc</code></td>
+    <td>This documentation — the guide and its Koncept glossary.</td>
+   </tr>
+   <tr class="b">
+    <td style="text-align: left;"><code>ike-kb</code></td>
+    <td>The full-cycle knowledge base — the change set assembled and classified by <a href="https://ike.network/ike-tooling/latest/ike-maven-plugin/index.html#kb-assemble"><code>ike:kb-assemble</code></a>, installed into a data-source directory for verification in Komet.</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<div>
+ <h2 id="identity-and-time"><a href="#identity-and-time"></a><a id="identity-and-time"></a>Identity and Time</h2>
+ <p>Identity is derived, not assigned: a component’s public id is a UUIDv5 over the set’s namespace and the concept’s fully-qualified name at birth. A name is never reused within a namespace, so the same authored name always denotes the same component.</p>
+ <p>Pre-release, every stamp carries the shared <strong>inception epoch</strong> rather than wall-clock time, so the set is reproducible byte-for-byte across rebuilds. At first release those stamps freeze, and calendar time applies from then on.</p>
+</div>
+<div>
+ <h2 id="consuming-the-set"><a href="#consuming-the-set"></a><a id="consuming-the-set"></a>Consuming the Set</h2>
+ <p>The change set is published to the IKE Maven repository and attached to each checkpoint on GitHub. Consumers resolve it as an ordinary Maven artifact:</p>
+ <div class="source">
+  <pre class="prettyprint" copy-to-clipboard=""><code><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>network.ike.foundation<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>ike-changeset<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;classifier&gt;</span>changeset<span class="tag">&lt;/classifier&gt;</span>
+    <span class="tag">&lt;type&gt;</span>zip<span class="tag">&lt;/type&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+ </div>
+ <p>For compiler-visible references to individual concepts, depend on <code>ike-bindings</code> instead and use the generated constants.</p>
+</div>
+<div>
+ <h2 id="status"><a href="#status"></a><a id="status"></a>Status</h2>
+ <p>The set is pre-release and evolves on a feature branch; each checkpoint publishes a change set, this site, and a GitHub pre-release. Until the first release, treat the content as provisional — the shape is settled, the inventory is still growing.</p>
+</div>
 
 							<div class="document-footer">
 <div class="keywords">
@@ -170,6 +306,15 @@
 <span class="label label-default">knowledge engineering</span>
 <span class="label label-default">EL++</span>
 </div>
+<div class="footnotes visible-print-block">
+								Links:
+								<ul class="list-unstyled">
+								<li>[1] ike-guide.html</li>
+								<li>[2] ike-guide.pdf</li>
+								</ul>
+							</div>
+<div class="authors">Author: <strong>IKE Network</strong></div>
+<div class="date">Date: <strong>2026-07-21 21:54:47 -0700</strong></div>
 						</div>
 						</div>
 					</div>
@@ -248,7 +393,7 @@
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>$site.name 1-chronology-builder-SNAPSHOT</strong>
+			<strong>IKE Starter Set 1-chronology-builder-SNAPSHOT</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
 			Documentation as of <strong><time datetime="2026-07-03">2026-07-03</time></strong>
 		</p>
@@ -287,6 +432,152 @@
 	<script>
 angular.module("sentry.site").constant("RELATIVE_ROOT", ".");
 angular.module("sentry.site").constant("SITE_MENU", [
+{
+	path: "index.html",
+	title: "Overview",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "ike-guide.html",
+	title: "Guide (HTML)",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "ike-guide.pdf",
+	title: "Guide (PDF)",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "built-with.html",
+	title: "Built With",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "dependencies.html",
+	title: "Software Bill of Materials",
+	parents: [{ title: "Starter Set" }]
+},
+{
+	path: "ike-terms/index.html",
+	title: "Ike Terms",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-bindings/index.html",
+	title: "Ike Bindings",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-changeset/index.html",
+	title: "Ike Change Set",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-doc/index.html",
+	title: "Ike Starter Set \u2014 Guide",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "ike-kb/index.html",
+	title: "Ike Knowledge Base",
+	parents: [{ title: "Modules" }]
+},
+{
+	path: "/project-info.html",
+	title: "Project Information",
+	parents: [{ title: "Reports" }]
+},
+{
+	path: "index.html",
+	title: "About",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "summary.html",
+	title: "Summary",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "dependency-info.html",
+	title: "Maven Coordinates",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "dependency-management.html",
+	title: "Dependency Management",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "plugins.html",
+	title: "Plugins",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "plugin-management.html",
+	title: "Plugin Management",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "distribution-management.html",
+	title: "Distribution Management",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
 ]);
 
 	</script>

@@ -1,0 +1,2557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom serialNumber="urn:uuid:dbc0829f-120f-3de0-b32f-e538f6ad5cbc" version="1" xmlns="http://cyclonedx.org/schema/bom/1.6">
+  <metadata>
+    <lifecycles>
+      <lifecycle>
+        <phase>build</phase>
+      </lifecycle>
+    </lifecycles>
+    <tools>
+      <components>
+        <component type="library">
+          <author>OWASP Foundation</author>
+          <group>org.cyclonedx</group>
+          <name>cyclonedx-maven-plugin</name>
+          <version>2.9.0</version>
+          <description>CycloneDX Maven plugin</description>
+          <hashes>
+            <hash alg="MD5">dfaeab7ec837ce07874e2ee66fdc57d3</hash>
+            <hash alg="SHA-1">8bab47bafc8183d0a5f37790ff55ed05ead1ae2d</hash>
+            <hash alg="SHA-256">67117e03eae4a03ca8bab3add044995f4899aa21798a2510b8265ef8101e90ac</hash>
+            <hash alg="SHA-512">ae6b706516bb76da806b7854aef9e348fa593f5159ae9d693ad38942165c0ebc0846d977a477f6029612d43468fd2cd73a5aa253c228a94fb8d184e0acefc3d2</hash>
+            <hash alg="SHA-384">ee872354d8b0dcd6f9835a913b3aaba70d9365a46043be78020183282a1e9fca812e969246cbe31d642541591b46648b</hash>
+            <hash alg="SHA3-384">e5167f9e7ceba3b7b4d1900c404543907868745334bedc69cdf79c271727148413033a3b1426b733b7549e612e44adee</hash>
+            <hash alg="SHA3-256">41fc0bc2275f354e2c7da01041ce73ce677364799cba53920a180aa5d4571c63</hash>
+            <hash alg="SHA3-512">ed7f97900b09b818dbc0b8a23c00a2843e1bc34e2e8eb5b6df52533af0a15b721de6f7d5c2fd9352b8d4fde768e080053b40a16f0f9f04c336fe9b44abe83fc0</hash>
+          </hashes>
+        </component>
+      </components>
+    </tools>
+    <component type="library" bom-ref="pkg:maven/network.ike.foundation/ike-kb@1-chronology-builder-SNAPSHOT?type=pom">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.foundation</group>
+      <name>ike-kb</name>
+      <version>1-chronology-builder-SNAPSHOT</version>
+      <description>The full-cycle knowledge base: this set's change set alone, assembled
+        and classified by ike:kb-assemble and installed into the data-source
+        directory for verification in Komet. Ledger-only by doctrine
+        (IKE-Network/ike-issues#909, #921): the Tinkar starter data was a
+        one-time input whose value is captured in the ledger's declarations,
+        so the store is single-version by construction — every chronology at
+        the inception stamp pair, exactly what LedgerGatesIT's whole-store
+        stamp gate pins. Verification edits are captured under the installed
+        store's changeSets directory and feed the next iteration as CHANGESET
+        file inputs below.</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.foundation/ike-kb@1-chronology-builder-SNAPSHOT?type=pom</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-starter-set/ike-kb/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-platform/ike-starter-set/ike-kb</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <properties>
+      <property name="maven.goal">makeBom</property>
+      <property name="maven.scopes">compile,provided,runtime,system</property>
+      <property name="cdx:reproducible">enabled</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="pkg:maven/network.ike.knowledge/ike-knowledge-provider@1-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.knowledge</group>
+      <name>ike-knowledge-provider</name>
+      <version>1-chronology-builder-SNAPSHOT</version>
+      <description>Chronology-store implementation of the IKE knowledge-pipeline SPI:
+        ServiceLoader providers for export, assembly, bindings, and verification,
+        composing the engine's capability libraries behind the stable IKE contract.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">488c76e75349ca5abc8da1f4b512fb34</hash>
+        <hash alg="SHA-1">33ea71746071a0422141bcfa4b73e9dca766ba0f</hash>
+        <hash alg="SHA-256">4352b3c1371bacf59fc664c06ddc90684342d85bbaf3cfbd06e0d51cd67f407c</hash>
+        <hash alg="SHA-512">abf7fb2eb9bb820284f17632a637911da3d725e72b4c2b50debb37ada8502d83ddceda6707e874b0e9492d76f38c2b5fa409ab4da3026678ed9271fa8949ee75</hash>
+        <hash alg="SHA-384">70831cac90d4b07fa6ad56027c5a1b6ea50225c56e4e69eb9d25f284371e0f24f23722dfd8fcfec0234de3aedbff3141</hash>
+        <hash alg="SHA3-384">53c649c3ca1eb7e94f37bc1ed98cdd8f51b6f800715994f7edc7d7aeaf1cde5c265f526af2019518f51ff96577f82ead</hash>
+        <hash alg="SHA3-256">16cb026b75e2932378f9f99ef033aa7e7d335c1d1ec461b9e7aae7e629729ddd</hash>
+        <hash alg="SHA3-512">775b49f42ad44e6b51c53ffcea2d76ff542d803cbce8ad78205daeaa91963146ffa906de26a1ec250adf56b33c88c370e28ec350b677bb18aa3df13f08a38e21</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.knowledge/ike-knowledge-provider@1-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-knowledge-provider/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-platform/ike-knowledge-provider</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.tooling/ike-knowledge-spi@235-SNAPSHOT?type=jar">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.tooling</group>
+      <name>ike-knowledge-spi</name>
+      <version>235-SNAPSHOT</version>
+      <description>Zero-dependency contract module for the IKE knowledge pipeline:
+        ServiceLoader service interfaces (assemble, export, bindings, verify),
+        the ViewSpec dimension vocabulary, and the properties codec that
+        crosses the forked-JVM execution seam.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">b4df0a8b94066bae5c73a0985d6e7209</hash>
+        <hash alg="SHA-1">8965153a0f69be6c70093ec1f9372390dd305372</hash>
+        <hash alg="SHA-256">2f823e8442afac5381ed30c0682b34e29b4427fd43830a5960a3bbd134a19d93</hash>
+        <hash alg="SHA-512">36a06e7b5220732e32c25992df0c153c429efa51d5a25a0e2b485b7b9656a9240831bc045700532c3ca8ad2fa8008755f72fa3dea94a5f23e9b7801f060cc0b5</hash>
+        <hash alg="SHA-384">b3f6e61081e63fc78dfedc9fbcb53ed0d824ab4d9215a7810d92400be6566fccb91db4f399455b887b441e57fddf2614</hash>
+        <hash alg="SHA3-384">02d7bc13325fda4f3e5126087df5e117584b411aeb498915b3946bf671b33cea1afc390f3833b95e7bc5aa9085b993d8</hash>
+        <hash alg="SHA3-256">d3d0b4606415dac7cfbef5769d6a3b96081b5bd9ee41fdf492922bb0054c49f1</hash>
+        <hash alg="SHA3-512">57438b6d6e85f3932e4798eff0e650672e718e448122f6dca7cd9ecab844a5399bb5b8239a84ac40f129d7293005987133c304ae84d310d2686b3b72c5c41862</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.tooling/ike-knowledge-spi@235-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-tooling/ike-knowledge-spi/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-tooling/ike-knowledge-spi</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>entity</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">a8b2c15233d87edbf90b3af6d6b84ac8</hash>
+        <hash alg="SHA-1">04a8809079eb24584817affa79b9ca2379b3c4a6</hash>
+        <hash alg="SHA-256">eb40b133933be6ac71b6e9936795e6815708063fc7e9e22a3b3178a207bcb115</hash>
+        <hash alg="SHA-512">efbc08fcd4fbb0700719fbb778662785677e8645d43b282cd73c4ed7603e83a6681e1219bbd38e0b8ce72f972e030f535f527aa7ccc18096205fb4dd338110c7</hash>
+        <hash alg="SHA-384">375d18c95b83859327ca6a18513bb3fe10f5ce65d66bcc054de419c8a102a3fdf7568238f4a456ef7978c3c70e1642dd</hash>
+        <hash alg="SHA3-384">d4a28fd0f43d5bbe18816bacb220a1e836591af04ab6b516e8e64fe534fe96c42efc34a6639f53cecd087d9ed18c9210</hash>
+        <hash alg="SHA3-256">8edff5f0b2c3bb484f005a64714aaafe03909f1df598625e0dacb66da167d986</hash>
+        <hash alg="SHA3-512">fc22ec0025cb21e095957da1cd304a8ded2bcf5c28fd52cd5d2635d558e876a4090800d46489170efa674fbc914a7e18167c4eeee590a68399e2d9a1c88ff5c3</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/entity</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/entity</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>collection</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">44e31ef97cebf46eca6c8c74c0491768</hash>
+        <hash alg="SHA-1">52e71568c3f3e48776d73bd8a6367c2fb44de131</hash>
+        <hash alg="SHA-256">dcc92dcc57f92f3e367deae37103e4fec0b535783910cda4f5cebbc5d5eeda5c</hash>
+        <hash alg="SHA-512">d9ceb560efbee20ed059ed310b3ed6ad41b56a2c3da30bbd2ec8efada52c33e9c5e2f74df8f226b8413a75b5096416fd3610c3ce6bf325eeaf8b5eebbb78349b</hash>
+        <hash alg="SHA-384">9024ebd67a17462a228319b79de7fe25322a0e6adc05de40c3550a41a7a5a43d6ab0b0687eefc124333d3d9ec8905431</hash>
+        <hash alg="SHA3-384">1272d0476a65a085c2c0ce479fa2198846fc0060ed4afcc9072275a93cc3cde3bf603633d9f2681cda01e0c85b4ea48d</hash>
+        <hash alg="SHA3-256">b2bca9e53993744fb2052aa5680ee4c4d79e41cd6f9783978dfa5c74a76202b6</hash>
+        <hash alg="SHA3-512">0079048bbc15cfa9c56df0b5c38729f83a0f194dd919ba430e1b624aca6be228a12f5d08b6845a5f4da56145185be240d156d6462b1a419707e5d125b9c8b48f</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/collection</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/collection</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>component</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">8fba82ffa36b6fb06353d6ab765734ae</hash>
+        <hash alg="SHA-1">8c6215f28dcc313e070324dd87defc9f7eaf0b7b</hash>
+        <hash alg="SHA-256">24c59fb72b2bd84228ed06988ab17498fc13b41760bfa873fd09cdb6d50ccf2f</hash>
+        <hash alg="SHA-512">9b8eb601cbcf05ef99431c0e74081d7011f264519a301985810a3fc82d69fe020b37819e774bb746aa379a52b16220baae3e47ee1016a3ad18ede346522a218c</hash>
+        <hash alg="SHA-384">77f5aaea6f55b6df44a79639b8e57fc0346c2e4224617f3f593e691e94599d68bc2014a4748cc44f06bf7a3f5987ec0c</hash>
+        <hash alg="SHA3-384">fc82be3a27f67c10b9bd1d9667243864326b7c786260988bdd2a7da658cfabac9297bd502da97efc3e87b703fc2c5aca</hash>
+        <hash alg="SHA3-256">3c3c1773b2267d71c07885ec4d5cc36a549a8e80b2066f449db869c23f714a0b</hash>
+        <hash alg="SHA3-512">dc17160af220d5911f1957040285d7ab15e1f6546138d2208d1968a16e8cf119240f6c43fc9706ae5f016abf32ca8c600db1b802e6072596f280408ee0d0f36e</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/component</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/component</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>IKE Network</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>tinkar-schema</name>
+      <version>1.43.0-chronology-builder-SNAPSHOT</version>
+      <description>Standard parent POM for IKE Network projects. Inheriting this
+        POM provides build conventions (Java 25 compiler, test harness,
+        GPG signing, AsciiDoc documentation pipeline) from the
+        ike-platform reactor root and centralized dependency version
+        management declared inline. Declares ike-doc-maven-plugin
+        (from network.ike.docs) with extensions=true to provide the
+        ike-doc custom packaging type to external doc projects.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">19c6cba0f408d95d1a50250f266527c2</hash>
+        <hash alg="SHA-1">41c6b2fa36e9bd000a85e1df3d4496027fbd72f4</hash>
+        <hash alg="SHA-256">5e9f3745e7afb4e317da289015070bd9504bfca9ebd5eeb84cbdcfa8f70ccd95</hash>
+        <hash alg="SHA-512">19d5e67be4df75519ae7e5b8f8e93cfedd7820144e27d5f182bbdc73bcdc5abb13886f1e82a9ec2a7f61dbb656beb6c6e04860a103ad51834a8b7b1f0e4cce5b</hash>
+        <hash alg="SHA-384">7948d9f1aa9a68f42b3128c65f4bc67b822a1939bfa423bb23d43552cc510d7f651ab593b390069b7d8d74d40f5f013e</hash>
+        <hash alg="SHA3-384">8b10a1339a20485307db5698adb80912ff65defc161946e02d97f93a0ceef2ced512cd6156214258a0f194e04cbc1d94</hash>
+        <hash alg="SHA3-256">48391db9c6f8d14f98cd61681ae6b805c2ee85df07d0f678f6b9dbc8951c95ed</hash>
+        <hash alg="SHA3-512">04eb303357f4d5957241eaa0ff8fbdb92e021dcb24f9370dad11edb907506f15e68a02958eef74d3a9bb543bfcdc9070436172ccf6ca6f644f2402734c71b066</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/IKM/tinkar-proto</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-platform/tinkar-schema</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar">
+      <group>com.github.ben-manes.caffeine</group>
+      <name>caffeine</name>
+      <version>3.2.3</version>
+      <description>A high performance caching library</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">0258f45d43968523cc11beeb01b240f2</hash>
+        <hash alg="SHA-1">c097f0f6d21a0e6db88ea55836e26419b30dfe19</hash>
+        <hash alg="SHA-256">ca70c90a5d1ce1511880ce9c93d4ad22108f61111d3daf91eb52762b571bd179</hash>
+        <hash alg="SHA-512">7aa65de1cb087aa645d7217bd3162b3842fe40914b590238afc681b1d8b33647efb1fd948d21ed0210a40d4bbda882ed24f3e6d326f9a03131660ae9778bbb7b</hash>
+        <hash alg="SHA-384">d5f32eb2dfc3a0dd1c60bf2a7b92b4e5fe90dd29c4a7bbd6b261f66976256e4026d4a6d60b2b81a774b28fde49901f2f</hash>
+        <hash alg="SHA3-384">811dd5fe983a606177060e218a4982e2e64cd5f1715f5ad436316cd8bfab67e2cd77d83b8901ab40c133c9ad052a5557</hash>
+        <hash alg="SHA3-256">306d252b82f5bb4d028feb2769662fde46564fdd2947f7e4d2a275346391644c</hash>
+        <hash alg="SHA3-512">be545922c67934d4bc1a88bcd7338830919de5518cd10e02e64922f10fd8c3615d34a4345ba2500b40afba4d75b466342dfc2dad9efa179c48bf9bebc67cc970</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/ben-manes/caffeine</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ben-manes/caffeine</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.jspecify/jspecify@1.0.0?type=jar">
+      <group>org.jspecify</group>
+      <name>jspecify</name>
+      <version>1.0.0</version>
+      <description>An artifact of well-named and well-specified annotations to power static analysis checks</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">9133aba420d0ca3b001dbb6ae9992cf6</hash>
+        <hash alg="SHA-1">7425a601c1c7ec76645a78d22b8c6a627edee507</hash>
+        <hash alg="SHA-256">1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab</hash>
+        <hash alg="SHA-512">efded31ef5b342f09422935076e599789076431e93a746685c0607e7de5592719ba6aacde0be670b3f064d1e85630d58d5bce6b34aed2a288fdb34f745efb7bc</hash>
+        <hash alg="SHA-384">814f860e5a44ead6c457676841eef471a8b87be31b84c60a8a4477a18a9cbcb6e3c2ae700969d5c5e52309d961e0537a</hash>
+        <hash alg="SHA3-384">c8844e5b71e5ecfbb7366097ce34af2f5863d86d5ccc3f9ec384d8ade4b60ccc8124c7fc88664f1afd2b0962fc8775bf</hash>
+        <hash alg="SHA3-256">4b4f08ad7606a3ac62997779484919a302267b26d26ee19125f8a7eea60e8a71</hash>
+        <hash alg="SHA3-512">65c6845ebae981cb81b61107707ced39f5b377dae970b47606ef482aaf10e3729def0da40d9377c43abbfb483a5ceae039b0d51c129c50a6d36ad351a5d6b01e</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.jspecify/jspecify@1.0.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://jspecify.org/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/jspecify/jspecify/</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar">
+      <publisher>Google LLC</publisher>
+      <group>com.google.errorprone</group>
+      <name>error_prone_annotations</name>
+      <version>2.43.0</version>
+      <description>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">59fe4a79ce3218423f4f8918f04ef22f</hash>
+        <hash alg="SHA-1">a4f9062316c31850b03085e45717f564fd563ceb</hash>
+        <hash alg="SHA-256">48272e75c16e1f7bdc7bd19529ccacd5ee170404701d7f5a23441bb5847957f5</hash>
+        <hash alg="SHA-512">1e9e8cc7e7eebdbb12c21ad94868c731c49533dd9ef5c6db6e93c421c57ca4e6a5a22e1830a41c65b19e4755c84d6450dccea0f8d23258a65a9d395dfd17405e</hash>
+        <hash alg="SHA-384">d735d664455177247d16437ac74a838b42ccdc98277153d27c8e0006f942194a3260527d4b3dcb8f056b2ac4ef4fa9fa</hash>
+        <hash alg="SHA3-384">fecfff7371580a679cc3caf3f6a2ca61507e8e8103d076654d554843d9daf6b3667042058a5ae2876750b06e1f20d45d</hash>
+        <hash alg="SHA3-256">2ea4cfd5b7b2cf0e82ff2695db7164d4ed5a8b8c5805324c462e5b4ba681604c</hash>
+        <hash alg="SHA3-512">9dcadf4ef206a7ed5da9466e97156df3f0b95cea0bf3b81cad8d5020475c6c0a99d80980d196512eaed27b2f15d41d5c9df6d10ff3c4e4e9b52311f4ecae8573</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://errorprone.info/error_prone_annotations</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/google/error-prone/error_prone_annotations</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.jpms</group>
+      <name>protobuf-java</name>
+      <version>4.30.2-r3</version>
+      <description>The General Parent that helps to define the build processes that should be used across projects, regardless of.
+        Package type. This is versioned and if you want to use a different version of the pom, you can simply change
+        the parent version and it will adjust all of the properties being used throughout, as the properties and
+        plugins will be inherited by subprojects.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">f8c7de2084cb97086774a66390dca80f</hash>
+        <hash alg="SHA-1">195aa9806ac10b2cee13e9de867a2585820b6e22</hash>
+        <hash alg="SHA-256">ffe776723e52027862d319dbe2bbf2929c6c4ea532254331e52755f7fdeba306</hash>
+        <hash alg="SHA-512">75293cc1f3f9f238212152a31faa8d6b21bae9057a5e9662268fa137af61f24f220da4245fe7238b714a65d659096601897a326c5105404e703b34adff5b0dfc</hash>
+        <hash alg="SHA-384">e406cd18797c058c8e733365c85e6546e993480830b2b576a5ea25f217a7c2e09a94b585018de71194bcb65d44604d21</hash>
+        <hash alg="SHA3-384">fc84e5f727e0b996885a92b289c056d8d416df5d0db996962c3517c94d7498de89ce8f4d19873943e812f19ed3d4ef58</hash>
+        <hash alg="SHA3-256">a5d1389aaded815dd17bb3e0f6377b29ba55913ebcf3e5f31a33c97e12e05662</hash>
+        <hash alg="SHA3-512">3c383c5ba9c9b3b74ff11fcdd41d9ce5fbc919a9f1f233b3a9eb53c21ef33aacaf171181b80d7efc350a995ac9d1bfdd8073c380b9d405353204ec9470dc7faa</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/HL7/tinkar-proto</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/build-parent/protobuf-java</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.jpms</group>
+      <name>activej-bytebuf</name>
+      <version>4.3-r10</version>
+      <description>The General Parent that helps to define the build processes that should be used across projects, regardless of.
+        Package type. This is versioned and if you want to use a different version of the pom, you can simply change
+        the parent version and it will adjust all of the properties being used throughout, as the properties and
+        plugins will be inherited by subprojects.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">228ff9c55d7e38ba7ee83873c7faaded</hash>
+        <hash alg="SHA-1">395c3de1aadf74f7ed97ccc29751d413772c8db0</hash>
+        <hash alg="SHA-256">72380e74a412d032b29658f02de586b313d2942a1df516f14025c60bec4d80c0</hash>
+        <hash alg="SHA-512">009aee57ac0ce0ee58fcf5694472439dbc0f1dd5741b577dd7da7f1a4457989c3330fa90a8c10f28ae1016ca6905128cf3923afe6dfeb1efed257dfcbcdb6520</hash>
+        <hash alg="SHA-384">4c7a09906c422733bc21866ba8efa9a31719ad039ecff6c82596cb7a7daae43fc35d0928b6a9c5363ad8264026bb70e4</hash>
+        <hash alg="SHA3-384">f076ac9908a02599388190458c650e42385e88dc4f12789b48d5f03ebf76d120fece1cd18c2745baa0566240cf0acc64</hash>
+        <hash alg="SHA3-256">ecc8c097b83a02a2f114fc3e476a123e432dd6b4eef1c4e16f2c0edb9dd49158</hash>
+        <hash alg="SHA3-512">5bee23f115d76aa43b677cc380e40994baa873c55766aac8472374a578bc328bd2eb7bc425d16577b3cd374a59ba0c3a48ea43265dc56d041c49d4f1d7b48d71</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/activej-bytebuf</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/build-parent/activej-bytebuf</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar">
+      <group>org.jgrapht</group>
+      <name>jgrapht-core</name>
+      <version>1.5.2</version>
+      <description>A Java class library for graph-theory data structures and algorithms.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">410df880b9c0d98e0d5645ac5d0f2b2a</hash>
+        <hash alg="SHA-1">bea9b92d4ff37111f8e3d58cd8cf0714e5c83774</hash>
+        <hash alg="SHA-256">dfa596e9f0d0838f1b5e81dd0cd60e3a76c2c290ac25a0a029ffde58cf5e4c14</hash>
+        <hash alg="SHA-512">e409474f8b7293c23beed68b37d6ed86756bcef817e877111fed38b80579794395991e3f0845fd0bc88958f6d485e5b38ead9af4b6f368886ad82df16cdfe60b</hash>
+        <hash alg="SHA-384">2765e3d58f5537d547be9f3f281b7882073cf027526efa4dcccb9f863e05a2c9ae8988f797f7166377c2ca99a5c957f0</hash>
+        <hash alg="SHA3-384">9acc44a3572ada500b5aae8a77b763c5a2165eb8ae482a19b934b8e83faef9391ff7966e86207191f40d544cb3c418af</hash>
+        <hash alg="SHA3-256">eac070b2673dcbbdd41aa1d41b322874dd8428558fd96f07b445514cb1ab525b</hash>
+        <hash alg="SHA3-512">7738a64ba23b23c959b2bd65131bdded77cfe54d6894682a581f5e30e55dfddcb953b7c82c58c962c86fc14a22f5ce51d1afd25736cfde30d9948ec0787034de</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>LGPL-2.1-only</id>
+        </license>
+        <license>
+          <name>Eclipse Public License (EPL) 2.0</name>
+          <url>http://www.eclipse.org/legal/epl-v20.html</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.jgrapht.org/jgrapht-core</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/jgrapht/jgrapht/issues</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>http://lists.sourceforge.net/lists/listinfo/jgrapht-users</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/jgrapht/jgrapht.git/jgrapht-core</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar">
+      <group>org.eclipse.collections</group>
+      <name>eclipse-collections-api</name>
+      <version>13.0.0</version>
+      <description>Eclipse Collections is a collections framework for Java. It has JDK-compatible List, Set and Map
+implementations with a rich API and set of utility classes that work with any JDK compatible Collections,
+Arrays, Maps or Strings. The iteration protocol was inspired by the Smalltalk collection framework.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">15a9046457810ea49271e50438f4568d</hash>
+        <hash alg="SHA-1">b9ac55a5cb08375868fed573fbf32c68dbb658a3</hash>
+        <hash alg="SHA-256">2ede735db355b079fc08b0bc7657bd4f95d045416bdaa7ec5235853cf6f364d2</hash>
+        <hash alg="SHA-512">a8c087c7f2d8557a06c1aec7bd1a3f60df62a61a087bb44a974b4f8d58caf26bf53d2bba7b4a596fe6a55f857fceb27271404e51aa389e5d01adff01bdf3e84d</hash>
+        <hash alg="SHA-384">e838b5b21b9824f47e4f87866661cd08b7666ef3aa2c9371f95466b482ea44e67b248cad67eb0a98633ff1d052d5bd18</hash>
+        <hash alg="SHA3-384">78b413f8c867108d12e062554dd3b75c162c8236b91c2682406f815e4cdccb2205102d13526c57795ca1d148d5a7943c</hash>
+        <hash alg="SHA3-256">7b52f90008609520a6c342e670609e68fad23798ffe25e776462905e64cce84d</hash>
+        <hash alg="SHA3-512">1d8ad6f77c47bd0ec7b85930a09bab1e1aa9f0ed94f3ab86d7a6e495ce8c3b77e2c7842d90fd799647f0fd0567ec374c1052c22dbc97f63d1c6087544a140529</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>EPL-1.0</id>
+        </license>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/eclipse/eclipse-collections/eclipse-collections-api</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://github.com/eclipse/eclipse-collections/actions</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/eclipse/eclipse-collections/issues</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://dev.eclipse.org/mhonarc/lists/collections-dev</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/eclipse/eclipse-collections/eclipse-collections-api</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar">
+      <group>org.eclipse.collections</group>
+      <name>eclipse-collections</name>
+      <version>13.0.0</version>
+      <description>Eclipse Collections is a collections framework for Java. It has JDK-compatible List, Set and Map
+implementations with a rich API and set of utility classes that work with any JDK compatible Collections,
+Arrays, Maps or Strings. The iteration protocol was inspired by the Smalltalk collection framework.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">6d2cd661d6f29f7aa76b0a5009853402</hash>
+        <hash alg="SHA-1">bb4bbf421d0e9805cabe06ba5a4dc63f180b7041</hash>
+        <hash alg="SHA-256">4c1d2fc77eeb52325893337f4080c9f73cc53670956f80489b5f375fdc5bb6e1</hash>
+        <hash alg="SHA-512">9979afa1eef88b8a2ed6d4fa0119bc098cf7702969a0d22a78630c240729e95d12d65eaf5c3ccd39b7327ff0f4d981505c9c1bfac9d040b673b2651c758f70ac</hash>
+        <hash alg="SHA-384">1020a6787db77f969753237636b5d9ff5ed46d5d436fd20e2b55d8c5cf31d362ba4b2b66b59d04e6fdecadd40d9d2e3a</hash>
+        <hash alg="SHA3-384">1fcc52b77b6c172b1febb14ee6e112260cb978477c6dc8688342da0396448ad788f53f4187f56a8502378998a7be8b93</hash>
+        <hash alg="SHA3-256">39c0c2da7d8d006a599aad29f58e96e34decdb67b502f935ebcc17fb9caabeb8</hash>
+        <hash alg="SHA3-512">349088fdba37efc1bac2c343f693ccbffa51761bf343d5534d94e57726decae02217905ee2abcc5325c0fc0cb809ee60eeb6c87afdf94db795dbb9efc5ac4687</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>EPL-1.0</id>
+        </license>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/eclipse/eclipse-collections/eclipse-collections</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://github.com/eclipse/eclipse-collections/actions</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/eclipse/eclipse-collections/issues</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://dev.eclipse.org/mhonarc/lists/collections-dev</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/eclipse/eclipse-collections/eclipse-collections</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.jpms</group>
+      <name>jheaps</name>
+      <version>0.14-r16</version>
+      <description>The General Parent that helps to define the build processes that should be used across projects, regardless of.
+        Package type. This is versioned and if you want to use a different version of the pom, you can simply change
+        the parent version and it will adjust all of the properties being used throughout, as the properties and
+        plugins will be inherited by subprojects.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">80a875e982cb7fbf166c28b7ad5a9e0d</hash>
+        <hash alg="SHA-1">8f8dd51055e77eb40e461b587cf8c0d7b5e3d4aa</hash>
+        <hash alg="SHA-256">7392dbb2b95029fb36dbc9f8360b4f5a471237f95188393e148e115070fa119e</hash>
+        <hash alg="SHA-512">9f86ebe4453500c24076222e551d7ae05d1dc46c98c0ba1815f04357bedbfb66cdf78e65393ef29552dcec077758398b6bd484af24b8557f1971696bd72e3dc0</hash>
+        <hash alg="SHA-384">6470ccef7139ee2da23c0052cfa2065aa3e1956fd03cc687d997187042f62f78667948e273aadcf4d638d068e8bc3d29</hash>
+        <hash alg="SHA3-384">d016432e71d09719f78490d374e3f5ea6dab6525cf1add18e771caa134652755ce5a17633fe7a1abccc2ca17175ca7ef</hash>
+        <hash alg="SHA3-256">7484b462c506ea9204a479294cd122e73dd3320285c3bd38a72f06913572dded</hash>
+        <hash alg="SHA3-512">9069fb98c35440a128d7e81274c815f29bb39046865da4103fa3962c0a7edf3fc4bdcddbbd79d351ee7f194eae5d37556b31ec962cf8b7997c88cdffe36f4597</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <name>Apache Software License 2.0</name>
+          <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/jheaps</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/build-parent/jheaps</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.jpms</group>
+      <name>apfloat</name>
+      <version>1.14.0-r1</version>
+      <description>The General Parent that helps to define the build processes that should be used across projects, regardless of.
+        Package type. This is versioned and if you want to use a different version of the pom, you can simply change
+        the parent version and it will adjust all of the properties being used throughout, as the properties and
+        plugins will be inherited by subprojects.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">8c93cadf2c34a844555542f2e6b356aa</hash>
+        <hash alg="SHA-1">e5f061808009994878d81a29508a198685840015</hash>
+        <hash alg="SHA-256">600cba631ae577bf30275a02c868fc7df17265a8af76a07bf1676af3d2b50d98</hash>
+        <hash alg="SHA-512">716b7be206130fc3a77c26352df74d8e1e981e17c8d18cabf45aa8a56c0b884fb8e98168f952af08a562f2fb7c959085ec6a384702839b47da34078fcb86c4e6</hash>
+        <hash alg="SHA-384">e8b8fb30884578b62c9dbfd2f0c30735279b3d840df3c3cfb5073f0bf9a6c77d159ad7771af0a4eebc44869ed03c9efb</hash>
+        <hash alg="SHA3-384">c876d73c2d4fdca86a848b0cc4394210f9aaf2a6a82d35ee6b4c0d9ed7c89844b6c05eb5146a1aaa5302c9b0ad73c47a</hash>
+        <hash alg="SHA3-256">1b9d60717bf1a437bd54e0fb4c076817362583fbd90702f1af7d9879554a1704</hash>
+        <hash alg="SHA3-512">a3ad42ad7c05e85eedd1c8f8f9769893753fd17ac42be5336a575e317a774d53acfa6ad5e54a7aa586e08a7815dc5b7263f363a88a6661dbb08f4882cddeeea2</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <name>Apache Software License 2.0</name>
+          <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/apfloat</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/build-parent/apfloat</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar">
+      <publisher>QOS.ch</publisher>
+      <group>org.slf4j</group>
+      <name>slf4j-api</name>
+      <version>2.0.17</version>
+      <description>The slf4j API</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">b6480d114a23683498ac3f746f959d2f</hash>
+        <hash alg="SHA-1">d9e58ac9c7779ba3bf8142aff6c830617a7fe60f</hash>
+        <hash alg="SHA-256">7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832</hash>
+        <hash alg="SHA-512">9a3e79db6666a6096a3021bb2e1d918f30f589d8de51d6b600f8ebd92515a510ae2d8f87919cc2dfa8365d64f10194cac8dfa0fb950160eef0e9da06f6caaeb9</hash>
+        <hash alg="SHA-384">6ea24f814a9b6ece428cfd0535e2f3b8927005745ef61006b50fdb5a90126ee5ea05650155382b3b755c5bce38ef3944</hash>
+        <hash alg="SHA3-384">9b1015052f0ec43f9be09764e131834157599611cb52f6fe591c4ac6a8ab4817518f2a4b8871e5e738c8678e93af5557</hash>
+        <hash alg="SHA3-256">00559b4f4066b4917ba4fe2a6f23111eaeada321112d030910d218ced9084b5e</hash>
+        <hash alg="SHA3-512">9579c2f7e7516e177c2d493ccc9eb8150978cf19f6f09b28d116f6935239fd56dc6af2b62b3336f79b0b462445550cd1fb5377a07001a6f44aaab6a32fa2fa47</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>MIT</id>
+          <url>https://opensource.org/license/mit/</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.slf4j.org</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/qos-ch/slf4j/slf4j-parent/slf4j-api</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>common</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">da65c21802e85497fe70cae5d11b9f74</hash>
+        <hash alg="SHA-1">d065a047b3bdb997d19cf23a012b64a1daf36b25</hash>
+        <hash alg="SHA-256">173a37f1f1d8790126cb481556153bf306c1204858e69b8f5aefa196818cf7f0</hash>
+        <hash alg="SHA-512">404dcc4cd501881abecf407d66553dea33d88f694db7dd0cdaa74990c24589f98186e5e947c0d7039460bbdff915c5891674ef590de5fd6a2e9b9e1adb50c99a</hash>
+        <hash alg="SHA-384">294cd869e7ce5916e9f3e5b3ccbbafcf3c1f45fafd34deb9d481db8f2966384978a8773470d35f72850b894acfddf34c</hash>
+        <hash alg="SHA3-384">e5f487c46505f1519f782ffffbdf80f759bc79ccabd8798aa093c84c3aad45b4a8adedc4d4fc4cf4bba4d1a4424245f2</hash>
+        <hash alg="SHA3-256">d2976ec9907ca3958b9daaef276b2d6b1c8c6bfb61e6c2b9e6a2c979d066f70c</hash>
+        <hash alg="SHA3-512">7927178447d1b1857d4509beabc60f03ec9a8b69e96a5d0c024e5bad40b08070671ae9692cbc20c67d9db4e69598f3f95d6bf6b641837cc99d10bbd42afd42d5</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/common</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/common</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar">
+      <group>com.github.RoaringBitmap.RoaringBitmap</group>
+      <name>roaringbitmap</name>
+      <version>1.6.0</version>
+      <description>Roaring bitmaps are compressed bitmaps (also called bitsets) which tend to outperform conventional compressed bitmaps such as WAH or Concise.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">f84df2a8329ecc084d65efebf3605c7f</hash>
+        <hash alg="SHA-1">86c9a44defed947bb4f28d65e537407156e5a682</hash>
+        <hash alg="SHA-256">89515bd403ff0eb321cb7a6f7ab12bdbffbc46ac2aac26a75067e59d74260600</hash>
+        <hash alg="SHA-512">a5d44930bd6b4f1a220e19e43046451fea70c16c7f319d722bd1be2004329d96c7a5736ec2956cd6c850e2e8e22510f2b49d48094fdca32a17fb677e551a57e8</hash>
+        <hash alg="SHA-384">6a650a1700e8bb263f0dbd1df75d8d81181cf60ce87b94d3d6bff3f67c519346b05d2f75afddb5a7ff4956fcf9a89a7f</hash>
+        <hash alg="SHA3-384">51cb8ed644508ee6a3b850faf73bdc4990628df5ab5540d7d89747326283ff5b0a930e373ea0c6300ed043f3b06d5694</hash>
+        <hash alg="SHA3-256">80e9c062cac9577ca468edff09903210f3c11fe754df5b5dc7d4589a83c8bdb5</hash>
+        <hash alg="SHA3-512">899b51830ac94bf89424b71bbea6e4a9af2607e28c49e9adf524692c62222b36fcac5152de84f0131a56ebde498a258a9f40af0d5de6ae5a014ac6408463d6ce</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/RoaringBitmap/RoaringBitmap</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/RoaringBitmap/RoaringBitmap/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/RoaringBitmap/RoaringBitmap</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.jpms</group>
+      <name>activej-common</name>
+      <version>4.3-r8</version>
+      <description>The General Parent that helps to define the build processes that should be used across projects, regardless of.
+        Package type. This is versioned and if you want to use a different version of the pom, you can simply change
+        the parent version and it will adjust all of the properties being used throughout, as the properties and
+        plugins will be inherited by subprojects.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">15289e291d47bd3f50671d0d4c13a2f7</hash>
+        <hash alg="SHA-1">e54b459c8307fcf4210ae6d1786b84623c62fec0</hash>
+        <hash alg="SHA-256">28d7f1d671be29906044497a963c1045c8d628da53eca088a45494f3baedf8e3</hash>
+        <hash alg="SHA-512">cc2a37a1e97e7325016675b950da36a5eeda9eafe345353f970ca3bf3d6fc83c075c908868c9815194f1ac451eeea754fe148b5c2acb720a4a3f8d7bf912bd1a</hash>
+        <hash alg="SHA-384">29e5e8c37cfe023fd34447395bc7b9a7fa24ccc8afbfec576adb73ec953d92b1deaa3e108397bdd778c49fe283487941</hash>
+        <hash alg="SHA3-384">78c59d4aca6e6248012953f0c7374e196be3a2b4916aa33743060a3e8a277e2350910ab34bddac05953bd1265d653be4</hash>
+        <hash alg="SHA3-256">b89bf0ca9334fdb89bdc8b9d0670457d1638aa59d7a74879805636229dff684a</hash>
+        <hash alg="SHA3-512">106f5323b0b4dd0ac1a5d4dc3ed9d6c329991c5097f2c755574c51d83cdf18885393a6ca2bfdf0c4f706a70645d5cd9f7add66499c95a5abf17ca75ff708373a</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/activej-common</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/build-parent/activej-common</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>terms</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">83e0915b8716fa63752c06ebca8cd692</hash>
+        <hash alg="SHA-1">f25a2c878c11c8dc643edd49da23ff568f2b6a40</hash>
+        <hash alg="SHA-256">4ee8f13b03ee1155c9eea93b8ec38409b23651a3f208be67e9eff6c4fc060e85</hash>
+        <hash alg="SHA-512">0ae16688225e125945b0040c2d2ad0f1aeada6789b68a78a8b6356e9f06591b784611099c4b52363bb86d0a43bfb09b9d7fa3aa7e185633fe3270f3537bfc735</hash>
+        <hash alg="SHA-384">bf757859d1c3834528b0f4f2e494c396af96a008d050e5e867dee9798476a2e02610626d612fc1f7d6e5d6977105877b</hash>
+        <hash alg="SHA3-384">ef91ba635163dcff76ff4d052b61957cb7efa627db540259cff93e9952612780263ed2aabf06df3d8623cdb503e6e32c</hash>
+        <hash alg="SHA3-256">7b0680cb92db144108da85c1744286c74a6fa2154c3ec88e101a930decd7c386</hash>
+        <hash alg="SHA3-512">29faa75c472ae981248de6ed5a188f5454ed1655098fcdc0aff080c49201a4dfc90743fcffa23ee35abaada1a37c9dc30b66a46b8f597abe0960586db8628fc0</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/terms</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/terms</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/reasoner-service@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>reasoner-service</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">0ddbb273e064a0abe4301d8c9520494a</hash>
+        <hash alg="SHA-1">bf44097e4c51520e1a7c25c21c31e27d78962f4f</hash>
+        <hash alg="SHA-256">014edb32a35be04ae1ec8f7f15b7ab4800c8d38241f1f7249772b165dfa0afa7</hash>
+        <hash alg="SHA-512">98b2efc91f1d89ad41ac059829fc9420ddfea620351cad654d077f74c46d7ee3b6908db3ddd55c89851b0bc6bcfede0edf36fb9e033932de2595d26b9b0bd017</hash>
+        <hash alg="SHA-384">fe6cede583468077f316d56332e3c4b595d33be9b2aac9aff65c05d82afd82292e31e095f43a00d54d166ceff827641a</hash>
+        <hash alg="SHA3-384">88605d2622562ebb474f1934821b4420a202b604f771e236287d7f8a28e64d81b6f94d79133bedb4ed82db680f440e5f</hash>
+        <hash alg="SHA3-256">24deb2e77aca5208df21899fea1644b19422e9b20a2cf337f2a7f529c144772e</hash>
+        <hash alg="SHA3-512">56c7cb104758187e66d38624b3f44b97bfdea66b53c55c2482b7109699c16b03c6c86ad9813f71c089f5a1a179cfe9890de7ecf2d15c091ba3a4a3c4d9d86b9d</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/reasoner-service@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/reasoner/reasoner-service</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/reasoner/reasoner-service</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/reasoner-elk-snomed@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>reasoner-elk-snomed</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">a1244b063ce01bc7652bd595436785f7</hash>
+        <hash alg="SHA-1">63b6fb8083f5a570e4c1be5592b5e0c890b4f418</hash>
+        <hash alg="SHA-256">565fd44afd5c17b84d18d9464e7e868983994f37b91df58704bc017e1f16906b</hash>
+        <hash alg="SHA-512">8d8e73a00e8b8b93a8d4b9cb2d9b0d8e474321523734b5a05f28ad110714e984b5b30371b5ffdcf6c4bb873561b464b746b933aa31c34d59b99e014c1a230c66</hash>
+        <hash alg="SHA-384">9aaec039d71cb1ee6dc54cf068f276ddab0826c8a0f59eab96fde1f91a5b2741e3d4e01790addf05f9ccb481fab81efe</hash>
+        <hash alg="SHA3-384">c89d6b07fe4f45f5ba820ce412a1704bc22b90c69d34e01d3bf5e7f9a355d533a4584e17c34a916cc1db8fa28c9d9288</hash>
+        <hash alg="SHA3-256">728817add33f98039e3df7f6197396f04b404d33e8c33506529c9612159e4402</hash>
+        <hash alg="SHA3-512">dd008153740cf70e94e1be1912ea0af624698cd9b2d95fab4c81fa46feee0c38848019d73a2b48308be45b462cffa8c9e9aeb80b59dc9fb5df9ff25309e48da1</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/reasoner-elk-snomed@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/reasoner/reasoner-elk-snomed</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/reasoner/reasoner-elk-snomed</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar.ext.owl/owl-extension@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar.ext.owl</group>
+      <name>owl-extension</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">7fb1bd4cf86644ab3e60cf01582f2594</hash>
+        <hash alg="SHA-1">2661f9a6bd63dc35a62093537628b9856bc02ee2</hash>
+        <hash alg="SHA-256">f7995986ac06fef52364cdb14adec8531ceae4e382318d1c67267874adb3adc4</hash>
+        <hash alg="SHA-512">00a6ef73ec48d1fb8cede5412e9710b675aa528c75e78c9574c45e034318c26afc31dffe7c8b5499b8bf02441442fb38cdfaa84f5f11790627ef6f63f7561c85</hash>
+        <hash alg="SHA-384">92d5e0fb3bee99766f0ba89c04447a862deaec9fbbf16736bdc478ff6d69078767c59090da6583de54b4c10ddc106212</hash>
+        <hash alg="SHA3-384">2fa3e7d8858b423e0a4f7683c48431cd1ca658bcaa2e31aa31dfb41c1f424722fc85593a91d1356fb7b39f8eae5ba401</hash>
+        <hash alg="SHA3-256">b348363ecc211c05094455ff902b469eb351b73744c2e0cea22cc4ce6f555294</hash>
+        <hash alg="SHA3-512">8554bf0359077c7cd354f8484f774a23875c28f2089b3382b1e039e75399296d87ca2cad3d3bb19d6dd9e054b27f4d8819ea57c47aec7e06de23b2eec5a9ce72</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar.ext.owl/owl-extension@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/language-extensions/owl-extension</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/language-extensions/owl-extension</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-snomed-owl-el@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-snomed-owl-el</name>
+      <version>0.40.0</version>
+      <description>A Java-based OWL EL reasoner</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">1244968db0aaf034a736243f0c7e65fc</hash>
+        <hash alg="SHA-1">14b940b215cf3d7dce4d44773eaa42ba203a7b4b</hash>
+        <hash alg="SHA-256">6b8cae5f49ee6ec1b3a9b854fe8bbcb449a320aa4a2033e31c960ccba30fc357</hash>
+        <hash alg="SHA-512">f66ff62db3a863f9d375b8a93799dcbde8fa3ad9308e208366f0891663c1fa1e62b76239278769d388c3c6c3c91931f63b8103e120c7c1915ab2862420106415</hash>
+        <hash alg="SHA-384">46811e200865f7c6833c131b194f603c6c47d4a89d76fe0f1e1ca179899b8f58f08e10298802c0214bc7cf63f2560b0d</hash>
+        <hash alg="SHA3-384">d48a0d6cc19d28d295b28f08e68ba1581a12e11e334811e78c2854a88e905501c8911fda24564c3cf0221d72c1ca3796</hash>
+        <hash alg="SHA3-256">811f9fe86af7daab62dc28b57c0c8c9ca271b37b83929ed71d0c12f9f88e3e78</hash>
+        <hash alg="SHA3-512">be079b1f9184e7e700e5d0c741c87a18bbe14757ec02dd4788125aeb8380a9b70aeda8519b9257ec5998e0000d57e31f6c7436f8b4dad22247eb804e4d6bf650</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-snomed-owl-el@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-snomed-owl-el</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-snomed-owl-el</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.jpms/antlr4-runtime@4.13.2-r5?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.jpms</group>
+      <name>antlr4-runtime</name>
+      <version>4.13.2-r5</version>
+      <description>The General Parent that helps to define the build processes that should be used across projects, regardless of.
+        Package type. This is versioned and if you want to use a different version of the pom, you can simply change
+        the parent version and it will adjust all of the properties being used throughout, as the properties and
+        plugins will be inherited by subprojects.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">55d498772530020c4bd9de330a69cbf8</hash>
+        <hash alg="SHA-1">df4586238231839018505526ec1cd08b1b4a1c3c</hash>
+        <hash alg="SHA-256">4c1711e0c52aac759179bfcd4d2a336912f0c7063ecb744099f83fd524b4d329</hash>
+        <hash alg="SHA-512">539e81927452752055ce48889b2657117cadb3b713d2cdef7910fd61cb90cc6f61e3a896ea3e1355ebeed69613cd570df47325d12988e4a3ea8661b25595d438</hash>
+        <hash alg="SHA-384">821854d1c87cae364e34a71dcbff9ad10c3c53902620d9ff220bc7522e0b4e80fd7d373959c03d0cfa53c5986dc0c018</hash>
+        <hash alg="SHA3-384">dca0ccbd95b829ef350229d5b69e837e04f62e8500397d14cde4f96d4a9e041ff5068e3e21badd6e5683a1d5e9a155ff</hash>
+        <hash alg="SHA3-256">fee5e966c623a98f14506e46e176d591a71bf448f8f7e224f94060a1680366ea</hash>
+        <hash alg="SHA3-512">478acc1c5f2935fbb03d5bcb7ea217e42553543c3436feee900da0f4878c88d608a43cd82abafa1ac5285370529c2bb55caf49a307ab7e78008797a9c1314cde</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.jpms/antlr4-runtime@4.13.2-r5?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/antlr4-runtime</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/build-parent/antlr4-runtime</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-snomed@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-snomed</name>
+      <version>0.40.0</version>
+      <description>A Java-based OWL EL reasoner</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">f926cb6b6558bf372f0d0df6bc09bd0d</hash>
+        <hash alg="SHA-1">3d2a800717e1915604b66a0c47f7959ebfdad01a</hash>
+        <hash alg="SHA-256">4d18eefa4c04d3e02936523a24adade8a9048ed84c57b9fc4323dbb6ff669ff7</hash>
+        <hash alg="SHA-512">a4c487a2caaf875c3c586923a0f406d5395531e445cb1c6d2104bc6d4ccb11f0f52f483ee0fb63c26dadc094b2b45dca559b492d21648390dac9a229044805a7</hash>
+        <hash alg="SHA-384">a1571bdfbbeb47346d62d6d962843b398e51e130dd2e48d06f83e57f3f1a50f3b0d715fd7e8536ac1e801cc6d8736d65</hash>
+        <hash alg="SHA3-384">b78f9549894c3af4a5784302bf4d8d2066354aa988ea997a4ece7800b454acec4db98cdb922f1fe91b598b2b51316209</hash>
+        <hash alg="SHA3-256">14b7f46d79d23e30672ac77e0d8e0922666641e27c14841cba87a4ad15229c81</hash>
+        <hash alg="SHA3-512">ab5b579e216db6543ce3ea997cf8cd6b6eba7632db725465eca908c2e64c0eeafc60e85323df9314023a77691c6195d0a442554460e7cb0291535aa55c16b9d8</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-snomed@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-snomed</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-snomed</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-owl-model@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-owl-model</name>
+      <version>0.40.0</version>
+      <description>General Interfaces for working with OWL objects</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">344dca8068b6ccf3a9e61e2aa926e1d3</hash>
+        <hash alg="SHA-1">554def7e32c6b10c5b7c2cca6b6d5a3e034b6348</hash>
+        <hash alg="SHA-256">b53b5eb5c05b9f56c7bb7693d4db277735e46e3c05cac98b6455bdc7b853dbe7</hash>
+        <hash alg="SHA-512">c7c32d35d8864791fb1db303da556c0925b43e916f32d81543acc3f305b49dbff0ee31c34d1a3d263d861f8f78fec0399e4eed47ec982d4caf3480ec45f3c053</hash>
+        <hash alg="SHA-384">c4737bfc8ab70fafaf4429092c1238470cb6209185ab20ab66dac5fd389225e41594692b5e734d94686139bb7d69e903</hash>
+        <hash alg="SHA3-384">5202ee3796fb0f78badf2d907c147c8dfcb5904963c0cbd2cb525ed62c4f87c54f58b764f133a1b4a21f1ba888c210c1</hash>
+        <hash alg="SHA3-256">33e6bc09e53f62db59a63d8e16650b030ed4cb46e80e0b3d8e3517a5962e8a1b</hash>
+        <hash alg="SHA3-512">4b2a73c843674a7a8e063ba0aa330301fca4feeed6623e1ac001f009831349afefbb5482e14b948af68b42b6cc84d447092b4e6c6ed3a6f5d55ff868411c1d2a</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-owl-model@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-owl-parent/elk-owl-model</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-owl-parent/elk-owl-model</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-util-hashing@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-util-hashing</name>
+      <version>0.40.0</version>
+      <description>ELK Utilities for Hashing</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">ef84e8cc4a95d68dc4ed435fdd24ad48</hash>
+        <hash alg="SHA-1">e349e6aa010ef38912381ede4d4916256c5ba7c8</hash>
+        <hash alg="SHA-256">b9e33d734a3c6fa198db737ae59f3fba4ff03e77383a522cf0f024ff671e053a</hash>
+        <hash alg="SHA-512">f09debe44e86b92cedffac7bf8417d557fbd58e6a8028f332eb2677631839ca35b898da398aab85291054bfdccad0e74faf0aeaf6639d1d66a9accac5e7ebb61</hash>
+        <hash alg="SHA-384">735316ed5fef634ffbcdcdf78685630c3354f8f8e6a752c5ff1b9306cd08bee73a907c3c95b0c878ec139c8b593ac64c</hash>
+        <hash alg="SHA3-384">e2bce49d79c0f3eba55544be5b352fccc9d2532f5330a328b0275b15091c0c14cc40c50600c87466fc7bedb3f6704756</hash>
+        <hash alg="SHA3-256">bc051cf1d6667d24f18c8fa83ceea80881f9dfb96fd0ba250e2672b0724a25df</hash>
+        <hash alg="SHA3-512">08586ea0becd500835c912ca6f075cc4c4ffb507d10191c4c822817aea83f30450433094490a1bebac6dfde30cd5a8213be07741df3bd1ee7e19e76347cae1c8</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-util-hashing@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-util-parent/elk-util-hashing</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-util-parent/elk-util-hashing</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-reasoner@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-reasoner</name>
+      <version>0.40.0</version>
+      <description>The core ELK Reasoner package</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">a083f49c3dbc8c1615d330233e4734ed</hash>
+        <hash alg="SHA-1">7516274845c0fc23cfa4e5643a57d860d2245331</hash>
+        <hash alg="SHA-256">195f1a90ab57371e200110d42a56f67b319491999d51bd688c68c47d4d28814a</hash>
+        <hash alg="SHA-512">5a149d8afc3f44a8514c1e3236f7d44e0ef30498ad5c7941a8dcb6fd0ad5c7b1ed128eb379554bebe2c075d2f24421e7b5a56ebacf42941da035e6e5280e11ac</hash>
+        <hash alg="SHA-384">38a26370c443ea1faf34a7994cb1359e01d447aef34c155a2f6058e6cf3eb36894b845d2e68ea743e6f7d914baa1ce3b</hash>
+        <hash alg="SHA3-384">f0e9353d072a6e8acee043206b97cd8b9334a091887eefa70c9ec8609615777b1842277f47713dcf27af89ffb039f24b</hash>
+        <hash alg="SHA3-256">8f57065de4c8c3bf33581b3596d4831345b421fecf64af828224ee85b99d7178</hash>
+        <hash alg="SHA3-512">b29a91e1616bce97290b2920d3b6b626fed00d1d0fcf794489b92944dd776f01b45b6051c58d810a07a74bd6e46dd949b98e2d925d499ef961c80298245cff82</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-reasoner@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-reasoner</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-reasoner</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-owl-implementation@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-owl-implementation</name>
+      <version>0.40.0</version>
+      <description>Default implementation of ELK OWL interfaces</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">cbcbd9ba63831248464c4b49e40b67e4</hash>
+        <hash alg="SHA-1">258677678c3e8a4967e9a98c63f989fbc40ae174</hash>
+        <hash alg="SHA-256">998eb3e3db72cf586c8c7b681add27352515f92c26e5370803372e6207ae097a</hash>
+        <hash alg="SHA-512">5ff3e34daa1b9723d192cd65130d2de0c7fa041cff088d75413dc0bd3447ef6b9c2ef428b97b6bcaa827f0583000e33bd680c25b93e2aedeea9d9ce36f2fc97e</hash>
+        <hash alg="SHA-384">6b202c01d1fcf990a5566783c3ac6b21d473c9b9d6740aafc700754beb23861de468da352106af6e14034631b18b01a9</hash>
+        <hash alg="SHA3-384">aa830f8564f666f39451197bca76f62dd3d3cd59786f200f020b32a4ba20fdf139694c5ff7023dacded788b5ded7ebcb</hash>
+        <hash alg="SHA3-256">c04d25f98a9cb2f48186074f2ae961710dc514d382cdcb9ff469c14ab8398999</hash>
+        <hash alg="SHA3-512">18ffe76458d2d06baa72845456dd69294130d3d637cc8aaae5ddca1b571c37ef1a1cecc4962d4f0074a71371b66e51e4d2e03dc6a95a70f992224067fde76c0c</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-owl-implementation@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-owl-parent/elk-owl-implementation</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-owl-parent/elk-owl-implementation</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-util-collections@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-util-collections</name>
+      <version>0.40.0</version>
+      <description>ELK Utilities Collections</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">1e8a7ec95fc021624707570888a4aa97</hash>
+        <hash alg="SHA-1">aa8782d38cc53e7cb1e42ed3e3a69b0b440faae0</hash>
+        <hash alg="SHA-256">80a42d714841c1f3a5123250f86d988139223172a74e78431a73052f64d6595e</hash>
+        <hash alg="SHA-512">dfc29dfca634c624acad8dd761f39c83e6cf135e03e6f3f1ecdd3084856d9a2cc00738ef162bb655657616c529adff1ab4f2d4b9694f470d2568387630ebc79a</hash>
+        <hash alg="SHA-384">4abb3f166ea4287bbcb5206402a3fe357689d9ac7d39ac005dfe6d838a8afbcfd51a208ccf2086b83e86d98cc5349f2d</hash>
+        <hash alg="SHA3-384">c20f34c4907c274e58b14df8c96bcfb576d64964ba1949cf1a0e2087e77f5c864027e6cf8ffa524104c4610f12dc56d1</hash>
+        <hash alg="SHA3-256">597aae012d74563d6ef2a3c0247414f6f876ca444e7a3cee27dd596330acf570</hash>
+        <hash alg="SHA3-512">27792e26ec76be2453749039368e8497924c4f08a4957a72ee548af45124c3f84fc16ad04113a33c1a21fdabeb274f9b98dca36ae0889581b7910473a9edd6f4</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-util-collections@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-util-parent/elk-util-collections</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-util-parent/elk-util-collections</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-util-common@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-util-common</name>
+      <version>0.40.0</version>
+      <description>ELK utilities that are not (yet) organized into independent
+		modules</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">3eae67747943dbad5d8581155031dc1b</hash>
+        <hash alg="SHA-1">4f6d1b50abd4ea6ed066fedbc5d7f3ac6afd31f7</hash>
+        <hash alg="SHA-256">f4f3c3c04d71abb6c6604ca63e7fd84f3f5826c676ccd24c2dd3b1b74c3cae40</hash>
+        <hash alg="SHA-512">fa3e3ffb35af1ad5e892671a0d36f5f83f48b7f16036d3d43bc1a6261702ffbe8431400776e54e8d6eb7f36e30947c83c843deb67fb75c0f10850a394c925e69</hash>
+        <hash alg="SHA-384">15e9974c096ab03bec38842edc35ff75c425ffd78b22bf4a8e1a61051b3bc19323ec3b0628affae3e0d3d8a5d8780437</hash>
+        <hash alg="SHA3-384">34367a01c9bc85446d37645da26afc09e7f6ee3ef21f547a1f7dc176e9f54e3e28af8a38c91a30ef706830cbc8773017</hash>
+        <hash alg="SHA3-256">3f6de79a4ca7bc0ae5ce4f98e2d9bbe48cffe45118d99919653a4b65324663b4</hash>
+        <hash alg="SHA3-512">b4dcb43a807540e5c96ae357f53c66391124fb5e2c188853cfbe7a3d70d46bbf8d7f16aed4c2b2537a330fe4df3f56fe5d0a3a00453fd0218969d7925a0c9dcc</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-util-common@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-util-parent/elk-util-common</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-util-parent/elk-util-common</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-util-concurrent@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-util-concurrent</name>
+      <version>0.40.0</version>
+      <description>ELK Utilities for Concurrency</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">99b06bed4736fe5fa2312a9b72704f4e</hash>
+        <hash alg="SHA-1">38cb0c60aff2324f96e5ad0cc21cbee34b482d46</hash>
+        <hash alg="SHA-256">be32caea62c37b2fea09934a2468b4479c560709b8827b3087375a91a7bd7ca1</hash>
+        <hash alg="SHA-512">7a79fd970af0c4a6854b91407b919cead9e9288d7364ac50df5f21f9087203b631fbe55d41c21c82e5f11b707a595510da42a036b075ffc7a8f461e714410757</hash>
+        <hash alg="SHA-384">a3efaaef819fa7a17d1733c2f2879f435fdd2e98a832260a6c77f1d350ad51a0eaa2646ae6f00bcaf1dccb4efd6f40cf</hash>
+        <hash alg="SHA3-384">c6f6c2641078b628664869268230413831bcd192934d0ef26f866688c951b3d7350495af836a284036fa2dceb1f5fd69</hash>
+        <hash alg="SHA3-256">71235084bdef8bdc5d1c19553ae98f01e6b15180502667ebafdcf33cae0084f2</hash>
+        <hash alg="SHA3-512">d82896e76a0e6b27ff32c34384aa65faa196164d8c1c14d1d716bc1e9678433d73a79041c4679c898fcd67080087f10713990997f6a16ba4510e7c45bea13f92</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-util-concurrent@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-util-parent/elk-util-concurrent</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-util-parent/elk-util-concurrent</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-util-io@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-util-io</name>
+      <version>0.40.0</version>
+      <description>ELK Utilities for Input-Output</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">d1ec6bf105e150f7fb93ac64f8452e36</hash>
+        <hash alg="SHA-1">1a854b50afc5d405b11b53f549caa5f15dd5978d</hash>
+        <hash alg="SHA-256">0f5729616576db7ccc8329b95273f22ffed7383ba1e1219b8f8bbd51d42857a6</hash>
+        <hash alg="SHA-512">ad4da50edecb70f0c7a3f29fcaf108193e0449b7b821002af6d4cd3ee93eedd961fa05475d2aceefbe3a3044d0529d9fcf587fa8c4a56ea5b36dca66dac621f0</hash>
+        <hash alg="SHA-384">72d00aed8c095f77a8c03fe88fdee12f0c002c69b1176c9e6d3ba44822e817e3dea46acf1b5a3cd7dd8ef44fe16174cd</hash>
+        <hash alg="SHA3-384">f53df879c9a5e9eed35670a9b48bede0c6a5965f854b473b009a36d1be7d2b6745cfde8d00908586e3eff3acf237cc21</hash>
+        <hash alg="SHA3-256">c7394fa659828e3d7c0e02383c59dc4f9fc41953344474e817d9a191611e6ca7</hash>
+        <hash alg="SHA3-512">7c297643889912c22c7fa8e8e12e1e1d80a61f097cc8f0f110ee7907bad7b53fb1c9aa33df4663e12396ae46fc1c832a90970444298316eed970bfa67cb9ee9a</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-util-io@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-util-parent/elk-util-io</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-util-parent/elk-util-io</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-util-logging@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-util-logging</name>
+      <version>0.40.0</version>
+      <description>ELK Utilities for Logging</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">64d2e3c592cd163f41c068a55505f475</hash>
+        <hash alg="SHA-1">bb5447c0748442f6c168f9159ce019d069966b76</hash>
+        <hash alg="SHA-256">198d911f9524af3a4961f4d3cbfd69ac0ab774ece65467ce43bba39aadc57433</hash>
+        <hash alg="SHA-512">768df5262e44e65c6b2588b110f3d594b7efe5a72fd8d3b86577bce52f77c3496bef206b5a55e8188cb908c7134bfcce744fc47f3a0999a3f63d2dce7d7d794a</hash>
+        <hash alg="SHA-384">990c76e2765e8ecabdf600fcaeaeab1ee91ebd1981ce47090a8f88a2a28fd34d39bb7713249a7e7c42e51dd506bdda0d</hash>
+        <hash alg="SHA3-384">3c134464e2740e703822397d9812164acfd5ae2dc71eef5e019e61d34ea7d3d2870548c30b100934a1e6bad1eca6fe8c</hash>
+        <hash alg="SHA3-256">06ee76ad6ec6555ab52170df77263d8d16164cfa55903fd6d42c4bdff4efd3d7</hash>
+        <hash alg="SHA3-512">491d3b812e377b5558cefd292abc8ca29fd151e30fb1b6505b33eaa2d51e1541dcf3ef1d524860c037316eb7068b44d0f30dff8308ba04bb35d5fc02ae31cdc3</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-util-logging@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-util-parent/elk-util-logging</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-util-parent/elk-util-logging</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-snomed-reasoner@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-snomed-reasoner</name>
+      <version>0.40.0</version>
+      <description>A Java-based OWL EL reasoner</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">8858bae3f17be0c29470445ee3ae733b</hash>
+        <hash alg="SHA-1">f545915a2e5f1d3c46af9977745838b554ed3299</hash>
+        <hash alg="SHA-256">c1b638550d03275a2d4f84b427c467e9600509e07c455a72257b11911f271e26</hash>
+        <hash alg="SHA-512">f7c64498c8076a016ec173a51859943f7b540f4cb9265568c4668ca0cd37e75a50a99c612e134e4c1b5172b1deb55d6dce3e2238009be6f8e1d3116de8623401</hash>
+        <hash alg="SHA-384">4553d9f2e712c7c9c76040fde1d85e9948dc3e1bb646d9b522bcc1200fd4cc80749301a94f4b855022d7582e3814619c</hash>
+        <hash alg="SHA3-384">24d0d71080d11750fc7481b6782c2e6448582ae017bb72b93e3862714242512a673c976dd70a529d707fdd729b1cb54b</hash>
+        <hash alg="SHA3-256">fa648d3c536dd64f390bb468b5ff886c86ed85321bae9dae18aab238ef555ec2</hash>
+        <hash alg="SHA3-512">43b70574a3c587065785935c54879ff603819c32d1981365ba79a14acb76e46e53e64aaccd7e818bb048532ff8ba7c0ee0732197c817c8edde54b928aabc4c1c</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-snomed-reasoner@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-snomed-reasoner</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-snomed-reasoner</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.elk/elk-snomed-test@0.40.0?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.elk</group>
+      <name>elk-snomed-test</name>
+      <version>0.40.0</version>
+      <description>A Java-based OWL EL reasoner</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">081d628ceab4cc6786a09b7c4a6862ef</hash>
+        <hash alg="SHA-1">0a66bffc026665b20d0f760443cd7f606aa0ee68</hash>
+        <hash alg="SHA-256">edb25ed97f8970bc4be9e8ba8b421c57c5e676b8de24f20ac236214b4eb32868</hash>
+        <hash alg="SHA-512">09c3d8be36f945094f82489322176fde5b4b1597a7f8345611b1f86fa367c856d5b0ececd5deffce08a9c33b2449cf6843bb3fa17ea2d1db1ec191bdbf65ac52</hash>
+        <hash alg="SHA-384">0bdc6c1bd125065c271547534838c42ebbd5e753512f105af96cc451869014a822fa656f81cc542324a9571da3f8c5a5</hash>
+        <hash alg="SHA3-384">9d760d31d01aaa53f3575ae4bf56a058664434fa15caf1ae4a8560fe48c04be44e3fbe219041bcff7a0ede6be70fbe1c</hash>
+        <hash alg="SHA3-256">c09bb5d0a10753ea850e8dfa446cb2fcd3f83605a8e1ec06450e8b32decdcc73</hash>
+        <hash alg="SHA3-512">f4b22dfcb4110b521d18c13563179e64bd0bedc76fb9fb6d8ecc4a667c0894bf19edad11417e30534759979368c5cb92c8b5fbeee3678743174fd8a16207ac32</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.elk/elk-snomed-test@0.40.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://www.ikm.dev/elk-snomed-test</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/build-parent/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/ikmdev/ikm-reasoner/elk-snomed-test</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>data-spinedarray-provider</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">9739fdd9f4489948f7edc63117b1919a</hash>
+        <hash alg="SHA-1">b69211cfb41869a8265b0e52f6af5949940c9351</hash>
+        <hash alg="SHA-256">1c35c1df0f6b7fb3bc413b60d0bc93de1d58b4f4210b80d2b049748748d9c76b</hash>
+        <hash alg="SHA-512">e88b5a9a70d68b555c02fa02bedcd773badff4adcde0eea98fb24c34f6d5ce3cb3bee03422d4c2ff00be7789b231339b960835d17e7a65cb86020dc88fbf3d1d</hash>
+        <hash alg="SHA-384">22b74dca663ca64076d8c0877c12af0a9b45cbf38c3c7cb7ea6953577fd04a01ed20f7be5ddb38af9545afe827187178</hash>
+        <hash alg="SHA3-384">8bec81ed86094d525c8b933d3245c00dbdc3523c3a4852b103d6fab5909b28302b01b28bf07a87955ae58e8cc3eb857a</hash>
+        <hash alg="SHA3-256">f866ca39f8c0213a835d8728d54dff14f0f2b29f46b48fd73dc02f5fa87625c8</hash>
+        <hash alg="SHA3-512">dfcc27f95f5d9612ef9bdebc82c6af3b36c0bbfb087c56009550df47523213dc5b08699026bd0f17faa129383970cd12aec215e2e06da9aa547d1b41a25c6aa3</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/provider/data-spinedarray-provider</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/provider/data-spinedarray-provider</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/search-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>search-provider</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">f3ac213b93ddfdd46b14d488205fcc52</hash>
+        <hash alg="SHA-1">09ad095fa0fbf847db126b4bd3410bf854500fa8</hash>
+        <hash alg="SHA-256">0c46798b1050db446845676f777c0ed56bde9a76511fc7d57790824818eda5fa</hash>
+        <hash alg="SHA-512">cb06034b4ac179f400b4603c8347cc8f41a322d58172c3b703fb4ad41d44e4a6c2b4a7d0d817314134b034830df3637b266f2f3251216919e3c8232539fff6d6</hash>
+        <hash alg="SHA-384">a24177013b3000d64f87f11eeb99d94e33dc9c8f0e19d47ee85946b73d3f3bb435d688c3e41732c99ae06850d6ae6fe2</hash>
+        <hash alg="SHA3-384">c55b7242ee7973c784b1f9027b7cb3157971540809641925d451139e9b975ad2b7d61a57acabb1d8b5161669c8a93837</hash>
+        <hash alg="SHA3-256">4bd6c6344da0a32e3158775646cb7158dc9153d74073f4ed1360e137ca2253fd</hash>
+        <hash alg="SHA3-512">f330353eb653f9c7ca2ea4778ac1182acdc4ddc5f91152cef88e0a1b4f1e143627d82286a77ce84b4a529630697f09f183caae6cd529b65551913cd881e21d9b</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/search-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/provider/search-provider</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/provider/search-provider</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apache.lucene/lucene-queryparser@10.4.0?type=jar">
+      <group>org.apache.lucene</group>
+      <name>lucene-queryparser</name>
+      <version>10.4.0</version>
+      <description>Apache Lucene (module: queryparser)</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">618d10ad11dafcafe3b411d0a503fd79</hash>
+        <hash alg="SHA-1">6e3e758b60b1e2549a85139d9498b54565c38eeb</hash>
+        <hash alg="SHA-256">4635f2a14e9c01574c4cf9ad60e018ab2b041b7889369107a991ef950648c847</hash>
+        <hash alg="SHA-512">d85d314b1556ecb305a3f383ca712bae290782a8b4663d21e46bd26a96362a59584920cb6ac92b802126e088342bea55193cad674793bc4e46464245530b0abb</hash>
+        <hash alg="SHA-384">54ddf696db944f0a47966c17bdd0573ca428f240263c50884ac2ebe9303d9ffd48f6f3cbb2f47290a8dfee9beb7ebabd</hash>
+        <hash alg="SHA3-384">54fd2825afe3b19ec88fcfbc90656d56f8f3e604585fda083492ef9260f47e2c89dd032f5025042e0c07ee6998fbccb0</hash>
+        <hash alg="SHA3-256">538af7e4f9e6b573c1a1b211a1b170329463b67e5f5723f57624b364892d9fd6</hash>
+        <hash alg="SHA3-512">1b0cbb2842909c462362176b47055b98b15b33ab0ae4d10bbdc55ad4fb8cb4ac19de3f5005d977447a73b621929241f4b8efa786fee139f2966126af29e0c950</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apache.lucene/lucene-queryparser@10.4.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://lucene.apache.org/</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://builds.apache.org/job/Lucene/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://issues.apache.org/jira/browse/LUCENE</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://mail-archives.apache.org/mod_mbox/lucene-java-user/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://gitbox.apache.org/repos/asf?p=lucene.git</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apache.lucene/lucene-sandbox@10.4.0?type=jar">
+      <group>org.apache.lucene</group>
+      <name>lucene-sandbox</name>
+      <version>10.4.0</version>
+      <description>Apache Lucene (module: sandbox)</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">f40cec02f488471f6dc8991ebae76198</hash>
+        <hash alg="SHA-1">15976efaae9213b1a61e3509da6f366e243b90c7</hash>
+        <hash alg="SHA-256">49f5aa75aa6eda166652be4f294e2efc720e59b9325ee6f60403166edca0e70c</hash>
+        <hash alg="SHA-512">9b7c62daec4c1e76a135fb578b68fb42aa5d30b69c4014486d73898cc64ea5a5d19f3a77a08823b3b0811b43bb6fbc612e31192cf7ac96ed5d01bd3de7dda0f2</hash>
+        <hash alg="SHA-384">4508bb0a01029d5103bb83ce60b8d48bae756b16b10a4e6b3c73c896cd2aee2600ccfc6572b4896d49fdb5023d312fed</hash>
+        <hash alg="SHA3-384">74c2a359cca797c203efc3633e2308ecc3fa71ffde80d30d4876fbd73fbb07a570117d924be38be1afb194b57d50f5a7</hash>
+        <hash alg="SHA3-256">cb4a985419a9ea392956f988cfc9e04382fc06ed3f0b368475780c4bd4c99bc0</hash>
+        <hash alg="SHA3-512">04699fc95520581af915700375e2e7e722757698a8442200a8ef7b520747468cebb0b05d73f2296152ed08f539af2b5c21a0cb2da3ec4fc22d0103e99a0cf7ce</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apache.lucene/lucene-sandbox@10.4.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://lucene.apache.org/</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://builds.apache.org/job/Lucene/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://issues.apache.org/jira/browse/LUCENE</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://mail-archives.apache.org/mod_mbox/lucene-java-user/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://gitbox.apache.org/repos/asf?p=lucene.git</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apache.lucene/lucene-facet@10.4.0?type=jar">
+      <group>org.apache.lucene</group>
+      <name>lucene-facet</name>
+      <version>10.4.0</version>
+      <description>Apache Lucene (module: facet)</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">5453d13798cff17c4de70f61490343b4</hash>
+        <hash alg="SHA-1">3783257107005397b48749b2de5cefc8bfc6e252</hash>
+        <hash alg="SHA-256">c4d602a389945a8347bc39f904e8bd2504d823333f5cf9da16cda364c6f9eae8</hash>
+        <hash alg="SHA-512">b2572bd69b386e525929b9b90162f4ef4ff5f5c12a0f1771ec19cfcda41c894c0dfdd005f391ab5a7f345e83a3685fc5ed243ababb2c73383b42f52ff052adba</hash>
+        <hash alg="SHA-384">1a31b388692a41dd9060d4be9d2e13e7bbb7d41f04d1f1d47feae5a00a9e673792b59b75186226d29dc3f1e02294cc2a</hash>
+        <hash alg="SHA3-384">c448be6a54637cd48a9d66c7c697c1c94342629ce97b65c9aa63d2769e852744de5f4f4f84f400ed790c318095baab0c</hash>
+        <hash alg="SHA3-256">f3a64ed9fd861eaea5c80c48a8abf1a5e9989ea3c792b1b677ea6b5011b57ba9</hash>
+        <hash alg="SHA3-512">0892b135c3d06d6e4efe535512e5119372d0c175010dc15a5dcb5a7e160e7510eafb81ab9320cf5e344ae0e85d506e35fcd718e4733a9146066f7b725d272044</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apache.lucene/lucene-facet@10.4.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://lucene.apache.org/</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://builds.apache.org/job/Lucene/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://issues.apache.org/jira/browse/LUCENE</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://mail-archives.apache.org/mod_mbox/lucene-java-user/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://gitbox.apache.org/repos/asf?p=lucene.git</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apache.lucene/lucene-queries@10.4.0?type=jar">
+      <group>org.apache.lucene</group>
+      <name>lucene-queries</name>
+      <version>10.4.0</version>
+      <description>Apache Lucene (module: queries)</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">b5550a3e8139e86d5054e537447354a2</hash>
+        <hash alg="SHA-1">43b2654a448504dc4ac382f6d9b6896e2e8b67b7</hash>
+        <hash alg="SHA-256">c5cfbb892dfa78d272d6c0b46442159d75f92adfd7577c03bf5fe9e6067b475b</hash>
+        <hash alg="SHA-512">fc9bfdf5e06df1f93b83665cf641a0800d8ff4a160bb680a4e45ecddc413f6ce4f62689b941fd333f692f9ad790aae04d1bb5a943e3018820c144e140bf97d07</hash>
+        <hash alg="SHA-384">3217ec6aebf452fe7a172d7aadd544e4881c90e3f082296197c710af2213c3476b16929c7260d0810ea2b8408929e3d2</hash>
+        <hash alg="SHA3-384">65413db30e019bcfadf32a3824f0d3b934b93fd2951f6ecce9518d9df54753267706671a728ed7db937aada4fb7758bd</hash>
+        <hash alg="SHA3-256">a6a979f1c5912f467ca23d75cf46a26d219a7f4be48179b55e65d97fd413bfbe</hash>
+        <hash alg="SHA3-512">e6f6858809aed21c35430b7d283d88fdb6d01fff65fdc2d0480eef83dce67c3f76905571a510257d7ec2e7e765df0da402c6193b74d9f055115f75f220d22262</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apache.lucene/lucene-queries@10.4.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://lucene.apache.org/</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://builds.apache.org/job/Lucene/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://issues.apache.org/jira/browse/LUCENE</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://mail-archives.apache.org/mod_mbox/lucene-java-user/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://gitbox.apache.org/repos/asf?p=lucene.git</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apache.lucene/lucene-highlighter@10.4.0?type=jar">
+      <group>org.apache.lucene</group>
+      <name>lucene-highlighter</name>
+      <version>10.4.0</version>
+      <description>Apache Lucene (module: highlighter)</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">d734f0ef506b2b2bc08e61857aedb238</hash>
+        <hash alg="SHA-1">a3cd37e7588506447382a9175da271fb37c55e67</hash>
+        <hash alg="SHA-256">651622d8b1751e644dee68956d74eb8b4c240bd987aa75f682833b4716c8db57</hash>
+        <hash alg="SHA-512">9eeadd2397ed5d6991fdf10ab683c7830d3cd4aa2fda87047a6158efabe1c1503943437b290451b75506ab87ef6dda86d4ec774cf2006c3a076bcc9b15498074</hash>
+        <hash alg="SHA-384">3c2f5d68f12e215253eb3052428e51d5f2ad677ce8d49d9382aee210f51ceee9602cc5081928d272921ede34c0bbc996</hash>
+        <hash alg="SHA3-384">25ec77c39e51ed79ad3c6ee52a17ed367a96a82e594f9996f92275249be729f9a13a4db215a530ea5f20bdfbf44092d1</hash>
+        <hash alg="SHA3-256">8594931f53673f3d53171921e6864b58a35bd1d4c99fca4b0428fbe0362490ea</hash>
+        <hash alg="SHA3-512">92598b20523bb245ca7be21b36ea714cf560c4cf34825956e9c46424cc61ab9d99a5e006ca7602ad101c3451e676fa7c3d335998fdf8f354dc925a4820233635</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apache.lucene/lucene-highlighter@10.4.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://lucene.apache.org/</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://builds.apache.org/job/Lucene/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://issues.apache.org/jira/browse/LUCENE</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://mail-archives.apache.org/mod_mbox/lucene-java-user/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://gitbox.apache.org/repos/asf?p=lucene.git</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apache.lucene/lucene-memory@10.4.0?type=jar">
+      <group>org.apache.lucene</group>
+      <name>lucene-memory</name>
+      <version>10.4.0</version>
+      <description>Apache Lucene (module: memory)</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">1b5228128a68f0756948c6e8a5f4c118</hash>
+        <hash alg="SHA-1">6c6f1080466c5dff5b1d0eeeb3ead745591eb9d1</hash>
+        <hash alg="SHA-256">33a51508662eee57c3642288fa6fe7a68951aba7c8def0d26725b4ec022f448e</hash>
+        <hash alg="SHA-512">eb4754c32870dda1624071cc6c9b8c17276f8a4b833168614cf8990891a4d5c6f87a4e82276193f8bcdcd8d32aaaab677cf9607fcde5bcf8495cbb5db90c6084</hash>
+        <hash alg="SHA-384">32ef408bf94d8467eedde2a8b79bd5564fc6e152e710631093f352f806ab6274723d9ed98521908ba4a786f3babeada8</hash>
+        <hash alg="SHA3-384">34764c75833e33626fcde5bb422d10576cb61d5ee43ace7c3801b3fab2fb02589887af8412b7b8ba7ffaabd954b82244</hash>
+        <hash alg="SHA3-256">ab269c688287d291daa2e46ef6e89c3136b99c63f480f85f3190dd453d160de7</hash>
+        <hash alg="SHA3-512">fadabb99f444cda9c1b94c1c5eb71e88a02c29255a23a9d3cb9f639e5dcba3daca1f2a223cdebd56233b4f6a2f01e1fec55695895ee9a7d4a1c7706cc9db05db</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apache.lucene/lucene-memory@10.4.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://lucene.apache.org/</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://builds.apache.org/job/Lucene/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://issues.apache.org/jira/browse/LUCENE</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://mail-archives.apache.org/mod_mbox/lucene-java-user/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://gitbox.apache.org/repos/asf?p=lucene.git</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar">
+      <group>org.apache.lucene</group>
+      <name>lucene-core</name>
+      <version>10.4.0</version>
+      <description>Apache Lucene (module: core)</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">7dd73bc168e6907df97c0b01cde1472b</hash>
+        <hash alg="SHA-1">7493bc763cd5e91f2a8f7722c2f90d8ce15c6319</hash>
+        <hash alg="SHA-256">8f894d211a8123938ccb9ff6827d136747e0eb6b1782ada6ac9086aa911b52e2</hash>
+        <hash alg="SHA-512">07a03b59afbb58ed12de6185fc3df7796a00b38db078d6c7218d23419bc3536f84424947172950705e3236ae0e9891a596c6fb41fbc5bf3a9cf1a51616a7d6b6</hash>
+        <hash alg="SHA-384">1b09e9c260d60aef0e6a79b267341f42680ffaa198f82645c76dc94f8f20d42623c434e0dc7df62f55175b2ff9925bc5</hash>
+        <hash alg="SHA3-384">67e4cf48d2b296841be20785859edf9211c917340e97c078c922b21cc2abe81a497c598139facb4f71087c59ecf7092d</hash>
+        <hash alg="SHA3-256">546b652a6b71279c8028591a6554448f237c0ada9564485555314d68f81f3dce</hash>
+        <hash alg="SHA3-512">d3b73e8771777ea56efbc20156d3208a488580a46bca18793888a6bfcdeed3ee5a085f194c370d88c2a347309cd1e4c882c974421c33f0d48ee88f65401ed881</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://lucene.apache.org/</url>
+        </reference>
+        <reference type="build-system">
+          <url>https://builds.apache.org/job/Lucene/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://issues.apache.org/jira/browse/LUCENE</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://mail-archives.apache.org/mod_mbox/lucene-java-user/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://gitbox.apache.org/repos/asf?p=lucene.git</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/data-ephemeral-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>data-ephemeral-provider</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">18bc4c0672415304c56cc1693272f867</hash>
+        <hash alg="SHA-1">1f87e63fe3d1b87eaf6a2e35f65fca4c10065b09</hash>
+        <hash alg="SHA-256">74f9e5566489645ff77cf3f953932db0d66b50ce8edfe3f7df304fe6daadb2e7</hash>
+        <hash alg="SHA-512">445c5b64e71376398d256b23f47028a917f46a5bea43553f71121b50c63290c9b827b3c5c45626bf0a5cb9a72d18a4815a71047b6a9d7019fbccb33cd41bd81f</hash>
+        <hash alg="SHA-384">40dd14cdcc536384eee6b6853aa136cc16ab41395b138ac27c55ce5a6faf82bb7a670a49090fba6f9ccf43464922e2eb</hash>
+        <hash alg="SHA3-384">5a2f8d5e63bbd23ac4627a12e3c5f98e5b3fa393d2297fc5e2a995f8c3c9844f81b033f73f68306ff0be548e0c1252e1</hash>
+        <hash alg="SHA3-256">2b17459acd6f6cbde33d9767df9764efd464f56327d836648b82d6a38abc8581</hash>
+        <hash alg="SHA3-512">bda523314a6424b7945c2e3f7fbec931a5c59bccc5aa03c434e65cbdfdb7b3182241f70727150fc377f1326a2bd47f7ac65ae54740efa654418759b38cf6076e</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/data-ephemeral-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/provider/data-ephemeral-provider</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/provider/data-ephemeral-provider</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/entity-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>entity-provider</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">3c93181de5fa4ddcf1631fd31e1b0a2c</hash>
+        <hash alg="SHA-1">28ef5c97949a2f0302e53f2d502b9d9df3680219</hash>
+        <hash alg="SHA-256">76e98a1a5db3c7a1cfbb4e99c470da0aa0216795813a00c81e0a6ecbd8850e86</hash>
+        <hash alg="SHA-512">67046d85f58109f234342475642ddfbeb411f75cd8685794424009cf98b077af382e1d29b4a22edf328676a5e6e82d86a1b84c3d87e32ee5026eaf1e5c22f46c</hash>
+        <hash alg="SHA-384">02504cf05dda1e35a1cd7a929b499d3e32441304038b1c4a31df47fc3130470a585fa86fde2f98e396a08bd06dde983d</hash>
+        <hash alg="SHA3-384">df680fa4a603b6e115f6aa1989ca56c5ab4d25cffa771ca333855e721cec0b5dcec081f2af1ed082ac9b3333e024980e</hash>
+        <hash alg="SHA3-256">53e7e6a8e559155666e9bed9c70492c163eafe7cd104ebeedd05734d7d2317ed</hash>
+        <hash alg="SHA3-512">f1dd12d6a87584967ba64659764817c73758d334c0ab78e729636c4d570ef1bff80ba26529aeaf97770572371f9abb903cb3a0907a5a9e1654960d9b189220bf</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/entity-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/provider/entity-provider</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/provider/entity-provider</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/dev.ikm.tinkar/executor-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>Integrated Knowledge Management</publisher>
+      <group>dev.ikm.tinkar</group>
+      <name>executor-provider</name>
+      <version>1.127.2-chronology-builder-SNAPSHOT</version>
+      <description>Tinkar-core is a java software project that aims to provides a reference implementation
+        for the open-source HL7 Tinkar informational Ballot.
+        Tinkar and its underlining data model serves as a self-describing terminology model
+        that can be used to harmonize other standards based models.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">1ba10b36002f0660fc86a8733b3ec0ef</hash>
+        <hash alg="SHA-1">091c54332ee2a2ffb1ce7a10a23765755c3df7fd</hash>
+        <hash alg="SHA-256">91fe354f7a9868720b1dce3f607846b6c704fdc577d668b80c5d10a7e407a4d8</hash>
+        <hash alg="SHA-512">df3c1cbef1af198c623312110c16aba0b44ccca2f7fa2c7e354faf7db3056ca01235901c332959c0dd6691c222bcc116189ed224783db597736f47af13be9d85</hash>
+        <hash alg="SHA-384">7141bc32576aa3f77983d231a320081d04542a496fe27aa4194037502ab15f68fd2656dcf2bfea8594b59f4f13c0978d</hash>
+        <hash alg="SHA3-384">0d3069e25edda6b8cf4bb447a1980b8402f9d2fe570b804a63d6727abfffca25f727c2c3fa2b3c9bbc6e495a045bf6e0</hash>
+        <hash alg="SHA3-256">dd0e9c0fe121500ede3383c344b30599d2b468141e7ea0b36892711e51d8e83e</hash>
+        <hash alg="SHA3-512">fce659de237af3a8551607829994cd2a43f84bad5efcb2a3706cb117b86ff6c17ceee889427732338bff884b7dadfdc5009a147b7d79d3fd2efc72b5e33f15f7</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/dev.ikm.tinkar/executor-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.ikm.dev/provider/executor-provider</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/ikmdev/tinkar-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://www.github.com/ikmdev/tinkar-core/provider/executor-provider</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.foundation/ike-changeset@1-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.foundation</group>
+      <name>ike-changeset</name>
+      <version>1-chronology-builder-SNAPSHOT</version>
+      <description>The released form of the IkeFoundation knowledge set: ike:knowledge-export replays
+        the ledger and attaches the protobuf change set (classifier: changeset). A
+        starter set is exactly this artifact applied to an empty base.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">15917459228e5edf30a3cb93e9343ed7</hash>
+        <hash alg="SHA-1">c2f7912af72ca20715b13a14d13cfd5cada344a0</hash>
+        <hash alg="SHA-256">9a1cb1b4246701ea1e733bddde9db02accb14c412dec0b70af648f4579d8f918</hash>
+        <hash alg="SHA-512">799057aebbd8d5b8ec32c26f47c388c6d0bda8b01e3302cbb2b4dbe97360d7925c9276080ac06ea7940aeb14a146d0dbc734b5042eaf2e1f916e0f7ef379506c</hash>
+        <hash alg="SHA-384">9714f2b6a75fd5893541b398215086e62ad0b5c4f8384c19cf4b8e1b4b51b492b07215d9d92c4db256fe47a9facf06c0</hash>
+        <hash alg="SHA3-384">eed8decf9685d23241a8cc51b9240bc780f8796234e766eccd1094763feaf99ffc99b85fcbac20fabeb44591551d5256</hash>
+        <hash alg="SHA3-256">7473b746f2379c373c3f14887b3d1e37459257d14f0872675385eafed5872fe6</hash>
+        <hash alg="SHA3-512">a5965c6c597ee10fbd6bf02009d00acfcc064fd315c4e87bec6e6a7a4912edc8b0a6922a3acc714f5d9f675f5a8727c257440d63ee77c6476c6aa4225a56dda1</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.foundation/ike-changeset@1-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-starter-set/ike-changeset/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-platform/ike-starter-set/ike-changeset</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.foundation/ike-terms@1-chronology-builder-SNAPSHOT?type=jar">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.foundation</group>
+      <name>ike-terms</name>
+      <version>1-chronology-builder-SNAPSHOT</version>
+      <description>The IkeFoundation ledger: declared stamps inline, edits under each, authored with
+        the chronology builders. Replay is verified over the in-memory store; the
+        change-set module consumes this ledger.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">4f96bd8d1ee0fc94ead3e476a594514e</hash>
+        <hash alg="SHA-1">2e00405202876e9a18f4a98098f3577d752f948f</hash>
+        <hash alg="SHA-256">641403694421c37bd627340c79964105a47f4e460343f8c3862e0313860f7b89</hash>
+        <hash alg="SHA-512">f95487f86c1cd0f98bb5f911d16d5bf2002fc03a34f93d7ea12e9682c559909bf64b8816dfd3b0b0b90df3cec6635ebdd2a510c5d60eb07ee4e9a5131c6e5612</hash>
+        <hash alg="SHA-384">8b071e62ffea0891a0525e98d04aa68db0f773051455c2aec558575c23c5399fdabfb0e2999023c21cf80f041f04a8b5</hash>
+        <hash alg="SHA3-384">b3bc1f1f5cf5d9adef344e44d249662645103ec02e6685085239cbf112b0db705466865c44ad8c2ce6b9f6bb6c5914bb</hash>
+        <hash alg="SHA3-256">f2aef09ddf440d4ce7ed3ad8e5ccdbaeec7ba8b93c18e12fb949f2544e5370ac</hash>
+        <hash alg="SHA3-512">2902650f156130567122bd38f5a98fc93a3c02a46cabbf2b05923db75fe41398abc272b288788c75264bfd032e57a7788fcfaeccc2f767d0a346eb5e2968e17c</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.foundation/ike-terms@1-chronology-builder-SNAPSHOT?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-starter-set/ike-terms/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-platform/ike-starter-set/ike-terms</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&amp;type=zip">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.tooling</group>
+      <name>ike-build-standards</name>
+      <version>233</version>
+      <description>Versioned Claude instruction files for IKE projects.
+        Modular standards (Maven, Java, IKE-specific) distributed
+        as a classified Maven artifact.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">5fbfa1356ba446e1c04e74f6401d9e52</hash>
+        <hash alg="SHA-1">86e14e150b03ac345e6746f10642467ac46bbafc</hash>
+        <hash alg="SHA-256">794994abf5ae2b01f2e7d8b5e3c4033196e6d2872753ec193a77b947ce2506de</hash>
+        <hash alg="SHA-512">f3f4f0e19c2da8afaa14c98e2e59db0ab08585e4da5bbddbfe5afc88bc818af15794d80c1bdc7e3738f10cb1327dfa9e3b8b021577d62ec1beaaae47c11f22d2</hash>
+        <hash alg="SHA-384">9f2dcd97075c0cf5f9d555467a6580f71baa4a5ec383d3152455e5ed98de69c2697de919b504e7fe8919989a016ea3b7</hash>
+        <hash alg="SHA3-384">d820324516267aad1911d0cf1bff1f43edc05bb149dcef3407107bc4e1f1b5f17643f9b941e3cc8ef55b643e81eef913</hash>
+        <hash alg="SHA3-256">993c123674ac77c5d339a0f79f5688c1f3e2b8d22b03490f10524f3b103a8123</hash>
+        <hash alg="SHA3-512">5a06f394c87e72379b23b0ae6f060c8c92626f350fc70ba04e09572e5e46103259a33426a11738750a4fe2a250e9c0c84197f1927cb8655bcd3b2b35b4d3b27f</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&amp;type=zip</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-tooling/ike-build-standards/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-tooling/ike-build-standards</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&amp;type=zip">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.tooling</group>
+      <name>ike-build-standards</name>
+      <version>233</version>
+      <description>Versioned Claude instruction files for IKE projects.
+        Modular standards (Maven, Java, IKE-specific) distributed
+        as a classified Maven artifact.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">c881511f84dcb61c0a8ece46416e9533</hash>
+        <hash alg="SHA-1">4ea04e5a46091cb3607a5433336832fdaf822f0a</hash>
+        <hash alg="SHA-256">10cb1ff39380445f520a13ce4a0485295c42a6da0682cfb3471447ab4602981e</hash>
+        <hash alg="SHA-512">98391c22f41515a06b97fc7e6330e5d536d8a20b0a12277f58a108cd1aa0fa6dc34aa060de0608d016742e148e194fe87672797423590c5e40ffffc2fdd6a3bf</hash>
+        <hash alg="SHA-384">44f03fdb887aa3510458664b3c0a8d2ce987c072fe8c131e8ce84ba670695f53ac0a8d8d3f254f25088067a0d78cfb0f</hash>
+        <hash alg="SHA3-384">e23f972bded967f2aa6e025d5c0d416a6720de6b58189ab7090a493fa8d32d2b1b17d228d0769d13fed7aea06d5cfb85</hash>
+        <hash alg="SHA3-256">362f354e58545573d747d35ba3ef4d081a0fe8233136fc62c791912adf67ff50</hash>
+        <hash alg="SHA3-512">e1f95b0313eead238cf94bdfb27ddd057e759c40fc351d09c2e5bd00bd2c3d3f20ebb0db5a4356ed8860ff312a2a9959b9962b3f25c5c4d9b00b53bbf473f2e9</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&amp;type=zip</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-tooling/ike-build-standards/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-tooling/ike-build-standards</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&amp;type=zip">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.tooling</group>
+      <name>ike-build-standards</name>
+      <version>233</version>
+      <description>Versioned Claude instruction files for IKE projects.
+        Modular standards (Maven, Java, IKE-specific) distributed
+        as a classified Maven artifact.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">bcb82b1c46f23e44dcb05b2685a9305f</hash>
+        <hash alg="SHA-1">290b16e94b7decf6f210c6f8ef5c8ebeba41daaa</hash>
+        <hash alg="SHA-256">a008f86e0aa6dd9385fe0c6442e6e8f3825cb24655cd92cfe6414cc56786be25</hash>
+        <hash alg="SHA-512">07e3dce1bd839090101b742cfd192763e853bd9392d3df4cc24e8347e297440993237924e9a0bb9813cf0bf15db902d2b11369307fd3cd4dc74590a79b67e81d</hash>
+        <hash alg="SHA-384">f3ecf9b142d825b9a08a4c11e3b906754eaaab1721c7499aa5d4e64a5800a15d108196fa95154ebbb16e9374f8513df5</hash>
+        <hash alg="SHA3-384">a59403dea7eb72a5cf093b8bbe83dffdb5287c8b1d33295e2918c1cd686262f360b9162a7cc6cfe259188ab7227fe421</hash>
+        <hash alg="SHA3-256">df87091b361a928f257036da588f41bb693064d1f7a9107f84a9fa95ade849d1</hash>
+        <hash alg="SHA3-512">7c55431997a92bb471062d67929a95022d255cd74d52799d3fc7517b890936a6d07cef1c450e3338502c5d338bacae395423069f8862748cca3088d627de3760</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&amp;type=zip</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-tooling/ike-build-standards/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-tooling/ike-build-standards</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&amp;type=zip">
+      <publisher>IKE Network</publisher>
+      <group>network.ike</group>
+      <name>ike-base-parent</name>
+      <version>15</version>
+      <description>Tier 0 foundation parent for the IKE Network — the apex of the
+        parent inheritance forest, inherited by ike-tooling, ike-docs,
+        and ike-platform. Carries shared publishing metadata, GPG
+        signing, and Maven Central publishing configuration.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">4861c2d91f5315ae16e6d381ab776295</hash>
+        <hash alg="SHA-1">4afc8947e350270efb31619ea72252be9600400d</hash>
+        <hash alg="SHA-256">b0f1174b8b14d70f8993296cff2d83869ab68b36f7c0805224de1040f480af9b</hash>
+        <hash alg="SHA-512">66f649231b69e41e582dddcaf5e5f49d98645f341b34a4563b12e5afd6fa562d573a96b915a233286f1d824a85a49d5f7441ce4c6a4376842e40f12c699debe7</hash>
+        <hash alg="SHA-384">671f0977a818e3b7857e4c2541bc70e53422db31de9aa06edf3bf28a60f471f4304fe94894d25a52739554c6dea55def</hash>
+        <hash alg="SHA3-384">2511991bcd905dcf6ec3f440fa6fef55b94e776c4fc36e6723e241bfa26c5b9b3ba903fa4b60452ec60552d6d48d9b48</hash>
+        <hash alg="SHA3-256">7fecf8403f801f26fe771f150ffd242907d55fa5f88c76fa2a5ad51dc44cfe49</hash>
+        <hash alg="SHA3-512">6c5465212bf0eed21f914ff15d2bc521e4075978dc48ee6383691e22ce9d82ac0ee4ab3901809b2cfc8710e6a756bbc862a0831b8a713b22976f861fe8e989ff</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&amp;type=zip</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-base-parent/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-base-parent</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&amp;type=zip">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.tooling</group>
+      <name>ike-build-standards</name>
+      <version>233</version>
+      <description>Versioned Claude instruction files for IKE projects.
+        Modular standards (Maven, Java, IKE-specific) distributed
+        as a classified Maven artifact.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">8a2faf7ae583f788646570ca36b0a4ef</hash>
+        <hash alg="SHA-1">c2250cc34d7714412415320dc84a41fc39cdbc3b</hash>
+        <hash alg="SHA-256">793b84d2b31370f8f1c9abf5a0dc6bbe896bbcb4010654f4aabf21baeca7f870</hash>
+        <hash alg="SHA-512">8a427009b3bd27b82e7efedf4eb10896670c44e5606f7e4cdeff4e611f40ffa6d91823cbca5b29344469ef0e4cdd996218935db5b2446aad433aaa520bfa8ace</hash>
+        <hash alg="SHA-384">444d5056357219edc138f32f69df14df3651b68f976347d7732856c629d021dd046c62e9af9cdd652b33ef925a2a9561</hash>
+        <hash alg="SHA3-384">acc39ec2eadf60d28fb826ba783a894aad373896d79d673875d7b5dfb2021f7b6fd03faaf00a41afd299c8f80d1e0e36</hash>
+        <hash alg="SHA3-256">db0df981acb6729ba534927c555a7d1455c8c8c914819d5c19c8c234fcce6c2d</hash>
+        <hash alg="SHA3-512">17b7a6821926f638eea87c9791c434ac4cc126e7b8e6d36af13fc0498928ba0f715b0682fdcd9c944fe8ba32e42c0a82d6b42929913b475ad3a27c528ff41250</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&amp;type=zip</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-tooling/ike-build-standards/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-tooling/ike-build-standards</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&amp;type=zip">
+      <publisher>IKE Network</publisher>
+      <group>network.ike.tooling</group>
+      <name>ike-build-standards</name>
+      <version>233</version>
+      <description>Versioned Claude instruction files for IKE projects.
+        Modular standards (Maven, Java, IKE-specific) distributed
+        as a classified Maven artifact.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">582010780f71081648dd63ebf3a03b8a</hash>
+        <hash alg="SHA-1">1d69b7054aefaab5df1c716654e36c5c1954664b</hash>
+        <hash alg="SHA-256">ae2d482b6f54bcc1e132dfea6c839b46a3f2e6c1b46926d51c82e1c9201368de</hash>
+        <hash alg="SHA-512">e55e651e38109b929e3b45de615ce839a169d92a06942657afe476ddc9aebc8df5efff60621b729c6589f817ff90869083fce1b2cd1d90470bdf0b68fa170835</hash>
+        <hash alg="SHA-384">881f37cbc95b63557bf2356e7ac2da7c1c482fb312fb29b47d50ffd471f7cb1fc598abec04688ab2f38ce13812558382</hash>
+        <hash alg="SHA3-384">51a2541f5f826bb0620cfeb1dee71fd65349671eb09ea7f3d394c45284246a826620867a405723517907e69a90b2ebfc</hash>
+        <hash alg="SHA3-256">04871329a28191aa51c980c0e7877d87645c242b119f03bbc18862655df4f2b5</hash>
+        <hash alg="SHA3-512">3c7adc49cacb9624a6d15fd366c527b1ee79fe47458883940750fe9e741a5cea7ee392fab42b0ae11e6518288017bd1edbd3a722bb3475e43a07902a693e2d0a</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&amp;type=zip</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://ike.network/ike-tooling/ike-build-standards/</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://nexus.tinkar.org/repository/ike-staging/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/IKE-Network/ike-tooling/ike-build-standards</url>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="pkg:maven/network.ike.foundation/ike-kb@1-chronology-builder-SNAPSHOT?type=pom">
+      <dependency ref="pkg:maven/network.ike.knowledge/ike-knowledge-provider@1-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/network.ike.foundation/ike-changeset@1-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&amp;type=zip"/>
+      <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&amp;type=zip"/>
+      <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&amp;type=zip"/>
+      <dependency ref="pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&amp;type=zip"/>
+      <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&amp;type=zip"/>
+      <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&amp;type=zip"/>
+    </dependency>
+    <dependency ref="pkg:maven/network.ike.knowledge/ike-knowledge-provider@1-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/network.ike.tooling/ike-knowledge-spi@235-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/reasoner-service@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/reasoner-elk-snomed@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/search-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/data-ephemeral-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/executor-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/network.ike.tooling/ike-knowledge-spi@235-SNAPSHOT?type=jar"/>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar"/>
+      <dependency ref="pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/com.github.RoaringBitmap.RoaringBitmap/roaringbitmap@1.6.0?type=jar"/>
+    <dependency ref="pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.jpms/activej-common@4.3-r8?type=jar"/>
+    <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar">
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+    <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.0-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar"/>
+    <dependency ref="pkg:maven/com.github.ben-manes.caffeine/caffeine@3.2.3?type=jar">
+      <dependency ref="pkg:maven/org.jspecify/jspecify@1.0.0?type=jar"/>
+      <dependency ref="pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.jspecify/jspecify@1.0.0?type=jar"/>
+    <dependency ref="pkg:maven/com.google.errorprone/error_prone_annotations@2.43.0?type=jar"/>
+    <dependency ref="pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar"/>
+    <dependency ref="pkg:maven/dev.ikm.jpms/jheaps@0.14-r16?type=jar"/>
+    <dependency ref="pkg:maven/dev.ikm.jpms/apfloat@1.14.0-r1?type=jar"/>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/reasoner-service@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.jgrapht/jgrapht-core@1.5.2?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/reasoner-elk-snomed@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar.ext.owl/owl-extension@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/reasoner-service@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-test@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/search-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/search-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-queryparser@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-queries@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-highlighter@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/terms@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.apache.lucene/lucene-queryparser@10.4.0?type=jar">
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-queries@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-sandbox@10.4.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+    <dependency ref="pkg:maven/org.apache.lucene/lucene-queries@10.4.0?type=jar">
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.apache.lucene/lucene-sandbox@10.4.0?type=jar">
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-queries@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-facet@10.4.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.apache.lucene/lucene-facet@10.4.0?type=jar">
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.apache.lucene/lucene-highlighter@10.4.0?type=jar">
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-queries@10.4.0?type=jar"/>
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-memory@10.4.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.apache.lucene/lucene-memory@10.4.0?type=jar">
+      <dependency ref="pkg:maven/org.apache.lucene/lucene-core@10.4.0?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/entity-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/search-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar.ext.owl/owl-extension@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-owl-el@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed@0.40.0?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-model@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-reasoner@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-owl-el@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-reasoner@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-test@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-model@0.40.0?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-hashing@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-util-hashing@0.40.0?type=jar">
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-reasoner@0.40.0?type=jar">
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-implementation@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-model@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-collections@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-common@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-concurrent@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-hashing@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-io@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-logging@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-implementation@0.40.0?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-model@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-common@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-hashing@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-util-common@0.40.0?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-io@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-util-io@0.40.0?type=jar">
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-util-collections@0.40.0?type=jar">
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-util-concurrent@0.40.0?type=jar">
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-util-logging@0.40.0?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-hashing@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-owl-el@0.40.0?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.jpms/antlr4-runtime@4.13.2-r5?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.jpms/antlr4-runtime@4.13.2-r5?type=jar"/>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-reasoner@0.40.0?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-implementation@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-owl-model@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-reasoner@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-common@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-concurrent@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.elk/elk-util-logging@0.40.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.elk/elk-snomed-test@0.40.0?type=jar">
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/data-ephemeral-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/search-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/collection@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/component@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/dev.ikm.tinkar/executor-provider@1.127.2-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/common@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar"/>
+      <dependency ref="pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/network.ike.foundation/ike-changeset@1-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/network.ike.foundation/ike-terms@1-chronology-builder-SNAPSHOT?type=jar"/>
+      <dependency ref="pkg:maven/network.ike.knowledge/ike-knowledge-provider@1-chronology-builder-SNAPSHOT?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/network.ike.foundation/ike-terms@1-chronology-builder-SNAPSHOT?type=jar">
+      <dependency ref="pkg:maven/dev.ikm.tinkar/entity@1.127.2-chronology-builder-SNAPSHOT?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=claude&amp;type=zip"/>
+    <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=config&amp;type=zip"/>
+    <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=scaffold&amp;type=zip"/>
+    <dependency ref="pkg:maven/network.ike/ike-base-parent@15?classifier=site-theme&amp;type=zip"/>
+    <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=site-theme&amp;type=zip"/>
+    <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@233?classifier=built-with&amp;type=zip"/>
+  </dependencies>
+</bom>

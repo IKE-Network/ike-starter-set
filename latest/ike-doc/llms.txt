@@ -1,0 +1,25 @@
+# Ike Starter Set — Guide
+
+> Documentation for the IkeFoundation starter set. The comprehensive Koncept
+> glossary renders from the koncepts.yml the change-set module extracts from
+> the loaded store.
+
+## Other
+
+- [Dependencies (SBOM)](https://ike.network/ike-starter-set/ike-doc/dependencies.html.md)
+- [Licenses (SPDX)](https://ike.network/ike-starter-set/ike-doc/licenses.html.md)
+- [Built With](https://ike.network/ike-starter-set/ike-doc/built-with.html.md)
+
+## Overview
+
+- [About](https://ike.network/ike-starter-set/ike-doc/index.html.md)
+
+## Reports
+
+- [Project Summary](https://ike.network/ike-starter-set/ike-doc/summary.html.md)
+- [Maven Coordinates](https://ike.network/ike-starter-set/ike-doc/dependency-info.html.md)
+- [Project Dependency Management](https://ike.network/ike-starter-set/ike-doc/dependency-management.html.md)
+- [Project Plugins](https://ike.network/ike-starter-set/ike-doc/plugins.html.md)
+- [Project Plugin Management](https://ike.network/ike-starter-set/ike-doc/plugin-management.html.md)
+- [Project Distribution Management](https://ike.network/ike-starter-set/ike-doc/distribution-management.html.md)
+- [Project Information](https://ike.network/ike-starter-set/ike-doc/project-info.html.md)

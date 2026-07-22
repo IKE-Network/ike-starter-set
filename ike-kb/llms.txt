@@ -1,0 +1,32 @@
+# Ike Knowledge Base
+
+> The full-cycle knowledge base: this set's change set alone, assembled
+> and classified by ike:kb-assemble and installed into the data-source
+> directory for verification in Komet. Ledger-only by doctrine
+> (IKE-Network/ike-issues#909, #921): the Tinkar starter data was a
+> one-time input whose value is captured in the ledger's declarations,
+> so the store is single-version by construction — every chronology at
+> the inception stamp pair, exactly what LedgerGatesIT's whole-store
+> stamp gate pins. Verification edits are captured under the installed
+> store's changeSets directory and feed the next iteration as CHANGESET
+> file inputs below.
+
+## Other
+
+- [Dependencies (SBOM)](https://ike.network/ike-starter-set/ike-kb/dependencies.html.md)
+- [Licenses (SPDX)](https://ike.network/ike-starter-set/ike-kb/licenses.html.md)
+- [Built With](https://ike.network/ike-starter-set/ike-kb/built-with.html.md)
+
+## Overview
+
+- [About](https://ike.network/ike-starter-set/ike-kb/index.html.md)
+
+## Reports
+
+- [Project Summary](https://ike.network/ike-starter-set/ike-kb/summary.html.md)
+- [Maven Coordinates](https://ike.network/ike-starter-set/ike-kb/dependency-info.html.md)
+- [Project Dependency Management](https://ike.network/ike-starter-set/ike-kb/dependency-management.html.md)
+- [Project Plugins](https://ike.network/ike-starter-set/ike-kb/plugins.html.md)
+- [Project Plugin Management](https://ike.network/ike-starter-set/ike-kb/plugin-management.html.md)
+- [Project Distribution Management](https://ike.network/ike-starter-set/ike-kb/distribution-management.html.md)
+- [Project Information](https://ike.network/ike-starter-set/ike-kb/project-info.html.md)

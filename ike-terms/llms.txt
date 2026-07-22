@@ -1,0 +1,26 @@
+# Ike Terms
+
+> The IkeFoundation ledger: declared stamps inline, edits under each, authored with
+> the chronology builders. Replay is verified over the in-memory store; the
+> change-set module consumes this ledger.
+
+## Other
+
+- [Dependencies (SBOM)](https://ike.network/ike-starter-set/ike-terms/dependencies.html.md)
+- [Licenses (SPDX)](https://ike.network/ike-starter-set/ike-terms/licenses.html.md)
+- [Built With](https://ike.network/ike-starter-set/ike-terms/built-with.html.md)
+
+## Overview
+
+- [About](https://ike.network/ike-starter-set/ike-terms/index.html.md)
+
+## Reports
+
+- [Project Summary](https://ike.network/ike-starter-set/ike-terms/summary.html.md)
+- [Maven Coordinates](https://ike.network/ike-starter-set/ike-terms/dependency-info.html.md)
+- [Project Dependency Management](https://ike.network/ike-starter-set/ike-terms/dependency-management.html.md)
+- [Project Plugins](https://ike.network/ike-starter-set/ike-terms/plugins.html.md)
+- [Project Plugin Management](https://ike.network/ike-starter-set/ike-terms/plugin-management.html.md)
+- [Project Distribution Management](https://ike.network/ike-starter-set/ike-terms/distribution-management.html.md)
+- [Project Information](https://ike.network/ike-starter-set/ike-terms/project-info.html.md)
+- [Generated Reports](https://ike.network/ike-starter-set/ike-terms/project-reports.html.md)
