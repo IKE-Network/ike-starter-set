@@ -63,4 +63,50 @@
         <subproject>ike-doc</subproject>
         <subproject>ike-kb</subproject>
     </subprojects>
+
+    <build>
+        <plugins>
+            <!-- The guide is rendered by the ike-doc subproject into its own
+                 target/. Copy both renderings into this aggregator's rendered
+                 site so the site.xml menu items resolve and ike:site-publish
+                 carries them to gh-pages.
+
+                 post-site runs after the site render and before site:stage —
+                 and `ike:site-publish` invokes `site site:stage` — so the
+                 files are in place by the time staging copies them.
+
+                 Filtering stays off (the plugin default): ike-guide.pdf is
+                 binary and ike-guide.html inlines data-URI identicons. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-guide-into-site</id>
+                        <phase>post-site</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/site</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/ike-doc/target/generated-docs/html</directory>
+                                    <includes>
+                                        <include>ike-guide.html</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${project.basedir}/ike-doc/target/generated-docs/pdf-prince</directory>
+                                    <includes>
+                                        <include>ike-guide.pdf</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
