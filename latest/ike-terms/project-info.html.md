@@ -1,6 +1,6 @@
 ---
-date_published: 2026-07-02
-date_modified: 2026-07-02
+date_published: 2026-07-21
+date_modified: 2026-07-21
 canonical_url: https://ike.network/ike-starter-set/ike-terms/project-info.html
 ---
 

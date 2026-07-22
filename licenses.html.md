@@ -1,6 +1,6 @@
 ---
-date_published: 2026-07-02
-date_modified: 2026-07-02
+date_published: 2026-07-21
+date_modified: 2026-07-21
 canonical_url: https://ike.network/ike-starter-set/licenses.html
 ---
 
@@ -22,11 +22,11 @@ Reference: [Apache-2.0 on spdx.org](https://spdx.org/licenses/Apache-2.0.html)[2
 | Group | Artifact | Version |
 | --- | --- | --- |
 | `network.ike` | `ike-base-parent` | `15` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
 
 ## [#see-also](#see-also)See also
 

@@ -1,6 +1,6 @@
 ---
-date_published: 2026-07-02
-date_modified: 2026-07-02
+date_published: 2026-07-21
+date_modified: 2026-07-21
 canonical_url: https://ike.network/ike-starter-set/ike-terms/licenses.html
 ---
 
@@ -47,11 +47,11 @@ Reference: [Apache-2.0 on spdx.org](https://spdx.org/licenses/Apache-2.0.html)[3
 | `dev.ikm.tinkar` | `terms` | `1.127.2-chronology-builder-SNAPSHOT` |
 | `dev.ikm.tinkar` | `tinkar-schema` | `1.43.0-chronology-builder-SNAPSHOT` |
 | `network.ike` | `ike-base-parent` | `15` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
 | `org.jspecify` | `jspecify` | `1.0.0` |
 
 ## [#bsd-3-clause-or-epl-1-0](#bsd-3-clause-or-epl-1-0)BSD-3-Clause OR EPL-1.0

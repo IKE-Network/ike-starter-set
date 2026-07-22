@@ -1,6 +1,6 @@
 ---
-date_published: 2026-07-02
-date_modified: 2026-07-02
+date_published: 2026-07-21
+date_modified: 2026-07-21
 canonical_url: https://ike.network/ike-starter-set/dependencies.html
 ---
 
@@ -21,11 +21,11 @@ Sorted by group, artifact, version. Click [bom.json](bom.json)[1] for the raw ma
 | Group | Artifact | Version | License | Type |
 | --- | --- | --- | --- | --- |
 | `network.ike` | `ike-base-parent` | `15` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
 
 ## [#download](#download)Download
 

@@ -1,6 +1,6 @@
 ---
-date_published: 2026-07-02
-date_modified: 2026-07-02
+date_published: 2026-07-21
+date_modified: 2026-07-21
 canonical_url: https://ike.network/ike-starter-set/ike-changeset/licenses.html
 ---
 
@@ -71,11 +71,11 @@ Reference: [Apache-2.0 on spdx.org](https://spdx.org/licenses/Apache-2.0.html)[3
 | `network.ike` | `ike-base-parent` | `15` |
 | `network.ike.foundation` | `ike-terms` | `1-chronology-builder-SNAPSHOT` |
 | `network.ike.knowledge` | `ike-knowledge-provider` | `1-chronology-builder-SNAPSHOT` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
-| `network.ike.tooling` | `ike-build-standards` | `233` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
+| `network.ike.tooling` | `ike-build-standards` | `236` |
 | `network.ike.tooling` | `ike-knowledge-spi` | `235-SNAPSHOT` |
 | `org.apache.lucene` | `lucene-core` | `10.4.0` |
 | `org.apache.lucene` | `lucene-facet` | `10.4.0` |

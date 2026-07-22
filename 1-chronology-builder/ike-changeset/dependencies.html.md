@@ -1,6 +1,6 @@
 ---
-date_published: 2026-07-02
-date_modified: 2026-07-02
+date_published: 2026-07-21
+date_modified: 2026-07-21
 canonical_url: https://ike.network/ike-starter-set/ike-changeset/dependencies.html
 ---
 
@@ -59,11 +59,11 @@ Sorted by group, artifact, version. Click [bom.json](bom.json)[1] for the raw ma
 | `network.ike` | `ike-base-parent` | `15` | `Apache-2.0` | library |
 | `network.ike.foundation` | `ike-terms` | `1-chronology-builder-SNAPSHOT` | `Apache-2.0` | library |
 | `network.ike.knowledge` | `ike-knowledge-provider` | `1-chronology-builder-SNAPSHOT` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
-| `network.ike.tooling` | `ike-build-standards` | `233` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
+| `network.ike.tooling` | `ike-build-standards` | `236` | `Apache-2.0` | library |
 | `network.ike.tooling` | `ike-knowledge-spi` | `235-SNAPSHOT` | `Apache-2.0` | library |
 | `org.apache.lucene` | `lucene-core` | `10.4.0` | `Apache-2.0` | library |
 | `org.apache.lucene` | `lucene-facet` | `10.4.0` | `Apache-2.0` | library |
