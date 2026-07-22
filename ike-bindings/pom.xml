@@ -19,6 +19,18 @@
         terms surface, so consumers stay light.
     </description>
 
+    <!-- Required: ike-parent sets child.site.url.inherit.append.path="false"
+         (ike-issues#358), so a subproject that does not declare its own site
+         URL inherits the aggregator's verbatim — every module then stages to
+         the SAME directory and the last one silently overwrites the
+         aggregator's index.html. See ike-issues#383, #927. -->
+    <distributionManagement>
+        <site>
+            <id>ike-site</id>
+            <url>https://ike.network/ike-starter-set/${project.artifactId}/</url>
+        </site>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>dev.ikm.tinkar</groupId>
