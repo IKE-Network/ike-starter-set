@@ -135,10 +135,16 @@ class ConsumerMergeIT {
      * six graph-representation concepts (Graph, Tree, Vertex, Edge, Vertex meaning,
      * Vertex property).
      * <p>
+     * Plus {@code NarrativeContentSet} (3 — Narrative Prose Element, Knowledge-Base
+     * Documentation, Prose Text: the meaning, purpose, and field meaning of this set's
+     * own Prose Element Pattern, IKE-Network/ike-issues#937). The foundation declares
+     * its own prose element rather than referencing a domain set's, so every reference
+     * resolves within its closure and the hard gate holds.
+     * <p>
      * {@link LedgerGatesIT#LEDGER_CONCEPTS} pins the same content absolutely — grow the
      * two in the same change.
      */
-    static final int AUTHORED_CONTENT_CONCEPTS = 107;
+    static final int AUTHORED_CONTENT_CONCEPTS = 110;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -148,10 +154,12 @@ class ConsumerMergeIT {
      * examples), {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the
      * IKE-native replacement for the dormant SOLORConceptAssemblage), and
      * {@code DataTypeDefaultsSet} (1 — Data Type Defaults Pattern,
-     * IKE-Network/ike-issues#885) deliberately author.
+     * IKE-Network/ike-issues#885), and {@code NarrativeContentSet} (1 — Prose Element
+     * Pattern, the foundation's own prose carrier, IKE-Network/ike-issues#937)
+     * deliberately author.
      * {@link LedgerGatesIT#LEDGER_PATTERNS} pins the same content absolutely.
      */
-    static final int AUTHORED_CONTENT_PATTERNS = 6;
+    static final int AUTHORED_CONTENT_PATTERNS = 7;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more

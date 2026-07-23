@@ -95,26 +95,26 @@ class LedgerGatesIT {
      * ({@code conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS}):
      * 379 concepts transcribed from the one-time starter-data input, plus the 3
      * identity-exact-ingest bootstrap concepts (the module, the root, IKE Community,
-     * IKE-Network/ike-issues#872), plus the 86 deliberately-authored new concepts whose
+     * IKE-Network/ike-issues#872), plus the 89 deliberately-authored new concepts whose
      * composition {@link ConsumerMergeIT#AUTHORED_CONTENT_CONCEPTS} itemizes
-     * set-by-set (IKE-Network/ike-issues#880, #885, #890, #891), plus the 21
+     * set-by-set (IKE-Network/ike-issues#880, #885, #890, #891, #937), plus the 21
      * taxonomy-organization structural concepts (20 from IKE-Network/ike-issues#915,
      * View coordinate model from the #918 root refinement) {@code ModelOrganizationSet} mints
      * (IKE-Network/ike-issues#915). Grow this number only
      * in the same change that authors new concepts — the gate refuses accidental
      * minting and accidental loss alike.
      */
-    private static final int LEDGER_CONCEPTS = 489;
+    private static final int LEDGER_CONCEPTS = 492;
 
     /**
      * The absolute pattern count of the ledger-only store: 28 patterns transcribed from
-     * the one-time starter-data input plus the 6 deliberately-authored new patterns
+     * the one-time starter-data input plus the 7 deliberately-authored new patterns
      * {@link ConsumerMergeIT#AUTHORED_CONTENT_PATTERNS} itemizes (Taxonomy Field
      * Constraint Pattern, Value-set Field Constraint Pattern, Starter Set Author Roster
      * Pattern, Preferred Reviewer Pattern, Solor Concepts Pattern, Data Type Defaults
-     * Pattern — IKE-Network/ike-issues#880, #885, #890).
+     * Pattern, Prose Element Pattern — IKE-Network/ike-issues#880, #885, #890, #937).
      */
-    private static final int LEDGER_PATTERNS = 34;
+    private static final int LEDGER_PATTERNS = 35;
 
     @BeforeAll
     static void replayLedger() throws Exception {
@@ -157,11 +157,12 @@ class LedgerGatesIT {
                         + " one — a mismatch means the replay minted or lost a pattern");
         assertEquals(LEDGER_CONCEPTS, declaredConcepts,
                 "the ledger declares exactly " + LEDGER_CONCEPTS + " concepts (379 transcribed"
-                        + " + 3 ingest bootstrap + 86 authored — see LEDGER_CONCEPTS); grow the pin"
+                        + " + 3 ingest bootstrap + 89 authored + 21 taxonomy-organization — see"
+                        + " LEDGER_CONCEPTS); grow the pin"
                         + " only in the same change that deliberately authors new concepts");
         assertEquals(LEDGER_PATTERNS, declaredPatterns,
                 "the ledger declares exactly " + LEDGER_PATTERNS + " patterns (28 transcribed"
-                        + " + 6 authored — see LEDGER_PATTERNS); grow the pin only in the same"
+                        + " + 7 authored — see LEDGER_PATTERNS); grow the pin only in the same"
                         + " change that deliberately authors new patterns");
     }
 

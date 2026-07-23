@@ -90,6 +90,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Hard-gate the foundation set: KnowledgeSet.write() always logs a
+                 referential-closure violation, but only *throws* when this property is
+                 set (IKE-Network/ike-issues#937). ike-terms is the external-dependency
+                 manifest — every term it declares must resolve within its own closure,
+                 so a dangling reference here is a build failure, not a warning. Domain
+                 sets stay warn-only until they declare their foundation dependency.
+                 Surefire forks per module, so this scopes to ike-terms. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <knowledgeSet.enforceClosure>true</knowledgeSet.enforceClosure>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
             <!-- ike-parent's pluginManagement pins the version/config but binds no
                  executions by default — the *IT suites (LedgerGatesIT,
                  BaselineIdentityAuditIT, ConsumerMergeIT) need this bound explicitly
@@ -109,6 +125,10 @@
                         --add-opens java.base/java.lang.reflect=ALL-UNNAMED
                         --add-opens java.base/java.io=ALL-UNNAMED
                     </argLine>
+                    <systemPropertyVariables>
+                        <!-- See the surefire note above: the foundation set is hard-gated. -->
+                        <knowledgeSet.enforceClosure>true</knowledgeSet.enforceClosure>
+                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>

@@ -49,14 +49,20 @@ import java.util.UUID;
 final class NarrativeContentSet {
 
     /**
-     * The shared ecosystem-wide pattern for curated narrative prose (see the class
-     * javadoc). Package-private: {@link DefaultsAndTemplatesSet} and
-     * {@link DataTypeDefaultsSet} author their own koncepts' narratives against the same
+     * This foundation's own pattern for curated narrative prose, declared below and
+     * carrying the derived {@code T5(Ike.SET, birthFqn)} identity. Package-private:
+     * {@link DefaultsAndTemplatesSet}, {@link DataTypeDefaultsSet} and
+     * {@link ConstraintPatternSet} author their own koncepts' narratives against the same
      * identity, each in the file that mints the koncept the narrative describes.
+     * <p>
+     * Deliberately <em>not</em> RichSurfaceTerms' {@code Prose element pattern}
+     * (IKE-Network/ike-issues#937): that pattern is declared and owned by
+     * {@code rich-surface-terms}, a domain set which itself composes this foundation —
+     * so referencing it here would be both a duplicate declaration and a dependency
+     * cycle. The foundation mints its own; the two remain distinct identities.
      */
-    static final EntityProxy.Pattern PROSE_ELEMENT_PATTERN = EntityProxy.Pattern.make(
-            "Prose element pattern (RichSurfaceTerms)",
-            PublicIds.of("89b831a1-e773-5f83-87a6-2cfc8e107fb0"));
+    static final EntityProxy.Pattern PROSE_ELEMENT_PATTERN =
+            Ike.SET.patternRef("Prose Element Pattern (IkeFoundation)");
 
     private NarrativeContentSet() {
     }
@@ -72,6 +78,42 @@ final class NarrativeContentSet {
         // expansion collapse onto it — pre-release, the ledger carries no working-day
         // history.
         ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
+
+        // The foundation's own Prose Element Pattern, declared here so the starter set is
+        // self-contained (IKE-Network/ike-issues#937 closure gate): every chapter semantic
+        // below attaches to it, so its pattern entity must be present in the set. It takes
+        // this set's derived identity rather than RichSurfaceTerms' pattern — that one is
+        // declared and owned by rich-surface-terms, which composes this foundation, so
+        // reusing it would duplicate a declaration and invert the dependency. Its
+        // meaning/purpose concepts sit under the editorial model, the same home as the
+        // Comment Pattern's.
+        set.concept("Narrative Prose Element (IkeFoundation)").at(inception)
+                .synonym("Narrative Prose Element")
+                .definition("The referenced-component role a Prose Element Pattern semantic's"
+                        + " target plays: the hub concept the attached curated narrative"
+                        + " documentation is centered on.")
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.MEANING);
+
+        set.concept("Knowledge-Base Documentation (IkeFoundation)").at(inception)
+                .synonym("Knowledge-Base Documentation")
+                .definition("Why a prose element is captured as knowledge-base content: to"
+                        + " carry the guide's curated long-form manuscript as replayable KB data"
+                        + " with resolvable k: tokens, rather than prose living only in an"
+                        + " external file.")
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.PURPOSE);
+
+        set.concept("Prose Text (IkeFoundation)").at(inception)
+                .synonym("Prose Text")
+                .definition("The single String field of a Prose Element Pattern semantic: an"
+                        + " embedded AsciiDoc prose block carrying id-bearing k: tokens,"
+                        + " re-parsed as real AsciiDoc when spliced into the guide.")
+                .isA(set.conceptRef("Editorial model (IkeFoundation)"), IkeTerm.MEANING);
+
+        set.pattern("Prose Element Pattern (IkeFoundation)").at(inception)
+                .meaning(set.conceptRef("Narrative Prose Element (IkeFoundation)"))
+                .purpose(set.conceptRef("Knowledge-Base Documentation (IkeFoundation)"))
+                .field(set.conceptRef("Prose Text (IkeFoundation)"),
+                        set.conceptRef("Knowledge-Base Documentation (IkeFoundation)"), IkeTerm.STRING);
 
         // The guide's five manuscript chapters (IKE-Network/ike-issues#879), each attached to
         // the hub koncept its own prose is centered on. The EL++ Concepts chapter (Axioms) was

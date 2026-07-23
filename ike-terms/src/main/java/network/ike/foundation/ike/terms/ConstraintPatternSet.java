@@ -436,7 +436,7 @@ final class ConstraintPatternSet {
                 .semantic(taxonomyConstraintPattern,
                         PublicIds.of(set.uuidFor("Taxonomy Field Constraint: Description Pattern Language"
                                 + " field kind-of Language")),
-                        set.conceptRef("Language concept nid for description (SOLOR)"), kindOf,
+                        IkeTerm.LANGUAGE_CONCEPT_NID_FOR_DESCRIPTION, kindOf,
                         set.conceptRef("Language"));
 
         // ── Worked example: value-set membership ────────────────────────
