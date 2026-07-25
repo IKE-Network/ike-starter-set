@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section63.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section63.java</span></div><h1>Section63.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Creative Commons BY license&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section63 {
+
+    private Section63() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Creative Commons BY license (SOLOR)&quot;, PublicIds.of(&quot;3415a972-7850-57cd-aa86-a572ca1c2ceb&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;432005a0-0bbb-40ae-a69a-7600fb22dd10&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Creative Commons BY license (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;dbbdb8c5-fdb8-48df-b6a0-8a857b39cb81&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Creative Commons BY license&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6901610c-5921-411f-b513-4bc507541d94&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Creative Commons (CC) licenses are a set of public copyright licenses that enable the free distribution of an otherwise copyrighted work&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;edcfc1bf-bda2-4915-aa43-08b68306fcfd&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;3415a972-7850-57cd-aa86-a572ca1c2ceb&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;d27af530-31d3-5921-8f87-f4e3f0467593&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Provenance model (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8af204ce-df5e-49c5-90d9-bbcb33d1bcce&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;432005a0-0bbb-40ae-a69a-7600fb22dd10&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a28c4ee7-6d15-4f8b-b147-17f62bed2f8b&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;dbbdb8c5-fdb8-48df-b6a0-8a857b39cb81&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;d79aa106-6c7f-4e64-9fb5-82d627e7547e&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;6901610c-5921-411f-b513-4bc507541d94&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;3aa49fae-5f58-4b46-b3ea-8fbcede2ebd3&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

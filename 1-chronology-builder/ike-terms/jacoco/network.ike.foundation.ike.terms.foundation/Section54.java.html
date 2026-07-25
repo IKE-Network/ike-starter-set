@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section54.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section54.java</span></div><h1>Section54.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Description semantic&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section54 {
+
+    private Section54() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Description semantic&quot;, PublicIds.of(&quot;81487d5f-6115-51e2-a3b3-93d783888eb8&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;733ddf1e-145a-4ffc-b508-361680cddda9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description semantic&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;be79bc92-ec04-4d33-be2b-b28c957082d9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description semantic&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6fc11328-1eb6-4448-986c-57a9e517ff83&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Purpose and meaning for the description pattern and dialect patterns&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;ea291134-be63-48ff-afbe-e0b687ffa70d&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;81487d5f-6115-51e2-a3b3-93d783888eb8&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;4559c6fb-e128-5a4d-b6a9-bd3e9138b2e0&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.MEANING), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;39c53be7-7739-478e-bab8-c61aa7facaed&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;733ddf1e-145a-4ffc-b508-361680cddda9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;614536d2-633d-4fb1-831c-e5c4d850905a&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;be79bc92-ec04-4d33-be2b-b28c957082d9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f2c19f45-567f-45d5-aafc-90c3a89b23f6&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;6fc11328-1eb6-4448-986c-57a9e517ff83&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;74c8d3a7-2814-4908-9fd3-c41435b1734b&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

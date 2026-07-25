@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section33.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section33.java</span></div><h1>Section33.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Value Range&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section33 {
+
+    private Section33() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Reference Range (SOLOR)&quot;, PublicIds.of(&quot;87ce975b-309b-47f4-a6c6-4ae6df6649a1&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fa0eb5ff-1244-42c4-a470-7f4f194056b8&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Reference Range (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2ca16f39-2999-47b7-9b68-5eef352bc2f7&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Value Range&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;149f56a8-d656-4176-929a-2b71fbdc118a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The range of values specific to a component&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;8184e0ce-343b-4c85-97f3-e24ca40926f9&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;87ce975b-309b-47f4-a6c6-4ae6df6649a1&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;d3c01223-8471-52b0-888e-c53d920e0675&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8de1e320-f168-417b-917e-10b576d3ff51&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;fa0eb5ff-1244-42c4-a470-7f4f194056b8&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;6d679ad1-1e54-4dd4-96c8-455010a2cc55&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;2ca16f39-2999-47b7-9b68-5eef352bc2f7&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f1cf8d7a-77d4-47ef-9f6d-96200aa37cf8&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;149f56a8-d656-4176-929a-2b71fbdc118a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a3fc25a6-2f3e-4965-89fb-c079652c7180&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Reference Range Minimum (SOLOR)&quot;, PublicIds.of(&quot;37c35a88-9e27-42ca-b626-186773c4b612&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e704406f-6dae-420c-8ba6-04a534108a68&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Reference Range Minimum (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6ca3179e-7930-44a2-ad65-39df871acfe5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Minimum Value; Min Value&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9144070a-f05d-430a-b74f-c520511557c2&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The lower bound of a reference range: the least value the range admits, paired with an operator saying whether the bound itself is included.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;e767a63e-72e0-4320-b12f-535505585068&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;37c35a88-9e27-42ca-b626-186773c4b612&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;1934f2ef-705e-5bc5-9617-dfdafdb22f54&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.REFERENCE_RANGE), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;1c711869-4e73-4c14-be33-e67dfc264226&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;e704406f-6dae-420c-8ba6-04a534108a68&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;5e3d227a-28e2-4096-b443-a10fc8449c99&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;6ca3179e-7930-44a2-ad65-39df871acfe5&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;acc3eab9-84ba-4543-92eb-1549c837a039&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;9144070a-f05d-430a-b74f-c520511557c2&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;d078d4b2-ef07-4699-8774-fe6f6cca87e0&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Reference Range Maximum (SOLOR)&quot;, PublicIds.of(&quot;72d58983-b1e1-4ca9-833f-0e40c1defd39&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7a00bf1e-fc1b-41f0-8801-022116d9c918&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Reference Range Maximum (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ecf44545-d958-47fc-b4fe-38c6366a1242&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Maximum Value; Max Value&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8b43571f-a594-411c-a26e-49b70daa04cc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The upper bound of a reference range: the greatest value the range admits, paired with an operator saying whether the bound itself is included.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;a44124ea-4c9b-4744-975e-1b3dc720c26f&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;72d58983-b1e1-4ca9-833f-0e40c1defd39&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;22861d9d-154d-5c34-b325-5b6babe9fda6&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.REFERENCE_RANGE), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;32fa2f6a-5c73-408c-83cb-eaf5fe47c868&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;7a00bf1e-fc1b-41f0-8801-022116d9c918&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;c472588d-86ea-4311-9482-d2a62ac72c44&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;ecf44545-d958-47fc-b4fe-38c6366a1242&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1a8f1f4a-a8fd-4eaf-8bac-fcc7f4201b28&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;8b43571f-a594-411c-a26e-49b70daa04cc&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;d56e0831-98c9-4eb4-9067-d425456dada1&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

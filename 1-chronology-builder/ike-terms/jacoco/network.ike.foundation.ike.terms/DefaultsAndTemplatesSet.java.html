@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultsAndTemplatesSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">DefaultsAndTemplatesSet.java</span></div><h1>DefaultsAndTemplatesSet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+
+import java.util.UUID;
+
+/**
+ * The defaults-and-templates apparatus (IKE-Network/ike-issues#885): defaults and
+ * templates are ordinary working-path content — complete semantics of the target
+ * pattern — kept out of domain reads by two structural dimensions of the model itself,
+ * not by any defaults-specific machinery. The &lt;b&gt;referenced component names the
+ * category&lt;/b&gt;: a default value semantic of a pattern attaches to {@code Default value
+ * concept}; a template semantic of a pattern for a given purpose attaches to that
+ * purpose's own child of {@code Template concept}. The &lt;b&gt;module is the category
+ * boundary and the import/export packaging&lt;/b&gt;: every version of a defaults or template
+ * chronology lives in the {@code Defaults and templates module}, and that module holds
+ * only such content — the bidirectional live-and-die invariant
+ * {@code LedgerGatesIT} enforces. Consumers scope affirmatively (member set
+ * crossed with pattern); the attachment concepts never join domain member sets, so a
+ * support declaration can never read as a domain assertion.
+ * &lt;p&gt;
+ * &lt;b&gt;Identity is computed, never queried&lt;/b&gt;: a default value semantic's PublicId is
+ * the stock {@link UuidT5Generator#singleSemanticUuid(dev.ikm.tinkar.common.id.PublicId,
+ * dev.ikm.tinkar.common.id.PublicId) singleSemanticUuid(patternPublicId,
+ * attachmentConceptPublicId)} — a consumer resolves &quot;the default for this pattern&quot; by
+ * computing the UUID, and the derivation doubles as the uniqueness key: a second default
+ * chronology for the same (pattern, attachment concept) pair cannot be minted without an
+ * identity collision. Per-user preferences are per-path versions of this same
+ * computed-identity chronology; migration between sandboxes is an identity-keyed
+ * copy-forward.
+ * &lt;p&gt;
+ * Module boundary within this file: the three apparatus concepts minted here — the two
+ * attachment points and the module concept itself — are foundation terminology
+ * &lt;em&gt;about&lt;/em&gt; defaults and templates, not defaults themselves, so they stamp in the
+ * foundation module ({@link Ike#MODULE}); only instance content (the worked-example
+ * default value semantic) stamps in the new module.
+ * &lt;p&gt;
+ * Deliberately out of scope here: StampCalculator accessors and the version-iteration
+ * exclusion ({@code getDefault}/{@code getTemplate} — tinkar-core,
+ * IKE-Network/ike-issues#886), and the seeded GB-dialect semantic's disposition
+ * (IKE-Network/ike-issues#887). The sixteen-type exemplar this apparatus was designed
+ * for lives in {@link DataTypeDefaultsSet}, composed immediately after this file.
+ */
+final class DefaultsAndTemplatesSet {
+
+    private DefaultsAndTemplatesSet() {
+    }
+
+    /**
+     * Composes this section's declarations into the session.
+     *
+     * @param set the knowledge set (the session)
+     */
+    static void compose(KnowledgeSet set) {
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894): apparatus concepts are foundation terminology,
+        // so they stamp in the foundation module.
+<span class="fc" id="L77">        ActiveStamp apparatus = Ike.INCEPTION;</span>
+
+        // ── Apparatus concepts (foundation module) ──────────────────────
+<span class="fc" id="L80">        set.concept(&quot;Default value concept (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L81">                .synonym(&quot;Default value concept&quot;)</span>
+<span class="fc" id="L82">                .definition(&quot;The attachment point for default values: a default value&quot;</span>
+                        + &quot; semantic of a pattern is a complete semantic of that pattern&quot;
+                        + &quot; whose referenced component is this concept and whose fields&quot;
+                        + &quot; carry the default values an editor offers for that pattern's&quot;
+                        + &quot; fields. Attachment here is a support declaration only — never&quot;
+                        + &quot; a domain assertion about this concept or any other component&quot;
+                        + &quot; — and this concept never joins a domain member set.&quot;)
+<span class="fc" id="L89">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;))</span>
+                // Curated narrative (IKE-Network/ike-issues#888): domain description OF
+                // this koncept — foundation-module terminology, exactly like its
+                // descriptions above, never defaults/template content (the module's
+                // live-and-die invariant holds).
+<span class="fc" id="L94">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L95">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: DefaultValueConcept (Default Values — The Default Value&quot;
+                                        + &quot; Semantic)&quot;)), &quot;&quot;&quot;
+                        k:DefaultValueConcept[] is the attachment point for default values: the default
+                        value semantic of a pattern is a complete semantic of that pattern — every field
+                        populated, in declared order — whose referenced component is this concept, and whose
+                        fields carry the values an editor offers as starting values for that pattern's
+                        fields. Its identity is computed, never queried: the stock `singleSemanticUuid` of
+                        the pattern's public id and this concept's public id. A consumer resolves &quot;the
+                        default for this pattern&quot; by computing that UUID — `StampCalculator.getDefault(pattern)`
+                        does exactly this — so no registry is needed, regeneration merges idempotently onto
+                        the same chronology, and a second default for the same pattern cannot be minted
+                        without an identity collision: the derivation doubles as the uniqueness key.
+
+                        Attachment here is a support declaration only, never a domain assertion about this
+                        concept or any other component, and this concept never joins a domain member set —
+                        consumers scope affirmatively, so a support declaration can never read as a domain
+                        assertion. Per-user preferences are per-path versions of this same computed-identity
+                        chronology, and migration between sandboxes is an identity-keyed copy-forward.&quot;&quot;&quot;);
+
+<span class="fc" id="L115">        set.concept(&quot;Template concept (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L116">                .synonym(&quot;Template concept&quot;)</span>
+<span class="fc" id="L117">                .definition(&quot;Parent of the per-purpose template attachment concepts:&quot;</span>
+                        + &quot; each child is minted for one template purpose, and a template&quot;
+                        + &quot; semantic of a pattern for that purpose is a complete semantic&quot;
+                        + &quot; of that pattern whose referenced component is that child —&quot;
+                        + &quot; starting content offered when authoring new components. As&quot;
+                        + &quot; with a default value semantic, attachment there is a support&quot;
+                        + &quot; declaration, never a domain assertion, and no child joins a&quot;
+                        + &quot; domain member set.&quot;)
+<span class="fc" id="L125">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;))</span>
+<span class="fc" id="L126">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L127">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: TemplateConcept (Default Values — Templates)&quot;)), &quot;&quot;&quot;
+                        k:TemplateConcept[] is the parent of the per-purpose template attachment concepts:
+                        each child is minted for one template purpose, and a template semantic of a pattern
+                        for that purpose is a complete semantic of that pattern whose referenced component
+                        is that child — starting content offered when authoring new components, where a
+                        default value semantic offers starting values for one pattern's fields. Identity is
+                        computed the same way — `singleSemanticUuid` of the pattern's public id and the
+                        purpose concept's public id — and retrieval takes both keys,
+                        `StampCalculator.getTemplate(pattern, purpose)`, because one purpose concept may
+                        host templates of more than one pattern: the pair, not the purpose alone,
+                        identifies a template. There is one template per (pattern, purpose) pair, resolved
+                        as a whole tuple — templates carry no composition semantics.
+
+                        As with a default value semantic, attachment to a template purpose concept is a
+                        support declaration, never a domain assertion, and no child of this concept joins a
+                        domain member set.&quot;&quot;&quot;);
+
+        // FQN and the &quot;Defaults&quot; preferred regular name are KEC-decided
+        // (IKE-Network/ike-issues#885). Parentage mirrors ConceptSet's declaration of
+        // &quot;IkeFoundation module (IkeFoundation)&quot;: directly under Module (SOLOR).
+<span class="fc" id="L148">        set.concept(&quot;Defaults and templates module (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L149">                .synonym(&quot;Defaults&quot;)</span>
+<span class="fc" id="L150">                .definition(&quot;The module scoping every default value and template&quot;</span>
+                        + &quot; semantic. The boundary is bidirectional and live-and-die:&quot;
+                        + &quot; every version of a defaults or template chronology lives in&quot;
+                        + &quot; this module, and this module holds only defaults and template&quot;
+                        + &quot; content — a violation in either direction is an error to be&quot;
+                        + &quot; withdrawn, never adopted as precedent. As the export&quot;
+                        + &quot; dimension, module crossed with path selects a user's&quot;
+                        + &quot; preferences for exchange: include this module to carry&quot;
+                        + &quot; defaults and templates alongside domain content, exclude it&quot;
+                        + &quot; to leave them behind.&quot;)
+<span class="fc" id="L160">                .isA(IkeTerm.MODULE)</span>
+<span class="fc" id="L161">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L162">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: DefaultsAndTemplatesModule (Default Values — The Defaults and&quot;
+                                        + &quot; Templates Module)&quot;)), &quot;&quot;&quot;
+                        k:DefaultsAndTemplatesModule[] — preferred regular name simply &quot;Defaults&quot; — is the
+                        one module every default value and template semantic stamps its versions in: the
+                        category boundary, and the import/export packaging. The boundary is bidirectional
+                        and live-and-die: every version of a defaults or template chronology lives in this
+                        module, and this module holds only defaults and template content — a violation in
+                        either direction is an error to be withdrawn, never adopted as precedent. That
+                        invariant is what makes exclusion trivial: `StampCalculator`'s version-iteration
+                        operations exclude versions stamped in this module, so defaults and templates never
+                        surface as ordinary pattern or component content — while chronicle-level surfaces
+                        are unchanged, and chronicle iterators still see defaults and template chronologies;
+                        it is the computation of iteration over versions that triggers the exclusion. The
+                        dedicated accessors — `getDefault(pattern)` and `getTemplate(pattern, purpose)` —
+                        include the module.
+
+                        As the export dimension, module crossed with path selects a user's preferences for
+                        exchange: include this module to carry defaults and templates alongside domain
+                        content, exclude it to leave them behind.&quot;&quot;&quot;);
+
+        // ── Worked example: one default value semantic (new module) ─────
+        // Instance content stamps in the new module — the module IS the category
+        // boundary. The Defaults-module counterpart of the inception stamp: same
+        // declared time, author, and path; only the module dimension separates support
+        // content (IKE-Network/ike-issues#894).
+<span class="fc" id="L188">        ActiveStamp defaults = Ike.DEFAULTS_INCEPTION;</span>
+
+<span class="fc" id="L190">        EntityProxy.Pattern preferredReviewerPattern =</span>
+<span class="fc" id="L191">                set.patternRef(&quot;Preferred Reviewer Pattern (IkeFoundation)&quot;);</span>
+<span class="fc" id="L192">        EntityProxy.Concept defaultValueConcept =</span>
+<span class="fc" id="L193">                set.conceptRef(&quot;Default value concept (IkeFoundation)&quot;);</span>
+<span class="fc" id="L194">        UUID defaultIdentity = UuidT5Generator.singleSemanticUuid(</span>
+<span class="fc" id="L195">                preferredReviewerPattern.publicId(), defaultValueConcept.publicId());</span>
+
+        // Preferred Reviewer Pattern's single field (Preferred reviewer, a component
+        // field) is value-set constrained to the Starter Set Author Roster Pattern
+        // (ConstraintPatternSet); Gretel is that roster's first entry — a real,
+        // constraint-satisfying default value, not a placeholder.
+<span class="fc" id="L201">        set.concept(&quot;Default value concept (IkeFoundation)&quot;).at(defaults)</span>
+<span class="fc" id="L202">                .semantic(preferredReviewerPattern, PublicIds.of(defaultIdentity),</span>
+<span class="fc" id="L203">                        set.conceptRef(&quot;Gretel (User)&quot;));</span>
+<span class="fc" id="L204">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

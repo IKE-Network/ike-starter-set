@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section17.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section17.java</span></div><h1>Section17.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Laterality&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section17 {
+
+    private Section17() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Laterality (SOLOR)&quot;, PublicIds.of(&quot;26ca4590-bbe5-327c-a40a-ba56dc86996b&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;960f2aa1-4844-4b6c-aadb-15a2c8b62596&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Laterality (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f6eb6e3e-09de-47a7-be73-141527d6d5f1&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Laterality&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3622b35a-e8b8-48e0-afdb-4179c7061ac9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A domain role type from the anatomy model: distinguishes sided body structures, left from right. Held as a SNOMED-heritage example; migrates to a domain starter set when one exists.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;17f1d7ea-056b-4801-a9e1-117dbb5f3ca6&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;26ca4590-bbe5-327c-a40a-ba56dc86996b&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;a531fcdd-db58-5110-8303-7a90d8539dbb&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_TYPE))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5db743cf-d96b-4d9a-8027-32f5d77d387b&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;960f2aa1-4844-4b6c-aadb-15a2c8b62596&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0f9553b5-1ec4-41ef-9562-6ff543000e8e&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;f6eb6e3e-09de-47a7-be73-141527d6d5f1&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b5a4edc8-0478-4c47-adf0-407ab3730b0a&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;3622b35a-e8b8-48e0-afdb-4179c7061ac9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;8e2f523d-e4bb-4ce7-85ca-b9637ba24d78&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

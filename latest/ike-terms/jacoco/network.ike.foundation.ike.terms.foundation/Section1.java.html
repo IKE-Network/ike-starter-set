@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section1.java</span></div><h1>Section1.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Uninitialized&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section1 {
+
+    private Section1() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Uninitialized Component (SOLOR)&quot;, PublicIds.of(&quot;55f74246-0a25-57ac-9473-a788d08fb656&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f600187f-94a9-4baf-8b44-46baba8d928a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Uninitialized Component (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;85cc6d4d-f3f9-4744-9abc-afec0c478014&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Uninitialized&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ec5b3c93-5008-401d-a2ea-1983fc93e78c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The platform's null-object component: the value a component reference carries when it has never been set. The machinery produces it -- the nonexistent-stamp sentinel names it as both module and path, and path resolution guards on it -- and rendering surfaces show nothing for it, treating it like an unknown identifier. Distinct from Blank Concept, which an editor writes into a field a person deliberately cleared.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;2b08c0fc-e724-418b-baae-d8f772acd413&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;55f74246-0a25-57ac-9473-a788d08fb656&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;da159ba1-1726-52a3-b682-8468457b51c4&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Chronicle and version model (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;a995602b-9524-40a5-9dc2-0e8e47a504a3&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;f600187f-94a9-4baf-8b44-46baba8d928a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;92450d02-be57-4d54-8298-980579967beb&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;85cc6d4d-f3f9-4744-9abc-afec0c478014&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7d9621b5-4056-483a-a628-5dda73db18b2&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;ec5b3c93-5008-401d-a2ea-1983fc93e78c&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;856c1121-2256-4bae-8d29-6c8d91091b4b&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

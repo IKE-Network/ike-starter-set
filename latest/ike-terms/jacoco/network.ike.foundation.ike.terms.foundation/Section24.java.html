@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section24.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section24.java</span></div><h1>Section24.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Semantic properties&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section24 {
+
+    private Section24() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Semantic properties (SOLOR)&quot;, PublicIds.of(&quot;b717ae48-5488-5dda-a980-97855001cc99&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b0e039ca-abe7-4e94-a8b3-4e18f8ca93b1&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic properties (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;73bc1c6d-809e-4700-8899-864819e446d3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic properties&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;16ac69ca-0dd7-44f5-8185-24d7e5f85b3b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The attributes or characteristics of a concept, term, or element that convey meaning or semantics in a given context&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;4458556b-df3c-4d61-9a09-ba34629c7e0c&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;b717ae48-5488-5dda-a980-97855001cc99&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;b909421f-66f5-5d4c-8186-fb49fc8a9a2e&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Chronicle and version model (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;133f889d-846f-4d9a-a02f-cd54ed3c588f&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;b0e039ca-abe7-4e94-a8b3-4e18f8ca93b1&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7d16622b-0782-461e-aba3-0590a67adf07&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;73bc1c6d-809e-4700-8899-864819e446d3&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;19edf3d3-7ecc-485d-b8b7-4e32c42a9d7d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;16ac69ca-0dd7-44f5-8185-24d7e5f85b3b&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;37116e60-c413-41e6-a59d-6c9e7ad761d3&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Referenced component for semantic&quot;, PublicIds.of(&quot;a9ba4749-c11f-5f35-a991-21796fb89ddc&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;447541ca-8c02-4c3b-ac65-caa263f9fb5a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Referenced component for semantic&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;91e611b8-d42c-4123-a65f-c3933f572219&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Referenced component&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b2322b09-b1a9-4cf9-a62e-cbc46a87d088&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The field naming the component a semantic is attached to, in the semantic-properties vocabulary. Duplicates Component for semantic and the Semantic referenced component field kind; retained for identity compatibility.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;11a238b8-e3d7-452e-ac7b-003e356b696f&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;a9ba4749-c11f-5f35-a991-21796fb89ddc&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;3e4e3641-efbb-5362-b5d8-5d6494fd0143&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Legacy model concepts (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;68b9838a-bb06-47c0-9e06-3e3e60cf99d3&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;447541ca-8c02-4c3b-ac65-caa263f9fb5a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;5613209a-1cf6-4de9-9085-e6a40562ee5d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;91e611b8-d42c-4123-a65f-c3933f572219&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;71d59819-29c0-44ae-bfe8-5528db841ab1&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;b2322b09-b1a9-4cf9-a62e-cbc46a87d088&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;3f1e7734-094a-423d-a867-83533d2d5c03&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Component for semantic (SOLOR)&quot;, PublicIds.of(&quot;0bc32c16-698e-5719-8bd5-efa099c7d782&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;802f1865-bdf7-43ba-b285-57f420ba667a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component for semantic (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9c2b55e7-d80a-41bf-8535-c44b74230311&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1dffac55-e9cc-4dfa-97b2-f6eaa24178c6&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The field naming the component a semantic is attached to, in the semantic-properties vocabulary. Duplicates Referenced component for semantic and the live Semantic referenced component field kind, which is what pattern declarations actually use; retained for identity compatibility.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;fb7b4cd0-6f74-4019-90e7-5190d86b3ada&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;0bc32c16-698e-5719-8bd5-efa099c7d782&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;8946c895-34dc-59fb-8d5d-de6f100a2468&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Legacy model concepts (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;78945800-8094-4589-8fa2-a2825c42b671&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;802f1865-bdf7-43ba-b285-57f420ba667a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;41002867-96ee-4b19-842d-9c5128119ae2&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;9c2b55e7-d80a-41bf-8535-c44b74230311&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f70e2c9e-ff63-45d3-912f-011d12b2aa37&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;1dffac55-e9cc-4dfa-97b2-f6eaa24178c6&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7ca2e8ea-1686-4772-9158-17b74aca4fb6&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">        set.concept(&quot;Logic graph for semantic (SOLOR)&quot;, PublicIds.of(&quot;fc2a0662-2396-575b-95f0-e9b38a418620&quot;)).at(inception)</span>
+<span class="fc" id="L56">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d3aa631b-5cab-407a-8772-4739771d3cba&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Logic graph for semantic (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e6027896-adf6-404f-b9f0-2f0c2bf9c231&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Logic graph&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8dc5703e-37d8-483f-ad87-f7f952c49749&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The field holding a semantic's logical expression graph: the definition a logical-expression semantic carries.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L59">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;c1f010c4-a785-49b9-821d-93e1c00cd5fd&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;fc2a0662-2396-575b-95f0-e9b38a418620&quot;)</span>
+<span class="fc" id="L60">                .statedAxioms(PublicIds.of(&quot;95ccd943-17e4-5759-8b8b-2223863e9d3b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_PROPERTIES))))</span>
+<span class="fc" id="L61">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;df6f6d39-462b-4238-b852-dac17c238c25&quot;))</span>
+<span class="fc" id="L62">                .semanticOn(PublicIds.of(&quot;d3aa631b-5cab-407a-8772-4739771d3cba&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;5587e27d-cc36-4191-a0c9-a217d683ca7f&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L63">                .semanticOn(PublicIds.of(&quot;e6027896-adf6-404f-b9f0-2f0c2bf9c231&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ad55ef0e-765f-4afa-a9ff-aaac30732bc0&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L64">                .semanticOn(PublicIds.of(&quot;8dc5703e-37d8-483f-ad87-f7f952c49749&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;99af4b0e-2890-40d0-b0d2-d979ff5ec80f&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L67">        set.concept(&quot;Semantic field name (SOLOR)&quot;, PublicIds.of(&quot;15489c68-673d-503e-bff7-e9d59e5dc15c&quot;)).at(inception)</span>
+<span class="fc" id="L68">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;cd61037c-f284-4eca-9bf3-7af896c0a7ea&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic field name (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L69">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7e3eb091-7817-4b0e-a248-411dbd2934e1&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field name&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L70">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2be447bf-a577-4d07-84fc-a16b627ec09f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The field holding a display name for one of a semantic's fields, for surfaces that label fields individually.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L71">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;8aad6150-7e58-4ea0-8f75-6e097fb7aa85&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;15489c68-673d-503e-bff7-e9d59e5dc15c&quot;)</span>
+<span class="fc" id="L72">                .statedAxioms(PublicIds.of(&quot;b5f18d25-99ea-5a99-ad8e-1cc134e92dc7&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_PROPERTIES))))</span>
+<span class="fc" id="L73">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;9e08da3a-05e0-43f9-a725-6c7b2d9d739e&quot;))</span>
+<span class="fc" id="L74">                .semanticOn(PublicIds.of(&quot;cd61037c-f284-4eca-9bf3-7af896c0a7ea&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b57a6487-fff3-4631-9785-29f4edd908ba&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L75">                .semanticOn(PublicIds.of(&quot;7e3eb091-7817-4b0e-a248-411dbd2934e1&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;48b1c76d-0493-433a-90f4-5d4a10c2cb51&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L76">                .semanticOn(PublicIds.of(&quot;2be447bf-a577-4d07-84fc-a16b627ec09f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;8715e30c-eb6b-4b4e-a842-ce6c135ee036&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L79">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

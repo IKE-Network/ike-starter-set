@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConceptSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">ConceptSet.java</span></div><h1>ConceptSet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+
+/**
+ * The concept section of the IkeFoundation ledger: the module concept, the set root, and
+ * the set's content concepts. Sections name what, never when — delivery phasing
+ * lives in issues, not source.
+ */
+final class ConceptSet {
+
+    private ConceptSet() {
+    }
+
+    /**
+     * Composes this section's declarations into the session.
+     *
+     * @param set the knowledge set (the session)
+     */
+    static void compose(KnowledgeSet set) {
+        // Curator identity resolved: author is Ike.IKE_COMMUNITY, minted below —
+        // a derived-identity reference (T5 of the birth FQN), so citing it here,
+        // before its own set.concept(...) call runs, is exactly as safe as the
+        // forward reference to Ike.MODULE on the same line (IKE-Network/ike-issues#872).
+<span class="fc" id="L41">        ActiveStamp inception = Ike.INCEPTION;</span>
+
+        // Both anchor into the base taxonomy so a KB that loads base + this set
+        // navigates to it from the root — no orphan forest.
+<span class="fc" id="L45">        set.concept(&quot;IkeFoundation module (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L46">                .synonym(&quot;IkeFoundation module&quot;)</span>
+<span class="fc" id="L47">                .definition(&quot;The module scoping every stamp of the IkeFoundation content&quot;</span>
+                        + &quot; set; the export dimension for this knowledge.&quot;)
+<span class="fc" id="L49">                .isA(IkeTerm.MODULE);</span>
+
+<span class="fc" id="L51">        set.concept(&quot;IkeFoundation root (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L52">                .synonym(&quot;IkeFoundation root&quot;)</span>
+<span class="fc" id="L53">                .definition(&quot;Root concept of the Ike starter set.&quot;)</span>
+<span class="fc" id="L54">                .isA(IkeTerm.MODEL_CONCEPT);</span>
+
+        // Community authorship: the IKE Network itself, attributed as author for
+        // content synthesized by tooling on the Network's behalf (the
+        // identity-exact starter-set ingest, #872) rather than by an individual
+        // editor or an ingested upstream source. No dedicated &quot;Author&quot; taxonomy
+        // root exists in TinkarTerm — USER is the only real anchor, and it's
+        // exactly what this set's own stamps used as a placeholder before this.
+<span class="fc" id="L62">        set.concept(&quot;IKE Community (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L63">                .synonym(&quot;IKE Community&quot;)</span>
+<span class="fc" id="L64">                .definition(&quot;Community authorship: the IKE Network itself, attributed&quot;</span>
+                        + &quot; as author for content synthesized by tooling on the&quot;
+                        + &quot; Network's behalf (e.g. the identity-exact starter-set&quot;
+                        + &quot; ingest, IKE-Network/ike-issues#872) rather than by an&quot;
+                        + &quot; individual editor or an ingested upstream source.&quot;)
+<span class="fc" id="L69">                .isA(IkeTerm.USER);</span>
+
+        // The ingested foundation (the full starter-set ingest, #872) composes
+        // in Foundation.FoundationSet, wired from IkeSource. The IKE carriers
+        // section (new (IKE)-tagged content) lands separately when the wave-2
+        // coordination concludes.
+<span class="fc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

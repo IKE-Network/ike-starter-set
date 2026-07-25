@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataTypeDefaultsSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">DataTypeDefaultsSet.java</span></div><h1>DataTypeDefaultsSet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.common.service.PrimitiveData;
+import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.GraphFieldValue;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+
+import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * The Data Type Defaults Pattern (IKE-Network/ike-issues#885): one pattern with sixteen
+ * fields, one per data type {@code ConceptToDataType} ({@code dev.ikm.tinkar.terms},
+ * tinkar-core) recognizes, declared in that class's own convert order — String,
+ * Component, ComponentIdSet, ComponentIdList, DiTree, DiGraph, Concept, Semantic,
+ * Integer, Float, Boolean, ByteArray, Array, Instant, Long, Decimal. Each field's
+ * {@code dataType} is the concept {@code ConceptToDataType} actually recognizes for that
+ * type, verified by UUID against its {@code TinkarTerm} references and bound through
+ * {@link IkeTerm}'s declared identities. The pattern's single semantic is its own default value semantic
+ * ({@link DefaultsAndTemplatesSet}'s apparatus, extended here in a sibling file composed
+ * immediately after it — the apparatus file mints the category; this file is its first
+ * full-breadth consumer): referenced component {@code Default value concept}, computed
+ * {@code singleSemanticUuid} identity, every version in the Defaults and templates
+ * module. Replaying that one semantic writes and reads every field data type the store
+ * supports — the ledger's serialization smoke test.
+ * &lt;p&gt;
+ * &lt;b&gt;The loud-defaults principle (KEC-decided)&lt;/b&gt;: never Java's silent zero-values. A
+ * default works as an initial value but must read as obviously needing revision —
+ * {@code &quot;UNINITIALIZED&quot;}, not {@code &quot;&quot;}; a planted repdigit, not {@code 0}. Types
+ * whose value space offers a true non-value use it (Float's {@code NaN}, Instant's
+ * pre-inception instant — a non-value cannot be mistaken for data at all, and {@code NaN}
+ * propagates through arithmetic); numeric types without one use the stretched-sevens
+ * sentinel ({@code 777777777}, {@code 777777777777777777},
+ * {@code 777777777.777} — repdigit signatures that read as deliberately planted, where
+ * {@code MIN_VALUE} would read as an overflow bug); Boolean's {@code false} is a flagged
+ * compromise, stated in its meaning concept's definition. The DiGraph default is a
+ * deliberate two-vertex simple cycle: a cycle can never be a tree, so the value proves
+ * the field truly carries a graph.
+ * &lt;p&gt;
+ * &lt;b&gt;The datatype-concept renames&lt;/b&gt; the anchored {@code DisplayFields}-family
+ * concepts carry (&quot;&amp;lt;Type&amp;gt; data type&quot; in place of the misleading &quot;display field&quot;
+ * wording) live at their section declarations ({@code foundation.Section19}, registered
+ * in {@code DELIBERATELY_RENAMED_FQNS}) under the inception flatten
+ * (IKE-Network/ike-issues#894). Every ConceptToDataType-anchored datatype concept is
+ * named &quot;... data type&quot;; deliberately untouched are only the unanchored
+ * {@code Double}/{@code Image}/{@code UUID display field} and
+ * {@code Logical expression display field}, which {@code ConceptToDataType} does not
+ * recognize.
+ */
+final class DataTypeDefaultsSet {
+
+    private DataTypeDefaultsSet() {
+    }
+
+    /**
+     * Composes this section's declarations into the session.
+     *
+     * @param set the knowledge set (the session)
+     */
+    static void compose(KnowledgeSet set) {
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894): apparatus concepts are foundation terminology,
+        // so they stamp in the foundation module.
+<span class="fc" id="L84">        ActiveStamp apparatus = Ike.INCEPTION;</span>
+
+        // ── The sixteen field meaning concepts ──────────────────────────
+<span class="fc" id="L87">        set.concept(&quot;String default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L88">                .synonym(&quot;String default&quot;)</span>
+<span class="fc" id="L89">                .definition(&quot;The String field's loud default: the literal \&quot;UNINITIALIZED\&quot; —&quot;</span>
+                        + &quot; a value that works as an initial value but reads as obviously&quot;
+                        + &quot; needing revision, never Java's silent empty string.&quot;)
+<span class="fc" id="L92">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L94">        set.concept(&quot;Component default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L95">                .synonym(&quot;Component default&quot;)</span>
+<span class="fc" id="L96">                .definition(&quot;The Component field's loud default: Uninitialized Component&quot;</span>
+                        + &quot; (SOLOR), the base set's own loud placeholder for a component not&quot;
+                        + &quot; yet chosen. Not Blank Concept — Blank means a deliberate&quot;
+                        + &quot; not-applicable, while Uninitialized means a value still owed.&quot;)
+<span class="fc" id="L100">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L102">        set.concept(&quot;ComponentIdSet default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L103">                .synonym(&quot;ComponentIdSet default&quot;)</span>
+<span class="fc" id="L104">                .definition(&quot;The ComponentIdSet field's loud default: the singleton set&quot;</span>
+                        + &quot; holding Uninitialized Component — present and non-empty (an empty&quot;
+                        + &quot; set would be a silent zero-value), its one member itself the loud&quot;
+                        + &quot; placeholder.&quot;)
+<span class="fc" id="L108">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L110">        set.concept(&quot;ComponentIdList default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L111">                .synonym(&quot;ComponentIdList default&quot;)</span>
+<span class="fc" id="L112">                .definition(&quot;The ComponentIdList field's loud default: the singleton list&quot;</span>
+                        + &quot; holding Uninitialized Component — present and non-empty (an empty&quot;
+                        + &quot; list would be a silent zero-value), its one entry itself the loud&quot;
+                        + &quot; placeholder.&quot;)
+<span class="fc" id="L116">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L118">        set.concept(&quot;DiTree default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L119">                .synonym(&quot;DiTree default&quot;)</span>
+<span class="fc" id="L120">                .definition(&quot;The DiTree field's loud default: a single-vertex tree whose&quot;</span>
+                        + &quot; vertex meaning is Uninitialized Component — the smallest&quot;
+                        + &quot; well-formed tree, carrying the loud placeholder at its root.&quot;)
+<span class="fc" id="L123">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L125">        set.concept(&quot;DiGraph default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L126">                .synonym(&quot;DiGraph default&quot;)</span>
+<span class="fc" id="L127">                .definition(&quot;The DiGraph field's loud default: a simple cycle — two&quot;</span>
+                        + &quot; vertices, both Uninitialized Component, with edges in both&quot;
+                        + &quot; directions. The cycle is deliberate: a cycle can never be a tree,&quot;
+                        + &quot; so the value proves the field truly holds a graph and not a tree.&quot;)
+<span class="fc" id="L131">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L133">        set.concept(&quot;Concept default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L134">                .synonym(&quot;Concept default&quot;)</span>
+<span class="fc" id="L135">                .definition(&quot;The Concept field's loud default: Uninitialized Component&quot;</span>
+                        + &quot; (SOLOR) — the loud placeholder for a concept not yet chosen,&quot;
+                        + &quot; obviously needing revision wherever it appears.&quot;)
+<span class="fc" id="L138">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L140">        set.concept(&quot;Semantic default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L141">                .synonym(&quot;Semantic default&quot;)</span>
+<span class="fc" id="L142">                .definition(&quot;The Semantic field's loud default: the fully qualified name&quot;</span>
+                        + &quot; description semantic of Uninitialized Component — a real,&quot;
+                        + &quot; resolvable semantic whose subject is itself the loud placeholder,&quot;
+                        + &quot; so the reference is valid yet plainly unrevised.&quot;)
+<span class="fc" id="L146">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L148">        set.concept(&quot;Integer default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L149">                .synonym(&quot;Integer default&quot;)</span>
+<span class="fc" id="L150">                .definition(&quot;The Integer field's loud default: the stretched-sevens sentinel&quot;</span>
+                        + &quot; 777777777 (nine sevens) — a repdigit signature that reads as&quot;
+                        + &quot; deliberately planted and cannot plausibly occur as natural data,&quot;
+                        + &quot; where Integer.MIN_VALUE would read as an overflow bug. Never&quot;
+                        + &quot; Java's silent zero.&quot;)
+<span class="fc" id="L155">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L157">        set.concept(&quot;Float default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L158">                .synonym(&quot;Float default&quot;)</span>
+<span class="fc" id="L159">                .definition(&quot;The Float field's loud default: NaN, the type's native&quot;</span>
+                        + &quot; non-value — chosen over a stretched-sevens sentinel because a&quot;
+                        + &quot; true non-value is louder still: it cannot be mistaken for data at&quot;
+                        + &quot; all, and it propagates through arithmetic, so any computation&quot;
+                        + &quot; over an unrevised default stays loudly not-a-number.&quot;)
+<span class="fc" id="L164">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L166">        set.concept(&quot;Boolean default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L167">                .synonym(&quot;Boolean default&quot;)</span>
+<span class="fc" id="L168">                .definition(&quot;The Boolean field's default: false — a flagged compromise. A&quot;</span>
+                        + &quot; two-valued type has no loud member, so no Boolean default can&quot;
+                        + &quot; announce itself as unrevised; false is offered as the initial&quot;
+                        + &quot; value with that limitation stated rather than hidden.&quot;)
+<span class="fc" id="L172">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L174">        set.concept(&quot;ByteArray default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L175">                .synonym(&quot;ByteArray default&quot;)</span>
+<span class="fc" id="L176">                .definition(&quot;The ByteArray field's loud default: the UTF-8 bytes of&quot;</span>
+                        + &quot; \&quot;UNINITIALIZED\&quot; — the loud String default carried in byte form,&quot;
+                        + &quot; never a silent empty array.&quot;)
+<span class="fc" id="L179">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L181">        set.concept(&quot;Array default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L182">                .synonym(&quot;Array default&quot;)</span>
+<span class="fc" id="L183">                .definition(&quot;The Array field's loud default: an array of exactly one&quot;</span>
+                        + &quot; element, the String \&quot;UNINITIALIZED\&quot; — present and non-empty (an&quot;
+                        + &quot; empty array would be a silent zero-value), its single element the&quot;
+                        + &quot; loud String default.&quot;)
+<span class="fc" id="L187">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L189">        set.concept(&quot;Instant default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L190">                .synonym(&quot;Instant default&quot;)</span>
+<span class="fc" id="L191">                .definition(&quot;The Instant field's loud default: the pre-inception instant&quot;</span>
+                        + &quot; (historically 'premundane'), the time type's native non-value —&quot;
+                        + &quot; the platform's own before-all-recorded-time marker, chosen over&quot;
+                        + &quot; a sentinel date because a true non-value cannot be mistaken for&quot;
+                        + &quot; a real timestamp.&quot;)
+<span class="fc" id="L196">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L198">        set.concept(&quot;Long default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L199">                .synonym(&quot;Long default&quot;)</span>
+<span class="fc" id="L200">                .definition(&quot;The Long field's loud default: the stretched-sevens sentinel&quot;</span>
+                        + &quot; 777777777777777777 (eighteen sevens) — a repdigit signature that&quot;
+                        + &quot; reads as deliberately planted and cannot plausibly occur as&quot;
+                        + &quot; natural data, where Long.MIN_VALUE would read as an overflow bug&quot;
+                        + &quot; (and sits one away from the platform's pre-inception time sentinel).&quot;
+                        + &quot; Never Java's silent zero.&quot;)
+<span class="fc" id="L206">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L208">        set.concept(&quot;Decimal default (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L209">                .synonym(&quot;Decimal default&quot;)</span>
+<span class="fc" id="L210">                .definition(&quot;The Decimal field's loud default: the stretched-sevens sentinel&quot;</span>
+                        + &quot; 777777777.777 — nine sevens, a decimal point, three more sevens.&quot;
+                        + &quot; The decimal point placement deliberately demonstrates the type's&quot;
+                        + &quot; distinguishing property (a scaled decimal, not an integer) — the&quot;
+                        + &quot; same move as the DiGraph cycle proving graph-ness. Never Java's&quot;
+                        + &quot; silent zero.&quot;)
+<span class="fc" id="L216">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+        // ── The shared field purpose, and the pattern's own meaning/purpose ──
+        // ONE purpose for all sixteen fields: every field exists for the identical
+        // reason — to carry its data type's loud default — so distinct per-field
+        // purposes would be manufactured variety (the meaning/purpose rigor of
+        // IKE-Network/ike-issues#880, applied in the other direction).
+<span class="fc" id="L223">        set.concept(&quot;Data type default exemplar (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L224">                .synonym(&quot;Data type default exemplar&quot;)</span>
+<span class="fc" id="L225">                .definition(&quot;Why every Data Type Defaults Pattern field value is recorded:&quot;</span>
+                        + &quot; to carry its data type's loud default — a value that works as an&quot;
+                        + &quot; initial value but reads as obviously needing revision, never&quot;
+                        + &quot; Java's silent zero-value. One purpose serves all sixteen fields&quot;
+                        + &quot; because every field exists for this identical reason; distinct&quot;
+                        + &quot; purposes would be manufactured variety.&quot;)
+<span class="fc" id="L231">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L233">        set.concept(&quot;Defaulted Data Types (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L234">                .synonym(&quot;Defaulted Data Types&quot;)</span>
+<span class="fc" id="L235">                .definition(&quot;What a Data Type Defaults Pattern semantic means: the sixteen&quot;</span>
+                        + &quot; data types ConceptToDataType recognizes for pattern fields, each&quot;
+                        + &quot; exemplified by one field carrying that type's loud default.&quot;)
+<span class="fc" id="L238">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L240">        set.concept(&quot;Data Type Default Provision (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L241">                .synonym(&quot;Data Type Default Provision&quot;)</span>
+<span class="fc" id="L242">                .definition(&quot;Why a Data Type Defaults Pattern semantic exists: to provide,&quot;</span>
+                        + &quot; in one semantic, a loud default value for every data type a&quot;
+                        + &quot; pattern field can declare — and, replayed, to exercise every&quot;
+                        + &quot; field serialization path the store supports end to end.&quot;)
+<span class="fc" id="L246">                .isA(set.conceptRef(&quot;Defaults and templates model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+        // ── The pattern: sixteen fields in ConceptToDataType's convert order ──
+        // Each field's dataType is the identity ConceptToDataType compares against,
+        // bound through IkeTerm's declared-identity constants (UUIDs restated verbatim
+        // from TinkarTerm; see this file's javadoc).
+<span class="fc" id="L252">        EntityProxy.Concept exemplar = set.conceptRef(&quot;Data type default exemplar (IkeFoundation)&quot;);</span>
+<span class="fc" id="L253">        set.pattern(&quot;Data Type Defaults Pattern (IkeFoundation)&quot;).at(apparatus)</span>
+<span class="fc" id="L254">                .meaning(set.conceptRef(&quot;Defaulted Data Types (IkeFoundation)&quot;))</span>
+<span class="fc" id="L255">                .purpose(set.conceptRef(&quot;Data Type Default Provision (IkeFoundation)&quot;))</span>
+<span class="fc" id="L256">                .field(set.conceptRef(&quot;String default (IkeFoundation)&quot;), exemplar, IkeTerm.STRING)</span>
+<span class="fc" id="L257">                .field(set.conceptRef(&quot;Component default (IkeFoundation)&quot;), exemplar, IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L258">                .field(set.conceptRef(&quot;ComponentIdSet default (IkeFoundation)&quot;), exemplar,</span>
+                        IkeTerm.COMPONENT_ID_SET_FIELD)
+<span class="fc" id="L260">                .field(set.conceptRef(&quot;ComponentIdList default (IkeFoundation)&quot;), exemplar,</span>
+                        IkeTerm.COMPONENT_ID_LIST_FIELD)
+<span class="fc" id="L262">                .field(set.conceptRef(&quot;DiTree default (IkeFoundation)&quot;), exemplar, IkeTerm.DITREE_FIELD)</span>
+<span class="fc" id="L263">                .field(set.conceptRef(&quot;DiGraph default (IkeFoundation)&quot;), exemplar, IkeTerm.DIGRAPH_FIELD)</span>
+<span class="fc" id="L264">                .field(set.conceptRef(&quot;Concept default (IkeFoundation)&quot;), exemplar, IkeTerm.CONCEPT_DATA_TYPE)</span>
+<span class="fc" id="L265">                .field(set.conceptRef(&quot;Semantic default (IkeFoundation)&quot;), exemplar, IkeTerm.SEMANTIC_FIELD_TYPE)</span>
+<span class="fc" id="L266">                .field(set.conceptRef(&quot;Integer default (IkeFoundation)&quot;), exemplar, IkeTerm.INTEGER_FIELD)</span>
+<span class="fc" id="L267">                .field(set.conceptRef(&quot;Float default (IkeFoundation)&quot;), exemplar, IkeTerm.FLOAT_FIELD)</span>
+<span class="fc" id="L268">                .field(set.conceptRef(&quot;Boolean default (IkeFoundation)&quot;), exemplar, IkeTerm.BOOLEAN_FIELD)</span>
+<span class="fc" id="L269">                .field(set.conceptRef(&quot;ByteArray default (IkeFoundation)&quot;), exemplar, IkeTerm.BYTE_ARRAY_FIELD)</span>
+<span class="fc" id="L270">                .field(set.conceptRef(&quot;Array default (IkeFoundation)&quot;), exemplar, IkeTerm.ARRAY_FIELD)</span>
+<span class="fc" id="L271">                .field(set.conceptRef(&quot;Instant default (IkeFoundation)&quot;), exemplar, IkeTerm.INSTANT_LITERAL)</span>
+<span class="fc" id="L272">                .field(set.conceptRef(&quot;Long default (IkeFoundation)&quot;), exemplar, IkeTerm.LONG)</span>
+<span class="fc" id="L273">                .field(set.conceptRef(&quot;Decimal default (IkeFoundation)&quot;), exemplar, IkeTerm.DECIMAL_FIELD)</span>
+                // Curated narrative (IKE-Network/ike-issues#888): domain description OF
+                // this pattern — foundation-module terminology like its descriptions,
+                // never defaults/template content (the module's live-and-die invariant
+                // holds; only the default value semantic below stamps in the module).
+<span class="fc" id="L278">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L279">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: DataTypeDefaultsPattern (Default Values — Loud Defaults for&quot;
+                                        + &quot; Every Data Type)&quot;)), &quot;&quot;&quot;
+                        k:DataTypeDefaultsPattern[] is the defaults apparatus applied at full breadth: one
+                        pattern with sixteen fields, one per data type the platform's field-type resolver
+                        (`ConceptToDataType`, tinkar-core) actually recognizes, declared in that resolver's
+                        own order — String, Component, ComponentIdSet, ComponentIdList, DiTree, DiGraph,
+                        Concept, Semantic, Integer, Float, Boolean, ByteArray, Array, Instant, Long,
+                        Decimal. All sixteen fields share one purpose, k:DataTypeDefaultExemplar[]: every
+                        field exists for the identical reason — to carry its data type's loud default — so
+                        distinct per-field purposes would be manufactured variety.
+
+                        The pattern's single semantic is its own default value semantic: referenced
+                        component k:DefaultValueConcept[], computed identity, every version in
+                        k:DefaultsAndTemplatesModule[]. Each field's value is its data type's loud default
+                        — a value that works as an initial value but reads as obviously needing revision,
+                        never Java's silent zero-values. Replaying that one semantic writes and reads every
+                        field data type the store supports — the ledger's serialization smoke test.&quot;&quot;&quot;);
+
+        // ── The default value semantic (Defaults and templates module) ──
+        // Instance content stamps in the defaults module — the module IS the category
+        // boundary. The Defaults-module counterpart of the inception stamp: same
+        // declared time, author, and path (IKE-Network/ike-issues#894).
+<span class="fc" id="L302">        ActiveStamp defaults = Ike.DEFAULTS_INCEPTION;</span>
+
+<span class="fc" id="L304">        EntityProxy.Pattern dataTypeDefaultsPattern =</span>
+<span class="fc" id="L305">                set.patternRef(&quot;Data Type Defaults Pattern (IkeFoundation)&quot;);</span>
+<span class="fc" id="L306">        EntityProxy.Concept defaultValueConcept =</span>
+<span class="fc" id="L307">                set.conceptRef(&quot;Default value concept (IkeFoundation)&quot;);</span>
+<span class="fc" id="L308">        UUID defaultIdentity = UuidT5Generator.singleSemanticUuid(</span>
+<span class="fc" id="L309">                dataTypeDefaultsPattern.publicId(), defaultValueConcept.publicId());</span>
+
+        // The Semantic field references Uninitialized Component's own fully qualified
+        // name description — its established identity, declared in foundation.Section1
+        // (f600187f-94a9-4baf-8b44-46baba8d928a, verified there to be the FQN
+        // description, not the &quot;Uninitialized&quot; synonym or the definition).
+<span class="fc" id="L315">        EntityProxy.Semantic uninitializedFqnDescription = EntityProxy.Semantic.make(</span>
+                &quot;Uninitialized Component (SOLOR) fully qualified name description&quot;,
+<span class="fc" id="L317">                PublicIds.of(&quot;f600187f-94a9-4baf-8b44-46baba8d928a&quot;));</span>
+
+<span class="fc" id="L319">        set.concept(&quot;Default value concept (IkeFoundation)&quot;).at(defaults)</span>
+<span class="fc" id="L320">                .semantic(dataTypeDefaultsPattern, PublicIds.of(defaultIdentity),</span>
+                        // String
+                        &quot;UNINITIALIZED&quot;,
+                        // Component
+                        IkeTerm.UNINITIALIZED_COMPONENT,
+                        // ComponentIdSet — singleton set of the loud placeholder
+<span class="fc" id="L326">                        PublicIds.set.of(IkeTerm.UNINITIALIZED_COMPONENT.publicId()),</span>
+                        // ComponentIdList — singleton list of the loud placeholder
+<span class="fc" id="L328">                        PublicIds.list.of(IkeTerm.UNINITIALIZED_COMPONENT.publicId()),</span>
+                        // DiTree — the smallest well-formed tree, one Uninitialized vertex
+                        new GraphFieldValue.Tree(
+<span class="fc" id="L331">                                List.of(new GraphFieldValue.Vertex(</span>
+<span class="fc" id="L332">                                        set.uuidFor(&quot;Data Type Defaults Pattern DiTree default vertex&quot;),</span>
+                                        IkeTerm.UNINITIALIZED_COMPONENT)),
+<span class="fc" id="L334">                                0, List.of()),</span>
+                        // DiGraph — the deliberate simple cycle A → B, B → A; a pure
+                        // cycle has no roots
+                        new GraphFieldValue.Graph(
+<span class="fc" id="L338">                                List.of(new GraphFieldValue.Vertex(</span>
+<span class="fc" id="L339">                                                set.uuidFor(&quot;Data Type Defaults Pattern DiGraph default vertex A&quot;),</span>
+                                                IkeTerm.UNINITIALIZED_COMPONENT),
+                                        new GraphFieldValue.Vertex(
+<span class="fc" id="L342">                                                set.uuidFor(&quot;Data Type Defaults Pattern DiGraph default vertex B&quot;),</span>
+                                                IkeTerm.UNINITIALIZED_COMPONENT)),
+<span class="fc" id="L344">                                List.of(),</span>
+<span class="fc" id="L345">                                List.of(new GraphFieldValue.Edge(0, 1),</span>
+                                        new GraphFieldValue.Edge(1, 0))),
+                        // Concept
+                        IkeTerm.UNINITIALIZED_COMPONENT,
+                        // Semantic — the FQN description OF Uninitialized Component
+                        uninitializedFqnDescription,
+                        // Integer — stretched sevens (nine)
+<span class="fc" id="L352">                        777_777_777,</span>
+                        // Float — the native non-value
+<span class="fc" id="L354">                        Float.NaN,</span>
+                        // Boolean — flagged compromise, see Boolean default's definition
+                        Boolean.FALSE,
+                        // ByteArray — the loud String default in byte form
+<span class="fc" id="L358">                        &quot;UNINITIALIZED&quot;.getBytes(StandardCharsets.UTF_8),</span>
+                        // Array — exactly one element, the loud String default
+                        new Object[]{&quot;UNINITIALIZED&quot;},
+                        // Instant — the pre-inception instant, the time type's non-value
+                        PrimitiveData.PRE_INCEPTION_INSTANT,
+                        // Long — stretched sevens (eighteen)
+<span class="fc" id="L364">                        777_777_777_777_777_777L,</span>
+                        // Decimal — stretched sevens with the demonstrative decimal point
+                        new BigDecimal(&quot;777777777.777&quot;));
+<span class="fc" id="L367">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

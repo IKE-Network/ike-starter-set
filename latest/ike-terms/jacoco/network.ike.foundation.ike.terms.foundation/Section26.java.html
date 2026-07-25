@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section26.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section26.java</span></div><h1>Section26.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/**
+ * The &quot;Path&quot; section — a taxonomy subtree of the retrofitted starter set
+ * (IKE-Network/ike-issues#869). The origin graph is corrected from the inherited
+ * starter data (IKE-Network/ike-issues#911): Primordial is the root (no origin);
+ * Development originates from Primordial at Latest, so a Development view inherits
+ * every release landed on Primordial; Sandbox forks off Development at Latest for
+ * experimentation. Master's inherited Development-at-Latest origin stands until the
+ * release model replaces inheritance with per-release promotion
+ * (IKE-Network/ike-issues#912).
+ */
+final class Section26 {
+
+    private Section26() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L26">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L28">        set.concept(&quot;Path&quot;, PublicIds.of(&quot;4459d8cf-5a6f-3952-9458-6d64324b27b7&quot;)).at(inception)</span>
+<span class="fc" id="L29">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3641a4d4-d7b6-4248-a7b1-949e7f01b232&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L30">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;75c9f3bd-1fd8-4a8f-b156-b16f3f74470b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L31">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ff222609-b872-4d94-b6ac-ce102e4f9dbd&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A set of assets under version control that can be managed distinctly from other assets. Paths “branch” from other paths when established, and can be “merged” with other paths as well.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;3e1f4ea2-801c-4986-8c7a-da95cd288dda&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;4459d8cf-5a6f-3952-9458-6d64324b27b7&quot;)</span>
+<span class="fc" id="L33">                .statedAxioms(PublicIds.of(&quot;ed735908-ada7-543b-b13d-3292d90fee62&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;STAMP dimensions (IkeFoundation)&quot;)), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;306fc544-16b1-4331-af1e-e8e2c835d56f&quot;))</span>
+<span class="fc" id="L35">                .semanticOn(PublicIds.of(&quot;3641a4d4-d7b6-4248-a7b1-949e7f01b232&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ecd6003e-8f55-47e0-986a-01a3daf2ceeb&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L36">                .semanticOn(PublicIds.of(&quot;75c9f3bd-1fd8-4a8f-b156-b16f3f74470b&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;8a6e1a54-4f39-4735-aa35-9ff80606cb7a&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L37">                .semanticOn(PublicIds.of(&quot;ff222609-b872-4d94-b6ac-ce102e4f9dbd&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;26c78714-db1d-4513-838f-3a28cc5f0c38&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L40">        set.concept(&quot;Master path&quot;, PublicIds.of(&quot;1f20134a-960e-11e5-8994-feff819cdc9f&quot;, &quot;2faa9260-8fb2-11db-b606-0800200c9a66&quot;)).at(inception)</span>
+<span class="fc" id="L41">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b6d5da66-493c-413d-8785-994e4b60e726&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Master path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L42">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;150339e7-75af-4872-9c88-dbb78b7e1565&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Master path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L43">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e2eedff3-06a3-4469-a270-7f3e00b67e62&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The path released consumer-facing content lands on: the mainline other paths promote into.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;75b27dc0-582b-407e-b9a1-0d7e9d543696&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;1f20134a-960e-11e5-8994-feff819cdc9f&quot;)</span>
+<span class="fc" id="L45">                .statedAxioms(PublicIds.of(&quot;8860bc79-e8ad-5963-9fe2-eb9305e32eae&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;e5f77409-fe87-4338-bb83-67ddd58765ae&quot;))</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.PATHS_PATTERN, PublicIds.of(&quot;50cbf2de-11bb-4c71-a5fc-aba9094e4772&quot;))</span>
+<span class="fc" id="L48">                .semantic(IkeTerm.PATH_ORIGINS_PATTERN, PublicIds.of(&quot;0a57884c-6dc5-47e4-9676-9e613d35185d&quot;), IkeTerm.DEVELOPMENT_PATH, Instant.parse(&quot;+1000000000-12-31T23:59:59.999999999Z&quot;))</span>
+<span class="fc" id="L49">                .semanticOn(PublicIds.of(&quot;b6d5da66-493c-413d-8785-994e4b60e726&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;58df6d57-e235-4e93-ae8c-5743583e4dfc&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;150339e7-75af-4872-9c88-dbb78b7e1565&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;97df2bc8-c4ab-4590-af1f-c42978f883d7&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;e2eedff3-06a3-4469-a270-7f3e00b67e62&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;9f343cba-d27e-41d3-b750-90b4dcb20fb7&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L54">        set.concept(&quot;Development path&quot;, PublicIds.of(&quot;1f200ca6-960e-11e5-8994-feff819cdc9f&quot;)).at(inception)</span>
+<span class="fc" id="L55">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;333ef58d-125a-42e5-bf65-2d03d6e4e855&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Development path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L56">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fb302b4f-5636-477e-86c3-1ea2463ff2ae&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Development path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;dc7be243-26af-4d7d-8f18-d0846e27d6b1&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A path that specifies that the components are currently under development&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;bcbef6fd-aeb7-40bd-ba73-d8e67188b50f&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;1f200ca6-960e-11e5-8994-feff819cdc9f&quot;)</span>
+<span class="fc" id="L59">                .statedAxioms(PublicIds.of(&quot;ba2e7ff0-4d2a-5f6b-a407-fcc0350cca09&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))</span>
+<span class="fc" id="L60">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;44af3e12-965c-4a2c-a24e-96938eee080c&quot;))</span>
+<span class="fc" id="L61">                .semantic(IkeTerm.PATHS_PATTERN, PublicIds.of(&quot;7c99f30d-2bd5-408c-b7a8-bbb7e36ecb89&quot;))</span>
+<span class="fc" id="L62">                .semantic(IkeTerm.PATH_ORIGINS_PATTERN, PublicIds.of(&quot;ca7413ed-07be-4180-bdcd-3b3e3d527cfa&quot;), IkeTerm.PRIMORDIAL_PATH, Instant.parse(&quot;+1000000000-12-31T23:59:59.999999999Z&quot;))</span>
+<span class="fc" id="L63">                .semanticOn(PublicIds.of(&quot;333ef58d-125a-42e5-bf65-2d03d6e4e855&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b9be3b80-134c-4f74-a212-6121e22104b7&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L64">                .semanticOn(PublicIds.of(&quot;fb302b4f-5636-477e-86c3-1ea2463ff2ae&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7e171b0e-dfc5-4d5e-9ce5-c20a1422a0a1&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L65">                .semanticOn(PublicIds.of(&quot;dc7be243-26af-4d7d-8f18-d0846e27d6b1&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;59a8b2fa-0575-4d16-8564-fcc4300579c6&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L68">        set.concept(&quot;Primordial path&quot;, PublicIds.of(&quot;e95b6718-f824-5540-817b-8e79544eb97a&quot;)).at(inception)</span>
+<span class="fc" id="L69">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;c0f148bf-180e-428c-ad9f-9e60c342db94&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Primordial path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L70">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5ef4d507-d9fc-4d5a-9eff-4e6c715dba06&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Primordial path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L71">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a72faca5-91ad-43bc-9d0f-900a831ae69a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The root of the path graph: the path from which every other path ultimately originates, and the one no path precedes. Released foundational knowledge lands here, beginning with a knowledge set's inception release, stamped at the Inception instant. Time on this path before inception is pre-inception (historically, premundane).&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L72">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;4e9c7067-9dad-4550-8063-ae853e9c5c58&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;e95b6718-f824-5540-817b-8e79544eb97a&quot;)</span>
+<span class="fc" id="L73">                .statedAxioms(PublicIds.of(&quot;d516f6dc-8f53-5f1d-b72b-2c0da0271ab2&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))</span>
+<span class="fc" id="L74">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;158b91be-0c52-43e1-aeba-011780fe20f6&quot;))</span>
+<span class="fc" id="L75">                .semantic(IkeTerm.PATHS_PATTERN, PublicIds.of(&quot;81958dfb-4aa6-4e0a-a28b-6da2ba8b76d7&quot;))</span>
+<span class="fc" id="L76">                .semanticOn(PublicIds.of(&quot;c0f148bf-180e-428c-ad9f-9e60c342db94&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;4c0267db-d27d-4d0b-a2f6-546b533a0a5b&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L77">                .semanticOn(PublicIds.of(&quot;5ef4d507-d9fc-4d5a-9eff-4e6c715dba06&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f56890f0-1f22-43f0-a16e-f10925f6c0a0&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L78">                .semanticOn(PublicIds.of(&quot;a72faca5-91ad-43bc-9d0f-900a831ae69a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;d176719c-6755-42c9-92bf-6e2dad14941f&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L81">        set.concept(&quot;Sandbox path&quot;, PublicIds.of(&quot;80710ea6-983c-5fa0-8908-e479f1f03ea9&quot;)).at(inception)</span>
+<span class="fc" id="L82">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5bf59a7c-2427-4fa4-a7b5-b01157c18d9d&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L83">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7cc385dc-fa1e-435b-88d5-4bc9e3249f92&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox path&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L84">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;610e9752-498b-4e10-acbd-49da77e51c82&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A path for components under testing.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L85">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;f72de122-ad39-48db-9dee-44594a88b4d4&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;80710ea6-983c-5fa0-8908-e479f1f03ea9&quot;)</span>
+<span class="fc" id="L86">                .statedAxioms(PublicIds.of(&quot;5537a301-3234-5275-8a07-1ab457695bc2&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH))))</span>
+<span class="fc" id="L87">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;bcd053e4-14d7-4519-a101-940a662a5b18&quot;))</span>
+<span class="fc" id="L88">                .semantic(IkeTerm.PATHS_PATTERN, PublicIds.of(&quot;a7d7489b-3c83-4a7d-a832-d0594f7ee90b&quot;))</span>
+<span class="fc" id="L89">                .semantic(IkeTerm.PATH_ORIGINS_PATTERN, PublicIds.of(&quot;fa3d2b4f-98e0-4578-8050-1a7432b4ae85&quot;), IkeTerm.DEVELOPMENT_PATH, Instant.parse(&quot;+1000000000-12-31T23:59:59.999999999Z&quot;))</span>
+<span class="fc" id="L90">                .semanticOn(PublicIds.of(&quot;5bf59a7c-2427-4fa4-a7b5-b01157c18d9d&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;e41e940a-4695-4be7-bd8b-dbd8d5f6f6ee&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L91">                .semanticOn(PublicIds.of(&quot;7cc385dc-fa1e-435b-88d5-4bc9e3249f92&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;2550b6f3-3e09-4972-93f4-d68006164756&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L92">                .semanticOn(PublicIds.of(&quot;610e9752-498b-4e10-acbd-49da77e51c82&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;e72b798a-c452-4117-b255-caed2c0f8965&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L95">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

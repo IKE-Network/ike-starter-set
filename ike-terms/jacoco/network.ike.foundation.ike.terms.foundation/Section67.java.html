@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section67.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section67.java</span></div><h1>Section67.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Phenomenon&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section67 {
+
+    private Section67() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Phenomenon&quot;, PublicIds.of(&quot;c2e8bc47-3353-5e02-b0d1-2a5916efed4d&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;16536037-20a7-4f00-8706-746478dea158&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Phenomenon&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;158091cd-2f8f-4433-9676-c2a5efa120a7&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Phenomenon&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a00ebc0b-894e-446d-8c07-5ec17c7109e5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A unique thought, fact, or circumstance&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;1ad48bf3-49ee-4344-89b7-1f9a90e1451a&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;c2e8bc47-3353-5e02-b0d1-2a5916efed4d&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;6c94350d-3c1b-5e58-9062-e625384b40c5&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROOT_VERTEX))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;e5919a7f-e540-4a1b-af96-ade5363f625d&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;16536037-20a7-4f00-8706-746478dea158&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b3d9288f-efe5-41cc-b114-eb358ad6bc9e&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;158091cd-2f8f-4433-9676-c2a5efa120a7&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;128f3ccb-df24-4c95-b76b-a7561627a044&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;a00ebc0b-894e-446d-8c07-5ec17c7109e5&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;832af60f-40c8-427c-ab88-739b703c1023&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Uncategorized phenomenon (SOLOR)&quot;, PublicIds.of(&quot;722f5ac8-1f5c-5d8f-96bb-370d79596f66&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e7999991-62cb-4409-83ba-742c43c404ef&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Uncategorized phenomenon (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1a6c85a0-1382-49c2-ae4b-082c678416a0&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Uncategorized phenomenon&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;801c0e27-5770-40f8-8eba-69af5864cac0&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The domain placeholder for phenomena not yet classified into the model: content admitted before its category is settled.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;a0ca2cbf-0382-4888-8415-112c3defc202&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;722f5ac8-1f5c-5d8f-96bb-370d79596f66&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;e189f26a-ebb1-5149-9885-68ded4a19dd4&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PHENOMENON))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;2e81f256-0b4d-43f4-963f-f239270ae273&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;e7999991-62cb-4409-83ba-742c43c404ef&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;336bbecd-5ad5-465e-bc94-6337dae56e63&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;1a6c85a0-1382-49c2-ae4b-082c678416a0&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;cf97217e-2ae5-43e7-b6b9-ba9b1e4518aa&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;801c0e27-5770-40f8-8eba-69af5864cac0&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1be683a5-5a3a-4f74-862b-715f6ea5d0c2&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Example UCUM Units (SOLOR)&quot;, PublicIds.of(&quot;80cd4978-314d-46e3-bc13-9980280ae955&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;868bdeaa-1443-4e9c-99f7-39ae5c243952&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Example UCUM Units (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9edcd366-8719-46e8-bae8-4db0803dde0b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Example UCUM Units&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7f77024c-7255-40a8-b57f-b023c09ca86a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business. (www.unitsofmeasure.org) This field contains example units of measures for this term expressed as UCUM units.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;c900cb11-9fef-4000-995b-4d36d8f2ced4&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;80cd4978-314d-46e3-bc13-9980280ae955&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;fc087ef6-c9b1-54a8-9a79-f4d47579b989&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PHENOMENON), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d5743301-3c56-44a9-ba5a-d7762fbce46f&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;868bdeaa-1443-4e9c-99f7-39ae5c243952&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1fa7d911-b595-4e16-ba4e-e83345acb040&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;9edcd366-8719-46e8-bae8-4db0803dde0b&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f8f5fc26-9074-47f3-b228-07041dc7d502&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;7f77024c-7255-40a8-b57f-b023c09ca86a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;bae6d470-5abb-4ef9-ace3-a659284b1e13&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">        set.concept(&quot;Health concept (SOLOR)&quot;, PublicIds.of(&quot;a892950a-0847-300c-b477-4e3cbb945225&quot;, &quot;ee9ac5d2-a07c-3981-a57a-f7f26baf38d8&quot;, &quot;f6daf03a-93d6-5bab-8dc9-f60c327cf012&quot;)).at(inception)</span>
+<span class="fc" id="L56">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8924df61-b461-457d-a84c-cac12611b672&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Health concept (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;449763d9-282f-413a-87f3-76512cd8f997&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Health concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9ff8c075-dc38-4b57-a600-9da437b68185&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The domain anchor for health-related content under Phenomenon. Held as a SNOMED-heritage example; domain content grows in domain starter sets.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L59">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;df69b5d4-991a-4fab-842b-842f36e09054&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;a892950a-0847-300c-b477-4e3cbb945225&quot;)</span>
+<span class="fc" id="L60">                .statedAxioms(PublicIds.of(&quot;4c314321-94ac-56bf-bc12-77768ea59836&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PHENOMENON))))</span>
+<span class="fc" id="L61">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8e1fe424-f7f9-4812-b381-03d8657e0e68&quot;))</span>
+<span class="fc" id="L62">                .semanticOn(PublicIds.of(&quot;8924df61-b461-457d-a84c-cac12611b672&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7649c404-299e-4090-9e8c-6cc235eb03fa&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L63">                .semanticOn(PublicIds.of(&quot;449763d9-282f-413a-87f3-76512cd8f997&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;08bdc9c6-1539-49f8-9cf4-0a71cc0e6b85&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L64">                .semanticOn(PublicIds.of(&quot;9ff8c075-dc38-4b57-a600-9da437b68185&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;08d6484e-9351-44de-8915-87970e957581&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L67">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

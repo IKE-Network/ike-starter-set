@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section71.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section71.java</span></div><h1>Section71.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Tinkar root concept&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section71 {
+
+    private Section71() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Boolean field&quot;, PublicIds.of(&quot;4229683e-8772-4936-abd5-edc5a180f4d1&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ecd6c008-6959-4a14-8e9e-750b3764537b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Boolean field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .statedAxioms(PublicIds.of(&quot;6d0719cc-28f0-414d-8512-0c2b9cbe217c&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field definition data type field&quot;, PublicIds.of(&quot;02273b53-fce7-4cbe-921d-2cff67e81ad5&quot;))))))</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5b5a4b60-13c0-5c2a-84cb-0798aea1afbc&quot;))</span>
+                ;
+
+<span class="fc" id="L25">        set.concept(&quot;STAMP versions set&quot;, PublicIds.of(&quot;edb90567-7822-4129-a406-b359b825f922&quot;)).at(inception)</span>
+<span class="fc" id="L26">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5e1ce34f-77ec-46ef-8f15-1c292e77c008&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP versions set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L27">                .statedAxioms(PublicIds.of(&quot;0afed167-46a1-4470-99bf-2bd6d907f3c5&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions set&quot;, PublicIds.of(&quot;54d670f1-234d-485a-a354-e1fa7eea1bf2&quot;))), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L28">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;fcab1c2e-35c9-5879-9f56-40667f046b04&quot;))</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Data Property Set Axioms&quot;, PublicIds.of(&quot;1402d311-0b4b-4014-81d2-e715c6696346&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;01e7bccd-a632-46e5-ab25-9ce3b0ee3113&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Data Property Set Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;a6335d66-ec82-5fc1-8b86-d06926a3a2b7&quot;))</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f7a7bcb6-afbe-4617-9a28-773907fd2a70&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Data Property Set Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .statedAxioms(PublicIds.of(&quot;e01e07cd-c205-4e9d-97db-2d61a115ae9d&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Logical set (IkeFoundation)&quot;)))))</span>
+                ;
+
+<span class="fc" id="L38">        set.concept(&quot;STAMP versions field&quot;, PublicIds.of(&quot;b8251bea-4248-4a46-8b4a-349500693a9f&quot;)).at(inception)</span>
+<span class="fc" id="L39">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;cb751cf0-8d3f-4357-9df8-b17928c4a85f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP versions field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L40">                .statedAxioms(PublicIds.of(&quot;0ee2cdc9-6cc0-40ac-91fd-de2b12c60aac&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions field&quot;, PublicIds.of(&quot;1a852426-422a-48db-a618-c906ac4c8e6c&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L41">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;af493b91-d6e7-5ae4-b1b9-6a36a6554c52&quot;))</span>
+                ;
+
+<span class="fc" id="L44">        set.concept(&quot;Status field&quot;, PublicIds.of(&quot;f2c79ebb-3095-44ea-831f-992aed48801f&quot;)).at(inception)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;63089ce4-4fd4-4d51-b0a1-1465434022c0&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Status field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .definition(&quot;&quot;&quot;</span>
+                        A concept field whose value is the status dimension of a STAMP — \
+                        the version's state (active, inactive, or otherwise) at the time \
+                        it was committed.&quot;&quot;&quot;)
+<span class="fc" id="L50">                .statedAxioms(PublicIds.of(&quot;a5c5ea2d-2d81-4275-ba18-ada4fb00448b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L51">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5de39a0b-0e4f-5d21-a97b-e9f454fea78a&quot;))</span>
+                ;
+
+<span class="fc" id="L54">        set.concept(&quot;Time field&quot;, PublicIds.of(&quot;15293325-c16b-4f2e-8109-5b22b3355bcd&quot;)).at(inception)</span>
+<span class="fc" id="L55">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a3b04559-ed05-4eb9-bba1-35102d20d071&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Time field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L56">                .statedAxioms(PublicIds.of(&quot;e5a8de94-8552-4837-9f2c-217a0e815984&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Instant field&quot;, PublicIds.of(&quot;e9bde1bc-aa72-430a-afe1-aa8aec8833b4&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;35233caa-f648-4baf-a1d1-ec4c6f125ae4&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Time field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;fac6a8f8-2d40-59db-9882-283aad90b647&quot;))</span>
+                ;
+
+<span class="fc" id="L61">        set.concept(&quot;Author field&quot;, PublicIds.of(&quot;a9210ad6-cc48-47df-86e5-2192d56704a6&quot;)).at(inception)</span>
+<span class="fc" id="L62">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a2849246-87e7-4cf1-8d24-22f09678ed72&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Author field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L63">                .definition(&quot;&quot;&quot;</span>
+                        A concept field whose value is the author dimension of a STAMP — \
+                        who committed the version.&quot;&quot;&quot;)
+<span class="fc" id="L66">                .statedAxioms(PublicIds.of(&quot;cc364868-eabe-4a93-8381-7bdf84bb3df6&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L67">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;c8de0a4f-4868-53b0-909d-a4603b997e13&quot;))</span>
+                ;
+
+<span class="fc" id="L70">        set.concept(&quot;Component versions field&quot;, PublicIds.of(&quot;1a852426-422a-48db-a618-c906ac4c8e6c&quot;)).at(inception)</span>
+<span class="fc" id="L71">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9cf3da8a-5214-4e20-9c77-198d1a7445a8&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component versions field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L72">                .statedAxioms(PublicIds.of(&quot;15d5da72-8e12-4345-8962-1d14f652834b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L73">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8e135ad6-6a8b-56b8-810b-6b45fbedddde&quot;))</span>
+                ;
+
+<span class="fc" id="L76">        set.concept(&quot;Module field&quot;, PublicIds.of(&quot;e6359a86-a1df-4721-8a1a-1f1f075ec3d9&quot;)).at(inception)</span>
+<span class="fc" id="L77">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1a3627bd-09ec-421c-9c37-1fc6fd07d82c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Module field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L78">                .definition(&quot;&quot;&quot;</span>
+                        A concept field whose value is the module dimension of a STAMP — \
+                        the module the version belongs to.&quot;&quot;&quot;)
+<span class="fc" id="L81">                .statedAxioms(PublicIds.of(&quot;90a4ace9-c128-435d-9060-79d8920e0bd8&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L82">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;239dce52-c668-57a1-8316-b1c8bd276d0c&quot;))</span>
+                ;
+
+<span class="fc" id="L85">        set.concept(&quot;Default Data Concept&quot;, PublicIds.of(&quot;4a32d2ad-baca-42b5-a432-4c4ae6431668&quot;)).at(inception)</span>
+<span class="fc" id="L86">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8bbc697e-f51a-40a0-8af9-396f3b040cdd&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Default Data Concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L87">                .statedAxioms(PublicIds.of(&quot;8f607d4f-ef9e-48eb-bb3f-b5a2806cf34b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Data Concept&quot;, PublicIds.of(&quot;ae7069d1-67fa-4470-a56f-0d24a8fcea83&quot;))))))</span>
+<span class="fc" id="L88">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;246e55f7-c359-42ce-ac5d-79fd4fb1f088&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Default Data Concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L89">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;bce173b8-a806-4a98-953b-6abad7090d11&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Default Data FQN&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L90">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;32c891e1-5a78-4922-a166-06400d088dea&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Default Data - Other Name&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+                // Three upstream placeholder seeds (a GB-dialect semantic 17c5b61f-e121-4c54-9eb3-e106f3983417,
+                // an identifier semantic 8b7b452c-6de1-47b8-81fb-2e4cf58ca213, and a US-dialect semantic
+                // 92548331-a460-4bdb-aa32-7162f2fb4f0d, all carrying Blank Concept placeholders) are
+                // deliberately not adopted here — pre-bronze editorial: the starter set is pre-release,
+                // so erroneous seeds are simply never created (Refs: IKE-Network/ike-issues#887).
+<span class="fc" id="L96">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;bfa087e5-5e6e-5032-b204-03b22b931672&quot;))</span>
+                ;
+
+<span class="fc" id="L99">        set.concept(&quot;Data Concept&quot;, PublicIds.of(&quot;ae7069d1-67fa-4470-a56f-0d24a8fcea83&quot;)).at(inception)</span>
+<span class="fc" id="L100">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;871e69f3-e844-4342-b56f-a22188feb129&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Data Concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L101">                .definition(&quot;&quot;&quot;</span>
+                        Groups concepts that represent data values and defaults — the \
+                        data-carrying side of the model, as distinct from Tinkar Model \
+                        concept's structural, self-descriptive side.&quot;&quot;&quot;)
+<span class="fc" id="L105">                .statedAxioms(PublicIds.of(&quot;137221ba-47a9-442a-a62a-dcdd20a0d50e&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODEL_CONCEPT))))</span>
+<span class="fc" id="L106">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;515bf9ec-954d-42d8-a5e7-727e05b51602&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Data Concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L107">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;ac8d42ee-be33-5254-833c-cb6f688ba7f3&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: purpose modernized to Set membership in place
+        // (IKE-Network/ike-issues#880, #894).
+<span class="fc" id="L112">        set.pattern(&quot;Tinkar base model component pattern&quot;, PublicIds.of(&quot;6070f6f5-893d-5144-adce-7d305c391cf9&quot;)).at(inception)</span>
+<span class="fc" id="L113">                .meaning(IkeTerm.STARTER_DATA_AUTHORING).purpose(set.conceptRef(&quot;Set membership (IkeFoundation)&quot;))</span>
+<span class="fc" id="L114">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;29922b82-0026-4fe1-9a3f-c81563b7ff94&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Tinkar base model component pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L115">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;0711a763-56f7-4dcf-b4c2-77bfc514f3dc&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L120">        set.pattern(&quot;Description Pattern&quot;, PublicIds.of(&quot;a4de0039-2625-5842-8a4c-d1ce6aebf021&quot;)).at(inception)</span>
+<span class="fc" id="L121">                .meaning(IkeTerm.DESCRIPTION_SEMANTIC).purpose(set.conceptRef(&quot;Description Attachment (IkeFoundation)&quot;)).field(IkeTerm.LANGUAGE_CONCEPT_NID_FOR_DESCRIPTION, IkeTerm.LANGUAGE, IkeTerm.COMPONENT_FIELD).field(IkeTerm.TEXT_FOR_DESCRIPTION, IkeTerm.DESCRIPTION, IkeTerm.STRING).field(IkeTerm.DESCRIPTION_CASE_SIGNIFICANCE, set.conceptRef(&quot;Case Sensitivity Rule (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(IkeTerm.DESCRIPTION_TYPE, set.conceptRef(&quot;Description Role (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L122">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2aaa8391-e4fe-4ce1-b574-25967bdcd3c8&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L123">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3142a96a-5ff8-4b08-98a9-0cf19ddc9345&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L124">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;361dad43-0903-4065-9067-a2e65a44ddc7&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Contains all metadata and human readable text that describes the concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L125">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;1f9f73e4-554b-406c-92bc-2092865a0ca4&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L130">        set.pattern(&quot;Concept field pattern&quot;, PublicIds.of(&quot;3e510cb9-1666-4676-9334-d288a56bf155&quot;)).at(inception)</span>
+<span class="fc" id="L131">                .meaning(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))).purpose(set.conceptRef(&quot;Chronicle Identity and History (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;Public ID field&quot;, PublicIds.of(&quot;196838c5-55f4-4e40-8618-b9ce60685c2f&quot;)), EntityProxy.Concept.make(&quot;Uniquely identify knowledge graph components&quot;, PublicIds.of(&quot;dde9a93d-250c-449b-bea0-ba1133d1387b&quot;)), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Concept versions field&quot;, PublicIds.of(&quot;3a08b5f1-f17e-4db5-8cf9-c6540f26f241&quot;)), EntityProxy.Concept.make(&quot;Concept versions set&quot;, PublicIds.of(&quot;806c7f9f-52f9-4b53-9758-122899b28a76&quot;)), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L132">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1cb3e89f-96de-4fc5-8205-5eecaede0c15&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept field pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L133">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;59e042f1-45ef-421f-bd14-77020233e576&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L134">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b112545c-6e2c-4340-81b6-a27801412f49&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L135">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;41886644-3879-41d1-b32e-ff281066b746&quot;))</span>
+<span class="fc" id="L136">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5871819d-2af0-4a4b-9d9e-757951c73e7e&quot;))</span>
+<span class="fc" id="L137">                .semanticOn(PublicIds.of(&quot;b112545c-6e2c-4340-81b6-a27801412f49&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;6e242243-5509-432f-aa29-71e02104a4c9&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L142">        set.pattern(&quot;STAMP pattern&quot;, PublicIds.of(&quot;9fd67fee-abf9-551d-9d0e-76a4b1e8b4ee&quot;)).at(inception)</span>
+<span class="fc" id="L143">                .meaning(IkeTerm.VERSION_PROPERTIES).purpose(set.conceptRef(&quot;Commit Provenance (IkeFoundation)&quot;)).field(IkeTerm.STATUS_VALUE, IkeTerm.STATUS_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(set.conceptRef(&quot;Time (IkeFoundation)&quot;), IkeTerm.TIME_FOR_VERSION, IkeTerm.LONG).field(set.conceptRef(&quot;Author&quot;), IkeTerm.AUTHOR_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(set.conceptRef(&quot;Module&quot;), IkeTerm.MODULE_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(set.conceptRef(&quot;Path&quot;), IkeTerm.PATH_FOR_VERSION, IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L144">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e7ae5ae3-9abd-49b3-bbb8-eccb4f406bb8&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L145">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;9614a691-a160-473d-b0d9-5af6084ceeee&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L150">        set.pattern(&quot;Semantic Chronology Pattern&quot;, PublicIds.of(&quot;5f0ad6ca-638e-4052-82b0-3f564ac99b3f&quot;)).at(inception)</span>
+<span class="fc" id="L151">                .meaning(EntityProxy.Concept.make(&quot;Semantic field&quot;, PublicIds.of(&quot;8b6c69d7-a5aa-4db2-bcea-8c7b2817b02f&quot;))).purpose(set.conceptRef(&quot;Chronicle Identity and History (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;Public ID field&quot;, PublicIds.of(&quot;196838c5-55f4-4e40-8618-b9ce60685c2f&quot;)), EntityProxy.Concept.make(&quot;Uniquely identify knowledge graph components&quot;, PublicIds.of(&quot;dde9a93d-250c-449b-bea0-ba1133d1387b&quot;)), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Semantic pattern field&quot;, PublicIds.of(&quot;19dd5dd3-1075-4113-a437-5f1f7c2d55bc&quot;)), set.conceptRef(&quot;Pattern Membership (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Semantic referenced component field&quot;, PublicIds.of(&quot;4111ba1e-c818-4c5d-9fed-34d07298d009&quot;)), set.conceptRef(&quot;Attachment Target (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Semantic versions set&quot;, PublicIds.of(&quot;4fd69aed-556f-4938-94cc-ea7ea707ccef&quot;)), set.conceptRef(&quot;Version History (IkeFoundation)&quot;), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L152">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;af8495f1-a122-4358-a214-a7af58b87ffd&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L153">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e84623f1-c991-4998-ad86-8623248bcdd4&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L154">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;7cdd578f-ee8c-43d6-9cec-3311c494e78e&quot;))</span>
+<span class="fc" id="L155">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;cdd3fe9d-90f0-44cb-b135-67d06a885ce1&quot;))</span>
+<span class="fc" id="L156">                .semanticOn(PublicIds.of(&quot;e84623f1-c991-4998-ad86-8623248bcdd4&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;77e86eec-0532-4f35-a5db-df2974a77bcf&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L161">        set.pattern(&quot;STAMP version field pattern&quot;, PublicIds.of(&quot;73c798cf-bc77-49a2-84f7-4c0f4bc4c012&quot;)).at(inception)</span>
+<span class="fc" id="L162">                .meaning(EntityProxy.Concept.make(&quot;STAMP versions field&quot;, PublicIds.of(&quot;b8251bea-4248-4a46-8b4a-349500693a9f&quot;))).purpose(set.conceptRef(&quot;Version Snapshot (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;STAMP field&quot;, PublicIds.of(&quot;3d821e64-a2ee-4414-8949-1bc92ef5d5b6&quot;)), set.conceptRef(&quot;Version Provenance (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Status field&quot;, PublicIds.of(&quot;f2c79ebb-3095-44ea-831f-992aed48801f&quot;)), IkeTerm.STATUS_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Time field&quot;, PublicIds.of(&quot;15293325-c16b-4f2e-8109-5b22b3355bcd&quot;)), IkeTerm.TIME_FOR_VERSION, IkeTerm.STRING).field(EntityProxy.Concept.make(&quot;Author field&quot;, PublicIds.of(&quot;a9210ad6-cc48-47df-86e5-2192d56704a6&quot;)), IkeTerm.AUTHOR_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Module field&quot;, PublicIds.of(&quot;e6359a86-a1df-4721-8a1a-1f1f075ec3d9&quot;)), IkeTerm.MODULE_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Path field&quot;, PublicIds.of(&quot;6622a391-e2e6-45a0-97e1-c58cd0184092&quot;)), IkeTerm.PATH_FOR_VERSION, IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L163">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fb0560ed-91a0-47d4-ae4f-b5294710d0d5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP version field pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L164">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;35b4a268-6aa1-40bf-8a5d-2da53cc945e5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L165">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;efb979c4-19fe-4503-8393-26f543e4a86a&quot;))</span>
+<span class="fc" id="L166">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;68a1db90-d8bf-478b-bb45-48ee01be6870&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L167">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;6b3b5585-14a9-4416-bb66-1c685dfe4686&quot;))</span>
+<span class="fc" id="L168">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;91153646-f74a-439a-b4e5-1d95c521fdb8&quot;))</span>
+<span class="fc" id="L169">                .semanticOn(PublicIds.of(&quot;68a1db90-d8bf-478b-bb45-48ee01be6870&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ff202c86-6b7b-4d03-bf73-2e8612e9dd19&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L174">        set.pattern(&quot;Component Chronology Pattern&quot;, PublicIds.of(&quot;c48db76d-5eb0-4ff5-84d0-5c3c4ec77767&quot;)).at(inception)</span>
+<span class="fc" id="L175">                .meaning(EntityProxy.Concept.make(&quot;Component field&quot;, PublicIds.of(&quot;8bd36a0c-d05d-46b7-a79a-d11477705cc1&quot;))).purpose(set.conceptRef(&quot;Chronicle Identity and History (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;Public ID field&quot;, PublicIds.of(&quot;196838c5-55f4-4e40-8618-b9ce60685c2f&quot;)), EntityProxy.Concept.make(&quot;Uniquely identify knowledge graph components&quot;, PublicIds.of(&quot;dde9a93d-250c-449b-bea0-ba1133d1387b&quot;)), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Component versions field&quot;, PublicIds.of(&quot;1a852426-422a-48db-a618-c906ac4c8e6c&quot;)), EntityProxy.Concept.make(&quot;Component versions set&quot;, PublicIds.of(&quot;54d670f1-234d-485a-a354-e1fa7eea1bf2&quot;)), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L176">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;0c46590f-ad05-4ca1-b61a-869b5e93ba10&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L177">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;603ff6ab-4960-4bc0-bb5a-d9602860c1fe&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L178">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;1cdc6348-d59e-4120-b488-a11d8c308bf1&quot;))</span>
+<span class="fc" id="L179">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;9e81b610-7620-4faa-a845-a694e122a3dd&quot;))</span>
+<span class="fc" id="L180">                .semanticOn(PublicIds.of(&quot;603ff6ab-4960-4bc0-bb5a-d9602860c1fe&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;973cce36-dc82-4f12-8197-5ec2714baac1&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L185">        set.pattern(&quot;Module origins pattern (SOLOR)&quot;, PublicIds.of(&quot;536b0ec4-4974-47ae-93a6-ae6c4d169780&quot;)).at(inception)</span>
+<span class="fc" id="L186">                .meaning(set.conceptRef(&quot;Originated Module (IkeFoundation)&quot;)).purpose(set.conceptRef(&quot;Module Lineage (IkeFoundation)&quot;)).field(IkeTerm.MODULE_ORIGINS, set.conceptRef(&quot;Origin Module Set (IkeFoundation)&quot;), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L187">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4a584a9a-b38d-4173-85c4-66658aa84cab&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Module origins pattern (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L188">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5535793d-49e3-4e40-954e-dc7d80a8660d&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Module origins pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L189">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;dc8ea392-f203-4a34-ba8e-20b524404fcc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern of module origins&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L190">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;4fb597d3-2c22-475c-8535-878896f91683&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L195">        set.pattern(&quot;Identifier Pattern&quot;, PublicIds.of(&quot;5d60e14b-c410-5172-9559-3c4253278ae2&quot;)).at(inception)</span>
+<span class="fc" id="L196">                .meaning(set.conceptRef(&quot;Identified Component (IkeFoundation)&quot;)).purpose(set.conceptRef(&quot;External Identity Mapping (IkeFoundation)&quot;)).field(IkeTerm.IDENTIFIER_SOURCE, set.conceptRef(&quot;Identifier Authority (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(IkeTerm.IDENTIFIER_VALUE, set.conceptRef(&quot;Identifier Text (IkeFoundation)&quot;), IkeTerm.STRING)</span>
+<span class="fc" id="L197">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f671a8b2-35d8-49d1-bacc-2aca84efe434&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Identifier Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L198">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;31c54b87-1ed0-444f-b395-ad1da8692f81&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Identifier Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L199">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6cb677cb-6c26-4d45-935c-840ccb0fcb79&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;An identifier pattern is used to identity a concept which contains the identifier source and the actual value.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L200">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;e96cccb9-690e-479a-bfd7-449e434b2fc2&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L205">        set.pattern(&quot;Inferred Navigation Pattern&quot;, PublicIds.of(&quot;a53cc42d-c07e-5934-96b3-2ede3264474e&quot;)).at(inception)</span>
+<span class="fc" id="L206">                .meaning(IkeTerm.IS_A).purpose(set.conceptRef(&quot;Taxonomy Navigation Cache (IkeFoundation)&quot;)).field(IkeTerm.RELATIONSHIP_DESTINATION, IkeTerm.IS_A, IkeTerm.COMPONENT_ID_SET_FIELD).field(IkeTerm.RELATIONSHIP_ORIGIN, IkeTerm.IS_A, IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L207">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;47656bb5-76dc-497f-bdc6-b612abeaf45b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Inferred Navigation Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L208">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9992ca7b-8bcf-4ba8-b194-5623eb2a0bed&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Inferred Navigation Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L209">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5b55743d-2f1d-4f6e-ba06-ac9d8d1d2dfa&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A pattern specifying the origins and destinations for concepts based on the inferred terminological axioms.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L210">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;0e710d55-ae62-44e1-8d92-06966b6a282c&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L215">        set.pattern(&quot;Stated Navigation Pattern&quot;, PublicIds.of(&quot;d02957d6-132d-5b3c-adba-505f5778d998&quot;)).at(inception)</span>
+<span class="fc" id="L216">                .meaning(IkeTerm.IS_A).purpose(set.conceptRef(&quot;Taxonomy Navigation Cache (IkeFoundation)&quot;)).field(IkeTerm.RELATIONSHIP_DESTINATION, IkeTerm.IS_A, IkeTerm.COMPONENT_ID_SET_FIELD).field(IkeTerm.RELATIONSHIP_ORIGIN, IkeTerm.IS_A, IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L217">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ef541837-419f-4477-9dd9-b037ba5f7470&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Stated Navigation Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L218">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e95fcc4a-638f-401d-8027-44ebb1bee7ee&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Stated Navigation Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L219">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f344e858-a5e4-4cf3-8fa8-8d50bdd4dd9f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A pattern specifying the origins and destinations for concepts based on the stated terminological axioms.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L220">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;64eda4d2-76c4-4176-83d1-f3719551cc9d&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L225">        set.pattern(&quot;Pattern Version Pattern&quot;, PublicIds.of(&quot;a90f8a4d-ae13-476b-98b8-814914f9704e&quot;)).at(inception)</span>
+<span class="fc" id="L226">                .meaning(EntityProxy.Concept.make(&quot;Pattern versions field&quot;, PublicIds.of(&quot;7b8ecbbf-55b4-41bc-acbf-51824e74446a&quot;))).purpose(set.conceptRef(&quot;Version Snapshot (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;STAMP field&quot;, PublicIds.of(&quot;3d821e64-a2ee-4414-8949-1bc92ef5d5b6&quot;)), set.conceptRef(&quot;Version Provenance (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Pattern meaning field&quot;, PublicIds.of(&quot;996d0023-a355-422f-a84d-16dda6ece1b0&quot;)), set.conceptRef(&quot;Meaning Declaration (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Pattern purpose field&quot;, PublicIds.of(&quot;352c821b-7a11-454c-a127-48ad3206573d&quot;)), set.conceptRef(&quot;Purpose Declaration (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Field definition field&quot;, PublicIds.of(&quot;14171f07-e74f-409a-b555-06b478818f76&quot;)), EntityProxy.Concept.make(&quot;Field definitions set&quot;, PublicIds.of(&quot;975de83e-ab99-4a9e-9051-4cbf310a2123&quot;)), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L227">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5bcd6ba3-de15-4f7c-978d-0d4cf6cbe23f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L228">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1e3baacc-aa99-490b-a6bb-2b83e819f7ae&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L229">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d0ce915d-a121-4a3c-9f07-dd198bbbfe0f&quot;))</span>
+<span class="fc" id="L230">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;a98f1d31-86e1-48d6-bda8-048dd626c152&quot;))</span>
+<span class="fc" id="L231">                .semanticOn(PublicIds.of(&quot;1e3baacc-aa99-490b-a6bb-2b83e819f7ae&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;4fcb49f2-2ed7-4665-b7c7-fc6d6877d78a&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L236">        set.pattern(&quot;STAMP Chronology Pattern&quot;, PublicIds.of(&quot;e16abc7a-2a7b-42af-b168-d77aec8116ea&quot;)).at(inception)</span>
+<span class="fc" id="L237">                .meaning(EntityProxy.Concept.make(&quot;STAMP field&quot;, PublicIds.of(&quot;3d821e64-a2ee-4414-8949-1bc92ef5d5b6&quot;))).purpose(set.conceptRef(&quot;Chronicle Identity and History (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;Public ID field&quot;, PublicIds.of(&quot;196838c5-55f4-4e40-8618-b9ce60685c2f&quot;)), EntityProxy.Concept.make(&quot;Uniquely identify knowledge graph components&quot;, PublicIds.of(&quot;dde9a93d-250c-449b-bea0-ba1133d1387b&quot;)), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;STAMP versions field&quot;, PublicIds.of(&quot;b8251bea-4248-4a46-8b4a-349500693a9f&quot;)), EntityProxy.Concept.make(&quot;STAMP versions set&quot;, PublicIds.of(&quot;edb90567-7822-4129-a406-b359b825f922&quot;)), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L238">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8183b8f7-b9b5-4de2-a103-b7ced1a37188&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L239">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1d4b2d6e-c003-456c-8c58-b8cdff3f4b4f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L240">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;44918826-bf99-4725-9731-306cf3d54437&quot;))</span>
+<span class="fc" id="L241">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5bb51d01-4d23-4f57-b2d6-8d463a008d39&quot;))</span>
+<span class="fc" id="L242">                .semanticOn(PublicIds.of(&quot;1d4b2d6e-c003-456c-8c58-b8cdff3f4b4f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;70297491-52ac-443f-a9a4-c6e13b95285e&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+<span class="fc" id="L245">        set.pattern(&quot;EL++ Stated Axioms Pattern&quot;, PublicIds.of(&quot;e813eb92-7d07-5035-8d43-e81249f5b36e&quot;)).at(inception)</span>
+<span class="fc" id="L246">                .meaning(IkeTerm.STATED_DEFINITION).purpose(IkeTerm.LOGICAL_DEFINITION).field(IkeTerm.EL_PLUS_PLUS_STATED_TERMINOLOGICAL_AXIOMS, IkeTerm.LOGICAL_DEFINITION, IkeTerm.DITREE_FIELD)</span>
+<span class="fc" id="L247">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e16fee31-d619-4646-9a52-d16ebea5106e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;EL++ Stated Axioms Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L248">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;194f2b92-7736-4301-9e03-14fb5d9cb13a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Stated definition pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L249">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;1ce1bcdf-7527-4f8e-9406-611b9c84ed69&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: purpose modernized to Set membership in place
+        // (IKE-Network/ike-issues#880, #894).
+<span class="fc" id="L254">        set.pattern(&quot;Version control path pattern&quot;, PublicIds.of(&quot;add1db57-72fe-53c8-a528-1614bda20ec6&quot;)).at(inception)</span>
+<span class="fc" id="L255">                .meaning(IkeTerm.PATH).purpose(set.conceptRef(&quot;Set membership (IkeFoundation)&quot;))</span>
+<span class="fc" id="L256">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e0647541-c6e4-4be9-9e0a-c66ed712c48e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Version control path pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L257">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;84b52fdd-1a1c-4cea-b8a8-6c0d48522d4d&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L262">        set.pattern(&quot;Comment pattern&quot;, PublicIds.of(&quot;3734fb0a-4c14-5831-9a61-4743af609e7a&quot;)).at(inception)</span>
+<span class="fc" id="L263">                .meaning(set.conceptRef(&quot;Subject of Commentary (IkeFoundation)&quot;)).purpose(set.conceptRef(&quot;Editorial Clarification (IkeFoundation)&quot;)).field(IkeTerm.COMMENT, set.conceptRef(&quot;Editorial Clarification (IkeFoundation)&quot;), IkeTerm.STRING)</span>
+<span class="fc" id="L264">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8e565bae-7a22-402e-bdbf-8f5ded827718&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Comment pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L265">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;723a2333-a9e4-43f7-928f-db76d2f96bd8&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Comment Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L266">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;1934fc0e-b2d0-4464-9967-9a5698db0f26&quot;))</span>
+                ;
+
+<span class="fc" id="L269">        set.pattern(&quot;EL++ Inferred Axioms Pattern&quot;, PublicIds.of(&quot;9f011812-15c9-5b1b-85f8-bb262bc1b2a2&quot;)).at(inception)</span>
+<span class="fc" id="L270">                .meaning(IkeTerm.INFERRED_DEFINITION).purpose(IkeTerm.LOGICAL_DEFINITION).field(IkeTerm.EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS, IkeTerm.LOGICAL_DEFINITION, IkeTerm.DITREE_FIELD)</span>
+<span class="fc" id="L271">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fbfc2edd-7ddf-41f3-9c72-c583f0d10c2f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;EL++ Inferred Axioms Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L272">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7b08e8f0-6879-4ef9-aa7c-c75ccda25b21&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Inferred definition pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L273">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;a23311f2-3b36-419f-9086-80c5dceecae6&quot;))</span>
+                ;
+
+<span class="fc" id="L276">        set.pattern(&quot;SOLOR concept assemblage (SOLOR)&quot;, PublicIds.of(&quot;d39b3ecd-9a80-5009-a8ac-0b947f95ca7c&quot;)).at(inception)</span>
+<span class="fc" id="L277">                .meaning(IkeTerm.CONCEPT_ASSEMBLAGE_FOR_LOGIC_COORDINATE).purpose(IkeTerm.MEMBERSHIP_SEMANTIC)</span>
+<span class="fc" id="L278">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6783af77-56e5-4bda-b11e-f980fa89b224&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;SOLOR concept assemblage (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L279">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;75dcfa58-6cb9-4f5a-9355-2cf161453d57&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L284">        set.pattern(&quot;OWL Axiom Syntax Pattern&quot;, PublicIds.of(&quot;c0ca180b-aae2-5fa1-9ab7-4a24f2dfe16b&quot;)).at(inception)</span>
+<span class="fc" id="L285">                .meaning(set.conceptRef(&quot;Axiomatized Component (IkeFoundation)&quot;)).purpose(set.conceptRef(&quot;Axiom Expression (IkeFoundation)&quot;)).field(IkeTerm.AXIOM_SYNTAX, IkeTerm.EXPRESS_AXIOM_SYNTAX, IkeTerm.STRING)</span>
+<span class="fc" id="L286">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ecf5c52f-957c-4164-8721-95477acbcefc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;OWL Axiom Syntax Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L287">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;97388687-b390-4d89-be6e-8c84a1244e56&quot;))</span>
+                ;
+
+<span class="fc" id="L290">        set.pattern(&quot;US Dialect Pattern&quot;, PublicIds.of(&quot;08f9112c-c041-56d3-b89b-63258f070074&quot;)).at(inception)</span>
+<span class="fc" id="L291">                .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY).purpose(IkeTerm.DESCRIPTION_SEMANTIC).field(IkeTerm.US_ENGLISH_DIALECT, IkeTerm.DESCRIPTION_ACCEPTABILITY, IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L292">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;413469a3-a340-4a55-8074-b44029765f93&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;US Dialect Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L293">                .definition(&quot;&quot;&quot;</span>
+                        Records whether a description is preferred or acceptable in the \
+                        United States English dialect — one field, that description's \
+                        acceptability for this dialect.&quot;&quot;&quot;)
+<span class="fc" id="L297">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3fe6d66f-bcad-4859-b513-68f924143f1f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;US Dialect Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L298">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;21b12d41-1083-4fd5-95ea-1aea8edf868f&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L303">        set.pattern(&quot;Pattern Chronology Pattern&quot;, PublicIds.of(&quot;5bc93adb-9d39-43fe-a7a4-1492245b7efb&quot;)).at(inception)</span>
+<span class="fc" id="L304">                .meaning(EntityProxy.Concept.make(&quot;Pattern field&quot;, PublicIds.of(&quot;751790c7-e1e4-42bc-b531-54c54bd6eebd&quot;))).purpose(set.conceptRef(&quot;Chronicle Identity and History (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;Public ID field&quot;, PublicIds.of(&quot;196838c5-55f4-4e40-8618-b9ce60685c2f&quot;)), EntityProxy.Concept.make(&quot;Uniquely identify knowledge graph components&quot;, PublicIds.of(&quot;dde9a93d-250c-449b-bea0-ba1133d1387b&quot;)), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Pattern versions field&quot;, PublicIds.of(&quot;7b8ecbbf-55b4-41bc-acbf-51824e74446a&quot;)), EntityProxy.Concept.make(&quot;Pattern versions set&quot;, PublicIds.of(&quot;a254ccee-ef02-4504-9645-0a2ed7af955d&quot;)), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L305">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;28a31a01-d0b8-4d3f-b05b-503249b7f0ff&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L306">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;c004d891-8c23-487c-a066-f0842483303f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern Chronology Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L307">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;f91d93a4-2f5d-4913-9ef8-85fd5194d0a7&quot;))</span>
+<span class="fc" id="L308">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d4cc73e7-fea9-44a0-be8e-91fa51fc78cf&quot;))</span>
+<span class="fc" id="L309">                .semanticOn(PublicIds.of(&quot;c004d891-8c23-487c-a066-f0842483303f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;c97ec6b6-559d-4e3b-a063-602379d2cefa&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L314">        set.pattern(&quot;Component Version Pattern&quot;, PublicIds.of(&quot;a38b7d2d-8fa5-4206-9185-a1af9f81be2c&quot;)).at(inception)</span>
+<span class="fc" id="L315">                .meaning(EntityProxy.Concept.make(&quot;Component versions field&quot;, PublicIds.of(&quot;1a852426-422a-48db-a618-c906ac4c8e6c&quot;))).purpose(set.conceptRef(&quot;Version Snapshot (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;STAMP field&quot;, PublicIds.of(&quot;3d821e64-a2ee-4414-8949-1bc92ef5d5b6&quot;)), set.conceptRef(&quot;Version Provenance (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L316">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d8593553-14ad-4ff2-9287-e3846dd03f67&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L317">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7ab5c487-7441-45d1-9f3b-e17e06f0b862&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L318">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;e113fc68-13ee-4cda-b833-2560faee6083&quot;))</span>
+<span class="fc" id="L319">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;774e9825-9844-45cd-856e-6a38f4491d9c&quot;))</span>
+<span class="fc" id="L320">                .semanticOn(PublicIds.of(&quot;7ab5c487-7441-45d1-9f3b-e17e06f0b862&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0b4d72a8-e8bf-43bd-9cfe-4f211af2f174&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #894), and the declared FQN diverges from the baseline
+        // artifact (was &quot;Sementic version field pattern&quot; — inherited typo, IKE-Network/ike-issues#892,
+        // #894; registered in DELIBERATELY_RENAMED_FQNS).
+<span class="fc" id="L327">        set.pattern(&quot;Semantic version field pattern&quot;, PublicIds.of(&quot;82f93e84-cee1-44bc-bb6d-4cc2a722048b&quot;)).at(inception)</span>
+<span class="fc" id="L328">                .meaning(EntityProxy.Concept.make(&quot;Semantic versions field&quot;, PublicIds.of(&quot;aeb73410-a679-4ea8-93fe-7c4785599778&quot;))).purpose(set.conceptRef(&quot;Version Snapshot (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;STAMP field&quot;, PublicIds.of(&quot;3d821e64-a2ee-4414-8949-1bc92ef5d5b6&quot;)), set.conceptRef(&quot;Version Provenance (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make(&quot;Semantic field field&quot;, PublicIds.of(&quot;f6572c76-b5c0-41da-99c0-4344694e7e3c&quot;)), EntityProxy.Concept.make(&quot;Semantic field fields set&quot;, PublicIds.of(&quot;8dcfc1a1-31f2-46f7-8247-0a17a6d7c6c0&quot;)), IkeTerm.COMPONENT_ID_SET_FIELD)</span>
+<span class="fc" id="L329">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d47fdb46-8ce0-4405-943a-b2420c7480f8&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic version field pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L330">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2caeaa6d-865c-4e61-8d48-c003487ee067&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic version field pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L331">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;515a0b47-f8d8-4a42-922a-20454a1c006b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L332">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;06418dca-6423-423e-ae9d-d9adeaac4c66&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L333">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;4a062843-1c52-4bf6-95a6-fef885ed8906&quot;))</span>
+<span class="fc" id="L334">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;be55e51f-c9ac-4151-8bf9-bd82179bd4b9&quot;))</span>
+<span class="fc" id="L335">                .semanticOn(PublicIds.of(&quot;06418dca-6423-423e-ae9d-d9adeaac4c66&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0119c1c6-2bc9-442f-b729-d5be78fd1083&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: purpose modernized to Set membership in place
+        // (IKE-Network/ike-issues#880, #894).
+<span class="fc" id="L340">        set.pattern(&quot;Komet base model component pattern&quot;, PublicIds.of(&quot;bbbbf1fe-00f0-55e0-a19c-6300dbaab9b2&quot;)).at(inception)</span>
+<span class="fc" id="L341">                .meaning(IkeTerm.STARTER_DATA_AUTHORING).purpose(set.conceptRef(&quot;Set membership (IkeFoundation)&quot;))</span>
+<span class="fc" id="L342">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d9c64ddb-5898-454e-be56-cab97d5dacef&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Komet base model component pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L343">                .semantic(IkeTerm.KOMET_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;542c82b0-8413-4452-8891-4d9b145eaaf4&quot;))</span>
+                ;
+
+<span class="fc" id="L346">        set.pattern(&quot;GB Dialect Pattern&quot;, PublicIds.of(&quot;561f817a-130e-5e56-984d-910e9991558c&quot;)).at(inception)</span>
+<span class="fc" id="L347">                .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY).purpose(IkeTerm.DESCRIPTION_SEMANTIC).field(IkeTerm.GB_ENGLISH_DIALECT, IkeTerm.DESCRIPTION_ACCEPTABILITY, IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L348">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;243fa7ea-ad48-4db4-9f96-ab4e9a17b7f5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;GB Dialect Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L349">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4577ee47-f68d-4b5b-a89e-d48333ba98f3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;GB Dialect Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L350">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5a7bbf87-20cf-4f40-a3cc-c8608b1f2b1a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Particular form of language specific form of English language, particular to Great Britain.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L351">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;59006b25-8452-473b-993b-2dbc255dba05&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L356">        set.pattern(&quot;Value Constraint Pattern&quot;, PublicIds.of(&quot;922697f7-36ba-4afc-9dd5-f29d54b0fdec&quot;)).at(inception)</span>
+<span class="fc" id="L357">                .meaning(IkeTerm.VALUE_CONSTRAINT).purpose(set.conceptRef(&quot;Numeric Value Restriction (IkeFoundation)&quot;)).field(IkeTerm.VALUE_CONSTRAINT_SOURCE, set.conceptRef(&quot;Reference Range Authority (IkeFoundation)&quot;), IkeTerm.CONCEPT_DATA_TYPE).field(IkeTerm.MINIMUM_VALUE_OPERATOR, IkeTerm.CONCRETE_DOMAIN_OPERATOR, IkeTerm.CONCEPT_DATA_TYPE).field(IkeTerm.REFERENCE_RANGE_MINIMUM, IkeTerm.REFERENCE_RANGE, IkeTerm.FLOAT_FIELD).field(IkeTerm.MAXIMUM_VALUE_OPERATOR, IkeTerm.CONCRETE_DOMAIN_OPERATOR, IkeTerm.COMPONENT_FIELD).field(IkeTerm.REFERENCE_RANGE_MAXIMUM, IkeTerm.REFERENCE_RANGE, IkeTerm.FLOAT_FIELD).field(IkeTerm.EXAMPLE_UCUM_UNITS, set.conceptRef(&quot;Unit Example (IkeFoundation)&quot;), IkeTerm.STRING)</span>
+<span class="fc" id="L358">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;24babbc7-557f-4271-b29d-7ca31a338eea&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Value Constraint Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L359">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a4793cd2-937a-49ef-9aee-af3e5a64fa4c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Value Constraint Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L360">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5bc300be-5c42-4ffb-9234-44883d1b62de&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A pattern specifying value constraint pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L361">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;90c93850-571a-4152-9350-6bab9f975478&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L366">        set.pattern(&quot;Path origins pattern (SOLOR)&quot;, PublicIds.of(&quot;70f89dd5-2cdb-59bb-bbaa-98527513547c&quot;)).at(inception)</span>
+<span class="fc" id="L367">                .meaning(set.conceptRef(&quot;Originated Path (IkeFoundation)&quot;)).purpose(set.conceptRef(&quot;Path Lineage (IkeFoundation)&quot;)).field(IkeTerm.PATH_CONCEPT, set.conceptRef(&quot;Branch Source (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD).field(IkeTerm.PATH_ORIGINS, set.conceptRef(&quot;Branch Point (IkeFoundation)&quot;), IkeTerm.INSTANT_LITERAL)</span>
+<span class="fc" id="L368">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;eb634a74-90cf-4193-9401-2b30880d5830&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path origins pattern (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L369">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;68842268-30f1-40b9-8d83-c435eb9f08b9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path origins pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L370">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;21a97ee2-f4c8-4936-802a-044bf0231307&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern of path origins&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L371">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;c260acbc-f1c6-4dc7-921f-d62105e3dd7a&quot;))</span>
+                ;
+
+        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
+        // (IKE-Network/ike-issues#880, #891, #894).
+<span class="fc" id="L376">        set.pattern(&quot;Concept Version Pattern&quot;, PublicIds.of(&quot;7943a5f1-538b-4fda-8acb-019e0bec125b&quot;)).at(inception)</span>
+<span class="fc" id="L377">                .meaning(EntityProxy.Concept.make(&quot;Concept versions field&quot;, PublicIds.of(&quot;3a08b5f1-f17e-4db5-8cf9-c6540f26f241&quot;))).purpose(set.conceptRef(&quot;Version Snapshot (IkeFoundation)&quot;)).field(EntityProxy.Concept.make(&quot;STAMP field&quot;, PublicIds.of(&quot;3d821e64-a2ee-4414-8949-1bc92ef5d5b6&quot;)), set.conceptRef(&quot;Version Provenance (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L378">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;bc7364c4-6b2a-4a87-8f2b-1d08630f88e3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L379">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e8fe8178-68d5-4619-8a2c-1debbb1fbfdf&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept Version Pattern&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L380">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5731a032-945f-4ad1-8f97-a4b2314915c9&quot;))</span>
+<span class="fc" id="L381">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;7eba42fd-7623-4734-abcd-4fc79fe0fbeb&quot;))</span>
+<span class="fc" id="L382">                .semanticOn(PublicIds.of(&quot;e8fe8178-68d5-4619-8a2c-1debbb1fbfdf&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;9ca7ec70-4245-4cd0-9280-4b193554cab1&quot;), IkeTerm.ACCEPTABLE)</span>
+                ;
+
+<span class="fc" id="L385">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section14.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section14.java</span></div><h1>Section14.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Concrete value operator&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section14 {
+
+    private Section14() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Concrete value operator (SOLOR)&quot;, PublicIds.of(&quot;843b0b55-8785-5544-93f6-581da9cf1ff3&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4aa2e872-1652-4baf-8c63-09c958512777&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concrete value operator (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3db6cc33-e2cb-458d-a2c7-85932d4bc39b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concrete value operator&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d885dabc-d314-4993-b171-7f0feba98c81&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Groups the comparison operators a concrete-domain axiom uses to relate a measured quantity to a literal bound: equal, less than, greater than, and their inclusive forms.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;a1acdfb0-d1d1-4cd5-a350-8dd7060dac60&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;843b0b55-8785-5544-93f6-581da9cf1ff3&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;8aa3eb09-fd9b-5265-8ca8-7a34385f9104&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5f3fdfa9-47dc-4e2c-a811-fc0626c1606d&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;4aa2e872-1652-4baf-8c63-09c958512777&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ef537b49-71df-4188-9ae4-f800464a4b24&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;3db6cc33-e2cb-458d-a2c7-85932d4bc39b&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a92c1170-c9c4-4d94-a24e-e28fe2e9ed72&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;d885dabc-d314-4993-b171-7f0feba98c81&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;dbf1729b-5066-4020-bff4-2bdd3e06b74a&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Less than or equal to (SOLOR)&quot;, PublicIds.of(&quot;6dfacbd5-8344-5794-9fda-bec95b2aa6c9&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;554dc4b1-b794-42b5-a3a6-499b40cdb6d9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Less than or equal to (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;069f33d8-6566-4fad-8b53-86bfaab12eeb&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Less than or equal to&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d361fd77-3753-4a3a-8755-180df64ab362&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The concrete-domain operator asserting that a value is at most the stated bound.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;05be9b16-9b77-4766-bb6a-f70b0fdb630a&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;6dfacbd5-8344-5794-9fda-bec95b2aa6c9&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;76bf837d-6b64-5259-9454-eb0f32ad86ee&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCRETE_DOMAIN_OPERATOR))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;24cbd41e-0eb9-46f2-aea3-9c6ac513fb70&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;554dc4b1-b794-42b5-a3a6-499b40cdb6d9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1540aac7-fe2a-4be6-850b-21c149f34d86&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;069f33d8-6566-4fad-8b53-86bfaab12eeb&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;5f00b974-3434-482c-8585-ab4de97ad3c5&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;d361fd77-3753-4a3a-8755-180df64ab362&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;cf61160d-d94a-434d-ba10-a5a40e91f3ef&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Minimum Value Operator (SOLOR)&quot;, PublicIds.of(&quot;ded98e42-f74a-4432-9ae7-01b94dc2fdea&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;cee1a664-de5f-45c3-a549-7777aeb18bfc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Minimum Value Operator (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9c99394e-2156-47a6-8435-a7bf37ef8849&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Minimum Value Operator; Minimum Domain Operator&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b7b53a01-207d-48f3-8f71-a70a89376313&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The Value Operator assigned to the Minimum Value in a Range&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;06832c67-f14d-40e5-b89f-6e91ce86c160&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;ded98e42-f74a-4432-9ae7-01b94dc2fdea&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;6ce65e64-7299-5baa-a64a-41599a3b13f1&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCRETE_DOMAIN_OPERATOR), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;ed446c46-62fe-4dc2-90b8-7b5c69827e32&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;cee1a664-de5f-45c3-a549-7777aeb18bfc&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;fabfd618-7fa0-4002-8707-769b448cea8a&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;9c99394e-2156-47a6-8435-a7bf37ef8849&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1359ed99-6cc4-4583-b766-e96829e401d3&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;b7b53a01-207d-48f3-8f71-a70a89376313&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;67bd8c11-1203-4d32-843d-9b01250faf3b&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">        set.concept(&quot;Less than (SOLOR)&quot;, PublicIds.of(&quot;6f96e8cf-5568-5e49-8a90-aa6c65125ee9&quot;)).at(inception)</span>
+<span class="fc" id="L56">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9fdc5a89-e340-4aec-942f-6b65a48df8a5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Less than (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b4de4ba3-9f97-43be-8ccd-8529551d375a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Less than&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ab7004b7-d20a-4d3a-80eb-6da33801a535&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The concrete-domain operator asserting that a value is strictly below the stated bound.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L59">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;689701c6-1413-47b7-b292-6eac0b22dd27&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;6f96e8cf-5568-5e49-8a90-aa6c65125ee9&quot;)</span>
+<span class="fc" id="L60">                .statedAxioms(PublicIds.of(&quot;6e5827ae-fc35-5039-a1fd-c2c1fc1d8929&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCRETE_DOMAIN_OPERATOR))))</span>
+<span class="fc" id="L61">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8f40b213-8bd5-459b-a09e-413014fed24c&quot;))</span>
+<span class="fc" id="L62">                .semanticOn(PublicIds.of(&quot;9fdc5a89-e340-4aec-942f-6b65a48df8a5&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b780d762-b76f-4718-8137-68ce5d1dfda7&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L63">                .semanticOn(PublicIds.of(&quot;b4de4ba3-9f97-43be-8ccd-8529551d375a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;2fcdf34c-8317-4b98-912e-c657cb994889&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L64">                .semanticOn(PublicIds.of(&quot;ab7004b7-d20a-4d3a-80eb-6da33801a535&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;da3a9fc6-9947-4811-ae70-6544aa130855&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L67">        set.concept(&quot;Greater than or equal to (SOLOR)&quot;, PublicIds.of(&quot;c1baba19-e918-5d2c-8fa4-b0ad93e03186&quot;)).at(inception)</span>
+<span class="fc" id="L68">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ec1f0576-6226-4e77-80ec-ac21f6b6fac5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Greater than or equal to (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L69">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;88ef8367-159c-4097-88eb-0bef93616c03&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Greater than or equal to&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L70">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6b15ddb8-70db-4eb4-af84-3aa659304b31&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The concrete-domain operator asserting that a value is at least the stated bound.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L71">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;ac45a513-6d56-4ca2-bac7-87200e56196b&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;c1baba19-e918-5d2c-8fa4-b0ad93e03186&quot;)</span>
+<span class="fc" id="L72">                .statedAxioms(PublicIds.of(&quot;6d1a8fd8-8a25-5ba5-8ff5-53908f9f14de&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCRETE_DOMAIN_OPERATOR))))</span>
+<span class="fc" id="L73">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;2e662e83-3ba2-4847-a871-81ca5f30c083&quot;))</span>
+<span class="fc" id="L74">                .semanticOn(PublicIds.of(&quot;ec1f0576-6226-4e77-80ec-ac21f6b6fac5&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b061b353-b705-42b3-8b62-608b08dbd42c&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L75">                .semanticOn(PublicIds.of(&quot;88ef8367-159c-4097-88eb-0bef93616c03&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;668990db-536c-4bb9-a3be-37faa4f2b5c7&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L76">                .semanticOn(PublicIds.of(&quot;6b15ddb8-70db-4eb4-af84-3aa659304b31&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;95a43a2f-70be-4778-ac23-34a99326566f&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L79">        set.concept(&quot;Maximum Value Operator (SOLOR)&quot;, PublicIds.of(&quot;7b8916ab-fd50-41df-8fc2-0b2a7a78be6d&quot;)).at(inception)</span>
+<span class="fc" id="L80">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e8837ba3-db2d-4b1b-ab2d-e8cf8e66ce1f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Maximum Value Operator (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L81">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;37574633-b1ec-4f6c-a578-ebb465fabb67&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Maximum Value Operator; Maximum Domain Operator&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L82">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;78ea5bf8-8bdc-4c27-ac91-d467a4479f1f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The Value Operator assigned to the Maximum Value in a Range&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L83">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;0ac45d50-14e8-4158-acdc-a531d8791c7e&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;7b8916ab-fd50-41df-8fc2-0b2a7a78be6d&quot;)</span>
+<span class="fc" id="L84">                .statedAxioms(PublicIds.of(&quot;67faa3fb-2c93-5d00-8213-71f07dc9f336&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCRETE_DOMAIN_OPERATOR), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L85">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;bd5fd7f7-7798-4c56-989d-9cdfd2700f0f&quot;))</span>
+<span class="fc" id="L86">                .semanticOn(PublicIds.of(&quot;e8837ba3-db2d-4b1b-ab2d-e8cf8e66ce1f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a012c0e1-f747-4d8b-b722-a242a339cc8d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L87">                .semanticOn(PublicIds.of(&quot;37574633-b1ec-4f6c-a578-ebb465fabb67&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;eaa24bdf-2142-49cf-9914-3364cbb1cb05&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L88">                .semanticOn(PublicIds.of(&quot;78ea5bf8-8bdc-4c27-ac91-d467a4479f1f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;cd212506-da63-4bcc-82c7-4ba1651eb5ce&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L91">        set.concept(&quot;Greater than (SOLOR)&quot;, PublicIds.of(&quot;65af466b-360c-58b2-8b7d-2854150029a8&quot;)).at(inception)</span>
+<span class="fc" id="L92">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;14085a4b-e115-4d21-8fa6-54562692b8ed&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Greater than (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L93">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;85a1f259-7466-48f8-9bd2-675ae881d4d1&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Greater than&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L94">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;893179a4-ce13-437b-8bd2-5350c3084a65&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The concrete-domain operator asserting that a value is strictly above the stated bound.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L95">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;d55cc418-72d1-4fb6-800d-6c7e61056759&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;65af466b-360c-58b2-8b7d-2854150029a8&quot;)</span>
+<span class="fc" id="L96">                .statedAxioms(PublicIds.of(&quot;12d6b35c-e416-5b50-a1b1-5a48666a9e72&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCRETE_DOMAIN_OPERATOR))))</span>
+<span class="fc" id="L97">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;ed892562-f795-4670-aee9-bff03ecf8da9&quot;))</span>
+<span class="fc" id="L98">                .semanticOn(PublicIds.of(&quot;14085a4b-e115-4d21-8fa6-54562692b8ed&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;23d1a52c-0d78-4857-9b40-e36950274438&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L99">                .semanticOn(PublicIds.of(&quot;85a1f259-7466-48f8-9bd2-675ae881d4d1&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;c50415e3-ff2e-4608-bd02-0f16c84a2487&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L100">                .semanticOn(PublicIds.of(&quot;893179a4-ce13-437b-8bd2-5350c3084a65&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f8445fdd-87de-4cc2-abe6-2ce5ac15e410&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L103">        set.concept(&quot;Equal to (SOLOR)&quot;, PublicIds.of(&quot;5c9b5844-1434-5111-83d5-cb7cb0be12d9&quot;)).at(inception)</span>
+<span class="fc" id="L104">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;352cc7ca-295e-4dbd-b174-11cbc45e007c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Equal to (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L105">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e9d1a3b6-51c0-47da-8ab7-b929bbe6c649&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Equal to&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L106">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;62183df2-2e8d-4418-aea4-90c69392e7b9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The concrete-domain operator asserting that a value matches the stated one exactly.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L107">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;e717d898-9a22-4435-9e55-17d01010ead3&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;5c9b5844-1434-5111-83d5-cb7cb0be12d9&quot;)</span>
+<span class="fc" id="L108">                .statedAxioms(PublicIds.of(&quot;1ed8087e-d205-5e03-92ac-b86e50115de2&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONCRETE_DOMAIN_OPERATOR))))</span>
+<span class="fc" id="L109">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;568c3f06-85a8-4846-bdc6-066f66239fa2&quot;))</span>
+<span class="fc" id="L110">                .semanticOn(PublicIds.of(&quot;352cc7ca-295e-4dbd-b174-11cbc45e007c&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ab408306-0013-4601-b4d4-33bd0828f144&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L111">                .semanticOn(PublicIds.of(&quot;e9d1a3b6-51c0-47da-8ab7-b929bbe6c649&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;29c1d1ad-a646-4bd0-83d2-f2b9ad9aa3e4&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L112">                .semanticOn(PublicIds.of(&quot;62183df2-2e8d-4418-aea4-90c69392e7b9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ba6f59ed-9a99-42ec-be46-3c7709a64b79&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L115">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section48.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section48.java</span></div><h1>Section48.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Transitive Feature&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section48 {
+
+    private Section48() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Transitive Feature (SOLOR)&quot;, PublicIds.of(&quot;53f866d0-fd61-5c85-a16c-150bd619a0ac&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8781d232-ce28-422c-9121-2c7d0df128ca&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Transitive Feature (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;89740fb9-ee44-439e-9ccb-e12942d6440a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Transitive Feature&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;c3fd417e-e68a-4bb5-82c1-8b8d211477dd&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Marks a property as transitive: if it relates the first to the second and the second to the third, it relates the first to the third.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;c799493c-2579-47c2-b439-78c72e5062e4&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;53f866d0-fd61-5c85-a16c-150bd619a0ac&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;70712d68-977d-517e-a64a-8cc555d42ea9&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Logical expression model (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;c24bb780-0931-42e8-a873-71cf6da39190&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;8781d232-ce28-422c-9121-2c7d0df128ca&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7bc7bdc4-5052-49f5-95d5-2113d080c5b5&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;89740fb9-ee44-439e-9ccb-e12942d6440a&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a65ce473-8e73-4f22-aa90-1c7f701f50c7&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;c3fd417e-e68a-4bb5-82c1-8b8d211477dd&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;749ae9bc-9a98-4382-a3de-2bf77962db0c&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FoundationSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">FoundationSet.java</span></div><h1>FoundationSet.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+
+/** Composes every ingested-foundation section onto the caller's KnowledgeSet (IKE-Network/ike-issues#872). */
+public final class FoundationSet {
+
+    private FoundationSet() {
+    }
+
+    public static void compose(KnowledgeSet set) {
+<span class="fc" id="L12">        Section1.compose(set);</span>
+<span class="fc" id="L13">        Section2.compose(set);</span>
+<span class="fc" id="L14">        Section3.compose(set);</span>
+<span class="fc" id="L15">        Section4.compose(set);</span>
+<span class="fc" id="L16">        Section5.compose(set);</span>
+<span class="fc" id="L17">        Section6.compose(set);</span>
+<span class="fc" id="L18">        Section7.compose(set);</span>
+<span class="fc" id="L19">        Section8.compose(set);</span>
+<span class="fc" id="L20">        Section9.compose(set);</span>
+<span class="fc" id="L21">        Section10.compose(set);</span>
+<span class="fc" id="L22">        Section11.compose(set);</span>
+<span class="fc" id="L23">        Section12.compose(set);</span>
+<span class="fc" id="L24">        Section13.compose(set);</span>
+<span class="fc" id="L25">        Section14.compose(set);</span>
+<span class="fc" id="L26">        Section15.compose(set);</span>
+<span class="fc" id="L27">        Section16.compose(set);</span>
+<span class="fc" id="L28">        Section17.compose(set);</span>
+<span class="fc" id="L29">        Section18.compose(set);</span>
+<span class="fc" id="L30">        Section19.compose(set);</span>
+<span class="fc" id="L31">        Section20.compose(set);</span>
+<span class="fc" id="L32">        Section21.compose(set);</span>
+<span class="fc" id="L33">        Section22.compose(set);</span>
+<span class="fc" id="L34">        Section23.compose(set);</span>
+<span class="fc" id="L35">        Section24.compose(set);</span>
+<span class="fc" id="L36">        Section25.compose(set);</span>
+<span class="fc" id="L37">        Section26.compose(set);</span>
+<span class="fc" id="L38">        Section27.compose(set);</span>
+<span class="fc" id="L39">        Section28.compose(set);</span>
+<span class="fc" id="L40">        Section29.compose(set);</span>
+<span class="fc" id="L41">        Section30.compose(set);</span>
+<span class="fc" id="L42">        Section31.compose(set);</span>
+<span class="fc" id="L43">        Section32.compose(set);</span>
+<span class="fc" id="L44">        Section33.compose(set);</span>
+<span class="fc" id="L45">        Section34.compose(set);</span>
+<span class="fc" id="L46">        Section35.compose(set);</span>
+<span class="fc" id="L47">        Section36.compose(set);</span>
+<span class="fc" id="L48">        Section37.compose(set);</span>
+<span class="fc" id="L49">        Section38.compose(set);</span>
+<span class="fc" id="L50">        Section39.compose(set);</span>
+<span class="fc" id="L51">        Section40.compose(set);</span>
+<span class="fc" id="L52">        Section41.compose(set);</span>
+<span class="fc" id="L53">        Section42.compose(set);</span>
+<span class="fc" id="L54">        Section43.compose(set);</span>
+<span class="fc" id="L55">        Section44.compose(set);</span>
+<span class="fc" id="L56">        Section45.compose(set);</span>
+<span class="fc" id="L57">        Section46.compose(set);</span>
+<span class="fc" id="L58">        Section47.compose(set);</span>
+<span class="fc" id="L59">        Section48.compose(set);</span>
+<span class="fc" id="L60">        Section49.compose(set);</span>
+<span class="fc" id="L61">        Section50.compose(set);</span>
+<span class="fc" id="L62">        Section51.compose(set);</span>
+<span class="fc" id="L63">        Section52.compose(set);</span>
+<span class="fc" id="L64">        Section53.compose(set);</span>
+<span class="fc" id="L65">        Section54.compose(set);</span>
+<span class="fc" id="L66">        Section55.compose(set);</span>
+<span class="fc" id="L67">        Section56.compose(set);</span>
+<span class="fc" id="L68">        Section57.compose(set);</span>
+<span class="fc" id="L69">        Section58.compose(set);</span>
+<span class="fc" id="L70">        Section59.compose(set);</span>
+<span class="fc" id="L71">        Section60.compose(set);</span>
+<span class="fc" id="L72">        Section61.compose(set);</span>
+<span class="fc" id="L73">        Section62.compose(set);</span>
+<span class="fc" id="L74">        Section63.compose(set);</span>
+<span class="fc" id="L75">        Section64.compose(set);</span>
+<span class="fc" id="L76">        Section65.compose(set);</span>
+<span class="fc" id="L77">        Section66.compose(set);</span>
+<span class="fc" id="L78">        Section67.compose(set);</span>
+<span class="fc" id="L79">        Section68.compose(set);</span>
+<span class="fc" id="L80">        Section69.compose(set);</span>
+<span class="fc" id="L81">        Section70.compose(set);</span>
+<span class="fc" id="L82">        Section71.compose(set);</span>
+<span class="fc" id="L83">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section45.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section45.java</span></div><h1>Section45.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Description case significance&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section45 {
+
+    private Section45() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Description case significance&quot;, PublicIds.of(&quot;c3dde9ea-b144-5f49-845a-20cc7d305250&quot;, &quot;f30b0312-2c85-3e65-8609-2d89f8437d34&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;60e732f5-b3b4-4ebd-b6ae-66122fc4e76c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description case significance&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a460e8cc-74a9-460e-87db-b340d763f15b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description case significance&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ea380386-a5cb-4e1e-9419-6097f0411e69&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Specifies how to handle the description text in terms of case sensitivity&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;0333c0ec-64a3-451c-b8e7-0ddddd0f1ad3&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;c3dde9ea-b144-5f49-845a-20cc7d305250&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;bc6d523f-953c-5e7a-b9ea-a30efcf8444b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5c68ac1a-d1a8-4e98-9675-8a7e019823af&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;60e732f5-b3b4-4ebd-b6ae-66122fc4e76c&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;fabc6be1-7725-4fc4-98fa-747d9c2b610d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;a460e8cc-74a9-460e-87db-b340d763f15b&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a5fb88df-61bb-4c56-b06c-5a207d4ee3c6&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;ea380386-a5cb-4e1e-9419-6097f0411e69&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;fbb721da-a7ba-483e-943b-d42432b33756&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Description not case sensitive&quot;, PublicIds.of(&quot;ecea41a2-f596-3d98-99d1-771b667e55b8&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fe9b4e5c-268b-40e8-b857-462b2e8aa6d0&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description not case sensitive&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;abdbd41a-4aa3-4a3f-8a89-86fd70760170&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Case insensitive&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b7456e5f-362a-4eda-a164-4fdd0c10c284&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Value which designate character as not sensitive for a given description&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;e27cd9cb-4a46-46cf-bff5-535212b4e2b8&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;ecea41a2-f596-3d98-99d1-771b667e55b8&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;fe4f7734-04dd-5bd6-ad8a-eabdd8679d31&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_CASE_SIGNIFICANCE))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;324592b9-7aa6-4aee-a6d1-1f19deb90f01&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;fe9b4e5c-268b-40e8-b857-462b2e8aa6d0&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;bfca1e09-3472-4126-8bd6-8d9bf4eadbad&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;abdbd41a-4aa3-4a3f-8a89-86fd70760170&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0ddbf988-cd8d-4e1d-a473-7e4373d138fe&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;b7456e5f-362a-4eda-a164-4fdd0c10c284&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;06b1e0ba-d7e7-4c8f-9bcc-ad3df7b7e81a&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Description case sensitive&quot;, PublicIds.of(&quot;0def37bc-7e1b-384b-a6a3-3e3ceee9c52e&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7b6f5f49-6f8c-47e2-8cb5-48ee23f012f7&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description case sensitive&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4d493cd4-cef0-4b29-9707-555d4f62cc14&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Case sensitive&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e5217e0c-ce8b-4370-a36b-40531d3808d1&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Assumes the description is dependent on capitalization&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;e3be2ad4-e110-4faf-9e5a-0b5453068ea4&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;0def37bc-7e1b-384b-a6a3-3e3ceee9c52e&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;7a8112d7-5964-52f3-a407-d1735df168ae&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_CASE_SIGNIFICANCE))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;774294cf-e427-4e7a-bf84-e7d5d635a2b1&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;7b6f5f49-6f8c-47e2-8cb5-48ee23f012f7&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7b6c8e87-8c62-48e7-ab30-9f300f597f77&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;4d493cd4-cef0-4b29-9707-555d4f62cc14&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;43d603ab-dd16-45b3-9a0a-fbe5c8f028ba&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;e5217e0c-ce8b-4370-a36b-40531d3808d1&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;94403a29-d0fd-4242-9b2f-d72f21b32f2b&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">        set.concept(&quot;Not Applicable (SOLOR)&quot;, PublicIds.of(&quot;d4cc29ae-c0c1-563a-985d-5165a768dd44&quot;)).at(inception)</span>
+<span class="fc" id="L56">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5222f597-204b-42d0-b8e2-e8a417e3b51f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Not Applicable (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;825ee6e6-806d-47a0-a697-c10dbcf0c493&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Not applicable&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;076f4b20-4e54-4128-8870-04c27b3332ac&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The case-significance value for text where case carries no meaning at all, so the question of sensitivity does not arise.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L59">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;63959872-7836-48b7-8ef2-0f6a0751f5c2&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;d4cc29ae-c0c1-563a-985d-5165a768dd44&quot;)</span>
+<span class="fc" id="L60">                .statedAxioms(PublicIds.of(&quot;b0f9be37-3958-5347-bac3-c34d463e2641&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_CASE_SIGNIFICANCE))))</span>
+<span class="fc" id="L61">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;ee6ca243-3edb-48a4-b2c9-872dfe64de14&quot;))</span>
+<span class="fc" id="L62">                .semanticOn(PublicIds.of(&quot;5222f597-204b-42d0-b8e2-e8a417e3b51f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;9f3adc3d-f469-487b-b3c5-b222cc3c7a98&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L63">                .semanticOn(PublicIds.of(&quot;825ee6e6-806d-47a0-a697-c10dbcf0c493&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;cc5c2d96-7d2e-4544-84aa-ad3b1aa77b7c&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L64">                .semanticOn(PublicIds.of(&quot;076f4b20-4e54-4128-8870-04c27b3332ac&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;8328dfbb-91e7-4ac1-a2ac-a8f493007698&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L67">        set.concept(&quot;Description initial character case sensitive (SOLOR)&quot;, PublicIds.of(&quot;17915e0d-ed38-3488-a35c-cda966db306a&quot;)).at(inception)</span>
+<span class="fc" id="L68">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;567778b4-65bb-4903-84b9-04035224f4c0&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description initial character case sensitive (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L69">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9e36698c-f5d7-45e6-8580-c12ad4e040b6&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Initial character case insensitive&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L70">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;e2a079ca-ca64-4cd0-8ff0-56a35dd0b614&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Value which designates initial character as sensitive for a given description&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L71">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;9dbdc2e1-e150-4568-9862-3935f8d0fc29&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;17915e0d-ed38-3488-a35c-cda966db306a&quot;)</span>
+<span class="fc" id="L72">                .statedAxioms(PublicIds.of(&quot;ff575434-9d01-583d-bd4e-326f681c37af&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.DESCRIPTION_CASE_SIGNIFICANCE))))</span>
+<span class="fc" id="L73">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;24b4046b-d34e-4d7e-99a6-0a043fa3bcdb&quot;))</span>
+<span class="fc" id="L74">                .semanticOn(PublicIds.of(&quot;567778b4-65bb-4903-84b9-04035224f4c0&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;79ccb9c2-f61e-478a-8c67-a062601c4cca&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L75">                .semanticOn(PublicIds.of(&quot;9e36698c-f5d7-45e6-8580-c12ad4e040b6&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0d027e24-b127-4db4-950e-1a78a6f44fe9&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L76">                .semanticOn(PublicIds.of(&quot;e2a079ca-ca64-4cd0-8ff0-56a35dd0b614&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ecfe20d9-ccca-42f6-8723-4e7ae6ff32ab&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L79">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

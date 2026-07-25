@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Ike.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">Ike.java</span></div><h1>Ike.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.common.service.PrimitiveData;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.entity.builder.Stamp;
+import dev.ikm.tinkar.terms.DefaultsTemplateTerm;
+import dev.ikm.tinkar.terms.EntityProxy;
+
+/**
+ * Ledger-internal handles for the IkeFoundation knowledge set: the session root and the
+ * reference handles the sections cite. Handles are conveniences over derived
+ * identities — never identity sources. Consumers use the generated bindings class
+ * (network.ike.foundation.ike.bindings.IkeTerms), not this one.
+ */
+public final class Ike {
+
+    private Ike() {
+    }
+
+    /**
+     * The knowledge set — its UUID is the permanent type-5 namespace from which
+     * every identity in the set derives. Never change it.
+     */
+<span class="fc" id="L40">    public static final KnowledgeSet SET = KnowledgeSet.of(&quot;d890e06f-ec35-429a-b541-d0ead19695e2&quot;);</span>
+
+    /** The set's module concept — the export dimension for this knowledge. */
+<span class="fc" id="L43">    public static final EntityProxy.Concept MODULE =</span>
+<span class="fc" id="L44">            SET.conceptRef(&quot;IkeFoundation module (IkeFoundation)&quot;);</span>
+
+    /** The set's root concept. */
+<span class="fc" id="L47">    public static final EntityProxy.Concept ROOT =</span>
+<span class="fc" id="L48">            SET.conceptRef(&quot;IkeFoundation root (IkeFoundation)&quot;);</span>
+
+    /**
+     * Community authorship: the IKE Network itself, attributed as author for
+     * content synthesized by tooling on the Network's behalf (starter-set
+     * ingest, IKE-Network/ike-issues#872) rather than by an individual editor
+     * or an ingested upstream source. Resolves the curator-identity TODO this
+     * scaffold generates by default.
+     */
+<span class="fc" id="L57">    public static final EntityProxy.Concept IKE_COMMUNITY =</span>
+<span class="fc" id="L58">            SET.conceptRef(&quot;IKE Community (IkeFoundation)&quot;);</span>
+
+    /**
+     * The pre-release set's ONE declared inception stamp (IKE-Network/ike-issues#894):
+     * every version this ledger writes outside the Defaults and templates module carries
+     * it. The time is the platform's named inception instant,
+     * {@link PrimitiveData#INCEPTION_EPOCH} — a sentinel that renders as the word
+     * &quot;Inception&quot; on every surface, timezone-proof — per KEC's ruling (2026-07-18): the
+     * set has not been released, so all of it is still at inception. Declaring the pair
+     * here, once, is what makes &quot;one set of inception stamps&quot; compiler-visible; a third
+     * IKE stamp cannot appear without editing this class, and the fidelity stamp-pair
+     * gate would refuse it. The path dimension is the Primordial path — the root
+     * all other paths fork from, where releases of this knowledge land, beginning
+     * with the inception release; after 1.0, editing moves to the Development path
+     * and never returns here at inception (IKE-Network/ike-issues#910).
+     */
+<span class="fc" id="L74">    public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,</span>
+            IKE_COMMUNITY, MODULE, IkeTerm.PRIMORDIAL_PATH);
+
+    /**
+     * The inception stamp's Defaults-and-templates-module counterpart, at the same
+     * declared time: the module dimension alone separates support content (the Data Type
+     * Defaults tuple, the worked Preferred Reviewer default) from the foundation
+     * terminology — see the live-and-die invariant on
+     * {@link DefaultsTemplateTerm#DEFAULTS_AND_TEMPLATES_MODULE}.
+     */
+<span class="fc" id="L84">    public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,</span>
+            IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
+            IkeTerm.PRIMORDIAL_PATH);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

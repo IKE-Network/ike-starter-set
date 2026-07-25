@@ -71,7 +71,7 @@ Reference: [Apache-2.0 on spdx.org](https://spdx.org/licenses/Apache-2.0.html)[3
 | `dev.ikm.tinkar` | `tinkar-schema` | `1.43.0-chronology-builder-SNAPSHOT` |
 | `dev.ikm.tinkar.ext.owl` | `owl-extension` | `1.127.2-chronology-builder-SNAPSHOT` |
 | `network.ike` | `ike-base-parent` | `15` |
-| `network.ike.docs` | `ike-doc-resources` | `90-SNAPSHOT` |
+| `network.ike.docs` | `ike-doc-resources` | `94` |
 | `network.ike.foundation` | `ike-changeset` | `1-chronology-builder-SNAPSHOT` |
 | `network.ike.foundation` | `ike-terms` | `1-chronology-builder-SNAPSHOT` |
 | `network.ike.knowledge` | `ike-knowledge-provider` | `1-chronology-builder-SNAPSHOT` |

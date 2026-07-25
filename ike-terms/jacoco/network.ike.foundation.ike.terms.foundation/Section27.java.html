@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section27.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section27.java</span></div><h1>Section27.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Path coordinate properties&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section27 {
+
+    private Section27() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Path coordinate properties (SOLOR)&quot;, PublicIds.of(&quot;ec41e427-f009-5e45-a643-6dc658d63d83&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d3735b57-99c4-48bc-a31d-8ec8b906cd7b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path coordinate properties (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6a04739d-7b32-449b-84a9-fc152f1cbade&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path coordinate properties&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;df88b64c-e9a5-4dd3-b2df-eeac997e84d3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Character or attribute of coordinates referring to a series of connected points, that form a shape or trajectory&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;85a9bfe2-98fa-4c27-8e5d-ddd2d8762cd8&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;ec41e427-f009-5e45-a643-6dc658d63d83&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;ab05dab4-dcc4-54a8-8119-2742d22979d8&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;View coordinate model (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;e5efe32a-81ed-4cf5-9644-8bea2b17e079&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;d3735b57-99c4-48bc-a31d-8ec8b906cd7b&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b7410d9b-2219-4f43-b5d4-3cefa5164490&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;6a04739d-7b32-449b-84a9-fc152f1cbade&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;74625458-94b9-4a0e-828b-9c3592024c6d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;df88b64c-e9a5-4dd3-b2df-eeac997e84d3&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7bebe022-f48d-4c80-9559-b67afc3ad381&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Path coordinate name (SOLOR)&quot;, PublicIds.of(&quot;a293a9a0-eb1e-5418-83c7-bec376b62245&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b9be8faf-64ab-424f-9ec9-045c494c871e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path coordinate name (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;30dffcd7-96cd-4292-9466-babed1404a75&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path coordinate name&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;bee1dc71-703e-4974-b52c-5edd942e5129&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The field naming a stored path coordinate, so a surface can present saved coordinates by name.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;b4ed2349-4f48-485f-82cf-b1f097f1b7f7&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;a293a9a0-eb1e-5418-83c7-bec376b62245&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;d99992dd-5910-5904-be2d-d68266d323bd&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH_COORDINATE_PROPERTIES))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;77bd1c53-216d-43f5-8999-7cbce30d3d94&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;b9be8faf-64ab-424f-9ec9-045c494c871e&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;5922fc9e-d1f8-4824-b811-48ea82638ff1&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;30dffcd7-96cd-4292-9466-babed1404a75&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ab8f4e2c-4fe7-470e-8f19-232f8edf3f18&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;bee1dc71-703e-4974-b52c-5edd942e5129&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f4b65d75-637f-4b4e-bd5c-a3a945584f19&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Path origins (SOLOR)&quot;, PublicIds.of(&quot;6e6a112e-7d8c-53c7-aaf1-c46e2d69743c&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8198f0c0-c544-4b2d-bc3c-03561b082680&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path origins (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;81065d85-7058-4cdc-b545-3629317918df&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path origins&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+                // Definition text diverges from the baseline artifact: label echo replaced in place (IKE-Network/ike-issues#892, #894).
+<span class="fc" id="L47">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8218d3af-ef97-4717-8f68-2bc3ed36c335&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A path's own origin record — the path-coordinate property saying where a path branched from. As the Path origins pattern's second field meaning it names the origin instant that record fixes: the branch point up to which the origin path's versions are visible.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L48">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;b7f3e045-e847-48c2-b95a-dc563e6d6523&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;6e6a112e-7d8c-53c7-aaf1-c46e2d69743c&quot;)</span>
+<span class="fc" id="L49">                .statedAxioms(PublicIds.of(&quot;623faf95-7376-54d2-92e3-3ead825748eb&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Provenance model (IkeFoundation)&quot;)), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L50">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;7f48d9d0-53ee-481e-944e-0033c193e212&quot;))</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;8198f0c0-c544-4b2d-bc3c-03561b082680&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;c3bf143b-564d-4e1b-86aa-a128df2739e0&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;81065d85-7058-4cdc-b545-3629317918df&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f9be5cfa-8489-4f97-a63e-7c87294239ce&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L53">                .semanticOn(PublicIds.of(&quot;8218d3af-ef97-4717-8f68-2bc3ed36c335&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;e298ba26-5a83-456e-9930-fe99bc712c86&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L56">        set.concept(&quot;Promotion Path for Edit Coordinate (SOLOR)&quot;, PublicIds.of(&quot;db124d3b-c1bb-530e-8fd4-577f570355be&quot;)).at(inception)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3b7a20b5-fbc8-4e9d-b96e-32e601cef195&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Promotion Path for Edit Coordinate (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a1499e3c-0160-4687-b11d-babbdf321733&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Promotion Path for Edit Coordinate&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L59">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;700a0174-51a0-461f-a357-2d87171ce877&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The edit-coordinate dimension naming the path content is promoted to when moving between paths, such as sandbox work promoted to a mainline path.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L60">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;1b6f1823-d229-4e4d-b8c4-ce3ee75264a7&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;db124d3b-c1bb-530e-8fd4-577f570355be&quot;)</span>
+<span class="fc" id="L61">                .statedAxioms(PublicIds.of(&quot;9d4392be-075f-580b-a93d-7ec8d2cef73c&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PATH_COORDINATE_PROPERTIES))))</span>
+<span class="fc" id="L62">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5531a302-979e-4450-a893-cc22a5ef075a&quot;))</span>
+<span class="fc" id="L63">                .semanticOn(PublicIds.of(&quot;3b7a20b5-fbc8-4e9d-b96e-32e601cef195&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;85be8472-3d70-43e4-aa34-3a82119cf00c&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L64">                .semanticOn(PublicIds.of(&quot;a1499e3c-0160-4687-b11d-babbdf321733&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;feb17f17-c26d-410a-a806-b34a3ad961af&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L65">                .semanticOn(PublicIds.of(&quot;700a0174-51a0-461f-a357-2d87171ce877&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;71100371-a40c-4776-9394-e8431aa934b0&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L68">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

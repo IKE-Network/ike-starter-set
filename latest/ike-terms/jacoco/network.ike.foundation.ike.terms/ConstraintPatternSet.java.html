@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConstraintPatternSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">ConstraintPatternSet.java</span></div><h1>ConstraintPatternSet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+
+/**
+ * The field constraint apparatus (IKE-Network/ike-issues#890, refining the #880
+ * original): a KB-native way to constrain a pattern field's legal values, with the
+ * rules authored as plain semantic data. The organizing rule is that &lt;b&gt;the pattern
+ * axis is the parameter shape&lt;/b&gt; — one constraint pattern per parameter tuple, never
+ * one per datatype, and never a union-by-sentinel (a kind or relation field
+ * discriminates within a shape only when every field stays meaningful for every kind).
+ * Two shapes exist today:
+ * &lt;ul&gt;
+ *   &lt;li&gt;&lt;b&gt;Taxonomy Field Constraint Pattern&lt;/b&gt; — (Constrained field, Constraint
+ *       kind, Constraint anchor concept). Intensional: the legal set is derived from
+ *       the taxonomy under the checking view, the kind selecting the
+ *       {@code NavigationCalculator} walk. The four kinds — kind-of, descendant,
+ *       leaf-descendant, immediate-child — share this identical tuple, so one pattern
+ *       carries them all with the kind as a genuine parameter.&lt;/li&gt;
+ *   &lt;li&gt;&lt;b&gt;Value-set Field Constraint Pattern&lt;/b&gt; — (Constrained field, Value-set
+ *       pattern, Value-set field, Member match relation). Extensional and
+ *       datatype-universal: the member type is declared by the source pattern's named
+ *       Model Feature, so this one shape yields closed enumerations of any field
+ *       datatype. How a value must match a member is a concept from the closed Member
+ *       match relation taxonomy below; evaluation dispatch stays code-sovereign via
+ *       the {@code MemberMatchEvaluator} service seam whose {@code ConstraintTerm}
+ *       bindings restate these identities in code (IKE-Network/ike-issues#889),
+ *       admission gated by the bijection test in {@code LedgerGatesIT}.&lt;/li&gt;
+ * &lt;/ul&gt;
+ * A constraint semantic attaches to the &lt;b&gt;pattern being constrained&lt;/b&gt; (its
+ * referencedComponent) and is first-class content of that pattern: no module, no
+ * exclusion, declared descriptive identities, retrieval by enumeration, and
+ * conjunctive composition — each semantic is one conjunct, and all must hold. Every
+ * field of every constraint semantic is meaningful — no Blank Concept sentinel
+ * anywhere in this story.
+ * &lt;p&gt;
+ * Fresh IKE-local identity throughout: the closest existing concepts,
+ * {@code TinkarTerm.CONCEPT_CONSTRAINTS} and {@code TinkarTerm.ASSEMBLAGE_FOR_CONSTRAINT},
+ * are dead SOLOR stubs with zero live references anywhere and no documented semantics
+ * of their own, so — unlike {@link NarrativeContentSet}'s reuse of rich-surface's
+ * Prose element pattern — there is no established meaning to confidently adopt here.
+ * Reading and enforcing these constraints (e.g. in Komet's field editors) is
+ * explicitly out of scope: this file mints the representation, the worked examples,
+ * the apparatus's own bootstrap self-constraints, and the apparatus koncepts' curated
+ * narratives for the guide's Field Constraints chapter (IKE-Network/ike-issues#888),
+ * which complement the Constrained Pattern hub narrative in
+ * {@link NarrativeContentSet}.
+ */
+final class ConstraintPatternSet {
+
+    private ConstraintPatternSet() {
+    }
+
+    /**
+     * Composes this section's declarations into the session.
+     *
+     * @param set the knowledge set (the session)
+     */
+    static void compose(KnowledgeSet set) {
+        // The one declared inception stamp of the pre-release set: every scope of every
+        // file authors at this time, so ledger chronology (non-decreasing stamp times per
+        // component) holds trivially (IKE-Network/ike-issues#894).
+<span class="fc" id="L81">        ActiveStamp inception = Ike.INCEPTION;</span>
+
+        // ── Taxonomy field constraint kind + its 4 values ───────────────
+        // The four taxonomy-relative kinds share one identical parameter tuple, so one
+        // pattern carries them all with the kind as a genuine parameter. Value-set
+        // membership carries a different tuple entirely, so it is a pattern of its own
+        // below — a shape, never a fifth kind (IKE-Network/ike-issues#890).
+<span class="fc" id="L88">        set.concept(&quot;Taxonomy field constraint kind (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L89">                .synonym(&quot;Taxonomy field constraint kind&quot;)</span>
+<span class="fc" id="L90">                .definition(&quot;The kind of taxonomy-relative rule a Taxonomy Field Constraint&quot;</span>
+                        + &quot; Pattern semantic expresses: which concepts are legal values for&quot;
+                        + &quot; the constrained pattern field, derived from the taxonomy under&quot;
+                        + &quot; the checking view.&quot;)
+<span class="fc" id="L94">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;));</span>
+<span class="fc" id="L95">        EntityProxy.Concept taxonomyKind = set.conceptRef(&quot;Taxonomy field constraint kind (IkeFoundation)&quot;);</span>
+
+<span class="fc" id="L97">        set.concept(&quot;Kind-of field constraint (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L98">                .synonym(&quot;Kind-of field constraint&quot;)</span>
+<span class="fc" id="L99">                .definition(&quot;Legal values are the anchor concept itself plus every one of its&quot;</span>
+                        + &quot; descendants (self included) — Tinkar's own \&quot;kind of\&quot; relation.&quot;)
+<span class="fc" id="L101">                .isA(taxonomyKind);</span>
+
+<span class="fc" id="L103">        set.concept(&quot;Descendant field constraint (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L104">                .synonym(&quot;Descendant field constraint&quot;)</span>
+<span class="fc" id="L105">                .definition(&quot;Legal values are every descendant of the anchor concept, not&quot;</span>
+                        + &quot; including the anchor concept itself.&quot;)
+<span class="fc" id="L107">                .isA(taxonomyKind);</span>
+
+<span class="fc" id="L109">        set.concept(&quot;Leaf descendant field constraint (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L110">                .synonym(&quot;Leaf descendant field constraint&quot;)</span>
+<span class="fc" id="L111">                .definition(&quot;Legal values are the anchor concept's leaf descendants only —&quot;</span>
+                        + &quot; descendants with no children of their own — excluding grouping&quot;
+                        + &quot; concepts that exist only to organize other concepts.&quot;)
+<span class="fc" id="L114">                .isA(taxonomyKind);</span>
+
+<span class="fc" id="L116">        set.concept(&quot;Immediate child field constraint (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L117">                .synonym(&quot;Immediate child field constraint&quot;)</span>
+<span class="fc" id="L118">                .definition(&quot;Legal values are the anchor concept's direct children only, not&quot;</span>
+                        + &quot; deeper descendants.&quot;)
+<span class="fc" id="L120">                .isA(taxonomyKind);</span>
+
+        // ── The constraint patterns' field-meaning concepts ─────────────
+<span class="fc" id="L123">        set.concept(&quot;Constrained field (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L124">                .synonym(&quot;Constrained field&quot;)</span>
+<span class="fc" id="L125">                .definition(&quot;The field-meaning concept of the pattern field this constraint&quot;</span>
+                        + &quot; governs.&quot;)
+<span class="fc" id="L127">                .isA(set.conceptRef(&quot;Concept field&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L129">        set.concept(&quot;Constraint kind (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L130">                .synonym(&quot;Constraint kind&quot;)</span>
+<span class="fc" id="L131">                .definition(&quot;Which Taxonomy field constraint kind this constraint semantic&quot;</span>
+                        + &quot; expresses.&quot;)
+<span class="fc" id="L133">                .isA(set.conceptRef(&quot;Concept field&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L135">        set.concept(&quot;Constraint anchor concept (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L136">                .synonym(&quot;Constraint anchor concept&quot;)</span>
+<span class="fc" id="L137">                .definition(&quot;The concept a kind-of, descendant, leaf-descendant, or&quot;</span>
+                        + &quot; immediate-child constraint is relative to.&quot;)
+<span class="fc" id="L139">                .isA(set.conceptRef(&quot;Concept field&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L141">        set.concept(&quot;Value-set pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L142">                .synonym(&quot;Value-set pattern&quot;)</span>
+<span class="fc" id="L143">                .definition(&quot;For a value-set constraint, the pattern whose active semantics&quot;</span>
+                        + &quot; enumerate the legal values.&quot;)
+<span class="fc" id="L145">                .isA(set.conceptRef(&quot;Concept field&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L147">        set.concept(&quot;Value-set field (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L148">                .synonym(&quot;Value-set field&quot;)</span>
+<span class="fc" id="L149">                .definition(&quot;For a value-set constraint, the Model Feature of the value-set&quot;</span>
+                        + &quot; pattern that holds the member value, named by its meaning&quot;
+                        + &quot; concept: a declared field's meaning, or the value-set pattern's&quot;
+                        + &quot; referenced-component meaning when the members are the referenced&quot;
+                        + &quot; components themselves (a membership pattern) — disambiguating&quot;
+                        + &quot; when that pattern carries other fields, such as a sort order.&quot;)
+<span class="fc" id="L155">                .isA(set.conceptRef(&quot;Concept field&quot;), IkeTerm.MEANING);</span>
+
+        // ── The member match relation taxonomy ──────────────────────────
+        // How a value must match an enumerated member is a concept, never invented
+        // syntax. Evaluation dispatch is code-sovereign: each MemberMatchEvaluator
+        // implementation declares its relation concept identity in code (code points at
+        // knowledge, never knowledge at operative code pointers), and tinkar-core's
+        // ConstraintTerm restates these two birth-FQN derivations against this set's
+        // namespace, so the mints below are exactly the identities code declares
+        // (IKE-Network/ike-issues#889). The relation parent concept below is also the
+        // Value-set Field Constraint Pattern's fourth field MEANING — the field's value
+        // IS a member match relation.
+<span class="fc" id="L167">        set.concept(&quot;Member match relation (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L168">                .synonym(&quot;Member match relation&quot;)</span>
+<span class="fc" id="L169">                .definition(&quot;The closed taxonomy of relations a Value-set Field Constraint&quot;</span>
+                        + &quot; Pattern semantic can require between a constrained field's value&quot;
+                        + &quot; and an enumerated member. Relations are directed and named in&quot;
+                        + &quot; full, and a relation is admitted only when its evaluator ships&quot;
+                        + &quot; in code: relation concepts correspond one-to-one with the&quot;
+                        + &quot; service-loaded evaluators — the bijection gate.&quot;)
+<span class="fc" id="L175">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.MEANING)</span>
+                // Curated narrative (IKE-Network/ike-issues#888): domain description OF
+                // this koncept, complementing the Constrained Pattern hub narrative
+                // (NarrativeContentSet).
+<span class="fc" id="L179">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L180">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: MemberMatchRelation (Field Constraints — The Member&quot;
+                                        + &quot; Match Relation)&quot;)), &quot;&quot;&quot;
+                        k:MemberMatchRelation[] is the closed taxonomy of relations a
+                        k:ValueSetFieldConstraintPattern[] semantic can require between a constrained
+                        field's value and an enumerated member — and it is also that pattern's fourth
+                        field's own meaning: the field's value *is* a relation from this taxonomy. How
+                        a value must match a member is a concept, never invented syntax, and relations
+                        are directed and named in full — a value containing a member fragment and a
+                        value contained in a member would be different relations, each with its own
+                        name.
+
+                        Admission is evaluator-backed. Dispatch stays code-sovereign through a typed
+                        `MemberMatchEvaluator` service seam: each evaluator declares in code which
+                        relation concept it evaluates — code points at knowledge, never knowledge at
+                        operative code pointers, so imported content can never redirect what
+                        constraint checking executes — and each evaluator states its own operand type
+                        discipline, since what &quot;the types must agree&quot; means is itself
+                        relation-relative. The admission gate is a bijection, enforced by test: the
+                        relations — this concept's children under the checking view — correspond
+                        one-to-one with the service-loaded evaluators, so minting a relation without
+                        shipping its evaluator fails, and shipping an evaluator without minting its
+                        relation fails.&quot;&quot;&quot;);
+<span class="fc" id="L203">        EntityProxy.Concept memberMatchRelation = set.conceptRef(&quot;Member match relation (IkeFoundation)&quot;);</span>
+
+<span class="fc" id="L205">        set.concept(&quot;Equal match relation (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L206">                .synonym(&quot;Equal&quot;)</span>
+<span class="fc" id="L207">                .definition(&quot;A value matches a member when they are equal by the member&quot;</span>
+                        + &quot; datatype's natural equality: entity references by identity,&quot;
+                        + &quot; scalars by value, byte arrays by content, and Decimal by numeric&quot;
+                        + &quot; equality (compareTo == 0 — an identical-representation rule&quot;
+                        + &quot; would be its own relation). Float compares by IEEE semantics, so&quot;
+                        + &quot; NaN matches nothing — keeping the loud-defaults coherence: an&quot;
+                        + &quot; unrevised NaN default fails its constraint until revised. Graph&quot;
+                        + &quot; types are outside this relation's operand conformance — graph&quot;
+                        + &quot; enumerations await the isomorphic relations.&quot;)
+<span class="fc" id="L216">                .isA(memberMatchRelation)</span>
+                // Curated narrative (IKE-Network/ike-issues#888) — see the parent
+                // relation's note above.
+<span class="fc" id="L219">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L220">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: EqualMatchRelation (Field Constraints — The Member&quot;
+                                        + &quot; Match Relation)&quot;)), &quot;&quot;&quot;
+                        k:EqualMatchRelation[] — Equal, the sole relation admitted today — matches a
+                        value to a member when they are equal by the member datatype's natural
+                        equality, with the rulings made deliberately, datatype by datatype: entity
+                        references match by identity, whatever facade form carries them; String,
+                        Boolean, Integer, Long, and Instant match by value; byte arrays by content;
+                        arrays elementwise; id lists by order-sensitive element identity and id sets
+                        by membership. Decimal matches by numeric equality — `compareTo == 0`, so 2.5
+                        admits 2.50 — an identical-representation rule would be its own relation,
+                        never an ambiguity inside this one. Float compares by IEEE semantics, so `NaN`
+                        matches nothing, itself included — keeping the loud-defaults coherence: an
+                        unrevised `NaN` default fails its constraint until someone chooses a real
+                        value.
+
+                        Graph types sit outside Equal's operand conformance: graph enumerations await
+                        the isomorphic relations, which is where the canonical-form equality question
+                        belongs — deferred, never silently decided here.&quot;&quot;&quot;);
+
+        // ── The patterns' referenced-component and field-purpose concepts ──
+        // Meaning/purpose rigor (IKE-Network/ike-issues#880): each field's own MEANING
+        // concept above names what kind of selector value the field holds; PURPOSE — why
+        // that value is recorded — is a distinct concept per field. The referenced
+        // component's meaning names the role the attachment target plays, never the
+        // constraint mechanism. That attachment role is identical for both constraint
+        // shapes — the pattern that has one of its own fields constrained — so
+        // Constrained Pattern and Field Value Restriction serve both patterns
+        // (IKE-Network/ike-issues#890).
+<span class="fc" id="L249">        set.concept(&quot;Constrained Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L250">                .synonym(&quot;Constrained Pattern&quot;)</span>
+<span class="fc" id="L251">                .definition(&quot;The referenced-component role a field constraint semantic's&quot;</span>
+                        + &quot; attachment target plays: the pattern that has one of its own&quot;
+                        + &quot; fields constrained — one attachment role, shared by the Taxonomy&quot;
+                        + &quot; Field Constraint Pattern and the Value-set Field Constraint&quot;
+                        + &quot; Pattern, and distinct from the constraint mechanisms themselves.&quot;)
+<span class="fc" id="L256">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+<span class="fc" id="L258">        set.concept(&quot;Field Value Restriction (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L259">                .synonym(&quot;Field Value Restriction&quot;)</span>
+<span class="fc" id="L260">                .definition(&quot;Why a field constraint semantic exists: to restrict which&quot;</span>
+                        + &quot; values are legal for one of the constrained pattern's own&quot;
+                        + &quot; fields.&quot;)
+<span class="fc" id="L263">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L265">        set.concept(&quot;Constraint Scope (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L266">                .synonym(&quot;Constraint Scope&quot;)</span>
+<span class="fc" id="L267">                .definition(&quot;Why the Constrained field value is recorded: to say which field&quot;</span>
+                        + &quot; of the constrained pattern this rule applies to.&quot;)
+<span class="fc" id="L269">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L271">        set.concept(&quot;Constraint Rule (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L272">                .synonym(&quot;Constraint Rule&quot;)</span>
+<span class="fc" id="L273">                .definition(&quot;Why the Constraint kind value is recorded: to say which&quot;</span>
+                        + &quot; taxonomy-relative rule — kind-of, descendant, leaf-descendant,&quot;
+                        + &quot; or immediate-child — applies.&quot;)
+<span class="fc" id="L276">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L278">        set.concept(&quot;Taxonomy Reference Point (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L279">                .synonym(&quot;Taxonomy Reference Point&quot;)</span>
+<span class="fc" id="L280">                .definition(&quot;Why the Constraint anchor concept value is recorded: to give a&quot;</span>
+                        + &quot; kind-of, descendant, leaf-descendant, or immediate-child rule&quot;
+                        + &quot; something concrete to measure against.&quot;)
+<span class="fc" id="L283">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L285">        set.concept(&quot;Legal Value Source (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L286">                .synonym(&quot;Legal Value Source&quot;)</span>
+<span class="fc" id="L287">                .definition(&quot;Why the Value-set pattern value is recorded: to name the pattern&quot;</span>
+                        + &quot; whose active semantics enumerate the legal values for a value-set&quot;
+                        + &quot; constraint.&quot;)
+<span class="fc" id="L290">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L292">        set.concept(&quot;Value Disambiguation (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L293">                .synonym(&quot;Value Disambiguation&quot;)</span>
+<span class="fc" id="L294">                .definition(&quot;Why the Value-set field value is recorded: to say which Model&quot;</span>
+                        + &quot; Feature of the value-set pattern actually holds the member&quot;
+                        + &quot; value, when that pattern carries other fields too, such as a&quot;
+                        + &quot; sort order.&quot;)
+<span class="fc" id="L298">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+        // &quot;Match Rule&quot; parallels &quot;Constraint Rule&quot;: each names why a discriminator
+        // field's value is recorded — which rule applies (text pass, 2026-07-18).
+<span class="fc" id="L302">        set.concept(&quot;Match Rule (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L303">                .synonym(&quot;Match Rule&quot;)</span>
+<span class="fc" id="L304">                .definition(&quot;Why the Member match relation value is recorded: to say how a&quot;</span>
+                        + &quot; constrained field's value must match an enumerated member —&quot;
+                        + &quot; which member match relation the constraint holds under.&quot;)
+<span class="fc" id="L307">                .isA(set.conceptRef(&quot;Constraint model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+        // ── The taxonomy-shape pattern ───────────────────────────────────
+<span class="fc" id="L310">        set.pattern(&quot;Taxonomy Field Constraint Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L311">                .meaning(set.conceptRef(&quot;Constrained Pattern (IkeFoundation)&quot;))</span>
+<span class="fc" id="L312">                .purpose(set.conceptRef(&quot;Field Value Restriction (IkeFoundation)&quot;))</span>
+<span class="fc" id="L313">                .field(set.conceptRef(&quot;Constrained field (IkeFoundation)&quot;),</span>
+<span class="fc" id="L314">                        set.conceptRef(&quot;Constraint Scope (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L315">                .field(set.conceptRef(&quot;Constraint kind (IkeFoundation)&quot;),</span>
+<span class="fc" id="L316">                        set.conceptRef(&quot;Constraint Rule (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L317">                .field(set.conceptRef(&quot;Constraint anchor concept (IkeFoundation)&quot;),</span>
+<span class="fc" id="L318">                        set.conceptRef(&quot;Taxonomy Reference Point (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+                // Curated narrative (IKE-Network/ike-issues#888): domain description OF
+                // this pattern, complementing — never repeating — the Constrained
+                // Pattern hub narrative (NarrativeContentSet), which carries the
+                // shape-level, field-by-field walk-through for both constraint shapes.
+<span class="fc" id="L323">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L324">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: TaxonomyFieldConstraintPattern (Field Constraints — The&quot;
+                                        + &quot; Taxonomy Field Constraint)&quot;)), &quot;&quot;&quot;
+                        k:TaxonomyFieldConstraintPattern[] is the intensional constraint shape: a
+                        semantic of it stores a rule, never a list. The legal set for the
+                        k:ConstrainedField[] is derived from the knowledge graph under the checking
+                        view's navigation coordinate — walked from the k:ConstraintAnchorConcept[] by
+                        whichever of k:TaxonomyFieldConstraintKind[]'s four children the
+                        k:ConstraintKind[] field names. The four kinds are four editorial intents about
+                        a taxonomy region: k:KindOfFieldConstraint[] says the anchor is itself a legal
+                        value, alongside everything beneath it; k:DescendantFieldConstraint[] says the
+                        anchor is a header — legal values sit strictly beneath it;
+                        k:LeafDescendantFieldConstraint[] says only the concrete leaves qualify, never
+                        the grouping concepts that exist to organize them; and
+                        k:ImmediateChildFieldConstraint[] says the taxonomy is a closed one-level value
+                        list — exactly how the STAMP pattern's status field holds to the immediate
+                        children of k:StatusValue[].
+
+                        Because the legal set is derived rather than copied, governing it moves to
+                        whoever governs that taxonomy region: minting a new kind of k:Author[] extends
+                        what every author-constrained field accepts, with no constraint edit anywhere.
+                        And because the derivation runs under a view, the legal set is view-relative —
+                        two checking views can answer differently — so checking is an authoring-time
+                        and QA-time calculator operation, never a property a stored value carries with
+                        it.&quot;&quot;&quot;);
+
+        // ── The value-set-shape pattern ──────────────────────────────────
+<span class="fc" id="L351">        set.pattern(&quot;Value-set Field Constraint Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L352">                .meaning(set.conceptRef(&quot;Constrained Pattern (IkeFoundation)&quot;))</span>
+<span class="fc" id="L353">                .purpose(set.conceptRef(&quot;Field Value Restriction (IkeFoundation)&quot;))</span>
+<span class="fc" id="L354">                .field(set.conceptRef(&quot;Constrained field (IkeFoundation)&quot;),</span>
+<span class="fc" id="L355">                        set.conceptRef(&quot;Constraint Scope (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L356">                .field(set.conceptRef(&quot;Value-set pattern (IkeFoundation)&quot;),</span>
+<span class="fc" id="L357">                        set.conceptRef(&quot;Legal Value Source (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L358">                .field(set.conceptRef(&quot;Value-set field (IkeFoundation)&quot;),</span>
+<span class="fc" id="L359">                        set.conceptRef(&quot;Value Disambiguation (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L360">                .field(memberMatchRelation,</span>
+<span class="fc" id="L361">                        set.conceptRef(&quot;Match Rule (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+                // Curated narrative (IKE-Network/ike-issues#888) — see the taxonomy
+                // pattern's note above.
+<span class="fc" id="L364">                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,</span>
+<span class="fc" id="L365">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Narrative: ValueSetFieldConstraintPattern (Field Constraints — The&quot;
+                                        + &quot; Value-set Field Constraint)&quot;)), &quot;&quot;&quot;
+                        k:ValueSetFieldConstraintPattern[] is the extensional constraint shape: the
+                        legal values are enumerated as data — the active semantics of the named
+                        k:ValueSetPattern[] — and the constraint is satisfied when some member active
+                        under the checking view matches the constrained field's value under the named
+                        k:MemberMatchRelation[]. The shape is datatype-universal: the member type rides
+                        the source pattern's own declared Model Feature, the one the k:ValueSetField[]
+                        pointer names by its meaning concept, so this one four-field shape yields
+                        closed enumerations of any field datatype — allowed Strings, allowed Integers,
+                        allowed concepts — never a pattern per datatype.
+
+                        Membership carries the ordinary STAMP lifecycle, member by member: adding a
+                        member is authoring a semantic of the value-set pattern, removing one is
+                        retiring it, and every membership change carries its own provenance — who,
+                        when, in which module, on which path. What the value set contains is answered
+                        through the stamp calculus — active-under-the-checking-view membership — so
+                        the legal set evolves version by version, with no edit to the constraint
+                        semantic itself.&quot;&quot;&quot;);
+
+<span class="fc" id="L386">        EntityProxy.Pattern taxonomyConstraintPattern =</span>
+<span class="fc" id="L387">                set.patternRef(&quot;Taxonomy Field Constraint Pattern (IkeFoundation)&quot;);</span>
+<span class="fc" id="L388">        EntityProxy.Pattern valueSetConstraintPattern =</span>
+<span class="fc" id="L389">                set.patternRef(&quot;Value-set Field Constraint Pattern (IkeFoundation)&quot;);</span>
+<span class="fc" id="L390">        EntityProxy.Concept kindOf = set.conceptRef(&quot;Kind-of field constraint (IkeFoundation)&quot;);</span>
+<span class="fc" id="L391">        EntityProxy.Concept immediateChild = set.conceptRef(&quot;Immediate child field constraint (IkeFoundation)&quot;);</span>
+<span class="fc" id="L392">        EntityProxy.Concept constraintKindMeaning = set.conceptRef(&quot;Constraint kind (IkeFoundation)&quot;);</span>
+<span class="fc" id="L393">        EntityProxy.Concept equalMatchRelation = set.conceptRef(&quot;Equal match relation (IkeFoundation)&quot;);</span>
+
+        // ── Bootstrap self-application: the apparatus constrains itself ──
+        // Ordinary content, not special machinery: each pattern's own discriminator
+        // field is immediate-child constrained to its closed taxonomy
+        // (IKE-Network/ike-issues#890).
+<span class="fc" id="L399">        set.pattern(&quot;Taxonomy Field Constraint Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L400">                .semantic(taxonomyConstraintPattern,</span>
+<span class="fc" id="L401">                        PublicIds.of(set.uuidFor(&quot;Taxonomy Field Constraint: Taxonomy Field Constraint&quot;</span>
+                                + &quot; Pattern Constraint kind field immediate-child of Taxonomy field&quot;
+                                + &quot; constraint kind&quot;)),
+                        constraintKindMeaning, immediateChild, taxonomyKind);
+
+<span class="fc" id="L406">        set.pattern(&quot;Value-set Field Constraint Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L407">                .semantic(taxonomyConstraintPattern,</span>
+<span class="fc" id="L408">                        PublicIds.of(set.uuidFor(&quot;Taxonomy Field Constraint: Value-set Field Constraint&quot;</span>
+                                + &quot; Pattern Member match relation field immediate-child of Member match&quot;
+                                + &quot; relation&quot;)),
+                        memberMatchRelation, immediateChild, memberMatchRelation);
+
+        // ── Worked examples: taxonomy constraints on real STAMP-pattern ──
+        // and Description-pattern fields (each field's own meaning concept per
+        // Section71.java's actual .field(...) declarations, verified against
+        // ike-koncepts.yml before writing).
+<span class="fc" id="L417">        set.pattern(&quot;STAMP pattern&quot;).at(inception)</span>
+<span class="fc" id="L418">                .semantic(taxonomyConstraintPattern,</span>
+<span class="fc" id="L419">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Taxonomy Field Constraint: STAMP pattern Author field kind-of Author&quot;)),
+<span class="fc" id="L421">                        set.conceptRef(&quot;Author&quot;), kindOf, set.conceptRef(&quot;Author&quot;))</span>
+<span class="fc" id="L422">                .semantic(taxonomyConstraintPattern,</span>
+<span class="fc" id="L423">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Taxonomy Field Constraint: STAMP pattern Module field kind-of Module&quot;)),
+<span class="fc" id="L425">                        set.conceptRef(&quot;Module&quot;), kindOf, set.conceptRef(&quot;Module&quot;))</span>
+<span class="fc" id="L426">                .semantic(taxonomyConstraintPattern,</span>
+<span class="fc" id="L427">                        PublicIds.of(set.uuidFor(</span>
+                                &quot;Taxonomy Field Constraint: STAMP pattern Path field kind-of Path&quot;)),
+<span class="fc" id="L429">                        set.conceptRef(&quot;Path&quot;), kindOf, set.conceptRef(&quot;Path&quot;))</span>
+<span class="fc" id="L430">                .semantic(taxonomyConstraintPattern,</span>
+<span class="fc" id="L431">                        PublicIds.of(set.uuidFor(&quot;Taxonomy Field Constraint: STAMP pattern Status field&quot;</span>
+                                + &quot; immediate-child of Status value&quot;)),
+<span class="fc" id="L433">                        set.conceptRef(&quot;Status value&quot;), immediateChild, set.conceptRef(&quot;Status value&quot;));</span>
+
+<span class="fc" id="L435">        set.pattern(&quot;Description Pattern&quot;).at(inception)</span>
+<span class="fc" id="L436">                .semantic(taxonomyConstraintPattern,</span>
+<span class="fc" id="L437">                        PublicIds.of(set.uuidFor(&quot;Taxonomy Field Constraint: Description Pattern Language&quot;</span>
+                                + &quot; field kind-of Language&quot;)),
+                        IkeTerm.LANGUAGE_CONCEPT_NID_FOR_DESCRIPTION, kindOf,
+<span class="fc" id="L440">                        set.conceptRef(&quot;Language&quot;));</span>
+
+        // ── Worked example: value-set membership ────────────────────────
+        // A small, self-contained illustration (not part of the ingested foundation):
+        // a &quot;roster&quot; pattern whose active semantics enumerate concepts, one field of
+        // which (Roster order) is NOT the member value itself — demonstrating why a
+        // value-set constraint must name which Model Feature holds the member.
+<span class="fc" id="L447">        set.concept(&quot;Starter set author roster (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L448">                .synonym(&quot;Starter set author roster&quot;)</span>
+<span class="fc" id="L449">                .definition(&quot;Illustrative value-set source: an ordered roster of this&quot;</span>
+                        + &quot; starter set's own authors, demonstrating a Value-set Field&quot;
+                        + &quot; Constraint Pattern's value-set pattern.&quot;)
+<span class="fc" id="L452">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+<span class="fc" id="L453">        set.concept(&quot;Roster author (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L454">                .synonym(&quot;Roster author&quot;)</span>
+<span class="fc" id="L455">                .definition(&quot;The author concept named by one roster entry.&quot;)</span>
+<span class="fc" id="L456">                .isA(set.conceptRef(&quot;Concept field&quot;), IkeTerm.MEANING);</span>
+<span class="fc" id="L457">        set.concept(&quot;Roster order (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L458">                .synonym(&quot;Roster order&quot;)</span>
+<span class="fc" id="L459">                .definition(&quot;The roster entry's display order — the \&quot;additional&quot;</span>
+                        + &quot; characteristic\&quot; field a value-set constraint's Value-set field&quot;
+                        + &quot; disambiguates against.&quot;)
+<span class="fc" id="L462">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+        // Meaning/purpose rigor (IKE-Network/ike-issues#880): the pattern's own
+        // referenced-component meaning stays &quot;Starter set author roster&quot; (it correctly
+        // names what the roster is); purpose and each field's purpose get their own
+        // distinct concept instead of repeating that same meaning.
+<span class="fc" id="L468">        set.concept(&quot;Roster Membership (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L469">                .synonym(&quot;Roster Membership&quot;)</span>
+<span class="fc" id="L470">                .definition(&quot;Why a Starter Set Author Roster Pattern semantic exists: to&quot;</span>
+                        + &quot; enumerate this starter set's own author roster as a value-set&quot;
+                        + &quot; source.&quot;)
+<span class="fc" id="L473">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L475">        set.concept(&quot;Roster Entry (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L476">                .synonym(&quot;Roster Entry&quot;)</span>
+<span class="fc" id="L477">                .definition(&quot;Why a roster author value is recorded: to name one member of&quot;</span>
+                        + &quot; the roster.&quot;)
+<span class="fc" id="L479">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L481">        set.concept(&quot;Display Sequence (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L482">                .synonym(&quot;Display Sequence&quot;)</span>
+<span class="fc" id="L483">                .definition(&quot;Why a roster order value is recorded: to say where this entry&quot;</span>
+                        + &quot; falls in the roster's own display order.&quot;)
+<span class="fc" id="L485">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L487">        set.pattern(&quot;Starter Set Author Roster Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L488">                .meaning(set.conceptRef(&quot;Starter set author roster (IkeFoundation)&quot;))</span>
+<span class="fc" id="L489">                .purpose(set.conceptRef(&quot;Roster Membership (IkeFoundation)&quot;))</span>
+<span class="fc" id="L490">                .field(set.conceptRef(&quot;Roster author (IkeFoundation)&quot;),</span>
+<span class="fc" id="L491">                        set.conceptRef(&quot;Roster Entry (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L492">                .field(set.conceptRef(&quot;Roster order (IkeFoundation)&quot;),</span>
+<span class="fc" id="L493">                        set.conceptRef(&quot;Display Sequence (IkeFoundation)&quot;), IkeTerm.LONG)</span>
+<span class="fc" id="L494">                .semantic(set.patternRef(&quot;Starter Set Author Roster Pattern (IkeFoundation)&quot;),</span>
+<span class="fc" id="L495">                        PublicIds.of(set.uuidFor(&quot;Roster entry: Gretel&quot;)),</span>
+<span class="fc" id="L496">                        set.conceptRef(&quot;Gretel (User)&quot;), 1L)</span>
+<span class="fc" id="L497">                .semantic(set.patternRef(&quot;Starter Set Author Roster Pattern (IkeFoundation)&quot;),</span>
+<span class="fc" id="L498">                        PublicIds.of(set.uuidFor(&quot;Roster entry: IKE Community&quot;)),</span>
+<span class="fc" id="L499">                        set.conceptRef(&quot;IKE Community (IkeFoundation)&quot;), 2L)</span>
+<span class="fc" id="L500">                .semantic(set.patternRef(&quot;Starter Set Author Roster Pattern (IkeFoundation)&quot;),</span>
+<span class="fc" id="L501">                        PublicIds.of(set.uuidFor(&quot;Roster entry: KOMET user&quot;)),</span>
+<span class="fc" id="L502">                        set.conceptRef(&quot;KOMET user (SOLOR)&quot;), 3L)</span>
+<span class="fc" id="L503">                .semantic(set.patternRef(&quot;Starter Set Author Roster Pattern (IkeFoundation)&quot;),</span>
+<span class="fc" id="L504">                        PublicIds.of(set.uuidFor(&quot;Roster entry: Tinkar Starter Data Author&quot;)),</span>
+<span class="fc" id="L505">                        set.conceptRef(&quot;Tinkar Starter Data Author (User)&quot;), 4L);</span>
+
+<span class="fc" id="L507">        set.concept(&quot;Preferred reviewer (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L508">                .synonym(&quot;Preferred reviewer&quot;)</span>
+<span class="fc" id="L509">                .definition(&quot;Illustrative constrained field: the reviewer a&quot;</span>
+                        + &quot; Preferred Reviewer Pattern semantic names.&quot;)
+<span class="fc" id="L511">                .isA(set.conceptRef(&quot;Concept field&quot;), IkeTerm.MEANING);</span>
+<span class="fc" id="L512">        set.concept(&quot;Preferred reviewer assignment (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L513">                .synonym(&quot;Preferred reviewer assignment&quot;)</span>
+<span class="fc" id="L514">                .definition(&quot;Illustrative pattern whose single field is constrained to&quot;</span>
+                        + &quot; membership in the starter set author roster, demonstrating a&quot;
+                        + &quot; Value-set Field Constraint Pattern end to end.&quot;)
+<span class="fc" id="L517">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.MEANING);</span>
+
+        // Meaning/purpose rigor (IKE-Network/ike-issues#880): meaning stays &quot;Preferred
+        // reviewer assignment&quot; (it correctly names what the referenced component is);
+        // purpose and the field's purpose get their own distinct concepts.
+<span class="fc" id="L522">        set.concept(&quot;Review Routing (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L523">                .synonym(&quot;Review Routing&quot;)</span>
+<span class="fc" id="L524">                .definition(&quot;Why a Preferred Reviewer Pattern semantic exists: to direct a&quot;</span>
+                        + &quot; component's future edits to a specific reviewer.&quot;)
+<span class="fc" id="L526">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L528">        set.concept(&quot;Assigned Reviewer (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L529">                .synonym(&quot;Assigned Reviewer&quot;)</span>
+<span class="fc" id="L530">                .definition(&quot;Why a preferred reviewer value is recorded: to name which&quot;</span>
+                        + &quot; author is the preferred reviewer.&quot;)
+<span class="fc" id="L532">                .isA(set.conceptRef(&quot;Editorial model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+<span class="fc" id="L534">        set.pattern(&quot;Preferred Reviewer Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L535">                .meaning(set.conceptRef(&quot;Preferred reviewer assignment (IkeFoundation)&quot;))</span>
+<span class="fc" id="L536">                .purpose(set.conceptRef(&quot;Review Routing (IkeFoundation)&quot;))</span>
+<span class="fc" id="L537">                .field(set.conceptRef(&quot;Preferred reviewer (IkeFoundation)&quot;),</span>
+<span class="fc" id="L538">                        set.conceptRef(&quot;Assigned Reviewer (IkeFoundation)&quot;), IkeTerm.COMPONENT_FIELD)</span>
+<span class="fc" id="L539">                .semantic(valueSetConstraintPattern,</span>
+<span class="fc" id="L540">                        PublicIds.of(set.uuidFor(&quot;Value-set Field Constraint: Preferred Reviewer Pattern&quot;</span>
+                                + &quot; reviewer field Equal to a Starter Set Author Roster author&quot;)),
+<span class="fc" id="L542">                        set.conceptRef(&quot;Preferred reviewer (IkeFoundation)&quot;),</span>
+<span class="fc" id="L543">                        set.patternRef(&quot;Starter Set Author Roster Pattern (IkeFoundation)&quot;),</span>
+<span class="fc" id="L544">                        set.conceptRef(&quot;Roster author (IkeFoundation)&quot;), equalMatchRelation);</span>
+<span class="fc" id="L545">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

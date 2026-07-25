@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section47.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section47.java</span></div><h1>Section47.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Tree amalgam properties&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section47 {
+
+    private Section47() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Tree amalgam properties (SOLOR)&quot;, PublicIds.of(&quot;d6151a47-4610-5a5c-abd0-42c82be9b633&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;bd734afa-e892-4e80-83eb-871e8dc3007b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Tree amalgam properties (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2db53a64-94af-4249-b34e-d384e50c8a69&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Tree amalgam properties&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3d975372-6d96-4665-92e7-0abbda229104&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Data structure that consists of nodes connected by edges (a mixture or blend of different elements)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;641939e5-9e62-462c-aea0-2b5ded2feada&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;d6151a47-4610-5a5c-abd0-42c82be9b633&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;3114faa0-2e1b-572b-83b3-d02ce25d6000&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Legacy model concepts (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5c8aab7d-b5b7-443c-97a5-c4b802a20a3b&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;bd734afa-e892-4e80-83eb-871e8dc3007b&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;47099522-a380-485a-ab58-824352f43df3&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;2db53a64-94af-4249-b34e-d384e50c8a69&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;3c733170-0ba5-47af-a0df-89385a29dad6&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;3d975372-6d96-4665-92e7-0abbda229104&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;4b0efb1c-6225-465c-981a-953c2e76585e&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Inverse tree list (SOLOR)&quot;, PublicIds.of(&quot;45167fb6-e01d-53a8-8be3-768aae18729d&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;53b3d51a-7cbc-47d7-82db-0157695b5642&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Inverse tree list (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;da3a1aa0-0bf7-4e78-952d-6e31c7663929&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Inverse tree list&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4d139629-3de6-496e-9dbe-6cf8d2fa9300&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The legacy tree-amalgam field holding a navigation tree's child-to-parent adjacency, paired with Tree list.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;c577dc08-684f-4bb3-a35b-e99095fe8e5f&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;45167fb6-e01d-53a8-8be3-768aae18729d&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;94447fb7-baa3-51fd-a495-1d05ae3b0583&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TREE_AMALGAM_PROPERTIES))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;406ad4b1-4a0d-437c-9162-4a7d4337810f&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;53b3d51a-7cbc-47d7-82db-0157695b5642&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;e493b15d-8ee6-4b72-9578-617b964b20d0&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;da3a1aa0-0bf7-4e78-952d-6e31c7663929&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ebbcfe9c-cbd5-430b-bfa6-6846daad02bc&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;4d139629-3de6-496e-9dbe-6cf8d2fa9300&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;3aba843f-3590-4f3f-a502-e8dfd0f066e7&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Tree list (SOLOR)&quot;, PublicIds.of(&quot;c11dd7a1-0ba1-5378-81d6-3efdba1e074b&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7d1475f7-3ad3-4bb3-886a-873600c56afe&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Tree list (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d5a0fdbd-2592-47e1-afe2-4cabafbac239&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Tree list&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2101fa61-d6c9-4bb8-a3e6-45385234da64&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The legacy tree-amalgam field holding a navigation tree's parent-to-child adjacency, paired with Inverse tree list.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;4a72b49a-a39f-4b2c-8249-35c01df67475&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;c11dd7a1-0ba1-5378-81d6-3efdba1e074b&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;61ad6a00-8451-5db4-8eed-5a3d7ce4ebd3&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TREE_AMALGAM_PROPERTIES))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;c29830b9-9f6c-4e11-9a1e-21fa3632f91f&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;7d1475f7-3ad3-4bb3-886a-873600c56afe&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;3851a5f0-f633-4db0-9ea4-9c2042e82f29&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;d5a0fdbd-2592-47e1-afe2-4cabafbac239&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0caac04b-8102-4fdb-ab63-4d0aa409e269&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;2101fa61-d6c9-4bb8-a3e6-45385234da64&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;2e80d84e-8549-4e2b-832d-32fce127b55b&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -159,7 +159,7 @@
 <li><a href="plugin-management.html"><i class="fas fa-file-alt"></i> Plugin Management</a></li>
 <li><a href="distribution-management.html"><i class="fas fa-file-alt"></i> Distribution Management</a></li>
 </ul>
-<li><a href="project-reports.html"><i class="fas fa-folder"></i> Project Reports <span class="badge">1</span></a></li>
+<li><a href="project-reports.html"><i class="fas fa-folder"></i> Project Reports <span class="badge">2</span></a></li>
 </ul>
 			</nav>
 
@@ -536,6 +536,19 @@ angular.module("sentry.site").constant("SITE_MENU", [
 {
 	path: "apidocs/index.html",
 	title: "Javadoc",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-reports.html",
+			title: "Project Reports"
+		}
+	]
+},
+{
+	path: "jacoco/index.html",
+	title: "JaCoCo",
 	parents: [
 		{
 			title: "Reports"

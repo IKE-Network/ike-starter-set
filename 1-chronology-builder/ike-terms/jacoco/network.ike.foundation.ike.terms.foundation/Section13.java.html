@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section13.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section13.java</span></div><h1>Section13.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Language coordinate properties&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section13 {
+
+    private Section13() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Language coordinate properties (SOLOR)&quot;, PublicIds.of(&quot;ea1a52f7-0305-5487-8766-e846330f167a&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;0a5fc215-4e5e-4201-a7a5-99cddd60a08d&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Language coordinate properties (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;729cb02a-24fe-419d-994f-0b1f5f7c50da&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Language coordinate properties&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;92c2cfd0-a05e-4c05-9be5-119334d94dc9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Groups the language-coordinate dimensions: which language, which dialect order, which description types in which preference order, and which modules a rendering surface consults when choosing text to show.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;302223eb-ef3f-4808-a8f6-d586496e639e&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;ea1a52f7-0305-5487-8766-e846330f167a&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;c3261397-10af-5f97-8725-85911b6fbc81&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;View coordinate model (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;46c1bcec-0e5a-445a-b0d8-1dd6bb608325&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;0a5fc215-4e5e-4201-a7a5-99cddd60a08d&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;d815a323-bf5c-4a26-bc24-eba50bb0ccad&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;729cb02a-24fe-419d-994f-0b1f5f7c50da&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;46293787-505a-4a94-96f6-45e0e7ab0589&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;92c2cfd0-a05e-4c05-9be5-119334d94dc9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f6e6a543-736e-4c84-9cb4-3a55791a31c1&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Language coordinate name (SOLOR)&quot;, PublicIds.of(&quot;42dff20f-5ed2-559a-91ad-91d44a573c63&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a024b465-af14-4908-93d3-d2bc71ea18bd&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Language coordinate name (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b056834e-79af-4aec-bc01-0401feb12f94&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Language coordinate name&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2c8958d4-6d4d-49b8-a542-28a3943c3455&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The field naming a stored language coordinate, so a surface can present saved coordinates by name.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;214d74a7-b80b-4616-9c06-9cd40ed7d831&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;42dff20f-5ed2-559a-91ad-91d44a573c63&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;cca164f4-4786-5f44-a18f-3e64c45b4113&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.LANGUAGE_COORDINATE_PROPERTIES))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;e4ad43c1-bc12-4cdc-a110-76dc25f1f3ed&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;a024b465-af14-4908-93d3-d2bc71ea18bd&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;58323e28-74c3-462a-9a4f-1ef975bf6d23&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;b056834e-79af-4aec-bc01-0401feb12f94&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0cb5ebe1-ab7c-4bf7-924a-fcdd308c2e24&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;2c8958d4-6d4d-49b8-a542-28a3943c3455&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;3b5e97a4-dea0-4427-a875-4b2eb09ac5ea&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+        // Declared FQN and definition diverge from the baseline artifact (was &quot;Dialect assemblage preference list for language coordinate (SOLOR)&quot;):
+        // &quot;assemblage&quot; retired from this set's own terminology, flattened in place
+        // (IKE-Network/ike-issues#880, #894; registered in DELIBERATELY_RENAMED_FQNS).
+<span class="fc" id="L46">        set.concept(&quot;Dialect pattern preference list for language coordinate&quot;, PublicIds.of(&quot;c060ffbf-e95f-5960-b296-8a3255c820ac&quot;)).at(inception)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fc463462-1f62-40b2-abdb-269863ce2e64&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Dialect pattern preference list for language coordinate&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L48">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6b6e13f7-9e69-4b3e-8c95-be9eb46373fd&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Dialect order&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;96271b7b-9813-42b5-a119-236dffe2d399&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The preference order among dialect patterns a Language Coordinate consults when resolving a description's acceptability.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L50">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;32f9eb2a-d502-41d1-8f8b-ce3ce5e7f339&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;c060ffbf-e95f-5960-b296-8a3255c820ac&quot;)</span>
+<span class="fc" id="L51">                .statedAxioms(PublicIds.of(&quot;ee62a785-34d2-562c-9390-22f73b382e76&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.LANGUAGE_COORDINATE_PROPERTIES))))</span>
+<span class="fc" id="L52">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;675577ff-1f41-4121-9016-6d281ae6cf56&quot;))</span>
+<span class="fc" id="L53">                .semanticOn(PublicIds.of(&quot;fc463462-1f62-40b2-abdb-269863ce2e64&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b686b6c4-600b-4377-b1fe-400c95759425&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L54">                .semanticOn(PublicIds.of(&quot;6b6e13f7-9e69-4b3e-8c95-be9eb46373fd&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;e0b4d6fe-ff87-497d-91c5-600ccf59ae2d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L55">                .semanticOn(PublicIds.of(&quot;96271b7b-9813-42b5-a119-236dffe2d399&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;072e2199-07c0-4687-ab50-7393e6761e54&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L58">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

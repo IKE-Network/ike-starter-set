@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section23.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section23.java</span></div><h1>Section23.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Sandbox component&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section23 {
+
+    private Section23() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Sandbox component (SOLOR)&quot;, PublicIds.of(&quot;c93829b2-aa78-5a84-ac9a-c34307844166&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;690b90ad-1079-4e6a-96fa-2c2d784bd3dc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox component (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;217c4474-d7f7-440d-9841-a6962cb7f937&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox component&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;989ed925-0d60-4aae-a13d-8653b4433de4&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;An ISAAC-era marker for components in sandbox experimentation, retired to Legacy: sandbox scoping is carried by module and path dimensions.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;49201078-06e2-4ae0-a13a-84d3ed75d758&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;c93829b2-aa78-5a84-ac9a-c34307844166&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;fd59589b-5fbc-5422-908f-3a488f5cba59&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Legacy model concepts (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;2f407eeb-41bc-4218-a94d-536f39fadd0c&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;690b90ad-1079-4e6a-96fa-2c2d784bd3dc&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;4a5b30de-c690-40ad-a933-bd6080067fbd&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;217c4474-d7f7-440d-9841-a6962cb7f937&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;77cf6f42-11bf-4414-9eaa-f45577e18bf1&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;989ed925-0d60-4aae-a13d-8653b4433de4&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;0295074e-b827-4707-aae5-cb15a5ce4410&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Sandbox module (SOLOR)&quot;, PublicIds.of(&quot;c5daf0e9-30dc-5b3e-a521-d6e6e72c8a95&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;c7411ff6-6a96-40f4-b3df-d5169b010554&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox module (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;36f61803-f512-42a3-8da4-7fcb9e3e25aa&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox module&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2e56cf98-c9a5-42d0-a68f-eafc7e00e3c9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The module for sandbox experimentation content.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;afb01686-5bbf-460f-b488-4d01ce719fe6&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;c5daf0e9-30dc-5b3e-a521-d6e6e72c8a95&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;fba03f97-308f-5a38-9dc1-9139c36990d9&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODULE))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;3f1198fa-b933-4f26-a04d-c6d24f7e78e8&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;c7411ff6-6a96-40f4-b3df-d5169b010554&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;fd9d6893-6eb2-4bab-9bd4-dc503e54a01f&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;36f61803-f512-42a3-8da4-7fcb9e3e25aa&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;66eb3061-ab49-4570-b1fb-593c15477cba&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;2e56cf98-c9a5-42d0-a68f-eafc7e00e3c9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;02c0f2e5-5ae7-4dc7-a588-f103f48452c3&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Sandbox path module (SOLOR)&quot;, PublicIds.of(&quot;715bd36d-6090-5b37-8ae7-88c9e532010e&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9e36a9a3-7e1e-4675-83c3-a441578e7762&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox path module (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;625c06dc-8f26-4916-a684-6e70b79070a3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Sandbox Path module&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6c78053c-0780-4cff-884e-c114f176c39f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The module for content specific to a sandbox path.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;16e40379-7714-4984-bdbd-7173de774fea&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;715bd36d-6090-5b37-8ae7-88c9e532010e&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;266561f2-26b4-5233-b53e-5c9f38471c43&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SANDBOX_MODULE))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;febb4bc7-8265-4ef9-a39c-507713384e67&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;9e36a9a3-7e1e-4675-83c3-a441578e7762&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;fbffd7c1-46a7-4b2f-9685-d539f9391c99&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;625c06dc-8f26-4916-a684-6e70b79070a3&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ec3cc122-dbe9-43de-9d84-a0fae3cbbd21&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;6c78053c-0780-4cff-884e-c114f176c39f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;6960eb29-da81-410f-bfad-eabcb124c3a6&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section39.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section39.java</span></div><h1>Section39.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Axiom origin&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section39 {
+
+    private Section39() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Axiom origin (SOLOR)&quot;, PublicIds.of(&quot;b868bd83-5cd4-5d84-9cf7-b08674fbc79b&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;63db609e-892c-497a-8831-c218985f8f00&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axiom origin (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;28d8e2e4-9bd3-4298-adb3-779f7bf9251c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axiom origin&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;032b9774-afb8-40e9-b3b1-0f953a78ca51&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Groups the two origins a definition can have: stated, as an editor authored it, or inferred, as a reasoner derived it.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;265924d2-ae16-4bc7-ae53-dc20694d40ae&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;b868bd83-5cd4-5d84-9cf7-b08674fbc79b&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;42ea2dff-fe73-59d7-b8f4-2ab7863572d8&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Axioms&quot;, PublicIds.of(&quot;20746b91-521a-45a6-89da-0fe32384a67f&quot;))))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5910b1fa-991c-47ea-a5ec-64279db8bf3f&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;63db609e-892c-497a-8831-c218985f8f00&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;92d63eb8-dc61-42a0-b880-ab76abbabba3&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;28d8e2e4-9bd3-4298-adb3-779f7bf9251c&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1d5871a6-f3e1-437b-8e0b-93d2a08e004b&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;032b9774-afb8-40e9-b3b1-0f953a78ca51&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;6b64ebc5-7107-4b22-abfa-e96804a118d8&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Stated premise type (SOLOR)&quot;, PublicIds.of(&quot;3b0dbd3b-2e53-3a30-8576-6c7fa7773060&quot;, &quot;3fde38f6-e079-3cdc-a819-eda3ec74732d&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4b682274-a7f8-4315-9b45-89734600c5c5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Stated premise type (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;941aa4cb-6320-4733-966b-14c39ee00e76&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Stated&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;164f5046-e620-4feb-b556-37efecc3e372&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The axiom origin marking a definition as authored: the expression an editor asserted, before any classification.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;aefe6fd0-df59-4709-b61b-7c715b957c09&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;3b0dbd3b-2e53-3a30-8576-6c7fa7773060&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;80ce27d5-5872-513a-8adf-ebf375ceee50&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.AXIOM_ORIGIN))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;71ef4700-597c-49af-968b-176ee3c6ff08&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;4b682274-a7f8-4315-9b45-89734600c5c5&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;dfdcdae0-1670-4eda-b5f4-05f2c9240c28&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;941aa4cb-6320-4733-966b-14c39ee00e76&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;e02a7c0a-7148-4b2e-b656-7fcd6e1e395e&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;164f5046-e620-4feb-b556-37efecc3e372&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;fbcd8bee-1612-4480-9a6e-cbff35749e22&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Inferred premise type (SOLOR)&quot;, PublicIds.of(&quot;a4c6bf72-8fb6-11db-b606-0800200c9a66&quot;, &quot;1290e6ba-48d0-31d2-8d62-e133373c63f5&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;673de880-2c35-42c0-a374-657feed7b1d6&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Inferred premise type (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2049c4a3-cef5-489b-ad58-8630908007c9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Inferred premise&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a2f28409-132a-4a82-8158-7e43af2d40b2&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The axiom view following the application of the reasoner&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;b63b2d32-c577-4663-8bf9-fe810ecc6b38&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;a4c6bf72-8fb6-11db-b606-0800200c9a66&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;7ed6053d-28f1-5065-85c5-061491e681c6&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.AXIOM_ORIGIN))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;847ef220-39d5-48c1-9edb-88982cd52031&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;673de880-2c35-42c0-a374-657feed7b1d6&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;82aed77e-b42b-4ac7-a26d-083dc1a5426c&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;2049c4a3-cef5-489b-ad58-8630908007c9&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b7656d5c-62ed-40a9-b7c4-4a1d9ab0a1ea&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;a2f28409-132a-4a82-8158-7e43af2d40b2&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;458ad54c-7f10-4229-b56a-733c154ca22d&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

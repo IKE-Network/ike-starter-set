@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AssemblageTerminologySet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">AssemblageTerminologySet.java</span></div><h1>AssemblageTerminologySet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+
+/**
+ * The modern membership-pattern terminology (IKE-Network/ike-issues#880): KEC's rule —
+ * treat &quot;assemblage&quot; the same way this project already treats the other rejected
+ * philosophical/OWL-baggage term for describing IKE's own work. Pattern is the modern
+ * equivalent Tinkar itself settled on: a pattern's own semantics — the components
+ * carrying that pattern's public id — already are the set &quot;assemblage&quot; used to name.
+ * &lt;p&gt;
+ * Under the inception flatten (IKE-Network/ike-issues#894) the four SOLOR-inherited
+ * concepts that carried &quot;assemblage&quot; in their fully qualified names are corrected in
+ * place at their section declarations ({@code foundation.Section3}/{@code Section13}/
+ * {@code Section18}, registered in {@code DELIBERATELY_RENAMED_FQNS}), and the three
+ * already-correctly-modeled membership patterns ({@code Tinkar base model component
+ * pattern}, {@code Komet base model component pattern}, {@code Version control path
+ * pattern}) carry {@code Set membership (IkeFoundation)} as the purpose of their single
+ * declared version in {@code foundation.Section71}. This file mints that purpose concept
+ * and the fresh IKE-native {@code Solor Concepts Pattern (IkeFoundation)}.
+ * &lt;p&gt;
+ * {@code SOLORConceptAssemblage} (the pattern) is left untouched entirely — it is
+ * dormant (zero live semantics anywhere in the ingested foundation, confirmed before this
+ * file was written) — and is cited in the narrative only as legacy prior art, the same
+ * treatment already given {@code TinkarTerm.CONCEPT_CONSTRAINTS} when
+ * {@code ConstraintPatternSet} was minted. {@code Solor Concepts Pattern (IkeFoundation)}
+ * is the fresh IKE-native replacement going forward. {@code Membership semantic (SOLOR)}
+ * itself stays real and unrenamed — just no longer this project's own preferred
+ * terminology.
+ */
+final class AssemblageTerminologySet {
+
+    private AssemblageTerminologySet() {
+    }
+
+    /**
+     * Composes this section's declarations into the session.
+     *
+     * @param set the knowledge set (the session)
+     */
+    static void compose(KnowledgeSet set) {
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894).
+<span class="fc" id="L60">        ActiveStamp inception = Ike.INCEPTION;</span>
+
+        // ── The modern membership-pattern purpose concept ──────────────────────
+<span class="fc" id="L63">        set.concept(&quot;Set membership (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L64">                .synonym(&quot;Set membership&quot;)</span>
+<span class="fc" id="L65">                .definition(&quot;A component's role as an element of a pattern's own set of&quot;</span>
+                        + &quot; semantics — the modern replacement for the deprecated SOLOR term&quot;
+                        + &quot; Membership semantic.&quot;)
+<span class="fc" id="L68">                .isA(set.conceptRef(&quot;Chronicle and version model (IkeFoundation)&quot;), IkeTerm.PURPOSE);</span>
+
+        // ── Solor Concepts Pattern: the IKE-native replacement for the dormant ──
+        // SOLORConceptAssemblage — untouched, cited as legacy prior art only.
+<span class="fc" id="L72">        set.pattern(&quot;Solor Concepts Pattern (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L73">                .meaning(set.conceptRef(&quot;Concept pattern for logic coordinate&quot;))</span>
+<span class="fc" id="L74">                .purpose(set.conceptRef(&quot;Set membership (IkeFoundation)&quot;));</span>
+<span class="fc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

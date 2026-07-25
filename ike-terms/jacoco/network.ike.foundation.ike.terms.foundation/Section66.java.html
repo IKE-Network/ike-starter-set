@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section66.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section66.java</span></div><h1>Section66.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Directed graph&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section66 {
+
+    private Section66() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Directed graph (SOLOR)&quot;, PublicIds.of(&quot;47a787a7-bdce-528d-bfcc-fde1add8d599&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;b68615c2-a0ad-49c0-a143-3dded633a60f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Directed graph (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1e514d14-6863-433f-8beb-211eacede6a4&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;NavigationCoordinate/Directed graph&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7411c406-b6d5-4778-8636-5a503bdbb421&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A graph whose edges each run from one vertex to another, so processing follows the direction: the representational data structure navigation, lineage, and expression content is carried in. A coordinate can configure a view of a directed graph -- which graphs to include, under what STAMP, with what combining rules -- but a coordinate is configuration, never the structure itself.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;4d6537f2-7063-40d2-88e7-fa379e903f81&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;47a787a7-bdce-528d-bfcc-fde1add8d599&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;1ec82607-cfb1-5716-8efd-4c052dd58c64&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Graph (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;4e7c45a6-f138-4a2f-a000-8331d034db3c&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;b68615c2-a0ad-49c0-a143-3dded633a60f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;8921d76e-8357-4f56-a933-2cb8772721ab&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;1e514d14-6863-433f-8beb-211eacede6a4&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;6629d5f5-0c8d-4024-ba6e-d21996b73298&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;7411c406-b6d5-4778-8636-5a503bdbb421&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;4dd0851b-c635-4fd1-98a4-41605ba6785f&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;EL++ ditree&quot;, PublicIds.of(&quot;ee04d7db-3407-568f-9b93-7b1f9f5bb0fc&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;72c41b1d-f7e0-4d69-aef5-92430288ffb6&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;EL++ ditree&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2b649036-a2a3-47f3-9060-f7d2bcc19086&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;EL++ ditree&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4870eae6-c757-48d5-b751-afc82e351d00&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The directed graph that results from classifying a set of EL++ axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;c3626dd3-01df-44da-b8ba-4779d15dc208&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;ee04d7db-3407-568f-9b93-7b1f9f5bb0fc&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;704783f9-4acc-529d-aad7-a260a9d72bd3&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Tree (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8d932453-0c75-4b6e-a9e9-207476ffa223&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;72c41b1d-f7e0-4d69-aef5-92430288ffb6&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;fcf02de0-577b-4052-acf7-ea0c21575b28&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;2b649036-a2a3-47f3-9060-f7d2bcc19086&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;32346100-e095-49d8-94ee-ac43270cc4f7&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;4870eae6-c757-48d5-b751-afc82e351d00&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;85176aa0-45bc-46bf-8e38-101e5c4d5f68&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

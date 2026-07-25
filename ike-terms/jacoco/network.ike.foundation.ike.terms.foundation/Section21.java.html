@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section21.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section21.java</span></div><h1>Section21.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Axiom Syntax&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section21 {
+
+    private Section21() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Axiom Syntax (SOLOR)&quot;, PublicIds.of(&quot;8da1c508-c2a2-4899-b26d-87f8b98a7558&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;10d5545f-429d-463b-9c84-3a189a0657e0&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axiom Syntax (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7a1b2e82-9aea-47f1-928e-d1358bbc4531&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axiom Syntax&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;eec5f49f-a2b5-492d-858f-c39d3302dbc7&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Groups the syntaxes a definition's axioms can be serialized in for exchange, such as OWL functional syntax.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;99c902ec-5b72-4f04-a6ab-1f14ddb9ae93&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;8da1c508-c2a2-4899-b26d-87f8b98a7558&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;75a6b3a0-5f36-53e1-8273-f84387c33fd1&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Axioms&quot;, PublicIds.of(&quot;20746b91-521a-45a6-89da-0fe32384a67f&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;cf3c3e2d-013e-4ed7-8790-ad98b0355ce1&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;10d5545f-429d-463b-9c84-3a189a0657e0&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;22bc6a15-7c73-4e74-be86-60ae657f5bf8&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;7a1b2e82-9aea-47f1-928e-d1358bbc4531&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a2d461de-2833-4a70-b899-2ab9d654dde2&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;eec5f49f-a2b5-492d-858f-c39d3302dbc7&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1b1aee32-3623-496a-ac53-326d531839b8&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Express axiom syntax (SOLOR)&quot;, PublicIds.of(&quot;db55557c-e9ee-4504-aae3-df695b6d6c57&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8b2ad7c5-1781-4117-939e-b72c91c175e5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Express axiom syntax (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ecbfe97a-c068-4d98-9a4a-d024f389d250&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Express Axiom&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6aaf53ee-ff4b-43c9-9930-122db32d3a6e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Why an axiom-syntax semantic exists: to carry a component's definitional axioms as serialized syntax text, for exchange with systems that read that syntax.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;0fab2a03-22df-4c2d-acfb-b954a2aca88e&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;db55557c-e9ee-4504-aae3-df695b6d6c57&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;dd255369-f881-55ec-b645-6674821b0ca6&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.AXIOM_SYNTAX), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;298e8c38-1270-4b16-9dc8-dbe0ea2096a6&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;8b2ad7c5-1781-4117-939e-b72c91c175e5&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;bfb9ad35-5b4e-4ac0-8de7-60ccc6e54e8c&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;ecbfe97a-c068-4d98-9a4a-d024f389d250&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;d2c9b18d-885b-494d-afc9-3c664c3bf71d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;6aaf53ee-ff4b-43c9-9930-122db32d3a6e&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;22e03191-7939-4062-b59d-b9eab28d3dde&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section70.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section70.java</span></div><h1>Section70.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+import java.util.UUID;
+
+/** The &quot;Tinkar root concept&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section70 {
+
+    private Section70() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L18">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L20">        set.concept(&quot;Interval role&quot;, PublicIds.of(&quot;ed9d3506-65ad-48ea-bd01-95474fecdbc4&quot;)).at(inception)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f610144f-c698-4b6c-b726-349e10c899dc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval role&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .statedAxioms(PublicIds.of(&quot;81f96e15-1880-4106-a935-11fbbd07a1e5&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Typed atom (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5a26885c-eb3b-42cd-9490-c6764d03e780&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval role&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L24">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;cdeb2f92-ee84-54d9-9f51-a3ae68c74a60&quot;))</span>
+                ;
+
+<span class="fc" id="L27">        set.concept(&quot;Instant field&quot;, PublicIds.of(&quot;e9bde1bc-aa72-430a-afe1-aa8aec8833b4&quot;)).at(inception)</span>
+<span class="fc" id="L28">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a97517f2-2eb3-4d81-b04d-a46cc6ee92d3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Instant field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L29">                .statedAxioms(PublicIds.of(&quot;aa9b7173-026e-485c-9b00-09110f870090&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field definition data type field&quot;, PublicIds.of(&quot;02273b53-fce7-4cbe-921d-2cff67e81ad5&quot;))))))</span>
+<span class="fc" id="L30">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;26fb7513-b75f-5d3b-a813-4911f2c7392f&quot;))</span>
+                ;
+
+<span class="fc" id="L33">        set.concept(&quot;String field&quot;, PublicIds.of(&quot;27d3905b-b19a-41ff-bed1-fc55f49f8ce4&quot;)).at(inception)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3adf93b7-58f2-4600-80c4-b0d9c88fa0c5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;String field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .statedAxioms(PublicIds.of(&quot;361cacd1-4b4d-40f7-865e-ceec635621d9&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field definition data type field&quot;, PublicIds.of(&quot;02273b53-fce7-4cbe-921d-2cff67e81ad5&quot;))))))</span>
+<span class="fc" id="L36">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;68fd41fd-442e-5c39-a7e0-37c0dd47eda8&quot;))</span>
+                ;
+
+<span class="fc" id="L39">        set.concept(&quot;Field definition purpose field&quot;, PublicIds.of(&quot;93239959-50e6-4645-b5fc-6d47da92e666&quot;)).at(inception)</span>
+<span class="fc" id="L40">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;320a45be-a2ca-4915-a387-7a631212001a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field definition purpose field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L41">                .statedAxioms(PublicIds.of(&quot;ad9adc92-a9ef-4dec-aee8-6c0c03e7265d&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))))))</span>
+<span class="fc" id="L42">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;254a16fc-8e7e-5399-a731-49fdf6e0533b&quot;))</span>
+                ;
+
+<span class="fc" id="L45">        set.concept(&quot;Interval Type&quot;, PublicIds.of(&quot;ba3191ee-a260-41a6-99fd-74a22fdc937e&quot;)).at(inception)</span>
+<span class="fc" id="L46">                .statedAxioms(PublicIds.of(set.uuidFor(&quot;Stated axioms: Interval Type&quot;)), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Interval Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+                ;
+
+<span class="fc" id="L49">        set.concept(&quot;Upper Bound Open&quot;, PublicIds.of(&quot;c20b3b1e-112f-4cb2-b901-4046db844629&quot;)).at(inception)</span>
+<span class="fc" id="L50">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9eafb031-4b17-4589-bd50-ae70c5908ffb&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Upper Bound Open&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L51">                .statedAxioms(PublicIds.of(&quot;33bf57b2-3a21-4980-901a-93d976b32dc5&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Temporal Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+<span class="fc" id="L52">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;30cac71b-1115-4e0f-9ed8-a0861e5ca0d9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Upper Bound Open&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L53">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;11bf7b9c-637f-5b63-9814-48068879fb72&quot;))</span>
+                ;
+
+<span class="fc" id="L56">        set.concept(&quot;Integer field&quot;, PublicIds.of(&quot;db249d1f-ea2e-4608-ae13-166ed20ca825&quot;)).at(inception)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4190db17-c49d-4686-9652-55c043796e94&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Integer field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .statedAxioms(PublicIds.of(&quot;7b13ef94-9390-4025-9472-f949ac5dced9&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field definition data type field&quot;, PublicIds.of(&quot;02273b53-fce7-4cbe-921d-2cff67e81ad5&quot;))))))</span>
+<span class="fc" id="L59">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;29c63076-b25f-5408-965c-7197043d6f19&quot;))</span>
+                ;
+
+<span class="fc" id="L62">        set.concept(&quot;Path field&quot;, PublicIds.of(&quot;6622a391-e2e6-45a0-97e1-c58cd0184092&quot;)).at(inception)</span>
+<span class="fc" id="L63">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;caf4bc68-0641-4b79-9f10-c64baf689399&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Path field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L64">                .definition(&quot;&quot;&quot;</span>
+                        A concept field whose value is the path dimension of a STAMP — \
+                        the path the version was committed on.&quot;&quot;&quot;)
+<span class="fc" id="L67">                .statedAxioms(PublicIds.of(&quot;98c878ac-8de4-4768-ac58-320e015daf02&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L68">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;7475aa07-c8e5-50d6-bb31-334edd0ceff8&quot;))</span>
+                ;
+
+<span class="fc" id="L71">        set.concept(&quot;Include Lower Bound&quot;, PublicIds.of(&quot;2300a210-d722-48af-8c36-118a3f980312&quot;)).at(inception)</span>
+<span class="fc" id="L72">                .statedAxioms(PublicIds.of(set.uuidFor(&quot;Stated axioms: Include Lower Bound&quot;)), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Interval Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+                ;
+
+<span class="fc" id="L75">        set.concept(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;)).at(inception)</span>
+<span class="fc" id="L76">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f75590d7-49e1-42fc-afb0-490b7f8236cf&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L77">                .statedAxioms(PublicIds.of(&quot;4e4ef60b-c909-4ac2-a993-12c5cffb3a98&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component field&quot;, PublicIds.of(&quot;8bd36a0c-d05d-46b7-a79a-d11477705cc1&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L78">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;30a298db-142e-5209-b294-dedf96d86f95&quot;))</span>
+                ;
+
+<span class="fc" id="L81">        set.concept(&quot;Semantic versions field&quot;, PublicIds.of(&quot;aeb73410-a679-4ea8-93fe-7c4785599778&quot;)).at(inception)</span>
+<span class="fc" id="L82">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;0c68481a-0d59-434d-802c-a1dd8268f536&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic versions field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L83">                .statedAxioms(PublicIds.of(&quot;5fa410a1-c221-4e82-9987-e8fa032c75c1&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions field&quot;, PublicIds.of(&quot;1a852426-422a-48db-a618-c906ac4c8e6c&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L84">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;02bd7335-4109-50d6-8539-09e2127949e3&quot;))</span>
+                ;
+
+<span class="fc" id="L87">        set.concept(&quot;Semantic field field&quot;, PublicIds.of(&quot;f6572c76-b5c0-41da-99c0-4344694e7e3c&quot;)).at(inception)</span>
+<span class="fc" id="L88">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fc5eedd2-db8b-4a1c-8375-27335d57a7bc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic field field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L89">                .statedAxioms(PublicIds.of(&quot;cc3d0c0d-de28-4b9c-905c-53c16cd189cd&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L90">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;45395adb-9157-4710-8810-1a92b0bc1757&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic field field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L91">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;de300f46-a593-55b1-bb7d-194a4069b7ae&quot;))</span>
+                ;
+
+<span class="fc" id="L94">        set.concept(&quot;Semantic field fields set&quot;, PublicIds.of(&quot;8dcfc1a1-31f2-46f7-8247-0a17a6d7c6c0&quot;)).at(inception)</span>
+<span class="fc" id="L95">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9fc81e4e-ee6c-47e5-b450-8eec37c1489e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic field fields set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L96">                .statedAxioms(PublicIds.of(&quot;ab83903b-b4e2-41ba-9aec-db3913cfc80f&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L97">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;20922df6-f4c5-5305-a34f-d2cfbfc9eb5c&quot;))</span>
+                ;
+
+<span class="fc" id="L100">        set.concept(&quot;Feature Role Type&quot;, PublicIds.of(&quot;acb8d47e-adac-491d-bc60-78e94cacd312&quot;)).at(inception)</span>
+<span class="fc" id="L101">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;a47b9598-2805-5263-8242-553866371e31&quot;))</span>
+<span class="fc" id="L102">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;409fe4ec-332d-4058-9c09-9d096c8a09ac&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Feature Role Type&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L103">                .statedAxioms(PublicIds.of(&quot;39763e1b-7115-4261-a249-b1095fb420ae&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_TYPE))))</span>
+<span class="fc" id="L104">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;4296aed0-9607-464e-bb52-68eae3107a57&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Feature Role Type&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+                ;
+
+<span class="fc" id="L107">        set.concept(&quot;Field value field&quot;, PublicIds.of(&quot;7e4a96fc-0522-4d74-a7d1-ca74be3bc236&quot;)).at(inception)</span>
+<span class="fc" id="L108">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;5e9aa5cb-6888-4582-a474-38d4c63fc445&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field value field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L109">                .statedAxioms(PublicIds.of(&quot;6df7921f-6132-41be-9013-4e7f477eeafe&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))))))</span>
+<span class="fc" id="L110">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5564945a-baa2-5642-8d40-6138561216d5&quot;))</span>
+                ;
+
+<span class="fc" id="L113">        set.concept(&quot;Pattern versions set&quot;, PublicIds.of(&quot;a254ccee-ef02-4504-9645-0a2ed7af955d&quot;)).at(inception)</span>
+<span class="fc" id="L114">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9ff7977c-e27d-4ebb-a494-f8e01f590d61&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern versions set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L115">                .statedAxioms(PublicIds.of(&quot;fcdf7362-dcb4-4cbc-a066-ea08ae96ac14&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions set&quot;, PublicIds.of(&quot;54d670f1-234d-485a-a354-e1fa7eea1bf2&quot;))), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L116">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;a3aed4d3-7817-5675-ad9f-fe690ba6b199&quot;))</span>
+                ;
+
+<span class="fc" id="L119">        set.concept(&quot;Component versions set&quot;, PublicIds.of(&quot;54d670f1-234d-485a-a354-e1fa7eea1bf2&quot;)).at(inception)</span>
+<span class="fc" id="L120">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;77cef2f7-7515-4166-a289-83e20ed8bda5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component versions set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L121">                .statedAxioms(PublicIds.of(&quot;7a890c14-b8a2-468c-a29d-071af59797a1&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L122">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;fd4de866-ae89-56e5-b54a-2023ca848d5b&quot;))</span>
+                ;
+
+<span class="fc" id="L125">        set.concept(&quot;Interval Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;)).at(inception)</span>
+<span class="fc" id="L126">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;0f689d87-b5ff-48c7-b626-deb91972b101&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Set Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L127">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6ea5db6a-19ea-4aa4-b9ae-8b35ce26c039&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Set Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L128">                .statedAxioms(PublicIds.of(&quot;b9ea8484-5bf0-4db9-9e7f-ecb2b2388c15&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Axioms&quot;, PublicIds.of(&quot;20746b91-521a-45a6-89da-0fe32384a67f&quot;))))))</span>
+<span class="fc" id="L129">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;ac63da3e-0c4a-5d86-9805-fa14a069ccb3&quot;))</span>
+                ;
+
+<span class="fc" id="L132">        set.concept(&quot;Axioms&quot;, PublicIds.of(&quot;20746b91-521a-45a6-89da-0fe32384a67f&quot;)).at(inception)</span>
+<span class="fc" id="L133">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1e0fc030-ec28-4e18-b021-ceaa1d1e3ee4&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L134">                .definition(&quot;&quot;&quot;</span>
+                        Groups the logical-axiom meta-schema concepts: the terminology for \
+                        expressing a concept's formal, machine-processable meaning — EL++ \
+                        terminological axioms, interval-set axioms, and their syntax and \
+                        origin.&quot;&quot;&quot;)
+<span class="fc" id="L139">                .statedAxioms(PublicIds.of(&quot;6151c4c3-bc96-4b86-9e0c-a05b64396db5&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))</span>
+<span class="fc" id="L140">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;2708aab3-d7ca-47f0-a7fc-a9b41c45e2c9&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L141">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8ac2ff67-d2b2-5e69-a0ff-f82d73ef61e9&quot;))</span>
+                ;
+
+<span class="fc" id="L144">        set.concept(&quot;Blank Concept&quot;, PublicIds.of(&quot;cd23d88d-2fcd-4007-8829-97e37bf336aa&quot;)).at(inception)</span>
+<span class="fc" id="L145">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fddf5dfb-702a-4ef1-84a2-e2c8881f10b5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Blank Concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L146">                .definition(&quot;&quot;&quot;</span>
+                        The editor's empty-value marker: what an editing surface writes into a component-valued field a person has deliberately cleared, and what it tests for when asking whether that field is empty. An authored, persisted value -- distinct from Uninitialized Component, the platform's null-object for a reference that was never set at all. Neither asserts anything about the world; a claim that no value applies would need a concept this set does not yet carry.&quot;&quot;&quot;)
+<span class="fc" id="L148">                .statedAxioms(PublicIds.of(&quot;7b1742ae-98e7-4562-bd47-d20a0b35127e&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))</span>
+<span class="fc" id="L149">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;395a8595-4e3a-5f2c-935f-28ab6c0d2fff&quot;))</span>
+                ;
+
+<span class="fc" id="L152">        set.concept(&quot;Temporal Axiom&quot;, PublicIds.of(&quot;5144d836-18d8-4881-a377-2d4640b710a9&quot;)).at(inception)</span>
+<span class="fc" id="L153">                .statedAxioms(PublicIds.of(set.uuidFor(&quot;Stated axioms: Temporal Axiom&quot;)), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Axioms&quot;, PublicIds.of(&quot;20746b91-521a-45a6-89da-0fe32384a67f&quot;))))))</span>
+                ;
+
+<span class="fc" id="L156">        set.concept(&quot;Interval Role Type&quot;, PublicIds.of(&quot;6fa58611-af37-402e-a0c2-6ee1d6068651&quot;)).at(inception)</span>
+<span class="fc" id="L157">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;f349d6b6-81f6-5749-832c-2b795b2833cd&quot;))</span>
+<span class="fc" id="L158">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;81a84029-57d2-46f2-847d-6bddbfc7d43c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Role Type&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L159">                .statedAxioms(PublicIds.of(&quot;46a1f78e-6975-4ec7-ac36-c2e2bb5f9ced&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_TYPE))))</span>
+<span class="fc" id="L160">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9c9d31d2-e1df-448e-988d-94649386173d&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Role Type&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+                ;
+
+<span class="fc" id="L163">        set.concept(&quot;Pattern meaning field&quot;, PublicIds.of(&quot;996d0023-a355-422f-a84d-16dda6ece1b0&quot;)).at(inception)</span>
+<span class="fc" id="L164">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;22d8038d-bbe5-4626-aa64-59d617b06ed2&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern meaning field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L165">                .statedAxioms(PublicIds.of(&quot;59a4c494-4f1f-407f-bc0e-50e124725ab7&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L166">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;75742c74-5b59-5069-94a3-af52a183fdb4&quot;))</span>
+                ;
+
+<span class="fc" id="L169">        set.concept(&quot;Property set Axioms&quot;, PublicIds.of(&quot;ca2fdefd-0481-41cb-8074-41a78f94034d&quot;)).at(inception)</span>
+<span class="fc" id="L170">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;c0cf1277-9f8e-40e9-9f7d-a334c853ab0e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Property set Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L171">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;39b5c17f-09d4-5153-8da5-9da71b5d73bb&quot;))</span>
+<span class="fc" id="L172">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;682373f9-fd96-46bd-820f-b44960290e6a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Property set Axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L173">                .statedAxioms(PublicIds.of(&quot;a1bf12b7-2faf-4fd6-ad8f-e86d0e0775f6&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Logical set (IkeFoundation)&quot;)))))</span>
+                ;
+
+<span class="fc" id="L176">        set.concept(&quot;Public ID field&quot;, PublicIds.of(&quot;196838c5-55f4-4e40-8618-b9ce60685c2f&quot;)).at(inception)</span>
+<span class="fc" id="L177">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1d7c9dc9-5886-4c91-a39e-222296b7a3d3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Public ID field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L178">                .statedAxioms(PublicIds.of(&quot;95a8f7f5-6e82-47a3-bdac-ffce75726494&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;String field&quot;, PublicIds.of(&quot;27d3905b-b19a-41ff-bed1-fc55f49f8ce4&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L179">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d3b567b8-599f-5a2d-8ab6-a6134e792176&quot;))</span>
+                ;
+
+<span class="fc" id="L182">        set.concept(&quot;Uniquely identify knowledge graph components&quot;, PublicIds.of(&quot;dde9a93d-250c-449b-bea0-ba1133d1387b&quot;)).at(inception)</span>
+<span class="fc" id="L183">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;84995eba-4c29-4461-8c95-7cec6f4f12c0&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Uniquely identify knowledge graph components&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L184">                .statedAxioms(PublicIds.of(&quot;5035431d-756f-476b-8684-b2d8776f491e&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.SEMANTIC_PROPERTIES), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L185">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3df98820-750e-440b-8dc0-b6181a732493&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The purpose of this externally valid identifier—based on a list of UUIDs—is to provide a globally unique reference to each entity that is reliable across different systems and databases. This ensures consistent identification, serialization, and lookup of entities regardless of their storage location or implementation details.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L186">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;72282a9b-280f-5393-8cd7-4a59b0844fd9&quot;))</span>
+                ;
+
+<span class="fc" id="L189">        set.concept(&quot;Concept versions field&quot;, PublicIds.of(&quot;3a08b5f1-f17e-4db5-8cf9-c6540f26f241&quot;)).at(inception)</span>
+<span class="fc" id="L190">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;67271240-9116-45a4-9622-3cbe9149d355&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept versions field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L191">                .statedAxioms(PublicIds.of(&quot;585d09e9-3bbc-4806-9071-344ea449b5af&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions field&quot;, PublicIds.of(&quot;1a852426-422a-48db-a618-c906ac4c8e6c&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L192">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;7b84bd4c-2e8e-5781-ab5a-3c7147359bca&quot;))</span>
+                ;
+
+<span class="fc" id="L195">        set.concept(&quot;Concept versions set&quot;, PublicIds.of(&quot;806c7f9f-52f9-4b53-9758-122899b28a76&quot;)).at(inception)</span>
+<span class="fc" id="L196">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a1bcfd86-7970-4a54-922d-adad1895e061&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept versions set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L197">                .statedAxioms(PublicIds.of(&quot;9d107603-10a8-4928-a3be-2b26f854408b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions set&quot;, PublicIds.of(&quot;54d670f1-234d-485a-a354-e1fa7eea1bf2&quot;))), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L198">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;b2aa911a-e94b-5da6-af9a-8ef44d99cbdc&quot;))</span>
+                ;
+
+<span class="fc" id="L201">        set.concept(&quot;Field definition data type field&quot;, PublicIds.of(&quot;02273b53-fce7-4cbe-921d-2cff67e81ad5&quot;)).at(inception)</span>
+<span class="fc" id="L202">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3f336a02-a965-470a-b4fd-dfa7ecb8f2d8&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field definition data type field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L203">                .statedAxioms(PublicIds.of(&quot;4710800b-ad37-4ec9-9ec2-f9b9a77e109c&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))))))</span>
+<span class="fc" id="L204">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;090eb280-d300-57d0-98be-e77694d68fe1&quot;))</span>
+                ;
+
+<span class="fc" id="L207">        set.concept(&quot;Pattern purpose field&quot;, PublicIds.of(&quot;352c821b-7a11-454c-a127-48ad3206573d&quot;)).at(inception)</span>
+<span class="fc" id="L208">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;18ec7dcd-fe02-4d3b-88b6-a446c5d04498&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern purpose field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L209">                .statedAxioms(PublicIds.of(&quot;27ff9977-e815-490b-a26a-3407d5ee0548&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L210">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;29d1f0d4-537a-52e8-9771-de353141fb1d&quot;))</span>
+                ;
+
+<span class="fc" id="L213">        set.concept(&quot;Pattern field&quot;, PublicIds.of(&quot;751790c7-e1e4-42bc-b531-54c54bd6eebd&quot;)).at(inception)</span>
+<span class="fc" id="L214">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1edef18a-20a1-45e9-b351-89a84649426b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L215">                .statedAxioms(PublicIds.of(&quot;172d9e69-6a3a-4303-9e28-7d2d2e3b5562&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component field&quot;, PublicIds.of(&quot;8bd36a0c-d05d-46b7-a79a-d11477705cc1&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L216">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;b2c9e0d2-0192-526e-b248-82e629525378&quot;))</span>
+                ;
+
+<span class="fc" id="L219">        set.concept(&quot;Pattern versions field&quot;, PublicIds.of(&quot;7b8ecbbf-55b4-41bc-acbf-51824e74446a&quot;)).at(inception)</span>
+<span class="fc" id="L220">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;03ef1ffa-2c30-4bd8-b1d0-bb4e17e01b2b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern versions field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L221">                .statedAxioms(PublicIds.of(&quot;6102d9a1-66a1-4468-a5da-705affc7710e&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions field&quot;, PublicIds.of(&quot;1a852426-422a-48db-a618-c906ac4c8e6c&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L222">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;fc925094-e901-4192-b641-fd1061c1a203&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Pattern versions field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L223">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;4be32931-498f-5dd8-8e13-090a7faa0680&quot;))</span>
+                ;
+
+<span class="fc" id="L226">        set.concept(&quot;Unit of Measure&quot;, PublicIds.of(&quot;40afdda5-89d6-4b80-8181-1ddd6eb92dc8&quot;)).at(inception)</span>
+<span class="fc" id="L227">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d39215af-3ff1-42bd-9c6a-b5a59177a8d5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Unit of Measure&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L228">                .statedAxioms(PublicIds.of(&quot;d910c0ed-7110-48b7-a638-5166d3ef5fbe&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Temporal Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+<span class="fc" id="L229">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8eae0ae5-4008-4ed0-a59a-9c079521197e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Unit of Measure&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L230">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;54928fcd-7499-54c6-84ef-c6ab311e3543&quot;))</span>
+                ;
+
+<span class="fc" id="L233">        set.concept(&quot;Field definitions set&quot;, PublicIds.of(&quot;975de83e-ab99-4a9e-9051-4cbf310a2123&quot;)).at(inception)</span>
+<span class="fc" id="L234">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;7639982f-9ccf-42c4-aad1-d9743ec59e39&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field definitions set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L235">                .statedAxioms(PublicIds.of(&quot;ea7512bc-fd34-4ada-8833-cd121418da0c&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))), leb.ConceptAxiom(IkeTerm.PURPOSE))))</span>
+<span class="fc" id="L236">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;9ad1de67-18e1-550d-aef9-d85ecfa6fba5&quot;))</span>
+                ;
+
+<span class="fc" id="L239">        set.concept(&quot;Lower Bound Open&quot;, PublicIds.of(&quot;a0096ba1-0718-4c03-ad8f-8143c44091e7&quot;)).at(inception)</span>
+<span class="fc" id="L240">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;95c87fd6-1f02-4e52-bb1d-86b229fd5e6b&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Lower Bound Open&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L241">                .statedAxioms(PublicIds.of(&quot;c0926fba-3758-4cc9-aebc-2e001b2560bf&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Temporal Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+<span class="fc" id="L242">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;92167484-69d4-4488-a2b1-169750138f85&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Lower Bound Open&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L243">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;611332e4-38b7-5639-9303-92f5e84fc038&quot;))</span>
+                ;
+
+<span class="fc" id="L246">        set.concept(&quot;Semantic field&quot;, PublicIds.of(&quot;8b6c69d7-a5aa-4db2-bcea-8c7b2817b02f&quot;)).at(inception)</span>
+<span class="fc" id="L247">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;d0b00d78-00df-4358-b2a3-e4b713f19a06&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L248">                .statedAxioms(PublicIds.of(&quot;1b48485e-ef4f-4de2-b30c-785b42f5d7c6&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component field&quot;, PublicIds.of(&quot;8bd36a0c-d05d-46b7-a79a-d11477705cc1&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L249">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;6027de68-e80c-58b0-8032-62a5bc6f51ea&quot;))</span>
+                ;
+
+<span class="fc" id="L252">        set.concept(&quot;Interval property set&quot;, PublicIds.of(&quot;9afc988a-3724-4754-8b74-651426472b19&quot;)).at(inception)</span>
+<span class="fc" id="L253">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;282c95a7-41cf-5b1b-95ef-ed71e4493ae1&quot;))</span>
+<span class="fc" id="L254">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;774d6b87-b69c-4f0a-a1db-9dc11979d173&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval property set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L255">                .statedAxioms(PublicIds.of(&quot;55e609b4-111c-474d-8b71-fb1a1bea1201&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Logical set (IkeFoundation)&quot;)))))</span>
+                ;
+
+<span class="fc" id="L258">        set.concept(&quot;Semantic pattern field&quot;, PublicIds.of(&quot;19dd5dd3-1075-4113-a437-5f1f7c2d55bc&quot;)).at(inception)</span>
+<span class="fc" id="L259">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;c6c8c1b3-95cc-485b-adbf-5c218cbf1241&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic pattern field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L260">                .statedAxioms(PublicIds.of(&quot;d5e2fc81-268b-4510-b82e-c982f68bd975&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Pattern field&quot;, PublicIds.of(&quot;751790c7-e1e4-42bc-b531-54c54bd6eebd&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L261">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;9d1e6d38-030d-59d6-a6f7-bf180724cb66&quot;))</span>
+                ;
+
+<span class="fc" id="L264">        set.concept(&quot;Semantic referenced component field&quot;, PublicIds.of(&quot;4111ba1e-c818-4c5d-9fed-34d07298d009&quot;)).at(inception)</span>
+<span class="fc" id="L265">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;0562f9bf-867e-47d3-bcac-c37e170df2f2&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic referenced component field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L266">                .statedAxioms(PublicIds.of(&quot;0fcea18e-0f47-46b8-b015-0a32404041a3&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component field&quot;, PublicIds.of(&quot;8bd36a0c-d05d-46b7-a79a-d11477705cc1&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L267">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;f4800036-6f1d-5c09-8e0a-3410d9032dae&quot;))</span>
+                ;
+
+<span class="fc" id="L270">        set.concept(&quot;Semantic versions set&quot;, PublicIds.of(&quot;4fd69aed-556f-4938-94cc-ea7ea707ccef&quot;)).at(inception)</span>
+<span class="fc" id="L271">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;05e65c46-6c96-4eff-b10a-6200991da097&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Semantic versions set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L272">                .statedAxioms(PublicIds.of(&quot;b536e963-e938-4d7f-910f-eae3f8cc6ab2&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component versions set&quot;, PublicIds.of(&quot;54d670f1-234d-485a-a354-e1fa7eea1bf2&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L273">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d81283c1-cccb-5ac3-90f8-784dadca8313&quot;))</span>
+                ;
+
+<span class="fc" id="L276">        set.concept(&quot;Field definition meaning field&quot;, PublicIds.of(&quot;74dffbed-0bef-44a4-8ad6-8cff84fe47ae&quot;)).at(inception)</span>
+<span class="fc" id="L277">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1ef0b24c-239c-4e11-a11c-1cd09d3028d3&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field definition meaning field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L278">                .statedAxioms(PublicIds.of(&quot;ac9d8ee5-11eb-40ee-8222-58ab6aeb0828&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Concept field&quot;, PublicIds.of(&quot;ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e&quot;))))))</span>
+<span class="fc" id="L279">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d3fb8cda-0d19-5c54-bf2d-a909ac5071e0&quot;))</span>
+                ;
+
+<span class="fc" id="L282">        set.concept(&quot;Interval Lower Bound&quot;, PublicIds.of(&quot;52b3e38a-fccb-4779-aa61-4e87abd56419&quot;)).at(inception)</span>
+<span class="fc" id="L283">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;9f5130bd-791d-469d-b1c3-6f95ff918fd4&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Lower Bound&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L284">                .statedAxioms(PublicIds.of(&quot;aa693314-dd72-46b6-bfe0-87a9aa1a1c9b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Temporal Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+<span class="fc" id="L285">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;cfcfd411-c8bc-4b90-bec7-97dee2eb2e7c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Lower Bound&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L286">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;c376de0a-a8f9-536c-8e33-432c0a9db06d&quot;))</span>
+                ;
+
+<span class="fc" id="L289">        set.concept(&quot;Include Upper Bound&quot;, PublicIds.of(&quot;990b7e1d-3dcc-4c6e-a068-e30400607d50&quot;)).at(inception)</span>
+<span class="fc" id="L290">                .statedAxioms(PublicIds.of(set.uuidFor(&quot;Stated axioms: Include Upper Bound&quot;)), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Interval Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+                ;
+
+<span class="fc" id="L293">        set.concept(&quot;Field definition field&quot;, PublicIds.of(&quot;14171f07-e74f-409a-b555-06b478818f76&quot;)).at(inception)</span>
+<span class="fc" id="L294">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;293a9980-baf8-4d28-a938-d102d04d1ef2&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field definition field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L295">                .statedAxioms(PublicIds.of(&quot;334b5dc8-dcad-43d9-9a94-abb0dbd45363&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L296">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d7d3959f-0743-5e88-a6db-5de059a7ccdd&quot;))</span>
+                ;
+
+<span class="fc" id="L299">        set.concept(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;)).at(inception)</span>
+<span class="fc" id="L300">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;64478cb5-6d8e-4e02-9f80-f084cb15df8e&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Field categories&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L301">                .definition(&quot;&quot;&quot;</span>
+                        Groups the field-level meta-schema concepts: the terminology \
+                        describing what kind of value — a component, a field definition, a \
+                        semantic field, or a set of these — a semantic's field can hold.&quot;&quot;&quot;)
+<span class="fc" id="L305">                .statedAxioms(PublicIds.of(&quot;f2446156-e60e-4a7f-a859-0558b282903b&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))</span>
+<span class="fc" id="L306">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;86c16e94-be65-5020-8542-61a611c03abd&quot;))</span>
+                ;
+
+<span class="fc" id="L309">        set.concept(&quot;Interval Upper Bound&quot;, PublicIds.of(&quot;6565f774-ff6c-4882-832f-31ddc462adf7&quot;)).at(inception)</span>
+<span class="fc" id="L310">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;bdb2979c-4ab9-4262-95fb-de68acccf2bc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Upper Bound&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L311">                .statedAxioms(PublicIds.of(&quot;3d3053bf-0bbc-468c-a1bb-45c33ee7c0ae&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Temporal Set Axioms&quot;, PublicIds.of(&quot;b253e725-d7cd-46e3-bc3a-5db8b3ffbd52&quot;))))))</span>
+<span class="fc" id="L312">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;a5b0f7cc-7605-4e1e-ba4c-3da028c6de48&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Interval Upper Bound&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L313">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;77d073b9-da92-5111-b3f4-e4b10aca8f06&quot;))</span>
+                ;
+
+<span class="fc" id="L316">        set.concept(&quot;STAMP field&quot;, PublicIds.of(&quot;3d821e64-a2ee-4414-8949-1bc92ef5d5b6&quot;)).at(inception)</span>
+<span class="fc" id="L317">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;636175a0-1d83-43ba-bd94-1a4979ea17b2&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;STAMP field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L318">                .statedAxioms(PublicIds.of(&quot;a7efeead-9f9a-4ae8-a029-eef2ba6f665d&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Component field&quot;, PublicIds.of(&quot;8bd36a0c-d05d-46b7-a79a-d11477705cc1&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L319">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d2948b12-e23f-5c0d-9741-a2613b849db8&quot;))</span>
+                ;
+
+<span class="fc" id="L322">        set.concept(&quot;Component field&quot;, PublicIds.of(&quot;8bd36a0c-d05d-46b7-a79a-d11477705cc1&quot;)).at(inception)</span>
+<span class="fc" id="L323">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;71037904-d49d-4bbd-a1f7-792c50e4593a&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component field&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L324">                .statedAxioms(PublicIds.of(&quot;4a691220-158e-44a3-8fcc-8582cf501a86&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make(&quot;Field categories&quot;, PublicIds.of(&quot;ed230c7c-20f9-470d-8566-5057f92748a5&quot;))), leb.ConceptAxiom(IkeTerm.MEANING))))</span>
+<span class="fc" id="L325">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;73c02ad4-723b-5532-8ac7-440906695f8e&quot;))</span>
+                ;
+
+<span class="fc" id="L328">        set.concept(&quot;Implication set&quot;, PublicIds.of(&quot;ee467a5b-9292-4e0a-a165-3b1a359a8c98&quot;)).at(inception)</span>
+<span class="fc" id="L329">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;4eb568f9-3448-56ac-ad8e-66560500babb&quot;))</span>
+<span class="fc" id="L330">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;537c11d3-af91-4eb3-8b30-ffd171ee8156&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Implication set&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L331">                .statedAxioms(PublicIds.of(&quot;7d9d85e7-5d00-461a-8d74-30efb1455a87&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Logical set (IkeFoundation)&quot;)))))</span>
+                ;
+
+<span class="fc" id="L334">        set.concept(&quot;Integrated Knowledge Management (SOLOR)&quot;, PublicIds.of(&quot;7c21b6c5-cf11-5af9-893b-743f004c97f5&quot;)).at(inception)</span>
+<span class="fc" id="L335">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f3269aab-5826-4449-a8b7-58e31fb3b17f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Integrated Knowledge Management (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L336">                .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;5e4a045b-6478-458d-a7e4-3f79f8d0ffc2&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L337">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;11568433-3b80-4029-99c8-b8fc9eedecfc&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Tinkar root concept&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L338">                .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;834b6a5b-6e24-4c9f-864c-38da26b13e7b&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L339">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;df2c4fca-9555-42ed-9277-2809df76f918&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Terminologies that are represented in a harmonized manner&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L340">                .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;9c6d041b-4943-41b7-af09-e14e72de9992&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L341">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;252259d4-07f5-46c8-b92d-082b3448d567&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;7c21b6c5-cf11-5af9-893b-743f004c97f5&quot;)</span>
+<span class="fc" id="L342">                .statedAxioms(PublicIds.of(&quot;63a463d8-dbe2-5e6c-8391-2eff13f43af9&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROOT_VERTEX))))</span>
+<span class="fc" id="L343">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;5b353251-e33a-4c54-a6da-d119c758caf1&quot;))</span>
+                ;
+
+<span class="fc" id="L346">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LegacyTerminologySet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">LegacyTerminologySet.java</span></div><h1>LegacyTerminologySet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+
+/**
+ * Mints the top-level {@code Legacy} branch — a visible deprecation signal for
+ * dormant/superseded content (IKE-Network/ike-issues#880 follow-up). Content filed here
+ * stays live and resolvable, just flagged in the taxonomy as a near-future removal
+ * candidate rather than left silently mixed in among current terminology.
+ * &lt;p&gt;
+ * First occupant: {@code Dynamic column data types (SOLOR)} ({@code DynamicColumnDataTypes}
+ * and its 9 children — Boolean/Decimal/Float/Double/Long/Array/ByteArray/SignedInteger/
+ * UUIDDataType). Investigation found it is &lt;em&gt;not&lt;/em&gt; dead: {@code komet}'s
+ * {@code PatternFieldsController} (kview) walks its descendants to populate a pattern-authoring
+ * &quot;choose a data type&quot; list — but that list is disconnected from {@code ConceptToDataType}'s
+ * own recognized set (the family a pattern's real field declarations actually use), so
+ * picking from it would produce a field whose declared dataType throws
+ * {@code UnsupportedOperationException} if ever resolved. Under the inception flatten
+ * (IKE-Network/ike-issues#894) the reparent is written in place at the concept's section
+ * declaration ({@code foundation.Section41}, registered in
+ * {@code DELIBERATELY_REPARENTED_ISA}); this file contributes only the branch concept,
+ * which that declaration cites by derived identity.
+ * &lt;p&gt;
+ * {@code Legacy} sits directly under {@code Integrated Knowledge Management (SOLOR)} — the
+ * true root nearly every top-level branch in this guide descends from (see
+ * {@code IntegratedKnowledgeManagement}'s own narrative) — as a sibling of
+ * {@code ModelConcept}, {@code Author}, {@code Module}, and the rest, rather than nested under
+ * any one of them: a deprecation signal is general-purpose and should be able to receive
+ * content reparented out of &lt;em&gt;any&lt;/em&gt; branch, not just the model-concept family
+ * {@code Dynamic column data types} happened to be filed under.
+ */
+final class LegacyTerminologySet {
+
+    private LegacyTerminologySet() {
+    }
+
+    /**
+     * Composes this section's declarations into the session.
+     *
+     * @param set the knowledge set (the session)
+     */
+    static void compose(KnowledgeSet set) {
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894).
+<span class="fc" id="L61">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+        // Renamed from &quot;Legacy&quot; and moved under Model concept per KEC's root
+        // principle (IKE-Network/ike-issues#918): birth-FQN rename, so a new derived
+        // identity — under the pre-bronze never-created doctrine the shorter-named
+        // concept never existed.
+<span class="fc" id="L67">        set.concept(&quot;Legacy model concepts (IkeFoundation)&quot;).at(inception)</span>
+<span class="fc" id="L68">                .synonym(&quot;Legacy model concepts&quot;)</span>
+<span class="fc" id="L69">                .definition(&quot;A visible deprecation signal for model machinery, not a&quot;</span>
+                        + &quot; functional restriction: content reparented here is dormant or&quot;
+                        + &quot; superseded and a candidate for removal in a near-future&quot;
+                        + &quot; revision. Being here says nothing about whether the content is&quot;
+                        + &quot; still resolvable or referenced elsewhere — it may well be —&quot;
+                        + &quot; only that it is no longer this set's preferred terminology&quot;
+                        + &quot; going forward. The scope is deliberate: machinery deprecates&quot;
+                        + &quot; in place, where its history stays browsable; domain content&quot;
+                        + &quot; that does not belong to this set migrates to its home starter&quot;
+                        + &quot; set instead, and is never marked legacy here.&quot;)
+<span class="fc" id="L79">                .isA(IkeTerm.MODEL_CONCEPT);</span>
+<span class="fc" id="L80">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

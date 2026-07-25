@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IkeTerm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">IkeTerm.java</span></div><h1>IkeTerm.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy;
+
+import java.util.UUID;
+
+/**
+ * IKE-native references for every foundational concept/pattern this ledger's own
+ * ingested content refers to — a single source of truth so the generated ledger
+ * does not depend on {@code dev.ikm.tinkar.terms.TinkarTerm} (an upstream, IKE-external
+ * binding) for identities this set already declares itself. Every constant here
+ * names the SAME established identity (UUID preserved) that
+ * {@code dev.ikm.tinkar.terms.TinkarTerm} names — declared, not derived, since these
+ * are adopted identities, not new mints (IKE-Network/ike-issues#872).
+ */
+public final class IkeTerm {
+
+    private IkeTerm() {
+    }
+
+    /** {@code Acceptable (SOLOR)} — same identity as {@code TinkarTerm.ACCEPTABLE}. */
+<span class="fc" id="L23">    public static final EntityProxy.Concept ACCEPTABLE =</span>
+<span class="fc" id="L24">            EntityProxy.Concept.make(&quot;Acceptable (SOLOR)&quot;, PublicIds.of(&quot;12b9e103-060e-3256-9982-18c1191af60e&quot;));</span>
+
+    /** {@code Action properties (SOLOR)} — same identity as {@code TinkarTerm.ACTION_PROPERTIES}. */
+<span class="fc" id="L27">    public static final EntityProxy.Concept ACTION_PROPERTIES =</span>
+<span class="fc" id="L28">            EntityProxy.Concept.make(&quot;Action properties (SOLOR)&quot;, PublicIds.of(&quot;80ba281c-7d47-57cf-8100-82b69bce998b&quot;));</span>
+
+    /** {@code Annotation type (SOLOR)} — same identity as {@code TinkarTerm.ANNOTATION_TYPE}. */
+<span class="fc" id="L31">    public static final EntityProxy.Concept ANNOTATION_TYPE =</span>
+<span class="fc" id="L32">            EntityProxy.Concept.make(&quot;Annotation type (SOLOR)&quot;, PublicIds.of(&quot;3fe77951-58c9-51b3-8e7e-65edcf7ace0a&quot;));</span>
+
+    /** {@code Array field (SOLOR)} — same identity as {@code TinkarTerm.ARRAY_FIELD}. */
+<span class="fc" id="L35">    public static final EntityProxy.Concept ARRAY_FIELD =</span>
+<span class="fc" id="L36">            EntityProxy.Concept.make(&quot;Array field (SOLOR)&quot;, PublicIds.of(&quot;b168ad04-f814-5036-b886-fd4913de88c8&quot;));</span>
+
+    /** {@code Author for version (SOLOR)} — same identity as {@code TinkarTerm.AUTHOR_FOR_VERSION}. */
+<span class="fc" id="L39">    public static final EntityProxy.Concept AUTHOR_FOR_VERSION =</span>
+<span class="fc" id="L40">            EntityProxy.Concept.make(&quot;Author for version (SOLOR)&quot;, PublicIds.of(&quot;4eb9de0d-7486-5f18-a9b4-82e3432f4103&quot;));</span>
+
+    /** {@code Axiom origin (SOLOR)} — same identity as {@code TinkarTerm.AXIOM_ORIGIN}. */
+<span class="fc" id="L43">    public static final EntityProxy.Concept AXIOM_ORIGIN =</span>
+<span class="fc" id="L44">            EntityProxy.Concept.make(&quot;Axiom origin (SOLOR)&quot;, PublicIds.of(&quot;b868bd83-5cd4-5d84-9cf7-b08674fbc79b&quot;));</span>
+
+    /** {@code Axiom Syntax (SOLOR)} — same identity as {@code TinkarTerm.AXIOM_SYNTAX}. */
+<span class="fc" id="L47">    public static final EntityProxy.Concept AXIOM_SYNTAX =</span>
+<span class="fc" id="L48">            EntityProxy.Concept.make(&quot;Axiom Syntax (SOLOR)&quot;, PublicIds.of(&quot;8da1c508-c2a2-4899-b26d-87f8b98a7558&quot;));</span>
+
+    /** {@code Boolean field (SOLOR)} — same identity as {@code TinkarTerm.BOOLEAN_FIELD}. */
+<span class="fc" id="L51">    public static final EntityProxy.Concept BOOLEAN_FIELD =</span>
+<span class="fc" id="L52">            EntityProxy.Concept.make(&quot;Boolean field (SOLOR)&quot;, PublicIds.of(&quot;d6b9e2cc-31c6-5e80-91b7-7537690aae32&quot;));</span>
+
+    /** {@code Byte array field (SOLOR)} — same identity as {@code TinkarTerm.BYTE_ARRAY_FIELD}. */
+<span class="fc" id="L55">    public static final EntityProxy.Concept BYTE_ARRAY_FIELD =</span>
+<span class="fc" id="L56">            EntityProxy.Concept.make(&quot;Byte array field (SOLOR)&quot;, PublicIds.of(&quot;dbdd8df2-aec3-596b-88fc-7b83b5594a45&quot;));</span>
+
+    /** {@code Chronicle properties (SOLOR)} — same identity as {@code TinkarTerm.CHRONICLE_PROPERTIES}. */
+<span class="fc" id="L59">    public static final EntityProxy.Concept CHRONICLE_PROPERTIES =</span>
+<span class="fc" id="L60">            EntityProxy.Concept.make(&quot;Chronicle properties (SOLOR)&quot;, PublicIds.of(&quot;2ba2ef47-30af-57ec-9073-38693f020d7e&quot;));</span>
+
+    /** {@code Comment (SOLOR)} — same identity as {@code TinkarTerm.COMMENT}. */
+<span class="fc" id="L63">    public static final EntityProxy.Concept COMMENT =</span>
+<span class="fc" id="L64">            EntityProxy.Concept.make(&quot;Comment (SOLOR)&quot;, PublicIds.of(&quot;147832d4-b9b8-5062-8891-19f9c4e4760a&quot;));</span>
+
+    /** {@code Component field (SOLOR)} — same identity as {@code TinkarTerm.COMPONENT_FIELD}. */
+<span class="fc" id="L67">    public static final EntityProxy.Concept COMPONENT_FIELD =</span>
+<span class="fc" id="L68">            EntityProxy.Concept.make(&quot;Component field (SOLOR)&quot;, PublicIds.of(&quot;fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3&quot;));</span>
+
+    /** {@code Component Id list field (SOLOR)} — same identity as {@code TinkarTerm.COMPONENT_ID_LIST_FIELD}. */
+<span class="fc" id="L71">    public static final EntityProxy.Concept COMPONENT_ID_LIST_FIELD =</span>
+<span class="fc" id="L72">            EntityProxy.Concept.make(&quot;Component Id list field (SOLOR)&quot;, PublicIds.of(&quot;e553d3f1-63e1-4292-a3a9-af646fe44292&quot;));</span>
+
+    /** {@code Component Id set field (SOLOR)} — same identity as {@code TinkarTerm.COMPONENT_ID_SET_FIELD}. */
+<span class="fc" id="L75">    public static final EntityProxy.Concept COMPONENT_ID_SET_FIELD =</span>
+<span class="fc" id="L76">            EntityProxy.Concept.make(&quot;Component Id set field (SOLOR)&quot;, PublicIds.of(&quot;e283af51-2e8f-44fa-9bf1-89a99a7c7631&quot;));</span>
+
+    /** {@code Component type focus (SOLOR)} — same identity as {@code TinkarTerm.COMPONENT_TYPE_FOCUS}. */
+<span class="fc" id="L79">    public static final EntityProxy.Concept COMPONENT_TYPE_FOCUS =</span>
+<span class="fc" id="L80">            EntityProxy.Concept.make(&quot;Component type focus (SOLOR)&quot;, PublicIds.of(&quot;f1f179d0-26af-5123-9b29-9fc6cd01dd29&quot;));</span>
+
+    /** {@code Concept assemblage for logic coordinate (SOLOR)} — same identity as {@code TinkarTerm.CONCEPT_ASSEMBLAGE_FOR_LOGIC_COORDINATE}. */
+<span class="fc" id="L83">    public static final EntityProxy.Concept CONCEPT_ASSEMBLAGE_FOR_LOGIC_COORDINATE =</span>
+<span class="fc" id="L84">            EntityProxy.Concept.make(&quot;Concept assemblage for logic coordinate (SOLOR)&quot;, PublicIds.of(&quot;16486419-5d1c-574f-bde6-21910ad66f44&quot;));</span>
+
+    /** {@code Concept data type} — same identity as {@code TinkarTerm.CONCEPT_FIELD}. */
+    // Renamed from CONCEPT_FIELD (IKE-Network/ike-issues#925): the identity is the
+    // Concept DATA TYPE concept — correct as a field data-type argument, never as an
+    // isA parent for field-meaning concepts (that is &quot;Concept field&quot;, ebe2aa74).
+<span class="fc" id="L90">    public static final EntityProxy.Concept CONCEPT_DATA_TYPE =</span>
+<span class="fc" id="L91">            EntityProxy.Concept.make(&quot;Concept data type&quot;, PublicIds.of(&quot;ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557&quot;));</span>
+
+    /** {@code Concept type (SOLOR)} — same identity as {@code TinkarTerm.CONCEPT_TYPE}. */
+<span class="fc" id="L94">    public static final EntityProxy.Concept CONCEPT_TYPE =</span>
+<span class="fc" id="L95">            EntityProxy.Concept.make(&quot;Concept type (SOLOR)&quot;, PublicIds.of(&quot;106f3ba1-63b8-5596-8dbe-524fa2e89fc0&quot;));</span>
+
+    /** {@code Concrete domain operator (SOLOR)} — same identity as {@code TinkarTerm.CONCRETE_DOMAIN_OPERATOR}. */
+<span class="fc" id="L98">    public static final EntityProxy.Concept CONCRETE_DOMAIN_OPERATOR =</span>
+<span class="fc" id="L99">            EntityProxy.Concept.make(&quot;Concrete domain operator (SOLOR)&quot;, PublicIds.of(&quot;843b0b55-8785-5544-93f6-581da9cf1ff3&quot;));</span>
+
+    /** {@code Connective operator (SOLOR)} — same identity as {@code TinkarTerm.CONNECTIVE_OPERATOR}. */
+<span class="fc" id="L102">    public static final EntityProxy.Concept CONNECTIVE_OPERATOR =</span>
+<span class="fc" id="L103">            EntityProxy.Concept.make(&quot;Connective operator (SOLOR)&quot;, PublicIds.of(&quot;3fdcaadc-d972-58e9-84f1-b3a39903b076&quot;));</span>
+
+    /** {@code Correlation properties (SOLOR)} — same identity as {@code TinkarTerm.CORRELATION_PROPERTIES}. */
+<span class="fc" id="L106">    public static final EntityProxy.Concept CORRELATION_PROPERTIES =</span>
+<span class="fc" id="L107">            EntityProxy.Concept.make(&quot;Correlation properties (SOLOR)&quot;, PublicIds.of(&quot;8f682e00-3d9e-5506-bd19-b2169d6c8752&quot;));</span>
+
+    /** {@code Decimal field (SOLOR)} — same identity as {@code TinkarTerm.DECIMAL_FIELD}. */
+<span class="fc" id="L110">    public static final EntityProxy.Concept DECIMAL_FIELD =</span>
+<span class="fc" id="L111">            EntityProxy.Concept.make(&quot;Decimal field (SOLOR)&quot;, PublicIds.of(&quot;b413fe94-4ada-4aee-96f9-22be19699d40&quot;));</span>
+
+    /** {@code Definition description type (SOLOR)} — same identity as {@code TinkarTerm.DEFINITION_DESCRIPTION_TYPE}. */
+<span class="fc" id="L114">    public static final EntityProxy.Concept DEFINITION_DESCRIPTION_TYPE =</span>
+<span class="fc" id="L115">            EntityProxy.Concept.make(&quot;Definition description type (SOLOR)&quot;, PublicIds.of(&quot;700546a3-09c7-3fc2-9eb9-53d318659a09&quot;));</span>
+
+    /** {@code Description (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION}. */
+<span class="fc" id="L118">    public static final EntityProxy.Concept DESCRIPTION =</span>
+<span class="fc" id="L119">            EntityProxy.Concept.make(&quot;Description (SOLOR)&quot;, PublicIds.of(&quot;87118daf-d28c-55fb-8657-cd6bc8425600&quot;));</span>
+
+    /** {@code Description acceptability (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_ACCEPTABILITY}. */
+<span class="fc" id="L122">    public static final EntityProxy.Concept DESCRIPTION_ACCEPTABILITY =</span>
+<span class="fc" id="L123">            EntityProxy.Concept.make(&quot;Description acceptability (SOLOR)&quot;, PublicIds.of(&quot;96b61063-0d29-5aea-9652-3f5f328aadc3&quot;));</span>
+
+    /** {@code Description case significance (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_CASE_SIGNIFICANCE}. */
+<span class="fc" id="L126">    public static final EntityProxy.Concept DESCRIPTION_CASE_SIGNIFICANCE =</span>
+<span class="fc" id="L127">            EntityProxy.Concept.make(&quot;Description case significance (SOLOR)&quot;, PublicIds.of(&quot;c3dde9ea-b144-5f49-845a-20cc7d305250&quot;, &quot;f30b0312-2c85-3e65-8609-2d89f8437d34&quot;));</span>
+
+    /** {@code Description dialect pair (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_DIALECT_PAIR}. */
+<span class="fc" id="L130">    public static final EntityProxy.Concept DESCRIPTION_DIALECT_PAIR =</span>
+<span class="fc" id="L131">            EntityProxy.Concept.make(&quot;Description dialect pair (SOLOR)&quot;, PublicIds.of(&quot;a27bbbf8-57b5-590c-8650-1247f6f963eb&quot;));</span>
+
+    /** {@code Description-logic profile (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_LOGIC_PROFILE}. */
+<span class="fc" id="L134">    public static final EntityProxy.Concept DESCRIPTION_LOGIC_PROFILE =</span>
+<span class="fc" id="L135">            EntityProxy.Concept.make(&quot;Description-logic profile (SOLOR)&quot;, PublicIds.of(&quot;14eadb10-fbd0-5999-af37-05728a8503af&quot;));</span>
+
+    /** {@code Description not case sensitive (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_NOT_CASE_SENSITIVE}. */
+<span class="fc" id="L138">    public static final EntityProxy.Concept DESCRIPTION_NOT_CASE_SENSITIVE =</span>
+<span class="fc" id="L139">            EntityProxy.Concept.make(&quot;Description not case sensitive (SOLOR)&quot;, PublicIds.of(&quot;ecea41a2-f596-3d98-99d1-771b667e55b8&quot;));</span>
+
+    /** {@code Description pattern} — same identity as {@code TinkarTerm.DESCRIPTION_PATTERN}. */
+<span class="fc" id="L142">    public static final EntityProxy.Pattern DESCRIPTION_PATTERN =</span>
+<span class="fc" id="L143">            EntityProxy.Pattern.make(&quot;Description pattern&quot;, PublicIds.of(&quot;a4de0039-2625-5842-8a4c-d1ce6aebf021&quot;));</span>
+
+    /** {@code Description semantic (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_SEMANTIC}. */
+<span class="fc" id="L146">    public static final EntityProxy.Concept DESCRIPTION_SEMANTIC =</span>
+<span class="fc" id="L147">            EntityProxy.Concept.make(&quot;Description semantic (SOLOR)&quot;, PublicIds.of(&quot;81487d5f-6115-51e2-a3b3-93d783888eb8&quot;));</span>
+
+    /** {@code Description type (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_TYPE}. */
+<span class="fc" id="L150">    public static final EntityProxy.Concept DESCRIPTION_TYPE =</span>
+<span class="fc" id="L151">            EntityProxy.Concept.make(&quot;Description type (SOLOR)&quot;, PublicIds.of(&quot;ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb&quot;));</span>
+
+    /** {@code Description version properties (SOLOR)} — same identity as {@code TinkarTerm.DESCRIPTION_VERSION_PROPERTIES}. */
+<span class="fc" id="L154">    public static final EntityProxy.Concept DESCRIPTION_VERSION_PROPERTIES =</span>
+<span class="fc" id="L155">            EntityProxy.Concept.make(&quot;Description version properties (SOLOR)&quot;, PublicIds.of(&quot;732aad24-4add-59d6-bbc9-840a8b9dc754&quot;));</span>
+
+    /** {@code Development path (SOLOR)} — same identity as {@code TinkarTerm.DEVELOPMENT_PATH}. */
+<span class="fc" id="L158">    public static final EntityProxy.Concept DEVELOPMENT_PATH =</span>
+<span class="fc" id="L159">            EntityProxy.Concept.make(&quot;Development path (SOLOR)&quot;, PublicIds.of(&quot;1f200ca6-960e-11e5-8994-feff819cdc9f&quot;));</span>
+
+    /** {@code Dialect assemblage (SOLOR)} — same identity as {@code TinkarTerm.DIALECT_ASSEMBLAGE}. */
+<span class="fc" id="L162">    public static final EntityProxy.Concept DIALECT_ASSEMBLAGE =</span>
+<span class="fc" id="L163">            EntityProxy.Concept.make(&quot;Dialect assemblage (SOLOR)&quot;, PublicIds.of(&quot;b9c34574-c9ac-503b-aa24-456a0ec949a2&quot;));</span>
+
+    /** {@code DiGraph field (SOLOR)} — same identity as {@code TinkarTerm.DIGRAPH_FIELD}. */
+<span class="fc" id="L166">    public static final EntityProxy.Concept DIGRAPH_FIELD =</span>
+<span class="fc" id="L167">            EntityProxy.Concept.make(&quot;DiGraph field (SOLOR)&quot;, PublicIds.of(&quot;60113dfe-2bad-11eb-adc1-0242ac120002&quot;));</span>
+
+    /** {@code Directed graph (SOLOR)} — same identity as {@code TinkarTerm.DIRECTED_GRAPH}. */
+<span class="fc" id="L170">    public static final EntityProxy.Concept DIRECTED_GRAPH =</span>
+<span class="fc" id="L171">            EntityProxy.Concept.make(&quot;Directed graph (SOLOR)&quot;, PublicIds.of(&quot;47a787a7-bdce-528d-bfcc-fde1add8d599&quot;));</span>
+
+    /** {@code Display Fields (SOLOR)} — same identity as {@code TinkarTerm.DISPLAY_FIELDS}. */
+<span class="fc" id="L174">    public static final EntityProxy.Concept DISPLAY_FIELDS =</span>
+<span class="fc" id="L175">            EntityProxy.Concept.make(&quot;Display Fields (SOLOR)&quot;, PublicIds.of(&quot;4e627b9c-cecb-5563-82fc-cb0ee25113b1&quot;));</span>
+
+    /** {@code DiTree field (SOLOR)} — same identity as {@code TinkarTerm.DITREE_FIELD}. */
+<span class="fc" id="L178">    public static final EntityProxy.Concept DITREE_FIELD =</span>
+<span class="fc" id="L179">            EntityProxy.Concept.make(&quot;DiTree field (SOLOR)&quot;, PublicIds.of(&quot;32f64fc6-5371-11eb-ae93-0242ac130002&quot;));</span>
+
+    /** {@code Dynamic column data types (SOLOR)} — same identity as {@code TinkarTerm.DYNAMIC_COLUMN_DATA_TYPES}. */
+<span class="fc" id="L182">    public static final EntityProxy.Concept DYNAMIC_COLUMN_DATA_TYPES =</span>
+<span class="fc" id="L183">            EntityProxy.Concept.make(&quot;Dynamic column data types (SOLOR)&quot;, PublicIds.of(&quot;61da7e50-f606-5ba0-a0df-83fd524951e7&quot;));</span>
+
+    /** {@code EL++ Inferred terminological axioms (SOLOR)} — same identity as {@code TinkarTerm.EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS}. */
+<span class="fc" id="L186">    public static final EntityProxy.Concept EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS =</span>
+<span class="fc" id="L187">            EntityProxy.Concept.make(&quot;EL++ Inferred terminological axioms (SOLOR)&quot;, PublicIds.of(&quot;b6d3be7d-1d7f-5c44-a425-5357f878c212&quot;));</span>
+
+    /** {@code EL++ Stated terminological axioms (SOLOR)} — same identity as {@code TinkarTerm.EL_PLUS_PLUS_STATED_TERMINOLOGICAL_AXIOMS}. */
+<span class="fc" id="L190">    public static final EntityProxy.Concept EL_PLUS_PLUS_STATED_TERMINOLOGICAL_AXIOMS =</span>
+<span class="fc" id="L191">            EntityProxy.Concept.make(&quot;EL++ Stated terminological axioms (SOLOR)&quot;, PublicIds.of(&quot;1412bd09-eb0c-5107-9756-10c1c417d385&quot;));</span>
+
+    /** {@code EL++ terminological axioms (SOLOR)} — same identity as {@code TinkarTerm.EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS}. */
+<span class="fc" id="L194">    public static final EntityProxy.Concept EL_PLUS_PLUS_TERMINOLOGICAL_AXIOMS =</span>
+<span class="fc" id="L195">            EntityProxy.Concept.make(&quot;EL++ terminological axioms (SOLOR)&quot;, PublicIds.of(&quot;b3ec50c4-e8cf-4720-b192-31374705f3b7&quot;));</span>
+
+    /** {@code English dialect assemblage (SOLOR)} — same identity as {@code TinkarTerm.ENGLISH_DIALECT_ASSEMBLAGE}. */
+<span class="fc" id="L198">    public static final EntityProxy.Concept ENGLISH_DIALECT_ASSEMBLAGE =</span>
+<span class="fc" id="L199">            EntityProxy.Concept.make(&quot;English dialect assemblage (SOLOR)&quot;, PublicIds.of(&quot;c0836284-f631-3c86-8cfc-56a67814efab&quot;));</span>
+
+    /** {@code English language (SOLOR)} — same identity as {@code TinkarTerm.ENGLISH_LANGUAGE}. */
+<span class="fc" id="L202">    public static final EntityProxy.Concept ENGLISH_LANGUAGE =</span>
+<span class="fc" id="L203">            EntityProxy.Concept.make(&quot;English language (SOLOR)&quot;, PublicIds.of(&quot;02018e5a-46ba-5297-92f1-6931b9f98a12&quot;, &quot;06d905ea-c647-3af9-bfe5-2514e135b558&quot;, &quot;45021920-9567-11e5-8994-feff819cdc9f&quot;));</span>
+
+    /** {@code Example UCUM Units} — same identity as {@code TinkarTerm.EXAMPLE_UCUM_UNITS}. */
+<span class="fc" id="L206">    public static final EntityProxy.Concept EXAMPLE_UCUM_UNITS =</span>
+<span class="fc" id="L207">            EntityProxy.Concept.make(&quot;Example UCUM Units&quot;, PublicIds.of(&quot;80cd4978-314d-46e3-bc13-9980280ae955&quot;));</span>
+
+    /** {@code Express axiom syntax (SOLOR)} — same identity as {@code TinkarTerm.EXPRESS_AXIOM_SYNTAX}. */
+<span class="fc" id="L210">    public static final EntityProxy.Concept EXPRESS_AXIOM_SYNTAX =</span>
+<span class="fc" id="L211">            EntityProxy.Concept.make(&quot;Express axiom syntax (SOLOR)&quot;, PublicIds.of(&quot;db55557c-e9ee-4504-aae3-df695b6d6c57&quot;));</span>
+
+    /** {@code Field substitution (SOLOR)} — same identity as {@code TinkarTerm.FIELD_SUBSTITUTION}. */
+<span class="fc" id="L214">    public static final EntityProxy.Concept FIELD_SUBSTITUTION =</span>
+<span class="fc" id="L215">            EntityProxy.Concept.make(&quot;Field substitution (SOLOR)&quot;, PublicIds.of(&quot;8fdce1aa-ca82-5abc-8cfa-230c14688abc&quot;));</span>
+
+    /** {@code Float field (SOLOR)} — same identity as {@code TinkarTerm.FLOAT_FIELD}. */
+<span class="fc" id="L218">    public static final EntityProxy.Concept FLOAT_FIELD =</span>
+<span class="fc" id="L219">            EntityProxy.Concept.make(&quot;Float field (SOLOR)&quot;, PublicIds.of(&quot;6efe7087-3e3c-5b45-8109-90d7652b1506&quot;));</span>
+
+    /** {@code Fully qualified name description type (SOLOR)} — same identity as {@code TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE}. */
+<span class="fc" id="L222">    public static final EntityProxy.Concept FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE =</span>
+<span class="fc" id="L223">            EntityProxy.Concept.make(&quot;Fully qualified name description type (SOLOR)&quot;, PublicIds.of(&quot;00791270-77c9-32b6-b34f-d932569bd2bf&quot;, &quot;5e1fe940-8faf-11db-b606-0800200c9a66&quot;));</span>
+
+    /** {@code GB English dialect} — same identity as {@code TinkarTerm.GB_DIALECT_PATTERN}. */
+<span class="fc" id="L226">    public static final EntityProxy.Pattern GB_DIALECT_PATTERN =</span>
+<span class="fc" id="L227">            EntityProxy.Pattern.make(&quot;GB English dialect&quot;, PublicIds.of(&quot;561f817a-130e-5e56-984d-910e9991558c&quot;));</span>
+
+    /** {@code GB English dialect (SOLOR)} — same identity as {@code TinkarTerm.GB_ENGLISH_DIALECT}. */
+<span class="fc" id="L230">    public static final EntityProxy.Concept GB_ENGLISH_DIALECT =</span>
+<span class="fc" id="L231">            EntityProxy.Concept.make(&quot;GB English dialect (SOLOR)&quot;, PublicIds.of(&quot;eb9a5e42-3cba-356d-b623-3ed472e20b30&quot;));</span>
+
+    /** {@code Grouping (SOLOR)} — same identity as {@code TinkarTerm.GROUPING}. */
+<span class="fc" id="L234">    public static final EntityProxy.Concept GROUPING =</span>
+<span class="fc" id="L235">            EntityProxy.Concept.make(&quot;Grouping (SOLOR)&quot;, PublicIds.of(&quot;8d76ead7-6c75-5d25-84d4-ca76d928f8a6&quot;));</span>
+
+    /** {@code Identifier Pattern} — same identity as {@code TinkarTerm.IDENTIFIER_PATTERN}. */
+<span class="fc" id="L238">    public static final EntityProxy.Pattern IDENTIFIER_PATTERN =</span>
+<span class="fc" id="L239">            EntityProxy.Pattern.make(&quot;Identifier Pattern&quot;, PublicIds.of(&quot;5d60e14b-c410-5172-9559-3c4253278ae2&quot;));</span>
+
+    /** {@code Identifier source (SOLOR)} — same identity as {@code TinkarTerm.IDENTIFIER_SOURCE}. */
+<span class="fc" id="L242">    public static final EntityProxy.Concept IDENTIFIER_SOURCE =</span>
+<span class="fc" id="L243">            EntityProxy.Concept.make(&quot;Identifier source (SOLOR)&quot;, PublicIds.of(&quot;5a87935c-d654-548f-82a2-0c06e3801162&quot;));</span>
+
+    /** {@code Identifier Value} — same identity as {@code TinkarTerm.IDENTIFIER_VALUE}. */
+<span class="fc" id="L246">    public static final EntityProxy.Concept IDENTIFIER_VALUE =</span>
+<span class="fc" id="L247">            EntityProxy.Concept.make(&quot;Identifier Value&quot;, PublicIds.of(&quot;b32dd26b-c3fc-487e-987e-16ace71a0d0f&quot;));</span>
+
+    /** {@code ImmutableCoordinate properties (SOLOR)} — same identity as {@code TinkarTerm.IMMUTABLECOORDINATE_PROPERTIES}. */
+<span class="fc" id="L250">    public static final EntityProxy.Concept IMMUTABLECOORDINATE_PROPERTIES =</span>
+<span class="fc" id="L251">            EntityProxy.Concept.make(&quot;ImmutableCoordinate properties (SOLOR)&quot;, PublicIds.of(&quot;ab41a788-8a83-5452-8dc0-2d8375e0bfe6&quot;));</span>
+
+    /** {@code Inferred Definition} — same identity as {@code TinkarTerm.INFERRED_DEFINITION}. */
+<span class="fc" id="L254">    public static final EntityProxy.Concept INFERRED_DEFINITION =</span>
+<span class="fc" id="L255">            EntityProxy.Concept.make(&quot;Inferred Definition&quot;, PublicIds.of(&quot;b1abf4dc-9838-4b46-ac55-10c4f92ba10b&quot;));</span>
+
+    /** {@code Instant literal (SOLOR)} — same identity as {@code TinkarTerm.INSTANT_LITERAL}. */
+<span class="fc" id="L258">    public static final EntityProxy.Concept INSTANT_LITERAL =</span>
+<span class="fc" id="L259">            EntityProxy.Concept.make(&quot;Instant literal (SOLOR)&quot;, PublicIds.of(&quot;1fbf42e2-42b7-591f-b7fd-ba5de659529e&quot;));</span>
+
+    /** {@code Integer field (SOLOR)} — same identity as {@code TinkarTerm.INTEGER_FIELD}. */
+<span class="fc" id="L262">    public static final EntityProxy.Concept INTEGER_FIELD =</span>
+<span class="fc" id="L263">            EntityProxy.Concept.make(&quot;Integer field (SOLOR)&quot;, PublicIds.of(&quot;ff59c300-9c4e-5e77-a35d-6a133eb3440f&quot;));</span>
+
+    /** {@code Is-a (SOLOR)} — same identity as {@code TinkarTerm.IS_A}. */
+<span class="fc" id="L266">    public static final EntityProxy.Concept IS_A =</span>
+<span class="fc" id="L267">            EntityProxy.Concept.make(&quot;Is-a (SOLOR)&quot;, PublicIds.of(&quot;c93a30b9-ba77-3adb-a9b8-4589c9f8fb25&quot;, &quot;46bccdc4-8fb6-11db-b606-0800200c9a66&quot;));</span>
+
+    /** {@code Komet base model component pattern} — same identity as {@code TinkarTerm.KOMET_BASE_MODEL_COMPONENT_PATTERN}. */
+<span class="fc" id="L270">    public static final EntityProxy.Pattern KOMET_BASE_MODEL_COMPONENT_PATTERN =</span>
+<span class="fc" id="L271">            EntityProxy.Pattern.make(&quot;Komet base model component pattern&quot;, PublicIds.of(&quot;bbbbf1fe-00f0-55e0-a19c-6300dbaab9b2&quot;));</span>
+
+    /** {@code Korean dialect (SOLOR)} — same identity as {@code TinkarTerm.KOREAN_DIALECT}. */
+<span class="fc" id="L274">    public static final EntityProxy.Concept KOREAN_DIALECT =</span>
+<span class="fc" id="L275">            EntityProxy.Concept.make(&quot;Korean dialect (SOLOR)&quot;, PublicIds.of(&quot;6fb2eb9c-fb9e-5959-802c-fb17bcba3079&quot;));</span>
+
+    /** {@code Language (SOLOR)} — same identity as {@code TinkarTerm.LANGUAGE}. */
+<span class="fc" id="L278">    public static final EntityProxy.Concept LANGUAGE =</span>
+<span class="fc" id="L279">            EntityProxy.Concept.make(&quot;Language (SOLOR)&quot;, PublicIds.of(&quot;f56fa231-10f9-5e7f-a86d-a1d61b5b56e3&quot;));</span>
+
+    /** {@code Language concept nid for description (SOLOR)} — same identity as {@code TinkarTerm.LANGUAGE_CONCEPT_NID_FOR_DESCRIPTION}. */
+<span class="fc" id="L282">    public static final EntityProxy.Concept LANGUAGE_CONCEPT_NID_FOR_DESCRIPTION =</span>
+<span class="fc" id="L283">            EntityProxy.Concept.make(&quot;Language concept nid for description (SOLOR)&quot;, PublicIds.of(&quot;cd56cceb-8507-5ae5-a928-16079fe6f832&quot;));</span>
+
+    /** {@code Language coordinate properties (SOLOR)} — same identity as {@code TinkarTerm.LANGUAGE_COORDINATE_PROPERTIES}. */
+<span class="fc" id="L286">    public static final EntityProxy.Concept LANGUAGE_COORDINATE_PROPERTIES =</span>
+<span class="fc" id="L287">            EntityProxy.Concept.make(&quot;Language coordinate properties (SOLOR)&quot;, PublicIds.of(&quot;ea1a52f7-0305-5487-8766-e846330f167a&quot;));</span>
+
+    /** {@code Literal value (SOLOR)} — same identity as {@code TinkarTerm.LITERAL_VALUE}. */
+<span class="fc" id="L290">    public static final EntityProxy.Concept LITERAL_VALUE =</span>
+<span class="fc" id="L291">            EntityProxy.Concept.make(&quot;Literal value (SOLOR)&quot;, PublicIds.of(&quot;208a40a7-e615-5efa-9de0-2e2a5a8488b7&quot;));</span>
+
+    /** {@code Logical Definition (SOLOR)} — same identity as {@code TinkarTerm.LOGICAL_DEFINITION}. */
+<span class="fc" id="L294">    public static final EntityProxy.Concept LOGICAL_DEFINITION =</span>
+<span class="fc" id="L295">            EntityProxy.Concept.make(&quot;Logical Definition (SOLOR)&quot;, PublicIds.of(&quot;7dccd042-b0b8-5cec-a1bc-6de676b92f4b&quot;));</span>
+
+    /** {@code Logic coordinate properties (SOLOR)} — same identity as {@code TinkarTerm.LOGIC_COORDINATE_PROPERTIES}. */
+<span class="fc" id="L298">    public static final EntityProxy.Concept LOGIC_COORDINATE_PROPERTIES =</span>
+<span class="fc" id="L299">            EntityProxy.Concept.make(&quot;Logic coordinate properties (SOLOR)&quot;, PublicIds.of(&quot;1fa63819-5ac1-5938-95b1-47871a5f2b17&quot;));</span>
+
+    /** {@code long (SOLOR)} — same identity as {@code TinkarTerm.LONG}. */
+<span class="fc" id="L302">    public static final EntityProxy.Concept LONG =</span>
+<span class="fc" id="L303">            EntityProxy.Concept.make(&quot;long (SOLOR)&quot;, PublicIds.of(&quot;dea8cdf1-de75-5991-9791-79714e4a964d&quot;));</span>
+
+    /** {@code Maximum Value Operator} — same identity as {@code TinkarTerm.MAXIMUM_VALUE_OPERATOR}. */
+<span class="fc" id="L306">    public static final EntityProxy.Concept MAXIMUM_VALUE_OPERATOR =</span>
+<span class="fc" id="L307">            EntityProxy.Concept.make(&quot;Maximum Value Operator&quot;, PublicIds.of(&quot;7b8916ab-fd50-41df-8fc2-0b2a7a78be6d&quot;));</span>
+
+    /** {@code Meaning (SOLOR)} — same identity as {@code TinkarTerm.MEANING}. */
+<span class="fc" id="L310">    public static final EntityProxy.Concept MEANING =</span>
+<span class="fc" id="L311">            EntityProxy.Concept.make(&quot;Meaning (SOLOR)&quot;, PublicIds.of(&quot;a06158ff-e08a-5d7d-bcfa-6cbfdb138910&quot;));</span>
+
+    /** {@code Membership semantic (SOLOR)} — same identity as {@code TinkarTerm.MEMBERSHIP_SEMANTIC}. */
+<span class="fc" id="L314">    public static final EntityProxy.Concept MEMBERSHIP_SEMANTIC =</span>
+<span class="fc" id="L315">            EntityProxy.Concept.make(&quot;Membership semantic (SOLOR)&quot;, PublicIds.of(&quot;4fa29287-a80e-5f83-abab-4b587973e7b7&quot;));</span>
+
+    /** {@code Minimum Value Operator} — same identity as {@code TinkarTerm.MINIMUM_VALUE_OPERATOR}. */
+<span class="fc" id="L318">    public static final EntityProxy.Concept MINIMUM_VALUE_OPERATOR =</span>
+<span class="fc" id="L319">            EntityProxy.Concept.make(&quot;Minimum Value Operator&quot;, PublicIds.of(&quot;ded98e42-f74a-4432-9ae7-01b94dc2fdea&quot;));</span>
+
+    /** {@code Model concept (SOLOR)} — same identity as {@code TinkarTerm.MODEL_CONCEPT}. */
+<span class="fc" id="L322">    public static final EntityProxy.Concept MODEL_CONCEPT =</span>
+<span class="fc" id="L323">            EntityProxy.Concept.make(&quot;Model concept (SOLOR)&quot;, PublicIds.of(&quot;7bbd4210-381c-11e7-9598-0800200c9a66&quot;));</span>
+
+    /** {@code Module (SOLOR)} — same identity as {@code TinkarTerm.MODULE}. */
+<span class="fc" id="L326">    public static final EntityProxy.Concept MODULE =</span>
+<span class="fc" id="L327">            EntityProxy.Concept.make(&quot;Module (SOLOR)&quot;, PublicIds.of(&quot;40d1c869-b509-32f8-b735-836eac577a67&quot;));</span>
+
+    /** {@code Module for version (SOLOR)} — same identity as {@code TinkarTerm.MODULE_FOR_VERSION}. */
+<span class="fc" id="L330">    public static final EntityProxy.Concept MODULE_FOR_VERSION =</span>
+<span class="fc" id="L331">            EntityProxy.Concept.make(&quot;Module for version (SOLOR)&quot;, PublicIds.of(&quot;67cd64f1-96d7-5110-b847-556c055ac063&quot;));</span>
+
+    /** {@code Module origins (SOLOR)} — same identity as {@code TinkarTerm.MODULE_ORIGINS}. */
+<span class="fc" id="L334">    public static final EntityProxy.Concept MODULE_ORIGINS =</span>
+<span class="fc" id="L335">            EntityProxy.Concept.make(&quot;Module origins (SOLOR)&quot;, PublicIds.of(&quot;462862d4-5df9-426e-b785-a1264e24769f&quot;));</span>
+
+    /** {@code Navigation (SOLOR)} — same identity as {@code TinkarTerm.NAVIGATION}. */
+<span class="fc" id="L338">    public static final EntityProxy.Concept NAVIGATION =</span>
+<span class="fc" id="L339">            EntityProxy.Concept.make(&quot;Navigation (SOLOR)&quot;, PublicIds.of(&quot;4d9707d8-adf0-5b15-89fc-039e4ff6fec8&quot;));</span>
+
+    /** {@code Object (SOLOR)} — same identity as {@code TinkarTerm.OBJECT}. */
+<span class="fc" id="L342">    public static final EntityProxy.Concept OBJECT =</span>
+<span class="fc" id="L343">            EntityProxy.Concept.make(&quot;Object (SOLOR)&quot;, PublicIds.of(&quot;72765109-6b53-3814-9b05-34ebddd16592&quot;));</span>
+
+    /** {@code Object properties (SOLOR)} — same identity as {@code TinkarTerm.OBJECT_PROPERTIES}. */
+<span class="fc" id="L346">    public static final EntityProxy.Concept OBJECT_PROPERTIES =</span>
+<span class="fc" id="L347">            EntityProxy.Concept.make(&quot;Object properties (SOLOR)&quot;, PublicIds.of(&quot;3ef4311c-70c0-5149-9e06-53d745f85b15&quot;));</span>
+
+    /** {@code Path (SOLOR)} — same identity as {@code TinkarTerm.PATH}. */
+<span class="fc" id="L350">    public static final EntityProxy.Concept PATH =</span>
+<span class="fc" id="L351">            EntityProxy.Concept.make(&quot;Path (SOLOR)&quot;, PublicIds.of(&quot;4459d8cf-5a6f-3952-9458-6d64324b27b7&quot;));</span>
+
+    /** {@code Version control path pattern} — same identity as {@code TinkarTerm.PATHS_PATTERN}. */
+<span class="fc" id="L354">    public static final EntityProxy.Pattern PATHS_PATTERN =</span>
+<span class="fc" id="L355">            EntityProxy.Pattern.make(&quot;Version control path pattern&quot;, PublicIds.of(&quot;add1db57-72fe-53c8-a528-1614bda20ec6&quot;));</span>
+
+    /** {@code Path concept (SOLOR)} — same identity as {@code TinkarTerm.PATH_CONCEPT}. */
+<span class="fc" id="L358">    public static final EntityProxy.Concept PATH_CONCEPT =</span>
+<span class="fc" id="L359">            EntityProxy.Concept.make(&quot;Path concept (SOLOR)&quot;, PublicIds.of(&quot;1b9d9f95-fc0a-55ac-b2e6-7c8b37660046&quot;));</span>
+
+    /** {@code Path coordinate properties (SOLOR)} — same identity as {@code TinkarTerm.PATH_COORDINATE_PROPERTIES}. */
+<span class="fc" id="L362">    public static final EntityProxy.Concept PATH_COORDINATE_PROPERTIES =</span>
+<span class="fc" id="L363">            EntityProxy.Concept.make(&quot;Path coordinate properties (SOLOR)&quot;, PublicIds.of(&quot;ec41e427-f009-5e45-a643-6dc658d63d83&quot;));</span>
+
+    /** {@code Path for version (SOLOR)} — same identity as {@code TinkarTerm.PATH_FOR_VERSION}. */
+<span class="fc" id="L366">    public static final EntityProxy.Concept PATH_FOR_VERSION =</span>
+<span class="fc" id="L367">            EntityProxy.Concept.make(&quot;Path for version (SOLOR)&quot;, PublicIds.of(&quot;ad3dd2dd-ddb0-584c-bea4-c6d9b91d461f&quot;));</span>
+
+    /** {@code Path origins (SOLOR)} — same identity as {@code TinkarTerm.PATH_ORIGINS}. */
+<span class="fc" id="L370">    public static final EntityProxy.Concept PATH_ORIGINS =</span>
+<span class="fc" id="L371">            EntityProxy.Concept.make(&quot;Path origins (SOLOR)&quot;, PublicIds.of(&quot;6e6a112e-7d8c-53c7-aaf1-c46e2d69743c&quot;));</span>
+
+    /** {@code Version control path origin pattern} — same identity as {@code TinkarTerm.PATH_ORIGINS_PATTERN}. */
+<span class="fc" id="L374">    public static final EntityProxy.Pattern PATH_ORIGINS_PATTERN =</span>
+<span class="fc" id="L375">            EntityProxy.Pattern.make(&quot;Version control path origin pattern&quot;, PublicIds.of(&quot;70f89dd5-2cdb-59bb-bbaa-98527513547c&quot;));</span>
+
+    /** {@code Phenomenon (SOLOR)} — same identity as {@code TinkarTerm.PHENOMENON}. */
+<span class="fc" id="L378">    public static final EntityProxy.Concept PHENOMENON =</span>
+<span class="fc" id="L379">            EntityProxy.Concept.make(&quot;Phenomenon (SOLOR)&quot;, PublicIds.of(&quot;c2e8bc47-3353-5e02-b0d1-2a5916efed4d&quot;));</span>
+
+    /** {@code Preferred (SOLOR)} — same identity as {@code TinkarTerm.PREFERRED}. */
+<span class="fc" id="L382">    public static final EntityProxy.Concept PREFERRED =</span>
+<span class="fc" id="L383">            EntityProxy.Concept.make(&quot;Preferred (SOLOR)&quot;, PublicIds.of(&quot;266f1bc3-3361-39f3-bffe-69db9daea56e&quot;));</span>
+
+    /** {@code Primordial path (SOLOR)} — same identity as {@code TinkarTerm.PRIMORDIAL_PATH}. */
+<span class="fc" id="L386">    public static final EntityProxy.Concept PRIMORDIAL_PATH =</span>
+<span class="fc" id="L387">            EntityProxy.Concept.make(&quot;Primordial path (SOLOR)&quot;, PublicIds.of(&quot;e95b6718-f824-5540-817b-8e79544eb97a&quot;));</span>
+
+    /** {@code Purpose (SOLOR)} — same identity as {@code TinkarTerm.PURPOSE}. */
+<span class="fc" id="L390">    public static final EntityProxy.Concept PURPOSE =</span>
+<span class="fc" id="L391">            EntityProxy.Concept.make(&quot;Purpose (SOLOR)&quot;, PublicIds.of(&quot;c3dffc48-6493-54df-a2f0-14be8ba03091&quot;));</span>
+
+    /** {@code Query clauses (SOLOR)} — same identity as {@code TinkarTerm.QUERY_CLAUSES}. */
+<span class="fc" id="L394">    public static final EntityProxy.Concept QUERY_CLAUSES =</span>
+<span class="fc" id="L395">            EntityProxy.Concept.make(&quot;Query clauses (SOLOR)&quot;, PublicIds.of(&quot;4905348c-ba1d-58ae-821f-52877d9acee3&quot;));</span>
+
+    /** {@code Reference Range} — same identity as {@code TinkarTerm.REFERENCE_RANGE}. */
+<span class="fc" id="L398">    public static final EntityProxy.Concept REFERENCE_RANGE =</span>
+<span class="fc" id="L399">            EntityProxy.Concept.make(&quot;Reference Range&quot;, PublicIds.of(&quot;87ce975b-309b-47f4-a6c6-4ae6df6649a1&quot;));</span>
+
+    /** {@code Reference Range Maximum} — same identity as {@code TinkarTerm.REFERENCE_RANGE_MAXIMUM}. */
+<span class="fc" id="L402">    public static final EntityProxy.Concept REFERENCE_RANGE_MAXIMUM =</span>
+<span class="fc" id="L403">            EntityProxy.Concept.make(&quot;Reference Range Maximum&quot;, PublicIds.of(&quot;72d58983-b1e1-4ca9-833f-0e40c1defd39&quot;));</span>
+
+    /** {@code Reference Range Minimum} — same identity as {@code TinkarTerm.REFERENCE_RANGE_MINIMUM}. */
+<span class="fc" id="L406">    public static final EntityProxy.Concept REFERENCE_RANGE_MINIMUM =</span>
+<span class="fc" id="L407">            EntityProxy.Concept.make(&quot;Reference Range Minimum&quot;, PublicIds.of(&quot;37c35a88-9e27-42ca-b626-186773c4b612&quot;));</span>
+
+    /** {@code Regular name description type (SOLOR)} — same identity as {@code TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE}. */
+<span class="fc" id="L410">    public static final EntityProxy.Concept REGULAR_NAME_DESCRIPTION_TYPE =</span>
+<span class="fc" id="L411">            EntityProxy.Concept.make(&quot;Regular name description type (SOLOR)&quot;, PublicIds.of(&quot;8bfba944-3965-3946-9bcb-1e80a5da63a2&quot;, &quot;d6fad981-7df6-3388-94d8-238cc0465a79&quot;));</span>
+
+    /** {@code Relationship destination (SOLOR)} — same identity as {@code TinkarTerm.RELATIONSHIP_DESTINATION}. */
+<span class="fc" id="L414">    public static final EntityProxy.Concept RELATIONSHIP_DESTINATION =</span>
+<span class="fc" id="L415">            EntityProxy.Concept.make(&quot;Relationship destination (SOLOR)&quot;, PublicIds.of(&quot;a3dd69af-355c-54ce-ba13-2902a7ae9551&quot;));</span>
+
+    /** {@code Relationship origin (SOLOR)} — same identity as {@code TinkarTerm.RELATIONSHIP_ORIGIN}. */
+<span class="fc" id="L418">    public static final EntityProxy.Concept RELATIONSHIP_ORIGIN =</span>
+<span class="fc" id="L419">            EntityProxy.Concept.make(&quot;Relationship origin (SOLOR)&quot;, PublicIds.of(&quot;ad22d43b-3ee7-550b-9660-a6e68af347c2&quot;));</span>
+
+    /** {@code Role (SOLOR)} — same identity as {@code TinkarTerm.ROLE}. */
+<span class="fc" id="L422">    public static final EntityProxy.Concept ROLE =</span>
+<span class="fc" id="L423">            EntityProxy.Concept.make(&quot;Role (SOLOR)&quot;, PublicIds.of(&quot;46ae9325-dd24-5008-8fda-80cf1f0977c7&quot;));</span>
+
+    /** {@code Role group (SOLOR)} — same identity as {@code TinkarTerm.ROLE_GROUP}. */
+<span class="fc" id="L426">    public static final EntityProxy.Concept ROLE_GROUP =</span>
+<span class="fc" id="L427">            EntityProxy.Concept.make(&quot;Role group (SOLOR)&quot;, PublicIds.of(&quot;a63f4bf2-a040-11e5-8994-feff819cdc9f&quot;, &quot;f97abff6-a221-57a1-9cd6-e79e723bfe2a&quot;, &quot;051fbfed-3c40-3130-8c09-889cb7b7b5b6&quot;));</span>
+
+    /** {@code Role operator (SOLOR)} — same identity as {@code TinkarTerm.ROLE_OPERATOR}. */
+<span class="fc" id="L430">    public static final EntityProxy.Concept ROLE_OPERATOR =</span>
+<span class="fc" id="L431">            EntityProxy.Concept.make(&quot;Role operator (SOLOR)&quot;, PublicIds.of(&quot;f9860cb8-a7c7-5743-9d7c-ffc6e8a24a0f&quot;));</span>
+
+    /** {@code Role type (SOLOR)} — same identity as {@code TinkarTerm.ROLE_TYPE}. */
+<span class="fc" id="L434">    public static final EntityProxy.Concept ROLE_TYPE =</span>
+<span class="fc" id="L435">            EntityProxy.Concept.make(&quot;Role type (SOLOR)&quot;, PublicIds.of(&quot;76320274-be2a-5ba0-b3e8-e6d2e383ee6a&quot;));</span>
+
+    /** {@code Root vertex} — same identity as {@code TinkarTerm.ROOT_VERTEX}. */
+<span class="fc" id="L438">    public static final EntityProxy.Concept ROOT_VERTEX =</span>
+<span class="fc" id="L439">            EntityProxy.Concept.make(&quot;Root vertex&quot;, PublicIds.of(&quot;7c21b6c5-cf11-5af9-893b-743f004c97f5&quot;));</span>
+
+    /** {@code Sandbox component (SOLOR)} — same identity as {@code TinkarTerm.SANDBOX_COMPONENT}. */
+<span class="fc" id="L442">    public static final EntityProxy.Concept SANDBOX_COMPONENT =</span>
+<span class="fc" id="L443">            EntityProxy.Concept.make(&quot;Sandbox component (SOLOR)&quot;, PublicIds.of(&quot;c93829b2-aa78-5a84-ac9a-c34307844166&quot;));</span>
+
+    /** {@code Sandbox module (SOLOR)} — same identity as {@code TinkarTerm.SANDBOX_MODULE}. */
+<span class="fc" id="L446">    public static final EntityProxy.Concept SANDBOX_MODULE =</span>
+<span class="fc" id="L447">            EntityProxy.Concept.make(&quot;Sandbox module (SOLOR)&quot;, PublicIds.of(&quot;c5daf0e9-30dc-5b3e-a521-d6e6e72c8a95&quot;));</span>
+
+    /** {@code Sandbox path (SOLOR)} — same identity as {@code TinkarTerm.SANDBOX_PATH}. */
+<span class="fc" id="L450">    public static final EntityProxy.Concept SANDBOX_PATH =</span>
+<span class="fc" id="L451">            EntityProxy.Concept.make(&quot;Sandbox path (SOLOR)&quot;, PublicIds.of(&quot;80710ea6-983c-5fa0-8908-e479f1f03ea9&quot;));</span>
+
+    /** {@code Semantic field type (SOLOR)} — same identity as {@code TinkarTerm.SEMANTIC_FIELD_TYPE}. */
+<span class="fc" id="L454">    public static final EntityProxy.Concept SEMANTIC_FIELD_TYPE =</span>
+<span class="fc" id="L455">            EntityProxy.Concept.make(&quot;Semantic field type (SOLOR)&quot;, PublicIds.of(&quot;9c3dfc88-51e4-5e51-a59a-88dd580162b7&quot;));</span>
+
+    /** {@code Semantic properties (SOLOR)} — same identity as {@code TinkarTerm.SEMANTIC_PROPERTIES}. */
+<span class="fc" id="L458">    public static final EntityProxy.Concept SEMANTIC_PROPERTIES =</span>
+<span class="fc" id="L459">            EntityProxy.Concept.make(&quot;Semantic properties (SOLOR)&quot;, PublicIds.of(&quot;b717ae48-5488-5dda-a980-97855001cc99&quot;));</span>
+
+    /** {@code Semantic type (SOLOR)} — same identity as {@code TinkarTerm.SEMANTIC_TYPE}. */
+<span class="fc" id="L462">    public static final EntityProxy.Concept SEMANTIC_TYPE =</span>
+<span class="fc" id="L463">            EntityProxy.Concept.make(&quot;Semantic type (SOLOR)&quot;, PublicIds.of(&quot;3daac6c4-78c5-5271-9c63-6e28f80e0c52&quot;));</span>
+
+    /** {@code Starter Data Authoring (SOLOR)} — same identity as {@code TinkarTerm.STARTER_DATA_AUTHORING}. */
+<span class="fc" id="L466">    public static final EntityProxy.Concept STARTER_DATA_AUTHORING =</span>
+<span class="fc" id="L467">            EntityProxy.Concept.make(&quot;Starter Data Authoring (SOLOR)&quot;, PublicIds.of(&quot;070deb74-acc5-46bf-b9c6-eaee1b58ef52&quot;));</span>
+
+    /** {@code Stated Definition} — same identity as {@code TinkarTerm.STATED_DEFINITION}. */
+<span class="fc" id="L470">    public static final EntityProxy.Concept STATED_DEFINITION =</span>
+<span class="fc" id="L471">            EntityProxy.Concept.make(&quot;Stated Definition&quot;, PublicIds.of(&quot;28608bd3-ac73-4fe8-a5f0-1efe0d6650a8&quot;));</span>
+
+    /** {@code Status for version (SOLOR)} — same identity as {@code TinkarTerm.STATUS_FOR_VERSION}. */
+<span class="fc" id="L474">    public static final EntityProxy.Concept STATUS_FOR_VERSION =</span>
+<span class="fc" id="L475">            EntityProxy.Concept.make(&quot;Status for version (SOLOR)&quot;, PublicIds.of(&quot;0608e233-d79d-5076-985b-9b1ea4e14b4c&quot;));</span>
+
+    /** {@code Status value (SOLOR)} — same identity as {@code TinkarTerm.STATUS_VALUE}. */
+<span class="fc" id="L478">    public static final EntityProxy.Concept STATUS_VALUE =</span>
+<span class="fc" id="L479">            EntityProxy.Concept.make(&quot;Status value (SOLOR)&quot;, PublicIds.of(&quot;10b873e2-8247-5ab5-9dec-4edef37fc219&quot;));</span>
+
+    /** {@code String (SOLOR)} — same identity as {@code TinkarTerm.STRING}. */
+<span class="fc" id="L482">    public static final EntityProxy.Concept STRING =</span>
+<span class="fc" id="L483">            EntityProxy.Concept.make(&quot;String (SOLOR)&quot;, PublicIds.of(&quot;a46aaf11-b37a-32d6-abdc-707f084ec8f5&quot;));</span>
+
+    /** {@code Sufficient concept definition operator (SOLOR)} — same identity as {@code TinkarTerm.SUFFICIENT_CONCEPT_DEFINITION_OPERATOR}. */
+<span class="fc" id="L486">    public static final EntityProxy.Concept SUFFICIENT_CONCEPT_DEFINITION_OPERATOR =</span>
+<span class="fc" id="L487">            EntityProxy.Concept.make(&quot;Sufficient concept definition operator (SOLOR)&quot;, PublicIds.of(&quot;dfa80f36-dbe6-5006-8509-c497a26ceab5&quot;));</span>
+
+    /** {@code Taxonomy operator (SOLOR)} — same identity as {@code TinkarTerm.TAXONOMY_OPERATOR}. */
+<span class="fc" id="L490">    public static final EntityProxy.Concept TAXONOMY_OPERATOR =</span>
+<span class="fc" id="L491">            EntityProxy.Concept.make(&quot;Taxonomy operator (SOLOR)&quot;, PublicIds.of(&quot;e9252365-7a43-57ea-bf94-3f23bab4ef99&quot;));</span>
+
+    /** {@code Text comparison measure semantic (SOLOR)} — same identity as {@code TinkarTerm.TEXT_COMPARISON_MEASURE_SEMANTIC}. */
+<span class="fc" id="L494">    public static final EntityProxy.Concept TEXT_COMPARISON_MEASURE_SEMANTIC =</span>
+<span class="fc" id="L495">            EntityProxy.Concept.make(&quot;Text comparison measure semantic (SOLOR)&quot;, PublicIds.of(&quot;b1531e68-4e7a-5194-b1f9-9aaace269372&quot;));</span>
+
+    /** {@code Text for description (SOLOR)} — same identity as {@code TinkarTerm.TEXT_FOR_DESCRIPTION}. */
+<span class="fc" id="L498">    public static final EntityProxy.Concept TEXT_FOR_DESCRIPTION =</span>
+<span class="fc" id="L499">            EntityProxy.Concept.make(&quot;Text for description (SOLOR)&quot;, PublicIds.of(&quot;8bdcbe5d-e92e-5c10-845e-b585e6061672&quot;));</span>
+
+    /** {@code Time for version (SOLOR)} — same identity as {@code TinkarTerm.TIME_FOR_VERSION}. */
+<span class="fc" id="L502">    public static final EntityProxy.Concept TIME_FOR_VERSION =</span>
+<span class="fc" id="L503">            EntityProxy.Concept.make(&quot;Time for version (SOLOR)&quot;, PublicIds.of(&quot;a9b0dfb2-f463-5dae-8ba8-7f2e8385571b&quot;));</span>
+
+    /** {@code Tinkar base model component pattern} — same identity as {@code TinkarTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN}. */
+<span class="fc" id="L506">    public static final EntityProxy.Pattern TINKAR_BASE_MODEL_COMPONENT_PATTERN =</span>
+<span class="fc" id="L507">            EntityProxy.Pattern.make(&quot;Tinkar base model component pattern&quot;, PublicIds.of(&quot;6070f6f5-893d-5144-adce-7d305c391cf9&quot;));</span>
+
+    /** {@code Tinkar Model concept (SOLOR)} — same identity as {@code TinkarTerm.TINKAR_MODEL_CONCEPT}. */
+<span class="fc" id="L510">    public static final EntityProxy.Concept TINKAR_MODEL_CONCEPT =</span>
+<span class="fc" id="L511">            EntityProxy.Concept.make(&quot;Tinkar Model concept (SOLOR)&quot;, PublicIds.of(&quot;bc59d656-83d3-47d8-9507-0e656ea95463&quot;));</span>
+
+    /** {@code Tree amalgam properties (SOLOR)} — same identity as {@code TinkarTerm.TREE_AMALGAM_PROPERTIES}. */
+<span class="fc" id="L514">    public static final EntityProxy.Concept TREE_AMALGAM_PROPERTIES =</span>
+<span class="fc" id="L515">            EntityProxy.Concept.make(&quot;Tree amalgam properties (SOLOR)&quot;, PublicIds.of(&quot;d6151a47-4610-5a5c-abd0-42c82be9b633&quot;));</span>
+
+    /** {@code Uninitialized component (SOLOR)} — same identity as {@code TinkarTerm.UNINITIALIZED_COMPONENT}. */
+<span class="fc" id="L518">    public static final EntityProxy.Concept UNINITIALIZED_COMPONENT =</span>
+<span class="fc" id="L519">            EntityProxy.Concept.make(&quot;Uninitialized component (SOLOR)&quot;, PublicIds.of(&quot;55f74246-0a25-57ac-9473-a788d08fb656&quot;));</span>
+
+    /** {@code Universally Unique Identifier (SOLOR)} — same identity as {@code TinkarTerm.UNIVERSALLY_UNIQUE_IDENTIFIER}. */
+<span class="fc" id="L522">    public static final EntityProxy.Concept UNIVERSALLY_UNIQUE_IDENTIFIER =</span>
+<span class="fc" id="L523">            EntityProxy.Concept.make(&quot;Universally Unique Identifier (SOLOR)&quot;, PublicIds.of(&quot;845274b5-9644-3799-94c6-e0ea37e7d1a4&quot;));</span>
+
+    /** {@code User (SOLOR)} — same identity as {@code TinkarTerm.USER}. */
+<span class="fc" id="L526">    public static final EntityProxy.Concept USER =</span>
+<span class="fc" id="L527">            EntityProxy.Concept.make(&quot;User (SOLOR)&quot;, PublicIds.of(&quot;f7495b58-6630-3499-a44e-2052b5fcf06c&quot;));</span>
+
+    /** {@code US Dialect pattern} — same identity as {@code TinkarTerm.US_DIALECT_PATTERN}. */
+<span class="fc" id="L530">    public static final EntityProxy.Pattern US_DIALECT_PATTERN =</span>
+<span class="fc" id="L531">            EntityProxy.Pattern.make(&quot;US Dialect pattern&quot;, PublicIds.of(&quot;08f9112c-c041-56d3-b89b-63258f070074&quot;));</span>
+
+    /** {@code US English dialect (SOLOR)} — same identity as {@code TinkarTerm.US_ENGLISH_DIALECT}. */
+<span class="fc" id="L534">    public static final EntityProxy.Concept US_ENGLISH_DIALECT =</span>
+<span class="fc" id="L535">            EntityProxy.Concept.make(&quot;US English dialect (SOLOR)&quot;, PublicIds.of(&quot;bca0a686-3516-3daf-8fcf-fe396d13cfad&quot;));</span>
+
+    /** {@code Value Constraint} — same identity as {@code TinkarTerm.VALUE_CONSTRAINT}. */
+<span class="fc" id="L538">    public static final EntityProxy.Concept VALUE_CONSTRAINT =</span>
+<span class="fc" id="L539">            EntityProxy.Concept.make(&quot;Value Constraint&quot;, PublicIds.of(&quot;8c55fb86-92d8-42a9-ad70-1e23abbf7eec&quot;));</span>
+
+    /** {@code Value Constraint Source} — same identity as {@code TinkarTerm.VALUE_CONSTRAINT_SOURCE}. */
+<span class="fc" id="L542">    public static final EntityProxy.Concept VALUE_CONSTRAINT_SOURCE =</span>
+<span class="fc" id="L543">            EntityProxy.Concept.make(&quot;Value Constraint Source&quot;, PublicIds.of(&quot;09aa031a-6290-4ec9-a44c-23928a767da3&quot;));</span>
+
+    /** {@code Version properties (SOLOR)} — same identity as {@code TinkarTerm.VERSION_PROPERTIES}. */
+<span class="fc" id="L546">    public static final EntityProxy.Concept VERSION_PROPERTIES =</span>
+<span class="fc" id="L547">            EntityProxy.Concept.make(&quot;Version properties (SOLOR)&quot;, PublicIds.of(&quot;93f844df-38e5-5167-ba94-2c948b8bd07c&quot;));</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

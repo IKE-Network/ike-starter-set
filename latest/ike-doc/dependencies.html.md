@@ -58,7 +58,7 @@ Sorted by group, artifact, version. Click [bom.json](bom.json)[1] for the raw ma
 | `dev.ikm.tinkar.ext.owl` | `owl-extension` | `1.127.2-chronology-builder-SNAPSHOT` | `Apache-2.0` | library |
 | `network.ike` | `ike-base-parent` | `15` | `Apache-2.0` | library |
 | `network.ike.docs` | `docbook-xsl` | `91` | `Apache-2.0 OR MIT License (DocBook XSL Stylesheets)` | library |
-| `network.ike.docs` | `ike-doc-resources` | `90-SNAPSHOT` | `Apache-2.0` | library |
+| `network.ike.docs` | `ike-doc-resources` | `94` | `Apache-2.0` | library |
 | `network.ike.docs` | `minimal-fonts` | `91` | `OFL-1.1` | library |
 | `network.ike.foundation` | `ike-changeset` | `1-chronology-builder-SNAPSHOT` | `Apache-2.0` | library |
 | `network.ike.foundation` | `ike-terms` | `1-chronology-builder-SNAPSHOT` | `Apache-2.0` | library |

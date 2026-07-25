@@ -150,7 +150,7 @@
 
 <ul class="nav nav-pills nav-stacked animate">
 <li><a href="project-info.html"><i class="fas fa-folder"></i> Project Information <span class="badge">7</span></a></li>
-<li><a href="project-reports.html"><i class="fas fa-folder"></i> Project Reports <span class="badge">1</span></a></li>
+<li><a href="project-reports.html"><i class="fas fa-folder"></i> Project Reports <span class="badge">2</span></a></li>
 </ul>
 			</nav>
 
@@ -528,7 +528,7 @@
 								<li>[31] https://github.com/IKE-Network/ike-issues/issues/336</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-07-21 22:51:45 -0700</strong></div>
+<div class="date">Date: <strong>2026-07-25 11:06:39 -0700</strong></div>
 						</div>
 						</div>
 					</div>
@@ -760,6 +760,19 @@ angular.module("sentry.site").constant("SITE_MENU", [
 {
 	path: "apidocs/index.html",
 	title: "Javadoc",
+	parents: [
+		{
+			title: "Reports"
+		},
+		{
+			path: "project-reports.html",
+			title: "Project Reports"
+		}
+	]
+},
+{
+	path: "jacoco/index.html",
+	title: "JaCoCo",
 	parents: [
 		{
 			title: "Reports"

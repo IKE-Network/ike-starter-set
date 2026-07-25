@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section4.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section4.java</span></div><h1>Section4.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Has Active Ingredient&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section4 {
+
+    private Section4() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Has Active Ingredient (SOLOR)&quot;, PublicIds.of(&quot;65bf3b7f-c854-36b5-81c3-4915461020a8&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;6108e695-6a19-4632-92bc-a268f0180ead&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Has Active Ingredient (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;f6fd6a29-4492-496b-9cce-55e07d910a9f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Has Active Ingredient&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;3da52372-3eb8-459a-a08a-1429cff5e3e1&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A domain role type from the medication model: relates a product to an ingredient active in it. Held as a SNOMED-heritage example; migrates to a domain starter set when one exists.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;4c1440af-e629-4d77-8076-2d8891fb3b78&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;65bf3b7f-c854-36b5-81c3-4915461020a8&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;6041af94-fe55-5775-a5ad-2684ef65dfc6&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_TYPE))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;86a680e3-396c-46f6-a47e-0910ec47903a&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;6108e695-6a19-4632-92bc-a268f0180ead&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;76410bdc-4773-4066-8b5f-81f42a2d5d66&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;f6fd6a29-4492-496b-9cce-55e07d910a9f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;709e01af-b730-4776-ba74-4b35e49306d3&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;3da52372-3eb8-459a-a08a-1429cff5e3e1&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;7e4a0173-6535-4b1e-8e7f-e02ab2704687&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

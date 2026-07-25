@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefinitionCompletionSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms</a> &gt; <span class="el_source">DefinitionCompletionSet.java</span></div><h1>DefinitionCompletionSet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.foundation.ike.terms;
+
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+
+/**
+ * The definition completions of the meaning/purpose audit (IKE-Network/ike-issues#892):
+ * every concept any ledger-declared pattern's latest version names as a meaning or
+ * purpose — referenced component or field — must carry a textual definition that says
+ * something a reader could not already read off the label. The audited inventory (34
+ * patterns, 154 distinct meaning/purpose concepts) found 25 base-model chronicle/version
+ * field concepts, plus the 27 the IKE-Network/ike-issues#922 sweep found undefined (Public ID field, the five chronicle-kind fields, the five versions
+ * field/set pairs, the pattern-version declaration fields, the semantic-version fields,
+ * STAMP field, Time field) that never carried a definition description at all. Each is
+ * resumed here by its birth FQN (all were opened by the foundation sections'
+ * identity-exact ingest) and given its first — and only — definition, grounded in how
+ * the chronicle/version meta-model actually uses it.
+ * &lt;p&gt;
+ * The audit's other defect classes — the label echoes, the terminology-rule revisions
+ * (IKE-Network/ike-issues#893), the garbled Semantic data type definition, and the
+ * &quot;Sementic&quot; FQN typo — are corrected in place at their section declarations under the
+ * inception flatten (IKE-Network/ike-issues#894), so no restatement lives here.
+ * &lt;p&gt;
+ * Two {@code LedgerGatesIT} gates hold the audit closed: every Model Feature's
+ * meaning differs from its purpose, and every meaning/purpose concept carries a
+ * definition whose normalized text differs from its labels — echoes cannot return.
+ */
+final class DefinitionCompletionSet {
+
+    private DefinitionCompletionSet() {
+    }
+
+    /**
+     * Composes this section's declarations into the session.
+     *
+     * @param set the knowledge set (the session)
+     */
+    static void compose(KnowledgeSet set) {
+        // The one declared inception stamp of the pre-release set
+        // (IKE-Network/ike-issues#894).
+<span class="fc" id="L56">        ActiveStamp completion = Ike.INCEPTION;</span>
+
+        // ── The 25 missing definitions: chronicle-shape fields ──────────
+        // Each concept below is resumed by its birth FQN (opened by the foundation
+        // sections' identity-exact ingest) and given its first definition description.
+        // Meanings say what the field is and holds; the &quot;... set&quot; purposes say why the
+        // field is recorded — the same meaning/purpose division of labor the pattern
+        // declarations themselves observe (IKE-Network/ike-issues#880).
+
+<span class="fc" id="L65">        set.concept(&quot;Public ID field&quot;).at(completion)</span>
+<span class="fc" id="L66">                .definition(&quot;The field kind holding a chronicle's public identity — the&quot;</span>
+                        + &quot; universally unique identifiers that name a component across&quot;
+                        + &quot; every system it is exchanged with. The first field of every&quot;
+                        + &quot; chronicle-shape pattern, recorded to uniquely identify&quot;
+                        + &quot; knowledge graph components.&quot;);
+
+<span class="fc" id="L72">        set.concept(&quot;Component field&quot;).at(completion)</span>
+<span class="fc" id="L73">                .definition(&quot;The field kind whose value references a component of any&quot;</span>
+                        + &quot; kind — concept, pattern, semantic, or STAMP. The parent of&quot;
+                        + &quot; every reference-valued field kind, and the Component&quot;
+                        + &quot; Chronology Pattern's referenced-component meaning: the&quot;
+                        + &quot; component whose identity and history the chronicle records.&quot;);
+
+<span class="fc" id="L79">        set.concept(&quot;Concept field&quot;).at(completion)</span>
+<span class="fc" id="L80">                .definition(&quot;A component field narrowed to concepts: its value references&quot;</span>
+                        + &quot; a concept specifically. The parent of the STAMP-dimension&quot;
+                        + &quot; field kinds and of a pattern's meaning- and&quot;
+                        + &quot; purpose-declaration field kinds, and the Concept Chronology&quot;
+                        + &quot; Pattern's referenced-component meaning.&quot;);
+
+<span class="fc" id="L86">        set.concept(&quot;Pattern field&quot;).at(completion)</span>
+<span class="fc" id="L87">                .definition(&quot;A component field narrowed to patterns: its value references&quot;</span>
+                        + &quot; a pattern. The Pattern Chronology Pattern's&quot;
+                        + &quot; referenced-component meaning, and the parent of Semantic&quot;
+                        + &quot; pattern field.&quot;);
+
+<span class="fc" id="L92">        set.concept(&quot;Semantic field&quot;).at(completion)</span>
+<span class="fc" id="L93">                .definition(&quot;A component field narrowed to semantics: its value references&quot;</span>
+                        + &quot; a semantic. The Semantic Chronology Pattern's&quot;
+                        + &quot; referenced-component meaning — the chronicle kind that must&quot;
+                        + &quot; also record which pattern its semantic is an instance of and&quot;
+                        + &quot; what it is attached to.&quot;);
+
+<span class="fc" id="L99">        set.concept(&quot;STAMP field&quot;).at(completion)</span>
+<span class="fc" id="L100">                .definition(&quot;A component field whose value references a STAMP — the&quot;</span>
+                        + &quot; five-dimension provenance tuple a version was committed with.&quot;
+                        + &quot; The STAMP Chronology Pattern's referenced-component meaning,&quot;
+                        + &quot; and the first field of every version-shape pattern, recorded&quot;
+                        + &quot; for version provenance.&quot;);
+
+<span class="fc" id="L106">        set.concept(&quot;Time field&quot;).at(completion)</span>
+<span class="fc" id="L107">                .definition(&quot;An instant field whose value is the time dimension of a&quot;</span>
+                        + &quot; STAMP — when the version was committed.&quot;);
+
+        // ── The versions field/set pairs ────────────────────────────────
+        // In the chronicle shape the &quot;versions field&quot; is the field's meaning (what the
+        // slot is) and the &quot;versions set&quot; its purpose (why it is recorded: the complete
+        // history). The version-shape patterns then resume each &quot;versions field&quot; as
+        // their own referenced-component meaning.
+
+<span class="fc" id="L116">        set.concept(&quot;Component versions field&quot;).at(completion)</span>
+<span class="fc" id="L117">                .definition(&quot;The field kind holding a chronicle's version collection —&quot;</span>
+                        + &quot; one entry per committed version of the component. Every&quot;
+                        + &quot; chronicle-shape pattern declares it beside the public id, and&quot;
+                        + &quot; the Component Version Pattern carries it as its own&quot;
+                        + &quot; referenced-component meaning.&quot;);
+
+<span class="fc" id="L123">        set.concept(&quot;Component versions set&quot;).at(completion)</span>
+<span class="fc" id="L124">                .definition(&quot;Why a chronicle's versions field is recorded: to hold every&quot;</span>
+                        + &quot; version the component has ever had — the complete history a&quot;
+                        + &quot; chronicle exists to keep alongside its identity.&quot;);
+
+<span class="fc" id="L128">        set.concept(&quot;Concept versions field&quot;).at(completion)</span>
+<span class="fc" id="L129">                .definition(&quot;The component versions field narrowed to concept chronicles:&quot;</span>
+                        + &quot; its value collects a concept's own versions. The Concept&quot;
+                        + &quot; Version Pattern's referenced-component meaning.&quot;);
+
+<span class="fc" id="L133">        set.concept(&quot;Concept versions set&quot;).at(completion)</span>
+<span class="fc" id="L134">                .definition(&quot;Why a concept chronicle's versions field is recorded: to&quot;</span>
+                        + &quot; hold every version the concept has ever had — the&quot;
+                        + &quot; concept-chronicle specialization of Component versions set.&quot;);
+
+<span class="fc" id="L138">        set.concept(&quot;Pattern versions field&quot;).at(completion)</span>
+<span class="fc" id="L139">                .definition(&quot;The component versions field narrowed to pattern chronicles:&quot;</span>
+                        + &quot; its value collects a pattern's own versions. The Pattern&quot;
+                        + &quot; Version Pattern's referenced-component meaning.&quot;);
+
+<span class="fc" id="L143">        set.concept(&quot;Pattern versions set&quot;).at(completion)</span>
+<span class="fc" id="L144">                .definition(&quot;Why a pattern chronicle's versions field is recorded: to&quot;</span>
+                        + &quot; hold every version the pattern has ever had — the&quot;
+                        + &quot; pattern-chronicle specialization of Component versions set.&quot;);
+
+<span class="fc" id="L148">        set.concept(&quot;Semantic versions field&quot;).at(completion)</span>
+<span class="fc" id="L149">                .definition(&quot;The component versions field narrowed to semantic&quot;</span>
+                        + &quot; chronicles: its value collects a semantic's own versions. The&quot;
+                        + &quot; Semantic version field pattern's referenced-component&quot;
+                        + &quot; meaning.&quot;);
+
+<span class="fc" id="L154">        set.concept(&quot;Semantic versions set&quot;).at(completion)</span>
+<span class="fc" id="L155">                .definition(&quot;Why a semantic chronicle's versions field is recorded: to&quot;</span>
+                        + &quot; hold every version the semantic has ever had — the&quot;
+                        + &quot; semantic-chronicle specialization of Component versions&quot;
+                        + &quot; set.&quot;);
+
+<span class="fc" id="L160">        set.concept(&quot;STAMP versions field&quot;).at(completion)</span>
+<span class="fc" id="L161">                .definition(&quot;The component versions field narrowed to STAMP chronicles:&quot;</span>
+                        + &quot; its value collects a STAMP's own versions. The STAMP version&quot;
+                        + &quot; field pattern's referenced-component meaning.&quot;);
+
+<span class="fc" id="L165">        set.concept(&quot;STAMP versions set&quot;).at(completion)</span>
+<span class="fc" id="L166">                .definition(&quot;Why a STAMP chronicle's versions field is recorded: to hold&quot;</span>
+                        + &quot; every version the STAMP has ever had — the STAMP-chronicle&quot;
+                        + &quot; specialization of Component versions set.&quot;);
+
+        // ── The pattern-version declaration fields ──────────────────────
+
+<span class="fc" id="L172">        set.concept(&quot;Pattern meaning field&quot;).at(completion)</span>
+<span class="fc" id="L173">                .definition(&quot;A concept field whose value is a pattern version's declared&quot;</span>
+                        + &quot; meaning concept — naming what a semantic of the pattern is&quot;
+                        + &quot; about.&quot;);
+
+<span class="fc" id="L177">        set.concept(&quot;Pattern purpose field&quot;).at(completion)</span>
+<span class="fc" id="L178">                .definition(&quot;A concept field whose value is a pattern version's declared&quot;</span>
+                        + &quot; purpose concept — naming why semantics of the pattern are&quot;
+                        + &quot; captured.&quot;);
+
+<span class="fc" id="L182">        set.concept(&quot;Field definition field&quot;).at(completion)</span>
+<span class="fc" id="L183">                .definition(&quot;The field kind naming a pattern version's field-definition&quot;</span>
+                        + &quot; slot: each value is one field definition — the meaning,&quot;
+                        + &quot; purpose, and data type the pattern declares for one of its&quot;
+                        + &quot; fields.&quot;);
+
+<span class="fc" id="L188">        set.concept(&quot;Field definitions set&quot;).at(completion)</span>
+<span class="fc" id="L189">                .definition(&quot;Why a pattern version's field-definition field is recorded:&quot;</span>
+                        + &quot; to hold the pattern's complete, ordered field definitions —&quot;
+                        + &quot; the declared shape every semantic of the pattern must fit.&quot;);
+
+        // ── The semantic-version and semantic-chronicle fields ──────────
+
+<span class="fc" id="L195">        set.concept(&quot;Semantic field field&quot;).at(completion)</span>
+<span class="fc" id="L196">                .definition(&quot;The field kind naming a semantic version's field-value slot:&quot;</span>
+                        + &quot; each value is one field the version actually carries, as&quot;
+                        + &quot; distinct from the field definition its pattern declares.&quot;);
+
+<span class="fc" id="L200">        set.concept(&quot;Semantic field fields set&quot;).at(completion)</span>
+<span class="fc" id="L201">                .definition(&quot;Why a semantic version's field-value field is recorded: to&quot;</span>
+                        + &quot; hold, together, every field value that version carries — the&quot;
+                        + &quot; value-side counterpart to a pattern's Field definitions&quot;
+                        + &quot; set.&quot;);
+
+<span class="fc" id="L206">        set.concept(&quot;Semantic pattern field&quot;).at(completion)</span>
+<span class="fc" id="L207">                .definition(&quot;A pattern field whose value identifies which pattern a&quot;</span>
+                        + &quot; semantic is an instance of — the field a semantic chronicle&quot;
+                        + &quot; records for pattern membership.&quot;);
+
+<span class="fc" id="L211">        set.concept(&quot;Semantic referenced component field&quot;).at(completion)</span>
+<span class="fc" id="L212">                .definition(&quot;A component field whose value identifies the component a&quot;</span>
+                        + &quot; semantic is attached to — the field a semantic chronicle&quot;
+                        + &quot; records for its attachment target.&quot;);
+
+        // ── The #922 name-fidelity wave: the 27 concepts the sweep found with no
+        // definition at all — the interval-axiom vocabulary, the field kinds the
+        // original 25 did not reach, the baseline axiom groupings, and two module-era
+        // anchors. Same resume-by-birth-FQN idiom as above.
+<span class="fc" id="L220">        set.concept(&quot;Interval Set Axioms&quot;).at(completion)</span>
+<span class="fc" id="L221">                .definition(&quot;Groups the interval-axiom vocabulary: the bound values, openness markers, and unit of measure an interval-valued assertion carries.&quot;);</span>
+
+<span class="fc" id="L223">        set.concept(&quot;Interval Lower Bound&quot;).at(completion)</span>
+<span class="fc" id="L224">                .definition(&quot;The field holding an interval's lower bound value.&quot;);</span>
+
+<span class="fc" id="L226">        set.concept(&quot;Interval Upper Bound&quot;).at(completion)</span>
+<span class="fc" id="L227">                .definition(&quot;The field holding an interval's upper bound value.&quot;);</span>
+
+<span class="fc" id="L229">        set.concept(&quot;Include Lower Bound&quot;).at(completion)</span>
+<span class="fc" id="L230">                .definition(&quot;The field saying whether an interval includes its lower bound: closed when included, open when not.&quot;);</span>
+
+<span class="fc" id="L232">        set.concept(&quot;Include Upper Bound&quot;).at(completion)</span>
+<span class="fc" id="L233">                .definition(&quot;The field saying whether an interval includes its upper bound: closed when included, open when not.&quot;);</span>
+
+<span class="fc" id="L235">        set.concept(&quot;Lower Bound Open&quot;).at(completion)</span>
+<span class="fc" id="L236">                .definition(&quot;The marker that an interval's lower bound is open: the bound value itself lies outside the interval.&quot;);</span>
+
+<span class="fc" id="L238">        set.concept(&quot;Upper Bound Open&quot;).at(completion)</span>
+<span class="fc" id="L239">                .definition(&quot;The marker that an interval's upper bound is open: the bound value itself lies outside the interval.&quot;);</span>
+
+<span class="fc" id="L241">        set.concept(&quot;Unit of Measure&quot;).at(completion)</span>
+<span class="fc" id="L242">                .definition(&quot;The field naming the unit an interval's bounds are expressed in.&quot;);</span>
+
+<span class="fc" id="L244">        set.concept(&quot;Interval Type&quot;).at(completion)</span>
+<span class="fc" id="L245">                .definition(&quot;The concept naming which kind of interval an interval assertion carries.&quot;);</span>
+
+<span class="fc" id="L247">        set.concept(&quot;Temporal Axiom&quot;).at(completion)</span>
+<span class="fc" id="L248">                .definition(&quot;Groups axioms about time: the temporal counterpart of the interval-axiom vocabulary.&quot;);</span>
+
+<span class="fc" id="L250">        set.concept(&quot;Interval role&quot;).at(completion)</span>
+<span class="fc" id="L251">                .definition(&quot;The typed atom asserting a role bounded to an interval: a role whose filler is constrained by interval bounds. Mirrors LogicalAxiom.Atom.TypedAtom.IntervalRole in the sealed hierarchy.&quot;);</span>
+
+<span class="fc" id="L253">        set.concept(&quot;Interval property set&quot;).at(completion)</span>
+<span class="fc" id="L254">                .definition(&quot;The logical set grouping interval-property axioms under a definition root. Mirrors LogicalAxiom.LogicalSet.IntervalPropertySet in the sealed hierarchy.&quot;);</span>
+
+<span class="fc" id="L256">        set.concept(&quot;Interval Role Type&quot;).at(completion)</span>
+<span class="fc" id="L257">                .definition(&quot;The role-type vocabulary for interval roles: names which relation an interval role asserts.&quot;);</span>
+
+<span class="fc" id="L259">        set.concept(&quot;Feature Role Type&quot;).at(completion)</span>
+<span class="fc" id="L260">                .definition(&quot;The role type marking a role as feature-valued: the bridge between role machinery and concrete-domain features.&quot;);</span>
+
+<span class="fc" id="L262">        set.concept(&quot;Property set Axioms&quot;).at(completion)</span>
+<span class="fc" id="L263">                .definition(&quot;A baseline grouping for property-set axioms, retained for identity compatibility: the platform's set meaning is Property set.&quot;);</span>
+
+<span class="fc" id="L265">        set.concept(&quot;Data Property Set Axioms&quot;).at(completion)</span>
+<span class="fc" id="L266">                .definition(&quot;A baseline grouping for data-property-set axioms, retained for identity compatibility: the platform's set meaning is Data property set.&quot;);</span>
+
+<span class="fc" id="L268">        set.concept(&quot;Implication set&quot;).at(completion)</span>
+<span class="fc" id="L269">                .definition(&quot;A baseline grouping for implication axioms, retained for identity compatibility: property-sequence implications are the atoms it grouped.&quot;);</span>
+
+<span class="fc" id="L271">        set.concept(&quot;Boolean field&quot;).at(completion)</span>
+<span class="fc" id="L272">                .definition(&quot;The field kind for boolean-valued fields: a pattern field holding true or false.&quot;);</span>
+
+<span class="fc" id="L274">        set.concept(&quot;Integer field&quot;).at(completion)</span>
+<span class="fc" id="L275">                .definition(&quot;The field kind for integer-valued fields: a pattern field holding a whole number.&quot;);</span>
+
+<span class="fc" id="L277">        set.concept(&quot;String field&quot;).at(completion)</span>
+<span class="fc" id="L278">                .definition(&quot;The field kind for string-valued fields: a pattern field holding text.&quot;);</span>
+
+<span class="fc" id="L280">        set.concept(&quot;Instant field&quot;).at(completion)</span>
+<span class="fc" id="L281">                .definition(&quot;The field kind for instant-valued fields: a pattern field holding a point in time.&quot;);</span>
+
+<span class="fc" id="L283">        set.concept(&quot;Field definition data type field&quot;).at(completion)</span>
+<span class="fc" id="L284">                .definition(&quot;The field kind naming a field definition's data type slot: which data type a pattern declares for one of its fields.&quot;);</span>
+
+<span class="fc" id="L286">        set.concept(&quot;Field definition meaning field&quot;).at(completion)</span>
+<span class="fc" id="L287">                .definition(&quot;The field kind naming a field definition's meaning slot: the concept saying what the declared field is.&quot;);</span>
+
+<span class="fc" id="L289">        set.concept(&quot;Field definition purpose field&quot;).at(completion)</span>
+<span class="fc" id="L290">                .definition(&quot;The field kind naming a field definition's purpose slot: the concept saying why the declared field is recorded.&quot;);</span>
+
+<span class="fc" id="L292">        set.concept(&quot;Field value field&quot;).at(completion)</span>
+<span class="fc" id="L293">                .definition(&quot;The field kind for one field value a semantic version actually carries, as distinct from the field definition its pattern declares.&quot;);</span>
+
+<span class="fc" id="L295">        set.concept(&quot;Default Data Concept&quot;).at(completion)</span>
+<span class="fc" id="L296">                .definition(&quot;The baseline's placeholder anchor for default data, retained for identity compatibility with upstream stores; its placeholder seeds are deliberately not adopted here.&quot;);</span>
+
+<span class="fc" id="L298">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section35.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section35.java</span></div><h1>Section35.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Component type focus&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section35 {
+
+    private Section35() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Component type focus (SOLOR)&quot;, PublicIds.of(&quot;f1f179d0-26af-5123-9b29-9fc6cd01dd29&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;eb4bd537-5b29-449c-9798-aeb95d56cecd&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component type focus (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;0b65dda0-b2bd-48ae-a3ba-1e465daf4798&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Component type focus&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;253fab55-ce5b-42e8-9eea-cc856e24b921&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Groups the component kinds a rule or action can be scoped to: concepts, descriptions, or axioms.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;4b3ed6e0-49ff-443e-a945-d6ca2c52796f&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;f1f179d0-26af-5123-9b29-9fc6cd01dd29&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;0fbf89bc-93c2-55b0-ae6e-9649d2b8db63&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;f4cc29cc-bc14-4328-86ce-b86c0b54add3&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;eb4bd537-5b29-449c-9798-aeb95d56cecd&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;728661b5-cac7-466b-8cdb-e4d8e5263528&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;0b65dda0-b2bd-48ae-a3ba-1e465daf4798&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;27d420ad-b09f-4911-b161-5b35310dc195&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;253fab55-ce5b-42e8-9eea-cc856e24b921&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;50f0a9f5-55d6-4b84-9206-a4f49290e550&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">        set.concept(&quot;Concept focus (SOLOR)&quot;, PublicIds.of(&quot;dca9854d-9e4c-5e8a-8b30-6c1af6901bb8&quot;)).at(inception)</span>
+<span class="fc" id="L32">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;229a5aea-9df5-4732-8d6b-8ed485074c41&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept focus (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L33">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;43902790-b740-44fb-b6cb-7a20020c5385&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Concept focus&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L34">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;70a95faa-822f-4098-904c-c2e0cef24ba6&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The component-type focus selecting concepts: an action or rule scoped to concept components.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L35">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;98b908a7-8fcd-44ec-afd9-338cfc07750d&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;dca9854d-9e4c-5e8a-8b30-6c1af6901bb8&quot;)</span>
+<span class="fc" id="L36">                .statedAxioms(PublicIds.of(&quot;496c2dab-7d21-5e0a-8bfc-f4396a463501&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.COMPONENT_TYPE_FOCUS))))</span>
+<span class="fc" id="L37">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;34f7a5a4-4664-4ceb-832b-ff5aaa907889&quot;))</span>
+<span class="fc" id="L38">                .semanticOn(PublicIds.of(&quot;229a5aea-9df5-4732-8d6b-8ed485074c41&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;dbfddfa0-1c68-4ac2-8576-f16308e1251c&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L39">                .semanticOn(PublicIds.of(&quot;43902790-b740-44fb-b6cb-7a20020c5385&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;b088ce55-115d-4f4b-a319-367b91cc39d0&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L40">                .semanticOn(PublicIds.of(&quot;70a95faa-822f-4098-904c-c2e0cef24ba6&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;bdb1f062-144c-45dc-9e45-6472f68bf642&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L43">        set.concept(&quot;Axiom focus (SOLOR)&quot;, PublicIds.of(&quot;9c6fbddd-58bd-5881-b926-c813bbff849b&quot;)).at(inception)</span>
+<span class="fc" id="L44">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;823a7eee-fde7-4964-a407-1181e592eb34&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axiom focus (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L45">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;37705299-7a2d-46b8-9760-daf643f68d77&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Axiom focus&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L46">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;1709386f-9130-4f11-ac43-02fe7f9bb71d&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;A statement or proposition that is assumed to be true without requiring proof, it serves as a foundation principles on which a system or theory is built. Focus refers to the central point of attention or concentration on a specific concept/axioms&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L47">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;a9ff2040-3a06-485e-b164-823f37c6ecfe&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;9c6fbddd-58bd-5881-b926-c813bbff849b&quot;)</span>
+<span class="fc" id="L48">                .statedAxioms(PublicIds.of(&quot;4e3bc3ec-dafb-535d-a6af-f08291071ae7&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.COMPONENT_TYPE_FOCUS))))</span>
+<span class="fc" id="L49">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;70643d78-bcbe-4656-9206-53ee91853da0&quot;))</span>
+<span class="fc" id="L50">                .semanticOn(PublicIds.of(&quot;823a7eee-fde7-4964-a407-1181e592eb34&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;4291e69a-93e7-4839-92f2-b5cefc9d3dbb&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L51">                .semanticOn(PublicIds.of(&quot;37705299-7a2d-46b8-9760-daf643f68d77&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;ff1cf8bc-b2ae-4048-b726-ff41735df3c3&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L52">                .semanticOn(PublicIds.of(&quot;1709386f-9130-4f11-ac43-02fe7f9bb71d&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;2afc7d9f-6acf-46e5-aef0-3424521895c0&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L55">        set.concept(&quot;Description focus (SOLOR)&quot;, PublicIds.of(&quot;6edf734d-7f57-5430-9164-6ee0824fd94b&quot;)).at(inception)</span>
+<span class="fc" id="L56">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;11614fdc-1dd7-4ea1-8c4e-62fc4feecef6&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description focus (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L57">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;55c3d405-df44-49dc-a536-6dd2049ac5f5&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Description focus&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L58">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;abf0aa8d-427b-4e7e-9484-0717aa1d2622&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The component-type focus selecting descriptions: an action or rule scoped to description components.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L59">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;dba3bcf4-66a5-4f56-a02d-24e190671e86&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;6edf734d-7f57-5430-9164-6ee0824fd94b&quot;)</span>
+<span class="fc" id="L60">                .statedAxioms(PublicIds.of(&quot;c1ddad0b-615b-5290-bde4-290b6bceea91&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.COMPONENT_TYPE_FOCUS))))</span>
+<span class="fc" id="L61">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;8dfbaa03-846b-4e78-bfa2-e366cf79689c&quot;))</span>
+<span class="fc" id="L62">                .semanticOn(PublicIds.of(&quot;11614fdc-1dd7-4ea1-8c4e-62fc4feecef6&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;a0657581-84aa-44ce-8ddd-8b101294fc6c&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L63">                .semanticOn(PublicIds.of(&quot;55c3d405-df44-49dc-a536-6dd2049ac5f5&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;5a377fce-6fbb-4df6-ac56-5cd47e0b7e23&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L64">                .semanticOn(PublicIds.of(&quot;abf0aa8d-427b-4e7e-9484-0717aa1d2622&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;920b56b7-ee4c-48ea-9b1f-1ed5c30cc824&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L67">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

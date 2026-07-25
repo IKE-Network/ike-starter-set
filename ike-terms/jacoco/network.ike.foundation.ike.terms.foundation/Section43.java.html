@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section43.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section43.java</span></div><h1>Section43.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Reflexive Feature&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section43 {
+
+    private Section43() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Reflexive Feature (SOLOR)&quot;, PublicIds.of(&quot;7e779e4a-61ed-5c4a-aacc-03cf524b7c73&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;8131e0b2-e9bf-43c5-b321-0b51a69f281c&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Reflexive Feature (SOLOR)&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;abed5968-5462-45ea-a0ae-64ddd5a16cc2&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Reflexive Feature&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;ea03caa6-658a-438c-bd46-0a14833d5c57&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Marks a property as reflexive: everything stands in that relation to itself.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;4d9b5297-ca69-4231-a399-9130c55d9009&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;7e779e4a-61ed-5c4a-aacc-03cf524b7c73&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;e217e187-27f3-5687-9407-05c2c61865d2&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Logical expression model (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;6cd31ea8-0b07-44d3-b769-6dc3d8361258&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;8131e0b2-e9bf-43c5-b321-0b51a69f281c&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;f8c628f6-133d-4066-8400-344c429f7e3e&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;abed5968-5462-45ea-a0ae-64ddd5a16cc2&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;8604aed2-51ad-419c-83c3-9ec1a6f4199a&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;ea03caa6-658a-438c-bd46-0a14833d5c57&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;c0842297-0fb5-4c34-8135-02b717d8bd8b&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

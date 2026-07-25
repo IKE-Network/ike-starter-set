@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Section32.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ike Terms</a> &gt; <a href="index.source.html" class="el_package">network.ike.foundation.ike.terms.foundation</a> &gt; <span class="el_source">Section32.java</span></div><h1>Section32.java</h1><pre class="source lang-java linenums">package network.ike.foundation.ike.terms.foundation;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.EntityProxy;
+import network.ike.foundation.ike.terms.IkeTerm;
+import java.time.Instant;
+
+/** The &quot;Property sequence implication&quot; section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+final class Section32 {
+
+    private Section32() {
+    }
+
+    static void compose(KnowledgeSet set) {
+<span class="fc" id="L17">        ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;</span>
+
+<span class="fc" id="L19">        set.concept(&quot;Property sequence implication&quot;, PublicIds.of(&quot;9a47a5db-42a6-49ee-9083-54bc305a9456&quot;)).at(inception)</span>
+<span class="fc" id="L20">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;02a235ac-797a-441f-8f3f-6ba0cc702549&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Property sequence implication&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L21">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;512c1f3e-e079-43a3-afb2-201332f61b45&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;Property sequence implication&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L22">                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(&quot;21b38d2d-3b4a-4e69-82cd-ca2eb38cbb9f&quot;), IkeTerm.ENGLISH_LANGUAGE, &quot;The atom asserting a property-chain implication: the properties in the sequence, composed in order, imply the property this axiom names. Mirrors LogicalAxiom.Atom.PropertySequenceImplication.&quot;, IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)</span>
+<span class="fc" id="L23">                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(&quot;99fae8da-dd4e-4f46-87b9-bc7c1d078d6e&quot;), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, &quot;53f866d0-fd61-5c85-a16c-150bd619a0ac&quot;)</span>
+<span class="fc" id="L24">                .statedAxioms(PublicIds.of(&quot;14f32de1-40b0-599b-bbaf-017aed72d2e8&quot;), leb -&gt; leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef(&quot;Atom (IkeFoundation)&quot;)))))</span>
+<span class="fc" id="L25">                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(&quot;d48040a4-ade7-4243-bb7c-3d174f107520&quot;))</span>
+<span class="fc" id="L26">                .semanticOn(PublicIds.of(&quot;02a235ac-797a-441f-8f3f-6ba0cc702549&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;79e115d0-8d03-4d52-96d5-91f8df8edb4d&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L27">                .semanticOn(PublicIds.of(&quot;512c1f3e-e079-43a3-afb2-201332f61b45&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;d18dc2c2-c71c-476b-a5df-b6af30e51dca&quot;), IkeTerm.PREFERRED)</span>
+<span class="fc" id="L28">                .semanticOn(PublicIds.of(&quot;21b38d2d-3b4a-4e69-82cd-ca2eb38cbb9f&quot;), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(&quot;1b07440a-1aa4-4a06-b04f-9a928426c712&quot;), IkeTerm.PREFERRED)</span>
+                ;
+
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
