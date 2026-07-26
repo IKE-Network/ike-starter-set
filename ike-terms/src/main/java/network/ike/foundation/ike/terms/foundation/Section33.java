@@ -31,9 +31,10 @@ final class Section33 {
 
         set.concept("Reference Range Minimum (SOLOR)", PublicIds.of(UUID.fromString("37c35a88-9e27-42ca-b626-186773c4b612"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e704406f-6dae-420c-8ba6-04a534108a68")), IkeTerm.ENGLISH_LANGUAGE, "Reference Range Minimum (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6ca3179e-7930-44a2-ad65-39df871acfe5")), IkeTerm.ENGLISH_LANGUAGE, "Minimum Value; Min Value", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6ca3179e-7930-44a2-ad65-39df871acfe5")), IkeTerm.ENGLISH_LANGUAGE, "Minimum Value", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9144070a-f05d-430a-b74f-c520511557c2")), IkeTerm.ENGLISH_LANGUAGE, "The lowest possible value for a component", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("e767a63e-72e0-4320-b12f-535505585068")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "37c35a88-9e27-42ca-b626-186773c4b612")
+                .synonym("Min Value")
                 .statedAxioms(PublicIds.of(UUID.fromString("1934f2ef-705e-5bc5-9617-dfdafdb22f54")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.REFERENCE_RANGE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("1c711869-4e73-4c14-be33-e67dfc264226")))
                 .semanticOn(PublicIds.of(UUID.fromString("e704406f-6dae-420c-8ba6-04a534108a68")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5e3d227a-28e2-4096-b443-a10fc8449c99")), IkeTerm.PREFERRED)
@@ -43,9 +44,10 @@ final class Section33 {
 
         set.concept("Reference Range Maximum (SOLOR)", PublicIds.of(UUID.fromString("72d58983-b1e1-4ca9-833f-0e40c1defd39"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("7a00bf1e-fc1b-41f0-8801-022116d9c918")), IkeTerm.ENGLISH_LANGUAGE, "Reference Range Maximum (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ecf44545-d958-47fc-b4fe-38c6366a1242")), IkeTerm.ENGLISH_LANGUAGE, "Maximum Value; Max Value", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("ecf44545-d958-47fc-b4fe-38c6366a1242")), IkeTerm.ENGLISH_LANGUAGE, "Maximum Value", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("8b43571f-a594-411c-a26e-49b70daa04cc")), IkeTerm.ENGLISH_LANGUAGE, "The highest possible value for a component", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("a44124ea-4c9b-4744-975e-1b3dc720c26f")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "72d58983-b1e1-4ca9-833f-0e40c1defd39")
+                .synonym("Max Value")
                 .statedAxioms(PublicIds.of(UUID.fromString("22861d9d-154d-5c34-b325-5b6babe9fda6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.REFERENCE_RANGE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("32fa2f6a-5c73-408c-83cb-eaf5fe47c868")))
                 .semanticOn(PublicIds.of(UUID.fromString("7a00bf1e-fc1b-41f0-8801-022116d9c918")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("c472588d-86ea-4311-9482-d2a62ac72c44")), IkeTerm.PREFERRED)

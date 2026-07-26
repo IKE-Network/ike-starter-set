@@ -308,12 +308,19 @@ final class Section41 {
                 .semanticOn(PublicIds.of(UUID.fromString("eff327b2-2412-4597-83d1-84af9bae076e")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("c1532d8d-0404-4f29-ad0c-8bd4e68d276f")), IkeTerm.PREFERRED)
                 ;
 
+        // Partonomy seat (IKE-Network/ike-issues#950): the baseline filed Part of under
+        // Connective operator, but part-of is not a logical connective like And/Or — it
+        // is a role type. Property-shaped definition, SNOMED-style: the PropertySet's
+        // Role type reference is a super-role edge, and Transitive Feature marks the
+        // role transitive (ElkSnomedDataBuilder reads exactly this shape). Part→whole is
+        // the one canonical direction — EL++ has no inverse roles, so has-part is never
+        // minted. Registered in DELIBERATELY_PROPERTY_SHAPED.
         set.concept("Part of (SOLOR)", PublicIds.of(UUID.fromString("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e113e1e1-beca-4094-9681-5d9be32b1808")), IkeTerm.ENGLISH_LANGUAGE, "Part of (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3f8ead82-e795-46d1-b2c5-861006540a85")), IkeTerm.ENGLISH_LANGUAGE, "Part of", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("137c6a4a-4771-4f9b-ac38-d4e51a8d7852")), IkeTerm.ENGLISH_LANGUAGE, "Part of an attribute", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("137c6a4a-4771-4f9b-ac38-d4e51a8d7852")), IkeTerm.ENGLISH_LANGUAGE, "The partonomy role type: an existential Part of restriction in a definition states that the defined concept is part of the restriction's whole, in the part-to-whole direction. Declared transitive, so part-of chains compose during classification; distinct from kind-of, which the taxonomy alone carries.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("f52672c9-fb15-4672-84d0-37ca6416ed6f")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "b4c3f6f9-6937-30fd-8412-d0c77f8a7f73")
-                .statedAxioms(PublicIds.of(UUID.fromString("d26656f3-219b-577c-ac5d-84d397928be0")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.CONNECTIVE_OPERATOR))))
+                .statedAxioms(PublicIds.of(UUID.fromString("d26656f3-219b-577c-ac5d-84d397928be0")), leb -> leb.PropertySet(leb.And(leb.ConceptAxiom(IkeTerm.ROLE_TYPE), leb.ConceptAxiom(IkeTerm.TRANSITIVE_FEATURE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("853068d1-b199-4188-b522-58fcfa7a2234")))
                 .semanticOn(PublicIds.of(UUID.fromString("e113e1e1-beca-4094-9681-5d9be32b1808")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("eedf3bfa-b8fb-4279-a822-e5ad6c43c223")), IkeTerm.PREFERRED)
                 .semanticOn(PublicIds.of(UUID.fromString("3f8ead82-e795-46d1-b2c5-861006540a85")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("8a1499c9-640b-401e-8585-e0b6dc792b2f")), IkeTerm.PREFERRED)

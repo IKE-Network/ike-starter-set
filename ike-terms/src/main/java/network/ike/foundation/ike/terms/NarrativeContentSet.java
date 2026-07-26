@@ -479,9 +479,11 @@ final class NarrativeContentSet {
                         k:FieldSubstitution[] groups the analogous notion for a query template:
                         k:BooleanSubstitution[], k:ConceptSubstitution[], k:FloatSubstitution[],
                         k:InstantSubstitution[] each name what kind of value fills a placeholder when a
-                        stored query actually runs. k:ConnectiveOperator[] (k:And[], k:Or[], k:PartOf[],
+                        stored query actually runs. k:ConnectiveOperator[] (k:And[], k:Or[],
                         k:DisjointWith[]) and k:TaxonomyOperator[] (k:LogicallyEquivalentTo[]) round out the
-                        operator concepts a field's meaning can name, and k:SemanticType[]
+                        operator concepts a field's meaning can name — k:PartOf[], which the baseline had
+                        filed among the connectives, is not one: a part-whole restriction is a role, and it
+                        is now seated as a transitive role type under k:RoleType[] — and k:SemanticType[]
                         (k:ConceptSemantic[], k:ComponentSemantic[], k:MembershipSemantic[],
                         k:LogicalExpressionSemantic[]) names what kind of thing a whole semantic — not just
                         one field — represents.""");

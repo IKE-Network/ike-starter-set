@@ -288,19 +288,19 @@ final class PatternShapeRefinementSet {
                 .definition("Why a Value Constraint Pattern semantic exists: to restrict"
                         + " which literal values are legal for a component — the"
                         + " numeric-domain counterpart to Field Value Restriction.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
 
         set.concept("Reference Range Authority (IkeFoundation)").at(inception)
                 .synonym("Reference Range Authority")
                 .definition("Why a value constraint's source value is recorded: to name"
                         + " the organization that specifies the constraint.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
 
         set.concept("Unit Example (IkeFoundation)").at(inception)
                 .synonym("Unit Example")
                 .definition("Why example UCUM units are recorded on a value constraint: to"
                         + " show a representative unit of measure for the constrained"
                         + " value, for a reader's reference.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
     }
 }

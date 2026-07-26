@@ -343,6 +343,10 @@ public final class IkeTerm {
     public static final EntityProxy.Concept OBJECT_PROPERTIES =
             EntityProxy.Concept.make("Object properties (SOLOR)", PublicIds.of(UUID.fromString("3ef4311c-70c0-5149-9e06-53d745f85b15")));
 
+    /** {@code Part of (SOLOR)} — same identity as {@code TinkarTerm.PART_OF}. */
+    public static final EntityProxy.Concept PART_OF =
+            EntityProxy.Concept.make("Part of (SOLOR)", PublicIds.of(UUID.fromString("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73")));
+
     /** {@code Path (SOLOR)} — same identity as {@code TinkarTerm.PATH}. */
     public static final EntityProxy.Concept PATH =
             EntityProxy.Concept.make("Path (SOLOR)", PublicIds.of(UUID.fromString("4459d8cf-5a6f-3952-9458-6d64324b27b7")));
@@ -506,6 +510,11 @@ public final class IkeTerm {
     /** {@code Tinkar Model concept (SOLOR)} — same identity as {@code TinkarTerm.TINKAR_MODEL_CONCEPT}. */
     public static final EntityProxy.Concept TINKAR_MODEL_CONCEPT =
             EntityProxy.Concept.make("Tinkar Model concept (SOLOR)", PublicIds.of(UUID.fromString("bc59d656-83d3-47d8-9507-0e656ea95463")));
+
+    /** {@code Transitive Feature (SOLOR)} — same identity as {@code TinkarTerm.TRANSITIVE_PROPERTY}, the concept
+     * {@code ElkSnomedDataBuilder} recognizes inside a role type's PropertySet to mark the role transitive. */
+    public static final EntityProxy.Concept TRANSITIVE_FEATURE =
+            EntityProxy.Concept.make("Transitive Feature (SOLOR)", PublicIds.of(UUID.fromString("53f866d0-fd61-5c85-a16c-150bd619a0ac")));
 
     /** {@code Tree amalgam properties (SOLOR)} — same identity as {@code TinkarTerm.TREE_AMALGAM_PROPERTIES}. */
     public static final EntityProxy.Concept TREE_AMALGAM_PROPERTIES =

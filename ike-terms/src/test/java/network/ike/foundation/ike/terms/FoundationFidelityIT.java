@@ -44,7 +44,10 @@ import dev.ikm.tinkar.entity.constraint.MemberMatchEvaluator;
 import dev.ikm.tinkar.entity.export.ExportEntitiesToProtobufFile;
 import dev.ikm.tinkar.entity.graph.DiGraphEntity;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
+import dev.ikm.tinkar.entity.graph.EntityVertex;
+import dev.ikm.tinkar.entity.graph.adaptor.axiom.LogicalAxiomSemantic;
 import dev.ikm.tinkar.entity.load.LoadEntitiesFromProtobufFile;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.terms.TinkarTerm;
@@ -56,6 +59,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -123,8 +127,15 @@ class FoundationFidelityIT {
      * the mechanism concept's narrative moved to Constrained Pattern), and the member
      * match relation seam mints "Member match relation", "Equal match relation", and the
      * "Match Rule" field purpose (+3).
+     * <p>
+     * The IKE-Network/ike-issues#950 taxonomy repair adds 9: {@code GraphModelSet} mints
+     * Graph, Tree, Directed tree, and EL++ ditree (+4); {@code CoordinateModelSet} mints
+     * View coordinate model and the Stamp/Edit/Navigation coordinate properties families
+     * (+4); and {@code DefaultsAndTemplatesSet} mints the Defaults and templates model
+     * root the formerly-flat defaults/templates/constraints terminology re-homes under
+     * (+1).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 86;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 95;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -211,24 +222,148 @@ class FoundationFidelityIT {
             // snapshot covers concepts only, so this entry records the deliberate rename
             // for the registry's own completeness (and gates it, should pattern FQNs ever
             // join the snapshot).
-            Map.entry(UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), "Semantic version field pattern")
+            Map.entry(UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), "Semantic version field pattern"),
+            // foundation.Section66: the fused "NavigationCoordinate/Directed graph" entry
+            // split (IKE-Network/ike-issues#950) — the structure meaning keeps this birth
+            // identity under the plain name; the coordinate meaning is a fresh concept
+            // (Navigation coordinate properties, CoordinateModelSet).
+            Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), "Directed graph"),
+            // foundation.Section6: the baseline's unbalanced-paren birth FQN
+            // "KOMET user list (SOLOR" corrected in place (IKE-Network/ike-issues#950).
+            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), "KOMET user list (SOLOR)")
     );
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
 
     /**
-     * UUID of the one pre-existing concept whose declared stated parent deliberately
-     * diverges from the baseline artifact — {@code Dynamic column data types (SOLOR)},
-     * filed under the new {@code Legacy} branch as a deprecation signal at its section
-     * declaration ({@code foundation.Section41}, IKE-Network/ike-issues#880 follow-up,
-     * #894) — mapped to its expected post-replay isA parent's own UUID.
-     * {@link #isAParentsUnchanged()} asserts against this single new parent for exactly
-     * this nid, instead of the pre-replay snapshot every other component is held to.
+     * UUIDs of pre-existing concepts whose declared stated parent deliberately diverges
+     * from the baseline artifact — each written in place at its section declaration —
+     * mapped to the expected post-replay isA parent's own UUID.
+     * {@link #isAParentsUnchanged()} asserts against the single new parent for exactly
+     * these nids, instead of the pre-replay snapshot every other component is held to.
+     * First entry: {@code Dynamic column data types (SOLOR)} under {@code Legacy}
+     * (IKE-Network/ike-issues#880 follow-up, #894). The IKE-Network/ike-issues#950 sweep
+     * adds the repaired {@code Directed graph} under the minted {@code Graph}, and eight
+     * more Legacy occupants: application machinery and association concepts the baseline
+     * had filed as kinds of {@code User} (or, for the tree table, as a model concept).
      */
-    private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.of(
-            UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
-            UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")  // Legacy (IkeFoundation)
+    private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.ofEntries(
+            Map.entry(UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
+            Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), // Directed graph
+                    UUID.fromString("da454dbd-ed6e-55cf-af5a-0d51b40d7640")),  // Graph (IkeFoundation)
+            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), // KOMET user list (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
+            Map.entry(UUID.fromString("12131382-1535-5a77-928b-6eacad221ea2"), // Path for user (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            Map.entry(UUID.fromString("c8fd4f1b-d842-5245-9a7d-a58dc0ac1c11"), // Module for user (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            Map.entry(UUID.fromString("6167efcb-50e8-534d-9827-fdd60b02ae00"), // Order for concept attachments (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            Map.entry(UUID.fromString("69ee3f13-e2ba-5a96-9b91-5eecfad8e587"), // Order for description attachments (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            Map.entry(UUID.fromString("abcb0946-20e1-5483-8469-3e8fa0ce20c4"), // Order for axiom attachments (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            Map.entry(UUID.fromString("070deb74-acc5-46bf-b9c6-eaee1b58ef52"), // Starter Data Authoring (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            Map.entry(UUID.fromString("1655edd8-7b73-52c5-98b0-263d1ab3a90b"), // Concept details tree table (SOLOR)
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de"))
     );
     private static final Map<Integer, Integer> DELIBERATELY_REPARENTED_ISA_BY_NID = new HashMap<>();
+
+    /**
+     * UUIDs of pre-existing concepts whose stated definition deliberately stops being
+     * the simple is-a shape (IKE-Network/ike-issues#950, settled: machinery and
+     * definitional use): each now states {@code NecessarySet(And(ConceptAxiom(parent),
+     * SomeRole(Part of, parent)))} — the is-a placement plus the partonomy the placement
+     * abbreviates, in the part-to-whole direction EL++ supports — mapped to that parent's
+     * UUID. {@code AxiomDecompiler} reports these as not-simple, so
+     * {@link #isAParentsUnchanged()} skips them and
+     * {@link #roleBearingReparentsStateIsAAndPartOf()} asserts the full expected shape.
+     * The coordinate-dimension entries point at their per-coordinate properties family;
+     * the family roots point at {@code View coordinate model}; {@code Part of} is
+     * transitive, so dimension ∘ family → model composes during classification.
+     */
+    private static final Map<UUID, UUID> DELIBERATELY_ROLE_BEARING_ISA = Map.ofEntries(
+            Map.entry(UUID.fromString("ab41a788-8a83-5452-8dc0-2d8375e0bfe6"), // ImmutableCoordinate Properties (SOLOR)
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),  // View coordinate model (IkeFoundation)
+            Map.entry(UUID.fromString("ea1a52f7-0305-5487-8766-e846330f167a"), // Language coordinate properties (SOLOR)
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            Map.entry(UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17"), // Logic coordinate properties (SOLOR)
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            Map.entry(UUID.fromString("ec41e427-f009-5e45-a643-6dc658d63d83"), // Path coordinate properties (SOLOR)
+                    UUID.fromString("f83c63a3-6d1d-55bf-a0ab-759079023592")),
+            Map.entry(UUID.fromString("bf69c4f1-95c9-5956-a10a-d3ba9276c019"), // Modules for stamp coordinate (SOLOR)
+                    UUID.fromString("0edae285-236b-5e13-90a1-2eb7db9d2879")),  // Stamp coordinate properties (IkeFoundation)
+            Map.entry(UUID.fromString("ddeda759-e89c-5186-aa40-d63070756ab4"), // Module preference order for stamp coordinate (SOLOR)
+                    UUID.fromString("0edae285-236b-5e13-90a1-2eb7db9d2879")),
+            Map.entry(UUID.fromString("f56ef2df-6758-5271-a587-317a4fed6c2e"), // Module preference list for stamp coordinate (SOLOR)
+                    UUID.fromString("0edae285-236b-5e13-90a1-2eb7db9d2879")),
+            Map.entry(UUID.fromString("3fe047f0-33b0-5254-91c2-43e65f90d30b"), // Module exclusion set for stamp coordinate (SOLOR)
+                    UUID.fromString("0edae285-236b-5e13-90a1-2eb7db9d2879")),
+            Map.entry(UUID.fromString("23f69f6f-a502-5876-a835-2b1b4d5ce91e"), // Allowed states for stamp coordinate (SOLOR)
+                    UUID.fromString("0edae285-236b-5e13-90a1-2eb7db9d2879")),
+            Map.entry(UUID.fromString("4fda23b8-b016-5d2a-97d5-7ff779d60701"), // Author for stamp coordinate (SOLOR)
+                    UUID.fromString("0edae285-236b-5e13-90a1-2eb7db9d2879")),
+            Map.entry(UUID.fromString("31173582-a49d-51c6-813f-f42d0976aaea"), // Position on path (SOLOR)
+                    UUID.fromString("0edae285-236b-5e13-90a1-2eb7db9d2879")),
+            Map.entry(UUID.fromString("337e93ba-531b-59a4-8153-57dca00e58d2"), // Author for edit coordinate (SOLOR)
+                    UUID.fromString("1f4586fd-9782-5a00-8204-71e2ba782a66")),  // Edit coordinate properties (IkeFoundation)
+            Map.entry(UUID.fromString("2110c10c-9174-55aa-8ffe-91650c77d0b3"), // Path options for edit coordinate (SOLOR)
+                    UUID.fromString("1f4586fd-9782-5a00-8204-71e2ba782a66")),
+            Map.entry(UUID.fromString("e83d322c-e275-5392-a5db-1de5fe98acb5"), // Default module for edit coordinate (SOLOR)
+                    UUID.fromString("1f4586fd-9782-5a00-8204-71e2ba782a66")),
+            Map.entry(UUID.fromString("19305aff-95d9-55d9-b015-825cc68eadc7"), // Module options for edit coordinate (SOLOR)
+                    UUID.fromString("1f4586fd-9782-5a00-8204-71e2ba782a66")),
+            Map.entry(UUID.fromString("349cfd1d-10fd-5f8d-a0a5-d5ef0932b4da"), // Destination module for edit coordinate (SOLOR)
+                    UUID.fromString("1f4586fd-9782-5a00-8204-71e2ba782a66")),
+            Map.entry(UUID.fromString("db124d3b-c1bb-530e-8fd4-577f570355be"), // Promotion Path for Edit Coordinate (SOLOR)
+                    UUID.fromString("1f4586fd-9782-5a00-8204-71e2ba782a66")),
+            Map.entry(UUID.fromString("aef80e34-b2dd-5dca-a989-3e0ee2699be3"), // Description logic profile for logic coordinate (SOLOR)
+                    UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17")),  // Logic coordinate properties (SOLOR)
+            Map.entry(UUID.fromString("cfd2a47e-8169-5e71-9122-d5b73efd990a"), // Stated pattern for logic coordinate
+                    UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17")),
+            Map.entry(UUID.fromString("9ecf4d76-4346-5e5d-8316-bdff48a5c154"), // Inferred pattern for logic coordinate
+                    UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17")),
+            Map.entry(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"), // Concept pattern for logic coordinate
+                    UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17")),
+            Map.entry(UUID.fromString("4b90e89d-2a0e-5ca3-8ae5-7498d148a9d2"), // Classifier for logic coordinate (SOLOR)
+                    UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17")),
+            Map.entry(UUID.fromString("862cc189-bbcb-51a0-89a4-16e1854be247"), // Root for logic coordinate (SOLOR)
+                    UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17")),
+            Map.entry(UUID.fromString("1cdacc80-0dea-580f-a77b-8a6b273eb673"), // Digraph for logic coordinate (SOLOR)
+                    UUID.fromString("1fa63819-5ac1-5938-95b1-47871a5f2b17")),
+            Map.entry(UUID.fromString("b0ad4d77-e1bc-5fd1-922e-5fad675e9bfd"), // Language specification for language coordinate (SOLOR)
+                    UUID.fromString("ea1a52f7-0305-5487-8766-e846330f167a")),  // Language coordinate properties (SOLOR)
+            Map.entry(UUID.fromString("f36e7ca6-34a2-58b5-8b25-736457515f9c"), // Module preference list for language coordinate (SOLOR)
+                    UUID.fromString("ea1a52f7-0305-5487-8766-e846330f167a")),
+            Map.entry(UUID.fromString("38e0c7b8-1e33-56a2-9eb2-ee20c4960684"), // Language nid for language coordinate (SOLOR)
+                    UUID.fromString("ea1a52f7-0305-5487-8766-e846330f167a")),
+            Map.entry(UUID.fromString("44c7eab6-fdb8-5427-9d7a-52ab63f7a6f9"), // Description type preference list for language coordinate (SOLOR)
+                    UUID.fromString("ea1a52f7-0305-5487-8766-e846330f167a")),
+            Map.entry(UUID.fromString("748e073c-fea7-58dd-8aa3-f18fdd82ddfc"), // Path for path coordinate (SOLOR)
+                    UUID.fromString("ec41e427-f009-5e45-a643-6dc658d63d83")),  // Path coordinate properties (SOLOR)
+            Map.entry(UUID.fromString("f33e1668-34dd-53dd-8728-31b29934b482"), // Path origins for stamp path (SOLOR)
+                    UUID.fromString("ec41e427-f009-5e45-a643-6dc658d63d83")),
+            Map.entry(UUID.fromString("347cd3f2-8130-5032-8960-091e194e9afe"), // Vertex state set (SOLOR)
+                    UUID.fromString("cf2a4bd3-aff4-50a5-8741-7b18e77860c9")),  // Navigation coordinate properties (IkeFoundation)
+            Map.entry(UUID.fromString("e973f077-a99d-59e6-b7bd-804e87e0e639"), // Vertex sort (SOLOR)
+                    UUID.fromString("cf2a4bd3-aff4-50a5-8741-7b18e77860c9")),
+            Map.entry(UUID.fromString("fc965c5d-ad17-555e-bcb5-b78fd45c8c5f"), // Navigation concept set (SOLOR)
+                    UUID.fromString("cf2a4bd3-aff4-50a5-8741-7b18e77860c9"))
+    );
+    private static final Map<Integer, Integer> DELIBERATELY_ROLE_BEARING_ISA_BY_NID = new HashMap<>();
+
+    /**
+     * {@code Part of (SOLOR)} — the one pre-existing concept whose stated definition
+     * deliberately becomes property-shaped (IKE-Network/ike-issues#950): a
+     * {@code PropertySet} whose And carries {@code Role type} (a super-role edge — the
+     * role-hierarchy analog of a parent) and {@code Transitive Feature} (the concept
+     * {@code ElkSnomedDataBuilder} reads to mark the role transitive). Skipped by
+     * {@link #isAParentsUnchanged()}; asserted by {@link #partOfIsATransitiveRoleType()}.
+     */
+    private static final UUID PART_OF_UUID = UUID.fromString("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73");
+    private static final UUID ROLE_TYPE_UUID = UUID.fromString("76320274-be2a-5ba0-b3e8-e6d2e383ee6a");
+    private static final UUID TRANSITIVE_FEATURE_UUID = UUID.fromString("53f866d0-fd61-5c85-a16c-150bd619a0ac");
 
     /**
      * UUIDs of the three upstream placeholder seed semantics on {@code Default Data
@@ -267,6 +402,10 @@ class FoundationFidelityIT {
         }
         for (Map.Entry<UUID, UUID> entry : DELIBERATELY_REPARENTED_ISA.entrySet()) {
             DELIBERATELY_REPARENTED_ISA_BY_NID.put(
+                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
+        }
+        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
+            DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
         }
         for (UUID uuid : DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS) {
@@ -399,15 +538,108 @@ class FoundationFidelityIT {
             + " (except components with ambiguous axiom history, see HISTORICALLY_AMBIGUOUS_AXIOM_NIDS,"
             + " and DELIBERATELY_REPARENTED_ISA, which get their new, expected parent)")
     void isAParentsUnchanged() {
+        int partOfNid = PrimitiveData.nid(PART_OF_UUID);
         for (Map.Entry<Integer, Set<Integer>> entry : IS_A_PARENTS_BEFORE.entrySet()) {
             int nid = entry.getKey();
             if (HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.contains(nid)) {
+                continue;
+            }
+            if (DELIBERATELY_ROLE_BEARING_ISA_BY_NID.containsKey(nid) || nid == partOfNid) {
+                // Deliberately no longer simple is-a (IKE-Network/ike-issues#950) —
+                // asserted shape-exactly by roleBearingReparentsStateIsAAndPartOf() and
+                // partOfIsATransitiveRoleType().
                 continue;
             }
             Integer newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);
             Set<Integer> expected = newParentNid != null ? Set.of(newParentNid) : entry.getValue();
             assertEquals(expected, latestIsAParents(nid), "isA parents drifted for nid " + nid);
         }
+    }
+
+    /** The latest stated-axiom trees for a component (normally exactly one). */
+    private static List<DiTreeEntity> latestStatedTrees(int componentNid) {
+        List<DiTreeEntity> trees = new ArrayList<>();
+        calculator.forEachSemanticVersionForComponentOfPattern(
+                EntityProxy.Concept.make(componentNid),
+                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                (semanticVersion, entityVersion, patternVersion) ->
+                        trees.add((DiTreeEntity) semanticVersion.fieldValues().get(0)));
+        return trees;
+    }
+
+    /** Successor vertices of {@code parent} whose meaning is {@code meaning}. */
+    private static List<EntityVertex> childrenWithMeaning(DiTreeEntity tree, EntityVertex parent,
+                                                          LogicalAxiomSemantic meaning) {
+        List<EntityVertex> result = new ArrayList<>();
+        tree.successors(parent.vertexIndex()).forEach(childIndex -> {
+            EntityVertex child = tree.vertex(childIndex);
+            if (child.getMeaningNid() == meaning.nid) {
+                result.add(child);
+            }
+        });
+        return result;
+    }
+
+    @Test
+    @DisplayName("Role-bearing reparents state exactly is-a(parent) AND SomeRole(Part of, parent)"
+            + " — the #950 partonomy shape, textual and logical definitions consistent")
+    void roleBearingReparentsStateIsAAndPartOf() {
+        int partOfNid = PrimitiveData.nid(PART_OF_UUID);
+        for (Map.Entry<Integer, Integer> entry : DELIBERATELY_ROLE_BEARING_ISA_BY_NID.entrySet()) {
+            int nid = entry.getKey();
+            int parentNid = entry.getValue();
+            List<DiTreeEntity> trees = latestStatedTrees(nid);
+            assertEquals(1, trees.size(), "expected exactly one stated tree for nid " + nid);
+            DiTreeEntity tree = trees.getFirst();
+
+            List<EntityVertex> sets = childrenWithMeaning(tree, tree.root(), LogicalAxiomSemantic.NECESSARY_SET);
+            assertEquals(1, sets.size(), "expected one NecessarySet for nid " + nid);
+            List<EntityVertex> ands = childrenWithMeaning(tree, sets.getFirst(), LogicalAxiomSemantic.AND);
+            assertEquals(1, ands.size(), "expected one And for nid " + nid);
+            EntityVertex and = ands.getFirst();
+
+            List<EntityVertex> conceptAtoms = childrenWithMeaning(tree, and, LogicalAxiomSemantic.CONCEPT);
+            assertEquals(1, conceptAtoms.size(), "expected one is-a ConceptAxiom for nid " + nid);
+            ConceptFacade isAParent = conceptAtoms.getFirst().propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            assertEquals(parentNid, isAParent.nid(), "is-a parent drifted for nid " + nid);
+
+            List<EntityVertex> roles = childrenWithMeaning(tree, and, LogicalAxiomSemantic.ROLE);
+            assertEquals(1, roles.size(), "expected one Part of role for nid " + nid);
+            EntityVertex role = roles.getFirst();
+            ConceptFacade roleType = role.propertyFast(TinkarTerm.ROLE_TYPE);
+            assertEquals(partOfNid, roleType.nid(), "role type must be Part of for nid " + nid);
+            List<EntityVertex> restrictions = childrenWithMeaning(tree, role, LogicalAxiomSemantic.CONCEPT);
+            assertEquals(1, restrictions.size(), "expected one role restriction for nid " + nid);
+            ConceptFacade whole = restrictions.getFirst().propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            assertEquals(parentNid, whole.nid(),
+                    "partOf whole must equal the is-a parent for nid " + nid);
+        }
+    }
+
+    @Test
+    @DisplayName("Part of is a transitive role type: PropertySet(And(Role type, Transitive Feature))"
+            + " — the shape ElkSnomedDataBuilder reads (IKE-Network/ike-issues#950)")
+    void partOfIsATransitiveRoleType() {
+        int partOfNid = PrimitiveData.nid(PART_OF_UUID);
+        List<DiTreeEntity> trees = latestStatedTrees(partOfNid);
+        assertEquals(1, trees.size(), "expected exactly one stated tree for Part of");
+        DiTreeEntity tree = trees.getFirst();
+
+        List<EntityVertex> propertySets = childrenWithMeaning(tree, tree.root(), LogicalAxiomSemantic.PROPERTY_SET);
+        assertEquals(1, propertySets.size(), "Part of must carry exactly one PropertySet");
+        assertTrue(childrenWithMeaning(tree, tree.root(), LogicalAxiomSemantic.NECESSARY_SET).isEmpty(),
+                "Part of is a role type — its definition is property-shaped, not concept-shaped");
+        List<EntityVertex> ands = childrenWithMeaning(tree, propertySets.getFirst(), LogicalAxiomSemantic.AND);
+        assertEquals(1, ands.size(), "expected one And under Part of's PropertySet");
+
+        Set<Integer> propertyConcepts = new HashSet<>();
+        for (EntityVertex atom : childrenWithMeaning(tree, ands.getFirst(), LogicalAxiomSemantic.CONCEPT)) {
+            ConceptFacade referenced = atom.propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            propertyConcepts.add(referenced.nid());
+        }
+        assertEquals(Set.of(PrimitiveData.nid(ROLE_TYPE_UUID), PrimitiveData.nid(TRANSITIVE_FEATURE_UUID)),
+                propertyConcepts,
+                "Part of's PropertySet must state exactly the Role type super-role and Transitive Feature");
     }
 
     @Test

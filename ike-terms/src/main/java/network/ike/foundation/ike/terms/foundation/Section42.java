@@ -91,9 +91,10 @@ final class Section42 {
 
         set.concept("Great Britain English dialect", PublicIds.of(UUID.fromString("eb9a5e42-3cba-356d-b623-3ed472e20b30"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("50be4a11-9078-498e-9669-e3eac31ae2a9")), IkeTerm.ENGLISH_LANGUAGE, "Great Britain English dialect", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("c5140135-7131-4b83-9c20-63fb31ff4978")), IkeTerm.ENGLISH_LANGUAGE, "GB English dialect / GB English", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("c5140135-7131-4b83-9c20-63fb31ff4978")), IkeTerm.ENGLISH_LANGUAGE, "GB English dialect", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("7bf3f100-f1ba-4496-8088-65398f3ca40d")), IkeTerm.ENGLISH_LANGUAGE, "Great Britain: English Language reference set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("7efb76b9-ae18-4bf8-a0ad-143940d19029")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "eb9a5e42-3cba-356d-b623-3ed472e20b30")
+                .synonym("GB English")
                 .statedAxioms(PublicIds.of(UUID.fromString("9d20953a-fcd8-590e-94dc-305378a1b0d9")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ENGLISH_DIALECT_ASSEMBLAGE))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("af558753-2fc6-4876-8a19-efe3889ba127")))
                 .semanticOn(PublicIds.of(UUID.fromString("50be4a11-9078-498e-9669-e3eac31ae2a9")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("9bba436d-78ad-4dc3-b83c-25eb4c2d6658")), IkeTerm.PREFERRED)
