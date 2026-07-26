@@ -70,6 +70,48 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>verify-unreasoned-roundtrip</id>
+                        <goals>
+                            <goal>knowledge-verify</goal>
+                        </goals>
+                        <configuration>
+                            <!-- The consumer-import round trip (ike-issues#951): the
+                                 unreasoned export must load over the same base the
+                                 assembly used, manifest and count checks intact.
+                                 PRESENCE only: a FIT_REFERENCES sweep here would judge
+                                 the whole store including the base's own health — and
+                                 the 20251009 baseline carries 37 semantics of a pattern
+                                 it does not carry (upstream defect, surfaced by this
+                                 gate and excluded from our reasoned export). The full
+                                 sweep runs on the standalone reasoned artifact below,
+                                 where store content IS the artifact. -->
+                            <artifact>${project.basedir}/../ike-changeset/target/ike-changeset-${project.version}-unreasoned-pb.zip</artifact>
+                            <baseInputs>
+                                <baseInput>PB dev.ikm.data.tinkar:tinkar-starter-data:zip:reasoned-pb:20251009</baseInput>
+                            </baseInputs>
+                            <checks>
+                                <check>PRESENCE</check>
+                            </checks>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>verify-reasoned-roundtrip</id>
+                        <goals>
+                            <goal>knowledge-verify</goal>
+                        </goals>
+                        <configuration>
+                            <!-- The reasoned export is standalone: it must load into an
+                                 empty store and resolve every reference on its own —
+                                 exactly the Komet download-dialog import
+                                 (ike-issues#951). -->
+                            <artifact>${project.build.directory}/${project.artifactId}-${project.version}-reasoned-pb.zip</artifact>
+                            <checks>
+                                <check>PRESENCE</check>
+                                <check>FIT_REFERENCES</check>
+                            </checks>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>attach-set-protobufs</id>
                         <goals>
                             <goal>knowledge-attach</goal>

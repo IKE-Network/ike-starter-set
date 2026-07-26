@@ -59,10 +59,9 @@
              (ike-issues#867); main-line SNAPSHOTs until the release cascades. -->
         <chronology-store.version>1.127.2-SNAPSHOT</chronology-store.version>
         <ike-knowledge-provider.version>1-SNAPSHOT</ike-knowledge-provider.version>
-        <!-- ike-maven-plugin 238 ships the #933 export/attach goals
-             (knowledge-export classifier, kb-assemble reasoned-pb,
-             knowledge-attach). -->
-        <ike-maven-plugin.version>238</ike-maven-plugin.version>
+        <!-- ike-maven-plugin 239 ships the #951 knowledge-verify round-trip gate;
+             238 shipped the #933 export/attach goals. -->
+        <ike-maven-plugin.version>239</ike-maven-plugin.version>
     </properties>
 
     <subprojects>
