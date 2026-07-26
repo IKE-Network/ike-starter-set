@@ -14,11 +14,14 @@
 
     <name>Ike Knowledge Base</name>
     <description>
-        The full-cycle knowledge base: the base plus this set's change set,
-        assembled and classified by ike:kb-assemble and installed into the
-        data-source directory for verification in Komet. Verification edits are
-        captured under the installed store's changeSets directory and feed the
-        next iteration as CHANGESET file inputs below.
+        The full-cycle knowledge base: the base plus this set's ledger export,
+        assembled and classified by ike:kb-assemble, exported as the standalone
+        reasoned-pb protobuf, and installed into the data-source directory for
+        verification in Komet. ike:knowledge-attach publishes the unreasoned-pb
+        and reasoned-pb exports under the ike-starter-set aggregator coordinate
+        (ike-issues#933). Verification edits are captured under the installed
+        store's changeSets directory and feed the next iteration as CHANGESET
+        file inputs below.
     </description>
 
     <dependencies>
@@ -42,7 +45,7 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <version>237</version>
+                <version>${ike-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>assemble-knowledge-base</id>
@@ -52,13 +55,35 @@
                         <configuration>
                             <inputs>
                                 <input>PB dev.ikm.data.tinkar:tinkar-starter-data:zip:reasoned-pb:20251009</input>
-                                <input>CHANGESET ${project.basedir}/../ike-changeset/target/ike-changeset-${project.version}-changeset.zip</input>
+                                <input>PB ${project.basedir}/../ike-changeset/target/ike-changeset-${project.version}-unreasoned-pb.zip</input>
                                 <!-- Next iteration: change sets captured during Komet
                                      verification load on top, e.g.
                                 <input>CHANGESET ${user.home}/Solor/ike-kb/changeSets/User_yyyyMMdd_HHmmss_ike-cs.zip</input>
                                 -->
                             </inputs>
                             <installDirectory>${user.home}/Solor/ike-kb</installDirectory>
+                            <!-- The classified store's standalone export; attached
+                                 under the aggregator coordinate below, not this
+                                 module's (ike-issues#933). -->
+                            <reasonedPb>true</reasonedPb>
+                            <attachReasonedPb>false</attachReasonedPb>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>attach-set-protobufs</id>
+                        <goals>
+                            <goal>knowledge-attach</goal>
+                        </goals>
+                        <configuration>
+                            <!-- The set's released coordinate is the aggregator:
+                                 network.ike.foundation:ike-starter-set:<v>:{unreasoned-pb|reasoned-pb}.
+                                 Requires the reactor root's installAtEnd/deployAtEnd
+                                 (ike-issues#933). -->
+                            <targetArtifactId>ike-starter-set</targetArtifactId>
+                            <attachments>
+                                <attachment>unreasoned-pb ${project.basedir}/../ike-changeset/target/ike-changeset-${project.version}-unreasoned-pb.zip</attachment>
+                                <attachment>reasoned-pb ${project.build.directory}/${project.artifactId}-${project.version}-reasoned-pb.zip</attachment>
+                            </attachments>
                         </configuration>
                     </execution>
                 </executions>

@@ -14,9 +14,12 @@
 
     <name>Ike Change Set</name>
     <description>
-        The released form of the IkeFoundation knowledge set: ike:knowledge-export replays
-        the ledger and attaches the protobuf change set (classifier: changeset). A
-        starter set is exactly this artifact applied to an empty base.
+        The ledger's export module: ike:knowledge-export replays the ledger stated-only
+        and attaches the full standalone unreasoned protobuf (classifier:
+        unreasoned-pb, ike-issues#933) — the reasoner-blind replay is the whole set,
+        not a delta. The module name looks ahead to genuine change-set (delta)
+        artifacts, whose authoring doctrine is ike-issues#844; the changeset
+        classifier is reserved until then.
     </description>
 
     <dependencies>
@@ -41,15 +44,16 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <version>237</version>
+                <version>${ike-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>export-knowledge-changeset</id>
+                        <id>export-knowledge-unreasoned</id>
                         <goals>
                             <goal>knowledge-export</goal>
                         </goals>
                         <configuration>
-                            <!-- Glossary from the same loaded store — one
+                            <!-- Classifier defaults to unreasoned-pb (ike-issues#933);
+                                 glossary from the same loaded store — one
                                  materialization, both artifacts. -->
                             <konceptsYmlFile>${project.build.directory}/ike-koncepts.yml</konceptsYmlFile>
                         </configuration>
