@@ -357,8 +357,8 @@ final class DataTypeDefaultsSet {
                         "UNINITIALIZED".getBytes(StandardCharsets.UTF_8),
                         // Array — exactly one element, the loud String default
                         new Object[]{"UNINITIALIZED"},
-                        // Instant — the premundane instant, the time type's non-value
-                        PrimitiveData.PREMUNDANE_INSTANT,
+                        // Instant — the pre-inception instant, the time type's non-value
+                        PrimitiveData.PRE_INCEPTION_INSTANT,
                         // Long — stretched sevens (eighteen)
                         777_777_777_777_777_777L,
                         // Decimal — stretched sevens with the demonstrative decimal point

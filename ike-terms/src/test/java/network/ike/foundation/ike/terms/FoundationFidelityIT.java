@@ -726,8 +726,8 @@ class FoundationFidelityIT {
                 (byte[]) values.get(11), "ByteArray default is the loud String default in byte form");
         assertArrayEquals(new Object[]{"UNINITIALIZED"}, (Object[]) values.get(12),
                 "Array default is the one-element loud array");
-        assertEquals(PrimitiveData.PREMUNDANE_INSTANT, values.get(13),
-                "Instant default is the premundane instant");
+        assertEquals(PrimitiveData.PRE_INCEPTION_INSTANT, values.get(13),
+                "Instant default is the pre-inception instant");
         assertEquals(777_777_777_777_777_777L, values.get(14),
                 "Long default is the eighteen-sevens sentinel");
         assertEquals(new java.math.BigDecimal("777777777.777"), values.get(15),

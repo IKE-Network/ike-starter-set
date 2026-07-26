@@ -21,7 +21,7 @@
 
     <properties>
         <pdf.source.document>ike-guide</pdf.source.document>
-        <koncept-asciidoc-extension.version>90-SNAPSHOT</koncept-asciidoc-extension.version>
+        <koncept-asciidoc-extension.version>94</koncept-asciidoc-extension.version>
         <koncepts.yml>${project.basedir}/../ike-changeset/target/ike-koncepts.yml</koncepts.yml>
     </properties>
 
