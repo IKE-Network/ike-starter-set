@@ -31,7 +31,15 @@
     <url>https://ike.network/ike-starter-set/</url>
     <inceptionYear>2026</inceptionYear>
 
+    <!-- Dual licensed (IKE-Network/ike-issues#952): CC BY for the knowledge
+         content, Apache 2.0 alongside it — declared identically in every POM of
+         this reactor and carried as concepts in the set itself. -->
     <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International</name>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+            <distribution>repo</distribution>
+        </license>
         <license>
             <name>Apache License, Version 2.0</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>

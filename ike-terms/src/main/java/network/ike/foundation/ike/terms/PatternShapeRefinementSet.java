@@ -207,8 +207,10 @@ final class PatternShapeRefinementSet {
                 .definition("A point in time, as a general concept — the meaning"
                         + " counterpart to Status value/Author/Module/Path: what kind of"
                         + " value a STAMP's time field holds, distinct from"
-                        + " TimeForVersion, which names why it is recorded.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                        + " TimeForVersion, which names why it is recorded. The time"
+                        + " dimension of the STAMP — part of the STAMP model, stated"
+                        + " logically as a Part of restriction.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODEL_CONCEPT), leb.SomeRole(IkeTerm.PART_OF, leb.ConceptAxiom(set.conceptRef("STAMP (IkeFoundation)"))))));
 
         set.concept("Commit Provenance (IkeFoundation)").at(inception)
                 .synonym("Commit Provenance")

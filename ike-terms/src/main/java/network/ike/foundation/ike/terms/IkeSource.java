@@ -73,6 +73,13 @@ public final class IkeSource implements KnowledgeSetSource {
         // is seated as a transitive role type at foundation.Section41
         // (IKE-Network/ike-issues#950).
         CoordinateModelSet.compose(Ike.SET);
+        // StampModelSet mints the STAMP whole the five dimension families
+        // (Status value, Time, Author, Module, Path) reference with Part of
+        // restrictions (IKE-Network/ike-issues#952).
+        StampModelSet.compose(Ike.SET);
+        // LicenseModelSet mints the License family: the set is dual-licensed CC BY +
+        // Apache 2.0, in every POM and as concepts (IKE-Network/ike-issues#952).
+        LicenseModelSet.compose(Ike.SET);
         // DefaultsAndTemplatesSet mints the defaults/templates apparatus and its module
         // (IKE-Network/ike-issues#885); the module concept must be declared before
         // DataTypeDefaultsSet stamps content in it.

@@ -19,6 +19,21 @@
         the loaded store.
     </description>
 
+    <!-- Dual licensed (IKE-Network/ike-issues#952); identical in every POM of
+         this reactor. -->
+    <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International</name>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <properties>
         <pdf.source.document>ike-guide</pdf.source.document>
         <koncept-asciidoc-extension.version>94</koncept-asciidoc-extension.version>

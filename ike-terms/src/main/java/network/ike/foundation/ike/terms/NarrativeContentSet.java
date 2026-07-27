@@ -987,11 +987,14 @@ final class NarrativeContentSet {
                 .semantic(PROSE_ELEMENT_PATTERN,
                         PublicIds.of(set.uuidFor("Narrative: IntegratedKnowledgeManagement (Provenance and Root)")),
                         """
-                        k:IntegratedKnowledgeManagement[] is the concept nearly every root-level concept family
-                        in this guide ultimately descends from — k:ModelConcept[], k:Author[], k:Module[],
-                        k:Path[], k:StatusValue[], k:Object[], k:AnnotationType[], k:Phenomenon[], and
-                        k:CreativeCommonsBYLicense[] among them — "terminologies represented in a harmonized
-                        manner," in its own words: the single organizing idea that this starter set,
+                        k:IntegratedKnowledgeManagement[] is the concept every concept family in this
+                        guide ultimately descends from, through exactly two branches: k:ModelConcept[],
+                        which carries the whole model — k:Author[], k:Module[], k:Path[], k:StatusValue[],
+                        k:Object[], k:AnnotationType[], the k:License[] family, and k:Legacy[] all live
+                        beneath it — and domain content such as k:Phenomenon[], which stands apart because
+                        domain concepts follow their own per-source contracts (IKE-Network/ike-issues#952).
+                        "Terminologies represented in a harmonized manner," in its own words: the single
+                        organizing idea that this starter set,
                         Tinkar's own base model, and SOLOR's imported terminology are all, ultimately, one
                         coherent knowledge representation rather than three unrelated things bolted together.
 
@@ -999,8 +1002,10 @@ final class NarrativeContentSet {
                         guide's very first chapter named as the anchor its whole append-only ledger is
                         rooted at, a child of k:ModelConcept[] rather than of
                         k:IntegratedKnowledgeManagement[] directly, since it is IKE's own specific starter
-                        content, not a generic model concept. k:CreativeCommonsBYLicense[] names the license
-                        this starter set's own content is released under.
+                        content, not a generic model concept. k:CreativeCommonsBYLicense[] and k:Apache20License[] name the licenses
+                        this starter set's own content is released under — dual licensed, Creative
+                        Commons BY for the knowledge and Apache 2.0 alongside it — both children of the
+                        k:License[] family under k:ModelConcept[].
 
                         A handful of component-chronicle-level fields round out this guide's coverage:
                         k:ConceptVersion[] captures which version of a source terminology a concept came

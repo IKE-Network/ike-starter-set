@@ -37,13 +37,12 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * {@code DELIBERATELY_REPARENTED_ISA}); this file contributes only the branch concept,
  * which that declaration cites by derived identity.
  * <p>
- * {@code Legacy} sits directly under {@code Integrated Knowledge Management (SOLOR)} — the
- * true root nearly every top-level branch in this guide descends from (see
- * {@code IntegratedKnowledgeManagement}'s own narrative) — as a sibling of
- * {@code ModelConcept}, {@code Author}, {@code Module}, and the rest, rather than nested under
- * any one of them: a deprecation signal is general-purpose and should be able to receive
- * content reparented out of <em>any</em> branch, not just the model-concept family
- * {@code Dynamic column data types} happened to be filed under.
+ * {@code Legacy} sits under {@code Model concept} (KEC ruling 2026-07-26,
+ * IKE-Network/ike-issues#952, superseding the original root-level placement): the
+ * content being flagged at this time is legacy <em>model</em> concepts, and the branch
+ * may be eliminated entirely before the inception release. Domain content never files
+ * here — domain concepts follow their own per-source contracts (retirement in place,
+ * as SNOMED practices), so a domain branch handles deprecation its source's way.
  */
 final class LegacyTerminologySet {
 
@@ -68,6 +67,6 @@ final class LegacyTerminologySet {
                         + " nothing about whether the content is still resolvable or"
                         + " referenced elsewhere -- it may well be -- only that it is no"
                         + " longer this project's preferred terminology going forward.")
-                .isA(set.conceptRef("Integrated Knowledge Management (SOLOR)"));
+                .isA(IkeTerm.MODEL_CONCEPT);
     }
 }

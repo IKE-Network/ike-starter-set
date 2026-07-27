@@ -134,8 +134,12 @@ class FoundationFidelityIT {
      * (+4); and {@code DefaultsAndTemplatesSet} mints the Defaults and templates model
      * root the formerly-flat defaults/templates/constraints terminology re-homes under
      * (+1).
+     * <p>
+     * The IKE-Network/ike-issues#952 two-parent root and dual licensing add 3:
+     * {@code StampModelSet} mints STAMP (+1) and {@code LicenseModelSet} mints License
+     * and Apache 2.0 license (+2).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 95;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 98;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -266,7 +270,15 @@ class FoundationFidelityIT {
             Map.entry(UUID.fromString("070deb74-acc5-46bf-b9c6-eaee1b58ef52"), // Starter Data Authoring (SOLOR)
                     UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
             Map.entry(UUID.fromString("1655edd8-7b73-52c5-98b0-263d1ab3a90b"), // Concept details tree table (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de"))
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+            // The two-parent root (IKE-Network/ike-issues#952): organization concepts
+            // leave the root — only Model concept and domain content remain.
+            Map.entry(UUID.fromString("72765109-6b53-3814-9b05-34ebddd16592"), // Object (SOLOR)
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66")),  // Model concept (SOLOR)
+            Map.entry(UUID.fromString("3fe77951-58c9-51b3-8e7e-65edcf7ace0a"), // Annotation type (SOLOR)
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66")),
+            Map.entry(UUID.fromString("3415a972-7850-57cd-aa86-a572ca1c2ceb"), // Creative Commons BY license (SOLOR)
+                    UUID.fromString("199756cd-f114-5116-bb44-c5388fcd3a65"))   // License (IkeFoundation)
     );
     private static final Map<Integer, Integer> DELIBERATELY_REPARENTED_ISA_BY_NID = new HashMap<>();
 
@@ -349,9 +361,37 @@ class FoundationFidelityIT {
             Map.entry(UUID.fromString("e973f077-a99d-59e6-b7bd-804e87e0e639"), // Vertex sort (SOLOR)
                     UUID.fromString("cf2a4bd3-aff4-50a5-8741-7b18e77860c9")),
             Map.entry(UUID.fromString("fc965c5d-ad17-555e-bcb5-b78fd45c8c5f"), // Navigation concept set (SOLOR)
-                    UUID.fromString("cf2a4bd3-aff4-50a5-8741-7b18e77860c9"))
+                    UUID.fromString("cf2a4bd3-aff4-50a5-8741-7b18e77860c9")),
+            // The STAMP dimension families (IKE-Network/ike-issues#952): is-a Model
+            // concept, part of the STAMP whole (see DELIBERATELY_PART_OF_WHOLE).
+            Map.entry(UUID.fromString("f7495b58-6630-3499-a44e-2052b5fcf06c"), // Author
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66")),  // Model concept (SOLOR)
+            Map.entry(UUID.fromString("40d1c869-b509-32f8-b735-836eac577a67"), // Module
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66")),
+            Map.entry(UUID.fromString("4459d8cf-5a6f-3952-9458-6d64324b27b7"), // Path
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66")),
+            Map.entry(UUID.fromString("10b873e2-8247-5ab5-9dec-4edef37fc219"), // Status value
+                    UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66"))
     );
     private static final Map<Integer, Integer> DELIBERATELY_ROLE_BEARING_ISA_BY_NID = new HashMap<>();
+
+    /**
+     * Overrides of the partOf whole for role-bearing reparents whose whole is NOT the
+     * is-a parent: the STAMP dimension families are kinds of model concept but parts of
+     * the STAMP tuple (IKE-Network/ike-issues#952). Absent an entry, the whole defaults
+     * to the is-a parent (the coordinate-family shape, IKE-Network/ike-issues#950).
+     */
+    private static final Map<UUID, UUID> DELIBERATELY_PART_OF_WHOLE = Map.of(
+            UUID.fromString("f7495b58-6630-3499-a44e-2052b5fcf06c"), // Author
+            UUID.fromString("3f93c9fb-48c9-53e2-a3e7-a7ae39311b97"), // STAMP (IkeFoundation)
+            UUID.fromString("40d1c869-b509-32f8-b735-836eac577a67"), // Module
+            UUID.fromString("3f93c9fb-48c9-53e2-a3e7-a7ae39311b97"),
+            UUID.fromString("4459d8cf-5a6f-3952-9458-6d64324b27b7"), // Path
+            UUID.fromString("3f93c9fb-48c9-53e2-a3e7-a7ae39311b97"),
+            UUID.fromString("10b873e2-8247-5ab5-9dec-4edef37fc219"), // Status value
+            UUID.fromString("3f93c9fb-48c9-53e2-a3e7-a7ae39311b97")
+    );
+    private static final Map<Integer, Integer> DELIBERATELY_PART_OF_WHOLE_BY_NID = new HashMap<>();
 
     /**
      * {@code Part of (SOLOR)} — the one pre-existing concept whose stated definition
@@ -406,6 +446,10 @@ class FoundationFidelityIT {
         }
         for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
             DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
+                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
+        }
+        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_PART_OF_WHOLE.entrySet()) {
+            DELIBERATELY_PART_OF_WHOLE_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
         }
         for (UUID uuid : DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS) {
@@ -611,8 +655,9 @@ class FoundationFidelityIT {
             List<EntityVertex> restrictions = childrenWithMeaning(tree, role, LogicalAxiomSemantic.CONCEPT);
             assertEquals(1, restrictions.size(), "expected one role restriction for nid " + nid);
             ConceptFacade whole = restrictions.getFirst().propertyFast(TinkarTerm.CONCEPT_REFERENCE);
-            assertEquals(parentNid, whole.nid(),
-                    "partOf whole must equal the is-a parent for nid " + nid);
+            int expectedWholeNid = DELIBERATELY_PART_OF_WHOLE_BY_NID.getOrDefault(nid, parentNid);
+            assertEquals(expectedWholeNid, whole.nid(),
+                    "partOf whole drifted for nid " + nid);
         }
     }
 
