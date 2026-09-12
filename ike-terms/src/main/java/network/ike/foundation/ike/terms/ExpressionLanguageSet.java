@@ -59,13 +59,14 @@ import dev.ikm.tinkar.terms.EntityProxy;
  * <p>
  * <b>The kinds come from ANF's structural definition, and there is no truth-value
  * kind.</b> A value is a measure: two bounds plus a measure semantic. A presence value is
- * a measure on the Presence semantic, and it is one of three. Present: a determination
- * was made and absence was ruled out. Absent: presence was ruled out. Indeterminate:
- * neither was ruled out, the evidence exists and leaves the question open in both
- * directions. Every criterion a query puts to a statement yields a presence value.
+ * a measure on the Presence semantic, and it is one of three. Present: the determination
+ * established that the topic is present. Absent: it established that the topic is absent.
+ * Indeterminate: it could not determine which, the presence form of an indeterminate
+ * result, a determination that could not determine the value within its frame of
+ * reference. Every criterion a query puts to a statement yields a presence value.
  * Testing stored bounds exactly is always decisive; a comparison, a containment, a timing
- * relation, or an existence over a measure with width is Indeterminate when the line runs
- * through the range. Criteria combine by Presence AND, OR, and NOT. A query's answer sorts
+ * relation, or an existence over a measure with width is Indeterminate when the threshold or date it
+ * compares against is inside the recorded range. Criteria combine by Presence AND, OR, and NOT. A query's answer sorts
  * its candidates into three groups, present, absent, and indeterminate; keeping one group
  * is a choice the author names, never a default, and the set operations act on groups
  * already sorted. A statement carries one result measure and its cross-cutting
@@ -235,7 +236,7 @@ final class ExpressionLanguageSet {
                         + " Quantity or an Interval as a measure with bounds and inclusivity, a"
                         + " date as a measure on a date-time semantic. Once null is read as"
                         + " Indeterminate, CQL's three-valued and, or, and not are the presence"
-                        + " connectives, and CQL's own tables fall out of them row for row.")
+                        + " connectives, and CQL's own tables follow from them row for row.")
                 .isA(expressionLanguage);
 
         set.concept("SNOMED CT Expression Constraint Language (IkeFoundation)").at(inception)
@@ -450,16 +451,16 @@ final class ExpressionLanguageSet {
         set.concept("Presence measure kind (IkeFoundation)").at(inception)
                 .synonym("Presence measure kind")
                 .definition("A measure kind: a measure on the Presence semantic, whose value is one"
-                        + " of three. Present: a determination was made and absence was ruled out."
-                        + " Absent: a determination was made and presence was ruled out."
-                        + " Indeterminate: a determination was made and neither was ruled out. It"
+                        + " of three. Present: the determination established that the topic is"
+                        + " present. Absent: it established that the topic is absent."
+                        + " Indeterminate: it could not determine which. It"
                         + " is what a determination records, what a comparison, a criterion, or a"
                         + " derived criterion yields, and what a CQL Boolean is represented as:"
                         + " true is Present, false is Absent, and null is Indeterminate when it"
                         + " stands for a determination that did not resolve. Like every measure it"
-                        + " has two bounds, and Indeterminate is the value whose bounds differ, so"
-                        + " it is a value with width and not a third truth value. The presence"
-                        + " layer.")
+                        + " has two bounds, and Indeterminate is the value whose bounds cover the"
+                        + " whole presence frame, both points at once, so it is a value with width"
+                        + " and not a third truth value. The presence layer.")
                 .isA(measureKind);
         EntityProxy.Concept presenceMeasureKind = set.conceptRef("Presence measure kind (IkeFoundation)");
 
@@ -736,13 +737,13 @@ final class ExpressionLanguageSet {
                         k:LiteralDenotationPattern[] records a literal by its bounds rather than by what
                         it takes and yields: a k:ResultKind[] and a lower and an upper bound on that
                         kind's scale. The three presence literals are the unexcluded middle as data.
-                        k:PresentLiteral[] means a determination was made and absence was ruled out.
-                        k:AbsentLiteral[] means a determination was made and presence was ruled out.
-                        k:IndeterminateLiteral[] means a determination was made and neither was ruled out:
-                        the evidence exists and leaves the question open in both directions. Like every
-                        measure, a presence value has two bounds, and Indeterminate is the one whose
-                        bounds differ. It is a value with width, not a third truth value, and a query asks
-                        for it by name exactly as it asks for presence or absence.
+                        k:PresentLiteral[] means the determination established that the topic is
+                        present. k:AbsentLiteral[] means it established that the topic is absent.
+                        k:IndeterminateLiteral[] means it could not determine which: the presence form
+                        of k:IndeterminateResult[], a determination that could not determine the value
+                        within its frame of reference. Its bounds cover the whole presence frame, both
+                        points at once, so it is a value with width, not a third truth value, and a
+                        query asks for it by name exactly as it asks for presence or absence.
 
                         CQL's `true`, `false`, and `null` are literal keywords naming those three
                         literals, and that binding is what makes CQL's three-valued connectives ordinary
@@ -849,11 +850,28 @@ final class ExpressionLanguageSet {
         conceptScope = keyword(conceptScope, set, keywords, cql, "Code", typeKeyword, true, "Concept kind");
         keyword(conceptScope, set, keywords, cql, "Concept", typeKeyword, false, "Concept kind");
 
+        // ── Indeterminate result: the general idea the presence literal instantiates ──
+        set.concept("Indeterminate result (IkeFoundation)").at(inception)
+                .synonym("Indeterminate result")
+                .definition("An indeterminate result means a determination was performed but could"
+                        + " not determine the value within its frame of reference. The frame of"
+                        + " reference is what the measure semantic names: millimoles per liter for"
+                        + " a serum sodium, present or absent for a finding on a film, the calendar"
+                        + " for a date. The result covers the whole frame: it says the"
+                        + " determination was done, and no more. It is a fact about this"
+                        + " determination only; a later determination may succeed. It is never a"
+                        + " stand-in for missing information. A result that was not sought, or was"
+                        + " sought and not obtained, is recorded as the status of the act. The"
+                        + " reason is an associated statement. A subject with no statement at all"
+                        + " simply has no record here.")
+                .isA(modelRoot);
+        EntityProxy.Concept indeterminateResult = set.conceptRef("Indeterminate result (IkeFoundation)");
+
         // ── Presence literals: the middle as a value ────────────────────
         keyword(set.concept("Present literal (IkeFoundation)").at(inception)
                 .synonym("Present literal")
-                .definition("A literal value: the presence value Present, meaning a determination"
-                        + " was made and absence was ruled out. The value CQL's true names.")
+                .definition("One of the three presence values: the determination established that"
+                        + " the topic is present. The value CQL's true names.")
                 .isA(IkeTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Present literal")),
                         presenceMeasureKind, 1, 1),
@@ -861,8 +879,8 @@ final class ExpressionLanguageSet {
 
         keyword(set.concept("Absent literal (IkeFoundation)").at(inception)
                 .synonym("Absent literal")
-                .definition("A literal value: the presence value Absent, meaning a determination"
-                        + " was made and presence was ruled out. The value CQL's false names.")
+                .definition("One of the three presence values: the determination established that"
+                        + " the topic is absent. The value CQL's false names.")
                 .isA(IkeTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Absent literal")),
                         presenceMeasureKind, 0, 0),
@@ -870,18 +888,20 @@ final class ExpressionLanguageSet {
 
         keyword(set.concept("Indeterminate literal (IkeFoundation)").at(inception)
                 .synonym("Indeterminate literal")
-                .definition("A literal value: the presence value Indeterminate, meaning a"
-                        + " determination was made and neither presence nor absence was ruled out."
-                        + " The evidence exists and leaves the question open in both directions,"
-                        + " either because the result itself was equivocal or because the question"
-                        + " was drawn at a line that runs through the recorded range. It is the one"
-                        + " presence value NOT leaves unchanged. It is the value CQL's null names"
-                        + " when null stands for a determination that was made and did not resolve."
-                        + " Null's other meanings are not values: a result not sought, or sought"
-                        + " and not obtained, is recorded as the status of the act on the"
-                        + " circumstance, the reason is an associated statement of its own, and a"
-                        + " subject with no statement at all has no record here.")
-                .isA(IkeTerm.LITERAL_VALUE)
+                .definition("An indeterminate result on the presence frame of reference, and one of"
+                        + " the three presence values: the determination established neither that"
+                        + " the topic is present nor that it is absent. It arises in two ways. A"
+                        + " determination may report it directly, as with a test read in its"
+                        + " equivocal zone. Or it may come from comparing a recorded range with a"
+                        + " threshold or a date inside that range: an HbA1c recorded between 8.5"
+                        + " and 9.5 against a threshold of 9, or a determination dated to sometime"
+                        + " in March against the 15th. Any measure a statement carries can be"
+                        + " recorded as a range, so any of them can produce it, and the answer"
+                        + " carries the measure that produced it, so the reader can see why. It is"
+                        + " the one presence value that NOT leaves unchanged, and it is what CQL's"
+                        + " null becomes when null stands for a determination that was performed"
+                        + " and did not resolve.")
+                .isA(IkeTerm.LITERAL_VALUE, indeterminateResult)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Indeterminate literal")),
                         presenceMeasureKind, 0, 1),
                 set, keywords, cql, "null", literalKeyword, true, "Indeterminate literal");
@@ -954,8 +974,8 @@ final class ExpressionLanguageSet {
         ConceptBuilder.ActiveScope within = set.concept("Measure within (IkeFoundation)").at(inception)
                 .synonym("Measure within")
                 .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure lies inside the second. Present when"
-                        + " the whole of the first lies inside the second, Absent when the two do"
+                        + " value: whether the first measure is inside the second. Present when"
+                        + " the whole of the first is inside the second, Absent when the two do"
                         + " not overlap at all, and Indeterminate when they partly overlap. Serves"
                         + " a result against its own normal range, a timing against a period, and"
                         + " CQL's included in, during, and between alike, because a timing is a"
@@ -992,7 +1012,7 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Measure before (IkeFoundation)").at(inception)
                 .synonym("Measure before")
                 .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure lies entirely below the second."
+                        + " value: whether the first measure is entirely below the second."
                         + " Present when the upper bound of the first is below the lower bound of"
                         + " the second, Absent when the lower bound of the first is not below the"
                         + " upper bound of the second, and Indeterminate otherwise.")
@@ -1004,7 +1024,7 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Measure after (IkeFoundation)").at(inception)
                 .synonym("Measure after")
                 .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure lies entirely above the second."
+                        + " value: whether the first measure is entirely above the second."
                         + " Measure before with the operands swapped.")
                 .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure after")),
@@ -1015,15 +1035,20 @@ final class ExpressionLanguageSet {
         set.concept("Statement measure (IkeFoundation)").at(inception)
                 .synonym("Statement measure")
                 .definition("A measure that an ANF statement carries and that a criterion can name."
-                        + " A statement has exactly one result measure, which is the assertion, and"
-                        + " cross-cutting measurements, which measure other dimensions of the"
-                        + " statement rather than the result. A second result is a second"
-                        + " statement; a cross-cutting measurement is not a second result. Its"
-                        + " members are Result measure, Timing measure, Statement time measure, and"
-                        + " Normal range measure. The health-risk flag is cross-cutting too, the"
-                        + " laboratory's own summary kept as received; a query decides abnormal by"
-                        + " comparing the result with the normal range as measures, and reads the"
-                        + " flag only as what the laboratory said.")
+                        + " A performance has one result measure, which is the assertion, and"
+                        + " cross-cutting measurements that measure other dimensions of the"
+                        + " statement: its timing and its normal range. A request has one requested"
+                        + " result measure and its own cross-cutting measurements: its timing and"
+                        + " its repetition. Every statement has a statement time measure. A second"
+                        + " result is a second statement; a cross-cutting measurement is not a"
+                        + " second result. Any of these can be recorded as a range rather than a"
+                        + " point, so a comparison against any of them can be Indeterminate. Its"
+                        + " members are Result measure, Timing measure, Statement time measure,"
+                        + " Normal range measure, Requested result measure, Request timing measure,"
+                        + " and Repetition measure with its five members. The health-risk flag is"
+                        + " cross-cutting too, the laboratory's own summary kept as received; a"
+                        + " query decides abnormal by comparing the result with the normal range as"
+                        + " measures, and reads the flag only as what the laboratory said.")
                 .isA(modelRoot);
         EntityProxy.Concept statementMeasure = set.conceptRef("Statement measure (IkeFoundation)");
         set.concept("Result measure (IkeFoundation)").at(inception)
@@ -1051,6 +1076,52 @@ final class ExpressionLanguageSet {
                         + " them. A population or guideline range asserted independently of an act"
                         + " is not this; it is a standard, held elsewhere.")
                 .isA(statementMeasure);
+        set.concept("Requested result measure (IkeFoundation)").at(inception)
+                .synonym("Requested result measure")
+                .definition("A statement measure on a request: the result that is sought, on the"
+                        + " semantic the result will have. A request has one requested result, as"
+                        + " a performance has one result.")
+                .isA(statementMeasure);
+        set.concept("Request timing measure (IkeFoundation)").at(inception)
+                .synonym("Request timing measure")
+                .definition("A statement measure on a request, cross-cutting to the requested"
+                        + " result: when the requested action should be carried out, on a"
+                        + " date-time semantic.")
+                .isA(statementMeasure);
+        set.concept("Repetition measure (IkeFoundation)").at(inception)
+                .synonym("Repetition measure")
+                .definition("A statement measure on a request that describes an action requested"
+                        + " for more than one occurrence: how often, for how long, and from when."
+                        + " Its members are the five measure fields of a request's repetition:"
+                        + " Period start measure, Period duration measure, Event separation"
+                        + " measure, Event duration measure, and Event frequency measure.")
+                .isA(statementMeasure);
+        EntityProxy.Concept repetitionMeasure = set.conceptRef("Repetition measure (IkeFoundation)");
+        set.concept("Period start measure (IkeFoundation)").at(inception)
+                .synonym("Period start measure")
+                .definition("A repetition measure: when the repeated action should begin, on a"
+                        + " date-time semantic.")
+                .isA(repetitionMeasure);
+        set.concept("Period duration measure (IkeFoundation)").at(inception)
+                .synonym("Period duration measure")
+                .definition("A repetition measure: how long the repeated action should continue,"
+                        + " on a time-unit semantic, such as seven to ten days.")
+                .isA(repetitionMeasure);
+        set.concept("Event separation measure (IkeFoundation)").at(inception)
+                .synonym("Event separation measure")
+                .definition("A repetition measure: the interval between one action and the next,"
+                        + " on a time-unit semantic, such as every six hours.")
+                .isA(repetitionMeasure);
+        set.concept("Event duration measure (IkeFoundation)").at(inception)
+                .synonym("Event duration measure")
+                .definition("A repetition measure: how long each individual action should last,"
+                        + " on a time-unit semantic, such as fifteen to twenty minutes.")
+                .isA(repetitionMeasure);
+        set.concept("Event frequency measure (IkeFoundation)").at(inception)
+                .synonym("Event frequency measure")
+                .definition("A repetition measure: how often the action should occur, on a"
+                        + " frequency semantic, such as three times a day.")
+                .isA(repetitionMeasure);
 
         // ── EL++ core constructs: denotations for the relation targets ──
         // Resumed declared identities. EL++ AND is the inherited And concept, renamed and
@@ -1277,7 +1348,7 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Statement filter (IkeFoundation)").at(inception)
                 .synonym("Statement filter")
                 .definition("A statement operator that keeps the statements whose answer to a"
-                        + " criterion falls in the group the author names: present, absent, or"
+                        + " criterion is in the group the author names: present, absent, or"
                         + " indeterminate. The criterion is a measure relation between one of the"
                         + " statement's measures and a target, or a derived criterion, and it names"
                         + " which statement measure it tests. Nothing is dropped unless a group is"

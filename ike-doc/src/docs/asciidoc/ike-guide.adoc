@@ -395,12 +395,15 @@ koncept-narrative::LiteralDenotationPattern[]
 koncept-pattern-table::LiteralDenotationPattern[]
 
 Every criterion a query puts to a statement yields a presence value: Present when the
-statement rules absence out, Absent when it rules presence out, and Indeterminate
-when it does neither. Testing stored bounds exactly is always decisive. A comparison
-such as k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when
-the line it draws runs through the recorded range. An HbA1c recorded between 8.5 and
-9.5, asked whether it is above 9, is neither known above nor known below, and the
-query says so rather than guessing. Criteria combine by k:PresenceAND[],
+determination established that the topic is present, Absent when it established that
+the topic is absent, and Indeterminate when it could not determine which.
+k:IndeterminateResult[] is the general idea, a determination performed that could not
+determine the value within its frame of reference, and k:IndeterminateLiteral[] is its
+presence form. Testing stored bounds exactly is always decisive. A comparison such as
+k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when the
+threshold or date it compares against is inside the recorded range. An HbA1c recorded
+between 8.5 and 9.5, asked whether it is above 9, is neither known above nor known
+below, and the query says so rather than guessing. Criteria combine by k:PresenceAND[],
 k:PresenceOR[], and k:PresenceNOT[]. A query's answer therefore sorts its candidates
 into three groups, present, absent, and indeterminate, and k:StatementFilter[] names
 the group it keeps rather than dropping the middle by default, which is what CQL's
@@ -412,10 +415,14 @@ subject, and CQL's `exists`, which reads it as false, treats the store as the wo
 default. The set operators act on groups already sorted, which is what CQL's
 `intersect`, `union`, and `except` do on lists.
 
-A statement carries one k:ResultMeasure[], which is the assertion, and its
+A performance carries one k:ResultMeasure[], which is the assertion, and its
 cross-cutting measurements, k:TimingMeasure[], k:StatementTimeMeasure[], and
 k:NormalRangeMeasure[], which measure other dimensions of the statement and are what
-a criterion names. The normal range is instance data, tied to this laboratory's
+a criterion names. A request carries one k:RequestedResultMeasure[] with its own
+cross-cutting k:RequestTimingMeasure[] and k:RepetitionMeasure[], whose five members
+say from when, for how long, how far apart, how long each time, and how often. Any of
+these can be recorded as a range rather than a point, so a comparison against any of
+them can be Indeterminate. The normal range is instance data, tied to this laboratory's
 method, this instrument, and this time of day, and "result within its own normal
 range" can be decided only with the statement's own range. A second result is a
 second statement; a cross-cutting measurement is not a second result.
