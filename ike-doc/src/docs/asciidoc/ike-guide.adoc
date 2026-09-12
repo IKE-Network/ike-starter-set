@@ -403,12 +403,13 @@ k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when th
 threshold or date it compares against is inside the recorded range. An HbA1c recorded
 between 8.5 and 9.5, asked whether it is above 9, is neither known above nor known
 below, and the query says so rather than guessing. Criteria combine by k:PresenceAND[],
-k:PresenceOR[], and k:PresenceNOT[]. A query's answer therefore sorts its candidates
-into three groups, present, absent, and indeterminate, and k:StatementFilter[] names
-the group it keeps rather than dropping the middle by default, which is what CQL's
-`where` does and what the binding says. For an eligibility query the three groups
-read as eligible, not eligible, and possibly eligible, and the third is the list of
-patients to inform and retest. k:Existence[] is Presence OR combined across a
+k:PresenceOR[], and k:PresenceNOT[]. k:StatementFilter[] applies a criterion to each
+statement in a set and keeps the statements whose result is one or more chosen
+presence values, and the combinations are the useful questions: Present and
+Indeterminate together is everyone not ruled out, a trial's candidate list; Absent and
+Indeterminate is everyone not confirmed; Indeterminate alone is the retest list. CQL's
+`where` is that filter fixed to Present alone, dropping the middle without saying so,
+and the binding says so. k:Existence[] is Presence OR combined across a
 statement set; its Absent on an empty set is a fact about the store, never about the
 subject, and CQL's `exists`, which reads it as false, treats the store as the world by
 default. The set operators act on groups already sorted, which is what CQL's

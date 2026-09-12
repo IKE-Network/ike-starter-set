@@ -1318,11 +1318,12 @@ final class ExpressionLanguageSet {
                         + " narrows them, combines them, or answers from them. Each criterion a"
                         + " query puts to a statement yields a presence value, so a query's answer"
                         + " sorts its candidates into three groups: present, absent, and"
-                        + " indeterminate. A statement operator picks a group by name or combines"
-                        + " groups by set operations. The indeterminate group is something a query"
-                        + " asks for, and it is never dropped unless the author drops it. The store"
-                        + " speaks only for itself: no statement means no record here.")
-                .isA(IkeTerm.MEANING);
+                        + " indeterminate. A statement operator keeps the statements with one or"
+                        + " more of those values, or combines such sets by set operations. The"
+                        + " indeterminate group is never dropped by default: it is what a query"
+                        + " returns when it is asked for the statements that could not be told."
+                        + " The store speaks only for itself: no statement means no record here.")
+.isA(IkeTerm.MEANING);
         EntityProxy.Concept statementOperator = set.conceptRef("Statement operator (IkeFoundation)");
 
         set.concept("Topic constraint (IkeFoundation)").at(inception)
@@ -1353,13 +1354,19 @@ final class ExpressionLanguageSet {
 
         keyword(set.concept("Statement filter (IkeFoundation)").at(inception)
                 .synonym("Statement filter")
-                .definition("A statement operator that keeps the statements whose answer to a"
-                        + " criterion is in the group the author names: present, absent, or"
-                        + " indeterminate. The criterion is a measure relation between one of the"
-                        + " statement's measures and a target, or a derived criterion, and it names"
-                        + " which statement measure it tests. Nothing is dropped unless a group is"
-                        + " named. CQL's \"where\" is this filter fixed to the present group: it"
-                        + " drops the \"null\" rows, and this filter makes that choice explicit.")
+                .definition("A filter set to keep one or more of the three presence values,"
+                        + " Present, Absent, and Indeterminate. It applies a criterion to each"
+                        + " statement in a set and returns the statements for which the criterion's"
+                        + " result is one of the values it keeps. A criterion compares one of the"
+                        + " statement's measures, its result, its timing, its normal range, or any"
+                        + " other it carries, with a threshold, a range, or a date, or combines"
+                        + " such comparisons with Presence AND, OR, and NOT. The combinations are"
+                        + " the useful questions: Present and Indeterminate together is everyone"
+                        + " not ruled out, the trial's candidate list; Absent and Indeterminate is"
+                        + " everyone not confirmed; Indeterminate alone is the retest list. CQL's"
+                        + " \"where\" is this filter fixed to Present alone: it returns the rows"
+                        + " where the condition is true and drops the \"null\" rows without saying"
+                        + " so.")
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement filter")),
                         statementSetKind, statementSetKind, unary),
