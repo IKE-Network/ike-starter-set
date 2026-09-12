@@ -395,11 +395,10 @@ koncept-narrative::LiteralDenotationPattern[]
 koncept-pattern-table::LiteralDenotationPattern[]
 
 Every criterion a query puts to a statement yields a presence value: Present when the
-determination established that the topic is present, Absent when it established that
-the topic is absent, and Indeterminate when it could not determine which.
-k:IndeterminateResult[] is the general idea, a determination performed that could not
-determine the value within its frame of reference, and k:IndeterminateLiteral[] is its
-presence form. Testing stored bounds exactly is always decisive. A comparison such as
+determination found the topic present, Absent when it found the topic absent, and
+Indeterminate when it could not tell. k:IndeterminateResult[] is the general idea, a
+determination performed that could not arrive at a value within its frame of
+reference, and k:IndeterminateLiteral[] is its presence form. Testing stored bounds exactly is always decisive. A comparison such as
 k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when the
 threshold or date it compares against is inside the recorded range. An HbA1c recorded
 between 8.5 and 9.5, asked whether it is above 9, is neither known above nor known

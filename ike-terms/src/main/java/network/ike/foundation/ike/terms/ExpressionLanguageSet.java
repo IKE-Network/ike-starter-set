@@ -60,10 +60,9 @@ import dev.ikm.tinkar.terms.EntityProxy;
  * <b>The kinds come from ANF's structural definition, and there is no truth-value
  * kind.</b> A value is a measure: two bounds plus a measure semantic. A presence value is
  * a measure on the Presence semantic, and it is one of three. Present: the determination
- * established that the topic is present. Absent: it established that the topic is absent.
- * Indeterminate: it could not determine which, the presence form of an indeterminate
- * result, a determination that could not determine the value within its frame of
- * reference. Every criterion a query puts to a statement yields a presence value.
+ * found the topic present. Absent: it found the topic absent. Indeterminate: it could not
+ * tell, the presence form of an indeterminate result, a determination that could not
+ * arrive at a value within its frame of reference. Every criterion a query puts to a statement yields a presence value.
  * Testing stored bounds exactly is always decisive; a comparison, a containment, a timing
  * relation, or an existence over a measure with width is Indeterminate when the threshold or date it
  * compares against is inside the recorded range. Criteria combine by Presence AND, OR, and NOT. A query's answer sorts
@@ -451,9 +450,8 @@ final class ExpressionLanguageSet {
         set.concept("Presence measure kind (IkeFoundation)").at(inception)
                 .synonym("Presence measure kind")
                 .definition("A measure kind: a measure on the Presence semantic, whose value is one"
-                        + " of three. Present: the determination established that the topic is"
-                        + " present. Absent: it established that the topic is absent."
-                        + " Indeterminate: it could not determine which. It"
+                        + " of three. Present: the determination found the topic present. Absent:"
+                        + " it found the topic absent. Indeterminate: it could not tell. It"
                         + " is what a determination records, what a comparison, a criterion, or a"
                         + " derived criterion yields, and what a CQL Boolean is represented as:"
                         + " true is Present, false is Absent, and null is Indeterminate when it"
@@ -737,11 +735,10 @@ final class ExpressionLanguageSet {
                         k:LiteralDenotationPattern[] records a literal by its bounds rather than by what
                         it takes and yields: a k:ResultKind[] and a lower and an upper bound on that
                         kind's scale. The three presence literals are the unexcluded middle as data.
-                        k:PresentLiteral[] means the determination established that the topic is
-                        present. k:AbsentLiteral[] means it established that the topic is absent.
-                        k:IndeterminateLiteral[] means it could not determine which: the presence form
-                        of k:IndeterminateResult[], a determination that could not determine the value
-                        within its frame of reference. Its bounds cover the whole presence frame, both
+                        k:PresentLiteral[] means the determination found the topic present.
+                        k:AbsentLiteral[] means it found the topic absent. k:IndeterminateLiteral[]
+                        means it could not tell: the presence form of k:IndeterminateResult[], a
+                        determination that could not arrive at a value within its frame of reference. Its bounds cover the whole presence frame, both
                         points at once, so it is a value with width, not a third truth value, and a
                         query asks for it by name exactly as it asks for presence or absence.
 
@@ -854,7 +851,7 @@ final class ExpressionLanguageSet {
         set.concept("Indeterminate result (IkeFoundation)").at(inception)
                 .synonym("Indeterminate result")
                 .definition("An indeterminate result means a determination was performed but could"
-                        + " not determine the value within its frame of reference. The frame of"
+                        + " not arrive at a value within its frame of reference. The frame of"
                         + " reference is what the measure semantic names: millimoles per liter for"
                         + " a serum sodium, present or absent for a finding on a film, the calendar"
                         + " for a date. The result covers the whole frame: it says the"
@@ -870,8 +867,8 @@ final class ExpressionLanguageSet {
         // ── Presence literals: the middle as a value ────────────────────
         keyword(set.concept("Present literal (IkeFoundation)").at(inception)
                 .synonym("Present literal")
-                .definition("One of the three presence values: the determination established that"
-                        + " the topic is present. The value CQL's true names.")
+                .definition("One of the three presence values: the determination found the topic"
+                        + " present. The value CQL's true names.")
                 .isA(IkeTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Present literal")),
                         presenceMeasureKind, 1, 1),
@@ -879,8 +876,9 @@ final class ExpressionLanguageSet {
 
         keyword(set.concept("Absent literal (IkeFoundation)").at(inception)
                 .synonym("Absent literal")
-                .definition("One of the three presence values: the determination established that"
-                        + " the topic is absent. The value CQL's false names.")
+                .definition("One of the three presence values: the determination found the topic"
+                        + " absent. Absent is a finding, not a gap: a subject with no statement on"
+                        + " the topic has no record, not an Absent. The value CQL's false names.")
                 .isA(IkeTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Absent literal")),
                         presenceMeasureKind, 0, 0),
@@ -889,8 +887,8 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Indeterminate literal (IkeFoundation)").at(inception)
                 .synonym("Indeterminate literal")
                 .definition("An indeterminate result on the presence frame of reference, and one of"
-                        + " the three presence values: the determination established neither that"
-                        + " the topic is present nor that it is absent. It arises in two ways. A"
+                        + " the three presence values: the determination could not tell whether the"
+                        + " topic was present or absent. It arises in two ways. A"
                         + " determination may report it directly, as with a test read in its"
                         + " equivocal zone. Or it may come from comparing a recorded range with a"
                         + " threshold or a date inside that range: an HbA1c recorded between 8.5"
