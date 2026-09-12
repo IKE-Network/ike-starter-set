@@ -143,8 +143,22 @@ class FoundationFidelityIT {
      * {@code ProseElementSet} declares the shared prose-element role concepts at their
      * foundation home — Prose element, Prose content, and Element content, adopted
      * RichSurfaceTerms identities the prose pattern's declaration references.
+     * <p>
+     * The IKE-Network/ike-issues#1089 query-operator apparatus adds 93:
+     * {@code ExpressionLanguageSet} mints the Expression language model root (+1), the
+     * Expression language family with CQL, ECL, and EL++ (+4), and their three dialects
+     * (+3); the closed taxonomies Lexical role (+5), Construct relation (+4), Operand kind
+     * (+9), and Arity (+4); six field-meaning concepts (+6); eighteen pattern
+     * meaning/purpose concepts (+18); Generic AND and Generic set difference (+2 — Generic OR is
+     * the inherited Or concept, renamed); the Logical expression vertex home (+1); the
+     * three presence literals (+3); Presence AND, OR, and NOT (+3); the five measure
+     * relations (+5); the Statement measure family with its four members (+5); the ten
+     * concept-set operators (+10); and the Statement operator family with its nine
+     * members (+10). Every other construct it types or binds (EL++ AND, Is-a, Existential
+     * restriction, the five comparison operators, the two taxonomy field constraint kinds)
+     * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 101;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 194;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -158,8 +172,13 @@ class FoundationFidelityIT {
      * (1 — the shared Prose element pattern, an adopted RichSurfaceTerms identity
      * declared at its foundation home so the set's own prose semantics satisfy
      * referential closure, IKE-Network/ike-issues#937).
+     * <p>
+     * The IKE-Network/ike-issues#1089 apparatus adds 7 — the Expression Language
+     * Keyword Pattern, the Construct Denotation Pattern, the Literal Denotation
+     * Pattern, the Construct Relation Pattern, and the CQL, ECL, and EL++ Dialect
+     * Patterns ({@code ExpressionLanguageSet}).
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 7;
+    private static final int AUTHORED_CONTENT_PATTERNS = 14;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
@@ -242,7 +261,12 @@ class FoundationFidelityIT {
             Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), "Directed graph"),
             // foundation.Section6: the baseline's unbalanced-paren birth FQN
             // "KOMET user list (SOLOR" corrected in place (IKE-Network/ike-issues#950).
-            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), "KOMET user list (SOLOR)")
+            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), "KOMET user list (SOLOR)"),
+            // foundation.Section41: the query-operator naming discipline (IKE-Network/ike-issues#1089)
+            // — the inherited And is the EL++ instance of Generic AND, the inherited Or is the
+            // Generic OR itself, each renamed in place and keeping its identity.
+            Map.entry(UUID.fromString("fa113d51-07d2-587c-8930-0bce207d506d"), "EL++ AND (SOLOR)"),
+            Map.entry(UUID.fromString("2c940bcf-22a8-5fc9-b232-580021e758ed"), "Generic OR (SOLOR)")
     );
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
 
@@ -259,6 +283,16 @@ class FoundationFidelityIT {
      * had filed as kinds of {@code User} (or, for the tree table, as a model concept).
      */
     private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.ofEntries(
+            // The query-operator naming discipline (IKE-Network/ike-issues#1089): the inherited
+            // And becomes the EL++ instance of the minted Generic AND, and the two non-operator
+            // vertex kinds filed under Connective operator move to the minted Logical
+            // expression vertex. Minted identities derive from their birth FQNs.
+            Map.entry(UUID.fromString("fa113d51-07d2-587c-8930-0bce207d506d"), // EL++ AND (SOLOR)
+                    Ike.SET.uuidFor("Generic AND (IkeFoundation)")),
+            Map.entry(UUID.fromString("e89148c7-4fe2-52f8-abb9-6a53605d20cb"), // Concept reference (SOLOR)
+                    Ike.SET.uuidFor("Logical expression vertex (IkeFoundation)")),
+            Map.entry(UUID.fromString("e7271c01-6ed4-5240-963f-34d1f24153b0"), // Definition root (SOLOR)
+                    Ike.SET.uuidFor("Logical expression vertex (IkeFoundation)")),
             Map.entry(UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
                     UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
             Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), // Directed graph
@@ -752,7 +786,10 @@ class FoundationFidelityIT {
                 "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
                         + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
                         + " Constraint Pattern, Starter Set Author Roster Pattern, Preferred Reviewer"
-                        + " Pattern, Solor Concepts Pattern, Data Type Defaults Pattern)");
+                        + " Pattern, Solor Concepts Pattern, Data Type Defaults Pattern, Prose element"
+                        + " pattern, Expression Language Keyword Pattern, Construct Denotation Pattern,"
+                        + " Literal Denotation Pattern, Construct Relation Pattern, CQL/ECL/EL++ Dialect"
+                        + " Patterns)");
     }
 
     @Test

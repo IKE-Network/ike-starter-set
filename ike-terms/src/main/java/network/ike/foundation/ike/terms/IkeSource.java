@@ -59,6 +59,12 @@ public final class IkeSource implements KnowledgeSetSource {
         // examples attach to declared-identity components the foundation sections open,
         // so it composes after FoundationSet.
         ConstraintPatternSet.compose(Ike.SET);
+        // ExpressionLanguageSet places external expression-language constructs (CQL,
+        // ECL, OWL 2 EL) relative to the EL++ core by checked relations — keyword
+        // bindings, denotations, equivalence/extension assertions
+        // (IKE-Network/ike-issues#1089); it types the taxonomy field constraint kinds
+        // ConstraintPatternSet declares, so it composes after it.
+        ExpressionLanguageSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
         // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,

@@ -305,6 +305,149 @@ koncept-pattern-table::ELInferredAxiomsPattern[]
 
 koncept-pattern-table::OWLAxiomSyntaxPattern[]
 
+== Expression Languages
+
+A query over ANF needs a small set of operators, and those operators overlap the
+logics a clinical query author already knows: Clinical Quality Language, the SNOMED
+CT Expression Constraint Language, and EL++ all spell an AND, a comparison, and a
+descendant-of. Whether those are this set's operators is never a matter of matching
+names. Two constructs are the same construct, or one is definable from the other, or
+one agrees with the other on everything it covers and covers more, or they are
+unrelated. Each of those is a claim of the kind a proof can settle. The set records
+the claim as data, and the build runs the check.
+
+koncept-narrative::ExpressionLanguageModel[]
+
+[koncept-tree]
+----
+ExpressionLanguageModel
+----
+
+=== One AND, Four Places
+
+There is one idea of AND and four places it is used. AND means every operand is
+required, not just some of them, so the result is only what is all of the operands at
+once, and adding an operand can only narrow the result, never widen it.
+k:GenericAND[] holds the idea and no keyword. Beneath it by is-a sit k:ELAND[] on
+classes, which is the inherited And concept keeping its identity, k:ConceptSetAND[] on
+sets of concepts, k:StatementSetAND[] on sets of statements, and k:PresenceAND[] on
+presence values. Every keyword binds to an instance, never to the parent, because two
+things are the same construct only when they work on the same kind of thing.
+k:GenericOR[] has the same shape with three instances, k:ConceptSetOR[],
+k:StatementSetOR[], and k:PresenceOR[]. OR means any one operand is enough, so adding
+an operand can only widen the result. It is the inherited Or concept itself, because
+EL++ has no OR and there is no class instance to keep beneath it. NOT gets no generic,
+and that is the check that the shape is right: EL++ has none, the two set layers share
+k:GenericSetDifference[], which takes the first operand and leaves out whatever is also the
+second, with k:ConceptSetDifference[], k:StatementSetDifference[], and k:SubjectSetDifference[]
+beneath it, and k:PresenceNOT[] swaps a presence value, which is a different thing.
+
+The names follow one rule. A fully qualified name is the layer qualifier plus the
+shared word, and the US English preferred name is that qualified name, so no view
+ever shows four things called AND. Each logic is a dialect of English, k:CQLDialect[],
+k:ECLDialect[], and k:ELDialect[], and in its own dialect the construct a logic names
+reads as the bare keyword, spelled as the logic spells it, while everything the logic
+does not name falls back to the qualified name. The two inherited node kinds that
+were filed beside the connectives, the definition root and the concept reference, now
+sit under k:LogicalExpressionVertex[].
+
+=== Which Operators a Logic Allows
+
+koncept-narrative::ExpressionLanguageKeywordPattern[]
+
+koncept-pattern-table::ExpressionLanguageKeywordPattern[]
+
+The three logics the set integrates, k:ClinicalQualityLanguage[],
+k:SNOMEDCTExpressionConstraintLanguage[], and k:EL[], are members of
+k:ExpressionLanguage[], and each one's allowed constructs are exactly the bindings
+that name it. ECL's `<`, `<<`, `>`, `>>`, `AND`, `OR`, `MINUS`, `^`, and `:` name the
+concept-set operators of the topic layer. CQL's keywords bind in three roles. Its
+operators name the presence connectives, the comparisons, the measure relations, and
+the statement operators. Its type keywords name the kinds its types are represented
+as: `Boolean` as k:PresenceMeasureKind[], `Quantity`, `Interval`, and the numeric and
+date types as k:MeasureKind[], `Code` and `Concept` as k:ConceptKind[]. Its literals
+`true`, `false`, and `null` name k:PresentLiteral[], k:AbsentLiteral[], and
+k:IndeterminateLiteral[]. EL++ has no surface syntax; its one keyword, AND on
+k:ELAND[], is the set's own rendering. One declaration produces both the binding and
+the dialect-scoped name, so the k:CQLDialectPattern[] and its siblings never drift
+from the bindings.
+
+=== Kinds Make the Claims Well-Typed
+
+koncept-narrative::ConstructDenotationPattern[]
+
+koncept-pattern-table::ConstructDenotationPattern[]
+
+k:OperandKind[] is what an operator works on or yields, and the kinds are ANF's:
+k:ClassKind[] and k:AxiomKind[] for the knowledge layer, k:ConceptKind[] and
+k:ConceptSetKind[] for topic selection, k:MeasureKind[], two bounds plus a measure
+semantic, and k:PresenceMeasureKind[], a measure on the Presence semantic, for values,
+determinations, and criteria, k:StatementSetKind[] and k:SubjectSetKind[] for what
+a query narrows and answers with. There is no truth-value kind, and a generic is typed
+at the root, meaning any kind. k:Arity[] is a concept rather than a number so that
+k:Variadic[] is a value, never a placeholder. k:ExistentialRestriction[] is k:Unary[]:
+its attribute is a fixed parameter, and its one operand is the value class.
+
+=== The Middle as a Value
+
+koncept-narrative::LiteralDenotationPattern[]
+
+koncept-pattern-table::LiteralDenotationPattern[]
+
+Every criterion a query puts to a statement yields a presence value: Present when the
+statement rules absence out, Absent when it rules presence out, and Indeterminate
+when it does neither. Testing stored bounds exactly is always decisive. A comparison
+such as k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when
+the line it draws runs through the recorded range. An HbA1c recorded between 8.5 and
+9.5, asked whether it is above 9, is neither known above nor known below, and the
+query says so rather than guessing. Criteria combine by k:PresenceAND[],
+k:PresenceOR[], and k:PresenceNOT[]. A query's answer therefore sorts its candidates
+into three groups, present, absent, and indeterminate, and k:StatementFilter[] names
+the group it keeps rather than dropping the middle by default, which is what CQL's
+`where` does and what the binding says. For an eligibility query the three groups
+read as eligible, not eligible, and possibly eligible, and the third is the list of
+patients to inform and retest. k:Existence[] is Presence OR combined across a
+statement set; its Absent on an empty set is a fact about the store, never about the
+subject, and CQL's `exists`, which reads it as false, treats the store as the world by
+default. The set operators act on groups already sorted, which is what CQL's
+`intersect`, `union`, and `except` do on lists.
+
+A statement carries one k:ResultMeasure[], which is the assertion, and its
+cross-cutting measurements, k:TimingMeasure[], k:StatementTimeMeasure[], and
+k:NormalRangeMeasure[], which measure other dimensions of the statement and are what
+a criterion names. The normal range is instance data, tied to this laboratory's
+method, this instrument, and this time of day, and "result within its own normal
+range" can be decided only with the statement's own range. A second result is a
+second statement; a cross-cutting measurement is not a second result.
+
+What is null elsewhere does not all become Indeterminate. A determination that was
+made and did not resolve is Indeterminate. A result not sought, or sought and not
+obtained, has no result at all: the status of the act on the circumstance records
+what happened, k:CircumstanceConstraint[] asks for it, and the reason, a refusal, a
+failed instrument, a decision not to perform, is an associated statement of its own.
+k:SubjectSetDifference[] finds the subjects with no record here, which is all that absence
+of a statement can mean.
+
+=== The Checks Are Derived, and They Run
+
+koncept-narrative::ConstructRelationPattern[]
+
+koncept-pattern-table::ConstructRelationPattern[]
+
+The set asserts ten relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+k:AncestorOf[], k:AncestorOrSelfOf[], k:ConceptSetOR[], and k:ConceptSetDifference[] are
+definable from k:IsA[]; k:ConceptSetAND[] is definable from k:ELAND[], because the
+descendants of a class intersection are the intersection of the descendants, a proven
+fact; k:AttributeRefinement[] is definable from k:ExistentialRestriction[].
+k:DescendantFieldConstraint[] and k:KindOfFieldConstraint[] are logically equivalent
+to k:DescendantOf[] and k:DescendantOrSelfOf[]: the same concept sets, which the set
+contained without saying so until now. An instance's is-a to its generic is a
+different claim, the same idea at another kind, and is not a construct relation. The
+concept-set checks run over the reasoner conformance kit. The finite check runs in the
+set's own integration test: CQL's specified tables for `and`, `or`, and `not`,
+reproduced row for row from the three literals' bounds, which is what admits CQL's
+`and`, `or`, and `not` by identity.
+
 == Semantic Field Model
 
 This chapter describes the field-level meta-schema: what kind of value a pattern's
