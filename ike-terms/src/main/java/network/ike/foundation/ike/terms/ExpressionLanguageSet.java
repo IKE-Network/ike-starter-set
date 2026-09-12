@@ -233,9 +233,10 @@ final class ExpressionLanguageSet {
                         + " decision-support logic. Every CQL value is represented as an ANF"
                         + " measure with nothing left over: a Boolean as a presence measure, a"
                         + " Quantity or an Interval as a measure with bounds and inclusivity, a"
-                        + " date as a measure on a date-time semantic. Once null is read as"
-                        + " Indeterminate, CQL's three-valued and, or, and not are the presence"
-                        + " connectives, and CQL's own tables follow from them row for row.")
+                        + " date as a measure on a date-time semantic. Once \"null\" is read as"
+                        + " Indeterminate, CQL's three-valued \"and\", \"or\", and \"not\" are the"
+                        + " presence connectives, and CQL's own tables follow from them row for"
+                        + " row.")
                 .isA(expressionLanguage);
 
         set.concept("SNOMED CT Expression Constraint Language (IkeFoundation)").at(inception)
@@ -451,10 +452,10 @@ final class ExpressionLanguageSet {
                 .synonym("Presence measure kind")
                 .definition("A measure kind: a measure on the Presence semantic, whose value is one"
                         + " of three. Present: the determination found the topic present. Absent:"
-                        + " it found the topic absent. Indeterminate: it could not tell. It"
-                        + " is what a determination records, what a comparison, a criterion, or a"
-                        + " derived criterion yields, and what a CQL Boolean is represented as:"
-                        + " true is Present, false is Absent, and null is Indeterminate when it"
+                        + " it found the topic absent. Indeterminate: it could not tell. It is what"
+                        + " a determination records, what a comparison, a criterion, or a derived"
+                        + " criterion yields, and what a CQL Boolean is represented as: \"true\" is"
+                        + " Present, \"false\" is Absent, and \"null\" is Indeterminate when it"
                         + " stands for a determination that did not resolve. Like every measure it"
                         + " has two bounds, and Indeterminate is the value whose bounds cover the"
                         + " whole presence frame, both points at once, so it is a value with width"
@@ -622,8 +623,8 @@ final class ExpressionLanguageSet {
                 .definition("Why a literal denotation exists: a literal is a value, not an"
                         + " operator, so what is recorded is its bounds rather than what it takes"
                         + " and yields. A logic's literal keyword then names bounds, which is how"
-                        + " CQL's true, false, and null become Present, Absent, and Indeterminate"
-                        + " as data the gate can check.")
+                        + " CQL's \"true\", \"false\", and \"null\" become Present, Absent, and"
+                        + " Indeterminate as data the gate can check.")
                 .isA(modelRoot);
         set.concept("Literal lower bound (IkeFoundation)").at(inception)
                 .synonym("Literal lower bound")
@@ -868,7 +869,7 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Present literal (IkeFoundation)").at(inception)
                 .synonym("Present literal")
                 .definition("One of the three presence values: the determination found the topic"
-                        + " present. The value CQL's true names.")
+                        + " present. The value CQL's \"true\" names.")
                 .isA(IkeTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Present literal")),
                         presenceMeasureKind, 1, 1),
@@ -878,7 +879,8 @@ final class ExpressionLanguageSet {
                 .synonym("Absent literal")
                 .definition("One of the three presence values: the determination found the topic"
                         + " absent. Absent is a finding, not a gap: a subject with no statement on"
-                        + " the topic has no record, not an Absent. The value CQL's false names.")
+                        + " the topic has no record, not an Absent. The value CQL's \"false\""
+                        + " names.")
                 .isA(IkeTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Absent literal")),
                         presenceMeasureKind, 0, 0),
@@ -888,17 +890,17 @@ final class ExpressionLanguageSet {
                 .synonym("Indeterminate literal")
                 .definition("An indeterminate result on the presence frame of reference, and one of"
                         + " the three presence values: the determination could not tell whether the"
-                        + " topic was present or absent. It arises in two ways. A"
-                        + " determination may report it directly, as with a test read in its"
-                        + " equivocal zone. Or it may come from comparing a recorded range with a"
-                        + " threshold or a date inside that range: an HbA1c recorded between 8.5"
-                        + " and 9.5 against a threshold of 9, or a determination dated to sometime"
-                        + " in March against the 15th. Any measure a statement carries can be"
-                        + " recorded as a range, so any of them can produce it, and the answer"
-                        + " carries the measure that produced it, so the reader can see why. It is"
-                        + " the one presence value that NOT leaves unchanged, and it is what CQL's"
-                        + " null becomes when null stands for a determination that was performed"
-                        + " and did not resolve.")
+                        + " topic was present or absent. It arises in two ways. A determination may"
+                        + " report it directly, as with a test read in its equivocal zone. Or it"
+                        + " may come from comparing a recorded range with a threshold or a date"
+                        + " inside that range: an HbA1c recorded between 8.5 and 9.5 against a"
+                        + " threshold of 9, or a determination dated to sometime in March against"
+                        + " the 15th. Any measure a statement carries can be recorded as a range,"
+                        + " so any of them can produce it, and the answer carries the measure that"
+                        + " produced it, so the reader can see why. It is the one presence value"
+                        + " that NOT leaves unchanged, and it is what CQL's \"null\" becomes when"
+                        + " \"null\" stands for a determination that was performed and did not"
+                        + " resolve.")
                 .isA(IkeTerm.LITERAL_VALUE, indeterminateResult)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Indeterminate literal")),
                         presenceMeasureKind, 0, 1),
@@ -907,37 +909,43 @@ final class ExpressionLanguageSet {
         // ── Presence connectives: how criteria combine ──────────────────
         keyword(set.concept("Presence AND (IkeFoundation)").at(inception)
                 .synonym("Presence AND")
-                .definition("A connective operator that joins two presence values and requires both"
-                        + " of them: the whole is Present only if both parts are Present, Absent if"
-                        + " either part is Absent, and Indeterminate otherwise. Row for row, this"
-                        + " is the table CQL specifies for and over true, false, and null, which is"
-                        + " why CQL's and names it. It combines the criteria a query puts to one"
-                        + " statement or one subject, before anything is sorted into groups;"
-                        + " Statement set AND combines groups a filter has already sorted.")
+                .definition("A connective operator that joins two or more presence values into one,"
+                        + " in any order; every one of them is required. The result is Present if"
+                        + " every operand is Present, Absent if any operand is Absent, and"
+                        + " Indeterminate otherwise. This is exactly how CQL's \"and\" behaves over"
+                        + " \"true\", \"false\", and \"null\", which is why CQL's \"and\" names it."
+                        + " It combines criteria before the statements are sorted into groups;"
+                        + " Statement set AND combines the groups afterwards.")
                 .isA(genericAnd)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence AND")),
-                        presenceMeasureKind, presenceMeasureKind, binary),
+                        presenceMeasureKind, presenceMeasureKind, variadic),
                 set, keywords, cql, "and", operatorKeyword, true, "Presence AND");
 
         keyword(set.concept("Presence OR (IkeFoundation)").at(inception)
                 .synonym("Presence OR")
-                .definition("A connective operator that joins two presence values and requires at"
-                        + " least one of them: the whole is Present if either part is Present,"
-                        + " Absent only if both parts are Absent, and Indeterminate otherwise. Row"
-                        + " for row, this is the table CQL specifies for or. It combines criteria;"
-                        + " Statement set OR combines groups a filter has already sorted.")
+                .definition("A connective operator that joins two or more presence values into one,"
+                        + " in any order; any one of them is enough. The result is Present if any"
+                        + " operand is Present, Absent if every operand is Absent, and"
+                        + " Indeterminate otherwise. This is exactly how CQL's \"or\" behaves over"
+                        + " \"true\", \"false\", and \"null\", which is why CQL's \"or\" names it."
+                        + " It combines criteria before the statements are sorted into groups;"
+                        + " Statement set OR combines the groups afterwards.")
                 .isA(genericOr)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence OR")),
-                        presenceMeasureKind, presenceMeasureKind, binary),
+                        presenceMeasureKind, presenceMeasureKind, variadic),
                 set, keywords, cql, "or", operatorKeyword, true, "Presence OR");
 
         keyword(set.concept("Presence NOT (IkeFoundation)").at(inception)
                 .synonym("Presence NOT")
-                .definition("A connective operator on one presence value that swaps Present and"
-                        + " Absent and leaves Indeterminate unchanged, which is the table CQL"
-                        + " specifies for not. Not a determination of absence, which is a stored"
-                        + " value. Not a set difference, which is Generic set difference. And with no generic"
-                        + " parent of its own, because EL++ has no negation at all.")
+                .definition("A connective operator on one presence value that turns Present into"
+                        + " Absent and Absent into Present, and leaves Indeterminate as it is,"
+                        + " because the opposite of could not tell is still could not tell. This is"
+                        + " exactly how CQL's \"not\" behaves over \"true\", \"false\", and"
+                        + " \"null\", which is why CQL's \"not\" names it. NOT belongs to the"
+                        + " query, not to the record: a determination that found the topic absent"
+                        + " is stored as Absent, never as NOT Present. It is not a subtraction of"
+                        + " one set from another, which is Generic set difference, and it has no"
+                        + " generic parent, because EL++ has no NOT.")
                 .isA(IkeTerm.CONNECTIVE_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence NOT")),
                         presenceMeasureKind, presenceMeasureKind, unary),
@@ -972,14 +980,14 @@ final class ExpressionLanguageSet {
         ConceptBuilder.ActiveScope within = set.concept("Measure within (IkeFoundation)").at(inception)
                 .synonym("Measure within")
                 .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure is inside the second. Present when"
-                        + " the whole of the first is inside the second, Absent when the two do"
-                        + " not overlap at all, and Indeterminate when they partly overlap. Serves"
-                        + " a result against its own normal range, a timing against a period, and"
-                        + " CQL's included in, during, and between alike, because a timing is a"
-                        + " measure. The result and the normal range are two cross-cutting"
-                        + " measurements of one statement, and the relation can be decided only"
-                        + " with that statement's own range.")
+                        + " value: whether the first measure is inside the second. Present when the"
+                        + " whole of the first is inside the second, Absent when the two do not"
+                        + " overlap at all, and Indeterminate when they partly overlap. Serves a"
+                        + " result against its own normal range, a timing against a period, and"
+                        + " CQL's \"included in\", \"during\", and \"between\" alike, because a"
+                        + " timing is a measure. The result and the normal range are two"
+                        + " cross-cutting measurements of one statement, and the relation can be"
+                        + " decided only with that statement's own range.")
                 .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure within")),
                         measureKind, presenceMeasureKind, binary);
@@ -1144,7 +1152,7 @@ final class ExpressionLanguageSet {
                 .synonym("Descendant of")
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " below it in the is-a hierarchy under the view, not including itself."
-                        + " Definable from Is-a. The construct ECL's < names.")
+                        + " Definable from Is-a. The construct ECL's \"<\" names.")
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Descendant of")),
                         conceptKind, conceptSetKind, unary)
@@ -1158,7 +1166,7 @@ final class ExpressionLanguageSet {
                 .synonym("Descendant or self of")
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " below it in the is-a hierarchy under the view, itself included."
-                        + " Definable from Is-a. The construct ECL's << names.")
+                        + " Definable from Is-a. The construct ECL's \"<<\" names.")
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Descendant or self of")),
                         conceptKind, conceptSetKind, unary)
@@ -1173,7 +1181,7 @@ final class ExpressionLanguageSet {
                 .synonym("Ancestor of")
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " above it in the is-a hierarchy under the view, not including itself."
-                        + " Definable from Is-a. The construct ECL's > names.")
+                        + " Definable from Is-a. The construct ECL's \">\" names.")
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Ancestor of")),
                         conceptKind, conceptSetKind, unary)
@@ -1186,7 +1194,7 @@ final class ExpressionLanguageSet {
                 .synonym("Ancestor or self of")
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " above it in the is-a hierarchy under the view, itself included."
-                        + " Definable from Is-a. The construct ECL's >> names.")
+                        + " Definable from Is-a. The construct ECL's \">>\" names.")
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Ancestor or self of")),
                         conceptKind, conceptSetKind, unary)
@@ -1202,7 +1210,7 @@ final class ExpressionLanguageSet {
                         + " every one of them: the result is the concepts that are in every operand"
                         + " set. When each operand set is the descendants of a class, the result is"
                         + " the descendants of the classes' intersection. That is a proven fact, so"
-                        + " Concept set AND is definable from EL++ AND. The construct ECL's AND"
+                        + " Concept set AND is definable from EL++ AND. The construct ECL's \"AND\""
                         + " names.")
                 .isA(genericAnd, IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set AND")),
@@ -1219,7 +1227,7 @@ final class ExpressionLanguageSet {
                         + " at least one of them: the result is the concepts that are in any"
                         + " operand set. Definable from Is-a, but not the descendants of any class"
                         + " the core can build, because EL++ has no OR, so its core construct is"
-                        + " Is-a itself. The construct ECL's OR names.")
+                        + " Is-a itself. The construct ECL's \"OR\" names.")
                 .isA(genericOr, IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set OR")),
                         conceptSetKind, conceptSetKind, variadic)
@@ -1233,7 +1241,7 @@ final class ExpressionLanguageSet {
                 .definition("A connective operator that takes two concept sets and keeps the"
                         + " concepts in the first that are not in the second. A difference of two"
                         + " finite computed sets, which is why it is not negation and never was."
-                        + " Definable from Is-a. The construct ECL's MINUS names.")
+                        + " Definable from Is-a. The construct ECL's \"MINUS\" names.")
                 .isA(genericMinus, IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set difference")),
                         conceptSetKind, conceptSetKind, binary)
@@ -1248,7 +1256,7 @@ final class ExpressionLanguageSet {
                 .definition("A taxonomy operator that yields, for a reference-set concept, the"
                         + " concepts its active membership semantics list: a fixed concept set,"
                         + " which is what a CQL value set is too. Not derived from is-a, so no"
-                        + " relation to the core is claimed. The construct ECL's ^ names.")
+                        + " relation to the core is claimed. The construct ECL's \"^\" names.")
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Member of reference set")),
                         conceptKind, conceptSetKind, unary),
@@ -1260,7 +1268,7 @@ final class ExpressionLanguageSet {
                         + " definition carries a given attribute with a value in a given concept"
                         + " set. Those are the members below an existential restriction over that"
                         + " attribute, so this is definable from Existential restriction. The"
-                        + " construct ECL's refinement colon names.")
+                        + " construct ECL's \":\" names.")
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute refinement")),
                         conceptSetKind, conceptSetKind, unary)
@@ -1276,8 +1284,8 @@ final class ExpressionLanguageSet {
                 .definition("A taxonomy operator that tells whether a concept is a member of a"
                         + " given concept set: Present or Absent, never Indeterminate, because the"
                         + " set is computed under the view and a concept is either in it or not."
-                        + " Distinct from Member of reference set, which yields the set: ECL's ^"
-                        + " names the set, CQL's in tests membership.")
+                        + " Distinct from Member of reference set, which yields the set: ECL's"
+                        + " \"^\" names the set, CQL's \"in\" tests membership.")
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set membership")),
                         conceptKind, presenceMeasureKind, unary),
@@ -1350,8 +1358,8 @@ final class ExpressionLanguageSet {
                         + " indeterminate. The criterion is a measure relation between one of the"
                         + " statement's measures and a target, or a derived criterion, and it names"
                         + " which statement measure it tests. Nothing is dropped unless a group is"
-                        + " named. CQL's where is this filter fixed to the present group: it drops"
-                        + " the null rows, and this filter makes that choice explicit.")
+                        + " named. CQL's \"where\" is this filter fixed to the present group: it"
+                        + " drops the \"null\" rows, and this filter makes that choice explicit.")
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement filter")),
                         statementSetKind, statementSetKind, unary),
@@ -1362,7 +1370,7 @@ final class ExpressionLanguageSet {
                 .definition("A connective operator that joins two or more statement sets and"
                         + " requires every one of them: the result is the statements that are in"
                         + " every operand set. A set operation on groups a filter has already"
-                        + " sorted, which is what CQL's intersect is on lists. Presence AND"
+                        + " sorted, which is what CQL's \"intersect\" is on lists. Presence AND"
                         + " combines criteria; this combines results.")
                 .isA(genericAnd, statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement set AND")),
@@ -1375,7 +1383,7 @@ final class ExpressionLanguageSet {
                         + " requires at least one of them: the result is the statements that are in"
                         + " any operand set. A set operation on groups a filter has already sorted."
                         + " Presence OR combines criteria; this combines results. The construct"
-                        + " CQL's union names.")
+                        + " CQL's \"union\" names.")
                 .isA(genericOr, statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement set OR")),
                         statementSetKind, statementSetKind, variadic),
@@ -1388,7 +1396,7 @@ final class ExpressionLanguageSet {
                         + " groups a filter has already sorted. Not negation: a subject with no"
                         + " statement on a topic has no record here, and a subject assessed and"
                         + " found clear has a statement whose value is Absent. The construct CQL's"
-                        + " except names.")
+                        + " \"except\" names.")
                 .isA(genericMinus, statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement set difference")),
                         statementSetKind, statementSetKind, binary),
@@ -1403,7 +1411,7 @@ final class ExpressionLanguageSet {
                         + " none can. That Absent is a fact about the store, never about the"
                         + " subject. Having no statement of diabetes is not diabetes absent, and a"
                         + " derived determination needs evidence statements; with none there is no"
-                        + " derived statement, not an absent one. CQL's exists reads an empty"
+                        + " derived statement, not an absent one. CQL's \"exists\" reads an empty"
                         + " retrieve as false, treating the store as the world by default, and the"
                         + " binding records that.")
                 .isA(statementOperator)
