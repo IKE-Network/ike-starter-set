@@ -33,19 +33,20 @@ import dev.ikm.tinkar.terms.EntityProxy;
  * denotation and no relation at all. "Distinct" is the absence of a relation semantic,
  * never a placeholder value.
  * <p>
- * <b>One AND, four places it is used.</b> AND means every operand is required, not just
+ * <b>One AND, three places it is used.</b> AND means every operand is required, not just
  * some of them, so the result is only what is all of the operands at once, and adding an
- * operand can only narrow the result, never widen it. In the EL++ layer the operands are classes; in the topic layer, sets of
- * concepts; in the statement layer, sets of statements; in the presence layer, presence
+ * operand can only narrow the result, never widen it. In the EL++ layer the operands are
+ * classes; in the set layer, sets of concepts, statements, or subjects, one operation
+ * whatever the members; in the presence layer, presence
  * values, where the whole is Present only if every part is Present, Absent if any part is
  * Absent, and Indeterminate otherwise. The set says exactly that: a {@code Generic AND}
- * with no keyword in any logic, and four instances beneath it by is-a, {@code EL++ AND}
- * (the inherited And concept, keeping its identity), {@code Concept set AND},
- * {@code Statement set AND}, and {@code Presence AND}. Every keyword binds to an instance,
+ * with no keyword in any logic, and three instances beneath it by is-a, {@code EL++ AND}
+ * (the inherited And concept, keeping its identity), {@code Set AND}, and
+ * {@code Presence AND}. Every keyword binds to an instance,
  * never to the parent, because two things are the same construct only when they work on
  * the same kind of thing. OR is the same shape, with the inherited Or concept as the
  * {@code Generic OR} itself, since EL++ has no OR and there is no class instance. NOT gets
- * no generic: EL++ has none, the two set layers share a {@code Generic set difference}, and
+ * no generic: EL++ has none, sets have {@code Set difference}, and
  * {@code Presence NOT} swaps a presence value, which is a different thing.
  * <p>
  * <b>Naming discipline.</b> A fully qualified name is the layer qualifier plus the
@@ -53,7 +54,7 @@ import dev.ikm.tinkar.terms.EntityProxy;
  * English preferred name is the qualified name. Each logic is a dialect of English (CQL
  * dialect, ECL dialect, EL++ dialect), and in its own dialect the construct a logic names
  * reads as the bare keyword, spelled as that logic spells it, while everything the logic
- * does not name falls back to the qualified name. No view ever shows four things called
+ * does not name falls back to the qualified name. No view ever shows three things called
  * AND. One ledger declaration produces both the keyword binding and the dialect-scoped
  * name, so there is one source.
  * <p>
@@ -112,9 +113,6 @@ final class ExpressionLanguageSet {
 
     /** Birth FQN of the generic disjunction: the inherited Or concept, renamed in place. */
     static final String GENERIC_OR_FQN = "Generic OR (SOLOR)";
-
-    /** Birth FQN of the generic set difference. */
-    static final String GENERIC_SET_DIFFERENCE_FQN = "Generic set difference (IkeFoundation)";
 
     /** Birth FQN of the EL++ conjunction: the inherited And concept, renamed in place. */
     static final String EL_AND_FQN = "EL++ AND (SOLOR)";
@@ -203,15 +201,15 @@ final class ExpressionLanguageSet {
                         relation is a claim of the kind a proof can settle. The set records the claim as
                         data and the build runs the check.
 
-                        There is one idea of AND and four places it is used. AND means every operand is
+                        There is one idea of AND and three places it is used. AND means every operand is
                         required, not just some of them, so the result is only what is all of the
                         operands at once, and adding an operand can only narrow the result, never
                         widen it. k:GenericAND[] holds the idea and no keyword. k:ELAND[],
-                        k:ConceptSetAND[], k:StatementSetAND[], and k:PresenceAND[] are its instances, one
-                        for each kind of thing an operator works on, and every keyword binds to an
+                        k:SetAND[], and k:PresenceAND[] are its instances, one for each kind of
+                        thing an operator works on, and every keyword binds to an
                         instance. Two things are the same construct only when they work on the same kind
-                        of thing. NOT gets no generic, because EL++ has none, the set layers share
-                        k:GenericSetDifference[], and k:PresenceNOT[] swaps a presence value. That is the check
+                        of thing. NOT gets no generic, because EL++ has none, sets have
+                        k:SetDifference[], and k:PresenceNOT[] swaps a presence value. That is the check
                         that the shape is right.""");
         EntityProxy.Concept modelRoot = set.conceptRef("Expression language model (IkeFoundation)");
 
@@ -402,8 +400,8 @@ final class ExpressionLanguageSet {
                         + " truth-value kind: what a determination, a criterion, or a derived"
                         + " criterion yields is a presence measure. Its members are Class kind,"
                         + " Axiom kind, Concept kind, Concept set kind, Measure kind with Presence"
-                        + " measure kind beneath it, Statement kind, Statement set kind, and"
-                        + " Subject set kind.")
+                        + " measure kind beneath it, Statement kind, and Set kind with Concept set"
+                        + " kind, Statement set kind, and Subject set kind beneath it.")
                 .isA(modelRoot);
         EntityProxy.Concept operandKind = set.conceptRef("Operand kind (IkeFoundation)");
 
@@ -431,13 +429,21 @@ final class ExpressionLanguageSet {
                 .isA(operandKind);
         EntityProxy.Concept conceptKind = set.conceptRef("Concept kind (IkeFoundation)");
 
+        set.concept("Set kind (IkeFoundation)").at(inception)
+                .synonym("Set kind")
+                .definition("An operand kind: a set of things of one kind, concepts, statements, or"
+                        + " subjects. The set operations work on any of them the same way; the kind"
+                        + " of the members rides on the operands. Its members are Concept set kind,"
+                        + " Statement set kind, and Subject set kind.")
+                .isA(operandKind);
+        EntityProxy.Concept setKind = set.conceptRef("Set kind (IkeFoundation)");
         set.concept("Concept set kind (IkeFoundation)").at(inception)
                 .synonym("Concept set kind")
                 .definition("An operand kind: a finite set of concepts computed under a view, which"
                         + " is what the ECL operators and the taxonomy field constraint kinds"
                         + " yield, and what a topic constraint selects statements by. The topic"
                         + " layer.")
-                .isA(operandKind);
+                .isA(setKind);
         EntityProxy.Concept conceptSetKind = set.conceptRef("Concept set kind (IkeFoundation)");
 
         set.concept("Measure kind (IkeFoundation)").at(inception)
@@ -474,7 +480,7 @@ final class ExpressionLanguageSet {
                         + " and its subject. Every stored value has definite bounds, and a"
                         + " criterion over them yields a presence value that may be Present,"
                         + " Absent, or Indeterminate. The statement layer.")
-                .isA(operandKind);
+                .isA(setKind);
         set.concept("Statement kind (IkeFoundation)").at(inception)
                 .synonym("Statement kind")
                 .definition("An operand kind: one ANF statement, which is what a criterion tests.")
@@ -487,7 +493,7 @@ final class ExpressionLanguageSet {
                 .definition("An operand kind: a set of subjects of record, which is what a query"
                         + " over ANF ultimately answers with, the subjects for which a statement"
                         + " set is not empty.")
-                .isA(operandKind);
+                .isA(setKind);
         EntityProxy.Concept subjectSetKind = set.conceptRef("Subject set kind (IkeFoundation)");
 
         // ── Arity (closed) ──────────────────────────────────────────────
@@ -692,7 +698,7 @@ final class ExpressionLanguageSet {
                         keyword names a literal with a k:LiteralDenotationPattern[] semantic.
 
                         The same declaration gives the construct its name in that logic's dialect. In the
-                        k:CQLDialect[] the presence AND reads as `and`, and the three other ANDs keep
+                        k:CQLDialect[] the presence AND reads as `and`, and the two other ANDs keep
                         their qualified names. Spelling variants are two bindings on one construct. One
                         spelling naming two constructs in one logic is legitimate only when their operand
                         kinds differ, which is how ECL's `<` on a concept and on a concrete value stay
@@ -724,11 +730,10 @@ final class ExpressionLanguageSet {
                         That is what settles the question spelling hides. k:ELAND[] is class
                         intersection, class in and class out. k:PresenceAND[] is presence value in and
                         out, the `and` of criteria: Present only if every part is Present, Absent if any
-                        part is Absent, and Indeterminate otherwise. k:StatementSetAND[] is statement set
-                        in and out, a set operation on groups a filter has already sorted.
-                        k:ConceptSetAND[] is a concept-set operator that is definable from class
-                        intersection. Four instances, one generic, one word, and the kinds say which is
-                        which.""");
+                        part is Absent, and Indeterminate otherwise. k:SetAND[] is set in and set out,
+                        whatever the members, and definable from class intersection when the sets are
+                        descendant sets. Three instances, one generic, one word, and the kinds say
+                        which is which.""");
 
         set.pattern(LITERAL_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("Literal denotation (IkeFoundation)"))
@@ -808,9 +813,9 @@ final class ExpressionLanguageSet {
                         + " result is only what is all of the operands at once. Adding another"
                         + " operand can only narrow the result, never widen it. Each descendant"
                         + " applies this to one kind of operand: EL++ AND builds the class of"
-                        + " things that belong to every operand class at once, Concept set AND and"
-                        + " Statement set AND keep the members found in every operand set, and"
-                        + " Presence AND is Present only when both parts are Present.")
+                        + " things that belong to every operand class at once, Set AND keeps the"
+                        + " members found in every operand set, whatever kind of thing they are,"
+                        + " and Presence AND is Present only when every operand is Present.")
                 .isA(IkeTerm.CONNECTIVE_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Generic AND")),
                         operandKind, operandKind, variadic);
@@ -824,20 +829,6 @@ final class ExpressionLanguageSet {
                         operandKind, operandKind, variadic);
         EntityProxy.Concept genericOr = set.conceptRef(GENERIC_OR_FQN);
 
-        set.concept(GENERIC_SET_DIFFERENCE_FQN).at(inception)
-                .synonym("Generic set difference")
-                .definition("A connective operator that takes two operands of one kind and produces"
-                        + " a result of that same kind. Set difference means take the first operand and"
-                        + " leave out whatever is also the second. Here the order of the operands"
-                        + " matters. Each descendant applies this to one kind of operand: Concept"
-                        + " set difference, Statement set difference, and Subject set difference keep the members"
-                        + " of the first set that are not in the second. Not negation: EL++ has no"
-                        + " negation, and Presence NOT swaps a presence value, which is a different"
-                        + " thing with no generic.")
-                .isA(IkeTerm.CONNECTIVE_OPERATOR)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Generic set difference")),
-                        operandKind, operandKind, binary);
-        EntityProxy.Concept genericMinus = set.conceptRef(GENERIC_SET_DIFFERENCE_FQN);
 
         set.concept(LOGICAL_EXPRESSION_VERTEX_FQN).at(inception)
                 .synonym("Logical expression vertex")
@@ -925,8 +916,7 @@ final class ExpressionLanguageSet {
                         + " every operand is Present, Absent if any operand is Absent, and"
                         + " Indeterminate otherwise. This is exactly how CQL's \"and\" behaves over"
                         + " \"true\", \"false\", and \"null\", which is why CQL's \"and\" names it."
-                        + " It combines criteria before the statements are sorted into groups;"
-                        + " Statement set AND combines the groups afterwards.")
+                        + " It combines criteria; Set AND combines the sets a filter has produced.")
                 .isA(genericAnd)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence AND")),
                         presenceMeasureKind, presenceMeasureKind, variadic),
@@ -939,8 +929,7 @@ final class ExpressionLanguageSet {
                         + " operand is Present, Absent if every operand is Absent, and"
                         + " Indeterminate otherwise. This is exactly how CQL's \"or\" behaves over"
                         + " \"true\", \"false\", and \"null\", which is why CQL's \"or\" names it."
-                        + " It combines criteria before the statements are sorted into groups;"
-                        + " Statement set OR combines the groups afterwards.")
+                        + " It combines criteria; Set OR combines the sets a filter has produced.")
                 .isA(genericOr)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence OR")),
                         presenceMeasureKind, presenceMeasureKind, variadic),
@@ -955,8 +944,8 @@ final class ExpressionLanguageSet {
                         + " \"null\", which is why CQL's \"not\" names it. NOT belongs to the"
                         + " query, not to the record: a determination that found the topic absent"
                         + " is stored as Absent, never as NOT Present. It is not a subtraction of"
-                        + " one set from another, which is Generic set difference, and it has no"
-                        + " generic parent, because EL++ has no NOT.")
+                        + " one set from another, which is Set difference, and it has no generic"
+                        + " parent, because EL++ has no NOT.")
                 .isA(IkeTerm.CONNECTIVE_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence NOT")),
                         presenceMeasureKind, presenceMeasureKind, unary),
@@ -1215,52 +1204,67 @@ final class ExpressionLanguageSet {
                         isA, definitionalExtension),
                 set, keywords, ecl, ">>", operatorKeyword, true, "Ancestor or self of");
 
-        keyword(set.concept("Concept set AND (IkeFoundation)").at(inception)
-                .synonym("Concept set AND")
-                .definition("A connective operator that joins two or more concept sets and requires"
-                        + " every one of them: the result is the concepts that are in every operand"
-                        + " set. When each operand set is the descendants of a class, the result is"
-                        + " the descendants of the classes' intersection. That is a proven fact, so"
-                        + " Concept set AND is definable from EL++ AND. The construct ECL's \"AND\""
-                        + " names.")
-                .isA(genericAnd, IkeTerm.TAXONOMY_OPERATOR)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set AND")),
-                        conceptSetKind, conceptSetKind, variadic)
+        // ── Set operations: one construct each, whatever the members ────
+        keyword(keyword(set.concept("Set AND (IkeFoundation)").at(inception)
+                .synonym("Set AND")
+                .definition("A connective operator that joins two or more sets of one kind into"
+                        + " one set of that kind and requires every one of them: the result is"
+                        + " the members that are in every operand set. It is the same operation"
+                        + " whatever the members are, concepts, statements, or subjects; the kind"
+                        + " of the members rides on the operands. When each operand set is the"
+                        + " descendants of a class, the result is the descendants of the classes'"
+                        + " intersection, a proven fact, so Set AND is definable from EL++ AND."
+                        + " The construct ECL's \"AND\" names on concept sets and CQL's"
+                        + " \"intersect\" names on lists of statements: one operation, two"
+                        + " spellings.")
+                .isA(genericAnd)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Set AND")),
+                        setKind, setKind, variadic)
                 .semantic(relations,
-                        PublicIds.of(set.uuidFor(
-                                "Construct relation: Concept set AND definitionally extends EL++ AND")),
+                        PublicIds.of(set.uuidFor("Construct relation: Set AND definitionally extends EL++ AND")),
                         elAnd, definitionalExtension),
-                set, keywords, ecl, "AND", operatorKeyword, true, "Concept set AND");
+                set, keywords, ecl, "AND", operatorKeyword, true, "Set AND"),
+                set, keywords, cql, "intersect", operatorKeyword, true, "Set AND");
 
-        keyword(set.concept("Concept set OR (IkeFoundation)").at(inception)
-                .synonym("Concept set OR")
-                .definition("A connective operator that joins two or more concept sets and requires"
-                        + " at least one of them: the result is the concepts that are in any"
-                        + " operand set. Definable from Is-a, but not the descendants of any class"
-                        + " the core can build, because EL++ has no OR, so its core construct is"
-                        + " Is-a itself. The construct ECL's \"OR\" names.")
-                .isA(genericOr, IkeTerm.TAXONOMY_OPERATOR)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set OR")),
-                        conceptSetKind, conceptSetKind, variadic)
-                .semantic(relations,
-                        PublicIds.of(set.uuidFor("Construct relation: Concept set OR definitionally extends Is-a")),
-                        isA, definitionalExtension),
-                set, keywords, ecl, "OR", operatorKeyword, true, "Concept set OR");
+        keyword(keyword(set.concept("Set OR (IkeFoundation)").at(inception)
+                .synonym("Set OR")
+                .definition("A connective operator that joins two or more sets of one kind into"
+                        + " one set of that kind and requires at least one of them: the result is"
+                        + " the members that are in any operand set. It is the same operation"
+                        + " whatever the members are, concepts, statements, or subjects. The"
+                        + " construct ECL's \"OR\" names on concept sets and CQL's \"union\""
+                        + " names on lists of statements: one operation, two spellings.")
+                .isA(genericOr)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Set OR")),
+                        setKind, setKind, variadic),
+                set, keywords, ecl, "OR", operatorKeyword, true, "Set OR"),
+                set, keywords, cql, "union", operatorKeyword, true, "Set OR");
 
-        keyword(set.concept("Concept set difference (IkeFoundation)").at(inception)
-                .synonym("Concept set difference")
-                .definition("A connective operator that takes two concept sets and keeps the"
-                        + " concepts in the first that are not in the second. A difference of two"
-                        + " finite computed sets, which is why it is not negation and never was."
-                        + " Definable from Is-a. The construct ECL's \"MINUS\" names.")
-                .isA(genericMinus, IkeTerm.TAXONOMY_OPERATOR)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set difference")),
-                        conceptSetKind, conceptSetKind, binary)
-                .semantic(relations,
-                        PublicIds.of(set.uuidFor(
-                                "Construct relation: Concept set difference definitionally extends Is-a")),
-                        isA, definitionalExtension),
-                set, keywords, ecl, "MINUS", operatorKeyword, true, "Concept set difference");
+        keyword(keyword(set.concept("Set difference (IkeFoundation)").at(inception)
+                .synonym("Set difference")
+                .definition("A connective operator that takes two sets of one kind and produces a"
+                        + " set of that kind. Set difference means take the first operand and"
+                        + " leave out whatever is also the second; here the order of the operands"
+                        + " matters. It is the same operation whatever the members are, concepts,"
+                        + " statements, or subjects, and it has no generic parent because nothing"
+                        + " else subtracts: EL++ has no negation, and Presence NOT swaps a presence"
+                        + " value, which is a different thing. On subject sets it finds the"
+                        + " subjects with no record on a topic: a population, every subject of"
+                        + " record in the store or a cohort already selected, less the subjects of"
+                        + " the statements on that topic. On statement sets it finds the"
+                        + " statements with no recorded reason, the statements minus those whose"
+                        + " association comes out Present. No record is all either means. The"
+                        + " store speaks only for itself, and \"never assessed\" is a claim only a"
+                        + " recorded statement can make, one whose act's status is not sought."
+                        + " Not negation: a subject assessed and found clear has a statement whose"
+                        + " value is Absent, and a subject with no statement has no record. The"
+                        + " construct ECL's \"MINUS\" names on concept sets and CQL's \"except\""
+                        + " names on lists of statements: one operation, two spellings.")
+                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Set difference")),
+                        setKind, setKind, binary),
+                set, keywords, ecl, "MINUS", operatorKeyword, true, "Set difference"),
+                set, keywords, cql, "except", operatorKeyword, true, "Set difference");
 
         keyword(set.concept("Member of reference set (IkeFoundation)").at(inception)
                 .synonym("Member of reference set")
@@ -1399,18 +1403,18 @@ final class ExpressionLanguageSet {
                 .synonym("Association constraint")
                 .definition("A criterion that follows the statement's associations to the"
                         + " statements at their other end and tests those. It names the association"
-                        + " types to follow, as a concept set, the direction, from this statement or"
-                        + " to it, and the criteria the associated statements must meet, which may"
-                        + " themselves include association constraints, so a criterion can follow"
-                        + " a path of any length. It comes out Present if any associated statement"
-                        + " of that type meets the criteria outright, Absent if such statements"
-                        + " exist and every one comes out Absent, and Indeterminate otherwise; with"
-                        + " no associated statement of that type it comes out with nothing, which"
-                        + " is no record and not a value. It becomes met or not met through a"
-                        + " comparison on presence, like any measure comparison. Presence NOT swaps"
-                        + " Present and Absent and leaves Indeterminate, and never turns no record"
-                        + " into a finding; the statements with no recorded reason are found by"
-                        + " Statement set difference, the statements minus those whose association"
+                        + " types to follow, as a concept set, the direction, from this statement"
+                        + " or to it, and the criteria the associated statements must meet, which"
+                        + " may themselves include association constraints, so a criterion can"
+                        + " follow a path of any length. It comes out Present if any associated"
+                        + " statement of that type meets the criteria outright, Absent if such"
+                        + " statements exist and every one comes out Absent, and Indeterminate"
+                        + " otherwise; with no associated statement of that type it comes out with"
+                        + " nothing, which is no record and not a value. It becomes met or not met"
+                        + " through a comparison on presence, like any measure comparison. Presence"
+                        + " NOT swaps Present and Absent and leaves Indeterminate, and never turns"
+                        + " no record into a finding; the statements with no recorded reason are"
+                        + " found by Set difference, the statements minus those whose association"
                         + " comes out Present. It is the topic layer's attribute refinement carried"
                         + " to the statement layer: refinement follows an attribute to a value and"
                         + " tests membership, this follows an association to a statement and tests"
@@ -1443,43 +1447,6 @@ final class ExpressionLanguageSet {
                         statementSetKind, statementSetKind, unary),
                 set, keywords, cql, "where", operatorKeyword, true, "Statement filter");
 
-        keyword(set.concept("Statement set AND (IkeFoundation)").at(inception)
-                .synonym("Statement set AND")
-                .definition("A connective operator that joins two or more statement sets and"
-                        + " requires every one of them: the result is the statements that are in"
-                        + " every operand set. A set operation on groups a filter has already"
-                        + " sorted, which is what CQL's \"intersect\" is on lists. Presence AND"
-                        + " combines criteria; this combines results.")
-                .isA(genericAnd, statementOperator)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement set AND")),
-                        statementSetKind, statementSetKind, variadic),
-                set, keywords, cql, "intersect", operatorKeyword, true, "Statement set AND");
-
-        keyword(set.concept("Statement set OR (IkeFoundation)").at(inception)
-                .synonym("Statement set OR")
-                .definition("A connective operator that joins two or more statement sets and"
-                        + " requires at least one of them: the result is the statements that are in"
-                        + " any operand set. A set operation on groups a filter has already sorted."
-                        + " Presence OR combines criteria; this combines results. The construct"
-                        + " CQL's \"union\" names.")
-                .isA(genericOr, statementOperator)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement set OR")),
-                        statementSetKind, statementSetKind, variadic),
-                set, keywords, cql, "union", operatorKeyword, true, "Statement set OR");
-
-        keyword(set.concept("Statement set difference (IkeFoundation)").at(inception)
-                .synonym("Statement set difference")
-                .definition("A connective operator that takes two statement sets and keeps the"
-                        + " statements in the first that are not in the second. A set operation on"
-                        + " groups a filter has already sorted. Not negation: a subject with no"
-                        + " statement on a topic has no record here, and a subject assessed and"
-                        + " found clear has a statement whose value is Absent. The construct CQL's"
-                        + " \"except\" names.")
-                .isA(genericMinus, statementOperator)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement set difference")),
-                        statementSetKind, statementSetKind, binary),
-                set, keywords, cql, "except", operatorKeyword, true, "Statement set difference");
-
         set.concept("Existence (IkeFoundation)").at(inception)
                 .synonym("Existence")
                 .definition("An operator that takes a set of statements and a criterion and returns"
@@ -1489,8 +1456,8 @@ final class ExpressionLanguageSet {
                         + " across the statements. On an empty set it returns nothing, because a"
                         + " presence value is a finding and an empty set holds none: a subject with"
                         + " no statement of diabetes has no record, not diabetes absent, and the"
-                        + " subjects with no record are found with Subject set difference. CQL's"
-                        + " \"exists\" is not this construct but Existence with no record as"
+                        + " subjects with no record are found with Set difference on a population."
+                        + " CQL's \"exists\" is not this construct but Existence with no record as"
                         + " absent, which returns Absent on an empty set.")
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Existence")),
@@ -1517,23 +1484,15 @@ final class ExpressionLanguageSet {
 
         set.concept("Subject projection (IkeFoundation)").at(inception)
                 .synonym("Subject projection")
-                .definition("A statement operator that yields the subjects of record of a statement"
-                        + " set: what a query over ANF answers with. CQL has no keyword for it; its"
-                        + " context is fixed to one subject at a time.")
+                .definition("An operator that takes a set of statements and returns the subjects"
+                        + " those statements are records of, the subject of record and not the"
+                        + " subject of information: a family-history statement is about a relative"
+                        + " but is a record of the patient. It is what a query over ANF answers"
+                        + " with. CQL has no keyword for it, because a CQL query runs one subject"
+                        + " at a time.")
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Subject projection")),
                         statementSetKind, subjectSetKind, unary);
 
-        set.concept("Subject set difference (IkeFoundation)").at(inception)
-                .synonym("Subject set difference")
-                .definition("A connective operator that takes two subject sets and keeps the"
-                        + " subjects in the first that are not in the second. How a query finds the"
-                        + " subjects with no record on a topic: every subject, less the subjects of"
-                        + " the statements on that topic. No record is all it means. The store"
-                        + " speaks only for itself, and \"never assessed\" is a claim only a"
-                        + " recorded not-sought statement can make.")
-                .isA(genericMinus, statementOperator)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Subject set difference")),
-                        subjectSetKind, subjectSetKind, binary);
     }
 }

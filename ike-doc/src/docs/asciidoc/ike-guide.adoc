@@ -323,28 +323,30 @@ koncept-narrative::ExpressionLanguageModel[]
 ExpressionLanguageModel
 ----
 
-=== One AND, Four Places
+=== One AND, Three Places
 
-There is one idea of AND and four places it is used. AND means every operand is
+There is one idea of AND and three places it is used. AND means every operand is
 required, not just some of them, so the result is only what is all of the operands at
 once, and adding an operand can only narrow the result, never widen it.
 k:GenericAND[] holds the idea and no keyword. Beneath it by is-a sit k:ELAND[] on
-classes, which is the inherited And concept keeping its identity, k:ConceptSetAND[] on
-sets of concepts, k:StatementSetAND[] on sets of statements, and k:PresenceAND[] on
-presence values. Every keyword binds to an instance, never to the parent, because two
-things are the same construct only when they work on the same kind of thing.
-k:GenericOR[] has the same shape with three instances, k:ConceptSetOR[],
-k:StatementSetOR[], and k:PresenceOR[]. OR means any one operand is enough, so adding
-an operand can only widen the result. It is the inherited Or concept itself, because
-EL++ has no OR and there is no class instance to keep beneath it. NOT gets no generic,
-and that is the check that the shape is right: EL++ has none, the two set layers share
-k:GenericSetDifference[], which takes the first operand and leaves out whatever is also the
-second, with k:ConceptSetDifference[], k:StatementSetDifference[], and k:SubjectSetDifference[]
-beneath it, and k:PresenceNOT[] swaps a presence value, which is a different thing.
+classes, which is the inherited And concept keeping its identity, k:SetAND[] on sets,
+of concepts, statements, or subjects alike, and k:PresenceAND[] on presence values.
+Every keyword binds to an instance, never to the parent, because two things are the
+same construct only when they work on the same kind of thing. A set is one kind of
+thing whatever its members are, which is why the set operations are one construct
+each: ECL's `AND` on concept sets and CQL's `intersect` on lists of statements name
+k:SetAND[] in two spellings. k:GenericOR[] has the same shape with two instances,
+k:SetOR[] and k:PresenceOR[]. OR means any one operand is enough, so adding an operand
+can only widen the result. It is the inherited Or concept itself, because EL++ has no
+OR and there is no class instance to keep beneath it. NOT gets no generic, and that is
+the check that the shape is right: EL++ has none, sets have k:SetDifference[], which
+takes the first operand and leaves out whatever is also the second and has no generic
+because nothing else subtracts, and k:PresenceNOT[] swaps a presence value, which is a
+different thing.
 
 The names follow one rule. A fully qualified name is the layer qualifier plus the
 shared word, and the US English preferred name is that qualified name, so no view
-ever shows four things called AND. Each logic is a dialect of English, k:CQLDialect[],
+ever shows three things called AND. Each logic is a dialect of English, k:CQLDialect[],
 k:ECLDialect[], and k:ELDialect[], and in its own dialect the construct a logic names
 reads as the bare keyword, spelled as the logic spells it, while everything the logic
 does not name falls back to the qualified name. The two inherited node kinds that
@@ -418,7 +420,7 @@ those that meet its criteria, and a bare comparison that could come out Indeterm
 is not accepted as a criterion, because its middle would be dropped without anyone
 saying so. CQL's `where` is that filter with the presence comparison fixed to Present
 and never written down, and the binding says so. No association is not a value but no
-record, found by k:StatementSetDifference[], never by NOT. k:Existence[] is Presence
+record, found by k:SetDifference[], never by NOT. k:Existence[] is Presence
 OR across a statement set and
 returns nothing on an empty set, since a presence value is a finding and an empty set
 holds none. CQL's `exists` returns false there, so it is its own construct,
@@ -443,7 +445,7 @@ made and did not resolve is Indeterminate. A result not sought, or sought and no
 obtained, has no result at all: the status of the act on the circumstance records
 what happened, k:CircumstanceConstraint[] asks for it, and the reason, a refusal, a
 failed instrument, a decision not to perform, is an associated statement of its own.
-k:SubjectSetDifference[] finds the subjects with no record here, which is all that absence
+k:SetDifference[] on a population finds the subjects with no record here, which is all that absence
 of a statement can mean.
 
 === The Checks Are Derived, and They Run
@@ -452,9 +454,9 @@ koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts eleven relations. k:DescendantOf[], k:DescendantOrSelfOf[],
-k:AncestorOf[], k:AncestorOrSelfOf[], k:ConceptSetOR[], and k:ConceptSetDifference[] are
-definable from k:IsA[]; k:ConceptSetAND[] is definable from k:ELAND[], because the
+The set asserts nine relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+k:AncestorOf[], and k:AncestorOrSelfOf[] are definable from k:IsA[]; k:SetAND[] is
+definable from k:ELAND[] when its operands are descendant sets, because the
 descendants of a class intersection are the intersection of the descendants, a proven
 fact; k:AttributeRefinement[] is definable from k:ExistentialRestriction[].
 k:DescendantFieldConstraint[] and k:KindOfFieldConstraint[] are logically equivalent

@@ -148,18 +148,18 @@ class FoundationFidelityIT {
      * {@code ExpressionLanguageSet} mints the Expression language model root (+1), the
      * Expression language family with CQL, ECL, and EL++ (+4), and their three dialects
      * (+3); the closed taxonomies Lexical role (+5), Construct relation (+4), Operand kind
-     * (+10), and Arity (+4); six field-meaning concepts (+6); eighteen pattern
-     * meaning/purpose concepts (+18); Generic AND and Generic set difference (+2 — Generic OR is
+     * (+11), and Arity (+4); six field-meaning concepts (+6); eighteen pattern
+     * meaning/purpose concepts (+18); Generic AND (+1; Generic OR is
      * the inherited Or concept, renamed); the Logical expression vertex home (+1); the
      * Indeterminate result and the three presence literals (+4); Presence AND, OR, and NOT (+3); the five measure
-     * relations (+5); the Statement measure family with its eleven members, four on the performance side, two on the request side, and Repetition measure with five (+13); the ten
-     * concept-set operators (+10); and the Statement operator family with its eight
-     * members (+9); and the Criterion family with Topic constraint, Circumstance
+     * relations (+5); the Statement measure family with its eleven members, four on the performance side, two on the request side, and Repetition measure with five (+13); the seven
+     * concept-set operators (+7); the three set operations (+3); and the Statement operator family with its four
+     * members (+5); and the Criterion family with Topic constraint, Circumstance
      * constraint, Measure comparison, and Association constraint (+5). Every other construct it types or binds (EL++ AND, Is-a, Existential
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 208;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 204;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field

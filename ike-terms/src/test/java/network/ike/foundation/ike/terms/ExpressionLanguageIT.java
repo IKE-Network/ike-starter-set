@@ -88,7 +88,6 @@ class ExpressionLanguageIT {
     private static int elNid;
     private static int genericAndNid;
     private static int genericOrNid;
-    private static int genericMinusNid;
 
     /** Operator nid → (operand kind, result kind, arity) nids. */
     private static final Map<Integer, int[]> DENOTATIONS = new HashMap<>();
@@ -135,7 +134,7 @@ class ExpressionLanguageIT {
         operandKindRootNid = nid("Operand kind (IkeFoundation)");
         presenceMeasureKindNid = nid("Presence measure kind (IkeFoundation)");
         for (String kind : List.of("Class", "Axiom", "Concept", "Concept set", "Measure",
-                "Presence measure", "Statement set", "Subject set")) {
+                "Presence measure", "Statement", "Set", "Statement set", "Subject set")) {
             KINDS.add(nid(kind + " kind (IkeFoundation)"));
         }
         QUALIFIERS.put(nid("Class kind (IkeFoundation)"), "EL++ ");
@@ -143,6 +142,7 @@ class ExpressionLanguageIT {
         QUALIFIERS.put(nid("Statement set kind (IkeFoundation)"), "Statement set ");
         QUALIFIERS.put(presenceMeasureKindNid, "Presence ");
         QUALIFIERS.put(nid("Subject set kind (IkeFoundation)"), "Subject set ");
+        QUALIFIERS.put(nid("Set kind (IkeFoundation)"), "Set ");
         QUALIFIERS.put(operandKindRootNid, "Generic ");
 
         cqlNid = nid("Clinical Quality Language (IkeFoundation)");
@@ -153,7 +153,6 @@ class ExpressionLanguageIT {
         DIALECTS.put(elNid, set.patternRef(ExpressionLanguageSet.EL_DIALECT_PATTERN_FQN));
         genericAndNid = nid(ExpressionLanguageSet.GENERIC_AND_FQN);
         genericOrNid = nid(ExpressionLanguageSet.GENERIC_OR_FQN);
-        genericMinusNid = nid(ExpressionLanguageSet.GENERIC_SET_DIFFERENCE_FQN);
 
         EntityService.get().forEachSemanticOfPattern(denotationPatternNid, semantic -> {
             ImmutableList<Object> fields = latestFields(semantic.nid());
@@ -183,7 +182,7 @@ class ExpressionLanguageIT {
             assertTrue(previousRole == null || previousRole == role,
                     "Keyword '" + keyword + "' bound with two lexical roles in " + fqn(language));
         });
-        Set<Integer> generics = Set.of(genericAndNid, genericOrNid, genericMinusNid);
+        Set<Integer> generics = Set.of(genericAndNid, genericOrNid);
         EntityService.get().forEachConceptEntity(concept -> {
             for (int parent : latestIsAParents(concept.nid())) {
                 if (generics.contains(parent)) {
@@ -428,32 +427,27 @@ class ExpressionLanguageIT {
         assertTrue(checked > 0);
     }
 
-    // ── One AND, four places ────────────────────────────────────────────
+    // ── One AND, three places ────────────────────────────────────────────
 
     @Test
     @DisplayName("The generics' children are exactly the layer instances, and every keyword binds to an instance")
     void genericsHaveExactlyTheLayerInstances() {
         int elAnd = nid(ExpressionLanguageSet.EL_AND_FQN);
-        int conceptSetAnd = nid("Concept set AND (IkeFoundation)");
-        int statementSetAnd = nid("Statement set AND (IkeFoundation)");
+        int setAnd = nid("Set AND (IkeFoundation)");
         int presenceAnd = nid("Presence AND (IkeFoundation)");
-        assertEquals(Set.of(elAnd, conceptSetAnd, statementSetAnd, presenceAnd), CHILDREN.get(genericAndNid),
-                "Generic AND has exactly four instances");
-        assertEquals(Set.of(nid("Concept set OR (IkeFoundation)"), nid("Statement set OR (IkeFoundation)"),
-                        nid("Presence OR (IkeFoundation)")), CHILDREN.get(genericOrNid),
-                "Generic OR has exactly three instances — EL++ has no OR");
-        assertEquals(Set.of(nid("Concept set difference (IkeFoundation)"), nid("Statement set difference (IkeFoundation)"),
-                        nid("Subject set difference (IkeFoundation)")), CHILDREN.get(genericMinusNid),
-                "Generic set difference has exactly three instances");
+        assertEquals(Set.of(elAnd, setAnd, presenceAnd), CHILDREN.get(genericAndNid),
+                "Generic AND has exactly three instances");
+        assertEquals(Set.of(nid("Set OR (IkeFoundation)"), nid("Presence OR (IkeFoundation)")), CHILDREN.get(genericOrNid),
+                "Generic OR has exactly two instances — EL++ has no OR");
 
         assertEquals(presenceAnd, only(cqlNid, "and"));
-        assertEquals(conceptSetAnd, only(eclNid, "AND"));
-        assertEquals(statementSetAnd, only(cqlNid, "intersect"));
+        assertEquals(setAnd, only(eclNid, "AND"));
+        assertEquals(setAnd, only(cqlNid, "intersect"));
         assertEquals(elAnd, only(elNid, "AND"));
         for (Map<String, List<Integer>> roster : KEYWORDS.values()) {
             for (List<Integer> named : roster.values()) {
                 for (int construct : named) {
-                    assertTrue(construct != genericAndNid && construct != genericOrNid && construct != genericMinusNid,
+                    assertTrue(construct != genericAndNid && construct != genericOrNid,
                             "A keyword binds to a generic: " + fqn(construct));
                 }
             }
@@ -485,7 +479,7 @@ class ExpressionLanguageIT {
                 checked++;
             }
         }
-        assertEquals(10, checked, "Four AND, three OR, three set difference instances checked");
+        assertEquals(5, checked, "Three AND and two OR instances checked");
     }
 
     /**
