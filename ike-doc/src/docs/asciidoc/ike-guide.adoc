@@ -382,8 +382,8 @@ k:OperandKind[] is what an operator works on or yields, and the kinds are ANF's:
 k:ClassKind[] and k:AxiomKind[] for the knowledge layer, k:ConceptKind[] and
 k:ConceptSetKind[] for topic selection, k:MeasureKind[], two bounds plus a measure
 semantic, and k:PresenceMeasureKind[], a measure on the Presence semantic, for values,
-determinations, and criteria, k:StatementSetKind[] and k:SubjectSetKind[] for what
-a query narrows and answers with. There is no truth-value kind, and a generic is typed
+determinations, and criteria, k:StatementKind[] for what a criterion tests,
+k:StatementSetKind[] and k:SubjectSetKind[] for what a query narrows and answers with. There is no truth-value kind, and a generic is typed
 at the root, meaning any kind. k:Arity[] is a concept rather than a number so that
 k:Variadic[] is a value, never a placeholder. k:ExistentialRestriction[] is k:Unary[]:
 its attribute is a fixed parameter, and its one operand is the value class.
@@ -403,13 +403,23 @@ k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when th
 threshold or date it compares against is inside the recorded range. An HbA1c recorded
 between 8.5 and 9.5, asked whether it is above 9, is neither known above nor known
 below, and the query says so rather than guessing. Criteria combine by k:PresenceAND[],
-k:PresenceOR[], and k:PresenceNOT[]. k:StatementFilter[] applies a criterion to each
-statement in a set and keeps the statements whose result is one or more chosen
-presence values, and the combinations are the useful questions: Present and
-Indeterminate together is everyone not ruled out, a trial's candidate list; Absent and
-Indeterminate is everyone not confirmed; Indeterminate alone is the retest list. CQL's
-`where` is that filter fixed to Present alone, dropping the middle without saying so,
-and the binding says so. k:Existence[] is Presence OR across a statement set and
+k:PresenceOR[], and k:PresenceNOT[]. A k:Criterion[] is a test applied to one
+statement: a k:TopicConstraint[] or a k:CircumstanceConstraint[] tests a concept for
+membership in a concept set and is met or not met outright; a k:MeasureComparison[]
+compares a measure with an interval on a semantic and can come out Indeterminate; an
+k:AssociationConstraint[] follows the statement's associations, a step in a graph
+query, and applies criteria to the statements it reaches. A comparison on the presence
+semantic tests bounds exactly and is always decisive, so it is how a query says which
+outcomes count, for a stored presence value and for the outcome of another comparison
+alike: Present and Indeterminate together is everyone not ruled out, a trial's
+candidate list; Absent and Indeterminate is everyone not confirmed; Indeterminate
+alone is the retest list. k:StatementFilter[] takes a set of statements and returns
+those that meet its criteria, and a bare comparison that could come out Indeterminate
+is not accepted as a criterion, because its middle would be dropped without anyone
+saying so. CQL's `where` is that filter with the presence comparison fixed to Present
+and never written down, and the binding says so. No association is not a value but no
+record, found by k:StatementSetDifference[], never by NOT. k:Existence[] is Presence
+OR across a statement set and
 returns nothing on an empty set, since a presence value is a finding and an empty set
 holds none. CQL's `exists` returns false there, so it is its own construct,
 k:ExistenceWithNoRecordAsAbsent[], a conservative extension of Existence whose one

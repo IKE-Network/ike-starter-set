@@ -402,7 +402,8 @@ final class ExpressionLanguageSet {
                         + " truth-value kind: what a determination, a criterion, or a derived"
                         + " criterion yields is a presence measure. Its members are Class kind,"
                         + " Axiom kind, Concept kind, Concept set kind, Measure kind with Presence"
-                        + " measure kind beneath it, Statement set kind, and Subject set kind.")
+                        + " measure kind beneath it, Statement kind, Statement set kind, and"
+                        + " Subject set kind.")
                 .isA(modelRoot);
         EntityProxy.Concept operandKind = set.conceptRef("Operand kind (IkeFoundation)");
 
@@ -474,7 +475,12 @@ final class ExpressionLanguageSet {
                         + " criterion over them yields a presence value that may be Present,"
                         + " Absent, or Indeterminate. The statement layer.")
                 .isA(operandKind);
+        set.concept("Statement kind (IkeFoundation)").at(inception)
+                .synonym("Statement kind")
+                .definition("An operand kind: one ANF statement, which is what a criterion tests.")
+                .isA(operandKind);
         EntityProxy.Concept statementSetKind = set.conceptRef("Statement set kind (IkeFoundation)");
+        EntityProxy.Concept statementKind = set.conceptRef("Statement kind (IkeFoundation)");
 
         set.concept("Subject set kind (IkeFoundation)").at(inception)
                 .synonym("Subject set kind")
@@ -710,7 +716,8 @@ final class ExpressionLanguageSet {
                         are possible before any check runs. The kinds are ANF's: k:ClassKind[] and
                         k:AxiomKind[] for the knowledge layer, k:ConceptKind[] and k:ConceptSetKind[] for
                         topic selection, k:MeasureKind[] and k:PresenceMeasureKind[] for values,
-                        determinations, and criteria, k:StatementSetKind[] and k:SubjectSetKind[] for what
+                        determinations, and criteria, k:StatementKind[] for what a criterion tests,
+                        k:StatementSetKind[] and k:SubjectSetKind[] for what
                         a query narrows and answers with. There is no truth-value kind, and a generic
                         operator is typed at the root, meaning any kind.
 
@@ -1318,59 +1325,119 @@ final class ExpressionLanguageSet {
         // ── Statement operators: the query over ANF ─────────────────────
         set.concept("Statement operator (IkeFoundation)").at(inception)
                 .synonym("Statement operator")
-                .definition("An operator that works on sets of ANF statements: it selects them,"
-                        + " narrows them, combines them, or answers from them. Each criterion a"
-                        + " query puts to a statement yields a presence value, so a query's answer"
-                        + " sorts its candidates into three groups: present, absent, and"
-                        + " indeterminate. A statement operator keeps the statements with one or"
-                        + " more of those values, or combines such sets by set operations. The"
-                        + " indeterminate group is never dropped by default: it is what a query"
-                        + " returns when it is asked for the statements that could not be told."
-                        + " The store speaks only for itself: no statement means no record here.")
-.isA(IkeTerm.MEANING);
+                .definition("An operator that works on sets of ANF statements. A filter keeps the"
+                        + " statements that meet its criteria, Existence folds a criterion across a"
+                        + " set into one presence value, the set operations combine sets, and the"
+                        + " subject operators turn statements into subjects. The indeterminate"
+                        + " middle is never dropped by default: a filter's criteria say which"
+                        + " outcomes count. The store speaks only for itself: no statement means no"
+                        + " record here.")
+                .isA(IkeTerm.MEANING);
         EntityProxy.Concept statementOperator = set.conceptRef("Statement operator (IkeFoundation)");
+
+        set.concept("Criterion (IkeFoundation)").at(inception)
+                .synonym("Criterion")
+                .definition("A test applied to one statement. A concept test is met or not met"
+                        + " outright. A measure comparison comes out Present, Absent, or"
+                        + " Indeterminate, and becomes met or not met through a further comparison"
+                        + " on presence that says which outcomes count. Its members are Topic"
+                        + " constraint, Circumstance constraint, Measure comparison, and"
+                        + " Association constraint, and criteria combine with AND, OR, and NOT.")
+                .isA(modelRoot);
+        EntityProxy.Concept criterion = set.conceptRef("Criterion (IkeFoundation)");
 
         set.concept("Topic constraint (IkeFoundation)").at(inception)
                 .synonym("Topic constraint")
-                .definition("A statement operator that keeps the statements whose topic is a member"
-                        + " of a given concept set: the topic layer's result applied to statements."
-                        + " A CQL retrieve with a value set is this, the value set naming the"
-                        + " concept set.")
-                .isA(statementOperator)
+                .definition("A criterion that tests the statement's topic for membership in a"
+                        + " concept set, named as a concept and its kinds, one concept exactly, an"
+                        + " ECL expression, or a reference set, and computed under the view before"
+                        + " the test runs. A concept is either in the set or not, so it is met or"
+                        + " not met outright. A CQL retrieve with a value set is this, the value"
+                        + " set naming the concept set.")
+                .isA(criterion)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Topic constraint")),
-                        statementSetKind, statementSetKind, unary);
+                        statementKind, presenceMeasureKind, unary);
 
         set.concept("Circumstance constraint (IkeFoundation)").at(inception)
                 .synonym("Circumstance constraint")
-                .definition("A statement operator that keeps the statements whose circumstance has"
-                        + " a given value in a concept-valued field: the status, which records what"
-                        + " happened to the act, such as performed, not sought, or sought and not"
-                        + " obtained; or the circumstance type, which is performance, request, or"
-                        + " narrative. The same shape as a topic constraint, applied to the"
-                        + " circumstance instead of the topic. This is how a query finds the"
-                        + " statements whose act produced no result. Why it produced none, a"
-                        + " refusal, a failed instrument, a decision not to perform, is not a field"
-                        + " of the circumstance; it is an associated statement of its own, with the"
-                        + " full expressive power of a statement.")
-                .isA(statementOperator)
+                .definition("A criterion that tests one or more fields of the circumstance that"
+                        + " hold a concept, the act's status, the type, the method, the body site,"
+                        + " the health risk, a request's priority, each for membership in a concept"
+                        + " set named the same way as a topic constraint's. It is met or not met"
+                        + " outright. This is how a query finds the statements whose act produced"
+                        + " no result. Why it produced none, a refusal, a failed instrument, a"
+                        + " decision not to perform, is not a field of the circumstance; it is an"
+                        + " associated statement of its own, with everything a statement can say.")
+                .isA(criterion)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Circumstance constraint")),
-                        statementSetKind, statementSetKind, unary);
+                        statementKind, presenceMeasureKind, unary);
+
+        set.concept("Measure comparison (IkeFoundation)").at(inception)
+                .synonym("Measure comparison")
+                .definition("A criterion that compares a measure with an interval on a measure"
+                        + " semantic: one of the statement's measures, the result, the timing, the"
+                        + " normal range, or a request's, with a threshold in millimoles per liter"
+                        + " or a date on the calendar; or a presence value, stored or produced by"
+                        + " another comparison, with the presence values that count. A comparison"
+                        + " that tests bounds exactly is met or not met outright, and every"
+                        + " comparison on the presence semantic is of that kind, which is how a"
+                        + " query asks for statements found present, found absent, could not tell,"
+                        + " or any combination: Present and Indeterminate together is everyone not"
+                        + " ruled out, the trial's candidate list; Absent and Indeterminate is"
+                        + " everyone not confirmed; Indeterminate alone is the retest list. A"
+                        + " comparison against a recorded range that straddles what it is compared"
+                        + " with comes out Indeterminate, and it becomes met-or-not through a"
+                        + " further comparison on presence. The measure's semantic can be tested as"
+                        + " a concept as well, for membership in a concept set, so that a"
+                        + " comparison applies only to results in a kind of unit, and any semantic"
+                        + " with the whole frame is \"has a result at all\".")
+                .isA(criterion)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure comparison")),
+                        statementKind, presenceMeasureKind, unary);
+
+        set.concept("Association constraint (IkeFoundation)").at(inception)
+                .synonym("Association constraint")
+                .definition("A criterion that follows the statement's associations to the"
+                        + " statements at their other end and tests those. It names the association"
+                        + " types to follow, as a concept set, the direction, from this statement or"
+                        + " to it, and the criteria the associated statements must meet, which may"
+                        + " themselves include association constraints, so a criterion can follow"
+                        + " a path of any length. It comes out Present if any associated statement"
+                        + " of that type meets the criteria outright, Absent if such statements"
+                        + " exist and every one comes out Absent, and Indeterminate otherwise; with"
+                        + " no associated statement of that type it comes out with nothing, which"
+                        + " is no record and not a value. It becomes met or not met through a"
+                        + " comparison on presence, like any measure comparison. Presence NOT swaps"
+                        + " Present and Absent and leaves Indeterminate, and never turns no record"
+                        + " into a finding; the statements with no recorded reason are found by"
+                        + " Statement set difference, the statements minus those whose association"
+                        + " comes out Present. It is the topic layer's attribute refinement carried"
+                        + " to the statement layer: refinement follows an attribute to a value and"
+                        + " tests membership, this follows an association to a statement and tests"
+                        + " criteria. This is how a query reaches the reason an act produced no"
+                        + " result, the refusal or the failed instrument recorded as an associated"
+                        + " statement, from the statement it explains.")
+                .isA(criterion)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Association constraint")),
+                        statementKind, presenceMeasureKind, unary);
 
         keyword(set.concept("Statement filter (IkeFoundation)").at(inception)
                 .synonym("Statement filter")
-                .definition("A filter set to keep one or more of the three presence values,"
-                        + " Present, Absent, and Indeterminate. It applies a criterion to each"
-                        + " statement in a set and returns the statements for which the criterion's"
-                        + " result is one of the values it keeps. A criterion compares one of the"
-                        + " statement's measures, its result, its timing, its normal range, or any"
-                        + " other it carries, with a threshold, a range, or a date, or combines"
-                        + " such comparisons with Presence AND, OR, and NOT. The combinations are"
-                        + " the useful questions: Present and Indeterminate together is everyone"
-                        + " not ruled out, the trial's candidate list; Absent and Indeterminate is"
-                        + " everyone not confirmed; Indeterminate alone is the retest list. CQL's"
-                        + " \"where\" is this filter fixed to Present alone: it returns the rows"
-                        + " where the condition is true and drops the \"null\" rows without saying"
-                        + " so.")
+                .definition("A filter that takes a set of statements and returns those that meet"
+                        + " its criteria. Each statement is tested against the criteria, which"
+                        + " combine with AND, OR, and NOT. A criterion is a topic constraint, a"
+                        + " circumstance constraint, a measure comparison, or an association"
+                        + " constraint, and every measure comparison names a measure semantic and"
+                        + " an interval: a statement about serum sodium, whose act was performed,"
+                        + " whose result below 0.001 millimoles per liter is Present or"
+                        + " Indeterminate. Every criterion must be met or not met for every"
+                        + " statement. A measure comparison that can come out Indeterminate becomes"
+                        + " one through a further comparison on presence, and a bare one is not"
+                        + " accepted, because its middle would be dropped without anyone saying"
+                        + " so. CQL's \"where\" is this filter with that last comparison fixed to"
+                        + " Present and never written down: it returns the rows where the condition"
+                        + " is true and drops the \"null\" rows without saying so. A CQL retrieve"
+                        + " is this filter with a topic constraint as its only criterion.")
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Statement filter")),
                         statementSetKind, statementSetKind, unary),
