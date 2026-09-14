@@ -409,11 +409,12 @@ presence values, and the combinations are the useful questions: Present and
 Indeterminate together is everyone not ruled out, a trial's candidate list; Absent and
 Indeterminate is everyone not confirmed; Indeterminate alone is the retest list. CQL's
 `where` is that filter fixed to Present alone, dropping the middle without saying so,
-and the binding says so. k:Existence[] is Presence OR combined across a
-statement set; its Absent on an empty set is a fact about the store, never about the
-subject, and CQL's `exists`, which reads it as false, treats the store as the world by
-default. The set operators act on groups already sorted, which is what CQL's
-`intersect`, `union`, and `except` do on lists.
+and the binding says so. k:Existence[] is Presence OR across a statement set and
+returns nothing on an empty set, since a presence value is a finding and an empty set
+holds none. CQL's `exists` returns false there, so it is its own construct,
+k:ExistenceWithNoRecordAsAbsent[], a conservative extension of Existence whose one
+added rule is that no record counts as absent. The set operators act on groups already
+sorted, which is what CQL's `intersect`, `union`, and `except` do on lists.
 
 A performance carries one k:ResultMeasure[], which is the assertion, and its
 cross-cutting measurements, k:TimingMeasure[], k:StatementTimeMeasure[], and
@@ -441,14 +442,17 @@ koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts ten relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+The set asserts eleven relations. k:DescendantOf[], k:DescendantOrSelfOf[],
 k:AncestorOf[], k:AncestorOrSelfOf[], k:ConceptSetOR[], and k:ConceptSetDifference[] are
 definable from k:IsA[]; k:ConceptSetAND[] is definable from k:ELAND[], because the
 descendants of a class intersection are the intersection of the descendants, a proven
 fact; k:AttributeRefinement[] is definable from k:ExistentialRestriction[].
 k:DescendantFieldConstraint[] and k:KindOfFieldConstraint[] are logically equivalent
 to k:DescendantOf[] and k:DescendantOrSelfOf[]: the same concept sets, which the set
-contained without saying so until now. An instance's is-a to its generic is a
+contained without saying so until now. k:ExistenceWithNoRecordAsAbsent[], the
+construct CQL's `exists` names, conservatively extends k:Existence[]: it agrees
+wherever Existence has an answer and adds Absent for the empty set, the closed-world
+default made into data rather than a caveat. An instance's is-a to its generic is a
 different claim, the same idea at another kind, and is not a construct relation. The
 concept-set checks run over the reasoner conformance kit. The finite check runs in the
 set's own integration test: CQL's specified tables for `and`, `or`, and `not`,

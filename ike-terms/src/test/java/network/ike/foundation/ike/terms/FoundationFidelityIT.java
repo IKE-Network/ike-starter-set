@@ -153,12 +153,12 @@ class FoundationFidelityIT {
      * the inherited Or concept, renamed); the Logical expression vertex home (+1); the
      * Indeterminate result and the three presence literals (+4); Presence AND, OR, and NOT (+3); the five measure
      * relations (+5); the Statement measure family with its eleven members, four on the performance side, two on the request side, and Repetition measure with five (+13); the ten
-     * concept-set operators (+10); and the Statement operator family with its nine
-     * members (+10). Every other construct it types or binds (EL++ AND, Is-a, Existential
+     * concept-set operators (+10); and the Statement operator family with its ten
+     * members (+11). Every other construct it types or binds (EL++ AND, Is-a, Existential
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 203;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 204;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field

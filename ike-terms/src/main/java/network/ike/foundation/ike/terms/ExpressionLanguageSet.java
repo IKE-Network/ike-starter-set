@@ -384,8 +384,10 @@ final class ExpressionLanguageSet {
                 .definition("A construct relation in which the construct agrees with the core"
                         + " construct on everything the core covers, and covers more. Operand kind,"
                         + " result kind, and arity agree, and the added coverage is the extension."
-                        + " The check is agreement on every input the core covers. No current"
-                        + " construct claims it. The three-valued connectives that would have"
+                        + " The check is agreement on every input the core covers. One construct"
+                        + " claims it: Existence with no record as absent, which agrees with"
+                        + " Existence on every set that holds a statement and adds an answer,"
+                        + " Absent, for the empty set. The three-valued connectives that would have"
                         + " claimed it turned out to be ordinary measure arithmetic instead.")
                 .isA(constructRelation);
 
@@ -770,8 +772,10 @@ final class ExpressionLanguageSet {
                         two homes. k:DefinitionalExtension[] means the construct can be defined using only
                         what the core already says, new names and no new logic, as every ECL operator is
                         defined from is-a and existential restriction. k:ConservativeExtension[] means
-                        agreement on everything the core covers plus more coverage; no current construct
-                        claims it. There is no value for "unrelated". A construct with no relation
+                        agreement on everything the core covers plus more coverage;
+                        k:ExistenceWithNoRecordAsAbsent[] claims it, agreeing with k:Existence[] on
+                        every set that holds a statement and adding Absent for the empty set, which
+                        is the closed-world default made into data. There is no value for "unrelated". A construct with no relation
                         semantic is distinct, and the value layer's operators, arithmetic on measures, are
                         distinct from the EL++ core by design. An instance's is-a to k:GenericAND[] is not
                         a construct relation either. It says the same idea at another kind, which is a
@@ -1409,22 +1413,40 @@ final class ExpressionLanguageSet {
                         statementSetKind, statementSetKind, binary),
                 set, keywords, cql, "except", operatorKeyword, true, "Statement set difference");
 
-        keyword(set.concept("Existence (IkeFoundation)").at(inception)
+        set.concept("Existence (IkeFoundation)").at(inception)
                 .synonym("Existence")
-                .definition("A statement operator that tells whether some statement in a set"
-                        + " satisfies a criterion: Presence OR combined across every statement in"
-                        + " the set, so Present when one satisfies it outright, Indeterminate when"
-                        + " the best answer is Indeterminate, and Absent when the set is empty or"
-                        + " none can. That Absent is a fact about the store, never about the"
-                        + " subject. Having no statement of diabetes is not diabetes absent, and a"
-                        + " derived determination needs evidence statements; with none there is no"
-                        + " derived statement, not an absent one. CQL's \"exists\" reads an empty"
-                        + " retrieve as false, treating the store as the world by default, and the"
-                        + " binding records that.")
+                .definition("An operator that takes a set of statements and a criterion and returns"
+                        + " one presence value for the set as a whole: Present if the criterion's"
+                        + " result is Present for any statement in the set, Absent if it is Absent"
+                        + " for every statement, and Indeterminate otherwise. It is Presence OR"
+                        + " across the statements. On an empty set it returns nothing, because a"
+                        + " presence value is a finding and an empty set holds none: a subject with"
+                        + " no statement of diabetes has no record, not diabetes absent, and the"
+                        + " subjects with no record are found with Subject set difference. CQL's"
+                        + " \"exists\" is not this construct but Existence with no record as"
+                        + " absent, which returns Absent on an empty set.")
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Existence")),
-                        statementSetKind, presenceMeasureKind, unary),
-                set, keywords, cql, "exists", operatorKeyword, true, "Existence");
+                        statementSetKind, presenceMeasureKind, unary);
+        EntityProxy.Concept existence = set.conceptRef("Existence (IkeFoundation)");
+
+        keyword(set.concept("Existence with no record as absent (IkeFoundation)").at(inception)
+                .synonym("Existence with no record as absent")
+                .definition("Existence with one extra rule: on an empty set it returns Absent"
+                        + " instead of nothing, so no record counts as absent, as if the store held"
+                        + " the whole world. It agrees with Existence on every set that holds at"
+                        + " least one statement and differs only on the empty set, which makes it"
+                        + " a conservative extension of Existence. The construct CQL's \"exists\""
+                        + " names, and the reason a CQL \"not exists\" reads no record as found"
+                        + " absent.")
+                .isA(statementOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Existence with no record as absent")),
+                        statementSetKind, presenceMeasureKind, unary)
+                .semantic(relations,
+                        PublicIds.of(set.uuidFor(
+                                "Construct relation: Existence with no record as absent conservatively extends Existence")),
+                        existence, set.conceptRef("Conservative extension (IkeFoundation)")),
+                set, keywords, cql, "exists", operatorKeyword, true, "Existence with no record as absent");
 
         set.concept("Subject projection (IkeFoundation)").at(inception)
                 .synonym("Subject projection")
