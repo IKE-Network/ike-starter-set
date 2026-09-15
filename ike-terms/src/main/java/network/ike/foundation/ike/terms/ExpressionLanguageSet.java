@@ -764,7 +764,7 @@ final class ExpressionLanguageSet {
                         row. No third truth value and no propagation rules; the same outcomes, explained
                         by the two bounds and the distance between them. Null itself does not survive
                         normalization. A determination made and unresolved is Indeterminate. A result not
-                        sought, or sought and not obtained, is the status of the act on the circumstance,
+                        sought, or sought and not obtained, is the disposition of the act on the circumstance,
                         with no result at all, and the reason is an associated statement of its own. The
                         infinities are bounds. Nothing else is a value at all.""");
 
@@ -861,7 +861,7 @@ final class ExpressionLanguageSet {
                         + " determination was done, and no more. It is a fact about this"
                         + " determination only; a later determination may succeed. It is never a"
                         + " stand-in for missing information. A result that was not sought, or was"
-                        + " sought and not obtained, is recorded as the status of the act. The"
+                        + " sought and not obtained, is recorded as the disposition of the act. The"
                         + " reason is an associated statement. A subject with no statement at all"
                         + " simply has no record here.")
                 .isA(modelRoot);
@@ -1255,7 +1255,7 @@ final class ExpressionLanguageSet {
                         + " statements with no recorded reason, the statements minus those whose"
                         + " association comes out Present. No record is all either means. The"
                         + " store speaks only for itself, and \"never assessed\" is a claim only a"
-                        + " recorded statement can make, one whose act's status is not sought."
+                        + " recorded statement can make, one whose act's disposition is not sought."
                         + " Not negation: a subject assessed and found clear has a statement whose"
                         + " value is Absent, and a subject with no statement has no record. The"
                         + " construct ECL's \"MINUS\" names on concept sets and CQL's \"except\""
@@ -1365,7 +1365,8 @@ final class ExpressionLanguageSet {
         set.concept("Circumstance constraint (IkeFoundation)").at(inception)
                 .synonym("Circumstance constraint")
                 .definition("A criterion that tests one or more fields of the circumstance that"
-                        + " hold a concept, the act's status, the type, the method, the body site,"
+                        + " hold a concept, the act's disposition, what became of it, the type, the method,"
+                        + " the body site,"
                         + " the health risk, a request's priority, each for membership in a concept"
                         + " set named the same way as a topic constraint's. It is met or not met"
                         + " outright. This is how a query finds the statements whose act produced"

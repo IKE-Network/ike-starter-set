@@ -442,8 +442,8 @@ second statement; a cross-cutting measurement is not a second result.
 
 What is null elsewhere does not all become Indeterminate. A determination that was
 made and did not resolve is Indeterminate. A result not sought, or sought and not
-obtained, has no result at all: the status of the act on the circumstance records
-what happened, k:CircumstanceConstraint[] asks for it, and the reason, a refusal, a
+obtained, has no result at all: the disposition of the act on the circumstance records
+what became of it, k:CircumstanceConstraint[] asks for it, and the reason, a refusal, a
 failed instrument, a decision not to perform, is an associated statement of its own.
 k:SetDifference[] on a population finds the subjects with no record here, which is all that absence
 of a statement can mean.
