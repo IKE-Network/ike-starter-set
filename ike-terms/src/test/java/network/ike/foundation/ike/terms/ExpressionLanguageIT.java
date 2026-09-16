@@ -380,6 +380,7 @@ class ExpressionLanguageIT {
                         "and", "or", "not", "exists", "in", "intersect", "union", "except", "where",
                         "<", "<=", ">", ">=", "=", "same as", "between", "during", "included in", "includes",
                         "contains", "overlaps", "before", "after",
+                        "+", "-", "*", "/", "start of", "end of", "width of", "duration between", "duration of",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -495,6 +496,38 @@ class ExpressionLanguageIT {
             return qualifier + word.substring(firstWord.length()).trim();
         }
         return qualifier + word;
+    }
+
+    // ── Measure operators: a measure in, a measure out ────────────────────
+
+    @Test
+    @DisplayName("Every measure operator takes measures and yields a measure, and CQL's arithmetic and bound keywords name them")
+    void measureOperatorsTakeAndYieldMeasures() {
+        int measureKind = nid("Measure kind (IkeFoundation)");
+        int measureOperator = nid("Measure operator (IkeFoundation)");
+        Map<String, String> arities = Map.of(
+                "Measure addition", "Variadic", "Measure subtraction", "Binary",
+                "Measure multiplication", "Variadic", "Measure division", "Binary",
+                "Measure lower bound", "Unary", "Measure upper bound", "Unary", "Measure width", "Unary");
+        for (Map.Entry<String, String> operator : arities.entrySet()) {
+            int operatorNid = nid(operator.getKey() + " (IkeFoundation)");
+            int[] denotation = DENOTATIONS.get(operatorNid);
+            assertNotNull(denotation, "Untyped " + operator.getKey());
+            assertEquals(measureKind, denotation[0], operator.getKey() + " takes measures");
+            assertEquals(measureKind, denotation[1], operator.getKey() + " yields a measure");
+            assertEquals(nid(operator.getValue() + " (IkeFoundation)"), denotation[2], operator.getKey() + " arity");
+            assertTrue(latestIsAParents(operatorNid).contains(measureOperator),
+                    operator.getKey() + " is a measure operator");
+        }
+        assertEquals(nid("Measure addition (IkeFoundation)"), only(cqlNid, "+"));
+        assertEquals(nid("Measure subtraction (IkeFoundation)"), only(cqlNid, "-"));
+        assertEquals(nid("Measure subtraction (IkeFoundation)"), only(cqlNid, "duration between"));
+        assertEquals(nid("Measure multiplication (IkeFoundation)"), only(cqlNid, "*"));
+        assertEquals(nid("Measure division (IkeFoundation)"), only(cqlNid, "/"));
+        assertEquals(nid("Measure lower bound (IkeFoundation)"), only(cqlNid, "start of"));
+        assertEquals(nid("Measure upper bound (IkeFoundation)"), only(cqlNid, "end of"));
+        assertEquals(nid("Measure width (IkeFoundation)"), only(cqlNid, "width of"));
+        assertEquals(nid("Measure width (IkeFoundation)"), only(cqlNid, "duration of"));
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

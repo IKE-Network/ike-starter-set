@@ -452,8 +452,9 @@ final class ExpressionLanguageSet {
                         + " inclusivity of each, a resolution, and the measure semantic that is its"
                         + " frame of reference. Every value in a query over ANF is one: a result, a"
                         + " timing, a normal range, a CQL Quantity, Interval, Decimal, or DateTime."
-                        + " Two measures can be compared only when they share a semantic, and every"
-                        + " operator on measures requires it.")
+                        + " Comparing two measures requires that they share a semantic, and a"
+                        + " measure operator requires a concept that defines the semantic of its"
+                        + " result.")
                 .isA(operandKind);
         EntityProxy.Concept measureKind = set.conceptRef("Measure kind (IkeFoundation)");
 
@@ -1036,6 +1037,124 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure after")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, "after", operatorKeyword, true, "Measure after");
+
+        // ── Measure operators: a measure in, a measure out, on the whole range ──
+        set.concept("Measure operator (IkeFoundation)").at(inception)
+                .synonym("Measure operator")
+                .definition("An operator that produces a measure from one or more measures. A"
+                        + " measure is a range with a lower and an upper bound on a measure"
+                        + " semantic, so a measure operator works on the whole range, never on one"
+                        + " number picked from inside it, and it never guesses how likely any value"
+                        + " inside the range is. A single value is a measure whose two bounds are"
+                        + " equal. The semantic of the result is the concept the knowledge layer"
+                        + " defines for that operation on the operands' semantics: millimoles per"
+                        + " liter less millimoles per liter is millimoles per liter, one date less"
+                        + " another is a length of time, and milligrams per deciliter times"
+                        + " deciliters is milligrams, each because a concept says so; where no"
+                        + " concept defines the combination, the operation is refused. The result's"
+                        + " resolution is the coarsest among the operands. A comparison or a measure"
+                        + " relation answers a question about measures with Present, Absent, or"
+                        + " Indeterminate; a measure operator produces a value on a scale. Presence"
+                        + " has no arithmetic, because its semantic defines none, so the connectives"
+                        + " are the only operations on presence values. Its members are Measure"
+                        + " addition, Measure subtraction, Measure multiplication, Measure division,"
+                        + " Measure lower bound, Measure upper bound, and Measure width.")
+                .isA(modelRoot);
+        EntityProxy.Concept measureOperator = set.conceptRef("Measure operator (IkeFoundation)");
+
+        keyword(set.concept("Measure addition (IkeFoundation)").at(inception)
+                .synonym("Measure addition")
+                .definition("A measure operator that adds two or more measures, in any order. The"
+                        + " lower bound of the result is the lower bounds added together, and the"
+                        + " upper bound is the upper bounds added together. An end of the result is"
+                        + " included only when every end that produced it is included. An operand"
+                        + " that is Indeterminate makes the sum Indeterminate. CQL's \"+\" is this"
+                        + " addition; CQL adds single values, and there the two agree.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure addition")),
+                        measureKind, measureKind, variadic),
+                set, keywords, cql, "+", operatorKeyword, true, "Measure addition");
+
+        keyword(keyword(set.concept("Measure subtraction (IkeFoundation)").at(inception)
+                .synonym("Measure subtraction")
+                .definition("A measure operator that takes the second of two measures away from the"
+                        + " first. The lower bound of the result is the first's lower bound less the"
+                        + " second's upper bound, and the upper bound is the first's upper bound"
+                        + " less the second's lower bound: the smallest and the largest difference"
+                        + " the two ranges allow. An HbA1c recorded as 8.5 to 9.5, less a threshold"
+                        + " of 9, is minus 0.5 to plus 0.5, so a query can say at most half a point"
+                        + " above and possibly not above at all, which is all the record supports."
+                        + " A date is a measure on the calendar, so one date less another is a"
+                        + " length of time in the unit the query names. CQL's \"-\" is this"
+                        + " subtraction, and CQL's \"duration in days between\" two dates is this"
+                        + " subtraction read in whole days, as it is for any unit of fixed length;"
+                        + " a duration in months or years depends on the calendar and is not this"
+                        + " subtraction.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure subtraction")),
+                        measureKind, measureKind, binary),
+                set, keywords, cql, "-", operatorKeyword, true, "Measure subtraction"),
+                set, keywords, cql, "duration between", operatorKeyword, false, "Measure subtraction");
+
+        keyword(set.concept("Measure multiplication (IkeFoundation)").at(inception)
+                .synonym("Measure multiplication")
+                .definition("A measure operator that multiplies two or more measures, in any order."
+                        + " The bounds of the result are the smallest and the largest product that"
+                        + " can be made from one bound of each operand. An operand that is"
+                        + " Indeterminate makes the product Indeterminate. CQL's \"*\" is this"
+                        + " multiplication.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure multiplication")),
+                        measureKind, measureKind, variadic),
+                set, keywords, cql, "*", operatorKeyword, true, "Measure multiplication");
+
+        keyword(set.concept("Measure division (IkeFoundation)").at(inception)
+                .synonym("Measure division")
+                .definition("A measure operator that divides the first of two measures by the"
+                        + " second. The bounds of the result are the smallest and the largest"
+                        + " quotient that can be made from one bound of each operand. Dividing by a"
+                        + " measure whose range includes zero gives Indeterminate, since the"
+                        + " quotient could then be any value at all. CQL's \"/\" is this division.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure division")),
+                        measureKind, measureKind, binary),
+                set, keywords, cql, "/", operatorKeyword, true, "Measure division");
+
+        keyword(set.concept("Measure lower bound (IkeFoundation)").at(inception)
+                .synonym("Measure lower bound")
+                .definition("A measure operator that gives the lowest value inside a measure as a"
+                        + " single value on the same semantic: the lower bound when it is included,"
+                        + " and otherwise the first value above it at the measure's resolution."
+                        + " CQL's \"start of\" an interval is this.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure lower bound")),
+                        measureKind, measureKind, unary),
+                set, keywords, cql, "start of", operatorKeyword, true, "Measure lower bound");
+
+        keyword(set.concept("Measure upper bound (IkeFoundation)").at(inception)
+                .synonym("Measure upper bound")
+                .definition("A measure operator that gives the highest value inside a measure as a"
+                        + " single value on the same semantic: the upper bound when it is included,"
+                        + " and otherwise the first value below it at the measure's resolution."
+                        + " CQL's \"end of\" an interval is this.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure upper bound")),
+                        measureKind, measureKind, unary),
+                set, keywords, cql, "end of", operatorKeyword, true, "Measure upper bound");
+
+        keyword(keyword(set.concept("Measure width (IkeFoundation)").at(inception)
+                .synonym("Measure width")
+                .definition("A measure operator that gives how wide a measure's range is, the upper"
+                        + " bound less the lower bound, as a single value on the semantic the"
+                        + " knowledge layer defines for a difference on that scale: for a range of"
+                        + " dates, a length of time. It is how a query asks how uncertain a result"
+                        + " is. CQL's \"width of\" an interval is this, and CQL's \"duration in days"
+                        + " of\" an interval is this read in whole days.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure width")),
+                        measureKind, measureKind, unary),
+                set, keywords, cql, "width of", operatorKeyword, true, "Measure width"),
+                set, keywords, cql, "duration of", operatorKeyword, false, "Measure width");
 
         // ── The statement's measures: one result and its cross-cutting measurements
         set.concept("Statement measure (IkeFoundation)").at(inception)

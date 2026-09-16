@@ -364,8 +364,8 @@ k:SNOMEDCTExpressionConstraintLanguage[], and k:EL[], are members of
 k:ExpressionLanguage[], and each one's allowed constructs are exactly the bindings
 that name it. ECL's `<`, `<<`, `>`, `>>`, `AND`, `OR`, `MINUS`, `^`, and `:` name the
 concept-set operators of the topic layer. CQL's keywords bind in three roles. Its
-operators name the presence connectives, the comparisons, the measure relations, and
-the statement operators. Its type keywords name the kinds its types are represented
+operators name the presence connectives, the comparisons, the measure relations, the
+measure operators, and the statement operators. Its type keywords name the kinds its types are represented
 as: `Boolean` as k:PresenceMeasureKind[], `Quantity`, `Interval`, and the numeric and
 date types as k:MeasureKind[], `Code` and `Concept` as k:ConceptKind[]. Its literals
 `true`, `false`, and `null` name k:PresentLiteral[], k:AbsentLiteral[], and
@@ -447,6 +447,39 @@ what became of it, k:CircumstanceConstraint[] asks for it, and the reason, a ref
 failed instrument, a decision not to perform, is an associated statement of its own.
 k:SetDifference[] on a population finds the subjects with no record here, which is all that absence
 of a statement can mean.
+
+=== Arithmetic on Measures
+
+A k:MeasureOperator[] produces a measure from one or more measures. A measure is a
+range, so the operator works on the whole range, never on one number picked from
+inside it, and it never guesses how likely any value inside the range is.
+k:MeasureAddition[] adds the lower bounds together and the upper bounds together.
+k:MeasureSubtraction[] gives the smallest and the largest difference the two ranges
+allow, so an HbA1c recorded between 8.5 and 9.5, less a threshold of 9, is minus 0.5
+to plus 0.5, and a query can say at most half a point above and possibly not above at
+all, which is all the record supports. k:MeasureMultiplication[] and
+k:MeasureDivision[] take the smallest and the largest product or quotient that one
+bound of each operand can make, and dividing by a range that includes zero is
+Indeterminate. The semantic of the result is a concept the knowledge layer defines for
+that operation: millimoles per liter less millimoles per liter is millimoles per
+liter, one date less another is a length of time, milligrams per deciliter times
+deciliters is milligrams, and where no concept defines the combination the operation
+is refused. Presence has no arithmetic, because its semantic defines none.
+k:MeasureLowerBound[], k:MeasureUpperBound[], and k:MeasureWidth[] give the lowest
+value inside a measure, the highest, and how wide it is, the last being how a query
+asks how uncertain a result is. CQL's `+`, `-`, `*`, and `/` name the four
+operations, its `start of`, `end of`, and `width of` name the three accessors, and
+its `duration in days between` two dates is subtraction read in whole days, as
+`duration in days of` an interval is width read in whole days. CQL's `div`, `mod`,
+`maximum`, `minimum`, `predecessor`, and `successor` are not bound: `div` and `mod`
+re-express a value in whole units and the remainder, which is a unit's business and
+not an operation on a range, since the remainder of a range is not a range;
+`maximum` and `minimum` are the largest and smallest values a data type can hold,
+where ANF's counterpart is the frame of reference of the measure semantic; and
+`predecessor` and `successor` step a value by one unit of resolution to close an open
+interval end, which ANF never needs because it records whether each end is included.
+Least, greatest, count, sum, and mean over the measures of a set of statements are
+aggregates, a later pass, and CQL's `Min` and `Max` name least and greatest there.
 
 === The Checks Are Derived, and They Run
 
