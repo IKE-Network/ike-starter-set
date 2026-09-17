@@ -706,7 +706,7 @@ class ExpressionLanguageIT {
     // ── Time: units, scales, the calendar, and the readings ─────────────
 
     @Test
-    @DisplayName("Each unit keyword, singular and plural, names one unit of time; the scales, the calendar, and the readings have their parents")
+    @DisplayName("Each unit keyword, singular and plural, names one unit of time; the scales, the calendar, the readings, and the zones have their parents")
     void unitsScalesCalendarAndReadings() {
         int unitOfTime = nid("Unit of time (IkeFoundation)");
         Map<String, String> plurals = Map.of("millisecond", "milliseconds", "second", "seconds",
@@ -732,6 +732,11 @@ class ExpressionLanguageIT {
         assertTrue(latestIsAParents(nid("Gregorian calendar (IkeFoundation)"))
                 .contains(nid("Expression language model (IkeFoundation)")),
                 "The Gregorian calendar is a concept of the set, under the model root");
+        assertTrue(latestIsAParents(nid("Time zone (IkeFoundation)"))
+                .contains(nid("Expression language model (IkeFoundation)")),
+                "Time zone is a concept of the set, under the model root");
+        assertTrue(latestIsAParents(nid("UTC offset (IkeFoundation)")).contains(nid("Time zone (IkeFoundation)")),
+                "UTC offset is a time zone whose offset never changes");
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

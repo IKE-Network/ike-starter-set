@@ -1241,7 +1241,9 @@ final class ExpressionLanguageSet {
                         + " length. Every precision-based comparison uses it: CQL's \"same day as\""
                         + " is Equal to on the whole days, \"before day of\" is Measure before on"
                         + " them, and \"date from\" a timestamp is the whole day, the one keyword"
-                        + " bound to this operator.")
+                        + " bound to this operator. The whole day of a timestamp depends on the"
+                        + " zone: it takes the timing's own zone when it has one and the query's"
+                        + " zone otherwise.")
                 .isA(measureOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure whole unit")),
                         measureKind, measureKind, unary),
@@ -1464,17 +1466,20 @@ final class ExpressionLanguageSet {
                         + " time zone, a week is seven days, a month has 28 to 31 days, and a year"
                         + " has 365 or 366. Measure whole unit takes its units as sizes, and it is"
                         + " what places a Gregorian calendar date on an epoch scale, given a zone."
-                        + " Time zone is not yet a concept of this set.")
+                        + " It takes the timing's own zone when it has one and the query's zone"
+                        + " otherwise.")
                 .isA(modelRoot);
 
         set.concept("Time reading (IkeFoundation)").at(inception)
                 .synonym("Time reading")
                 .definition("Whether a timing's bounds are where a moment could be or where a stretch"
                         + " of time began and ended. A timing's measure semantic is a concept the"
-                        + " knowledge layer defines as a reading on a time scale, an encounter's"
-                        + " timing being a period in Unix epoch milliseconds, the way a unit with a"
-                        + " measurement basis is defined; this set holds the readings and the"
-                        + " scales, not the combinations. Its members are Instant and Period.")
+                        + " knowledge layer defines as a reading on a time scale, in a time zone"
+                        + " when the record carries one, an encounter's timing being a period in"
+                        + " Unix epoch milliseconds read in Europe/Paris, the way a unit with a"
+                        + " measurement basis is defined; this set holds the readings, the scales,"
+                        + " and the zones, not the combinations. Its members are Instant and"
+                        + " Period.")
                 .isA(modelRoot);
         EntityProxy.Concept timeReading = set.conceptRef("Time reading (IkeFoundation)");
 
@@ -1494,6 +1499,33 @@ final class ExpressionLanguageSet {
                         + " when an end known to a coarse resolution straddles the other's"
                         + " boundary.")
                 .isA(timeReading);
+
+        set.concept("Time zone (IkeFoundation)").at(inception)
+                .synonym("Time zone")
+                .definition("A region's rule for reading the clock: the offset from UTC at any"
+                        + " instant, including the seasonal changes where daylight saving is used,"
+                        + " named as in the IANA database, Europe/Paris, what Java's ZoneId records."
+                        + " A timing on an epoch scale is the same instant everywhere, so a zone"
+                        + " changes nothing about the instant and everything about the clock: a"
+                        + " draw at 23:30 UTC is a night draw in London and an early-morning one in"
+                        + " Paris. When a record carries the zone it was written in, that zone is"
+                        + " the third part of the timing's semantic, beside the reading and the"
+                        + " scale; without one, a query reads the calendar in the zone it names."
+                        + " Measure whole unit and the Gregorian calendar take the timing's own"
+                        + " zone when it has one and the query's otherwise. Its member is UTC"
+                        + " offset.")
+                .isA(modelRoot);
+        EntityProxy.Concept timeZone = set.conceptRef("Time zone (IkeFoundation)");
+
+        set.concept("UTC offset (IkeFoundation)").at(inception)
+                .synonym("UTC offset")
+                .definition("A time zone whose offset never changes: the difference between a clock"
+                        + " and UTC, plus one hour or minus five, what a timestamp is written with"
+                        + " and what Java's ZoneOffset records, itself a ZoneId. It places the"
+                        + " edges of a day exactly, but it cannot say which region the record came"
+                        + " from, since several regions share an offset and a region's offset"
+                        + " changes with the season.")
+                .isA(timeZone);
 
         // ── The statement's measures: one result and its cross-cutting measurements
         set.concept("Statement measure (IkeFoundation)").at(inception)

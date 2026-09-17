@@ -550,8 +550,19 @@ k:GregorianCalendarDate[], a civil date with no zone, counted in days from the e
 what Java's LocalDate records. The calendar, given a time zone, places a civil date on
 the epoch scale as its whole day. A timing's semantic is a k:TimeReading[] on a scale,
 k:Instant[] or k:Period[], a concept the knowledge layer defines the way a unit with a
-measurement basis is defined; the set holds the readings and the scales, not the
-combinations. Time zone is not yet a concept of the set.
+measurement basis is defined; the set holds the readings, the scales, and the zones,
+not the combinations. A k:TimeZone[] is a region's rule for reading the clock, the
+offset from UTC at any instant with its seasonal changes, what Java's ZoneId records,
+and a k:UTCOffset[] is a zone whose offset never changes, what a timestamp is written
+with. A timing on an epoch scale is the same instant everywhere, so a zone changes
+nothing about the instant and everything about the clock: a draw at 23:30 UTC is a
+night draw in London and an early-morning one in Paris. When a record carries the
+zone it was written in, that zone is the third part of the timing's semantic; without
+one, a query reads the calendar in the zone it names, and Measure whole unit and the
+calendar take the timing's own zone when it has one and the query's otherwise. CQL's
+`time from`, the time of day, is the timestamp less the start of its whole day, a
+composition, and `timezoneoffset from` reads the zone part of the semantic, which is
+not an operation on the measure; neither is bound.
 
 === The Checks Are Derived, and They Run
 
