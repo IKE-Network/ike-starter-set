@@ -1861,7 +1861,7 @@ final class ExpressionLanguageSet {
                 set, keywords, ecl, "OR", operatorKeyword, true, "Set OR"),
                 set, keywords, cql, "union", operatorKeyword, true, "Set OR");
 
-        keyword(keyword(set.concept("Set difference (IkeFoundation)").at(inception)
+        keyword(keyword(keyword(set.concept("Set difference (IkeFoundation)").at(inception)
                 .synonym("Set difference")
                 .definition("A connective operator that takes two sets of one kind and produces a"
                         + " set of that kind. Set difference means take the first operand and"
@@ -1885,7 +1885,8 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Set difference")),
                         setKind, setKind, binary),
                 set, keywords, ecl, "MINUS", operatorKeyword, true, "Set difference"),
-                set, keywords, cql, "except", operatorKeyword, true, "Set difference");
+                set, keywords, cql, "except", operatorKeyword, true, "Set difference"),
+                set, keywords, cql, "without", operatorKeyword, false, "Set difference");
 
         keyword(set.concept("Member of reference set (IkeFoundation)").at(inception)
                 .synonym("Member of reference set")
@@ -2036,8 +2037,9 @@ final class ExpressionLanguageSet {
                         + " outright. A measure comparison comes out Present, Absent, or"
                         + " Indeterminate, and becomes met or not met through a further comparison"
                         + " on presence that says which outcomes count. Its members are Topic"
-                        + " constraint, Circumstance constraint, Measure comparison, and"
-                        + " Association constraint, and criteria combine with AND, OR, and NOT.")
+                        + " constraint, Circumstance constraint, Measure comparison, Association"
+                        + " constraint, and Correlation constraint, and criteria combine with AND,"
+                        + " OR, and NOT.")
                 .isA(modelRoot);
         EntityProxy.Concept criterion = set.conceptRef("Criterion (IkeFoundation)");
 
@@ -2116,6 +2118,31 @@ final class ExpressionLanguageSet {
                 .isA(criterion)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Association constraint")),
                         statementKind, presenceMeasureKind, unary);
+
+        keyword(set.concept("Correlation constraint (IkeFoundation)").at(inception)
+                .synonym("Correlation constraint")
+                .definition("A criterion that tests a statement against a set of other statements"
+                        + " of the same subject: does any statement in that set relate to this one"
+                        + " in a given way, for example a condition whose onset was within the"
+                        + " period of this encounter. It comes out Present when some statement in"
+                        + " the set relates to this one outright, Absent when the set has"
+                        + " statements and none of them does, and Indeterminate otherwise; when"
+                        + " the set has no statement at all it comes out with nothing, which is no"
+                        + " record and not a value, as an Association constraint does. The two"
+                        + " differ in where the link comes from: an Association constraint follows"
+                        + " a link the record holds, and a Correlation constraint computes the"
+                        + " link from the two statements' measures and fields. It becomes met or"
+                        + " not met through a comparison on presence, like any measure comparison."
+                        + " CQL's \"with ... such that\" is Statement filter with this criterion"
+                        + " fixed to Present and never written down, and the binding records that"
+                        + " as data. CQL's \"without\" is Set difference, the first set less the"
+                        + " statements whose correlation comes out Present, which keeps the same"
+                        + " statements CQL keeps, since a null condition is not a match there"
+                        + " either.")
+                .isA(criterion)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Correlation constraint")),
+                        statementKind, presenceMeasureKind, unary),
+                set, keywords, cql, "with", operatorKeyword, true, "Correlation constraint");
 
         keyword(set.concept("Statement filter (IkeFoundation)").at(inception)
                 .synonym("Statement filter")

@@ -398,6 +398,7 @@ class ExpressionLanguageIT {
                         "year", "years",
                         "collapse", "expand",
                         "if", "case", "implies", "xor", "is null", "is true", "is false",
+                        "with", "without",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -850,6 +851,23 @@ class ExpressionLanguageIT {
         for (String spelling : List.of("is null", "is true", "is false")) {
             assertEquals(equalTo, only(cqlNid, spelling), spelling + " is a spelling of Equal to");
         }
+    }
+
+    // ── Correlation between statement sets ───────────────────────────────
+
+    @Test
+    @DisplayName("Correlation constraint is a criterion on one statement yielding a presence value, with names it, and without is a spelling of Set difference")
+    void correlationConstraintIsACriterion() {
+        int correlation = nid("Correlation constraint (IkeFoundation)");
+        int[] denotation = DENOTATIONS.get(correlation);
+        assertNotNull(denotation, "Untyped Correlation constraint");
+        assertEquals(nid("Statement kind (IkeFoundation)"), denotation[0], "Correlation constraint tests a statement");
+        assertEquals(presenceMeasureKindNid, denotation[1], "Correlation constraint yields a presence value");
+        assertEquals(nid("Unary (IkeFoundation)"), denotation[2], "Correlation constraint is unary");
+        assertTrue(latestIsAParents(correlation).contains(nid("Criterion (IkeFoundation)")),
+                "Correlation constraint is a criterion");
+        assertEquals(correlation, only(cqlNid, "with"));
+        assertEquals(nid("Set difference (IkeFoundation)"), only(cqlNid, "without"));
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

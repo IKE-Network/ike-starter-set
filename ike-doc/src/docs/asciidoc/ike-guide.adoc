@@ -440,7 +440,10 @@ statement: a k:TopicConstraint[] or a k:CircumstanceConstraint[] tests a concept
 membership in a concept set and is met or not met outright; a k:MeasureComparison[]
 compares a measure with an interval on a semantic and can come out Indeterminate; an
 k:AssociationConstraint[] follows the statement's associations, a step in a graph
-query, and applies criteria to the statements it reaches. A comparison on the presence
+query, and applies criteria to the statements it reaches; a k:CorrelationConstraint[]
+tests a statement against a set of other statements of the same subject, an encounter
+against the conditions whose onset was within its period, computing the link the
+record does not hold. A comparison on the presence
 semantic tests bounds exactly and is always decisive, so it is how a query says which
 outcomes count, for a stored presence value and for the outcome of another comparison
 alike: Present and Indeterminate together is everyone not ruled out, a trial's
@@ -496,6 +499,23 @@ against the three literals, which tests bounds exactly and is always decided, an
 as its spellings. `Coalesce` is the conditional with an is-null condition, `IsNull`,
 `IsTrue`, and `IsFalse` are function forms of the same tests, and `is` as a type test has
 no counterpart because kinds are fixed before a query runs; none is bound.
+
+=== Correlation
+
+CQL relates two sources with `with ... such that`, encounters that have a condition
+whose onset was during the stay, and that is a k:StatementFilter[] with a
+k:CorrelationConstraint[] fixed to Present and never written down; `with` binds to the
+criterion and `such that` is a connector. CQL's `without` keeps the encounters with no
+such condition, and a null condition is not a match there, so it keeps the same
+statements as k:SetDifference[], the first set less those whose correlation comes out
+Present; `without` binds as its spelling. The general `from` query with several
+sources, `return`, `all`, `let`, `aggregate`, `starting`, `sort`, `by`, and the sort
+modifiers stay unbound: a join of several sources yields pairs, and no kind holds one;
+`return` and `all` shape a result into a new structure, where results here are sets of
+statements, subjects, or measures shaped by the projections; `let` is a name for an
+intermediate value, a matter of writing; a general fold is a program, and the folds
+analysis needs are the six aggregates; and sets here are unordered, with least and
+greatest selection in place of sorting and taking the first.
 
 === Arithmetic on Measures
 
