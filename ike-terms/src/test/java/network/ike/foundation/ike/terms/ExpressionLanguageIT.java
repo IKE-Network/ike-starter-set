@@ -413,7 +413,8 @@ class ExpressionLanguageIT {
                 KEYWORDS.get(cqlNid).keySet(), "CQL roster");
         assertEquals(Set.of("<", "<<", ">", ">>", "AND", "OR", "MINUS", "^", ":",
                         "<=", ">=", "=", "{ }", "[ ]", ".",
-                        "+HISTORY", "+HISTORY-MIN", "+HISTORY-MOD", "+HISTORY-MAX"),
+                        "+HISTORY", "+HISTORY-MIN", "+HISTORY-MOD", "+HISTORY-MAX",
+                        "{{ M }}", "^ [ ]"),
                 KEYWORDS.get(eclNid).keySet(), "ECL roster");
         assertEquals(Set.of("AND"), KEYWORDS.get(elNid).keySet(),
                 "EL++ has no surface syntax; its one keyword is the set's own rendering of its conjunction");
@@ -943,6 +944,27 @@ class ExpressionLanguageIT {
         assertEquals(functionNameNid, ROLES.get(cqlNid).get("AllTrue"), "AllTrue binds as a function name");
         assertEquals(nid("Closed-world existence (IkeFoundation)"), only(cqlNid, "exists"),
                 "exists names the renamed closed-world existence");
+    }
+
+    // ── Reference-set member fields ──────────────────────────────────────
+
+    @Test
+    @DisplayName("Member field constraint and Member field projection take a reference set and yield a concept set, are taxonomy operators, claim no relation, and ECL's member syntax names them")
+    void memberFieldsAreTypedAndBound() {
+        int conceptKind = nid("Concept kind (IkeFoundation)");
+        int conceptSetKind = nid("Concept set kind (IkeFoundation)");
+        Map<String, String> spellings = Map.of("Member field constraint", "{{ M }}", "Member field projection", "^ [ ]");
+        for (Map.Entry<String, String> construct : spellings.entrySet()) {
+            int constructNid = nid(construct.getKey() + " (IkeFoundation)");
+            int[] denotation = DENOTATIONS.get(constructNid);
+            assertNotNull(denotation, "Untyped " + construct.getKey());
+            assertEquals(conceptKind, denotation[0], construct.getKey() + " takes a reference set");
+            assertEquals(conceptSetKind, denotation[1], construct.getKey() + " yields a concept set");
+            assertTrue(latestIsAParents(constructNid).contains(IkeTerm.TAXONOMY_OPERATOR.nid()),
+                    construct.getKey() + " is a taxonomy operator");
+            assertNull(RELATIONS.get(constructNid), construct.getKey() + " claims no relation");
+            assertEquals(constructNid, only(eclNid, construct.getValue()));
+        }
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

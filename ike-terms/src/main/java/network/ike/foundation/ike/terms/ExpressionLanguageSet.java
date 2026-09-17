@@ -2105,6 +2105,37 @@ final class ExpressionLanguageSet {
         history = keyword(history, set, keywords, ecl, "+HISTORY-MOD", operatorKeyword, false, "Concept set history extension");
         keyword(history, set, keywords, ecl, "+HISTORY-MAX", operatorKeyword, false, "Concept set history extension");
 
+        keyword(set.concept("Member field constraint (IkeFoundation)").at(inception)
+                .synonym("Member field constraint")
+                .definition("A taxonomy operator that takes a reference set and yields the concepts"
+                        + " of the members whose named field holds a value in a given concept set;"
+                        + " the field may be the member itself. A reference set that pairs SNOMED"
+                        + " concepts with ICD-10 codes carries the code on each member, so an"
+                        + " ICD-10 code list becomes a SNOMED concept set: the members whose code"
+                        + " is in the list, then their concepts. It reads membership data under"
+                        + " the view, not definitions, so it is distinct and no relation to the"
+                        + " core is claimed. The construct ECL's \"{{ M }}\" names.")
+                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Member field constraint")),
+                        conceptKind, conceptSetKind, unary),
+                set, keywords, ecl, "{{ M }}", operatorKeyword, true, "Member field constraint");
+
+        keyword(set.concept("Member field projection (IkeFoundation)").at(inception)
+                .synonym("Member field projection")
+                .definition("A taxonomy operator that takes a reference set and a field of its"
+                        + " membership pattern and yields the values of that field across the"
+                        + " active members, as a concept set: the ICD-10 codes of a cohort's SNOMED"
+                        + " concepts, once a Member field constraint has kept the members that"
+                        + " name them. A code is a concept in the knowledge layer, not text, which"
+                        + " is what lets the two run in either direction. A field that holds"
+                        + " numbers or text has no query kind here, so projecting it is refused."
+                        + " It reads membership data under the view, so it is distinct. The"
+                        + " construct ECL's \"^ [ ]\" names.")
+                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Member field projection")),
+                        conceptKind, conceptSetKind, unary),
+                set, keywords, ecl, "^ [ ]", operatorKeyword, true, "Member field projection");
+
         // ── Equivalences the set already contained without saying so ────
         set.concept("Descendant field constraint (IkeFoundation)").at(inception)
                 .semantic(denotations,

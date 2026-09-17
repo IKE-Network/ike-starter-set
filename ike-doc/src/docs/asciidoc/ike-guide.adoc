@@ -365,7 +365,8 @@ k:ExpressionLanguage[], and each one's allowed constructs are exactly the bindin
 that name it. ECL's `<`, `<<`, `>`, `>>`, `AND`, `OR`, `MINUS`, `^`, and `:` name the
 concept-set operators of the topic layer; its `{ }`, `[ ]`, `.`, and `+HISTORY` name
 k:AttributeGroupRefinement[], k:AttributeCountRefinement[],
-k:AttributeValueProjection[], and k:ConceptSetHistoryExtension[]; and its `<`, `<=`,
+k:AttributeValueProjection[], and k:ConceptSetHistoryExtension[]; its `{{ M }}` and
+`^ [ ]` name k:MemberFieldConstraint[] and k:MemberFieldProjection[]; and its `<`, `<=`,
 `>`, `>=`, and `=` before a number name the comparisons, so that `<` and `>` are one
 keyword on two kinds, a concept and a value. CQL's keywords bind in six roles. Its
 operators name the presence connectives, the comparisons, the measure relations, the
@@ -401,8 +402,19 @@ refinement, the refinement's own spelling and Presence NOT of Equal to; `R`, the
 projection with Set AND; `{{ C active }}`, `{{ C moduleId }}`, and `{{ C effectiveTime
 }}`, because the view coordinate is where a query fixes status, module, and time;
 `{{ term = }}` and the other description filters, a search rather than a criterion;
-`{{ M }}` member filters and `^ [ ]` member fields, data on a membership; and `true`,
-`false`, and `#`, spellings of concrete values.
+and `true`, `false`, and `#`, spellings of concrete values. The member fields came
+last: a reference set's members can carry fields beyond the concept they name, the
+reference set that pairs SNOMED concepts with ICD-10 codes carrying the code on each
+member. A member field constraint yields the concepts of the members whose named field
+holds a value in a given concept set, the field being allowed to be the member itself,
+which is how an ICD-10 code list becomes a SNOMED concept set; a member field
+projection yields the values of a field across the active members as a concept set,
+which with the constraint first runs the other way. A code is a concept in the
+knowledge layer, not text, and a field that holds numbers or text has no query kind
+here, so projecting it is refused. Neither is the value-set field constraint of the
+Field Constraints chapter, which is authoring-time content on a pattern saying which
+values a field may hold; these two are query-time reads of a reference set's members,
+as k:CircumstanceConstraint[] is of a statement's fields.
 
 === Kinds Make the Claims Well-Typed
 
