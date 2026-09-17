@@ -193,6 +193,18 @@ class FoundationFidelityIT {
      * Patterns ({@code ExpressionLanguageSet}).
      */
     private static final int AUTHORED_CONTENT_PATTERNS = 14;
+    /**
+     * Concepts a signature import mints, never authored by hand: {@code ElmSignatureSet},
+     * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
+     * {@code ike:schema-import} (IKE-Network/ike-issues#1104): 270 types, 143 position
+     * names, 9 schema primitives, 1 type of another schema referred to, 3 enumerations with
+     * 14 values, and the family's own 11 concepts (the root, three parents, the pattern's
+     * meaning and purpose, and five field meanings). Regenerated, never edited; the count
+     * moves only when the pinned release does.
+     */
+    private static final int IMPORTED_SIGNATURE_CONCEPTS = 451;
+    /** Patterns a signature import mints: the ELM type position pattern. */
+    private static final int IMPORTED_SIGNATURE_PATTERNS = 1;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
@@ -791,12 +803,15 @@ class FoundationFidelityIT {
         EntityService.get().forEachConceptEntity(concept -> conceptsAfter[0]++);
         int[] patternsAfter = {0};
         EntityService.get().forEachPatternEntity(pattern -> patternsAfter[0]++);
-        assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS, conceptsAfter[0],
+        assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS
+                        + IMPORTED_SIGNATURE_CONCEPTS, conceptsAfter[0],
                 "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
                         + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
                         + " new concepts (see AUTHORED_CONTENT_CONCEPTS,"
-                        + " IKE-Network/ike-issues#880 and #885) — no other minting");
-        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS, patternsAfter[0],
+                        + " IKE-Network/ike-issues#880 and #885) plus " + IMPORTED_SIGNATURE_CONCEPTS
+                        + " imported signature concepts (see IMPORTED_SIGNATURE_CONCEPTS, #1104) — no other"
+                        + " minting");
+        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS + IMPORTED_SIGNATURE_PATTERNS, patternsAfter[0],
                 "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
                         + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
                         + " Constraint Pattern, Starter Set Author Roster Pattern, Preferred Reviewer"
