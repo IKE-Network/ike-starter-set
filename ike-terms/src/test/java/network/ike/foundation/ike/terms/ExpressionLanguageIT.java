@@ -405,6 +405,7 @@ class ExpressionLanguageIT {
                         "if", "case", "implies", "xor", "is null", "is true", "is false",
                         "with", "without",
                         "valueset", "code", "concept",
+                        "convert",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -889,6 +890,27 @@ class ExpressionLanguageIT {
                     declaration + " binds as a declaration keyword");
         }
         assertEquals(typeKeywordNid, ROLES.get(cqlNid).get("Code"), "Code, capitalised, is still the type keyword");
+    }
+
+    // ── Conversion between measure semantics ─────────────────────────────
+
+    @Test
+    @DisplayName("Measure conversion takes a measure and yields a measure, is a measure operator definable from Measure multiplication, and convert names it")
+    void measureConversionIsTypedAndRelated() {
+        int conversion = nid("Measure conversion (IkeFoundation)");
+        int measureKind = nid("Measure kind (IkeFoundation)");
+        int[] denotation = DENOTATIONS.get(conversion);
+        assertNotNull(denotation, "Untyped Measure conversion");
+        assertEquals(measureKind, denotation[0], "Measure conversion takes a measure");
+        assertEquals(measureKind, denotation[1], "Measure conversion yields a measure");
+        assertEquals(nid("Unary (IkeFoundation)"), denotation[2], "Measure conversion is unary");
+        assertTrue(latestIsAParents(conversion).contains(nid("Measure operator (IkeFoundation)")),
+                "Measure conversion is a measure operator");
+        int[] relation = RELATIONS.get(conversion);
+        assertNotNull(relation, "Measure conversion claims a relation");
+        assertEquals(nid("Measure multiplication (IkeFoundation)"), relation[0]);
+        assertEquals(definitionalExtensionNid, relation[1]);
+        assertEquals(conversion, only(cqlNid, "convert"));
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

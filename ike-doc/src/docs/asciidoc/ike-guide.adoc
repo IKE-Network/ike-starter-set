@@ -413,7 +413,7 @@ koncept-pattern-table::ConstructDenotationPattern[]
 k:OperandKind[] is what an operator works on or yields, and the kinds are ANF's:
 k:ClassKind[] and k:AxiomKind[] for the knowledge layer, k:ConceptKind[] and
 k:ConceptSetKind[] for topic selection, k:MeasureKind[], two bounds plus a measure
-semantic, and k:PresenceMeasureKind[], a measure on the Presence semantic, for values,
+measure semantic, and k:PresenceMeasureKind[], a measure on the Presence semantic, for values,
 determinations, and criteria, k:MeasureListKind[], the measures of a set of statements
 gathered for an aggregate, k:StatementKind[] for what a criterion tests,
 k:StatementSetKind[] and k:SubjectSetKind[] for what a query narrows and answers with. There is no truth-value kind, and a generic is typed
@@ -440,13 +440,13 @@ k:PresenceOR[], and k:PresenceNOT[], with k:PresenceImplication[] and
 k:PresenceExclusiveOR[] definable from them. A k:Criterion[] is a test applied to one
 statement: a k:TopicConstraint[] or a k:CircumstanceConstraint[] tests a concept for
 membership in a concept set and is met or not met outright; a k:MeasureComparison[]
-compares a measure with an interval on a semantic and can come out Indeterminate; an
+compares a measure with an interval on a measure semantic and can come out Indeterminate; an
 k:AssociationConstraint[] follows the statement's associations, a step in a graph
 query, and applies criteria to the statements it reaches; a k:CorrelationConstraint[]
 tests a statement against a set of other statements of the same subject, an encounter
 against the conditions whose onset was within its period, computing the link the
 record does not hold. A comparison on the presence
-semantic tests bounds exactly and is always decisive, so it is how a query says which
+measure semantic tests bounds exactly and is always decisive, so it is how a query says which
 outcomes count, for a stored presence value and for the outcome of another comparison
 alike: Present and Indeterminate together is everyone not ruled out, a trial's
 candidate list; Absent and Indeterminate is everyone not confirmed; Indeterminate
@@ -531,11 +531,21 @@ to plus 0.5, and a query can say at most half a point above and possibly not abo
 all, which is all the record supports. k:MeasureMultiplication[] and
 k:MeasureDivision[] take the smallest and the largest product or quotient that one
 bound of each operand can make, and dividing by a range that includes zero is
-Indeterminate. The semantic of the result is a concept the knowledge layer defines for
+Indeterminate. The measure semantic of the result is a concept the knowledge layer defines for
 that operation: millimoles per liter less millimoles per liter is millimoles per
 liter, one date less another is a length of time, milligrams per deciliter times
 deciliters is milligrams, and where no concept defines the combination the operation
-is refused. Presence has no arithmetic, because its semantic defines none.
+is refused. Presence has no arithmetic, because its measure semantic defines none.
+k:MeasureConversion[] converts a measure from one unit to another, a weight in grams
+given in kilograms, a glucose in milligrams per decilitre given in millimoles per
+litre, by a rule between the two units the knowledge layer defines; a fixed factor
+and offset scale the bounds and the resolution exactly, a rule with a width of its
+own, the HbA1c master equation, widens the result by that width, and no rule refuses
+the conversion. The result is a value inside the query, nothing is written, and the
+statement's recorded measure is unchanged. CQL's `convert ... to` names it; `as` and
+`cast` change a value's type, and kinds here are fixed before a query runs, and the
+To-functions change a representation, which the transformation into ANF does before
+any query, so none of those is bound.
 k:MeasureLowerBound[], k:MeasureUpperBound[], and k:MeasureWidth[] give the lowest
 value inside a measure, the highest, and how wide it is, the last being how a query
 asks how uncertain a result is. CQL's `+`, `-`, `*`, and `/` name the four
@@ -552,7 +562,7 @@ interval end, which ANF never needs because it records whether each end is inclu
 
 A k:MeasureAggregate[] produces one measure from a k:MeasureListKind[] list, the
 measures of a set of statements gathered by k:MeasureProjection[], one entry per
-statement that carries the named measure, all on one semantic. k:MeasureCount[],
+statement that carries the named measure, all on one measure semantic. k:MeasureCount[],
 k:MeasureSum[], k:MeasureLeast[], k:MeasureGreatest[], k:MeasureMean[], and
 k:MeasureMedian[] are exact on ranges for one reason: none of them can go down when a
 member goes up, so the aggregate of the low ends and the aggregate of the high ends
@@ -576,8 +586,8 @@ their own decision.
 
 === Timing Relations
 
-A range means one of two things. A measure whose semantic is a period on the calendar,
-a hospital stay, has bounds where it began and ended. A measure whose semantic is an
+A range means one of two things. A measure whose measure semantic is a period on the calendar,
+a hospital stay, has bounds where it began and ended. A measure whose measure semantic is an
 instant on the calendar, an onset, or any quantity, has bounds where the value could
 be. Every relation on measures is decided the same way: Present when the answer is yes
 for every value the ranges allow, Absent when it is no for every one, and Indeterminate
@@ -605,7 +615,7 @@ is within and not equal; `point from` is unnecessary because a single value is a
 a measure; `per` belongs with `expand` and `collapse` over measure lists; and `same` on
 its own has no meaning, its phrase `same as` being bound.
 
-Time has lengths and positions. A length is a duration, and its semantic is a
+Time has lengths and positions. A length is a duration, and its measure semantic is a
 k:UnitOfTime[]: k:Millisecond[], k:Second[], k:Minute[], and k:Hour[] are fixed
 lengths, while k:Day[], k:Week[], k:Month[], and k:Year[] are units of the
 k:GregorianCalendar[], whose length in hours varies. One unit concept serves three
@@ -615,7 +625,7 @@ k:UnixEpochMilliseconds[], what a database timestamp and Java's Instant record,
 k:UnixEpochSeconds[], the same timeline read a thousand times coarser, and
 k:GregorianCalendarDate[], a civil date with no zone, counted in days from the epoch,
 what Java's LocalDate records. The calendar, given a time zone, places a civil date on
-the epoch scale as its whole day. A timing's semantic is a k:TimeReading[] on a scale,
+the epoch scale as its whole day. A timing's measure semantic is a k:TimeReading[] on a scale,
 k:Instant[] or k:Period[], a concept the knowledge layer defines the way a unit with a
 measurement basis is defined; the set holds the readings, the scales, and the zones,
 not the combinations. A k:TimeZone[] is a region's rule for reading the clock, the
@@ -624,11 +634,11 @@ and a k:UTCOffset[] is a zone whose offset never changes, what a timestamp is wr
 with. A timing on an epoch scale is the same instant everywhere, so a zone changes
 nothing about the instant and everything about the clock: a draw at 23:30 UTC is a
 night draw in London and an early-morning one in Paris. When a record carries the
-zone it was written in, that zone is the third part of the timing's semantic; without
+zone it was written in, that zone is the third part of the timing's measure semantic; without
 one, a query reads the calendar in the zone it names, and Measure whole unit and the
 calendar take the timing's own zone when it has one and the query's otherwise. CQL's
 `time from`, the time of day, is the timestamp less the start of its whole day, a
-composition, and `timezoneoffset from` reads the zone part of the semantic, which is
+composition, and `timezoneoffset from` reads the zone part of the measure semantic, which is
 not an operation on the measure; neither is bound.
 
 === Days Covered
@@ -690,13 +700,15 @@ koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts fourteen relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+The set asserts fifteen relations. k:DescendantOf[], k:DescendantOrSelfOf[],
 k:AncestorOf[], and k:AncestorOrSelfOf[] are definable from k:IsA[]; k:SetAND[] is
 definable from k:ELAND[] when its operands are descendant sets, because the
 descendants of a class intersection are the intersection of the descendants, a proven
 fact; k:AttributeRefinement[] and k:AttributeGroupRefinement[] are definable from
 k:ExistentialRestriction[]; k:PresenceImplication[] and k:PresenceExclusiveOR[] are
-definable from k:PresenceOR[] and k:PresenceAND[] with k:PresenceNOT[].
+definable from k:PresenceOR[] and k:PresenceAND[] with k:PresenceNOT[];
+k:MeasureConversion[] is definable from k:MeasureMultiplication[] with
+k:MeasureAddition[].
 k:DescendantFieldConstraint[] and k:KindOfFieldConstraint[] are logically equivalent
 to k:DescendantOf[] and k:DescendantOrSelfOf[]: the same concept sets, which the set
 contained without saying so until now. k:MeasureBefore[] and k:MeasureAfter[] are

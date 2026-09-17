@@ -231,7 +231,7 @@ final class ExpressionLanguageSet {
                         + " decision-support logic. Every CQL value is represented as an ANF"
                         + " measure with nothing left over: a Boolean as a presence measure, a"
                         + " Quantity or an Interval as a measure with bounds and inclusivity, a"
-                        + " date as a measure on a date-time semantic. Once \"null\" is read as"
+                        + " date as a measure on a date-time measure semantic. Once \"null\" is read as"
                         + " Indeterminate, CQL's three-valued \"and\", \"or\", and \"not\" are the"
                         + " presence connectives, and CQL's own tables follow from them row for"
                         + " row.")
@@ -476,9 +476,9 @@ final class ExpressionLanguageSet {
                         + " inclusivity of each, a resolution, and the measure semantic that is its"
                         + " frame of reference. Every value in a query over ANF is one: a result, a"
                         + " timing, a normal range, a CQL Quantity, Interval, Decimal, or DateTime."
-                        + " A range means one of two things. A measure whose semantic is a period"
+                        + " A range means one of two things. A measure whose measure semantic is a period"
                         + " on the calendar, a hospital stay, has bounds where it began and ended."
-                        + " A measure whose semantic is an instant on the calendar, an onset, or"
+                        + " A measure whose measure semantic is an instant on the calendar, an onset, or"
                         + " any quantity, has bounds where the value could be. Every relation on"
                         + " measures is decided the same way: Present when the answer is yes for"
                         + " every value the ranges allow, Absent when it is no for every one, and"
@@ -487,8 +487,10 @@ final class ExpressionLanguageSet {
                         + " Indeterminate only when an end known to a coarse resolution, a"
                         + " discharge known to the day, straddles the other's boundary. Two"
                         + " measures can be compared when both are on one scale, as an instant and"
-                        + " a period on the calendar are, and the semantic of a measure operator's"
-                        + " result must be a concept the knowledge layer already defines.")
+                        + " a period on the calendar are; Measure conversion puts two on one scale"
+                        + " when the knowledge layer has a rule between their measure semantics."
+                        + " The measure semantic of a measure operator's result must be a concept"
+                        + " the knowledge layer already defines.")
                 .isA(operandKind);
         EntityProxy.Concept measureKind = set.conceptRef("Measure kind (IkeFoundation)");
 
@@ -533,7 +535,7 @@ final class ExpressionLanguageSet {
 
         set.concept("Measure list kind (IkeFoundation)").at(inception)
                 .synonym("Measure list kind")
-                .definition("An operand kind: a list of measures on one semantic, one entry per"
+                .definition("An operand kind: a list of measures on one measure semantic, one entry per"
                         + " statement, in which the same value appears as many times as statements"
                         + " recorded it. It is what a Measure projection produces and what a measure"
                         + " aggregate takes, and it is a list rather than a set because a sum or a"
@@ -1190,8 +1192,8 @@ final class ExpressionLanguageSet {
                         + " semantic, so a measure operator works on the whole range, never on one"
                         + " number picked from inside it, and it never guesses how likely any value"
                         + " inside the range is. A single value is a measure whose two bounds are"
-                        + " equal. The semantic of the result is the concept the knowledge layer"
-                        + " defines for that operation on the operands' semantics: millimoles per"
+                        + " equal. The measure semantic of the result is the concept the knowledge layer"
+                        + " defines for that operation on the operands' measure semantics: millimoles per"
                         + " liter less millimoles per liter is millimoles per liter, one date less"
                         + " another is a length of time, and milligrams per deciliter times"
                         + " deciliters is milligrams, each because a concept in the knowledge layer"
@@ -1200,12 +1202,13 @@ final class ExpressionLanguageSet {
                         + " resolution is the coarsest among the operands. A comparison or a measure"
                         + " relation answers a question about measures with Present, Absent, or"
                         + " Indeterminate; a measure operator produces a value on a scale. Presence"
-                        + " has no arithmetic, because its semantic defines none, so the connectives"
+                        + " has no arithmetic, because its measure semantic defines none, so the"
+                        + " connectives"
                         + " are the only operations on presence values. Its members are Measure"
                         + " addition, Measure subtraction, Measure multiplication, Measure division,"
                         + " Measure lower bound, Measure upper bound, Measure width, Measure whole"
-                        + " unit, Measure outer span, Measure inner span, and Measure aggregate,"
-                        + " which works over a list of measures.")
+                        + " unit, Measure outer span, Measure inner span, Measure conversion, and"
+                        + " Measure aggregate, which works over a list of measures.")
                 .isA(modelRoot);
         EntityProxy.Concept measureOperator = set.conceptRef("Measure operator (IkeFoundation)");
 
@@ -1277,7 +1280,7 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Measure lower bound (IkeFoundation)").at(inception)
                 .synonym("Measure lower bound")
                 .definition("A measure operator that gives the lowest value inside a measure as a"
-                        + " single value on the same semantic: the lower bound when it is included,"
+                        + " single value on the same measure semantic: the lower bound when it is included,"
                         + " and otherwise the first value above it at the measure's resolution."
                         + " CQL's \"start of\" an interval is this.")
                 .isA(measureOperator)
@@ -1288,7 +1291,7 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Measure upper bound (IkeFoundation)").at(inception)
                 .synonym("Measure upper bound")
                 .definition("A measure operator that gives the highest value inside a measure as a"
-                        + " single value on the same semantic: the upper bound when it is included,"
+                        + " single value on the same measure semantic: the upper bound when it is included,"
                         + " and otherwise the first value below it at the measure's resolution."
                         + " CQL's \"end of\" an interval is this.")
                 .isA(measureOperator)
@@ -1299,7 +1302,7 @@ final class ExpressionLanguageSet {
         keyword(keyword(set.concept("Measure width (IkeFoundation)").at(inception)
                 .synonym("Measure width")
                 .definition("A measure operator that gives how wide a measure's range is, the upper"
-                        + " bound less the lower bound, as a single value on the semantic the"
+                        + " bound less the lower bound, as a single value on the measure semantic the"
                         + " knowledge layer defines for a difference on that scale: for a range of"
                         + " dates, a length of time. It is how a query asks how uncertain a result"
                         + " is. CQL's \"width of\" an interval is this, and CQL's \"duration in days"
@@ -1355,6 +1358,35 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure inner span")),
                         measureKind, measureKind, binary);
 
+        keyword(set.concept("Measure conversion (IkeFoundation)").at(inception)
+                .synonym("Measure conversion")
+                .definition("A measure operator that converts a measure from one unit to another:"
+                        + " a weight recorded in grams given in kilograms, a glucose in milligrams"
+                        + " per decilitre given in millimoles per litre. The result is a new"
+                        + " measure whose measure semantic is the target unit, a value inside the"
+                        + " query as a sum or a difference is; nothing is written, and the"
+                        + " statement's recorded measure is unchanged. It needs a rule between the"
+                        + " two units that the knowledge layer defines, the way a unit with a"
+                        + " measurement basis is defined. Where the rule is a fixed factor and"
+                        + " offset, grams to kilograms, milliseconds to seconds, Fahrenheit to"
+                        + " Celsius, milligrams per decilitre to millimoles per litre for a named"
+                        + " substance by its molar mass, the bounds and the resolution are scaled"
+                        + " exactly and nothing is lost. Where the rule carries a width of its"
+                        + " own, the HbA1c master equation between the percentage and the"
+                        + " millimoles-per-mole scale, the result widens by that width. Where the"
+                        + " knowledge layer has no rule, the conversion is refused. It is Measure"
+                        + " multiplication by the factor and Measure addition of the offset, so it"
+                        + " is definable from Measure multiplication. CQL's \"convert ... to\" is"
+                        + " this; \"as\" and \"cast\" change a value's type, and kinds here are"
+                        + " fixed before a query runs, so they are not bound.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure conversion")),
+                        measureKind, measureKind, unary)
+                .semantic(relations, PublicIds.of(set.uuidFor(
+                                "Construct relation: Measure conversion definitionally extends Measure multiplication")),
+                        set.conceptRef("Measure multiplication (IkeFoundation)"), definitionalExtension),
+                set, keywords, cql, "convert", operatorKeyword, true, "Measure conversion");
+
         set.concept("Measure aggregate (IkeFoundation)").at(inception)
                 .synonym("Measure aggregate")
                 .definition("A measure operator that produces one measure from a list of measures."
@@ -1374,7 +1406,7 @@ final class ExpressionLanguageSet {
         keyword(set.concept("Measure count (IkeFoundation)").at(inception)
                 .synonym("Measure count")
                 .definition("A measure aggregate that gives how many members count, as a single"
-                        + " value whose semantic is a count of statements. Set to count only"
+                        + " value whose measure semantic is a count of statements. Set to count only"
                         + " members with a value, it gives how many statements arrived at one."
                         + " CQL's Count is this with that choice fixed.")
                 .isA(measureAggregate)
@@ -1386,7 +1418,7 @@ final class ExpressionLanguageSet {
                 .synonym("Measure sum")
                 .definition("A measure aggregate that adds every member that counts, Measure"
                         + " addition across the list: the low ends added together to the high ends"
-                        + " added together, on the members' semantic. A total daily dose with one"
+                        + " added together, on the members' measure semantic. A total daily dose with one"
                         + " dose Indeterminate is at least the sum of the known doses. CQL's Sum is"
                         + " this with members with a value fixed.")
                 .isA(measureAggregate)
@@ -1654,7 +1686,7 @@ final class ExpressionLanguageSet {
                         + " changes nothing about the instant and everything about the clock: a"
                         + " draw at 23:30 UTC is a night draw in London and an early-morning one in"
                         + " Paris. When a record carries the zone it was written in, that zone is"
-                        + " the third part of the timing's semantic, beside the reading and the"
+                        + " the third part of the timing's measure semantic, beside the reading and the"
                         + " scale; without one, a query reads the calendar in the zone it names."
                         + " Measure whole unit and the Gregorian calendar take the timing's own"
                         + " zone when it has one and the query's otherwise. Its member is UTC"
@@ -1700,17 +1732,17 @@ final class ExpressionLanguageSet {
         set.concept("Timing measure (IkeFoundation)").at(inception)
                 .synonym("Timing measure")
                 .definition("A statement measure, cross-cutting to the result: when the"
-                        + " determination occurred, on a date-time semantic.")
+                        + " determination occurred, on a date-time measure semantic.")
                 .isA(statementMeasure);
         set.concept("Statement time measure (IkeFoundation)").at(inception)
                 .synonym("Statement time measure")
                 .definition("A statement measure, cross-cutting to the result: when the statement"
-                        + " was made, on a date-time semantic.")
+                        + " was made, on a date-time measure semantic.")
                 .isA(statementMeasure);
         set.concept("Normal range measure (IkeFoundation)").at(inception)
                 .synonym("Normal range measure")
                 .definition("A statement measure, cross-cutting to the result: the reference range"
-                        + " that framed this determination, on the result's own semantic. Instance"
+                        + " that framed this determination, on the result's own measure semantic. Instance"
                         + " data, tied to the act that produced the result: this laboratory's"
                         + " method, this instrument, this time of day. Stripped of those it means"
                         + " nothing, so it cannot stand alone and belongs on the performance beside"
@@ -1720,14 +1752,14 @@ final class ExpressionLanguageSet {
         set.concept("Requested result measure (IkeFoundation)").at(inception)
                 .synonym("Requested result measure")
                 .definition("A statement measure on a request: the result that is sought, on the"
-                        + " semantic the result will have. A request has one requested result, as"
+                        + " measure semantic the result will have. A request has one requested result, as"
                         + " a performance has one result.")
                 .isA(statementMeasure);
         set.concept("Request timing measure (IkeFoundation)").at(inception)
                 .synonym("Request timing measure")
                 .definition("A statement measure on a request, cross-cutting to the requested"
                         + " result: when the requested action should be carried out, on a"
-                        + " date-time semantic.")
+                        + " date-time measure semantic.")
                 .isA(statementMeasure);
         set.concept("Repetition measure (IkeFoundation)").at(inception)
                 .synonym("Repetition measure")
@@ -1741,27 +1773,27 @@ final class ExpressionLanguageSet {
         set.concept("Period start measure (IkeFoundation)").at(inception)
                 .synonym("Period start measure")
                 .definition("A repetition measure: when the repeated action should begin, on a"
-                        + " date-time semantic.")
+                        + " date-time measure semantic.")
                 .isA(repetitionMeasure);
         set.concept("Period duration measure (IkeFoundation)").at(inception)
                 .synonym("Period duration measure")
                 .definition("A repetition measure: how long the repeated action should continue,"
-                        + " on a time-unit semantic, such as seven to ten days.")
+                        + " on a time-unit measure semantic, such as seven to ten days.")
                 .isA(repetitionMeasure);
         set.concept("Event separation measure (IkeFoundation)").at(inception)
                 .synonym("Event separation measure")
                 .definition("A repetition measure: the interval between one action and the next,"
-                        + " on a time-unit semantic, such as every six hours.")
+                        + " on a time-unit measure semantic, such as every six hours.")
                 .isA(repetitionMeasure);
         set.concept("Event duration measure (IkeFoundation)").at(inception)
                 .synonym("Event duration measure")
                 .definition("A repetition measure: how long each individual action should last,"
-                        + " on a time-unit semantic, such as fifteen to twenty minutes.")
+                        + " on a time-unit measure semantic, such as fifteen to twenty minutes.")
                 .isA(repetitionMeasure);
         set.concept("Event frequency measure (IkeFoundation)").at(inception)
                 .synonym("Event frequency measure")
                 .definition("A repetition measure: how often the action should occur, on a"
-                        + " frequency semantic, such as three times a day.")
+                        + " frequency measure semantic, such as three times a day.")
                 .isA(repetitionMeasure);
 
         // ── EL++ core constructs: denotations for the relation targets ──
@@ -2100,9 +2132,9 @@ final class ExpressionLanguageSet {
                         + " everyone not confirmed; Indeterminate alone is the retest list. A"
                         + " comparison against a recorded range that straddles what it is compared"
                         + " with comes out Indeterminate, and it becomes met-or-not through a"
-                        + " further comparison on presence. The measure's semantic can be tested as"
+                        + " further comparison on presence. The measure semantic can be tested as"
                         + " a concept as well, for membership in a concept set, so that a"
-                        + " comparison applies only to results in a kind of unit, and any semantic"
+                        + " comparison applies only to results in a kind of unit, and any measure semantic"
                         + " with the whole frame is \"has a result at all\".")
                 .isA(criterion)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure comparison")),
@@ -2234,11 +2266,12 @@ final class ExpressionLanguageSet {
                         + " one statement measure, the result, the timing, the normal range, or a"
                         + " request's, and returns the list of that measure from each statement"
                         + " that carries it, one entry per statement. The entries must share one"
-                        + " semantic: a list that would mix HbA1c in percent with HbA1c in"
-                        + " millimoles per mole is refused, because measures on different"
-                        + " semantics cannot be added or compared, and converting between"
-                        + " semantics is a relation the knowledge layer would define. It is the"
-                        + " parallel of Subject projection, which turns statements into subjects.")
+                        + " measure semantic: a list that would mix HbA1c in percent with HbA1c in"
+                        + " millimoles per mole is refused, because measures on different measure"
+                        + " semantics cannot be added or compared; Measure conversion puts them on"
+                        + " one measure semantic first, when the knowledge layer has a rule. It is"
+                        + " the parallel of Subject projection, which turns statements into"
+                        + " subjects.")
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure projection")),
                         statementSetKind, measureListKind, unary);
