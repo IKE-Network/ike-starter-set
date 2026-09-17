@@ -80,6 +80,7 @@ class ExpressionLanguageIT {
     private static int literalKeywordNid;
     private static int functionNameNid;
     private static int unitKeywordNid;
+    private static int declarationKeywordNid;
     private static int conservativeExtensionNid;
     private static int logicalEquivalenceNid;
     private static int definitionalExtensionNid;
@@ -133,6 +134,7 @@ class ExpressionLanguageIT {
         literalKeywordNid = nid("Literal keyword (IkeFoundation)");
         functionNameNid = nid("Function name (IkeFoundation)");
         unitKeywordNid = nid("Unit keyword (IkeFoundation)");
+        declarationKeywordNid = nid("Declaration keyword (IkeFoundation)");
         conservativeExtensionNid = nid("Conservative extension (IkeFoundation)");
         logicalEquivalenceNid = nid("Logical equivalence (IkeFoundation)");
         definitionalExtensionNid = nid("Definitional extension (IkeFoundation)");
@@ -332,7 +334,7 @@ class ExpressionLanguageIT {
     // ── Bindings ────────────────────────────────────────────────────────
 
     @Test
-    @DisplayName("A binding names what its lexical role says: an operator or function with a denotation, a kind, a literal with bounds, or a unit of time")
+    @DisplayName("A binding names what its lexical role says: an operator or function with a denotation, a kind, a literal with bounds, a unit of time, or a declared thing that is a kind or a typed operator")
     void bindingsNameWhatTheirRoleSays() {
         int bindings = 0;
         int unitOfTime = nid("Unit of time (IkeFoundation)");
@@ -350,6 +352,9 @@ class ExpressionLanguageIT {
                     } else if (role == unitKeywordNid) {
                         assertTrue(latestIsAParents(named).contains(unitOfTime),
                                 where + " names " + fqn(named) + ", not a unit of time");
+                    } else if (role == declarationKeywordNid) {
+                        assertTrue(KINDS.contains(named) || DENOTATIONS.get(named) != null,
+                                where + " names " + fqn(named) + ", neither a kind nor a typed operator");
                     } else {
                         throw new AssertionError(where + " has unexpected lexical role " + fqn(role));
                     }
@@ -399,6 +404,7 @@ class ExpressionLanguageIT {
                         "collapse", "expand",
                         "if", "case", "implies", "xor", "is null", "is true", "is false",
                         "with", "without",
+                        "valueset", "code", "concept",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -868,6 +874,21 @@ class ExpressionLanguageIT {
                 "Correlation constraint is a criterion");
         assertEquals(correlation, only(cqlNid, "with"));
         assertEquals(nid("Set difference (IkeFoundation)"), only(cqlNid, "without"));
+    }
+
+    // ── CQL's declarations ───────────────────────────────────────────────
+
+    @Test
+    @DisplayName("valueset names Member of reference set, code and concept name Concept kind, all as declaration keywords")
+    void declarationsNameWhatTheDeclaredThingIs() {
+        assertEquals(nid("Member of reference set (IkeFoundation)"), only(cqlNid, "valueset"));
+        assertEquals(nid("Concept kind (IkeFoundation)"), only(cqlNid, "code"));
+        assertEquals(nid("Concept kind (IkeFoundation)"), only(cqlNid, "concept"));
+        for (String declaration : List.of("valueset", "code", "concept")) {
+            assertEquals(declarationKeywordNid, ROLES.get(cqlNid).get(declaration),
+                    declaration + " binds as a declaration keyword");
+        }
+        assertEquals(typeKeywordNid, ROLES.get(cqlNid).get("Code"), "Code, capitalised, is still the type keyword");
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

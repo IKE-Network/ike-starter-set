@@ -367,12 +367,14 @@ concept-set operators of the topic layer; its `{ }`, `[ ]`, `.`, and `+HISTORY` 
 k:AttributeGroupRefinement[], k:AttributeCountRefinement[],
 k:AttributeValueProjection[], and k:ConceptSetHistoryExtension[]; and its `<`, `<=`,
 `>`, `>=`, and `=` before a number name the comparisons, so that `<` and `>` are one
-keyword on two kinds, a concept and a value. CQL's keywords bind in four roles. Its
+keyword on two kinds, a concept and a value. CQL's keywords bind in six roles. Its
 operators name the presence connectives, the comparisons, the measure relations, the
 measure operators, and the statement operators, and its function names, Count, Sum,
 Min, Max, Avg, and Median, name the measure aggregates. Its unit keywords,
 `millisecond` through `years`, name the eight members of k:UnitOfTime[], the singular
-and the plural on one concept. Its type keywords name the kinds its types are represented
+and the plural on one concept. Its declaration keywords `valueset`, `code`, and
+`concept` name k:MemberOfReferenceSet[] and k:ConceptKind[], recording what a declared
+thing is in this model. Its type keywords name the kinds its types are represented
 as: `Boolean` as k:PresenceMeasureKind[], `Quantity`, `Interval`, and the numeric and
 date types as k:MeasureKind[], `Code` and `Concept` as k:ConceptKind[]. Its literals
 `true`, `false`, and `null` name k:PresentLiteral[], k:AbsentLiteral[], and
@@ -652,6 +654,35 @@ least, over outer spans for at most, and no guess in between. CQL's `distinct` i
 merge applied to single values, `flatten` needs a list of lists, which no kind holds,
 and `singleton from` takes the one member of a one-member list, which least or greatest
 already does; none is bound.
+
+=== Declarations
+
+A CQL library opens with declarations: what it is called, which data model it reads,
+which value sets and codes it uses, which inputs it takes at run time, and named pieces
+of logic. None is an operator, and in IKE most of the answers are the knowledge layer
+and the view. A `valueset` names a value set by its identifier, and a value set is a
+reference set under the view, which k:MemberOfReferenceSet[] yields; a `code` names one
+concept by its code in one code system, and a `concept` names one concept by several
+equivalent codes, which in IKE is one concept with identifiers in several code systems;
+so those three bind under k:DeclarationKeyword[]. `codesystem` and `codesystems` are
+not bound, because a code system is an identifier scheme and the concept is the same
+whichever code names it, and `display` is not, because a display is a description
+chosen by the language coordinate. `context` is the difference between one subject and
+a population: a query over ANF runs over all statements and k:SubjectProjection[]
+answers with subjects, so it is population-wide unless narrowed, CQL's `context
+Patient` is the same query run one subject at a time, and its `Unfiltered` is the
+default here. `parameter` and `default` are inputs, not constructs: the measurement
+period is a period measure the environment supplies when the query runs, a named
+literal, and a default is the value used when none is supplied. The library structure
+is the knowledge layer's: `define` names an expression, and a named expression is a
+concept whose definition is the expression, versioned and scoped by STAMP and
+referenced from other modules the way any concept is; `function` and `fluent` are
+definitions with arguments; `library`, `version`, `include`, `called`, `private`, and
+`public` are how CQL packages and scopes definitions, which module and path do here;
+and `using FHIR` is unnecessary because the query is over ANF, which the transformation
+from FHIR produces. Where CQL's library structure meets IKE's definitions is the
+clause plugin work, in which a Complex Concept Clause's vertex meanings are these
+constructs.
 
 === The Checks Are Derived, and They Run
 

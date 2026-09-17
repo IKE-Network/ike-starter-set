@@ -310,7 +310,7 @@ final class ExpressionLanguageSet {
                         + " what kind of thing the keyword's binding names. Also the meaning of the"
                         + " Expression Language Keyword Pattern's third field, whose value is one"
                         + " of its members: Operator keyword, Type keyword, Unit keyword, Literal"
-                        + " keyword, and Function name.")
+                        + " keyword, Function name, and Declaration keyword.")
                 .isA(modelRoot);
         EntityProxy.Concept lexicalRole = set.conceptRef("Lexical role (IkeFoundation)");
 
@@ -352,6 +352,18 @@ final class ExpressionLanguageSet {
                         + " the page differs.")
                 .isA(lexicalRole);
         EntityProxy.Concept functionName = set.conceptRef("Function name (IkeFoundation)");
+
+        set.concept("Declaration keyword (IkeFoundation)").at(inception)
+                .synonym("Declaration keyword")
+                .definition("A lexical role: in a CQL library a value set, a code, or a concept is"
+                        + " declared once by name and used many times, and the keyword that"
+                        + " declares it introduces a thing rather than an operation. The binding"
+                        + " records what that thing is in this model: a value set is a reference"
+                        + " set under the view, a code names a concept, and a concept declared from"
+                        + " several equivalent codes is one concept with identifiers in several"
+                        + " code systems.")
+                .isA(lexicalRole);
+        EntityProxy.Concept declarationKeyword = set.conceptRef("Declaration keyword (IkeFoundation)");
 
         // ── Construct relation (closed) ─────────────────────────────────
         set.concept("Construct relation (IkeFoundation)").at(inception)
@@ -881,7 +893,9 @@ final class ExpressionLanguageSet {
         }
         ConceptBuilder.ActiveScope conceptScope = set.concept("Concept kind (IkeFoundation)").at(inception);
         conceptScope = keyword(conceptScope, set, keywords, cql, "Code", typeKeyword, true, "Concept kind");
-        keyword(conceptScope, set, keywords, cql, "Concept", typeKeyword, false, "Concept kind");
+        conceptScope = keyword(conceptScope, set, keywords, cql, "Concept", typeKeyword, false, "Concept kind");
+        conceptScope = keyword(conceptScope, set, keywords, cql, "code", declarationKeyword, false, "Concept kind");
+        keyword(conceptScope, set, keywords, cql, "concept", declarationKeyword, false, "Concept kind");
 
         // ── Indeterminate result: the general idea the presence literal instantiates ──
         set.concept("Indeterminate result (IkeFoundation)").at(inception)
@@ -1888,7 +1902,7 @@ final class ExpressionLanguageSet {
                 set, keywords, cql, "except", operatorKeyword, true, "Set difference"),
                 set, keywords, cql, "without", operatorKeyword, false, "Set difference");
 
-        keyword(set.concept("Member of reference set (IkeFoundation)").at(inception)
+        keyword(keyword(set.concept("Member of reference set (IkeFoundation)").at(inception)
                 .synonym("Member of reference set")
                 .definition("A taxonomy operator that yields, for a reference-set concept, the"
                         + " concepts its active membership semantics list: a fixed concept set,"
@@ -1897,7 +1911,8 @@ final class ExpressionLanguageSet {
                 .isA(IkeTerm.TAXONOMY_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Member of reference set")),
                         conceptKind, conceptSetKind, unary),
-                set, keywords, ecl, "^", operatorKeyword, true, "Member of reference set");
+                set, keywords, ecl, "^", operatorKeyword, true, "Member of reference set"),
+                set, keywords, cql, "valueset", declarationKeyword, true, "Member of reference set");
 
         keyword(set.concept("Attribute refinement (IkeFoundation)").at(inception)
                 .synonym("Attribute refinement")
