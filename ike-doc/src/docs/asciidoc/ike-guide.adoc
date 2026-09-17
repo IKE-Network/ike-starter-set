@@ -564,6 +564,30 @@ calendar take the timing's own zone when it has one and the query's otherwise. C
 composition, and `timezoneoffset from` reads the zone part of the semantic, which is
 not an operation on the measure; neither is bound.
 
+=== Days Covered
+
+Of the days in a measurement period, how many did the patient have medication for.
+Each dispense covers the period from its date to its date plus its days supply, which
+is Measure addition and then a span. A period is built from two instants, and ANF's
+period has two bounds and cannot hold an end that is itself a range, so there are two
+spans: k:MeasureOuterSpan[] runs from the earliest the first measure could be to the
+latest the second could be, everything that might have been covered, and
+k:MeasureInnerSpan[] from the latest the first could be to the earliest the second
+could be, what was certainly covered, and nothing when those cross. For single values
+the two coincide, which is CQL's Interval constructor. A k:MeasureListOperator[]
+produces a list of measures from a list: k:MeasureListMerge[], CQL's `collapse`,
+returns the fewest periods that cover the same time, two that overlap or touch
+becoming one; k:MeasureListSplit[], CQL's `expand ... per day`, returns one whole unit
+for each unit any period touches, Measure whole unit applied throughout, with `per`
+naming the unit and staying unbound. The days covered are the split of the merged
+spans, their number is k:MeasureCount[], the measurement period split per day and
+counted is the denominator, and k:MeasureDivision[] gives the proportion. A dispense
+date known only to a month makes the proportion a range: count over inner spans for at
+least, over outer spans for at most, and no guess in between. CQL's `distinct` is the
+merge applied to single values, `flatten` needs a list of lists, which no kind holds,
+and `singleton from` takes the one member of a one-member list, which least or greatest
+already does; none is bound.
+
 === The Checks Are Derived, and They Run
 
 koncept-narrative::ConstructRelationPattern[]

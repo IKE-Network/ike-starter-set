@@ -1125,7 +1125,8 @@ final class ExpressionLanguageSet {
                         + " are the only operations on presence values. Its members are Measure"
                         + " addition, Measure subtraction, Measure multiplication, Measure division,"
                         + " Measure lower bound, Measure upper bound, Measure width, Measure whole"
-                        + " unit, and Measure aggregate, which works over a list of measures.")
+                        + " unit, Measure outer span, Measure inner span, and Measure aggregate,"
+                        + " which works over a list of measures.")
                 .isA(modelRoot);
         EntityProxy.Concept measureOperator = set.conceptRef("Measure operator (IkeFoundation)");
 
@@ -1249,6 +1250,32 @@ final class ExpressionLanguageSet {
                         measureKind, measureKind, unary),
                 set, keywords, cql, "date from", operatorKeyword, true, "Measure whole unit");
 
+        set.concept("Measure outer span (IkeFoundation)").at(inception)
+                .synonym("Measure outer span")
+                .definition("A measure operator that takes two measures on one scale and gives the"
+                        + " period from the earliest value the first allows to the latest value"
+                        + " the second allows. For a dispense date and that date plus its days"
+                        + " supply, it is everything that might have been covered. When both are"
+                        + " single values it is the period from the first to the second, which is"
+                        + " what CQL's Interval constructor builds. ANF's period has two bounds and"
+                        + " cannot hold an end that is itself a range, so the outer span and the"
+                        + " inner span together are what an uncertain end becomes.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure outer span")),
+                        measureKind, measureKind, binary);
+
+        set.concept("Measure inner span (IkeFoundation)").at(inception)
+                .synonym("Measure inner span")
+                .definition("A measure operator that takes two measures on one scale and gives the"
+                        + " period from the latest value the first allows to the earliest value"
+                        + " the second allows: what was certainly covered, and nothing at all when"
+                        + " those two cross. When both are single values it is the same period as"
+                        + " the outer span. Counting days over inner spans gives at least how many"
+                        + " were covered, and over outer spans at most.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure inner span")),
+                        measureKind, measureKind, binary);
+
         set.concept("Measure aggregate (IkeFoundation)").at(inception)
                 .synonym("Measure aggregate")
                 .definition("A measure operator that produces one measure from a list of measures."
@@ -1333,6 +1360,45 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure median")),
                         measureListKind, measureKind, unary),
                 set, keywords, cql, "Median", functionName, true, "Measure median");
+
+        // ── Measure list operators: a list of measures in, a list of measures out ──
+        set.concept("Measure list operator (IkeFoundation)").at(inception)
+                .synonym("Measure list operator")
+                .definition("An operator that produces a list of measures from a list of measures,"
+                        + " the measures of a set of statements gathered by a Measure projection. A"
+                        + " measure aggregate produces one measure from such a list; a measure list"
+                        + " operator produces another list, which an aggregate can then count or"
+                        + " sum. Its members are Measure list merge and Measure list split.")
+                .isA(modelRoot);
+        EntityProxy.Concept measureListOperator = set.conceptRef("Measure list operator (IkeFoundation)");
+
+        keyword(set.concept("Measure list merge (IkeFoundation)").at(inception)
+                .synonym("Measure list merge")
+                .definition("A measure list operator that takes a list of periods and returns the"
+                        + " fewest periods that cover the same time. Two periods that overlap or"
+                        + " touch, with no gap at their resolution, become one; a period apart from"
+                        + " the rest stays as it is. Two dispenses whose periods overlap are one"
+                        + " stretch of coverage, and the total time covered is the sum of the"
+                        + " widths of the merged list. An end known only to the day stays known"
+                        + " only to the day. CQL's \"collapse\" is this merge.")
+                .isA(measureListOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure list merge")),
+                        measureListKind, measureListKind, unary),
+                set, keywords, cql, "collapse", operatorKeyword, true, "Measure list merge");
+
+        keyword(set.concept("Measure list split (IkeFoundation)").at(inception)
+                .synonym("Measure list split")
+                .definition("A measure list operator that takes a list of periods and a unit of"
+                        + " time and returns one measure for each whole unit that any period"
+                        + " touches, in order, each a whole unit of that size. It is Measure whole"
+                        + " unit applied to every period in the list, and it is how a query counts"
+                        + " days: the days covered by medication are the split of the merged"
+                        + " dispense periods, and their number is Measure count. CQL's \"expand\""
+                        + " is this split, and CQL's \"per\" names the unit.")
+                .isA(measureListOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure list split")),
+                        measureListKind, measureListKind, unary),
+                set, keywords, cql, "expand", operatorKeyword, true, "Measure list split");
 
         // ── Time: lengths, positions, the calendar, and the two readings ──────
         set.concept("Unit of time (IkeFoundation)").at(inception)

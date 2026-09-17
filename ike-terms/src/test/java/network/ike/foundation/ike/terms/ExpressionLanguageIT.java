@@ -395,6 +395,7 @@ class ExpressionLanguageIT {
                         "millisecond", "milliseconds", "second", "seconds", "minute", "minutes",
                         "hour", "hours", "day", "days", "week", "weeks", "month", "months",
                         "year", "years",
+                        "collapse", "expand",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -737,6 +738,39 @@ class ExpressionLanguageIT {
                 "Time zone is a concept of the set, under the model root");
         assertTrue(latestIsAParents(nid("UTC offset (IkeFoundation)")).contains(nid("Time zone (IkeFoundation)")),
                 "UTC offset is a time zone whose offset never changes");
+    }
+
+    // ── Days covered: the list operators and the two spans ───────────────
+
+    @Test
+    @DisplayName("Merge and split take a measure list and yield one, the two spans take two measures and yield a period, and collapse and expand name the list operators")
+    void daysCoveredOperatorsAreTyped() {
+        int measureKind = nid("Measure kind (IkeFoundation)");
+        int measureListKind = nid("Measure list kind (IkeFoundation)");
+        int unary = nid("Unary (IkeFoundation)");
+        int binary = nid("Binary (IkeFoundation)");
+        int measureListOperator = nid("Measure list operator (IkeFoundation)");
+        int measureOperator = nid("Measure operator (IkeFoundation)");
+        for (String operator : List.of("Measure list merge", "Measure list split")) {
+            int operatorNid = nid(operator + " (IkeFoundation)");
+            int[] denotation = DENOTATIONS.get(operatorNid);
+            assertNotNull(denotation, "Untyped " + operator);
+            assertEquals(measureListKind, denotation[0], operator + " takes a measure list");
+            assertEquals(measureListKind, denotation[1], operator + " yields a measure list");
+            assertEquals(unary, denotation[2], operator + " is unary");
+            assertTrue(latestIsAParents(operatorNid).contains(measureListOperator), operator + " is a measure list operator");
+        }
+        for (String span : List.of("Measure outer span", "Measure inner span")) {
+            int spanNid = nid(span + " (IkeFoundation)");
+            int[] denotation = DENOTATIONS.get(spanNid);
+            assertNotNull(denotation, "Untyped " + span);
+            assertEquals(measureKind, denotation[0], span + " takes measures");
+            assertEquals(measureKind, denotation[1], span + " yields a measure");
+            assertEquals(binary, denotation[2], span + " is binary");
+            assertTrue(latestIsAParents(spanNid).contains(measureOperator), span + " is a measure operator");
+        }
+        assertEquals(nid("Measure list merge (IkeFoundation)"), only(cqlNid, "collapse"));
+        assertEquals(nid("Measure list split (IkeFoundation)"), only(cqlNid, "expand"));
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────
