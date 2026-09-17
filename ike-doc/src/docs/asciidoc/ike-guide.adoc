@@ -366,7 +366,9 @@ that name it. ECL's `<`, `<<`, `>`, `>>`, `AND`, `OR`, `MINUS`, `^`, and `:` nam
 concept-set operators of the topic layer. CQL's keywords bind in four roles. Its
 operators name the presence connectives, the comparisons, the measure relations, the
 measure operators, and the statement operators, and its function names, Count, Sum,
-Min, Max, Avg, and Median, name the measure aggregates. Its type keywords name the kinds its types are represented
+Min, Max, Avg, and Median, name the measure aggregates. Its unit keywords,
+`millisecond` through `years`, name the eight members of k:UnitOfTime[], the singular
+and the plural on one concept. Its type keywords name the kinds its types are represented
 as: `Boolean` as k:PresenceMeasureKind[], `Quantity`, `Interval`, and the numeric and
 date types as k:MeasureKind[], `Code` and `Concept` as k:ConceptKind[]. Its literals
 `true`, `false`, and `null` name k:PresentLiteral[], k:AbsentLiteral[], and
@@ -535,6 +537,21 @@ are the accessors with Equal to on whole units; `occurs` is a filler word; `prop
 is within and not equal; `point from` is unnecessary because a single value is already
 a measure; `per` belongs with `expand` and `collapse` over measure lists; and `same` on
 its own has no meaning, its phrase `same as` being bound.
+
+Time has lengths and positions. A length is a duration, and its semantic is a
+k:UnitOfTime[]: k:Millisecond[], k:Second[], k:Minute[], and k:Hour[] are fixed
+lengths, while k:Day[], k:Week[], k:Month[], and k:Year[] are units of the
+k:GregorianCalendar[], whose length in hours varies. One unit concept serves three
+uses: the unit a duration is read in, the size Measure whole unit takes, and the
+resolution of a timing. A position needs a scale with an origin, a k:TimeScale[]:
+k:UnixEpochMilliseconds[], what a database timestamp and Java's Instant record,
+k:UnixEpochSeconds[], the same timeline read a thousand times coarser, and
+k:GregorianCalendarDate[], a civil date with no zone, counted in days from the epoch,
+what Java's LocalDate records. The calendar, given a time zone, places a civil date on
+the epoch scale as its whole day. A timing's semantic is a k:TimeReading[] on a scale,
+k:Instant[] or k:Period[], a concept the knowledge layer defines the way a unit with a
+measurement basis is defined; the set holds the readings and the scales, not the
+combinations. Time zone is not yet a concept of the set.
 
 === The Checks Are Derived, and They Run
 

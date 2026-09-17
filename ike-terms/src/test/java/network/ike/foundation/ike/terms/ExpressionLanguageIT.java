@@ -78,6 +78,7 @@ class ExpressionLanguageIT {
     private static int typeKeywordNid;
     private static int literalKeywordNid;
     private static int functionNameNid;
+    private static int unitKeywordNid;
     private static int conservativeExtensionNid;
     private static int logicalEquivalenceNid;
     private static int definitionalExtensionNid;
@@ -130,6 +131,7 @@ class ExpressionLanguageIT {
         typeKeywordNid = nid("Type keyword (IkeFoundation)");
         literalKeywordNid = nid("Literal keyword (IkeFoundation)");
         functionNameNid = nid("Function name (IkeFoundation)");
+        unitKeywordNid = nid("Unit keyword (IkeFoundation)");
         conservativeExtensionNid = nid("Conservative extension (IkeFoundation)");
         logicalEquivalenceNid = nid("Logical equivalence (IkeFoundation)");
         definitionalExtensionNid = nid("Definitional extension (IkeFoundation)");
@@ -329,9 +331,10 @@ class ExpressionLanguageIT {
     // ── Bindings ────────────────────────────────────────────────────────
 
     @Test
-    @DisplayName("A binding names what its lexical role says: an operator or function with a denotation, a kind, or a literal with bounds")
+    @DisplayName("A binding names what its lexical role says: an operator or function with a denotation, a kind, a literal with bounds, or a unit of time")
     void bindingsNameWhatTheirRoleSays() {
         int bindings = 0;
+        int unitOfTime = nid("Unit of time (IkeFoundation)");
         for (Map.Entry<Integer, Map<String, List<Integer>>> logic : KEYWORDS.entrySet()) {
             for (Map.Entry<String, List<Integer>> keyword : logic.getValue().entrySet()) {
                 int role = ROLES.get(logic.getKey()).get(keyword.getKey());
@@ -343,6 +346,9 @@ class ExpressionLanguageIT {
                         assertTrue(KINDS.contains(named), where + " names " + fqn(named) + ", not a kind");
                     } else if (role == literalKeywordNid) {
                         assertNotNull(LITERALS.get(named), where + " names " + fqn(named) + ", not a literal");
+                    } else if (role == unitKeywordNid) {
+                        assertTrue(latestIsAParents(named).contains(unitOfTime),
+                                where + " names " + fqn(named) + ", not a unit of time");
                     } else {
                         throw new AssertionError(where + " has unexpected lexical role " + fqn(role));
                     }
@@ -386,6 +392,9 @@ class ExpressionLanguageIT {
                         "Count", "Sum", "Min", "Max", "Avg", "Median",
                         "on or before", "before or on", "on or after", "after or on", "within",
                         "difference between", "date from",
+                        "millisecond", "milliseconds", "second", "seconds", "minute", "minutes",
+                        "hour", "hours", "day", "days", "week", "weeks", "month", "months",
+                        "year", "years",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -692,6 +701,37 @@ class ExpressionLanguageIT {
         boolean present = upperA < lowerB || (upperA == lowerB && !(includeUpperA && includeLowerB));
         boolean absent = lowerA >= upperB;
         return present ? "Present" : absent ? "Absent" : "Indeterminate";
+    }
+
+    // ── Time: units, scales, the calendar, and the readings ─────────────
+
+    @Test
+    @DisplayName("Each unit keyword, singular and plural, names one unit of time; the scales, the calendar, and the readings have their parents")
+    void unitsScalesCalendarAndReadings() {
+        int unitOfTime = nid("Unit of time (IkeFoundation)");
+        Map<String, String> plurals = Map.of("millisecond", "milliseconds", "second", "seconds",
+                "minute", "minutes", "hour", "hours", "day", "days", "week", "weeks",
+                "month", "months", "year", "years");
+        for (Map.Entry<String, String> unit : plurals.entrySet()) {
+            String name = Character.toUpperCase(unit.getKey().charAt(0)) + unit.getKey().substring(1);
+            int unitNid = nid(name + " (IkeFoundation)");
+            assertEquals(unitNid, only(cqlNid, unit.getKey()), unit.getKey() + " names " + name);
+            assertEquals(unitNid, only(cqlNid, unit.getValue()), unit.getValue() + " names " + name);
+            assertEquals(unitKeywordNid, ROLES.get(cqlNid).get(unit.getKey()), unit.getKey() + " is a unit keyword");
+            assertEquals(unitKeywordNid, ROLES.get(cqlNid).get(unit.getValue()), unit.getValue() + " is a unit keyword");
+            assertTrue(latestIsAParents(unitNid).contains(unitOfTime), name + " is a unit of time");
+        }
+        int timeScale = nid("Time scale (IkeFoundation)");
+        for (String scale : List.of("Unix epoch milliseconds", "Unix epoch seconds", "Gregorian calendar date")) {
+            assertTrue(latestIsAParents(nid(scale + " (IkeFoundation)")).contains(timeScale), scale + " is a time scale");
+        }
+        int timeReading = nid("Time reading (IkeFoundation)");
+        for (String reading : List.of("Instant", "Period")) {
+            assertTrue(latestIsAParents(nid(reading + " (IkeFoundation)")).contains(timeReading), reading + " is a time reading");
+        }
+        assertTrue(latestIsAParents(nid("Gregorian calendar (IkeFoundation)"))
+                .contains(nid("Expression language model (IkeFoundation)")),
+                "The Gregorian calendar is a concept of the set, under the model root");
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

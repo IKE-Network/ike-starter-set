@@ -334,6 +334,7 @@ final class ExpressionLanguageSet {
                         + " precision. Singular and plural spellings are two bindings on one unit"
                         + " concept.")
                 .isA(lexicalRole);
+        EntityProxy.Concept unitKeyword = set.conceptRef("Unit keyword (IkeFoundation)");
 
         set.concept("Literal keyword (IkeFoundation)").at(inception)
                 .synonym("Literal keyword")
@@ -1330,6 +1331,169 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure median")),
                         measureListKind, measureKind, unary),
                 set, keywords, cql, "Median", functionName, true, "Measure median");
+
+        // ── Time: lengths, positions, the calendar, and the two readings ──────
+        set.concept("Unit of time (IkeFoundation)").at(inception)
+                .synonym("Unit of time")
+                .definition("A measure semantic for a length of time. A measure on it is a duration,"
+                        + " three days or two hours, and one concept serves three uses: the unit a"
+                        + " duration is read in, the size Measure whole unit takes, and the"
+                        + " resolution of a timing, a date known to the day. Millisecond, second,"
+                        + " minute, and hour are fixed lengths. Day, week, month, and year are units"
+                        + " of the Gregorian calendar, defined in the knowledge layer, and their"
+                        + " length in hours varies: a month has 28 to 31 days, and a clock change"
+                        + " makes a day 23 or 25 hours. A week is seven calendar days. ANF's"
+                        + " resolution is a number, so a resolution finer than a millisecond can be"
+                        + " recorded; CQL stops at the millisecond. Its members are Millisecond,"
+                        + " Second, Minute, Hour, Day, Week, Month, and Year, and CQL's unit"
+                        + " keywords name them, the singular and the plural on one concept.")
+                .isA(modelRoot);
+        EntityProxy.Concept unitOfTime = set.conceptRef("Unit of time (IkeFoundation)");
+
+        keyword(keyword(set.concept("Millisecond (IkeFoundation)").at(inception)
+                .synonym("Millisecond")
+                .definition("A unit of time of fixed length, one thousandth of a second, and the"
+                        + " finest precision CQL records. CQL's \"millisecond\" and"
+                        + " \"milliseconds\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "millisecond", unitKeyword, true, "Millisecond"),
+                set, keywords, cql, "milliseconds", unitKeyword, false, "Millisecond");
+
+        keyword(keyword(set.concept("Second (IkeFoundation)").at(inception)
+                .synonym("Second")
+                .definition("A unit of time of fixed length, sixty to the minute. CQL's \"second\""
+                        + " and \"seconds\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "second", unitKeyword, true, "Second"),
+                set, keywords, cql, "seconds", unitKeyword, false, "Second");
+
+        keyword(keyword(set.concept("Minute (IkeFoundation)").at(inception)
+                .synonym("Minute")
+                .definition("A unit of time of fixed length, sixty seconds. CQL's \"minute\" and"
+                        + " \"minutes\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "minute", unitKeyword, true, "Minute"),
+                set, keywords, cql, "minutes", unitKeyword, false, "Minute");
+
+        keyword(keyword(set.concept("Hour (IkeFoundation)").at(inception)
+                .synonym("Hour")
+                .definition("A unit of time of fixed length, sixty minutes. CQL's \"hour\" and"
+                        + " \"hours\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "hour", unitKeyword, true, "Hour"),
+                set, keywords, cql, "hours", unitKeyword, false, "Hour");
+
+        keyword(keyword(set.concept("Day (IkeFoundation)").at(inception)
+                .synonym("Day")
+                .definition("A unit of the Gregorian calendar, midnight to midnight in a time zone,"
+                        + " twenty-four hours except where a clock change makes it twenty-three or"
+                        + " twenty-five. It is the size of the whole day a timestamp occupies and"
+                        + " the resolution of a date known to the day. CQL's \"day\" and \"days\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "day", unitKeyword, true, "Day"),
+                set, keywords, cql, "days", unitKeyword, false, "Day");
+
+        keyword(keyword(set.concept("Week (IkeFoundation)").at(inception)
+                .synonym("Week")
+                .definition("A unit of the Gregorian calendar, seven calendar days. CQL's \"week\""
+                        + " and \"weeks\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "week", unitKeyword, true, "Week"),
+                set, keywords, cql, "weeks", unitKeyword, false, "Week");
+
+        keyword(keyword(set.concept("Month (IkeFoundation)").at(inception)
+                .synonym("Month")
+                .definition("A unit of the Gregorian calendar, twenty-eight to thirty-one days, so a"
+                        + " duration in months depends on where in the calendar it starts. CQL's"
+                        + " \"month\" and \"months\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "month", unitKeyword, true, "Month"),
+                set, keywords, cql, "months", unitKeyword, false, "Month");
+
+        keyword(keyword(set.concept("Year (IkeFoundation)").at(inception)
+                .synonym("Year")
+                .definition("A unit of the Gregorian calendar, twelve months, 365 or 366 days. CQL's"
+                        + " \"year\" and \"years\".")
+                .isA(unitOfTime),
+                set, keywords, cql, "year", unitKeyword, true, "Year"),
+                set, keywords, cql, "years", unitKeyword, false, "Year");
+
+        set.concept("Time scale (IkeFoundation)").at(inception)
+                .synonym("Time scale")
+                .definition("A measure semantic for a position in time, counted from an origin in a"
+                        + " unit, so that a timing's bounds are two numbers on it. A timing recorded"
+                        + " with a time zone is a measure on an epoch scale; a bare date is a"
+                        + " measure on the calendar date scale, and the Gregorian calendar, given a"
+                        + " zone, places it on the epoch scale as a whole day. Two measures on"
+                        + " scales with one origin, milliseconds and seconds since the epoch, can"
+                        + " be compared, and converting between them is exact. Its members are"
+                        + " Unix epoch milliseconds, Unix epoch seconds, and Gregorian calendar"
+                        + " date.")
+                .isA(modelRoot);
+        EntityProxy.Concept timeScale = set.conceptRef("Time scale (IkeFoundation)");
+
+        set.concept("Unix epoch milliseconds (IkeFoundation)").at(inception)
+                .synonym("Unix epoch milliseconds")
+                .definition("A time scale: milliseconds counted from 1970-01-01T00:00:00 UTC, the"
+                        + " origin of Unix time. It is what a database timestamp records, and what"
+                        + " Java's Instant records in seconds and nanoseconds from the same origin."
+                        + " A timestamp's resolution on it is a unit of time: a millisecond for a"
+                        + " machine clock, a minute for a nurse's note.")
+                .isA(timeScale);
+
+        set.concept("Unix epoch seconds (IkeFoundation)").at(inception)
+                .synonym("Unix epoch seconds")
+                .definition("A time scale: seconds counted from 1970-01-01T00:00:00 UTC, Unix time."
+                        + " It is the millisecond scale read a thousand times coarser, on the same"
+                        + " origin, so a measure on either can be compared with a measure on the"
+                        + " other exactly.")
+                .isA(timeScale);
+
+        set.concept("Gregorian calendar date (IkeFoundation)").at(inception)
+                .synonym("Gregorian calendar date")
+                .definition("A time scale: civil dates counted in days from 1970-01-01, with no time"
+                        + " zone, what Java's LocalDate records. A date known to the day is a"
+                        + " single value on it. It becomes a range on an epoch scale only when a"
+                        + " time zone places its whole day, midnight to midnight in that zone.")
+                .isA(timeScale);
+
+        set.concept("Gregorian calendar (IkeFoundation)").at(inception)
+                .synonym("Gregorian calendar")
+                .definition("The calendar in civil use, which defines day, week, month, and year as"
+                        + " stretches of the time scale: a day runs from midnight to midnight in a"
+                        + " time zone, a week is seven days, a month has 28 to 31 days, and a year"
+                        + " has 365 or 366. Measure whole unit takes its units as sizes, and it is"
+                        + " what places a Gregorian calendar date on an epoch scale, given a zone."
+                        + " Time zone is not yet a concept of this set.")
+                .isA(modelRoot);
+
+        set.concept("Time reading (IkeFoundation)").at(inception)
+                .synonym("Time reading")
+                .definition("Whether a timing's bounds are where a moment could be or where a stretch"
+                        + " of time began and ended. A timing's measure semantic is a concept the"
+                        + " knowledge layer defines as a reading on a time scale, an encounter's"
+                        + " timing being a period in Unix epoch milliseconds, the way a unit with a"
+                        + " measurement basis is defined; this set holds the readings and the"
+                        + " scales, not the combinations. Its members are Instant and Period.")
+                .isA(modelRoot);
+        EntityProxy.Concept timeReading = set.conceptRef("Time reading (IkeFoundation)");
+
+        set.concept("Instant (IkeFoundation)").at(inception)
+                .synonym("Instant")
+                .definition("A time reading: a position in time with no extent, an onset or a blood"
+                        + " draw, whose bounds are where the moment could be. A relation on it can"
+                        + " come out Indeterminate when the range straddles what it is compared"
+                        + " with.")
+                .isA(timeReading);
+
+        set.concept("Period (IkeFoundation)").at(inception)
+                .synonym("Period")
+                .definition("A time reading: a stretch of time with a beginning and an end, a"
+                        + " hospital stay, whose bounds are where it began and ended. A relation"
+                        + " between two periods is decided outright, and it is Indeterminate only"
+                        + " when an end known to a coarse resolution straddles the other's"
+                        + " boundary.")
+                .isA(timeReading);
 
         // ── The statement's measures: one result and its cross-cutting measurements
         set.concept("Statement measure (IkeFoundation)").at(inception)
