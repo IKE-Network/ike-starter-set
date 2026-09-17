@@ -6,3 +6,6 @@ target/
 
 # ws vcs bridge state (tool-written)
 .ike/vcs-state
+
+# ike:* goal reports
+ike꞉*.md
