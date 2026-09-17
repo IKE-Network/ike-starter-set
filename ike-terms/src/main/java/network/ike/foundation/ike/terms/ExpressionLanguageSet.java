@@ -309,8 +309,8 @@ final class ExpressionLanguageSet {
                 .definition("The place a keyword occupies in its logic's grammar, which decides"
                         + " what kind of thing the keyword's binding names. Also the meaning of the"
                         + " Expression Language Keyword Pattern's third field, whose value is one"
-                        + " of its members: Operator keyword, Type keyword, Unit keyword, and"
-                        + " Literal keyword.")
+                        + " of its members: Operator keyword, Type keyword, Unit keyword, Literal"
+                        + " keyword, and Function name.")
                 .isA(modelRoot);
         EntityProxy.Concept lexicalRole = set.conceptRef("Lexical role (IkeFoundation)");
 
@@ -341,6 +341,16 @@ final class ExpressionLanguageSet {
                         + " the binding names the literal that carries that value's bounds.")
                 .isA(lexicalRole);
         EntityProxy.Concept literalKeyword = set.conceptRef("Literal keyword (IkeFoundation)");
+
+        set.concept("Function name (IkeFoundation)").at(inception)
+                .synonym("Function name")
+                .definition("A lexical role: the name of a function a logic calls with its"
+                        + " arguments in parentheses, as CQL calls Count, Sum, Min, Max, Avg, and"
+                        + " Median, rather than a keyword written before or between its operands."
+                        + " The binding is the same as an operator keyword's; only the spelling on"
+                        + " the page differs.")
+                .isA(lexicalRole);
+        EntityProxy.Concept functionName = set.conceptRef("Function name (IkeFoundation)");
 
         // ── Construct relation (closed) ─────────────────────────────────
         set.concept("Construct relation (IkeFoundation)").at(inception)
@@ -400,7 +410,8 @@ final class ExpressionLanguageSet {
                         + " truth-value kind: what a determination, a criterion, or a derived"
                         + " criterion yields is a presence measure. Its members are Class kind,"
                         + " Axiom kind, Concept kind, Concept set kind, Measure kind with Presence"
-                        + " measure kind beneath it, Statement kind, and Set kind with Concept set"
+                        + " measure kind beneath it, Measure list kind, Statement kind, and Set"
+                        + " kind with Concept set"
                         + " kind, Statement set kind, and Subject set kind beneath it.")
                 .isA(modelRoot);
         EntityProxy.Concept operandKind = set.conceptRef("Operand kind (IkeFoundation)");
@@ -496,6 +507,16 @@ final class ExpressionLanguageSet {
                         + " set is not empty.")
                 .isA(setKind);
         EntityProxy.Concept subjectSetKind = set.conceptRef("Subject set kind (IkeFoundation)");
+
+        set.concept("Measure list kind (IkeFoundation)").at(inception)
+                .synonym("Measure list kind")
+                .definition("An operand kind: a list of measures on one semantic, one entry per"
+                        + " statement, in which the same value appears as many times as statements"
+                        + " recorded it. It is what a Measure projection produces and what a measure"
+                        + " aggregate takes, and it is a list rather than a set because a sum or a"
+                        + " mean must count every statement.")
+                .isA(operandKind);
+        EntityProxy.Concept measureListKind = set.conceptRef("Measure list kind (IkeFoundation)");
 
         // ── Arity (closed) ──────────────────────────────────────────────
         set.concept("Arity (IkeFoundation)").at(inception)
@@ -1058,7 +1079,8 @@ final class ExpressionLanguageSet {
                         + " has no arithmetic, because its semantic defines none, so the connectives"
                         + " are the only operations on presence values. Its members are Measure"
                         + " addition, Measure subtraction, Measure multiplication, Measure division,"
-                        + " Measure lower bound, Measure upper bound, and Measure width.")
+                        + " Measure lower bound, Measure upper bound, Measure width, and Measure"
+                        + " aggregate, which works over a list of measures.")
                 .isA(modelRoot);
         EntityProxy.Concept measureOperator = set.conceptRef("Measure operator (IkeFoundation)");
 
@@ -1068,8 +1090,11 @@ final class ExpressionLanguageSet {
                         + " lower bound of the result is the lower bounds added together, and the"
                         + " upper bound is the upper bounds added together. An end of the result is"
                         + " included only when every end that produced it is included. An operand"
-                        + " that is Indeterminate makes the sum Indeterminate. CQL's \"+\" is this"
-                        + " addition; CQL adds single values, and there the two agree.")
+                        + " that is Indeterminate contributes its whole frame, so the sum still says"
+                        + " at least how much: a total daily dose with one dose Indeterminate is at"
+                        + " least the sum of the known doses. The sum is Indeterminate only when its"
+                        + " own bounds cover its whole frame. CQL's \"+\" is this addition; CQL adds"
+                        + " single values, and there the two agree.")
                 .isA(measureOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure addition")),
                         measureKind, measureKind, variadic),
@@ -1101,8 +1126,9 @@ final class ExpressionLanguageSet {
                 .definition("A measure operator that multiplies two or more measures, in any order."
                         + " The bounds of the result are the smallest and the largest product that"
                         + " can be made from one bound of each operand. An operand that is"
-                        + " Indeterminate makes the product Indeterminate. CQL's \"*\" is this"
-                        + " multiplication.")
+                        + " Indeterminate contributes its whole frame, and the product is"
+                        + " Indeterminate only when its own bounds cover its whole frame. CQL's"
+                        + " \"*\" is this multiplication.")
                 .isA(measureOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure multiplication")),
                         measureKind, measureKind, variadic),
@@ -1155,6 +1181,91 @@ final class ExpressionLanguageSet {
                         measureKind, measureKind, unary),
                 set, keywords, cql, "width of", operatorKeyword, true, "Measure width"),
                 set, keywords, cql, "duration of", operatorKeyword, false, "Measure width");
+
+        set.concept("Measure aggregate (IkeFoundation)").at(inception)
+                .synonym("Measure aggregate")
+                .definition("A measure operator that produces one measure from a list of measures."
+                        + " Every member counts unless the aggregate is set to count only the"
+                        + " members that arrived at a value, those that are not Indeterminate, the"
+                        + " way a filter's criteria say which outcomes count. Each member of this"
+                        + " family is exact on ranges for one reason: none of them can go down when"
+                        + " a member goes up, so the aggregate of all the low ends and the"
+                        + " aggregate of all the high ends are the ends of the true range, and"
+                        + " count is exact outright. CQL's aggregate functions skip null, so each"
+                        + " binds with the choice fixed to members with a value and never written"
+                        + " down. Its members are Measure count, Measure sum, Measure least,"
+                        + " Measure greatest, Measure mean, and Measure median.")
+                .isA(measureOperator);
+        EntityProxy.Concept measureAggregate = set.conceptRef("Measure aggregate (IkeFoundation)");
+
+        keyword(set.concept("Measure count (IkeFoundation)").at(inception)
+                .synonym("Measure count")
+                .definition("A measure aggregate that gives how many members count, as a single"
+                        + " value whose semantic is a count of statements. Set to count only"
+                        + " members with a value, it gives how many statements arrived at one."
+                        + " CQL's Count is this with that choice fixed.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure count")),
+                        measureListKind, measureKind, unary),
+                set, keywords, cql, "Count", functionName, true, "Measure count");
+
+        keyword(set.concept("Measure sum (IkeFoundation)").at(inception)
+                .synonym("Measure sum")
+                .definition("A measure aggregate that adds every member that counts, Measure"
+                        + " addition across the list: the low ends added together to the high ends"
+                        + " added together, on the members' semantic. A total daily dose with one"
+                        + " dose Indeterminate is at least the sum of the known doses. CQL's Sum is"
+                        + " this with members with a value fixed.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure sum")),
+                        measureListKind, measureKind, unary),
+                set, keywords, cql, "Sum", functionName, true, "Measure sum");
+
+        keyword(set.concept("Measure least (IkeFoundation)").at(inception)
+                .synonym("Measure least")
+                .definition("A measure aggregate that gives the least value among the members that"
+                        + " count: from the lowest of the low ends to the lowest of the high ends."
+                        + " HbA1c results of 7.0 to 8.0 and exactly 7.5 have a least result between"
+                        + " 7.0 and 7.5. An Indeterminate member that counts puts the low end at"
+                        + " the bottom of the frame. CQL's Min is this with members with a value"
+                        + " fixed.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure least")),
+                        measureListKind, measureKind, unary),
+                set, keywords, cql, "Min", functionName, true, "Measure least");
+
+        keyword(set.concept("Measure greatest (IkeFoundation)").at(inception)
+                .synonym("Measure greatest")
+                .definition("A measure aggregate that gives the greatest value among the members"
+                        + " that count: from the highest of the low ends to the highest of the high"
+                        + " ends. The same results have a greatest result between 7.5 and 8.0. An"
+                        + " Indeterminate member that counts puts the high end at the top of the"
+                        + " frame. CQL's Max is this with members with a value fixed.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure greatest")),
+                        measureListKind, measureKind, unary),
+                set, keywords, cql, "Max", functionName, true, "Measure greatest");
+
+        keyword(set.concept("Measure mean (IkeFoundation)").at(inception)
+                .synonym("Measure mean")
+                .definition("A measure aggregate that gives the mean of the members that count:"
+                        + " from the mean of the low ends to the mean of the high ends. An"
+                        + " Indeterminate member widens the mean by its share of the frame, a third"
+                        + " of it among three. CQL's Avg is this with members with a value fixed.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure mean")),
+                        measureListKind, measureKind, unary),
+                set, keywords, cql, "Avg", functionName, true, "Measure mean");
+
+        keyword(set.concept("Measure median (IkeFoundation)").at(inception)
+                .synonym("Measure median")
+                .definition("A measure aggregate that gives the median of the members that count:"
+                        + " from the median of the low ends to the median of the high ends. CQL's"
+                        + " Median is this with members with a value fixed.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure median")),
+                        measureListKind, measureKind, unary),
+                set, keywords, cql, "Median", functionName, true, "Measure median");
 
         // ── The statement's measures: one result and its cross-cutting measurements
         set.concept("Statement measure (IkeFoundation)").at(inception)
@@ -1450,8 +1561,10 @@ final class ExpressionLanguageSet {
                 .synonym("Statement operator")
                 .definition("An operator that works on sets of ANF statements. A filter keeps the"
                         + " statements that meet its criteria, Existence folds a criterion across a"
-                        + " set into one presence value, the set operations combine sets, and the"
-                        + " subject operators turn statements into subjects. The indeterminate"
+                        + " set into one presence value, the set operations combine sets, the"
+                        + " projections turn statements into subjects or into a list of their"
+                        + " measures, and the selections keep the statements that could hold the"
+                        + " least or the greatest of a measure. The indeterminate"
                         + " middle is never dropped by default: a filter's criteria say which"
                         + " outcomes count. The store speaks only for itself: no statement means no"
                         + " record here.")
@@ -1613,6 +1726,45 @@ final class ExpressionLanguageSet {
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Subject projection")),
                         statementSetKind, subjectSetKind, unary);
+
+        set.concept("Measure projection (IkeFoundation)").at(inception)
+                .synonym("Measure projection")
+                .definition("A statement operator that takes a set of statements and the name of"
+                        + " one statement measure, the result, the timing, the normal range, or a"
+                        + " request's, and returns the list of that measure from each statement"
+                        + " that carries it, one entry per statement. The entries must share one"
+                        + " semantic: a list that would mix HbA1c in percent with HbA1c in"
+                        + " millimoles per mole is refused, because measures on different"
+                        + " semantics cannot be added or compared, and converting between"
+                        + " semantics is a relation the knowledge layer would define. It is the"
+                        + " parallel of Subject projection, which turns statements into subjects.")
+                .isA(statementOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure projection")),
+                        statementSetKind, measureListKind, unary);
+
+        set.concept("Least selection (IkeFoundation)").at(inception)
+                .synonym("Least selection")
+                .definition("A statement operator that takes a set of statements and the name of"
+                        + " one statement measure and returns the statements that could hold the"
+                        + " least value of it: those whose low end is not above the lowest of the"
+                        + " high ends. When the ranges overlap, more than one statement qualifies"
+                        + " and the result is a candidate list, the same treatment presence gives"
+                        + " a comparison it cannot decide; when the record decides it, exactly"
+                        + " one. It is how a query asks for the lowest result and when it was"
+                        + " recorded, which the least value alone cannot say.")
+                .isA(statementOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Least selection")),
+                        statementSetKind, statementSetKind, unary);
+
+        set.concept("Greatest selection (IkeFoundation)").at(inception)
+                .synonym("Greatest selection")
+                .definition("A statement operator that takes a set of statements and the name of"
+                        + " one statement measure and returns the statements that could hold the"
+                        + " greatest value of it: those whose high end is not below the highest of"
+                        + " the low ends. Least selection with the ends swapped.")
+                .isA(statementOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Greatest selection")),
+                        statementSetKind, statementSetKind, unary);
 
     }
 }

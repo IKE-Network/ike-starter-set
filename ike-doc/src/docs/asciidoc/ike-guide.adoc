@@ -363,9 +363,10 @@ The three logics the set integrates, k:ClinicalQualityLanguage[],
 k:SNOMEDCTExpressionConstraintLanguage[], and k:EL[], are members of
 k:ExpressionLanguage[], and each one's allowed constructs are exactly the bindings
 that name it. ECL's `<`, `<<`, `>`, `>>`, `AND`, `OR`, `MINUS`, `^`, and `:` name the
-concept-set operators of the topic layer. CQL's keywords bind in three roles. Its
+concept-set operators of the topic layer. CQL's keywords bind in four roles. Its
 operators name the presence connectives, the comparisons, the measure relations, the
-measure operators, and the statement operators. Its type keywords name the kinds its types are represented
+measure operators, and the statement operators, and its function names, Count, Sum,
+Min, Max, Avg, and Median, name the measure aggregates. Its type keywords name the kinds its types are represented
 as: `Boolean` as k:PresenceMeasureKind[], `Quantity`, `Interval`, and the numeric and
 date types as k:MeasureKind[], `Code` and `Concept` as k:ConceptKind[]. Its literals
 `true`, `false`, and `null` name k:PresentLiteral[], k:AbsentLiteral[], and
@@ -384,7 +385,8 @@ k:OperandKind[] is what an operator works on or yields, and the kinds are ANF's:
 k:ClassKind[] and k:AxiomKind[] for the knowledge layer, k:ConceptKind[] and
 k:ConceptSetKind[] for topic selection, k:MeasureKind[], two bounds plus a measure
 semantic, and k:PresenceMeasureKind[], a measure on the Presence semantic, for values,
-determinations, and criteria, k:StatementKind[] for what a criterion tests,
+determinations, and criteria, k:MeasureListKind[], the measures of a set of statements
+gathered for an aggregate, k:StatementKind[] for what a criterion tests,
 k:StatementSetKind[] and k:SubjectSetKind[] for what a query narrows and answers with. There is no truth-value kind, and a generic is typed
 at the root, meaning any kind. k:Arity[] is a concept rather than a number so that
 k:Variadic[] is a value, never a placeholder. k:ExistentialRestriction[] is k:Unary[]:
@@ -478,8 +480,30 @@ not an operation on a range, since the remainder of a range is not a range;
 where ANF's counterpart is the frame of reference of the measure semantic; and
 `predecessor` and `successor` step a value by one unit of resolution to close an open
 interval end, which ANF never needs because it records whether each end is included.
-Least, greatest, count, sum, and mean over the measures of a set of statements are
-aggregates, a later pass, and CQL's `Min` and `Max` name least and greatest there.
+
+A k:MeasureAggregate[] produces one measure from a k:MeasureListKind[] list, the
+measures of a set of statements gathered by k:MeasureProjection[], one entry per
+statement that carries the named measure, all on one semantic. k:MeasureCount[],
+k:MeasureSum[], k:MeasureLeast[], k:MeasureGreatest[], k:MeasureMean[], and
+k:MeasureMedian[] are exact on ranges for one reason: none of them can go down when a
+member goes up, so the aggregate of the low ends and the aggregate of the high ends
+are the ends of the true range. HbA1c results of 7.0 to 8.0 and exactly 7.5 have a
+least result between 7.0 and 7.5 and a greatest between 7.5 and 8.0, and a total
+daily dose with one dose Indeterminate is at least the sum of the known doses. Every
+member counts unless the aggregate is set to count only members with a value, the way
+a filter's criteria say which outcomes count; CQL's `Count`, `Sum`, `Min`, `Max`,
+`Avg`, and `Median` skip null, so each binds with that choice fixed and never written
+down, as `where` binds with Present fixed. Which statement holds the least or the
+greatest value is a selection, k:LeastSelection[] and k:GreatestSelection[], and with
+overlapping ranges it returns a candidate list, the same treatment presence gives a
+comparison it cannot decide. CQL's `StdDev`, `Variance`, and their population forms
+are not bound, because the spread of a set of ranges has no exact range that can be
+found without trying every combination of ends; `Mode`, because the most common value
+of a set of ranges is not a range; `Product` and `GeometricMean`, because
+multiplication across a list is exact only when nothing is negative and no ANF use
+needs it; and `AllTrue` and `AnyTrue`, because they are Presence AND and Presence OR
+with Indeterminate members dropped, the closed-world move `exists` made, and deserve
+their own decision.
 
 === The Checks Are Derived, and They Run
 

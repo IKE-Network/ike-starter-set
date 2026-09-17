@@ -77,6 +77,7 @@ class ExpressionLanguageIT {
     private static int operatorKeywordNid;
     private static int typeKeywordNid;
     private static int literalKeywordNid;
+    private static int functionNameNid;
     private static int conservativeExtensionNid;
     private static int logicalEquivalenceNid;
     private static int definitionalExtensionNid;
@@ -128,13 +129,14 @@ class ExpressionLanguageIT {
         operatorKeywordNid = nid("Operator keyword (IkeFoundation)");
         typeKeywordNid = nid("Type keyword (IkeFoundation)");
         literalKeywordNid = nid("Literal keyword (IkeFoundation)");
+        functionNameNid = nid("Function name (IkeFoundation)");
         conservativeExtensionNid = nid("Conservative extension (IkeFoundation)");
         logicalEquivalenceNid = nid("Logical equivalence (IkeFoundation)");
         definitionalExtensionNid = nid("Definitional extension (IkeFoundation)");
         operandKindRootNid = nid("Operand kind (IkeFoundation)");
         presenceMeasureKindNid = nid("Presence measure kind (IkeFoundation)");
         for (String kind : List.of("Class", "Axiom", "Concept", "Concept set", "Measure",
-                "Presence measure", "Statement", "Set", "Statement set", "Subject set")) {
+                "Presence measure", "Statement", "Measure list", "Set", "Statement set", "Subject set")) {
             KINDS.add(nid(kind + " kind (IkeFoundation)"));
         }
         QUALIFIERS.put(nid("Class kind (IkeFoundation)"), "EL++ ");
@@ -327,7 +329,7 @@ class ExpressionLanguageIT {
     // ── Bindings ────────────────────────────────────────────────────────
 
     @Test
-    @DisplayName("A binding names what its lexical role says: an operator with a denotation, a kind, or a literal with bounds")
+    @DisplayName("A binding names what its lexical role says: an operator or function with a denotation, a kind, or a literal with bounds")
     void bindingsNameWhatTheirRoleSays() {
         int bindings = 0;
         for (Map.Entry<Integer, Map<String, List<Integer>>> logic : KEYWORDS.entrySet()) {
@@ -335,7 +337,7 @@ class ExpressionLanguageIT {
                 int role = ROLES.get(logic.getKey()).get(keyword.getKey());
                 for (int named : keyword.getValue()) {
                     String where = "'" + keyword.getKey() + "' in " + fqn(logic.getKey());
-                    if (role == operatorKeywordNid) {
+                    if (role == operatorKeywordNid || role == functionNameNid) {
                         assertNotNull(DENOTATIONS.get(named), where + " names an untyped operator " + fqn(named));
                     } else if (role == typeKeywordNid) {
                         assertTrue(KINDS.contains(named), where + " names " + fqn(named) + ", not a kind");
@@ -381,6 +383,7 @@ class ExpressionLanguageIT {
                         "<", "<=", ">", ">=", "=", "same as", "between", "during", "included in", "includes",
                         "contains", "overlaps", "before", "after",
                         "+", "-", "*", "/", "start of", "end of", "width of", "duration between", "duration of",
+                        "Count", "Sum", "Min", "Max", "Avg", "Median",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -528,6 +531,49 @@ class ExpressionLanguageIT {
         assertEquals(nid("Measure upper bound (IkeFoundation)"), only(cqlNid, "end of"));
         assertEquals(nid("Measure width (IkeFoundation)"), only(cqlNid, "width of"));
         assertEquals(nid("Measure width (IkeFoundation)"), only(cqlNid, "duration of"));
+    }
+
+    @Test
+    @DisplayName("Aggregates take a measure list and yield a measure, the projection produces the list, the selections keep statements, and CQL's function names bind to the aggregates")
+    void aggregatesProjectionAndSelectionsAreTyped() {
+        int measureKind = nid("Measure kind (IkeFoundation)");
+        int measureListKind = nid("Measure list kind (IkeFoundation)");
+        int statementSetKind = nid("Statement set kind (IkeFoundation)");
+        int unary = nid("Unary (IkeFoundation)");
+        int measureAggregate = nid("Measure aggregate (IkeFoundation)");
+        int statementOperator = nid("Statement operator (IkeFoundation)");
+        assertTrue(KINDS.contains(measureListKind), "Measure list is an operand kind");
+        assertTrue(latestIsAParents(measureAggregate).contains(nid("Measure operator (IkeFoundation)")),
+                "Measure aggregate is a measure operator");
+        Map<String, String> functions = Map.of(
+                "Measure count", "Count", "Measure sum", "Sum", "Measure least", "Min",
+                "Measure greatest", "Max", "Measure mean", "Avg", "Measure median", "Median");
+        for (Map.Entry<String, String> aggregate : functions.entrySet()) {
+            int aggregateNid = nid(aggregate.getKey() + " (IkeFoundation)");
+            int[] denotation = DENOTATIONS.get(aggregateNid);
+            assertNotNull(denotation, "Untyped " + aggregate.getKey());
+            assertEquals(measureListKind, denotation[0], aggregate.getKey() + " takes a measure list");
+            assertEquals(measureKind, denotation[1], aggregate.getKey() + " yields a measure");
+            assertEquals(unary, denotation[2], aggregate.getKey() + " is unary");
+            assertTrue(latestIsAParents(aggregateNid).contains(measureAggregate), aggregate.getKey() + " is an aggregate");
+            assertEquals(aggregateNid, only(cqlNid, aggregate.getValue()));
+            assertEquals(functionNameNid, ROLES.get(cqlNid).get(aggregate.getValue()),
+                    aggregate.getValue() + " binds as a function name");
+        }
+        int[] projection = DENOTATIONS.get(nid("Measure projection (IkeFoundation)"));
+        assertNotNull(projection, "Untyped Measure projection");
+        assertEquals(statementSetKind, projection[0], "Measure projection takes a statement set");
+        assertEquals(measureListKind, projection[1], "Measure projection yields a measure list");
+        for (String selection : List.of("Least selection", "Greatest selection", "Measure projection")) {
+            int selectionNid = nid(selection + " (IkeFoundation)");
+            assertTrue(latestIsAParents(selectionNid).contains(statementOperator), selection + " is a statement operator");
+        }
+        for (String selection : List.of("Least selection", "Greatest selection")) {
+            int[] denotation = DENOTATIONS.get(nid(selection + " (IkeFoundation)"));
+            assertNotNull(denotation, "Untyped " + selection);
+            assertEquals(statementSetKind, denotation[0], selection + " takes a statement set");
+            assertEquals(statementSetKind, denotation[1], selection + " yields a statement set");
+        }
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────
