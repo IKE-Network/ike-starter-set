@@ -406,6 +406,7 @@ class ExpressionLanguageIT {
                         "with", "without",
                         "valueset", "code", "concept",
                         "convert",
+                        "AllTrue", "AnyTrue",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -911,6 +912,37 @@ class ExpressionLanguageIT {
         assertEquals(nid("Measure multiplication (IkeFoundation)"), relation[0]);
         assertEquals(definitionalExtensionNid, relation[1]);
         assertEquals(conversion, only(cqlNid, "convert"));
+    }
+
+    // ── AllTrue and AnyTrue: the presence aggregates and their closed-world readings ──
+
+    @Test
+    @DisplayName("The presence aggregates take a measure list and yield a presence value, the closed-world ones conservatively extend them, and AllTrue and AnyTrue name the closed-world ones as function names")
+    void presenceAggregatesAndClosedWorldReadings() {
+        int measureListKind = nid("Measure list kind (IkeFoundation)");
+        int measureAggregate = nid("Measure aggregate (IkeFoundation)");
+        for (String aggregate : List.of("Measure all present", "Measure any present",
+                "Closed-world all present", "Closed-world any present")) {
+            int aggregateNid = nid(aggregate + " (IkeFoundation)");
+            int[] denotation = DENOTATIONS.get(aggregateNid);
+            assertNotNull(denotation, "Untyped " + aggregate);
+            assertEquals(measureListKind, denotation[0], aggregate + " takes a measure list");
+            assertEquals(presenceMeasureKindNid, denotation[1], aggregate + " yields a presence value");
+            assertTrue(latestIsAParents(aggregateNid).contains(measureAggregate), aggregate + " is an aggregate");
+        }
+        int[] all = RELATIONS.get(nid("Closed-world all present (IkeFoundation)"));
+        assertNotNull(all, "Closed-world all present claims a relation");
+        assertEquals(nid("Measure all present (IkeFoundation)"), all[0]);
+        assertEquals(conservativeExtensionNid, all[1]);
+        int[] any = RELATIONS.get(nid("Closed-world any present (IkeFoundation)"));
+        assertNotNull(any, "Closed-world any present claims a relation");
+        assertEquals(nid("Measure any present (IkeFoundation)"), any[0]);
+        assertEquals(conservativeExtensionNid, any[1]);
+        assertEquals(nid("Closed-world all present (IkeFoundation)"), only(cqlNid, "AllTrue"));
+        assertEquals(nid("Closed-world any present (IkeFoundation)"), only(cqlNid, "AnyTrue"));
+        assertEquals(functionNameNid, ROLES.get(cqlNid).get("AllTrue"), "AllTrue binds as a function name");
+        assertEquals(nid("Closed-world existence (IkeFoundation)"), only(cqlNid, "exists"),
+                "exists names the renamed closed-world existence");
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

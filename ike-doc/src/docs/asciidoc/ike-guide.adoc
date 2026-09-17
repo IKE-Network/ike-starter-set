@@ -459,8 +459,8 @@ record, found by k:SetDifference[], never by NOT. k:Existence[] is Presence
 OR across a statement set and
 returns nothing on an empty set, since a presence value is a finding and an empty set
 holds none. CQL's `exists` returns false there, so it is its own construct,
-k:ExistenceWithNoRecordAsAbsent[], a conservative extension of Existence whose one
-added rule is that no record counts as absent. The set operators act on groups already
+k:ClosedWorldExistence[], Existence read as if the store held the whole world, a
+conservative extension whose one added rule is that no record counts as absent. The set operators act on groups already
 sorted, which is what CQL's `intersect`, `union`, and `except` do on lists.
 
 A performance carries one k:ResultMeasure[], which is the assertion, and its
@@ -580,9 +580,13 @@ are not bound, because the spread of a set of ranges has no exact range that can
 found without trying every combination of ends; `Mode`, because the most common value
 of a set of ranges is not a range; `Product` and `GeometricMean`, because
 multiplication across a list is exact only when nothing is negative and no ANF use
-needs it; and `AllTrue` and `AnyTrue`, because they are Presence AND and Presence OR
-with Indeterminate members dropped, the closed-world move `exists` made, and deserve
-their own decision.
+needs it. `AllTrue` and `AnyTrue` are settled the way `exists` was: k:MeasureAllPresent[]
+and k:MeasureAnyPresent[] are Presence AND and Presence OR across a list of presence
+values, the outcomes of one determination across many statements, and come out with
+nothing on an empty list; k:ClosedWorldAllPresent[] and k:ClosedWorldAnyPresent[] read
+them as if the store held the whole world, Present and Absent on the empty list, and
+CQL's two functions name those with the members fixed to those with a value, which is
+how CQL skips null.
 
 === Timing Relations
 
@@ -700,7 +704,7 @@ koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts fifteen relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+The set asserts seventeen relations. k:DescendantOf[], k:DescendantOrSelfOf[],
 k:AncestorOf[], and k:AncestorOrSelfOf[] are definable from k:IsA[]; k:SetAND[] is
 definable from k:ELAND[] when its operands are descendant sets, because the
 descendants of a class intersection are the intersection of the descendants, a proven
@@ -714,10 +718,12 @@ to k:DescendantOf[] and k:DescendantOrSelfOf[]: the same concept sets, which the
 contained without saying so until now. k:MeasureBefore[] and k:MeasureAfter[] are
 logically equivalent to k:LessThan[] and k:GreaterThan[]: they decide the same way on
 every pair of measures, and the finite check tries every ordering of the four ends with
-every combination of included and excluded ends. k:ExistenceWithNoRecordAsAbsent[], the
+every combination of included and excluded ends. k:ClosedWorldExistence[], the
 construct CQL's `exists` names, conservatively extends k:Existence[]: it agrees
 wherever Existence has an answer and adds Absent for the empty set, the closed-world
-default made into data rather than a caveat. An instance's is-a to its generic is a
+default made into data rather than a caveat; k:ClosedWorldAllPresent[] and
+k:ClosedWorldAnyPresent[] conservatively extend k:MeasureAllPresent[] and
+k:MeasureAnyPresent[] the same way, for CQL's AllTrue and AnyTrue. An instance's is-a to its generic is a
 different claim, the same idea at another kind, and is not a construct relation. The
 concept-set checks run over the reasoner conformance kit. The finite check runs in the
 set's own integration test: CQL's specified tables for `and`, `or`, `not`, `implies`,

@@ -406,7 +406,7 @@ final class ExpressionLanguageSet {
                         + " construct on everything the core covers, and covers more. Operand kind,"
                         + " result kind, and arity agree, and the added coverage is the extension."
                         + " The check is agreement on every input the core covers. One construct"
-                        + " claims it: Existence with no record as absent, which agrees with"
+                        + " claims it: Closed-world existence, which agrees with"
                         + " Existence on every set that holds a statement and adds an answer,"
                         + " Absent, for the empty set. The three-valued connectives that would have"
                         + " claimed it turned out to be ordinary measure arithmetic instead.")
@@ -1399,7 +1399,9 @@ final class ExpressionLanguageSet {
                         + " count is exact outright. CQL's aggregate functions skip null, so each"
                         + " binds with the choice fixed to members with a value and never written"
                         + " down. Its members are Measure count, Measure sum, Measure least,"
-                        + " Measure greatest, Measure mean, and Measure median.")
+                        + " Measure greatest, Measure mean, Measure median, Measure all present,"
+                        + " Measure any present, Closed-world all present, and Closed-world any"
+                        + " present.")
                 .isA(measureOperator);
         EntityProxy.Concept measureAggregate = set.conceptRef("Measure aggregate (IkeFoundation)");
 
@@ -1471,6 +1473,66 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure median")),
                         measureListKind, measureKind, unary),
                 set, keywords, cql, "Median", functionName, true, "Measure median");
+
+        set.concept("Measure all present (IkeFoundation)").at(inception)
+                .synonym("Measure all present")
+                .definition("A measure aggregate over presence values, Presence AND across a list:"
+                        + " Present when every member that counts is Present, Absent when any"
+                        + " member is Absent, and Indeterminate otherwise; with no member it comes"
+                        + " out with nothing, as Existence does on an empty set. The list is the"
+                        + " outcomes of one determination across many statements, every screening"
+                        + " question in a set answered yes. It takes the aggregate's choice of"
+                        + " which members count, every member or only those with a value.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure all present")),
+                        measureListKind, presenceMeasureKind, unary);
+        EntityProxy.Concept measureAllPresent = set.conceptRef("Measure all present (IkeFoundation)");
+
+        set.concept("Measure any present (IkeFoundation)").at(inception)
+                .synonym("Measure any present")
+                .definition("A measure aggregate over presence values, Presence OR across a list:"
+                        + " Present when any member that counts is Present, Absent when every"
+                        + " member is Absent, and Indeterminate otherwise; with no member it comes"
+                        + " out with nothing. Existence is Presence OR of a criterion across a set"
+                        + " of statements, and this is Presence OR across a list of measures, one"
+                        + " idea at two kinds, the way one AND has three places. It takes the"
+                        + " aggregate's choice of which members count.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure any present")),
+                        measureListKind, presenceMeasureKind, unary);
+        EntityProxy.Concept measureAnyPresent = set.conceptRef("Measure any present (IkeFoundation)");
+
+        keyword(set.concept("Closed-world all present (IkeFoundation)").at(inception)
+                .synonym("Closed-world all present")
+                .definition("Measure all present read as if the store held the whole world: with no"
+                        + " member it comes out Present instead of nothing, since nothing was found"
+                        + " Absent. It agrees with Measure all present wherever that has an answer"
+                        + " and differs only on the empty list, which makes it a conservative"
+                        + " extension. CQL's AllTrue is this with the choice of members fixed to"
+                        + " those with a value, which is how CQL skips null.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Closed-world all present")),
+                        measureListKind, presenceMeasureKind, unary)
+                .semantic(relations, PublicIds.of(set.uuidFor(
+                                "Construct relation: Closed-world all present conservatively extends Measure all present")),
+                        measureAllPresent, set.conceptRef("Conservative extension (IkeFoundation)")),
+                set, keywords, cql, "AllTrue", functionName, true, "Closed-world all present");
+
+        keyword(set.concept("Closed-world any present (IkeFoundation)").at(inception)
+                .synonym("Closed-world any present")
+                .definition("Measure any present read as if the store held the whole world: with no"
+                        + " member it comes out Absent instead of nothing, since nothing was found"
+                        + " Present. It agrees with Measure any present wherever that has an answer"
+                        + " and differs only on the empty list, which makes it a conservative"
+                        + " extension. CQL's AnyTrue is this with the choice of members fixed to"
+                        + " those with a value.")
+                .isA(measureAggregate)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Closed-world any present")),
+                        measureListKind, presenceMeasureKind, unary)
+                .semantic(relations, PublicIds.of(set.uuidFor(
+                                "Construct relation: Closed-world any present conservatively extends Measure any present")),
+                        measureAnyPresent, set.conceptRef("Conservative extension (IkeFoundation)")),
+                set, keywords, cql, "AnyTrue", functionName, true, "Closed-world any present");
 
         // ── Measure list operators: a list of measures in, a list of measures out ──
         set.concept("Measure list operator (IkeFoundation)").at(inception)
@@ -2230,23 +2292,23 @@ final class ExpressionLanguageSet {
                         statementSetKind, presenceMeasureKind, unary);
         EntityProxy.Concept existence = set.conceptRef("Existence (IkeFoundation)");
 
-        keyword(set.concept("Existence with no record as absent (IkeFoundation)").at(inception)
-                .synonym("Existence with no record as absent")
-                .definition("Existence with one extra rule: on an empty set it returns Absent"
-                        + " instead of nothing, so no record counts as absent, as if the store held"
-                        + " the whole world. It agrees with Existence on every set that holds at"
-                        + " least one statement and differs only on the empty set, which makes it"
-                        + " a conservative extension of Existence. The construct CQL's \"exists\""
+        keyword(set.concept("Closed-world existence (IkeFoundation)").at(inception)
+                .synonym("Closed-world existence")
+                .definition("Existence read as if the store held the whole world: on an empty set"
+                        + " it comes out Absent instead of nothing, so no record counts as absent."
+                        + " It agrees with Existence on every set that holds at least one"
+                        + " statement and differs only on the empty set, which makes it a"
+                        + " conservative extension of Existence. The construct CQL's \"exists\""
                         + " names, and the reason a CQL \"not exists\" reads no record as found"
                         + " absent.")
                 .isA(statementOperator)
-                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Existence with no record as absent")),
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Closed-world existence")),
                         statementSetKind, presenceMeasureKind, unary)
                 .semantic(relations,
                         PublicIds.of(set.uuidFor(
-                                "Construct relation: Existence with no record as absent conservatively extends Existence")),
+                                "Construct relation: Closed-world existence conservatively extends Existence")),
                         existence, set.conceptRef("Conservative extension (IkeFoundation)")),
-                set, keywords, cql, "exists", operatorKeyword, true, "Existence with no record as absent");
+                set, keywords, cql, "exists", operatorKeyword, true, "Closed-world existence");
 
         set.concept("Subject projection (IkeFoundation)").at(inception)
                 .synonym("Subject projection")
