@@ -16,3 +16,12 @@ open ~/Solor/ike-kb            # select in Komet; verify; edits are captured
 
 Captured verification change sets land in `~/Solor/ike-kb/changeSets/` and feed
 the next iteration as `CHANGESET` inputs in `ike-kb/pom.xml`.
+<!-- BEGIN ike-managed: developer-setup -->
+
+## Developer Setup
+
+New to IKE development? The
+[Developer Environment guide](https://ike.network/ike-tooling/ike-build-standards/developer-environment.html)
+covers IDE configuration, JDK 25 setup, and the tooling conventions
+every IKE workspace expects — start there before your first build.
+<!-- END ike-managed: developer-setup -->
