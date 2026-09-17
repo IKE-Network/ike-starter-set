@@ -52,6 +52,13 @@
         <url>https://ike.network</url>
     </organization>
 
+    <scm>
+        <connection>scm:git:https://github.com/IKE-Network/ike-starter-set.git</connection>
+        <developerConnection>scm:git:git@github.com:IKE-Network/ike-starter-set.git</developerConnection>
+        <url>https://github.com/IKE-Network/ike-starter-set</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <!-- Required: ike-parent's enforcer fails an inheriting project whose effective
          site URL still points at the in-reactor location (ike-issues#380/#383). -->
     <distributionManagement>
