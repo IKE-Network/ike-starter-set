@@ -363,7 +363,11 @@ The three logics the set integrates, k:ClinicalQualityLanguage[],
 k:SNOMEDCTExpressionConstraintLanguage[], and k:EL[], are members of
 k:ExpressionLanguage[], and each one's allowed constructs are exactly the bindings
 that name it. ECL's `<`, `<<`, `>`, `>>`, `AND`, `OR`, `MINUS`, `^`, and `:` name the
-concept-set operators of the topic layer. CQL's keywords bind in four roles. Its
+concept-set operators of the topic layer; its `{ }`, `[ ]`, `.`, and `+HISTORY` name
+k:AttributeGroupRefinement[], k:AttributeCountRefinement[],
+k:AttributeValueProjection[], and k:ConceptSetHistoryExtension[]; and its `<`, `<=`,
+`>`, `>=`, and `=` before a number name the comparisons, so that `<` and `>` are one
+keyword on two kinds, a concept and a value. CQL's keywords bind in four roles. Its
 operators name the presence connectives, the comparisons, the measure relations, the
 measure operators, and the statement operators, and its function names, Count, Sum,
 Min, Max, Avg, and Median, name the measure aggregates. Its unit keywords,
@@ -376,6 +380,27 @@ k:IndeterminateLiteral[]. EL++ has no surface syntax; its one keyword, AND on
 k:ELAND[], is the set's own rendering. One declaration produces both the binding and
 the dialect-scoped name, so the k:CQLDialectPattern[] and its siblings never drift
 from the bindings.
+
+ECL's remainder was settled in one pass. A group refinement keeps the members with one
+attribute group carrying all the given attributes, a lung finding site and a tumour
+morphology together, and is definable from k:ExistentialRestriction[]. A count
+refinement keeps the members whose definition has a given number of attributes of a
+type, none at all being how ECL asks for concepts without a laterality; it counts
+attributes under the view, which EL++ cannot express, so it is distinct. A value
+projection yields the values of an attribute across a set, the finding sites of
+fractures, a step along an attribute at the topic layer. A history extension adds the
+inactive concepts whose historical associations reach a member, because a statement
+keeps the concept it was coded with and a set under today's view alone would miss it;
+ECL's three profiles bind as spellings with the profile fixed. Unbound with reasons:
+`<!`, `<<!`, `>!`, `>>!`, `!!<`, and `!!>`, because one level of the hierarchy is
+authoring structure and a criterion built on it changes when a concept is inserted
+between two others; `*`, which is Descendant or self of the root; `=` and `!=` inside a
+refinement, the refinement's own spelling and Presence NOT of Equal to; `R`, the value
+projection with Set AND; `{{ C active }}`, `{{ C moduleId }}`, and `{{ C effectiveTime
+}}`, because the view coordinate is where a query fixes status, module, and time;
+`{{ term = }}` and the other description filters, a search rather than a criterion;
+`{{ M }}` member filters and `^ [ ]` member fields, data on a membership; and `true`,
+`false`, and `#`, spellings of concrete values.
 
 === Kinds Make the Claims Well-Typed
 
@@ -594,11 +619,12 @@ koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts eleven relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+The set asserts twelve relations. k:DescendantOf[], k:DescendantOrSelfOf[],
 k:AncestorOf[], and k:AncestorOrSelfOf[] are definable from k:IsA[]; k:SetAND[] is
 definable from k:ELAND[] when its operands are descendant sets, because the
 descendants of a class intersection are the intersection of the descendants, a proven
-fact; k:AttributeRefinement[] is definable from k:ExistentialRestriction[].
+fact; k:AttributeRefinement[] and k:AttributeGroupRefinement[] are definable from
+k:ExistentialRestriction[].
 k:DescendantFieldConstraint[] and k:KindOfFieldConstraint[] are logically equivalent
 to k:DescendantOf[] and k:DescendantOrSelfOf[]: the same concept sets, which the set
 contained without saying so until now. k:MeasureBefore[] and k:MeasureAfter[] are

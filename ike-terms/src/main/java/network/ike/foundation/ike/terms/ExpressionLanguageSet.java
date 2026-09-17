@@ -987,31 +987,36 @@ final class ExpressionLanguageSet {
         // ── Comparisons: the foundation's concrete-domain operators, recast on measures
         // Two measures on one scale in, a presence value out: Present when the bounds
         // decide it, Absent when they exclude it, Indeterminate when they overlap.
-        keyword(set.concept("Greater than (SOLOR)").at(inception)
+        keyword(keyword(set.concept("Greater than (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Greater than")),
                         measureKind, presenceMeasureKind, binary),
-                set, keywords, cql, ">", operatorKeyword, true, "Greater than");
-        keyword(keyword(keyword(set.concept("Greater than or equal to (SOLOR)").at(inception)
+                set, keywords, cql, ">", operatorKeyword, true, "Greater than"),
+                set, keywords, ecl, ">", operatorKeyword, true, "Greater than");
+        keyword(keyword(keyword(keyword(set.concept("Greater than or equal to (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Greater than or equal to")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, ">=", operatorKeyword, true, "Greater than or equal to"),
                 set, keywords, cql, "on or after", operatorKeyword, false, "Greater than or equal to"),
-                set, keywords, cql, "after or on", operatorKeyword, false, "Greater than or equal to");
-        keyword(set.concept("Less than (SOLOR)").at(inception)
+                set, keywords, cql, "after or on", operatorKeyword, false, "Greater than or equal to"),
+                set, keywords, ecl, ">=", operatorKeyword, true, "Greater than or equal to");
+        keyword(keyword(set.concept("Less than (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Less than")),
                         measureKind, presenceMeasureKind, binary),
-                set, keywords, cql, "<", operatorKeyword, true, "Less than");
-        keyword(keyword(keyword(set.concept("Less than or equal to (SOLOR)").at(inception)
+                set, keywords, cql, "<", operatorKeyword, true, "Less than"),
+                set, keywords, ecl, "<", operatorKeyword, true, "Less than");
+        keyword(keyword(keyword(keyword(set.concept("Less than or equal to (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Less than or equal to")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, "<=", operatorKeyword, true, "Less than or equal to"),
                 set, keywords, cql, "on or before", operatorKeyword, false, "Less than or equal to"),
-                set, keywords, cql, "before or on", operatorKeyword, false, "Less than or equal to");
-        keyword(keyword(set.concept("Equal to (SOLOR)").at(inception)
+                set, keywords, cql, "before or on", operatorKeyword, false, "Less than or equal to"),
+                set, keywords, ecl, "<=", operatorKeyword, true, "Less than or equal to");
+        keyword(keyword(keyword(set.concept("Equal to (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Equal to")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, "=", operatorKeyword, true, "Equal to"),
-                set, keywords, cql, "same as", operatorKeyword, false, "Equal to");
+                set, keywords, cql, "same as", operatorKeyword, false, "Equal to"),
+                set, keywords, ecl, "=", operatorKeyword, true, "Equal to");
 
         // ── Measure relations: one family for presence, quantity, and time
         EntityProxy.Concept lessThan = set.conceptRef("Less than (SOLOR)");
@@ -1861,6 +1866,74 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set membership")),
                         conceptKind, presenceMeasureKind, unary),
                 set, keywords, cql, "in", operatorKeyword, true, "Concept set membership");
+
+        // ── ECL's remainder: groups, counts, a step along an attribute, and history ──
+        keyword(set.concept("Attribute group refinement (IkeFoundation)").at(inception)
+                .synonym("Attribute group refinement")
+                .definition("A taxonomy operator that keeps the members of a concept set that have"
+                        + " one attribute group carrying all the given attributes, each with a"
+                        + " value in a given concept set: a disorder whose finding site is the"
+                        + " lung and whose morphology is a tumour in the same group, not a tumour"
+                        + " somewhere and a lung finding elsewhere. A group is an existential"
+                        + " restriction over the grouping attribute with a conjunction inside, so"
+                        + " this is definable from Existential restriction. The construct ECL's"
+                        + " \"{ }\" names.")
+                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute group refinement")),
+                        conceptSetKind, conceptSetKind, unary)
+                .semantic(relations,
+                        PublicIds.of(set.uuidFor(
+                                "Construct relation: Attribute group refinement definitionally extends"
+                                        + " Existential restriction")),
+                        existentialRestriction, definitionalExtension),
+                set, keywords, ecl, "{ }", operatorKeyword, true, "Attribute group refinement");
+
+        keyword(set.concept("Attribute count refinement (IkeFoundation)").at(inception)
+                .synonym("Attribute count refinement")
+                .definition("A taxonomy operator that keeps the members of a concept set whose"
+                        + " definition has a given number of attributes of a type, from none to"
+                        + " any, each with a value in a given concept set. None at all is how ECL"
+                        + " asks for concepts without an attribute, a fracture with no laterality"
+                        + " recorded. It counts the attributes in the definition under the view,"
+                        + " which EL++ cannot express, so it is distinct and no relation to the"
+                        + " core is claimed. The construct ECL's \"[ ]\" names.")
+                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute count refinement")),
+                        conceptSetKind, conceptSetKind, unary),
+                set, keywords, ecl, "[ ]", operatorKeyword, true, "Attribute count refinement");
+
+        keyword(set.concept("Attribute value projection (IkeFoundation)").at(inception)
+                .synonym("Attribute value projection")
+                .definition("A taxonomy operator that takes a concept set and an attribute and"
+                        + " yields the values of that attribute across the members: the finding"
+                        + " sites of fractures. It is a step along an attribute at the topic"
+                        + " layer, as Association constraint is a step along an association at"
+                        + " the statement layer, computed over the definitions under the view,"
+                        + " and distinct. ECL's reverse flag \"R\" is this projection with Set"
+                        + " AND and carries no binding. The construct ECL's \".\" names.")
+                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute value projection")),
+                        conceptSetKind, conceptSetKind, unary),
+                set, keywords, ecl, ".", operatorKeyword, true, "Attribute value projection");
+
+        ConceptBuilder.ActiveScope history = set.concept("Concept set history extension (IkeFoundation)").at(inception)
+                .synonym("Concept set history extension")
+                .definition("A taxonomy operator that adds to a concept set the inactive concepts"
+                        + " whose historical associations reach a member, so that records coded"
+                        + " with a concept since retired are found: a statement is immutable and"
+                        + " keeps the concept it was coded with, and a concept set under today's"
+                        + " view alone would miss it. ECL's three profiles, minimum, moderate, and"
+                        + " maximum, decide which association types count, and each binds as a"
+                        + " spelling with the profile fixed; \"+HISTORY\" alone is the moderate"
+                        + " profile. It reads association data, not definitions, so it is"
+                        + " distinct.")
+                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set history extension")),
+                        conceptSetKind, conceptSetKind, unary);
+        history = keyword(history, set, keywords, ecl, "+HISTORY", operatorKeyword, true, "Concept set history extension");
+        history = keyword(history, set, keywords, ecl, "+HISTORY-MIN", operatorKeyword, false, "Concept set history extension");
+        history = keyword(history, set, keywords, ecl, "+HISTORY-MOD", operatorKeyword, false, "Concept set history extension");
+        keyword(history, set, keywords, ecl, "+HISTORY-MAX", operatorKeyword, false, "Concept set history extension");
 
         // ── Equivalences the set already contained without saying so ────
         set.concept("Descendant field constraint (IkeFoundation)").at(inception)

@@ -48,6 +48,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -400,7 +401,9 @@ class ExpressionLanguageIT {
                         "Code", "Concept",
                         "true", "false", "null"),
                 KEYWORDS.get(cqlNid).keySet(), "CQL roster");
-        assertEquals(Set.of("<", "<<", ">", ">>", "AND", "OR", "MINUS", "^", ":"),
+        assertEquals(Set.of("<", "<<", ">", ">>", "AND", "OR", "MINUS", "^", ":",
+                        "<=", ">=", "=", "{ }", "[ ]", ".",
+                        "+HISTORY", "+HISTORY-MIN", "+HISTORY-MOD", "+HISTORY-MAX"),
                 KEYWORDS.get(eclNid).keySet(), "ECL roster");
         assertEquals(Set.of("AND"), KEYWORDS.get(elNid).keySet(),
                 "EL++ has no surface syntax; its one keyword is the set's own rendering of its conjunction");
@@ -771,6 +774,54 @@ class ExpressionLanguageIT {
         }
         assertEquals(nid("Measure list merge (IkeFoundation)"), only(cqlNid, "collapse"));
         assertEquals(nid("Measure list split (IkeFoundation)"), only(cqlNid, "expand"));
+    }
+
+    // ── ECL's remainder ──────────────────────────────────────────────────
+
+    @Test
+    @DisplayName("ECL's comparisons name the comparison operators, < and > being one keyword on two kinds, and its four remaining constructs are typed, bound, and related as claimed")
+    void eclRemainderIsTypedAndBound() {
+        int conceptKind = nid("Concept kind (IkeFoundation)");
+        int conceptSetKind = nid("Concept set kind (IkeFoundation)");
+        int measureKind = nid("Measure kind (IkeFoundation)");
+        int unary = nid("Unary (IkeFoundation)");
+        assertEquals(nid("Less than or equal to (SOLOR)"), only(eclNid, "<="));
+        assertEquals(nid("Greater than or equal to (SOLOR)"), only(eclNid, ">="));
+        assertEquals(nid("Equal to (SOLOR)"), only(eclNid, "="));
+        for (String[] overload : new String[][] {{"<", "Descendant of (IkeFoundation)", "Less than (SOLOR)"},
+                {">", "Ancestor of (IkeFoundation)", "Greater than (SOLOR)"}}) {
+            List<Integer> named = KEYWORDS.get(eclNid).get(overload[0]);
+            assertEquals(Set.of(nid(overload[1]), nid(overload[2])), new HashSet<>(named),
+                    "ECL's " + overload[0] + " names a hierarchy operator on a concept and a comparison on a value");
+            assertEquals(conceptKind, DENOTATIONS.get(nid(overload[1]))[0]);
+            assertEquals(measureKind, DENOTATIONS.get(nid(overload[2]))[0]);
+        }
+        Map<String, String> spellings = Map.of("Attribute group refinement", "{ }",
+                "Attribute count refinement", "[ ]", "Attribute value projection", ".",
+                "Concept set history extension", "+HISTORY");
+        for (Map.Entry<String, String> construct : spellings.entrySet()) {
+            int constructNid = nid(construct.getKey() + " (IkeFoundation)");
+            int[] denotation = DENOTATIONS.get(constructNid);
+            assertNotNull(denotation, "Untyped " + construct.getKey());
+            assertEquals(conceptSetKind, denotation[0], construct.getKey() + " takes a concept set");
+            assertEquals(conceptSetKind, denotation[1], construct.getKey() + " yields a concept set");
+            assertEquals(unary, denotation[2], construct.getKey() + " is unary");
+            assertTrue(latestIsAParents(constructNid).contains(IkeTerm.TAXONOMY_OPERATOR.nid()),
+                    construct.getKey() + " is a taxonomy operator");
+            assertEquals(constructNid, only(eclNid, construct.getValue()));
+        }
+        int history = nid("Concept set history extension (IkeFoundation)");
+        for (String profile : List.of("+HISTORY-MIN", "+HISTORY-MOD", "+HISTORY-MAX")) {
+            assertEquals(history, only(eclNid, profile), profile + " is a spelling of the history extension");
+        }
+        int[] group = RELATIONS.get(nid("Attribute group refinement (IkeFoundation)"));
+        assertNotNull(group, "Attribute group refinement claims a relation");
+        assertEquals(nid("Existential restriction"), group[0]);
+        assertEquals(definitionalExtensionNid, group[1]);
+        for (String distinct : List.of("Attribute count refinement", "Attribute value projection",
+                "Concept set history extension")) {
+            assertNull(RELATIONS.get(nid(distinct + " (IkeFoundation)")), distinct + " claims no relation");
+        }
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────
