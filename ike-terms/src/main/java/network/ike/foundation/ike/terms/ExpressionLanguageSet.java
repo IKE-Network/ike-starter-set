@@ -984,6 +984,63 @@ final class ExpressionLanguageSet {
                         presenceMeasureKind, presenceMeasureKind, unary),
                 set, keywords, cql, "not", operatorKeyword, true, "Presence NOT");
 
+        EntityProxy.Concept presenceAnd = set.conceptRef("Presence AND (IkeFoundation)");
+        EntityProxy.Concept presenceOr = set.conceptRef("Presence OR (IkeFoundation)");
+        keyword(set.concept("Presence implication (IkeFoundation)").at(inception)
+                .synonym("Presence implication")
+                .definition("A connective operator on two presence values: Present when the first"
+                        + " is Absent or the second is Present, Absent when the first is Present"
+                        + " and the second is Absent, and Indeterminate otherwise. It is Presence"
+                        + " NOT of the first joined by Presence OR with the second, so it is"
+                        + " definable from Presence OR. CQL's \"implies\" is this, and its"
+                        + " nine-row table follows from the bounds.")
+                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence implication")),
+                        presenceMeasureKind, presenceMeasureKind, binary)
+                .semantic(relations, PublicIds.of(set.uuidFor(
+                                "Construct relation: Presence implication definitionally extends Presence OR")),
+                        presenceOr, definitionalExtension),
+                set, keywords, cql, "implies", operatorKeyword, true, "Presence implication");
+
+        keyword(set.concept("Presence exclusive OR (IkeFoundation)").at(inception)
+                .synonym("Presence exclusive OR")
+                .definition("A connective operator on two presence values: Present when one is"
+                        + " Present and the other Absent, Absent when both are Present or both are"
+                        + " Absent, and Indeterminate when either is Indeterminate. It is Presence"
+                        + " OR of the two joined by Presence AND with Presence NOT of their"
+                        + " Presence AND, so it is definable from Presence AND. CQL's \"xor\" is"
+                        + " this, and its nine-row table follows from the bounds.")
+                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence exclusive OR")),
+                        presenceMeasureKind, presenceMeasureKind, binary)
+                .semantic(relations, PublicIds.of(set.uuidFor(
+                                "Construct relation: Presence exclusive OR definitionally extends Presence AND")),
+                        presenceAnd, definitionalExtension),
+                set, keywords, cql, "xor", operatorKeyword, true, "Presence exclusive OR");
+
+        keyword(keyword(set.concept("Conditional (IkeFoundation)").at(inception)
+                .synonym("Conditional")
+                .definition("An if-then-else: a value chosen by a condition, with any number of"
+                        + " further conditions and a fallback, every branch of one kind. An"
+                        + " if-then-else needs a yes or a no, and in this model a comparison can"
+                        + " also come out Indeterminate, so each condition is a comparison on the"
+                        + " presence semantic that names which outcomes take its branch, Present"
+                        + " alone or Present and Indeterminate together, and is therefore always"
+                        + " decided. A bare comparison that could come out Indeterminate is not"
+                        + " accepted, for the reason a filter does not accept one. An author who"
+                        + " wants the middle in a branch of its own adds a condition for"
+                        + " Indeterminate alone and gives that branch what fits: for measures, the"
+                        + " widest range the two branches allow; for concepts, both, as"
+                        + " candidates. CQL's \"if\" and \"case\" are this with Present fixed as"
+                        + " the outcome that takes the branch and never written down, so an"
+                        + " Indeterminate condition goes to the else branch, and the binding"
+                        + " records that as data.")
+                .isA(modelRoot)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Conditional")),
+                        operandKind, operandKind, variadic),
+                set, keywords, cql, "if", operatorKeyword, true, "Conditional"),
+                set, keywords, cql, "case", operatorKeyword, false, "Conditional");
+
         // ── Comparisons: the foundation's concrete-domain operators, recast on measures
         // Two measures on one scale in, a presence value out: Present when the bounds
         // decide it, Absent when they exclude it, Indeterminate when they overlap.
@@ -1011,12 +1068,15 @@ final class ExpressionLanguageSet {
                 set, keywords, cql, "on or before", operatorKeyword, false, "Less than or equal to"),
                 set, keywords, cql, "before or on", operatorKeyword, false, "Less than or equal to"),
                 set, keywords, ecl, "<=", operatorKeyword, true, "Less than or equal to");
-        keyword(keyword(keyword(set.concept("Equal to (SOLOR)").at(inception)
+        keyword(keyword(keyword(keyword(keyword(keyword(set.concept("Equal to (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Equal to")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, "=", operatorKeyword, true, "Equal to"),
                 set, keywords, cql, "same as", operatorKeyword, false, "Equal to"),
-                set, keywords, ecl, "=", operatorKeyword, true, "Equal to");
+                set, keywords, ecl, "=", operatorKeyword, true, "Equal to"),
+                set, keywords, cql, "is null", operatorKeyword, false, "Equal to"),
+                set, keywords, cql, "is true", operatorKeyword, false, "Equal to"),
+                set, keywords, cql, "is false", operatorKeyword, false, "Equal to");
 
         // ── Measure relations: one family for presence, quantity, and time
         EntityProxy.Concept lessThan = set.conceptRef("Less than (SOLOR)");

@@ -434,7 +434,8 @@ k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when th
 threshold or date it compares against is inside the recorded range. An HbA1c recorded
 between 8.5 and 9.5, asked whether it is above 9, is neither known above nor known
 below, and the query reports that rather than guessing. Criteria combine by k:PresenceAND[],
-k:PresenceOR[], and k:PresenceNOT[]. A k:Criterion[] is a test applied to one
+k:PresenceOR[], and k:PresenceNOT[], with k:PresenceImplication[] and
+k:PresenceExclusiveOR[] definable from them. A k:Criterion[] is a test applied to one
 statement: a k:TopicConstraint[] or a k:CircumstanceConstraint[] tests a concept for
 membership in a concept set and is met or not met outright; a k:MeasureComparison[]
 compares a measure with an interval on a semantic and can come out Indeterminate; an
@@ -476,6 +477,25 @@ what became of it, k:CircumstanceConstraint[] asks for it, and the reason, a ref
 failed instrument, a decision not to perform, is an associated statement of its own.
 k:SetDifference[] on a population finds the subjects with no record here, which is all that absence
 of a statement can mean.
+
+=== Conditionals
+
+An if-then-else needs a yes or a no, and in this model a comparison can also come out
+Indeterminate, so a k:Conditional[] has to be told what happens then. Each of its
+conditions is a comparison on the presence semantic that names which outcomes take its
+branch, Present alone or Present and Indeterminate together, and is therefore always
+decided; a bare comparison that could come out Indeterminate is not accepted, for the
+reason a filter does not accept one. An author who wants the middle in a branch of its
+own adds a condition for Indeterminate alone and gives that branch what fits: for
+measures, the widest range the two branches allow; for concepts, both, as candidates.
+CQL's `if` and `case` are this with Present fixed as the outcome that takes the branch
+and never written down, so an Indeterminate condition goes to the `else` branch, and
+the binding records that as data; `then`, `else`, and `when` are connectors and stay
+unbound. `is null`, `is true`, and `is false` are k:EqualTo[] on the presence semantic
+against the three literals, which tests bounds exactly and is always decided, and bind
+as its spellings. `Coalesce` is the conditional with an is-null condition, `IsNull`,
+`IsTrue`, and `IsFalse` are function forms of the same tests, and `is` as a type test has
+no counterpart because kinds are fixed before a query runs; none is bound.
 
 === Arithmetic on Measures
 
@@ -619,12 +639,13 @@ koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts twelve relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+The set asserts fourteen relations. k:DescendantOf[], k:DescendantOrSelfOf[],
 k:AncestorOf[], and k:AncestorOrSelfOf[] are definable from k:IsA[]; k:SetAND[] is
 definable from k:ELAND[] when its operands are descendant sets, because the
 descendants of a class intersection are the intersection of the descendants, a proven
 fact; k:AttributeRefinement[] and k:AttributeGroupRefinement[] are definable from
-k:ExistentialRestriction[].
+k:ExistentialRestriction[]; k:PresenceImplication[] and k:PresenceExclusiveOR[] are
+definable from k:PresenceOR[] and k:PresenceAND[] with k:PresenceNOT[].
 k:DescendantFieldConstraint[] and k:KindOfFieldConstraint[] are logically equivalent
 to k:DescendantOf[] and k:DescendantOrSelfOf[]: the same concept sets, which the set
 contained without saying so until now. k:MeasureBefore[] and k:MeasureAfter[] are
@@ -636,9 +657,9 @@ wherever Existence has an answer and adds Absent for the empty set, the closed-w
 default made into data rather than a caveat. An instance's is-a to its generic is a
 different claim, the same idea at another kind, and is not a construct relation. The
 concept-set checks run over the reasoner conformance kit. The finite check runs in the
-set's own integration test: CQL's specified tables for `and`, `or`, and `not`,
-reproduced row for row from the three literals' bounds, which is what admits CQL's
-`and`, `or`, and `not` by identity.
+set's own integration test: CQL's specified tables for `and`, `or`, `not`, `implies`,
+and `xor`, reproduced row for row from the three literals' bounds, which is what admits
+those five keywords by identity.
 
 == Semantic Field Model
 

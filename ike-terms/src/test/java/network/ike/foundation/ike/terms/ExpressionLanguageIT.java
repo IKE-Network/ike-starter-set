@@ -397,6 +397,7 @@ class ExpressionLanguageIT {
                         "hour", "hours", "day", "days", "week", "weeks", "month", "months",
                         "year", "years",
                         "collapse", "expand",
+                        "if", "case", "implies", "xor", "is null", "is true", "is false",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -824,6 +825,33 @@ class ExpressionLanguageIT {
         }
     }
 
+    // ── Conditionals under indeterminacy ─────────────────────────────────
+
+    @Test
+    @DisplayName("Conditional is typed at the root and variadic, if and case name it, the two new connectives claim their definitional extensions, and is null, is true, and is false are spellings of Equal to")
+    void conditionalAndNewConnectives() {
+        int conditional = nid("Conditional (IkeFoundation)");
+        int[] denotation = DENOTATIONS.get(conditional);
+        assertNotNull(denotation, "Untyped Conditional");
+        assertEquals(operandKindRootNid, denotation[0], "Conditional takes any kind");
+        assertEquals(operandKindRootNid, denotation[1], "Conditional yields the branches' kind");
+        assertEquals(nid("Variadic (IkeFoundation)"), denotation[2], "Conditional is variadic");
+        assertEquals(conditional, only(cqlNid, "if"));
+        assertEquals(conditional, only(cqlNid, "case"));
+        int[] implication = RELATIONS.get(nid("Presence implication (IkeFoundation)"));
+        assertNotNull(implication, "Presence implication claims a relation");
+        assertEquals(nid("Presence OR (IkeFoundation)"), implication[0]);
+        assertEquals(definitionalExtensionNid, implication[1]);
+        int[] exclusiveOr = RELATIONS.get(nid("Presence exclusive OR (IkeFoundation)"));
+        assertNotNull(exclusiveOr, "Presence exclusive OR claims a relation");
+        assertEquals(nid("Presence AND (IkeFoundation)"), exclusiveOr[0]);
+        assertEquals(definitionalExtensionNid, exclusiveOr[1]);
+        int equalTo = nid("Equal to (SOLOR)");
+        for (String spelling : List.of("is null", "is true", "is false")) {
+            assertEquals(equalTo, only(cqlNid, spelling), spelling + " is a spelling of Equal to");
+        }
+    }
+
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────
 
     /** A presence measure as bounds. */
@@ -847,6 +875,16 @@ class ExpressionLanguageIT {
 
     private static Bounds presenceNot(Bounds a) {
         return new Bounds(1 - a.upper(), 1 - a.lower());
+    }
+
+    /** Presence implication as its definition states it: NOT of the first, OR the second. */
+    private static Bounds presenceImplies(Bounds a, Bounds b) {
+        return presenceOr(presenceNot(a), b);
+    }
+
+    /** Presence exclusive OR as its definition states it: OR of the two, AND NOT of their AND. */
+    private static Bounds presenceXor(Bounds a, Bounds b) {
+        return presenceAnd(presenceOr(a, b), presenceNot(presenceAnd(a, b)));
     }
 
     /**
@@ -882,8 +920,25 @@ class ExpressionLanguageIT {
         };
     }
 
+    private static String cqlImplies(String a, String b) {
+        if ("false".equals(a) || "true".equals(b)) {
+            return "true";
+        }
+        if ("true".equals(a) && "false".equals(b)) {
+            return "false";
+        }
+        return "null";
+    }
+
+    private static String cqlXor(String a, String b) {
+        if ("null".equals(a) || "null".equals(b)) {
+            return "null";
+        }
+        return a.equals(b) ? "false" : "true";
+    }
+
     @Test
-    @DisplayName("CQL's Boolean tables are bounds arithmetic on the presence literals the set declares")
+    @DisplayName("CQL's Boolean tables, and, or, not, implies, and xor, are bounds arithmetic on the presence literals the set declares")
     void cqlBooleanSemanticsAreBoundsArithmetic() {
         List<String> literals = List.of("true", "false", "null");
         Map<String, Bounds> bounds = new HashMap<>();
@@ -897,6 +952,8 @@ class ExpressionLanguageIT {
         assertEquals(nid("Presence AND (IkeFoundation)"), only(cqlNid, "and"));
         assertEquals(nid("Presence OR (IkeFoundation)"), only(cqlNid, "or"));
         assertEquals(nid("Presence NOT (IkeFoundation)"), only(cqlNid, "not"));
+        assertEquals(nid("Presence implication (IkeFoundation)"), only(cqlNid, "implies"));
+        assertEquals(nid("Presence exclusive OR (IkeFoundation)"), only(cqlNid, "xor"));
 
         int rows = 0;
         for (String a : literals) {
@@ -905,6 +962,10 @@ class ExpressionLanguageIT {
                         "and(" + a + ", " + b + ")");
                 assertEquals(bounds.get(cqlOr(a, b)), presenceOr(bounds.get(a), bounds.get(b)),
                         "or(" + a + ", " + b + ")");
+                assertEquals(bounds.get(cqlImplies(a, b)), presenceImplies(bounds.get(a), bounds.get(b)),
+                        "implies(" + a + ", " + b + ")");
+                assertEquals(bounds.get(cqlXor(a, b)), presenceXor(bounds.get(a), bounds.get(b)),
+                        "xor(" + a + ", " + b + ")");
                 rows++;
             }
             assertEquals(bounds.get(cqlNot(a)), presenceNot(bounds.get(a)), "not(" + a + ")");
