@@ -144,7 +144,7 @@ class FoundationFidelityIT {
      * foundation home — Prose element, Prose content, and Element content, adopted
      * RichSurfaceTerms identities the prose pattern's declaration references.
      * <p>
-     * The IKE-Network/ike-issues#1089 query-operator apparatus adds 123:
+     * The IKE-Network/ike-issues#1089 query-operator apparatus adds 124:
      * {@code ExpressionLanguageSet} mints the Expression language model root (+1), the
      * Expression language family with CQL, ECL, and EL++ (+4), and their three dialects
      * (+3); the closed taxonomies Lexical role (+6), Construct relation (+4), Operand kind
@@ -157,12 +157,12 @@ class FoundationFidelityIT {
      * members (+8); and the Criterion family with Topic constraint, Circumstance
      * constraint, Measure comparison, and Association constraint (+5); and the Measure
      * operator family with Measure addition, subtraction, multiplication, and division
-     * and the lower bound, upper bound, and width accessors (+8), with Measure aggregate
+     * and the lower bound, upper bound, width, and whole unit operators (+9), with Measure aggregate
      * and its six members beneath it (+7). Every other construct it types or binds (EL++ AND, Is-a, Existential
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 224;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 225;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field

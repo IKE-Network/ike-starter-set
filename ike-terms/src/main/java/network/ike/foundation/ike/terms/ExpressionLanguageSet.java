@@ -463,9 +463,19 @@ final class ExpressionLanguageSet {
                         + " inclusivity of each, a resolution, and the measure semantic that is its"
                         + " frame of reference. Every value in a query over ANF is one: a result, a"
                         + " timing, a normal range, a CQL Quantity, Interval, Decimal, or DateTime."
-                        + " Comparing two measures requires that they share a semantic, and a"
-                        + " measure operator requires a concept that defines the semantic of its"
-                        + " result.")
+                        + " A range means one of two things. A measure whose semantic is a period"
+                        + " on the calendar, a hospital stay, has bounds where it began and ended."
+                        + " A measure whose semantic is an instant on the calendar, an onset, or"
+                        + " any quantity, has bounds where the value could be. Every relation on"
+                        + " measures is decided the same way: Present when the answer is yes for"
+                        + " every value the ranges allow, Absent when it is no for every one, and"
+                        + " Indeterminate when it is yes for some and no for others. A relation"
+                        + " between two periods is therefore decided outright, and it is"
+                        + " Indeterminate only when an end known to a coarse resolution, a"
+                        + " discharge known to the day, straddles the other's boundary. Two"
+                        + " measures can be compared when both are on one scale, as an instant and"
+                        + " a period on the calendar are, and the semantic of a measure operator's"
+                        + " result must be a concept the knowledge layer already defines.")
                 .isA(operandKind);
         EntityProxy.Concept measureKind = set.conceptRef("Measure kind (IkeFoundation)");
 
@@ -980,18 +990,22 @@ final class ExpressionLanguageSet {
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Greater than")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, ">", operatorKeyword, true, "Greater than");
-        keyword(set.concept("Greater than or equal to (SOLOR)").at(inception)
+        keyword(keyword(keyword(set.concept("Greater than or equal to (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Greater than or equal to")),
                         measureKind, presenceMeasureKind, binary),
-                set, keywords, cql, ">=", operatorKeyword, true, "Greater than or equal to");
+                set, keywords, cql, ">=", operatorKeyword, true, "Greater than or equal to"),
+                set, keywords, cql, "on or after", operatorKeyword, false, "Greater than or equal to"),
+                set, keywords, cql, "after or on", operatorKeyword, false, "Greater than or equal to");
         keyword(set.concept("Less than (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Less than")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, "<", operatorKeyword, true, "Less than");
-        keyword(set.concept("Less than or equal to (SOLOR)").at(inception)
+        keyword(keyword(keyword(set.concept("Less than or equal to (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Less than or equal to")),
                         measureKind, presenceMeasureKind, binary),
-                set, keywords, cql, "<=", operatorKeyword, true, "Less than or equal to");
+                set, keywords, cql, "<=", operatorKeyword, true, "Less than or equal to"),
+                set, keywords, cql, "on or before", operatorKeyword, false, "Less than or equal to"),
+                set, keywords, cql, "before or on", operatorKeyword, false, "Less than or equal to");
         keyword(keyword(set.concept("Equal to (SOLOR)").at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Equal to")),
                         measureKind, presenceMeasureKind, binary),
@@ -999,29 +1013,38 @@ final class ExpressionLanguageSet {
                 set, keywords, cql, "same as", operatorKeyword, false, "Equal to");
 
         // ── Measure relations: one family for presence, quantity, and time
+        EntityProxy.Concept lessThan = set.conceptRef("Less than (SOLOR)");
+        EntityProxy.Concept greaterThan = set.conceptRef("Greater than (SOLOR)");
         ConceptBuilder.ActiveScope within = set.concept("Measure within (IkeFoundation)").at(inception)
                 .synonym("Measure within")
-                .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure is inside the second. Present when the"
-                        + " whole of the first is inside the second, Absent when the two do not"
-                        + " overlap at all, and Indeterminate when they partly overlap. Serves a"
-                        + " result against its own normal range, a timing against a period, and"
-                        + " CQL's \"included in\", \"during\", and \"between\" alike, because a"
-                        + " timing is a measure. The result and the normal range are two"
-                        + " cross-cutting measurements of one statement, and the relation can be"
-                        + " decided only with that statement's own range.")
+                .definition("An operator on two measures on one scale that yields a presence value:"
+                        + " whether the first is inside the second. Present when every value the"
+                        + " first allows is inside the second, Absent when none is, and"
+                        + " Indeterminate when some are and some are not. A stay that ran past the"
+                        + " end of a period is Absent. An onset recorded as March 2024, against a"
+                        + " period that ends in the middle of March, is Indeterminate. A result is"
+                        + " inside its own normal range when the whole range of the result is"
+                        + " inside. It serves CQL's \"included in\", \"during\", \"between\", \"in\","
+                        + " and \"within\" alike, because a timing is a measure; \"within 7 days of\""
+                        + " an admission is this relation against the admission widened by 7 days"
+                        + " each way, which Measure addition of minus 7 to plus 7 days produces."
+                        + " The result and the normal range are two cross-cutting measurements of"
+                        + " one statement, and that relation can be decided only with the"
+                        + " statement's own range.")
                 .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure within")),
                         measureKind, presenceMeasureKind, binary);
         within = keyword(within, set, keywords, cql, "included in", operatorKeyword, true, "Measure within");
         within = keyword(within, set, keywords, cql, "during", operatorKeyword, false, "Measure within");
-        keyword(within, set, keywords, cql, "between", operatorKeyword, false, "Measure within");
+        within = keyword(within, set, keywords, cql, "between", operatorKeyword, false, "Measure within");
+        within = keyword(within, set, keywords, cql, "in", operatorKeyword, false, "Measure within");
+        keyword(within, set, keywords, cql, "within", operatorKeyword, false, "Measure within");
 
         ConceptBuilder.ActiveScope contains = set.concept("Measure contains (IkeFoundation)").at(inception)
                 .synonym("Measure contains")
-                .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure encloses the second. Measure within"
-                        + " with the operands swapped.")
+                .definition("An operator on two measures on one scale that yields a presence value:"
+                        + " whether the first encloses the second. Measure within with the"
+                        + " operands swapped.")
                 .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure contains")),
                         measureKind, presenceMeasureKind, binary);
@@ -1030,8 +1053,13 @@ final class ExpressionLanguageSet {
 
         keyword(set.concept("Measure overlaps (IkeFoundation)").at(inception)
                 .synonym("Measure overlaps")
-                .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the two share at least one point of the scale.")
+                .definition("An operator on two measures on one scale that yields a presence value:"
+                        + " whether the two share any of the scale. Two stays that shared a day are"
+                        + " Present, and two that did not are Absent; a stay whose discharge is"
+                        + " known only to the day, against a period that begins in the middle of"
+                        + " that day, is Indeterminate. For a moment against a period the question"
+                        + " becomes whether the moment is inside the period, which is Measure"
+                        + " within.")
                 .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure overlaps")),
                         measureKind, presenceMeasureKind, binary),
@@ -1039,24 +1067,39 @@ final class ExpressionLanguageSet {
 
         keyword(set.concept("Measure before (IkeFoundation)").at(inception)
                 .synonym("Measure before")
-                .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure is entirely below the second."
-                        + " Present when the upper bound of the first is below the lower bound of"
-                        + " the second, Absent when the lower bound of the first is not below the"
-                        + " upper bound of the second, and Indeterminate otherwise.")
+                .definition("An operator on two measures on one scale that yields a presence value:"
+                        + " whether the first is entirely earlier, or lower, than the second. For"
+                        + " two periods, Present when the first ended before the second began, and"
+                        + " Absent otherwise. For a value known to a range, Present when the upper"
+                        + " bound of the first is below the lower bound of the second, Absent when"
+                        + " the lower bound of the first is not below the upper bound of the"
+                        + " second, and Indeterminate otherwise: an onset known only to a month is"
+                        + " before a date when every day of that month is earlier. It decides the"
+                        + " same way as Less than on every pair of measures, and the set asserts"
+                        + " that equivalence. CQL's \"before\"; \"on or before\" and \"before or on\""
+                        + " are Less than or equal to.")
                 .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure before")),
-                        measureKind, presenceMeasureKind, binary),
+                        measureKind, presenceMeasureKind, binary)
+                .semantic(relations, PublicIds.of(set.uuidFor(
+                                "Construct relation: Measure before is logically equivalent to Less than")),
+                        lessThan, logicalEquivalence),
                 set, keywords, cql, "before", operatorKeyword, true, "Measure before");
 
         keyword(set.concept("Measure after (IkeFoundation)").at(inception)
                 .synonym("Measure after")
-                .definition("An operator on two measures of the same scale that yields a presence"
-                        + " value: whether the first measure is entirely above the second."
-                        + " Measure before with the operands swapped.")
+                .definition("An operator on two measures on one scale that yields a presence value:"
+                        + " whether the first is entirely later, or higher, than the second."
+                        + " Measure before with the operands swapped, and Greater than by the same"
+                        + " equivalence. CQL's \"after\"; \"on or after\" and \"after or on\" are"
+                        + " Greater than or equal to, and \"30 days or more after\" a discharge is"
+                        + " Greater than or equal to against the discharge plus 30 days.")
                 .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure after")),
-                        measureKind, presenceMeasureKind, binary),
+                        measureKind, presenceMeasureKind, binary)
+                .semantic(relations, PublicIds.of(set.uuidFor(
+                                "Construct relation: Measure after is logically equivalent to Greater than")),
+                        greaterThan, logicalEquivalence),
                 set, keywords, cql, "after", operatorKeyword, true, "Measure after");
 
         // ── Measure operators: a measure in, a measure out, on the whole range ──
@@ -1071,16 +1114,17 @@ final class ExpressionLanguageSet {
                         + " defines for that operation on the operands' semantics: millimoles per"
                         + " liter less millimoles per liter is millimoles per liter, one date less"
                         + " another is a length of time, and milligrams per deciliter times"
-                        + " deciliters is milligrams, each because a concept says so; where no"
-                        + " concept defines the combination, the operation is refused. The result's"
+                        + " deciliters is milligrams, each because a concept in the knowledge layer"
+                        + " defines that combination, and where none does the operation is refused."
+                        + " The result's"
                         + " resolution is the coarsest among the operands. A comparison or a measure"
                         + " relation answers a question about measures with Present, Absent, or"
                         + " Indeterminate; a measure operator produces a value on a scale. Presence"
                         + " has no arithmetic, because its semantic defines none, so the connectives"
                         + " are the only operations on presence values. Its members are Measure"
                         + " addition, Measure subtraction, Measure multiplication, Measure division,"
-                        + " Measure lower bound, Measure upper bound, Measure width, and Measure"
-                        + " aggregate, which works over a list of measures.")
+                        + " Measure lower bound, Measure upper bound, Measure width, Measure whole"
+                        + " unit, and Measure aggregate, which works over a list of measures.")
                 .isA(modelRoot);
         EntityProxy.Concept measureOperator = set.conceptRef("Measure operator (IkeFoundation)");
 
@@ -1100,7 +1144,7 @@ final class ExpressionLanguageSet {
                         measureKind, measureKind, variadic),
                 set, keywords, cql, "+", operatorKeyword, true, "Measure addition");
 
-        keyword(keyword(set.concept("Measure subtraction (IkeFoundation)").at(inception)
+        keyword(keyword(keyword(set.concept("Measure subtraction (IkeFoundation)").at(inception)
                 .synonym("Measure subtraction")
                 .definition("A measure operator that takes the second of two measures away from the"
                         + " first. The lower bound of the result is the first's lower bound less the"
@@ -1114,12 +1158,15 @@ final class ExpressionLanguageSet {
                         + " subtraction, and CQL's \"duration in days between\" two dates is this"
                         + " subtraction read in whole days, as it is for any unit of fixed length;"
                         + " a duration in months or years depends on the calendar and is not this"
-                        + " subtraction.")
+                        + " subtraction. CQL's \"difference in days between\" two dates is this"
+                        + " subtraction of the starts of their whole days, which is why it counts"
+                        + " the day boundaries crossed.")
                 .isA(measureOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure subtraction")),
                         measureKind, measureKind, binary),
                 set, keywords, cql, "-", operatorKeyword, true, "Measure subtraction"),
-                set, keywords, cql, "duration between", operatorKeyword, false, "Measure subtraction");
+                set, keywords, cql, "duration between", operatorKeyword, false, "Measure subtraction"),
+                set, keywords, cql, "difference between", operatorKeyword, false, "Measure subtraction");
 
         keyword(set.concept("Measure multiplication (IkeFoundation)").at(inception)
                 .synonym("Measure multiplication")
@@ -1181,6 +1228,23 @@ final class ExpressionLanguageSet {
                         measureKind, measureKind, unary),
                 set, keywords, cql, "width of", operatorKeyword, true, "Measure width"),
                 set, keywords, cql, "duration of", operatorKeyword, false, "Measure width");
+
+        keyword(set.concept("Measure whole unit (IkeFoundation)").at(inception)
+                .synonym("Measure whole unit")
+                .definition("A measure operator that gives the whole unit of a named size that a"
+                        + " measure occupies: the day of a timestamp is the whole day, from midnight"
+                        + " to midnight, the month of a date is the whole month, and a range that"
+                        + " touches two days becomes those two whole days. It is not division into"
+                        + " equal buckets counted from zero: a day, a month, and a year are units of"
+                        + " the calendar, defined in the knowledge layer, and a month varies in"
+                        + " length. Every precision-based comparison uses it: CQL's \"same day as\""
+                        + " is Equal to on the whole days, \"before day of\" is Measure before on"
+                        + " them, and \"date from\" a timestamp is the whole day, the one keyword"
+                        + " bound to this operator.")
+                .isA(measureOperator)
+                .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure whole unit")),
+                        measureKind, measureKind, unary),
+                set, keywords, cql, "date from", operatorKeyword, true, "Measure whole unit");
 
         set.concept("Measure aggregate (IkeFoundation)").at(inception)
                 .synonym("Measure aggregate")

@@ -384,6 +384,8 @@ class ExpressionLanguageIT {
                         "contains", "overlaps", "before", "after",
                         "+", "-", "*", "/", "start of", "end of", "width of", "duration between", "duration of",
                         "Count", "Sum", "Min", "Max", "Avg", "Median",
+                        "on or before", "before or on", "on or after", "after or on", "within",
+                        "difference between", "date from",
                         "Boolean", "Integer", "Decimal", "Quantity", "Interval", "Date", "DateTime", "Time",
                         "Code", "Concept",
                         "true", "false", "null"),
@@ -574,6 +576,122 @@ class ExpressionLanguageIT {
             assertEquals(statementSetKind, denotation[0], selection + " takes a statement set");
             assertEquals(statementSetKind, denotation[1], selection + " yields a statement set");
         }
+    }
+
+    // ── Timing relations: the reading rule, the equivalences, the whole unit ──
+
+    @Test
+    @DisplayName("The timing bindings name the inclusive comparisons and Measure within, in names two constructs of different kinds, Measure whole unit is a measure operator, and before and after claim their equivalences")
+    void timingBindingsEquivalencesAndWholeUnit() {
+        int lessThanOrEqual = nid("Less than or equal to (SOLOR)");
+        int greaterThanOrEqual = nid("Greater than or equal to (SOLOR)");
+        int within = nid("Measure within (IkeFoundation)");
+        assertEquals(lessThanOrEqual, only(cqlNid, "on or before"));
+        assertEquals(lessThanOrEqual, only(cqlNid, "before or on"));
+        assertEquals(greaterThanOrEqual, only(cqlNid, "on or after"));
+        assertEquals(greaterThanOrEqual, only(cqlNid, "after or on"));
+        assertEquals(within, only(cqlNid, "within"));
+        assertEquals(nid("Measure subtraction (IkeFoundation)"), only(cqlNid, "difference between"));
+        List<Integer> in = KEYWORDS.get(cqlNid).get("in");
+        assertNotNull(in, "CQL's in is bound");
+        assertEquals(Set.of(nid("Concept set membership (IkeFoundation)"), within), new HashSet<>(in),
+                "CQL's in names concept set membership and Measure within, one keyword on two kinds");
+        int wholeUnit = nid("Measure whole unit (IkeFoundation)");
+        int measureKind = nid("Measure kind (IkeFoundation)");
+        int[] denotation = DENOTATIONS.get(wholeUnit);
+        assertNotNull(denotation, "Untyped Measure whole unit");
+        assertEquals(measureKind, denotation[0], "Measure whole unit takes a measure");
+        assertEquals(measureKind, denotation[1], "Measure whole unit yields a measure");
+        assertEquals(nid("Unary (IkeFoundation)"), denotation[2], "Measure whole unit is unary");
+        assertTrue(latestIsAParents(wholeUnit).contains(nid("Measure operator (IkeFoundation)")),
+                "Measure whole unit is a measure operator");
+        assertEquals(wholeUnit, only(cqlNid, "date from"));
+        int[] before = RELATIONS.get(nid("Measure before (IkeFoundation)"));
+        assertNotNull(before, "Measure before claims a relation");
+        assertEquals(nid("Less than (SOLOR)"), before[0], "Measure before relates to Less than");
+        assertEquals(logicalEquivalenceNid, before[1], "Measure before claims logical equivalence");
+        int[] after = RELATIONS.get(nid("Measure after (IkeFoundation)"));
+        assertNotNull(after, "Measure after claims a relation");
+        assertEquals(nid("Greater than (SOLOR)"), after[0], "Measure after relates to Greater than");
+        assertEquals(logicalEquivalenceNid, after[1], "Measure after claims logical equivalence");
+    }
+
+    @Test
+    @DisplayName("Obligation: Measure before decides as Less than and Measure after as Greater than on every ordering of the four ends with every combination of included and excluded ends")
+    void beforeIsLessThanOnEveryEndOrdering() {
+        int tried = 0;
+        for (int lowerA = 0; lowerA <= 3; lowerA++) {
+            for (int upperA = lowerA; upperA <= 3; upperA++) {
+                for (int lowerB = 0; lowerB <= 3; lowerB++) {
+                    for (int upperB = lowerB; upperB <= 3; upperB++) {
+                        for (int inclusivity = 0; inclusivity < 16; inclusivity++) {
+                            boolean includeLowerA = (inclusivity & 1) != 0;
+                            boolean includeUpperA = (inclusivity & 2) != 0;
+                            boolean includeLowerB = (inclusivity & 4) != 0;
+                            boolean includeUpperB = (inclusivity & 8) != 0;
+                            List<Double> valuesA = valuesAllowed(lowerA, upperA, includeLowerA, includeUpperA);
+                            List<Double> valuesB = valuesAllowed(lowerB, upperB, includeLowerB, includeUpperB);
+                            if (valuesA.isEmpty() || valuesB.isEmpty()) {
+                                continue;
+                            }
+                            String where = " for " + lowerA + ".." + upperA + " and " + lowerB + ".." + upperB
+                                    + " with inclusivity " + inclusivity;
+                            assertEquals(quantifiedLessThan(valuesA, valuesB),
+                                    boundsBefore(lowerA, upperA, includeUpperA, lowerB, upperB, includeLowerB),
+                                    "Measure before differs from Less than" + where);
+                            assertEquals(quantifiedLessThan(valuesB, valuesA),
+                                    boundsBefore(lowerB, upperB, includeUpperB, lowerA, upperA, includeLowerA),
+                                    "Measure after differs from Greater than" + where);
+                            tried++;
+                        }
+                    }
+                }
+            }
+        }
+        assertTrue(tried > 500, "Every ordering was tried: " + tried);
+    }
+
+    /**
+     * The values a range allows, at quarter-unit steps, honouring the inclusivity of each end.
+     * Quarter steps leave every open unit interval three interior points, so a mixed answer
+     * is always visible; half steps left one, and (0, 1) against (0, 1) looked decided.
+     */
+    private static List<Double> valuesAllowed(int lower, int upper, boolean includeLower, boolean includeUpper) {
+        List<Double> values = new ArrayList<>();
+        for (double value = lower; value <= upper; value += 0.25) {
+            if (value == lower && !includeLower) {
+                continue;
+            }
+            if (value == upper && !includeUpper) {
+                continue;
+            }
+            values.add(value);
+        }
+        return values;
+    }
+
+    /** Less than as the reading rule states it: yes for every pair, no for every pair, or mixed. */
+    private static String quantifiedLessThan(List<Double> valuesA, List<Double> valuesB) {
+        boolean all = true;
+        boolean none = true;
+        for (double a : valuesA) {
+            for (double b : valuesB) {
+                if (a < b) {
+                    none = false;
+                } else {
+                    all = false;
+                }
+            }
+        }
+        return all ? "Present" : none ? "Absent" : "Indeterminate";
+    }
+
+    /** Measure before as its definition states it, with the inclusivity of the touching ends. */
+    private static String boundsBefore(int lowerA, int upperA, boolean includeUpperA,
+                                       int lowerB, int upperB, boolean includeLowerB) {
+        boolean present = upperA < lowerB || (upperA == lowerB && !(includeUpperA && includeLowerB));
+        boolean absent = lowerA >= upperB;
+        return present ? "Present" : absent ? "Absent" : "Indeterminate";
     }
 
     // ── Obligation: CQL's Boolean semantics are bounds arithmetic ───────

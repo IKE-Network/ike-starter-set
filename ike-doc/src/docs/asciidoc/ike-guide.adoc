@@ -406,7 +406,7 @@ reference, and k:IndeterminateLiteral[] is its presence form. Testing stored bou
 k:GreaterThan[] or a relation such as k:MeasureWithin[] is Indeterminate when the
 threshold or date it compares against is inside the recorded range. An HbA1c recorded
 between 8.5 and 9.5, asked whether it is above 9, is neither known above nor known
-below, and the query says so rather than guessing. Criteria combine by k:PresenceAND[],
+below, and the query reports that rather than guessing. Criteria combine by k:PresenceAND[],
 k:PresenceOR[], and k:PresenceNOT[]. A k:Criterion[] is a test applied to one
 statement: a k:TopicConstraint[] or a k:CircumstanceConstraint[] tests a concept for
 membership in a concept set and is met or not met outright; a k:MeasureComparison[]
@@ -421,7 +421,7 @@ alone is the retest list. k:StatementFilter[] takes a set of statements and retu
 those that meet its criteria, and a bare comparison that could come out Indeterminate
 is not accepted as a criterion, because its middle would be dropped without anyone
 saying so. CQL's `where` is that filter with the presence comparison fixed to Present
-and never written down, and the binding says so. No association is not a value but no
+and never written down, and the binding records it as data. No association is not a value but no
 record, found by k:SetDifference[], never by NOT. k:Existence[] is Presence
 OR across a statement set and
 returns nothing on an empty set, since a presence value is a finding and an empty set
@@ -505,20 +505,54 @@ needs it; and `AllTrue` and `AnyTrue`, because they are Presence AND and Presenc
 with Indeterminate members dropped, the closed-world move `exists` made, and deserve
 their own decision.
 
+=== Timing Relations
+
+A range means one of two things. A measure whose semantic is a period on the calendar,
+a hospital stay, has bounds where it began and ended. A measure whose semantic is an
+instant on the calendar, an onset, or any quantity, has bounds where the value could
+be. Every relation on measures is decided the same way: Present when the answer is yes
+for every value the ranges allow, Absent when it is no for every one, and Indeterminate
+when it is yes for some and no for others. So k:MeasureWithin[] is Absent for a stay
+that ran past the end of a period, and Indeterminate for an onset recorded as March
+2024 against a period that ends in the middle of March. k:MeasureBefore[] and
+k:MeasureAfter[] decide the same way as k:LessThan[] and k:GreaterThan[] on every pair
+of measures, and the set asserts the two equivalences. CQL's `on or before` and
+`before or on` name Less than or equal to, `on or after` and `after or on` name Greater
+than or equal to, and `in` names Measure within as well as concept set membership, one
+keyword on two kinds. Offsets are arithmetic: `30 days or more after` a discharge is
+Greater than or equal to against the discharge plus 30 days, `3 days or less before` a
+surgery is Measure within against the range from the surgery less 3 days to the
+surgery, and `within 7 days of` an admission is Measure within against the admission
+widened by 7 days each way. k:MeasureWholeUnit[] gives the whole unit of a named size
+that a measure occupies, the day of a timestamp from midnight to midnight, and every
+precision-based comparison uses it: `same day as` is Equal to on the whole days,
+`before day of` is Measure before on them, `difference in days between` is Measure
+subtraction of the whole days' starts, and `date from` is the whole day. The units are
+the calendar's own, defined in the knowledge layer, not equal buckets counted from
+zero. CQL's `starts`, `ends`, and `meets` in Allen's sense are not bound, because two
+ends coinciding exactly is not something a record supports, and at a resolution they
+are the accessors with Equal to on whole units; `occurs` is a filler word; `properly`
+is within and not equal; `point from` is unnecessary because a single value is already
+a measure; `per` belongs with `expand` and `collapse` over measure lists; and `same` on
+its own has no meaning, its phrase `same as` being bound.
+
 === The Checks Are Derived, and They Run
 
 koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts nine relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+The set asserts eleven relations. k:DescendantOf[], k:DescendantOrSelfOf[],
 k:AncestorOf[], and k:AncestorOrSelfOf[] are definable from k:IsA[]; k:SetAND[] is
 definable from k:ELAND[] when its operands are descendant sets, because the
 descendants of a class intersection are the intersection of the descendants, a proven
 fact; k:AttributeRefinement[] is definable from k:ExistentialRestriction[].
 k:DescendantFieldConstraint[] and k:KindOfFieldConstraint[] are logically equivalent
 to k:DescendantOf[] and k:DescendantOrSelfOf[]: the same concept sets, which the set
-contained without saying so until now. k:ExistenceWithNoRecordAsAbsent[], the
+contained without saying so until now. k:MeasureBefore[] and k:MeasureAfter[] are
+logically equivalent to k:LessThan[] and k:GreaterThan[]: they decide the same way on
+every pair of measures, and the finite check tries every ordering of the four ends with
+every combination of included and excluded ends. k:ExistenceWithNoRecordAsAbsent[], the
 construct CQL's `exists` names, conservatively extends k:Existence[]: it agrees
 wherever Existence has an answer and adds Absent for the empty set, the closed-world
 default made into data rather than a caveat. An instance's is-a to its generic is a
