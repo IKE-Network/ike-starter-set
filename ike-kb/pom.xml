@@ -60,7 +60,6 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <version>${ike-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>assemble-knowledge-base</id>
