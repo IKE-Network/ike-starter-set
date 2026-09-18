@@ -172,7 +172,7 @@ class FoundationFidelityIT {
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 265;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 279;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -192,9 +192,9 @@ class FoundationFidelityIT {
      * Pattern, the Construct Relation Pattern, and the CQL, ECL, and EL++ Dialect
      * Patterns ({@code ExpressionLanguageSet}).
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 14;
+    private static final int AUTHORED_CONTENT_PATTERNS = 17;
     /**
-     * Concepts a signature import mints, never authored by hand: {@code ElmSignatureSet},
+     * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
      * {@code ike:schema-import} (IKE-Network/ike-issues#1104): 270 types, 143 position
      * names, 9 schema primitives, 1 type of another schema referred to, 3 enumerations with
@@ -202,9 +202,9 @@ class FoundationFidelityIT {
      * meaning and purpose, and five field meanings). Regenerated, never edited; the count
      * moves only when the pinned release does.
      */
-    private static final int IMPORTED_SIGNATURE_CONCEPTS = 451;
-    /** Patterns a signature import mints: the ELM type position pattern. */
-    private static final int IMPORTED_SIGNATURE_PATTERNS = 1;
+    private static final int IMPORTED_CATALOG_CONCEPTS = 454;
+    /** Patterns a catalog import mints: the ELM type position pattern. */
+    private static final int IMPORTED_CATALOG_PATTERNS = 1;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
@@ -804,14 +804,14 @@ class FoundationFidelityIT {
         int[] patternsAfter = {0};
         EntityService.get().forEachPatternEntity(pattern -> patternsAfter[0]++);
         assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS
-                        + IMPORTED_SIGNATURE_CONCEPTS, conceptsAfter[0],
+                        + IMPORTED_CATALOG_CONCEPTS, conceptsAfter[0],
                 "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
                         + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
                         + " new concepts (see AUTHORED_CONTENT_CONCEPTS,"
-                        + " IKE-Network/ike-issues#880 and #885) plus " + IMPORTED_SIGNATURE_CONCEPTS
-                        + " imported signature concepts (see IMPORTED_SIGNATURE_CONCEPTS, #1104) — no other"
+                        + " IKE-Network/ike-issues#880 and #885) plus " + IMPORTED_CATALOG_CONCEPTS
+                        + " imported catalog concepts (see IMPORTED_CATALOG_CONCEPTS, #1104) — no other"
                         + " minting");
-        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS + IMPORTED_SIGNATURE_PATTERNS, patternsAfter[0],
+        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS + IMPORTED_CATALOG_PATTERNS, patternsAfter[0],
                 "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
                         + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
                         + " Constraint Pattern, Starter Set Author Roster Pattern, Preferred Reviewer"

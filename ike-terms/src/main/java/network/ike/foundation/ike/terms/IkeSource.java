@@ -65,10 +65,15 @@ public final class IkeSource implements KnowledgeSetSource {
         // (IKE-Network/ike-issues#1089); it types the taxonomy field constraint kinds
         // ConstraintPatternSet declares, so it composes after it.
         ExpressionLanguageSet.compose(Ike.SET);
-        // ElmSignatureSet is generated from HL7's ELM schemas by ike:schema-import
-        // (IKE-Network/ike-issues#1104); it hangs its family root under the model concept
-        // and refers to nothing else, so it composes after the expression-language section.
-        ElmSignatureSet.compose(Ike.SET);
+        // ElmNodeCatalogSet, the ELM node catalog, is generated from HL7's ELM schemas by
+        // ike:schema-import (IKE-Network/ike-issues#1104); it hangs its family root under
+        // the model concept and refers to nothing else, so it composes after the
+        // expression-language section.
+        ElmNodeCatalogSet.compose(Ike.SET);
+        // ElmTreeSet is authored beside the catalog (IKE-Network/ike-issues#1110): the tree,
+        // ordered list, and reference patterns and the three operand roles; it refers to the
+        // catalog's root and position parent, so it composes after the catalog.
+        ElmTreeSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
         // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,

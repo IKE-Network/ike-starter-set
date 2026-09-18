@@ -21,19 +21,19 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
- * The ELM signature as a ledger section, imported from the ELM specification, cqframework/clinical_quality_language v5.3.0, by {@code ike:schema-import} (IKE-Network/ike-issues#1104).
+ * The ELM node catalog as a ledger section, imported from the ELM specification, cqframework/clinical_quality_language v5.3.0, by {@code ike:schema-import} (IKE-Network/ike-issues#1104).
  * GENERATED FROM THE SCHEMAS: regenerate, never edit.
  * <p>270 types, 143 position names over 346 type positions, 9 schema primitives, 1 types of other schemas referred to, 3 enumerations with 14 values.
  */
-final class ElmSignatureSet {
+final class ElmNodeCatalogSet {
 
-    /** The family root: the signature itself. */
-    static final String ROOT_FQN = "ELM signature (ELM)";
+    /** The family root: the catalog itself. */
+    static final String ROOT_FQN = "ELM node catalog (ELM)";
 
     /** The pattern that records, on each type, its positions. */
     static final String TYPE_POSITION_PATTERN_FQN = "ELM type position pattern (ELM)";
 
-    private ElmSignatureSet() {
+    private ElmNodeCatalogSet() {
     }
 
     /**
@@ -45,63 +45,75 @@ final class ElmSignatureSet {
         ActiveStamp inception = Ike.INCEPTION;
 
         // ── The family root and its parents ──
-        set.concept("ELM signature (ELM)").at(inception)
-                .synonym("ELM signature")
-                .definition("The signature of the ELM specification: its 270 node types, each with its base and its"
-                        + " argument positions, its 143 position names, its 9 schema primitives, its 1 type of"
-                        + " other schemas it refers to, and its 3 enumerations, imported from"
+        set.concept("ELM node catalog (ELM)").at(inception)
+                .synonym("ELM node catalog")
+                .definition("The catalog of the node kinds of the ELM specification: each kind, what it holds, and"
+                        + " what each thing it holds may be. Its 270 node kinds, each with its base and its"
+                        + " positions, its 143 position names, its 9 schema primitives, its 1 type of other"
+                        + " schemas it refers to, and its 3 enumerations, imported from"
                         + " cqframework/clinical_quality_language v5.3.0 and regenerated from the schemas, never"
-                        + " edited. A type is a kind of node a tree in this language can have; a position is a"
-                        + " named place in a node that holds a child or a value.")
+                        + " edited. A node kind is a kind of node a tree in this language can have; a position is"
+                        + " a named place in a node that holds a child or a value.")
                 .isA(IkeTerm.MODEL_CONCEPT);
         EntityProxy.Concept root = set.conceptRef(ROOT_FQN);
 
         set.concept("ELM position (ELM)").at(inception)
                 .synonym("ELM position")
-                .definition("An argument position of the signature: a named place in a node that holds a child or a"
-                        + " value, such as operand or dataType, shared by every node type that has a position of"
-                        + " that name. Which types have it, with what value type and how many, is recorded on"
-                        + " each type by the type position pattern.")
+                .definition("A position of the catalog: a named place in a node that holds a child or a value, such"
+                        + " as operand or dataType, shared by every node type that has a position of that name."
+                        + " Which types have it, with what value type and how many, is recorded on each type by"
+                        + " the type position pattern.")
                 .isA(root);
         EntityProxy.Concept positionParent = set.conceptRef("ELM position (ELM)");
 
         set.concept("ELM primitive (ELM)").at(inception)
                 .synonym("ELM primitive")
                 .definition("A value type the XML Schema language itself supplies, string or QName, rather than a"
-                        + " type of the signature: what a position holds when it holds a plain value and not a"
+                        + " node kind of the catalog: what a position holds when it holds a plain value and not a"
                         + " node.")
                 .isA(root);
         EntityProxy.Concept primitiveParent = set.conceptRef("ELM primitive (ELM)");
 
         set.concept("ELM external type (ELM)").at(inception)
                 .synonym("ELM external type")
-                .definition("A type declared by a schema outside this signature that a position or a base refers"
-                        + " to; the signature names it so that every reference resolves, and says no more about"
-                        + " it than its name and its namespace.")
+                .definition("A type declared by a schema outside this catalog that a position or a base refers to;"
+                        + " the catalog names it so that every reference resolves, and says no more about it than"
+                        + " its name and its namespace.")
                 .isA(root);
         EntityProxy.Concept externalParent = set.conceptRef("ELM external type (ELM)");
 
         // ── The type position pattern: which positions each type has ──
         set.concept("ELM type position (ELM)").at(inception)
                 .synonym("ELM type position")
-                .definition("What a type position semantic is: one argument position of one node type, with the"
-                        + " type of value it holds, the fewest and the most values the schema allows, and the"
-                        + " schema's own note on that position for that type.")
+                .definition("What a type position semantic is: one position of one node kind, with the type of"
+                        + " value it holds, the fewest and the most values the schema allows, the schema's own"
+                        + " note on that position for that kind, and its form: whether our vertex holds it as a"
+                        + " property or as an edge.")
                 .isA(root);
-        set.concept("ELM signature structure (ELM)").at(inception)
-                .synonym("ELM signature structure")
-                .definition("Why type positions are recorded: so that a tree can be checked against the signature"
-                        + " and a reader can know what each node may hold.")
+        set.concept("ELM catalog structure (ELM)").at(inception)
+                .synonym("ELM catalog structure")
+                .definition("Why type positions are recorded: so that a tree can be checked against the catalog and"
+                        + " a reader can know what each node may hold.")
                 .isA(root);
-        EntityProxy.Concept structure = set.conceptRef("ELM signature structure (ELM)");
+        EntityProxy.Concept structure = set.conceptRef("ELM catalog structure (ELM)");
+        set.concept("ELM property form (ELM)").at(inception)
+                .synonym("ELM property form")
+                .definition("The form of a position that holds a plain value, an attribute in the schema: our"
+                        + " vertex holds it as a property keyed by the position.")
+                .isA(root);
+        set.concept("ELM edge form (ELM)").at(inception)
+                .synonym("ELM edge form")
+                .definition("The form of a position that holds a node, an element in the schema: our vertex holds"
+                        + " it as an edge to the vertex below, named by the position.")
+                .isA(root);
         set.concept("ELM position field (ELM)").at(inception)
                 .synonym("ELM position field")
                 .definition("The position a type position semantic is about.")
                 .isA(root);
         set.concept("ELM value type field (ELM)").at(inception)
                 .synonym("ELM value type field")
-                .definition("The type of value that position holds on that type: a type of the signature, a schema"
-                        + " primitive, or a type of another schema.")
+                .definition("The type of value that position holds on that type: a node kind of the catalog, a"
+                        + " schema primitive, or a type of another schema.")
                 .isA(root);
         set.concept("ELM minimum field (ELM)").at(inception)
                 .synonym("ELM minimum field")
@@ -117,6 +129,11 @@ final class ElmSignatureSet {
                 .definition("The schema's own note on that position for that type, empty when the schema gives"
                         + " none.")
                 .isA(root);
+        set.concept("ELM form field (ELM)").at(inception)
+                .synonym("ELM form field")
+                .definition("How our vertex holds that position on that type: the property form when it holds a"
+                        + " plain value, the edge form when it holds a node.")
+                .isA(root);
         set.pattern(TYPE_POSITION_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("ELM type position (ELM)"))
                 .purpose(structure)
@@ -124,673 +141,648 @@ final class ElmSignatureSet {
                 .field(set.conceptRef("ELM value type field (ELM)"), structure, IkeTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("ELM minimum field (ELM)"), structure, IkeTerm.INTEGER_FIELD)
                 .field(set.conceptRef("ELM maximum field (ELM)"), structure, IkeTerm.INTEGER_FIELD)
-                .field(set.conceptRef("ELM position note field (ELM)"), structure, IkeTerm.STRING);
+                .field(set.conceptRef("ELM position note field (ELM)"), structure, IkeTerm.STRING)
+                .field(set.conceptRef("ELM form field (ELM)"), structure, IkeTerm.COMPONENT_FIELD);
+        EntityProxy.Concept propertyForm = set.conceptRef("ELM property form (ELM)");
+        EntityProxy.Concept edgeForm = set.conceptRef("ELM edge form (ELM)");
         EntityProxy.Pattern typePositions = set.patternRef(TYPE_POSITION_PATTERN_FQN);
 
         // ── Positions: one concept per name, shared across types ──
         set.concept("ELM accessLevel position (ELM)").at(inception)
                 .synonym("ELM accessLevel position")
-                .definition("The argument position named accessLevel, an attribute, on 6 node types of the"
-                        + " signature.")
+                .definition("The argument position named accessLevel, an attribute, on 6 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM aggregate position (ELM)").at(inception)
                 .synonym("ELM aggregate position")
-                .definition("The argument position named aggregate, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named aggregate, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM alias position (ELM)").at(inception)
                 .synonym("ELM alias position")
-                .definition("The argument position named alias, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named alias, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM annotation position (ELM)").at(inception)
                 .synonym("ELM annotation position")
-                .definition("The argument position named annotation, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named annotation, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM asType position (ELM)").at(inception)
                 .synonym("ELM asType position")
-                .definition("The argument position named asType, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named asType, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM asTypeSpecifier position (ELM)").at(inception)
                 .synonym("ELM asTypeSpecifier position")
-                .definition("The argument position named asTypeSpecifier, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named asTypeSpecifier, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM by position (ELM)").at(inception)
                 .synonym("ELM by position")
-                .definition("The argument position named by, a child element, on 2 node types of the signature.")
+                .definition("The argument position named by, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM caseItem position (ELM)").at(inception)
                 .synonym("ELM caseItem position")
-                .definition("The argument position named caseItem, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named caseItem, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM choice position (ELM)").at(inception)
                 .synonym("ELM choice position")
-                .definition("The argument position named choice, a child element, on 1 node type of the signature.")
+                .definition("The argument position named choice, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM classType position (ELM)").at(inception)
                 .synonym("ELM classType position")
-                .definition("The argument position named classType, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named classType, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM code position (ELM)").at(inception)
                 .synonym("ELM code position")
                 .definition("The argument position named code, an element on some types and an attribute on others,"
-                        + " on 7 node types of the signature.")
+                        + " on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM codeComparator position (ELM)").at(inception)
                 .synonym("ELM codeComparator position")
-                .definition("The argument position named codeComparator, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named codeComparator, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM codeFilter position (ELM)").at(inception)
                 .synonym("ELM codeFilter position")
-                .definition("The argument position named codeFilter, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named codeFilter, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM codeProperty position (ELM)").at(inception)
                 .synonym("ELM codeProperty position")
-                .definition("The argument position named codeProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named codeProperty, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM codeSearch position (ELM)").at(inception)
                 .synonym("ELM codeSearch position")
-                .definition("The argument position named codeSearch, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named codeSearch, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM codeSystem position, mixed case (ELM)").at(inception)
                 .synonym("ELM codeSystem position, mixed case")
-                .definition("The argument position named codeSystem, a child element, on 2 node types of the"
-                        + " signature. The schema spells it mixed case, and spells another position the same way"
+                .definition("The argument position named codeSystem, a child element, on 2 node kinds of the"
+                        + " catalog. The schema spells it mixed case, and spells another position the same way"
                         + " but for case.")
                 .isA(positionParent);
         set.concept("ELM codeSystems position (ELM)").at(inception)
                 .synonym("ELM codeSystems position")
-                .definition("The argument position named codeSystems, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named codeSystems, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM codes position (ELM)").at(inception)
                 .synonym("ELM codes position")
-                .definition("The argument position named codes, a child element, on 5 node types of the signature.")
+                .definition("The argument position named codes, a child element, on 5 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM codesystem position, lower case (ELM)").at(inception)
                 .synonym("ELM codesystem position, lower case")
-                .definition("The argument position named codesystem, a child element, on 3 node types of the"
-                        + " signature. The schema spells it lower case, and spells another position the same way"
+                .definition("The argument position named codesystem, a child element, on 3 node kinds of the"
+                        + " catalog. The schema spells it lower case, and spells another position the same way"
                         + " but for case.")
                 .isA(positionParent);
         set.concept("ELM codesystemExpression position (ELM)").at(inception)
                 .synonym("ELM codesystemExpression position")
-                .definition("The argument position named codesystemExpression, a child element, on 2 node types of"
-                        + " the signature.")
+                .definition("The argument position named codesystemExpression, a child element, on 2 node kinds of"
+                        + " the catalog.")
                 .isA(positionParent);
         set.concept("ELM comparand position (ELM)").at(inception)
                 .synonym("ELM comparand position")
-                .definition("The argument position named comparand, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named comparand, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM comparator position (ELM)").at(inception)
                 .synonym("ELM comparator position")
-                .definition("The argument position named comparator, an attribute, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named comparator, an attribute, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM concepts position (ELM)").at(inception)
                 .synonym("ELM concepts position")
-                .definition("The argument position named concepts, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named concepts, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM condition position (ELM)").at(inception)
                 .synonym("ELM condition position")
-                .definition("The argument position named condition, a child element, on 3 node types of the"
-                        + " signature.")
+                .definition("The argument position named condition, a child element, on 3 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM context position (ELM)").at(inception)
                 .synonym("ELM context position")
                 .definition("The argument position named context, an element on some types and an attribute on"
-                        + " others, on 2 node types of the signature.")
+                        + " others, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM contextProperty position (ELM)").at(inception)
                 .synonym("ELM contextProperty position")
-                .definition("The argument position named contextProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named contextProperty, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM contextSearch position (ELM)").at(inception)
                 .synonym("ELM contextSearch position")
-                .definition("The argument position named contextSearch, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named contextSearch, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM contexts position (ELM)").at(inception)
                 .synonym("ELM contexts position")
-                .definition("The argument position named contexts, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named contexts, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM dataType position (ELM)").at(inception)
                 .synonym("ELM dataType position")
-                .definition("The argument position named dataType, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named dataType, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM dateFilter position (ELM)").at(inception)
                 .synonym("ELM dateFilter position")
-                .definition("The argument position named dateFilter, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named dateFilter, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM dateHighProperty position (ELM)").at(inception)
                 .synonym("ELM dateHighProperty position")
-                .definition("The argument position named dateHighProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named dateHighProperty, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM dateLowProperty position (ELM)").at(inception)
                 .synonym("ELM dateLowProperty position")
-                .definition("The argument position named dateLowProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named dateLowProperty, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM dateProperty position (ELM)").at(inception)
                 .synonym("ELM dateProperty position")
-                .definition("The argument position named dateProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named dateProperty, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM dateRange position (ELM)").at(inception)
                 .synonym("ELM dateRange position")
-                .definition("The argument position named dateRange, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named dateRange, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM dateSearch position (ELM)").at(inception)
                 .synonym("ELM dateSearch position")
-                .definition("The argument position named dateSearch, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named dateSearch, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM day position (ELM)").at(inception)
                 .synonym("ELM day position")
-                .definition("The argument position named day, a child element, on 2 node types of the signature.")
+                .definition("The argument position named day, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM default position (ELM)").at(inception)
                 .synonym("ELM default position")
-                .definition("The argument position named default, a child element, on 1 node type of the signature.")
+                .definition("The argument position named default, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM denominator position (ELM)").at(inception)
                 .synonym("ELM denominator position")
-                .definition("The argument position named denominator, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named denominator, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM direction position (ELM)").at(inception)
                 .synonym("ELM direction position")
-                .definition("The argument position named direction, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named direction, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM display position (ELM)").at(inception)
                 .synonym("ELM display position")
                 .definition("The argument position named display, an element on some types and an attribute on"
-                        + " others, on 6 node types of the signature.")
+                        + " others, on 6 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM distinct position (ELM)").at(inception)
                 .synonym("ELM distinct position")
-                .definition("The argument position named distinct, an attribute, on 2 node types of the signature.")
+                .definition("The argument position named distinct, an attribute, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM element position (ELM)").at(inception)
                 .synonym("ELM element position")
-                .definition("The argument position named element, a child element, on 7 node types of the"
-                        + " signature.")
+                .definition("The argument position named element, a child element, on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM elementType position (ELM)").at(inception)
                 .synonym("ELM elementType position")
-                .definition("The argument position named elementType, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named elementType, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM else position (ELM)").at(inception)
                 .synonym("ELM else position")
-                .definition("The argument position named else, a child element, on 2 node types of the signature.")
+                .definition("The argument position named else, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM endIndex position (ELM)").at(inception)
                 .synonym("ELM endIndex position")
-                .definition("The argument position named endIndex, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named endIndex, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM expression position (ELM)").at(inception)
                 .synonym("ELM expression position")
-                .definition("The argument position named expression, a child element, on 6 node types of the"
-                        + " signature.")
+                .definition("The argument position named expression, a child element, on 6 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM external position (ELM)").at(inception)
                 .synonym("ELM external position")
-                .definition("The argument position named external, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named external, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM fluent position (ELM)").at(inception)
                 .synonym("ELM fluent position")
-                .definition("The argument position named fluent, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named fluent, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM high position (ELM)").at(inception)
                 .synonym("ELM high position")
-                .definition("The argument position named high, a child element, on 7 node types of the signature.")
+                .definition("The argument position named high, a child element, on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM highClosed position (ELM)").at(inception)
                 .synonym("ELM highClosed position")
                 .definition("The argument position named highClosed, an element on some types and an attribute on"
-                        + " others, on 2 node types of the signature.")
+                        + " others, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM highClosedExpression position (ELM)").at(inception)
                 .synonym("ELM highClosedExpression position")
-                .definition("The argument position named highClosedExpression, a child element, on 1 node type of"
-                        + " the signature.")
+                .definition("The argument position named highClosedExpression, a child element, on 1 node kind of"
+                        + " the catalog.")
                 .isA(positionParent);
         set.concept("ELM highProperty position (ELM)").at(inception)
                 .synonym("ELM highProperty position")
-                .definition("The argument position named highProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named highProperty, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM hour position (ELM)").at(inception)
                 .synonym("ELM hour position")
-                .definition("The argument position named hour, a child element, on 2 node types of the signature.")
+                .definition("The argument position named hour, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM id position (ELM)").at(inception)
                 .synonym("ELM id position")
                 .definition("The argument position named id, an element on some types and an attribute on others,"
-                        + " on 6 node types of the signature.")
+                        + " on 6 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM idProperty position (ELM)").at(inception)
                 .synonym("ELM idProperty position")
-                .definition("The argument position named idProperty, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named idProperty, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM idSearch position (ELM)").at(inception)
                 .synonym("ELM idSearch position")
-                .definition("The argument position named idSearch, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named idSearch, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM identifier position (ELM)").at(inception)
                 .synonym("ELM identifier position")
                 .definition("The argument position named identifier, an element on some types and an attribute on"
-                        + " others, on 3 node types of the signature.")
+                        + " others, on 3 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM include position (ELM)").at(inception)
                 .synonym("ELM include position")
-                .definition("The argument position named include, a child element, on 1 node type of the signature.")
+                .definition("The argument position named include, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM includeFrom position (ELM)").at(inception)
                 .synonym("ELM includeFrom position")
-                .definition("The argument position named includeFrom, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named includeFrom, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM includedIn position (ELM)").at(inception)
                 .synonym("ELM includedIn position")
-                .definition("The argument position named includedIn, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named includedIn, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM includes position (ELM)").at(inception)
                 .synonym("ELM includes position")
-                .definition("The argument position named includes, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named includes, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM initialValue position (ELM)").at(inception)
                 .synonym("ELM initialValue position")
-                .definition("The argument position named initialValue, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named initialValue, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM isReverse position (ELM)").at(inception)
                 .synonym("ELM isReverse position")
-                .definition("The argument position named isReverse, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named isReverse, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM isType position (ELM)").at(inception)
                 .synonym("ELM isType position")
-                .definition("The argument position named isType, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named isType, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM isTypeSpecifier position (ELM)").at(inception)
                 .synonym("ELM isTypeSpecifier position")
-                .definition("The argument position named isTypeSpecifier, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named isTypeSpecifier, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM iteration position (ELM)").at(inception)
                 .synonym("ELM iteration position")
-                .definition("The argument position named iteration, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named iteration, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM length position (ELM)").at(inception)
                 .synonym("ELM length position")
-                .definition("The argument position named length, a child element, on 1 node type of the signature.")
+                .definition("The argument position named length, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM let position (ELM)").at(inception)
                 .synonym("ELM let position")
-                .definition("The argument position named let, a child element, on 1 node type of the signature.")
+                .definition("The argument position named let, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM libraryName position (ELM)").at(inception)
                 .synonym("ELM libraryName position")
-                .definition("The argument position named libraryName, an attribute, on 7 node types of the"
-                        + " signature.")
+                .definition("The argument position named libraryName, an attribute, on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM localId position (ELM)").at(inception)
                 .synonym("ELM localId position")
-                .definition("The argument position named localId, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named localId, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM localIdentifier position (ELM)").at(inception)
                 .synonym("ELM localIdentifier position")
-                .definition("The argument position named localIdentifier, an attribute, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named localIdentifier, an attribute, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM locator position (ELM)").at(inception)
                 .synonym("ELM locator position")
-                .definition("The argument position named locator, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named locator, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM low position (ELM)").at(inception)
                 .synonym("ELM low position")
-                .definition("The argument position named low, a child element, on 7 node types of the signature.")
+                .definition("The argument position named low, a child element, on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM lowClosed position (ELM)").at(inception)
                 .synonym("ELM lowClosed position")
                 .definition("The argument position named lowClosed, an element on some types and an attribute on"
-                        + " others, on 2 node types of the signature.")
+                        + " others, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM lowClosedExpression position (ELM)").at(inception)
                 .synonym("ELM lowClosedExpression position")
-                .definition("The argument position named lowClosedExpression, a child element, on 1 node type of"
-                        + " the signature.")
+                .definition("The argument position named lowClosedExpression, a child element, on 1 node kind of"
+                        + " the catalog.")
                 .isA(positionParent);
         set.concept("ELM lowProperty position (ELM)").at(inception)
                 .synonym("ELM lowProperty position")
-                .definition("The argument position named lowProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named lowProperty, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM mediaType position (ELM)").at(inception)
                 .synonym("ELM mediaType position")
-                .definition("The argument position named mediaType, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named mediaType, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM message position (ELM)").at(inception)
                 .synonym("ELM message position")
-                .definition("The argument position named message, a child element, on 1 node type of the signature.")
+                .definition("The argument position named message, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM millisecond position (ELM)").at(inception)
                 .synonym("ELM millisecond position")
-                .definition("The argument position named millisecond, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named millisecond, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM minute position (ELM)").at(inception)
                 .synonym("ELM minute position")
-                .definition("The argument position named minute, a child element, on 2 node types of the signature.")
+                .definition("The argument position named minute, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM month position (ELM)").at(inception)
                 .synonym("ELM month position")
-                .definition("The argument position named month, a child element, on 2 node types of the signature.")
+                .definition("The argument position named month, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM name position (ELM)").at(inception)
                 .synonym("ELM name position")
                 .definition("The argument position named name, an element on some types and an attribute on others,"
-                        + " on 23 node types of the signature.")
+                        + " on 23 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM numerator position (ELM)").at(inception)
                 .synonym("ELM numerator position")
-                .definition("The argument position named numerator, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named numerator, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM operand position (ELM)").at(inception)
                 .synonym("ELM operand position")
-                .definition("The argument position named operand, a child element, on 7 node types of the"
-                        + " signature.")
+                .definition("The argument position named operand, a child element, on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM operandType position (ELM)").at(inception)
                 .synonym("ELM operandType position")
-                .definition("The argument position named operandType, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named operandType, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM operandTypeSpecifier position (ELM)").at(inception)
                 .synonym("ELM operandTypeSpecifier position")
-                .definition("The argument position named operandTypeSpecifier, a child element, on 1 node type of"
-                        + " the signature.")
+                .definition("The argument position named operandTypeSpecifier, a child element, on 1 node kind of"
+                        + " the catalog.")
                 .isA(positionParent);
         set.concept("ELM orderBy position (ELM)").at(inception)
                 .synonym("ELM orderBy position")
-                .definition("The argument position named orderBy, an attribute, on 2 node types of the signature.")
+                .definition("The argument position named orderBy, an attribute, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM otherFilter position (ELM)").at(inception)
                 .synonym("ELM otherFilter position")
-                .definition("The argument position named otherFilter, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named otherFilter, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM parameterName position (ELM)").at(inception)
                 .synonym("ELM parameterName position")
-                .definition("The argument position named parameterName, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named parameterName, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM parameterType position (ELM)").at(inception)
                 .synonym("ELM parameterType position")
-                .definition("The argument position named parameterType, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named parameterType, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM parameterTypeSpecifier position (ELM)").at(inception)
                 .synonym("ELM parameterTypeSpecifier position")
-                .definition("The argument position named parameterTypeSpecifier, a child element, on 1 node type of"
-                        + " the signature.")
+                .definition("The argument position named parameterTypeSpecifier, a child element, on 1 node kind of"
+                        + " the catalog.")
                 .isA(positionParent);
         set.concept("ELM parameters position (ELM)").at(inception)
                 .synonym("ELM parameters position")
-                .definition("The argument position named parameters, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named parameters, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM path position (ELM)").at(inception)
                 .synonym("ELM path position")
-                .definition("The argument position named path, an attribute, on 4 node types of the signature.")
+                .definition("The argument position named path, an attribute, on 4 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM pattern position (ELM)").at(inception)
                 .synonym("ELM pattern position")
-                .definition("The argument position named pattern, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named pattern, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM pointType position (ELM)").at(inception)
                 .synonym("ELM pointType position")
-                .definition("The argument position named pointType, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named pointType, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM precision position (ELM)").at(inception)
                 .synonym("ELM precision position")
                 .definition("The argument position named precision, an element on some types and an attribute on"
-                        + " others, on 27 node types of the signature.")
+                        + " others, on 27 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM preserve position (ELM)").at(inception)
                 .synonym("ELM preserve position")
-                .definition("The argument position named preserve, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named preserve, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM property position (ELM)").at(inception)
                 .synonym("ELM property position")
-                .definition("The argument position named property, an attribute, on 3 node types of the signature.")
+                .definition("The argument position named property, an attribute, on 3 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM relatedDataType position (ELM)").at(inception)
                 .synonym("ELM relatedDataType position")
-                .definition("The argument position named relatedDataType, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named relatedDataType, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM relatedProperty position (ELM)").at(inception)
                 .synonym("ELM relatedProperty position")
-                .definition("The argument position named relatedProperty, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named relatedProperty, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM relatedSearch position (ELM)").at(inception)
                 .synonym("ELM relatedSearch position")
-                .definition("The argument position named relatedSearch, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named relatedSearch, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM relationship position (ELM)").at(inception)
                 .synonym("ELM relationship position")
-                .definition("The argument position named relationship, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named relationship, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM resultTypeName position (ELM)").at(inception)
                 .synonym("ELM resultTypeName position")
-                .definition("The argument position named resultTypeName, an attribute, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named resultTypeName, an attribute, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM resultTypeSpecifier position (ELM)").at(inception)
                 .synonym("ELM resultTypeSpecifier position")
-                .definition("The argument position named resultTypeSpecifier, a child element, on 1 node type of"
-                        + " the signature.")
+                .definition("The argument position named resultTypeSpecifier, a child element, on 1 node kind of"
+                        + " the catalog.")
                 .isA(positionParent);
         set.concept("ELM return position (ELM)").at(inception)
                 .synonym("ELM return position")
-                .definition("The argument position named return, a child element, on 1 node type of the signature.")
+                .definition("The argument position named return, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM schemaIdentifier position (ELM)").at(inception)
                 .synonym("ELM schemaIdentifier position")
-                .definition("The argument position named schemaIdentifier, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named schemaIdentifier, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM scope position (ELM)").at(inception)
                 .synonym("ELM scope position")
-                .definition("The argument position named scope, an attribute, on 7 node types of the signature.")
+                .definition("The argument position named scope, an attribute, on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM search position (ELM)").at(inception)
                 .synonym("ELM search position")
-                .definition("The argument position named search, an attribute, on 3 node types of the signature.")
+                .definition("The argument position named search, an attribute, on 3 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM second position (ELM)").at(inception)
                 .synonym("ELM second position")
-                .definition("The argument position named second, a child element, on 2 node types of the signature.")
+                .definition("The argument position named second, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM separator position (ELM)").at(inception)
                 .synonym("ELM separator position")
-                .definition("The argument position named separator, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named separator, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM separatorPattern position (ELM)").at(inception)
                 .synonym("ELM separatorPattern position")
-                .definition("The argument position named separatorPattern, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named separatorPattern, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM severity position (ELM)").at(inception)
                 .synonym("ELM severity position")
-                .definition("The argument position named severity, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named severity, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM signature position (ELM)").at(inception)
                 .synonym("ELM signature position")
-                .definition("The argument position named signature, a child element, on 3 node types of the"
-                        + " signature.")
+                .definition("The argument position named signature, a child element, on 3 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM sort position (ELM)").at(inception)
                 .synonym("ELM sort position")
-                .definition("The argument position named sort, a child element, on 1 node type of the signature.")
+                .definition("The argument position named sort, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM source position (ELM)").at(inception)
                 .synonym("ELM source position")
-                .definition("The argument position named source, a child element, on 16 node types of the"
-                        + " signature.")
+                .definition("The argument position named source, a child element, on 16 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM startIndex position (ELM)").at(inception)
                 .synonym("ELM startIndex position")
-                .definition("The argument position named startIndex, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named startIndex, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM starting position (ELM)").at(inception)
                 .synonym("ELM starting position")
-                .definition("The argument position named starting, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named starting, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM statements position (ELM)").at(inception)
                 .synonym("ELM statements position")
-                .definition("The argument position named statements, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named statements, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM strict position (ELM)").at(inception)
                 .synonym("ELM strict position")
-                .definition("The argument position named strict, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named strict, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM string position (ELM)").at(inception)
                 .synonym("ELM string position")
-                .definition("The argument position named string, a child element, on 2 node types of the signature.")
+                .definition("The argument position named string, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM stringToSplit position (ELM)").at(inception)
                 .synonym("ELM stringToSplit position")
-                .definition("The argument position named stringToSplit, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named stringToSplit, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM stringToSub position (ELM)").at(inception)
                 .synonym("ELM stringToSub position")
-                .definition("The argument position named stringToSub, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named stringToSub, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM suchThat position (ELM)").at(inception)
                 .synonym("ELM suchThat position")
-                .definition("The argument position named suchThat, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named suchThat, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM system position (ELM)").at(inception)
                 .synonym("ELM system position")
                 .definition("The argument position named system, an element on some types and an attribute on"
-                        + " others, on 3 node types of the signature.")
+                        + " others, on 3 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM templateId position (ELM)").at(inception)
                 .synonym("ELM templateId position")
-                .definition("The argument position named templateId, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named templateId, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM then position (ELM)").at(inception)
                 .synonym("ELM then position")
-                .definition("The argument position named then, a child element, on 2 node types of the signature.")
+                .definition("The argument position named then, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM timezoneOffset position (ELM)").at(inception)
                 .synonym("ELM timezoneOffset position")
-                .definition("The argument position named timezoneOffset, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named timezoneOffset, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM toType position (ELM)").at(inception)
                 .synonym("ELM toType position")
-                .definition("The argument position named toType, an attribute, on 2 node types of the signature.")
+                .definition("The argument position named toType, an attribute, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM toTypeSpecifier position (ELM)").at(inception)
                 .synonym("ELM toTypeSpecifier position")
-                .definition("The argument position named toTypeSpecifier, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named toTypeSpecifier, a child element, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM typeSpecifier position (ELM)").at(inception)
                 .synonym("ELM typeSpecifier position")
-                .definition("The argument position named typeSpecifier, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named typeSpecifier, a child element, on 1 node kind of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM unit position (ELM)").at(inception)
                 .synonym("ELM unit position")
                 .definition("The argument position named unit, an element on some types and an attribute on others,"
-                        + " on 2 node types of the signature.")
+                        + " on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM uri position (ELM)").at(inception)
                 .synonym("ELM uri position")
-                .definition("The argument position named uri, an attribute, on 1 node type of the signature.")
+                .definition("The argument position named uri, an attribute, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM usings position (ELM)").at(inception)
                 .synonym("ELM usings position")
-                .definition("The argument position named usings, a child element, on 1 node type of the signature.")
+                .definition("The argument position named usings, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM value position (ELM)").at(inception)
                 .synonym("ELM value position")
                 .definition("The argument position named value, an element on some types and an attribute on"
-                        + " others, on 16 node types of the signature.")
+                        + " others, on 16 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM valueSetProperty position (ELM)").at(inception)
                 .synonym("ELM valueSetProperty position")
-                .definition("The argument position named valueSetProperty, an attribute, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named valueSetProperty, an attribute, on 2 node kinds of the"
+                        + " catalog.")
                 .isA(positionParent);
         set.concept("ELM valueSets position (ELM)").at(inception)
                 .synonym("ELM valueSets position")
-                .definition("The argument position named valueSets, a child element, on 1 node type of the"
-                        + " signature.")
+                .definition("The argument position named valueSets, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM valueType position (ELM)").at(inception)
                 .synonym("ELM valueType position")
-                .definition("The argument position named valueType, an attribute, on 4 node types of the signature.")
+                .definition("The argument position named valueType, an attribute, on 4 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM valueset position (ELM)").at(inception)
                 .synonym("ELM valueset position")
-                .definition("The argument position named valueset, a child element, on 2 node types of the"
-                        + " signature.")
+                .definition("The argument position named valueset, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM valuesetExpression position (ELM)").at(inception)
                 .synonym("ELM valuesetExpression position")
-                .definition("The argument position named valuesetExpression, a child element, on 2 node types of"
-                        + " the signature.")
+                .definition("The argument position named valuesetExpression, a child element, on 2 node kinds of"
+                        + " the catalog.")
                 .isA(positionParent);
         set.concept("ELM version position (ELM)").at(inception)
                 .synonym("ELM version position")
                 .definition("The argument position named version, an element on some types and an attribute on"
-                        + " others, on 7 node types of the signature.")
+                        + " others, on 7 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM when position (ELM)").at(inception)
                 .synonym("ELM when position")
-                .definition("The argument position named when, a child element, on 1 node type of the signature.")
+                .definition("The argument position named when, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM where position (ELM)").at(inception)
                 .synonym("ELM where position")
-                .definition("The argument position named where, a child element, on 1 node type of the signature.")
+                .definition("The argument position named where, a child element, on 1 node kind of the catalog.")
                 .isA(positionParent);
         set.concept("ELM year position (ELM)").at(inception)
                 .synonym("ELM year position")
-                .definition("The argument position named year, a child element, on 2 node types of the signature.")
+                .definition("The argument position named year, a child element, on 2 node kinds of the catalog.")
                 .isA(positionParent);
 
         // ── Schema primitives the positions use ──
@@ -839,7 +831,7 @@ final class ElmSignatureSet {
                         + " holds.")
                 .isA(primitiveParent);
 
-        // ── Types of other schemas the signature refers to ──
+        // ── Types of other schemas the catalog refers to ──
         set.concept("ELM external CqlToElmBase (ELM)").at(inception)
                 .synonym("ELM external CqlToElmBase")
                 .definition("The type CqlToElmBase of the namespace urn:hl7-org:cql-annotations:r1, which the ELM"
@@ -858,33 +850,33 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Boolean value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System Code (ELM)").at(inception)
                 .synonym("ELM System Code")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Code code")),
                         set.conceptRef("ELM code position (ELM)"), set.conceptRef("ELM System String (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Code display")),
                         set.conceptRef("ELM display position (ELM)"), set.conceptRef("ELM System String (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Code system")),
                         set.conceptRef("ELM system position (ELM)"), set.conceptRef("ELM System String (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Code version")),
                         set.conceptRef("ELM version position (ELM)"), set.conceptRef("ELM System String (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System Concept (ELM)").at(inception)
                 .synonym("ELM System Concept")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Concept codes")),
                         set.conceptRef("ELM codes position (ELM)"), set.conceptRef("ELM System Code (ELM)"), 1, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Concept display")),
                         set.conceptRef("ELM display position (ELM)"), set.conceptRef("ELM System String (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System Vocabulary (ELM)").at(inception)
                 .synonym("ELM System Vocabulary")
                 .definition("A type of the ELM specification; the schema gives no description. The schema marks it"
@@ -892,20 +884,20 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Vocabulary id")),
                         set.conceptRef("ELM id position (ELM)"), set.conceptRef("ELM System String (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Vocabulary version")),
                         set.conceptRef("ELM version position (ELM)"), set.conceptRef("ELM System String (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Vocabulary name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM System String (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System ValueSet (ELM)").at(inception)
                 .synonym("ELM System ValueSet")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Vocabulary (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System ValueSet codesystem")),
                         set.conceptRef("ELM codesystem position, lower case (ELM)"), set.conceptRef("ELM System CodeSystem (ELM)"), 0, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System CodeSystem (ELM)").at(inception)
                 .synonym("ELM System CodeSystem")
                 .definition("A type of the ELM specification; the schema gives no description.")
@@ -916,69 +908,69 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Date value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System DateTime (ELM)").at(inception)
                 .synonym("ELM System DateTime")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System DateTime value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System Decimal (ELM)").at(inception)
                 .synonym("ELM System Decimal")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Decimal value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive decimal (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System Integer (ELM)").at(inception)
                 .synonym("ELM System Integer")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Integer value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive int (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System Long (ELM)").at(inception)
                 .synonym("ELM System Long")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Long value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive long (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System Quantity (ELM)").at(inception)
                 .synonym("ELM System Quantity")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Quantity value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM System Decimal (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Quantity unit")),
                         set.conceptRef("ELM unit position (ELM)"), set.conceptRef("ELM System String (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System Ratio (ELM)").at(inception)
                 .synonym("ELM System Ratio")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Ratio numerator")),
                         set.conceptRef("ELM numerator position (ELM)"), set.conceptRef("ELM System Quantity (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Ratio denominator")),
                         set.conceptRef("ELM denominator position (ELM)"), set.conceptRef("ELM System Quantity (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System String (ELM)").at(inception)
                 .synonym("ELM System String")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System String value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System Time (ELM)").at(inception)
                 .synonym("ELM System Time")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Time value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM System Interval (ELM)").at(inception)
                 .synonym("ELM System Interval")
                 .definition("A type of the ELM specification; the schema gives no description. The schema marks it"
@@ -986,70 +978,70 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM System Any (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Interval lowClosed")),
                         set.conceptRef("ELM lowClosed position (ELM)"), set.conceptRef("ELM System Boolean (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System Interval highClosed")),
                         set.conceptRef("ELM highClosed position (ELM)"), set.conceptRef("ELM System Boolean (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System IntegerInterval (ELM)").at(inception)
                 .synonym("ELM System IntegerInterval")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Interval (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System IntegerInterval low")),
                         set.conceptRef("ELM low position (ELM)"), set.conceptRef("ELM System Integer (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System IntegerInterval high")),
                         set.conceptRef("ELM high position (ELM)"), set.conceptRef("ELM System Integer (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System DecimalInterval (ELM)").at(inception)
                 .synonym("ELM System DecimalInterval")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Interval (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System DecimalInterval low")),
                         set.conceptRef("ELM low position (ELM)"), set.conceptRef("ELM System Decimal (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System DecimalInterval high")),
                         set.conceptRef("ELM high position (ELM)"), set.conceptRef("ELM System Decimal (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System QuantityInterval (ELM)").at(inception)
                 .synonym("ELM System QuantityInterval")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Interval (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System QuantityInterval low")),
                         set.conceptRef("ELM low position (ELM)"), set.conceptRef("ELM System Quantity (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System QuantityInterval high")),
                         set.conceptRef("ELM high position (ELM)"), set.conceptRef("ELM System Quantity (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System DateInterval (ELM)").at(inception)
                 .synonym("ELM System DateInterval")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Interval (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System DateInterval low")),
                         set.conceptRef("ELM low position (ELM)"), set.conceptRef("ELM System Date (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System DateInterval high")),
                         set.conceptRef("ELM high position (ELM)"), set.conceptRef("ELM System Date (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System DateTimeInterval (ELM)").at(inception)
                 .synonym("ELM System DateTimeInterval")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Interval (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System DateTimeInterval low")),
                         set.conceptRef("ELM low position (ELM)"), set.conceptRef("ELM System DateTime (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System DateTimeInterval high")),
                         set.conceptRef("ELM high position (ELM)"), set.conceptRef("ELM System DateTime (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM System TimeInterval (ELM)").at(inception)
                 .synonym("ELM System TimeInterval")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM System Interval (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System TimeInterval low")),
                         set.conceptRef("ELM low position (ELM)"), set.conceptRef("ELM System Time (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM System TimeInterval high")),
                         set.conceptRef("ELM high position (ELM)"), set.conceptRef("ELM System Time (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Element (ELM)").at(inception)
                 .synonym("ELM Element")
                 .definition("From the ELM specification: The Element type defines the abstract base type for all"
@@ -1058,19 +1050,19 @@ final class ElmSignatureSet {
                 .isA(root)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Element annotation")),
                         set.conceptRef("ELM annotation position (ELM)"), set.conceptRef("ELM external CqlToElmBase (ELM)"), 0, -1,
-                        "The annotation element provides a mechanism for decorating expressions with application-specific information such as translation hints, visual designer information, or debug symbols.")
+                        "The annotation element provides a mechanism for decorating expressions with application-specific information such as translation hints, visual designer information, or debug symbols.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Element resultTypeSpecifier")),
                         set.conceptRef("ELM resultTypeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "The resultTypeSpecifier element describes the type information for this ELM node. ELM documents are not required to contain result type information, but if they do, the result type of each node is specified using the resultTypeName attribute for named types, and this resultTypeSpecifier element for non-named types.")
+                        "The resultTypeSpecifier element describes the type information for this ELM node. ELM documents are not required to contain result type information, but if they do, the result type of each node is specified using the resultTypeName attribute for named types, and this resultTypeSpecifier element for non-named types.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Element localId")),
                         set.conceptRef("ELM localId position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Element locator")),
                         set.conceptRef("ELM locator position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The locator for an ELM node identifies the location in the source document that produced the ELM. The format is L:C[-L:C], where L is a line number and C is a column number. For locators that span a range, an optional range can be given to an ending line and column number. Line and column numbers are 1-based.")
+                        "The locator for an ELM node identifies the location in the source document that produced the ELM. The format is L:C[-L:C], where L is a line number and C is a column number. For locators that span a range, an optional range can be given to an ending line and column number. Line and column numbers are 1-based.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Element resultTypeName")),
                         set.conceptRef("ELM resultTypeName position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "The resultTypeName attribute is part of type information for an ELM document. ELM documents are not required to specify result type information, but if they do, the result type of each node is specified using this attribute for named types, or the resultTypeSpecifier element for non-named types.");
+                        "The resultTypeName attribute is part of type information for an ELM document. ELM documents are not required to specify result type information, but if they do, the result type of each node is specified using this attribute for named types, or the resultTypeSpecifier element for non-named types.", propertyForm);
         set.concept("ELM TypeSpecifier (ELM)").at(inception)
                 .synonym("ELM TypeSpecifier")
                 .definition("From the ELM specification: TypeSpecifier is the abstract base type for all type"
@@ -1084,7 +1076,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM TypeSpecifier (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM NamedTypeSpecifier name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM IntervalTypeSpecifier (ELM)").at(inception)
                 .synonym("ELM IntervalTypeSpecifier")
                 .definition("From the ELM specification: IntervalTypeSpecifier defines an interval type by"
@@ -1094,7 +1086,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM TypeSpecifier (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IntervalTypeSpecifier pointType")),
                         set.conceptRef("ELM pointType position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ListTypeSpecifier (ELM)").at(inception)
                 .synonym("ELM ListTypeSpecifier")
                 .definition("From the ELM specification: ListTypeSpecifier defines a list type by specifying the"
@@ -1102,7 +1094,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM TypeSpecifier (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ListTypeSpecifier elementType")),
                         set.conceptRef("ELM elementType position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM TupleElementDefinition (ELM)").at(inception)
                 .synonym("ELM TupleElementDefinition")
                 .definition("From the ELM specification: TupleElementDefinition defines the name and type of a"
@@ -1110,10 +1102,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM TupleElementDefinition elementType")),
                         set.conceptRef("ELM elementType position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM TupleElementDefinition name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM TupleTypeSpecifier (ELM)").at(inception)
                 .synonym("ELM TupleTypeSpecifier")
                 .definition("From the ELM specification: TupleTypeSpecifier defines the possible elements of a"
@@ -1121,7 +1113,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM TypeSpecifier (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM TupleTypeSpecifier element")),
                         set.conceptRef("ELM element position (ELM)"), set.conceptRef("ELM TupleElementDefinition (ELM)"), 0, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ChoiceTypeSpecifier (ELM)").at(inception)
                 .synonym("ELM ChoiceTypeSpecifier")
                 .definition("From the ELM specification: ChoiceTypeSpecifier defines the possible types of a choice"
@@ -1129,7 +1121,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM TypeSpecifier (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ChoiceTypeSpecifier choice")),
                         set.conceptRef("ELM choice position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ParameterTypeSpecifier (ELM)").at(inception)
                 .synonym("ELM ParameterTypeSpecifier")
                 .definition("From the ELM specification: A type which is generic class parameter such as T in"
@@ -1137,7 +1129,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM TypeSpecifier (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterTypeSpecifier parameterName")),
                         set.conceptRef("ELM parameterName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Expression (ELM)").at(inception)
                 .synonym("ELM Expression")
                 .definition("From the ELM specification: The Expression type defines the abstract base type for all"
@@ -1154,7 +1146,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OperatorExpression signature")),
                         set.conceptRef("ELM signature position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, -1,
-                        "Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.");
+                        "Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.", edgeForm);
         set.concept("ELM UnaryExpression (ELM)").at(inception)
                 .synonym("ELM UnaryExpression")
                 .definition("From the ELM specification: The UnaryExpression type defines the abstract base type"
@@ -1163,7 +1155,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM UnaryExpression operand")),
                         set.conceptRef("ELM operand position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM BinaryExpression (ELM)").at(inception)
                 .synonym("ELM BinaryExpression")
                 .definition("From the ELM specification: The BinaryExpression type defines the abstract base type"
@@ -1172,7 +1164,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM BinaryExpression operand")),
                         set.conceptRef("ELM operand position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 2, 2,
-                        "");
+                        "", edgeForm);
         set.concept("ELM TernaryExpression (ELM)").at(inception)
                 .synonym("ELM TernaryExpression")
                 .definition("From the ELM specification: The TernaryExpression type defines the abstract base type"
@@ -1181,7 +1173,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM TernaryExpression operand")),
                         set.conceptRef("ELM operand position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 3, 3,
-                        "");
+                        "", edgeForm);
         set.concept("ELM NaryExpression (ELM)").at(inception)
                 .synonym("ELM NaryExpression")
                 .definition("From the ELM specification: The NaryExpression type defines an abstract base class for"
@@ -1190,7 +1182,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM NaryExpression operand")),
                         set.conceptRef("ELM operand position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ExpressionDef (ELM)").at(inception)
                 .synonym("ELM ExpressionDef")
                 .definition("From the ELM specification: The ExpressionDef type defines an expression and an"
@@ -1201,16 +1193,16 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ExpressionDef expression")),
                         set.conceptRef("ELM expression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ExpressionDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ExpressionDef context")),
                         set.conceptRef("ELM context position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ExpressionDef accessLevel")),
                         set.conceptRef("ELM accessLevel position (ELM)"), set.conceptRef("ELM AccessModifier (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM FunctionDef (ELM)").at(inception)
                 .synonym("ELM FunctionDef")
                 .definition("From the ELM specification: The FunctionDef type defines a named function that can be"
@@ -1219,13 +1211,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM ExpressionDef (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM FunctionDef operand")),
                         set.conceptRef("ELM operand position (ELM)"), set.conceptRef("ELM OperandDef (ELM)"), 0, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM FunctionDef external")),
                         set.conceptRef("ELM external position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM FunctionDef fluent")),
                         set.conceptRef("ELM fluent position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ExpressionRef (ELM)").at(inception)
                 .synonym("ELM ExpressionRef")
                 .definition("From the ELM specification: The ExpressionRef type defines an expression that"
@@ -1234,10 +1226,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ExpressionRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ExpressionRef libraryName")),
                         set.conceptRef("ELM libraryName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM FunctionRef (ELM)").at(inception)
                 .synonym("ELM FunctionRef")
                 .definition("From the ELM specification: The FunctionRef type defines an expression that invokes a"
@@ -1246,10 +1238,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM ExpressionRef (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM FunctionRef signature")),
                         set.conceptRef("ELM signature position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, -1,
-                        "Specifies the declared signature of the function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.")
+                        "Specifies the declared signature of the function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM FunctionRef operand")),
                         set.conceptRef("ELM operand position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ParameterDef (ELM)").at(inception)
                 .synonym("ELM ParameterDef")
                 .definition("From the ELM specification: The ParameterDef type defines a parameter that can be"
@@ -1263,19 +1255,19 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterDef default")),
                         set.conceptRef("ELM default position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterDef parameterTypeSpecifier")),
                         set.conceptRef("ELM parameterTypeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterDef parameterType")),
                         set.conceptRef("ELM parameterType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterDef accessLevel")),
                         set.conceptRef("ELM accessLevel position (ELM)"), set.conceptRef("ELM AccessModifier (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ParameterRef (ELM)").at(inception)
                 .synonym("ELM ParameterRef")
                 .definition("From the ELM specification: The ParameterRef expression allows the value of a"
@@ -1283,10 +1275,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ParameterRef libraryName")),
                         set.conceptRef("ELM libraryName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM OperandDef (ELM)").at(inception)
                 .synonym("ELM OperandDef")
                 .definition("From the ELM specification: The OperandDef type defines an operand to a function that"
@@ -1294,13 +1286,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OperandDef operandTypeSpecifier")),
                         set.conceptRef("ELM operandTypeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OperandDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OperandDef operandType")),
                         set.conceptRef("ELM operandType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM OperandRef (ELM)").at(inception)
                 .synonym("ELM OperandRef")
                 .definition("From the ELM specification: The OperandRef expression allows the value of an operand"
@@ -1308,7 +1300,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OperandRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM IdentifierRef (ELM)").at(inception)
                 .synonym("ELM IdentifierRef")
                 .definition("From the ELM specification: The IdentifierRef type defines an expression that"
@@ -1319,10 +1311,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IdentifierRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IdentifierRef libraryName")),
                         set.conceptRef("ELM libraryName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Literal (ELM)").at(inception)
                 .synonym("ELM Literal")
                 .definition("From the ELM specification: The Literal type defines a single scalar value. For"
@@ -1330,10 +1322,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Literal valueType")),
                         set.conceptRef("ELM valueType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 1, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Literal value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive anySimpleType (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM TupleElement (ELM)").at(inception)
                 .synonym("ELM TupleElement")
                 .definition("From the ELM specification: The TupleElement is used within a Tuple expression to"
@@ -1341,10 +1333,10 @@ final class ElmSignatureSet {
                 .isA(root)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM TupleElement value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM TupleElement name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Tuple (ELM)").at(inception)
                 .synonym("ELM Tuple")
                 .definition("From the ELM specification: The Tuple expression allows tuples of any type to be built"
@@ -1355,7 +1347,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Tuple element")),
                         set.conceptRef("ELM element position (ELM)"), set.conceptRef("ELM TupleElement (ELM)"), 0, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM InstanceElement (ELM)").at(inception)
                 .synonym("ELM InstanceElement")
                 .definition("From the ELM specification: The InstanceElement is used within an Instance expression"
@@ -1363,10 +1355,10 @@ final class ElmSignatureSet {
                 .isA(root)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InstanceElement value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InstanceElement name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Instance (ELM)").at(inception)
                 .synonym("ELM Instance")
                 .definition("From the ELM specification: The Instance expression allows class instances of any type"
@@ -1377,10 +1369,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Instance element")),
                         set.conceptRef("ELM element position (ELM)"), set.conceptRef("ELM InstanceElement (ELM)"), 0, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Instance classType")),
                         set.conceptRef("ELM classType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Interval (ELM)").at(inception)
                 .synonym("ELM Interval")
                 .definition("From the ELM specification: The Interval selector defines an interval value. An"
@@ -1409,22 +1401,22 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Interval low")),
                         set.conceptRef("ELM low position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Interval lowClosedExpression")),
                         set.conceptRef("ELM lowClosedExpression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Interval high")),
                         set.conceptRef("ELM high position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Interval highClosedExpression")),
                         set.conceptRef("ELM highClosedExpression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Interval lowClosed")),
                         set.conceptRef("ELM lowClosed position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Interval highClosed")),
                         set.conceptRef("ELM highClosed position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM List (ELM)").at(inception)
                 .synonym("ELM List")
                 .definition("From the ELM specification: The List selector returns a value of type List, whose"
@@ -1436,10 +1428,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM List typeSpecifier")),
                         set.conceptRef("ELM typeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM List element")),
                         set.conceptRef("ELM element position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM And (ELM)").at(inception)
                 .synonym("ELM And")
                 .definition("From the ELM specification: The And operator returns the logical conjunction of its"
@@ -1490,23 +1482,23 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM If condition")),
                         set.conceptRef("ELM condition position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM If then")),
                         set.conceptRef("ELM then position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM If else")),
                         set.conceptRef("ELM else position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM CaseItem (ELM)").at(inception)
                 .synonym("ELM CaseItem")
                 .definition("A type of the ELM specification; the schema gives no description.")
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CaseItem when")),
                         set.conceptRef("ELM when position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CaseItem then")),
                         set.conceptRef("ELM then position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Case (ELM)").at(inception)
                 .synonym("ELM Case")
                 .definition("From the ELM specification: The Case operator allows for multiple conditional"
@@ -1522,13 +1514,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Case comparand")),
                         set.conceptRef("ELM comparand position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Case caseItem")),
                         set.conceptRef("ELM caseItem position (ELM)"), set.conceptRef("ELM CaseItem (ELM)"), 1, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Case else")),
                         set.conceptRef("ELM else position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Null (ELM)").at(inception)
                 .synonym("ELM Null")
                 .definition("From the ELM specification: The Null operator returns a null, or missing information"
@@ -1537,7 +1529,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Null valueType")),
                         set.conceptRef("ELM valueType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM IsNull (ELM)").at(inception)
                 .synonym("ELM IsNull")
                 .definition("From the ELM specification: The IsNull operator determines whether or not its argument"
@@ -1572,10 +1564,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM UnaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Is isTypeSpecifier")),
                         set.conceptRef("ELM isTypeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Is isType")),
                         set.conceptRef("ELM isType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM As (ELM)").at(inception)
                 .synonym("ELM As")
                 .definition("From the ELM specification: The As operator allows the result of an expression to be"
@@ -1587,13 +1579,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM UnaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM As asTypeSpecifier")),
                         set.conceptRef("ELM asTypeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM As asType")),
                         set.conceptRef("ELM asType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM As strict")),
                         set.conceptRef("ELM strict position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Convert (ELM)").at(inception)
                 .synonym("ELM Convert")
                 .definition("From the ELM specification: The Convert operator converts a value to a specific type."
@@ -1608,10 +1600,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM UnaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Convert toTypeSpecifier")),
                         set.conceptRef("ELM toTypeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Convert toType")),
                         set.conceptRef("ELM toType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM CanConvert (ELM)").at(inception)
                 .synonym("ELM CanConvert")
                 .definition("From the ELM specification: The CanConvert operator returns true if the given value"
@@ -1624,10 +1616,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM UnaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CanConvert toTypeSpecifier")),
                         set.conceptRef("ELM toTypeSpecifier position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CanConvert toType")),
                         set.conceptRef("ELM toType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ToBoolean (ELM)").at(inception)
                 .synonym("ELM ToBoolean")
                 .definition("From the ELM specification: The ToBoolean operator converts the value of its argument"
@@ -2279,10 +2271,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Round operand")),
                         set.conceptRef("ELM operand position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Round precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Ln (ELM)").at(inception)
                 .synonym("ELM Ln")
                 .definition("From the ELM specification: The Ln operator computes the natural logarithm of its"
@@ -2362,7 +2354,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM MinValue valueType")),
                         set.conceptRef("ELM valueType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM MaxValue (ELM)").at(inception)
                 .synonym("ELM MaxValue")
                 .definition("From the ELM specification: The MaxValue operator returns the maximum representable"
@@ -2382,7 +2374,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM MaxValue valueType")),
                         set.conceptRef("ELM valueType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Precision (ELM)").at(inception)
                 .synonym("ELM Precision")
                 .definition("From the ELM specification: The Precision operator returns the number of digits of"
@@ -2433,10 +2425,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Combine source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Combine separator")),
                         set.conceptRef("ELM separator position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Split (ELM)").at(inception)
                 .synonym("ELM Split")
                 .definition("From the ELM specification: The Split operator splits a string into a list of strings"
@@ -2447,10 +2439,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Split stringToSplit")),
                         set.conceptRef("ELM stringToSplit position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Split separator")),
                         set.conceptRef("ELM separator position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM SplitOnMatches (ELM)").at(inception)
                 .synonym("ELM SplitOnMatches")
                 .definition("From the ELM specification: The SplitOnMatches operator splits a string into a list of"
@@ -2462,10 +2454,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM SplitOnMatches stringToSplit")),
                         set.conceptRef("ELM stringToSplit position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM SplitOnMatches separatorPattern")),
                         set.conceptRef("ELM separatorPattern position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Length (ELM)").at(inception)
                 .synonym("ELM Length")
                 .definition("From the ELM specification: The Length operator returns the length of its argument."
@@ -2506,10 +2498,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM PositionOf pattern")),
                         set.conceptRef("ELM pattern position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM PositionOf string")),
                         set.conceptRef("ELM string position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM LastPositionOf (ELM)").at(inception)
                 .synonym("ELM LastPositionOf")
                 .definition("From the ELM specification: The LastPositionOf operator returns the 0-based index of"
@@ -2519,10 +2511,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM LastPositionOf pattern")),
                         set.conceptRef("ELM pattern position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM LastPositionOf string")),
                         set.conceptRef("ELM string position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Substring (ELM)").at(inception)
                 .synonym("ELM Substring")
                 .definition("From the ELM specification: The Substring operator returns the string within"
@@ -2533,13 +2525,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Substring stringToSub")),
                         set.conceptRef("ELM stringToSub position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Substring startIndex")),
                         set.conceptRef("ELM startIndex position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Substring length")),
                         set.conceptRef("ELM length position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM StartsWith (ELM)").at(inception)
                 .synonym("ELM StartsWith")
                 .definition("From the ELM specification: The StartsWith operator returns true if the given string"
@@ -2595,7 +2587,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DurationBetween precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM DifferenceBetween (ELM)").at(inception)
                 .synonym("ELM DifferenceBetween")
                 .definition("From the ELM specification: The DifferenceBetween operator returns the number of"
@@ -2614,7 +2606,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DifferenceBetween precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM DateFrom (ELM)").at(inception)
                 .synonym("ELM DateFrom")
                 .definition("From the ELM specification: The DateFrom operator returns the date (with no time"
@@ -2647,7 +2639,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM UnaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTimeComponentFrom precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM TimeOfDay (ELM)").at(inception)
                 .synonym("ELM TimeOfDay")
                 .definition("From the ELM specification: The TimeOfDay operator returns the time-of-day of the"
@@ -2680,13 +2672,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Date year")),
                         set.conceptRef("ELM year position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Date month")),
                         set.conceptRef("ELM month position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Date day")),
                         set.conceptRef("ELM day position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM DateTime (ELM)").at(inception)
                 .synonym("ELM DateTime")
                 .definition("From the ELM specification: The DateTime operator constructs a DateTime value from the"
@@ -2701,28 +2693,28 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime year")),
                         set.conceptRef("ELM year position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime month")),
                         set.conceptRef("ELM month position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime day")),
                         set.conceptRef("ELM day position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime hour")),
                         set.conceptRef("ELM hour position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime minute")),
                         set.conceptRef("ELM minute position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime second")),
                         set.conceptRef("ELM second position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime millisecond")),
                         set.conceptRef("ELM millisecond position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateTime timezoneOffset")),
                         set.conceptRef("ELM timezoneOffset position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Time (ELM)").at(inception)
                 .synonym("ELM Time")
                 .definition("From the ELM specification: The Time operator constructs a time value from the given"
@@ -2734,16 +2726,16 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Time hour")),
                         set.conceptRef("ELM hour position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Time minute")),
                         set.conceptRef("ELM minute position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Time second")),
                         set.conceptRef("ELM second position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Time millisecond")),
                         set.conceptRef("ELM millisecond position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM SameAs (ELM)").at(inception)
                 .synonym("ELM SameAs")
                 .definition("From the ELM specification: The SameAs operator is defined for Date, DateTime, and"
@@ -2769,7 +2761,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM SameAs precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM SameOrBefore (ELM)").at(inception)
                 .synonym("ELM SameOrBefore")
                 .definition("From the ELM specification: The SameOrBefore operator is defined for Date, DateTime,"
@@ -2799,7 +2791,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM SameOrBefore precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM SameOrAfter (ELM)").at(inception)
                 .synonym("ELM SameOrAfter")
                 .definition("From the ELM specification: The SameOrAfter operator is defined for Date, DateTime,"
@@ -2830,7 +2822,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM SameOrAfter precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM PointFrom (ELM)").at(inception)
                 .synonym("ELM PointFrom")
                 .definition("From the ELM specification: The PointFrom expression extracts the single point from"
@@ -2895,7 +2887,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Contains precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ProperContains (ELM)").at(inception)
                 .synonym("ELM ProperContains")
                 .definition("From the ELM specification: The ProperContains operator returns true if the first"
@@ -2916,7 +2908,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ProperContains precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM In (ELM)").at(inception)
                 .synonym("ELM In")
                 .definition("From the ELM specification: The In operator tests for membership in an interval or"
@@ -2938,7 +2930,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM In precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ProperIn (ELM)").at(inception)
                 .synonym("ELM ProperIn")
                 .definition("From the ELM specification: The ProperIn operator tests for proper membership in an"
@@ -2959,7 +2951,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ProperIn precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Includes (ELM)").at(inception)
                 .synonym("ELM Includes")
                 .definition("From the ELM specification: The Includes operator returns true if the first operand"
@@ -2979,7 +2971,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Includes precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM IncludedIn (ELM)").at(inception)
                 .synonym("ELM IncludedIn")
                 .definition("From the ELM specification: The IncludedIn operator returns true if the first operand"
@@ -2999,7 +2991,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludedIn precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ProperIncludes (ELM)").at(inception)
                 .synonym("ELM ProperIncludes")
                 .definition("From the ELM specification: The ProperIncludes operator returns true if the first"
@@ -3018,7 +3010,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ProperIncludes precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ProperIncludedIn (ELM)").at(inception)
                 .synonym("ELM ProperIncludedIn")
                 .definition("From the ELM specification: The ProperIncludedIn operator returns true if the first"
@@ -3037,7 +3029,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ProperIncludedIn precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Before (ELM)").at(inception)
                 .synonym("ELM Before")
                 .definition("From the ELM specification: The Before operator is defined for Intervals, as well as"
@@ -3066,7 +3058,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Before precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM After (ELM)").at(inception)
                 .synonym("ELM After")
                 .definition("From the ELM specification: The After operator is defined for Intervals, as well as"
@@ -3096,7 +3088,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM After precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Meets (ELM)").at(inception)
                 .synonym("ELM Meets")
                 .definition("From the ELM specification: The Meets operator returns true if the first interval ends"
@@ -3111,7 +3103,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Meets precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM MeetsBefore (ELM)").at(inception)
                 .synonym("ELM MeetsBefore")
                 .definition("From the ELM specification: The MeetsBefore operator returns true if the first"
@@ -3124,7 +3116,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM MeetsBefore precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM MeetsAfter (ELM)").at(inception)
                 .synonym("ELM MeetsAfter")
                 .definition("From the ELM specification: The MeetsAfter operator returns true if the first interval"
@@ -3137,7 +3129,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM MeetsAfter precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Overlaps (ELM)").at(inception)
                 .synonym("ELM Overlaps")
                 .definition("From the ELM specification: The Overlaps operator returns true if the first interval"
@@ -3152,7 +3144,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Overlaps precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM OverlapsBefore (ELM)").at(inception)
                 .synonym("ELM OverlapsBefore")
                 .definition("From the ELM specification: The OverlapsBefore operator returns true if the first"
@@ -3165,7 +3157,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OverlapsBefore precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM OverlapsAfter (ELM)").at(inception)
                 .synonym("ELM OverlapsAfter")
                 .definition("From the ELM specification: The OverlapsAfter operator returns true if the first"
@@ -3178,7 +3170,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OverlapsAfter precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Starts (ELM)").at(inception)
                 .synonym("ELM Starts")
                 .definition("From the ELM specification: The Starts operator returns true if the first interval"
@@ -3192,7 +3184,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Starts precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Ends (ELM)").at(inception)
                 .synonym("ELM Ends")
                 .definition("From the ELM specification: The Ends operator returns true if the first interval ends"
@@ -3206,7 +3198,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Ends precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Collapse (ELM)").at(inception)
                 .synonym("ELM Collapse")
                 .definition("From the ELM specification: The Collapse operator returns the unique set of intervals"
@@ -3326,13 +3318,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Filter source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Filter condition")),
                         set.conceptRef("ELM condition position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Filter scope")),
                         set.conceptRef("ELM scope position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM First (ELM)").at(inception)
                 .synonym("ELM First")
                 .definition("From the ELM specification: The First operator returns the first element in a list. If"
@@ -3341,10 +3333,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM First source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM First orderBy")),
                         set.conceptRef("ELM orderBy position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Last (ELM)").at(inception)
                 .synonym("ELM Last")
                 .definition("From the ELM specification: The Last operator returns the last element in a list. If"
@@ -3353,10 +3345,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Last source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Last orderBy")),
                         set.conceptRef("ELM orderBy position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Slice (ELM)").at(inception)
                 .synonym("ELM Slice")
                 .definition("From the ELM specification: The Slice operator returns a portion of the elements in a"
@@ -3368,13 +3360,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Slice source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Slice startIndex")),
                         set.conceptRef("ELM startIndex position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Slice endIndex")),
                         set.conceptRef("ELM endIndex position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM IndexOf (ELM)").at(inception)
                 .synonym("ELM IndexOf")
                 .definition("From the ELM specification: The IndexOf operator returns the 0-based index of the"
@@ -3386,10 +3378,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IndexOf source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IndexOf element")),
                         set.conceptRef("ELM element position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Flatten (ELM)").at(inception)
                 .synonym("ELM Flatten")
                 .definition("From the ELM specification: The Flatten operator flattens a list of lists into a"
@@ -3405,10 +3397,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Sort source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Sort by")),
                         set.conceptRef("ELM by position (ELM)"), set.conceptRef("ELM SortByItem (ELM)"), 1, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ForEach (ELM)").at(inception)
                 .synonym("ELM ForEach")
                 .definition("From the ELM specification: The ForEach expression iterates over the list of elements"
@@ -3420,13 +3412,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ForEach source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ForEach element")),
                         set.conceptRef("ELM element position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ForEach scope")),
                         set.conceptRef("ELM scope position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Repeat (ELM)").at(inception)
                 .synonym("ELM Repeat")
                 .definition("From the ELM specification: The Repeat expression performs successive ForEach until no"
@@ -3437,13 +3429,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Repeat source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Repeat element")),
                         set.conceptRef("ELM element position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Repeat scope")),
                         set.conceptRef("ELM scope position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Distinct (ELM)").at(inception)
                 .synonym("ELM Distinct")
                 .definition("From the ELM specification: The Distinct operator takes a list of elements and returns"
@@ -3466,7 +3458,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Current scope")),
                         set.conceptRef("ELM scope position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Iteration (ELM)").at(inception)
                 .synonym("ELM Iteration")
                 .definition("From the ELM specification: The Iteration expression returns the current iteration"
@@ -3479,7 +3471,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Iteration scope")),
                         set.conceptRef("ELM scope position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Total (ELM)").at(inception)
                 .synonym("ELM Total")
                 .definition("From the ELM specification: The Total expression returns the current value of the"
@@ -3489,7 +3481,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Total scope")),
                         set.conceptRef("ELM scope position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM SingletonFrom (ELM)").at(inception)
                 .synonym("ELM SingletonFrom")
                 .definition("From the ELM specification: The SingletonFrom expression extracts a single element"
@@ -3512,13 +3504,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AggregateExpression signature")),
                         set.conceptRef("ELM signature position (ELM)"), set.conceptRef("ELM TypeSpecifier (ELM)"), 0, -1,
-                        "Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.")
+                        "Specifies the declared signature of the operator or function being called. If no signature is specified, the run-time types of the operands should be used to resolve any overload.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AggregateExpression source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AggregateExpression path")),
                         set.conceptRef("ELM path position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Aggregate (ELM)").at(inception)
                 .synonym("ELM Aggregate")
                 .definition("From the ELM specification: The Aggregate operator performs custom aggregation by"
@@ -3532,10 +3524,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM AggregateExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Aggregate iteration")),
                         set.conceptRef("ELM iteration position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Aggregate initialValue")),
                         set.conceptRef("ELM initialValue position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Count (ELM)").at(inception)
                 .synonym("ELM Count")
                 .definition("From the ELM specification: The Count operator returns the number of non-null elements"
@@ -3661,13 +3653,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Property source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Property path")),
                         set.conceptRef("ELM path position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Property scope")),
                         set.conceptRef("ELM scope position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM AliasedQuerySource (ELM)").at(inception)
                 .synonym("ELM AliasedQuerySource")
                 .definition("From the ELM specification: The AliasedQuerySource element defines a single source for"
@@ -3676,10 +3668,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AliasedQuerySource expression")),
                         set.conceptRef("ELM expression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AliasedQuerySource alias")),
                         set.conceptRef("ELM alias position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM LetClause (ELM)").at(inception)
                 .synonym("ELM LetClause")
                 .definition("From the ELM specification: The LetClause element allows any number of expression"
@@ -3688,10 +3680,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM LetClause expression")),
                         set.conceptRef("ELM expression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM LetClause identifier")),
                         set.conceptRef("ELM identifier position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM RelationshipClause (ELM)").at(inception)
                 .synonym("ELM RelationshipClause")
                 .definition("From the ELM specification: The RelationshipClause element allows related sources to"
@@ -3703,7 +3695,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM AliasedQuerySource (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM RelationshipClause suchThat")),
                         set.conceptRef("ELM suchThat position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM With (ELM)").at(inception)
                 .synonym("ELM With")
                 .definition("From the ELM specification: The With clause restricts the elements of a given source"
@@ -3724,7 +3716,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM SortByItem direction")),
                         set.conceptRef("ELM direction position (ELM)"), set.conceptRef("ELM SortDirection (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ByDirection (ELM)").at(inception)
                 .synonym("ELM ByDirection")
                 .definition("From the ELM specification: The ByDirection element specifies that the sort should be"
@@ -3740,7 +3732,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM SortByItem (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ByColumn path")),
                         set.conceptRef("ELM path position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ByExpression (ELM)").at(inception)
                 .synonym("ELM ByExpression")
                 .definition("From the ELM specification: The ByExpression element specifies that the sort should be"
@@ -3751,7 +3743,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM SortByItem (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ByExpression expression")),
                         set.conceptRef("ELM expression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM SortClause (ELM)").at(inception)
                 .synonym("ELM SortClause")
                 .definition("From the ELM specification: The SortClause element defines the sort order for the"
@@ -3759,7 +3751,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM SortClause by")),
                         set.conceptRef("ELM by position (ELM)"), set.conceptRef("ELM SortByItem (ELM)"), 1, -1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ReturnClause (ELM)").at(inception)
                 .synonym("ELM ReturnClause")
                 .definition("From the ELM specification: The ReturnClause element defines the shape of the result"
@@ -3767,10 +3759,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ReturnClause expression")),
                         set.conceptRef("ELM expression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ReturnClause distinct")),
                         set.conceptRef("ELM distinct position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM AggregateClause (ELM)").at(inception)
                 .synonym("ELM AggregateClause")
                 .definition("From the ELM specification: The AggregateClause element defines the result of the"
@@ -3778,16 +3770,16 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AggregateClause expression")),
                         set.conceptRef("ELM expression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AggregateClause starting")),
                         set.conceptRef("ELM starting position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AggregateClause identifier")),
                         set.conceptRef("ELM identifier position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AggregateClause distinct")),
                         set.conceptRef("ELM distinct position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Query (ELM)").at(inception)
                 .synonym("ELM Query")
                 .definition("From the ELM specification: The Query operator represents a clause-based query. The"
@@ -3796,25 +3788,25 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Query source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM AliasedQuerySource (ELM)"), 1, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Query let")),
                         set.conceptRef("ELM let position (ELM)"), set.conceptRef("ELM LetClause (ELM)"), 0, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Query relationship")),
                         set.conceptRef("ELM relationship position (ELM)"), set.conceptRef("ELM RelationshipClause (ELM)"), 0, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Query where")),
                         set.conceptRef("ELM where position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Query return")),
                         set.conceptRef("ELM return position (ELM)"), set.conceptRef("ELM ReturnClause (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Query aggregate")),
                         set.conceptRef("ELM aggregate position (ELM)"), set.conceptRef("ELM AggregateClause (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Query sort")),
                         set.conceptRef("ELM sort position (ELM)"), set.conceptRef("ELM SortClause (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM AliasRef (ELM)").at(inception)
                 .synonym("ELM AliasRef")
                 .definition("From the ELM specification: The AliasRef expression allows for the reference of a"
@@ -3822,7 +3814,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AliasRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM QueryLetRef (ELM)").at(inception)
                 .synonym("ELM QueryLetRef")
                 .definition("From the ELM specification: The QueryLetRef expression allows for the reference of a"
@@ -3830,7 +3822,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM QueryLetRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Children (ELM)").at(inception)
                 .synonym("ELM Children")
                 .definition("From the ELM specification: For structured types, the Children operator returns a list"
@@ -3841,7 +3833,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Children source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Descendants (ELM)").at(inception)
                 .synonym("ELM Descendants")
                 .definition("From the ELM specification: For structured types, the Descendants operator returns a"
@@ -3853,7 +3845,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Descendants source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Descendents (ELM)").at(inception)
                 .synonym("ELM Descendents")
                 .definition("From the ELM specification: DEPRECATED: Use Descendants. For structured types, the"
@@ -3865,7 +3857,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Descendents source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM Message (ELM)").at(inception)
                 .synonym("ELM Message")
                 .definition("From the ELM specification: The Message operator is used to support errors, warnings,"
@@ -3881,19 +3873,19 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Message source")),
                         set.conceptRef("ELM source position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Message condition")),
                         set.conceptRef("ELM condition position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Message code")),
                         set.conceptRef("ELM code position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Message severity")),
                         set.conceptRef("ELM severity position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Message message")),
                         set.conceptRef("ELM message position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM CodeFilterElement (ELM)").at(inception)
                 .synonym("ELM CodeFilterElement")
                 .definition("From the ELM specification: The CodeFilterElement type specifies a terminology filter"
@@ -3902,19 +3894,19 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeFilterElement value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "An expression that provides the comparison value for the filter. The expression is expected to result in a List<Code> to match against. Only the clinical statements that match at least one of the specified codes will be returned.")
+                        "An expression that provides the comparison value for the filter. The expression is expected to result in a List<Code> to match against. Only the clinical statements that match at least one of the specified codes will be returned.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeFilterElement property")),
                         set.conceptRef("ELM property position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The property attribute specifies which property the filter applies to. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The property attribute specifies which property the filter applies to. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeFilterElement valueSetProperty")),
                         set.conceptRef("ELM valueSetProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data. This attribute is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. In this case, the valueSetProperty attribute allows the retrieve to specify where to look for the value set identifier without needing to change the conceptual data model or the CQL logic describing the negated activity. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data. This attribute is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. In this case, the valueSetProperty attribute allows the retrieve to specify where to look for the value set identifier without needing to change the conceptual data model or the CQL logic describing the negated activity. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeFilterElement search")),
                         set.conceptRef("ELM search position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The search attribute specifies the name of a search path for the filter.")
+                        "The search attribute specifies the name of a search path for the filter.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeFilterElement comparator")),
                         set.conceptRef("ELM comparator position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.");
+                        "The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.", propertyForm);
         set.concept("ELM DateFilterElement (ELM)").at(inception)
                 .synonym("ELM DateFilterElement")
                 .definition("From the ELM specification: The DateFilterElement type specifies a date-valued filter"
@@ -3925,19 +3917,19 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateFilterElement value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "An expression that provides the comparison value for the filter. The expression is expected to result in a date or time type, an interval of a date or time type, or a time-valued quantity. Only the clinical statements that match at least one of the specified codes will be returned.")
+                        "An expression that provides the comparison value for the filter. The expression is expected to result in a date or time type, an interval of a date or time type, or a time-valued quantity. Only the clinical statements that match at least one of the specified codes will be returned.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateFilterElement property")),
                         set.conceptRef("ELM property position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement. This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date or DateTime values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date- or DateTime-based interval values, this means that the entire interval is included in the date range. Instances with no value for the dateProperty will not be included in the result set if a date range is specified. Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the dateProperty must not be present. If specified, the lowProperty and highProperty values will be used to construct an interval with inclusive boundaries for the date range. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement. This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date or DateTime values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date- or DateTime-based interval values, this means that the entire interval is included in the date range. Instances with no value for the dateProperty will not be included in the result set if a date range is specified. Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the dateProperty must not be present. If specified, the lowProperty and highProperty values will be used to construct an interval with inclusive boundaries for the date range. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateFilterElement lowProperty")),
                         set.conceptRef("ELM lowProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The lowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement. Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the property must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The lowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement. Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the property must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateFilterElement highProperty")),
                         set.conceptRef("ELM highProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The highProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement. Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the property must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The highProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement. Note that if the property is specified, the lowProperty and highProperty attributes must not be present. And conversely, if the lowProperty and highProperty attributes are specified, the property must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM DateFilterElement search")),
                         set.conceptRef("ELM search position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The search attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.");
+                        "The search attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.", propertyForm);
         set.concept("ELM OtherFilterElement (ELM)").at(inception)
                 .synonym("ELM OtherFilterElement")
                 .definition("From the ELM specification: The OtherFilterElement type specifies an arbitrarily-typed"
@@ -3946,16 +3938,16 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OtherFilterElement value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "An expression that provides the comparison value for the filter.")
+                        "An expression that provides the comparison value for the filter.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OtherFilterElement property")),
                         set.conceptRef("ELM property position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The property attribute specifies which property the filter applies to. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The property attribute specifies which property the filter applies to. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OtherFilterElement search")),
                         set.conceptRef("ELM search position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The search attribute specifies the name of a search path for the filter.")
+                        "The search attribute specifies the name of a search path for the filter.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM OtherFilterElement comparator")),
                         set.conceptRef("ELM comparator position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The comparator attribute specifies the comparison operation for the filter.");
+                        "The comparator attribute specifies the comparison operation for the filter.", propertyForm);
         set.concept("ELM IncludeElement (ELM)").at(inception)
                 .synonym("ELM IncludeElement")
                 .definition("From the ELM specification: The IncludeElement type specifies include information for"
@@ -3963,19 +3955,19 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeElement includeFrom")),
                         set.conceptRef("ELM includeFrom position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The localId of another Retrieve that specifies the data to be included in this retrieve. The target Retrieve will have an includedIn attribute referencing this includeElement.")
+                        "The localId of another Retrieve that specifies the data to be included in this retrieve. The target Retrieve will have an includedIn attribute referencing this includeElement.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeElement relatedDataType")),
                         set.conceptRef("ELM relatedDataType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 1, 1,
-                        "The relatedDataType attribute specifies the type of the related data being requested.")
+                        "The relatedDataType attribute specifies the type of the related data being requested.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeElement relatedProperty")),
                         set.conceptRef("ELM relatedProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The relatedProperty attribute specifies which property of the relatedDataType contains the relatedId for the clinical statement. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The relatedProperty attribute specifies which property of the relatedDataType contains the relatedId for the clinical statement. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeElement relatedSearch")),
                         set.conceptRef("ELM relatedSearch position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The relatedSearch attribute specifies the name of the search path to use for searching for data of the relatedDataType.")
+                        "The relatedSearch attribute specifies the name of the search path to use for searching for data of the relatedDataType.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeElement isReverse")),
                         set.conceptRef("ELM isReverse position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "The isReverse attribute indicates that the include is reverse, i.e. that the relatedDataType is referencing the data being retrieved, rather than the retrieved data referencing the relatedDataType.");
+                        "The isReverse attribute indicates that the include is reverse, i.e. that the relatedDataType is referencing the data being retrieved, rather than the retrieved data referencing the relatedDataType.", propertyForm);
         set.concept("ELM Retrieve (ELM)").at(inception)
                 .synonym("ELM Retrieve")
                 .definition("From the ELM specification: The retrieve expression defines clinical data that will be"
@@ -3991,73 +3983,73 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve id")),
                         set.conceptRef("ELM id position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.")
+                        "The id element optionally specifies an expression that results in a value that can be used to filter the retrieve to a specific id.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve codes")),
                         set.conceptRef("ELM codes position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "The codes element optionally specifies an expression that results in a List<Code> to match against. Only the clinical statements that match at least one of the specified codes will be returned.")
+                        "The codes element optionally specifies an expression that results in a List<Code> to match against. Only the clinical statements that match at least one of the specified codes will be returned.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve dateRange")),
                         set.conceptRef("ELM dateRange position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.")
+                        "The dateRange element optionally specifies an expression that results in an Interval<DateTime> to match against. Only those clinical statements whose date falls within the specified date range will be returned.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve context")),
                         set.conceptRef("ELM context position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "If specified, the context element references an expression that, when evaluated, provides the context for the retrieve. The expression evaluates to the instance id that will be used as the context for the retrieve.")
+                        "If specified, the context element references an expression that, when evaluated, provides the context for the retrieve. The expression evaluates to the instance id that will be used as the context for the retrieve.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve include")),
                         set.conceptRef("ELM include position (ELM)"), set.conceptRef("ELM IncludeElement (ELM)"), 0, -1,
-                        "Specifies a related data type to be included in the result as part of the retrieve.")
+                        "Specifies a related data type to be included in the result as part of the retrieve.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve codeFilter")),
                         set.conceptRef("ELM codeFilter position (ELM)"), set.conceptRef("ELM CodeFilterElement (ELM)"), 0, -1,
-                        "Specifies a terminology filter to be applied as part of the retrieve. Each codeFilter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple codeFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the code filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.")
+                        "Specifies a terminology filter to be applied as part of the retrieve. Each codeFilter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple codeFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the code filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve dateFilter")),
                         set.conceptRef("ELM dateFilter position (ELM)"), set.conceptRef("ELM DateFilterElement (ELM)"), 0, -1,
-                        "Specifies a date filter to be applied as part of the retrieve. Each dateFilter is specifies as a [property], or a [lowProperty]-[highProperty], or a [search], and a [value] that is an expression that evaluates to an interval of a date or time value. When multiple dateFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the date filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.")
+                        "Specifies a date filter to be applied as part of the retrieve. Each dateFilter is specifies as a [property], or a [lowProperty]-[highProperty], or a [search], and a [value] that is an expression that evaluates to an interval of a date or time value. When multiple dateFilters are present, they are all applied (i.e. ANDed). For simplicity, if this element is specified at all, it will include the date filter established by the attributes of the retrieve, as well as any additional filtering criteria as determined by optimization strategies.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve otherFilter")),
                         set.conceptRef("ELM otherFilter position (ELM)"), set.conceptRef("ELM OtherFilterElement (ELM)"), 0, -1,
-                        "Specifies other, non-id, -context, -terminology, or -date valued filter criteria to be applied as part of the retrieve. Each other Filter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple otherFilters are present, they are all applied (i.e. ANDed). This element is included to allow for additional filtering criteria as determined by optimization strategies.")
+                        "Specifies other, non-id, -context, -terminology, or -date valued filter criteria to be applied as part of the retrieve. Each other Filter is specified as [property] [comparator] [value] or [search] [comparator] [value]. When multiple otherFilters are present, they are all applied (i.e. ANDed). This element is included to allow for additional filtering criteria as determined by optimization strategies.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve dataType")),
                         set.conceptRef("ELM dataType position (ELM)"), set.conceptRef("ELM primitive QName (ELM)"), 1, 1,
-                        "The dataType attribute specifies the type of data being requested.")
+                        "The dataType attribute specifies the type of data being requested.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve templateId")),
                         set.conceptRef("ELM templateId position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The templateId attribute specifies an optional template to be used. If specified, the retrieve is defined to return only objects that conform to the template.")
+                        "The templateId attribute specifies an optional template to be used. If specified, the retrieve is defined to return only objects that conform to the template.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve idProperty")),
                         set.conceptRef("ELM idProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The idProperty attribute specifies which property of the model contains the Id for the clinical statement. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The idProperty attribute specifies which property of the model contains the Id for the clinical statement. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve idSearch")),
                         set.conceptRef("ELM idSearch position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The idSearch attribute specifies the name of the search path to use for searching for the values in the id element.")
+                        "The idSearch attribute specifies the name of the search path to use for searching for the values in the id element.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve contextProperty")),
                         set.conceptRef("ELM contextProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The contextProperty attribute optionally specifies which property of the model contains the context value. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still ned to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The contextProperty attribute optionally specifies which property of the model contains the context value. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still ned to respect contextProperty values in the ELM due to the possibility of the retrieve specifying alternate context paths. From the persepctive of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve contextSearch")),
                         set.conceptRef("ELM contextSearch position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The contextSearch attribute specifies the name of the search path to use for searching for the context values.")
+                        "The contextSearch attribute specifies the name of the search path to use for searching for the context values.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve codeProperty")),
                         set.conceptRef("ELM codeProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect codeProperty values in the ELM due to the possibility of the retrieve specifying alternate code filters. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The codeProperty attribute optionally specifies which property of the model contains the Code or Codes for the clinical statement. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. Note also that even in the case of an implementation catalog, implementations would still need to respect codeProperty values in the ELM due to the possibility of the retrieve specifying alternate code filters. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve codeSearch")),
                         set.conceptRef("ELM codeSearch position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.")
+                        "The codeSearch attribute specifies the name of the search path to use for searching for the values in the code element.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve codeComparator")),
                         set.conceptRef("ELM codeComparator position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.")
+                        "The codeComparator attribute specifies how elements of the code property should be matched to the terminology. One of 'in', '=', or '~'. Note that 'in' will resolve to the appropriate terminology matching operator, resulting in equivalence semantics for value set and code system membership testing.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve valueSetProperty")),
                         set.conceptRef("ELM valueSetProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data. This attribute is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. In this case, the valueSetProperty attribute allows the retrieve to specify where to look for the value set identifier without needing to change the conceptual data model or the CQL logic describing the negated activity. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The valueSetProperty attribute optionally specifies which property of the model contains a value set identifier that can be used as an alternative mechanism for matching the value set of the retrieve, in the case when no code is specified in the source data. This attribute is intended to address the case where systems representing negation rationale for an activity not performed do so by indicating a valueset identifier rather than a code. For example, when indicating that a medication was not administered, the value set identifier for the expected medication is used, rather than indicating a specific medication that was not administered. In this case, the valueSetProperty attribute allows the retrieve to specify where to look for the value set identifier without needing to change the conceptual data model or the CQL logic describing the negated activity. Note that implementers could also specify this information elsewhere as part of an implementation catalog, rather than on each Retrieve expression, but allowing it to be specified in the retrieve expression gives the most flexibility. From the perspective of ELM, the specification ensures that ELM can be processed without reference to the model information. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve dateProperty")),
                         set.conceptRef("ELM dateProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement. This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date or DateTime values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date- or DateTime-based interval values, this means that the entire interval is included in the date range. Instances with no value for the dateProperty will not be included in the result set if a date range is specified. Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. If specified, the dateLowProperty and dateHighProperty values will be used to construct an interval with inclusive boundaries for the date range. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The dateProperty attribute optionally specifies which property of the model contains the clinically relevant date for the clinical statement. This property is expected to reference a property that is either a Date or DateTime, or an interval of Date or DateTime. In either case, the result set will only include instances where the value of the dateProperty is during the date range. For Date or DateTime values, this means the date is both the same or after the beginning of the range, and the same or before the end of the range. For Date- or DateTime-based interval values, this means that the entire interval is included in the date range. Instances with no value for the dateProperty will not be included in the result set if a date range is specified. Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. If specified, the dateLowProperty and dateHighProperty values will be used to construct an interval with inclusive boundaries for the date range. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve dateLowProperty")),
                         set.conceptRef("ELM dateLowProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement. Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The dateLowProperty attribute optionally specifies which property of the model contains the low component of the clinically relevant date for the clinical statement. Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve dateHighProperty")),
                         set.conceptRef("ELM dateHighProperty position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement. Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.")
+                        "The dateHighProperty attribute optionally specifies which property of the model contains the high component of the clinically relevant date for the clinical statement. Note that if the dateProperty is specified, the dateLowProperty and dateHighProperty attributes must not be present. And conversely, if the dateLowProperty and dateHighProperty attributes are specified, the dateProperty must not be present. This property may be specified as a path, including qualifiers and constant indexers. The <simplePath> production rule in the CQL grammar provides the formal semantics for this path.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve dateSearch")),
                         set.conceptRef("ELM dateSearch position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The dateSearch attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.")
+                        "The dateSearch attribute specifies the name of the search path to use for searching for values in the date range specified by the dateRange element.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Retrieve includedIn")),
                         set.conceptRef("ELM includedIn position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The localId of another Retrieve that includes the data for this retrieve. The target Retrieve will have an includeElement referencing this retrieve.");
+                        "The localId of another Retrieve that includes the data for this retrieve. The target Retrieve will have an includeElement referencing this retrieve.", propertyForm);
         set.concept("ELM Search (ELM)").at(inception)
                 .synonym("ELM Search")
                 .definition("From the ELM specification: The Search operation provides an operator that returns the"
@@ -4072,16 +4064,16 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeSystemDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The name of the code system used for reference.")
+                        "The name of the code system used for reference.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeSystemDef id")),
                         set.conceptRef("ELM id position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The unique identifier of the code system.")
+                        "The unique identifier of the code system.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeSystemDef version")),
                         set.conceptRef("ELM version position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The version of the code system to be used. If no version is specified, the most current published version of the code system is assumed.")
+                        "The version of the code system to be used. If no version is specified, the most current published version of the code system is assumed.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeSystemDef accessLevel")),
                         set.conceptRef("ELM accessLevel position (ELM)"), set.conceptRef("ELM AccessModifier (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ValueSetDef (ELM)").at(inception)
                 .synonym("ELM ValueSetDef")
                 .definition("From the ELM specification: The ValueSetDef type defines a value set identifier that"
@@ -4099,19 +4091,19 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetDef codeSystem")),
                         set.conceptRef("ELM codeSystem position, mixed case (ELM)"), set.conceptRef("ELM CodeSystemRef (ELM)"), 0, -1,
-                        "The code system that should be used to construct the expansion set. Note that the recommended approach to statically binding to an expansion set is to use a value set definition that specifies the version of each code system used. The codeSystem elements are provided only to ensure static binding can be achieved when the value set definition does not specify code system versions as part of the definition header.")
+                        "The code system that should be used to construct the expansion set. Note that the recommended approach to statically binding to an expansion set is to use a value set definition that specifies the version of each code system used. The codeSystem elements are provided only to ensure static binding can be achieved when the value set definition does not specify code system versions as part of the definition header.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetDef id")),
                         set.conceptRef("ELM id position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The unique identifier of the value set to be retrieved.")
+                        "The unique identifier of the value set to be retrieved.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetDef version")),
                         set.conceptRef("ELM version position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "The version of the value set to be retrieved. If no version is provided, the most current published version of the value set is assumed.")
+                        "The version of the value set to be retrieved. If no version is provided, the most current published version of the value set is assumed.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetDef accessLevel")),
                         set.conceptRef("ELM accessLevel position (ELM)"), set.conceptRef("ELM AccessModifier (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM CodeDef (ELM)").at(inception)
                 .synonym("ELM CodeDef")
                 .definition("From the ELM specification: The CodeDef type defines a code identifier that can then"
@@ -4119,19 +4111,19 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeDef codeSystem")),
                         set.conceptRef("ELM codeSystem position, mixed case (ELM)"), set.conceptRef("ELM CodeSystemRef (ELM)"), 0, 1,
-                        "The code system that contains the code being referenced.")
+                        "The code system that contains the code being referenced.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The name of the code used for reference.")
+                        "The name of the code used for reference.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeDef id")),
                         set.conceptRef("ELM id position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The unique identifier of the code.")
+                        "The unique identifier of the code.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeDef display")),
                         set.conceptRef("ELM display position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "An optional display string used to describe the code.")
+                        "An optional display string used to describe the code.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeDef accessLevel")),
                         set.conceptRef("ELM accessLevel position (ELM)"), set.conceptRef("ELM AccessModifier (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ConceptDef (ELM)").at(inception)
                 .synonym("ELM ConceptDef")
                 .definition("From the ELM specification: The ConceptDef type defines a concept identifier that can"
@@ -4139,16 +4131,16 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ConceptDef code")),
                         set.conceptRef("ELM code position (ELM)"), set.conceptRef("ELM CodeRef (ELM)"), 1, -1,
-                        "A code that makes up the concept. All codes within a given concept must be synonyms.")
+                        "A code that makes up the concept. All codes within a given concept must be synonyms.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ConceptDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "The name of the concept used for reference.")
+                        "The name of the concept used for reference.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ConceptDef display")),
                         set.conceptRef("ELM display position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "An optional display string used to describe the concept.")
+                        "An optional display string used to describe the concept.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ConceptDef accessLevel")),
                         set.conceptRef("ELM accessLevel position (ELM)"), set.conceptRef("ELM AccessModifier (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM CodeSystemRef (ELM)").at(inception)
                 .synonym("ELM CodeSystemRef")
                 .definition("From the ELM specification: The CodeSystemRef expression allows a previously defined"
@@ -4159,10 +4151,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeSystemRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeSystemRef libraryName")),
                         set.conceptRef("ELM libraryName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ValueSetRef (ELM)").at(inception)
                 .synonym("ELM ValueSetRef")
                 .definition("From the ELM specification: The ValueSetRef expression allows a previously defined"
@@ -4171,13 +4163,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetRef libraryName")),
                         set.conceptRef("ELM libraryName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ValueSetRef preserve")),
                         set.conceptRef("ELM preserve position (ELM)"), set.conceptRef("ELM primitive boolean (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM CodeRef (ELM)").at(inception)
                 .synonym("ELM CodeRef")
                 .definition("From the ELM specification: The CodeRef expression allows a previously defined code to"
@@ -4185,10 +4177,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CodeRef libraryName")),
                         set.conceptRef("ELM libraryName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM ConceptRef (ELM)").at(inception)
                 .synonym("ELM ConceptRef")
                 .definition("From the ELM specification: The ConceptRef expression allows a previously defined"
@@ -4196,33 +4188,33 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ConceptRef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ConceptRef libraryName")),
                         set.conceptRef("ELM libraryName position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Code (ELM)").at(inception)
                 .synonym("ELM Code")
                 .definition("From the ELM specification: The Code type represents a literal code selector.")
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Code system")),
                         set.conceptRef("ELM system position (ELM)"), set.conceptRef("ELM CodeSystemRef (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Code code")),
                         set.conceptRef("ELM code position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Code display")),
                         set.conceptRef("ELM display position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Concept (ELM)").at(inception)
                 .synonym("ELM Concept")
                 .definition("From the ELM specification: The Concept type represents a literal concept selector.")
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Concept code")),
                         set.conceptRef("ELM code position (ELM)"), set.conceptRef("ELM Code (ELM)"), 1, -1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Concept display")),
                         set.conceptRef("ELM display position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM InCodeSystem (ELM)").at(inception)
                 .synonym("ELM InCodeSystem")
                 .definition("From the ELM specification: The InCodeSystem operator returns true if the given code"
@@ -4235,13 +4227,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InCodeSystem code")),
                         set.conceptRef("ELM code position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InCodeSystem codesystem")),
                         set.conceptRef("ELM codesystem position, lower case (ELM)"), set.conceptRef("ELM CodeSystemRef (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InCodeSystem codesystemExpression")),
                         set.conceptRef("ELM codesystemExpression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM AnyInCodeSystem (ELM)").at(inception)
                 .synonym("ELM AnyInCodeSystem")
                 .definition("From the ELM specification: The AnyInCodeSystem operator returns true if any of the"
@@ -4254,13 +4246,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AnyInCodeSystem codes")),
                         set.conceptRef("ELM codes position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AnyInCodeSystem codesystem")),
                         set.conceptRef("ELM codesystem position, lower case (ELM)"), set.conceptRef("ELM CodeSystemRef (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AnyInCodeSystem codesystemExpression")),
                         set.conceptRef("ELM codesystemExpression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM InValueSet (ELM)").at(inception)
                 .synonym("ELM InValueSet")
                 .definition("From the ELM specification: The InValueSet operator returns true if the given code is"
@@ -4272,13 +4264,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InValueSet code")),
                         set.conceptRef("ELM code position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InValueSet valueset")),
                         set.conceptRef("ELM valueset position (ELM)"), set.conceptRef("ELM ValueSetRef (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM InValueSet valuesetExpression")),
                         set.conceptRef("ELM valuesetExpression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM AnyInValueSet (ELM)").at(inception)
                 .synonym("ELM AnyInValueSet")
                 .definition("From the ELM specification: The AnyInValueSet operator returns true if any of the"
@@ -4291,13 +4283,13 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM OperatorExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AnyInValueSet codes")),
                         set.conceptRef("ELM codes position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AnyInValueSet valueset")),
                         set.conceptRef("ELM valueset position (ELM)"), set.conceptRef("ELM ValueSetRef (ELM)"), 0, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM AnyInValueSet valuesetExpression")),
                         set.conceptRef("ELM valuesetExpression position (ELM)"), set.conceptRef("ELM Expression (ELM)"), 0, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM ExpandValueSet (ELM)").at(inception)
                 .synonym("ELM ExpandValueSet")
                 .definition("From the ELM specification: The ExpandValueSet operator returns the current expansion"
@@ -4333,10 +4325,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Quantity value")),
                         set.conceptRef("ELM value position (ELM)"), set.conceptRef("ELM primitive decimal (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Quantity unit")),
                         set.conceptRef("ELM unit position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Ratio (ELM)").at(inception)
                 .synonym("ELM Ratio")
                 .definition("From the ELM specification: The Ratio type defines a ratio between two quantities. For"
@@ -4345,10 +4337,10 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Expression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Ratio numerator")),
                         set.conceptRef("ELM numerator position (ELM)"), set.conceptRef("ELM Quantity (ELM)"), 1, 1,
-                        "")
+                        "", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Ratio denominator")),
                         set.conceptRef("ELM denominator position (ELM)"), set.conceptRef("ELM Quantity (ELM)"), 1, 1,
-                        "");
+                        "", edgeForm);
         set.concept("ELM CalculateAge (ELM)").at(inception)
                 .synonym("ELM CalculateAge")
                 .definition("From the ELM specification: Calculates the age in the specified precision of a person"
@@ -4361,7 +4353,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM UnaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CalculateAge precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM CalculateAgeAt (ELM)").at(inception)
                 .synonym("ELM CalculateAgeAt")
                 .definition("From the ELM specification: Calculates the age in the specified precision of a person"
@@ -4374,7 +4366,7 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM BinaryExpression (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM CalculateAgeAt precision")),
                         set.conceptRef("ELM precision position (ELM)"), set.conceptRef("ELM DateTimePrecision (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM VersionedIdentifier (ELM)").at(inception)
                 .synonym("ELM VersionedIdentifier")
                 .definition("From the ELM specification: VersionedIdentifier is composed of three parts: (1) an"
@@ -4386,13 +4378,13 @@ final class ElmSignatureSet {
                 .isA(root)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM VersionedIdentifier id")),
                         set.conceptRef("ELM id position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM VersionedIdentifier system")),
                         set.conceptRef("ELM system position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM VersionedIdentifier version")),
                         set.conceptRef("ELM version position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM UsingDef (ELM)").at(inception)
                 .synonym("ELM UsingDef")
                 .definition("From the ELM specification: Defines a data model that is available within the"
@@ -4400,29 +4392,29 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM UsingDef localIdentifier")),
                         set.conceptRef("ELM localIdentifier position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "")
+                        "", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM UsingDef uri")),
                         set.conceptRef("ELM uri position (ELM)"), set.conceptRef("ELM primitive anyURI (ELM)"), 1, 1,
-                        "The URI of the model that is being referenced. This URL must also be defined as a namespace in the root element of the document to allow for elements of the model to be referenced within the artifact.")
+                        "The URI of the model that is being referenced. This URL must also be defined as a namespace in the root element of the document to allow for elements of the model to be referenced within the artifact.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM UsingDef version")),
                         set.conceptRef("ELM version position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM IncludeDef (ELM)").at(inception)
                 .synonym("ELM IncludeDef")
                 .definition("From the ELM specification: Includes a library for use within the artifact.")
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeDef localIdentifier")),
                         set.conceptRef("ELM localIdentifier position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 1, 1,
-                        "A unique name within this artifact for the library reference. This name is used within this artifact to reference components of this library.")
+                        "A unique name within this artifact for the library reference. This name is used within this artifact to reference components of this library.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeDef mediaType")),
                         set.conceptRef("ELM mediaType position (ELM)"), set.conceptRef("ELM primitive anyURI (ELM)"), 0, 1,
-                        "Defines the type of the library. If this attribute is omitted, the library is assumed to be an ELM library artifact.")
+                        "Defines the type of the library. If this attribute is omitted, the library is assumed to be an ELM library artifact.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeDef path")),
                         set.conceptRef("ELM path position (ELM)"), set.conceptRef("ELM primitive anyURI (ELM)"), 1, 1,
-                        "Defines the path to the library.")
+                        "Defines the path to the library.", propertyForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM IncludeDef version")),
                         set.conceptRef("ELM version position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "Optionally defines the required version number of the referenced library.");
+                        "Optionally defines the required version number of the referenced library.", propertyForm);
         set.concept("ELM ContextDef (ELM)").at(inception)
                 .synonym("ELM ContextDef")
                 .definition("From the ELM specification: The ContextDef type defines a context definition"
@@ -4432,44 +4424,44 @@ final class ElmSignatureSet {
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ContextDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
-                        "");
+                        "", propertyForm);
         set.concept("ELM Library (ELM)").at(inception)
                 .synonym("ELM Library")
                 .definition("From the ELM specification: A Library is an instance of a CQL-ELM library.")
                 .isA(set.conceptRef("ELM Element (ELM)"))
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library identifier")),
                         set.conceptRef("ELM identifier position (ELM)"), set.conceptRef("ELM VersionedIdentifier (ELM)"), 1, 1,
-                        "The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.")
+                        "The identifier element defines a unique identifier for this library, and optionally, a system (or namespace) and version.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library schemaIdentifier")),
                         set.conceptRef("ELM schemaIdentifier position (ELM)"), set.conceptRef("ELM VersionedIdentifier (ELM)"), 1, 1,
-                        "This is the identifier of the XML schema (and its version) which governs the structure of this Library.")
+                        "This is the identifier of the XML schema (and its version) which governs the structure of this Library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library usings")),
                         set.conceptRef("ELM usings position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "Set of data models referenced in the Expression objects in this knowledge artifact.")
+                        "Set of data models referenced in the Expression objects in this knowledge artifact.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library includes")),
                         set.conceptRef("ELM includes position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.")
+                        "Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library parameters")),
                         set.conceptRef("ELM parameters position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "The parameters defined within this library.")
+                        "The parameters defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library codeSystems")),
                         set.conceptRef("ELM codeSystems position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "The code systems defined within this library.")
+                        "The code systems defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library valueSets")),
                         set.conceptRef("ELM valueSets position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "The value sets defined within this library.")
+                        "The value sets defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library codes")),
                         set.conceptRef("ELM codes position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "The codes defined within this library.")
+                        "The codes defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library concepts")),
                         set.conceptRef("ELM concepts position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "The concepts defined within this library.")
+                        "The concepts defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library contexts")),
                         set.conceptRef("ELM contexts position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "The contexts defined within this library.")
+                        "The contexts defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library statements")),
                         set.conceptRef("ELM statements position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
-                        "The statements section contains the expression and function definitions for the library.");
+                        "The statements section contains the expression and function definitions for the library.", edgeForm);
 
         // ── Enumerations and their values ──
         set.concept("ELM AccessModifier (ELM)").at(inception)

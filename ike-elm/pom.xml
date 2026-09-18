@@ -3,22 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
     <modelVersion>4.1.0</modelVersion>
-
     <parent>
         <groupId>network.ike.foundation</groupId>
         <artifactId>ike-starter-set</artifactId>
     </parent>
-
-    <artifactId>ike-bindings</artifactId>
+    <artifactId>ike-elm</artifactId>
     <packaging>jar</packaging>
-
-    <name>Ike Bindings</name>
+    <name>Ike ELM Trees</name>
     <description>
-        Generated bindings for the IkeFoundation knowledge set: resolved UUID literals with
-        definitions as javadoc, autocompletable in any IDE. Depends only on the
-        terms surface, so consumers stay light.
+        How ELM logic is held in IKE (IKE-Network/ike-issues#1110): the catalog of ELM node
+        kinds read back from the store, one generic builder and checker driven by it, the
+        three ELM enumerations as bound Java enums, and the writer that records a library
+        as one semantic per definition. HL7's ELM is the Expression Logical Model of the
+        Clinical Quality Language specification, not the Elm programming language.
     </description>
-
     <!-- Dual licensed (IKE-Network/ike-issues#952); identical in every POM of
          this reactor. -->
     <licenses>
@@ -33,66 +31,61 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
     <dependencies>
         <dependency>
             <groupId>dev.ikm.tinkar</groupId>
-            <artifactId>terms</artifactId>
+            <artifactId>entity</artifactId>
             <version>${chronology-store.version}</version>
         </dependency>
         <dependency>
-            <groupId>dev.ikm.tinkar</groupId>
-            <artifactId>common</artifactId>
-            <version>${chronology-store.version}</version>
+            <groupId>network.ike.foundation</groupId>
+            <artifactId>ike-bindings</artifactId>
+            <version>${project.version}</version>
         </dependency>
-        <!-- The ledger this module generates from — optional, never propagated. -->
+        <!-- The ledger, composed into an ephemeral store by the integration tests. -->
         <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-terms</artifactId>
             <version>${project.version}</version>
-            <optional>true</optional>
+            <scope>test</scope>
         </dependency>
-        <!-- The knowledge-pipeline implementation, resolved by ServiceLoader inside
-             the goal's forked seam. -->
         <dependency>
             <groupId>network.ike.knowledge</groupId>
             <artifactId>ike-knowledge-provider</artifactId>
             <version>${ike-knowledge-provider.version}</version>
-            <scope>runtime</scope>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
-            <plugin>
-                <groupId>network.ike.tooling</groupId>
-                <artifactId>ike-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-knowledge-bindings</id>
-                        <goals>
-                            <goal>knowledge-bindings</goal>
-                        </goals>
-                        <configuration>
-                            <packageName>network.ike.foundation.ike.bindings</packageName>
-                            <className>IkeTerms</className>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- The generated constants have no module descriptor yet (the bindings goal
-                 will grow one with the enum emitter, IKE-Network/ike-issues#1111); until
-                 then the jar names itself so modular consumers can require it. -->
+            <!-- The gates are integration tests (*IT): they boot an ephemeral store and
+                 compose the ledger into it, as ike-terms's gates do. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Automatic-Module-Name>network.ike.foundation.ike.bindings</Automatic-Module-Name>
-                        </manifestEntries>
-                    </archive>
+                    <argLine>
+                        --enable-preview
+                        --enable-native-access=ALL-UNNAMED
+                        --add-opens java.base/java.lang=ALL-UNNAMED
+                        --add-opens java.base/java.util=ALL-UNNAMED
+                        --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+                        --add-opens java.base/java.io=ALL-UNNAMED
+                    </argLine>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
