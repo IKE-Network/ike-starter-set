@@ -801,6 +801,59 @@ spelling as written kept on it, so the Quantity relation of the data type pass h
 without a waiting clause: a quantity is a measure on the unit its code names, and that
 unit is a concept.
 
+=== Data Models
+
+A library names the types of the model it was written against: a retrieve of Condition,
+a cast to Encounter, a value of Quantity. The translator describes each model in a model
+information file, and those files enter the starter set the way UCUM did, unmodified,
+with their notice, read by an importer when a knowledge base is assembled. Six ship:
+System, whose sixteen types the ELM node catalog already holds, QDM 5.6, QUICK, FHIR
+4.0.1, QI-Core 4.1.1, and US Core 3.1.1. The ledger holds only what is IKE's: the
+k:DataModel[] parent, the records for a model, a class, an element, a context, a
+relationship, a conversion, and a required model, the mark that writes a pattern of
+IKE's own into model information, and the five dialects in which each model's names and
+labels are read.
+
+A class becomes a concept under its base class, so a model's own hierarchy is the
+taxonomy, and a class with no base, or whose base is a System type, hangs under the
+concept for its model at its version, since nothing hangs under the catalog's types.
+Its name and its label are descriptions read in the model's dialect, "Encounter,
+Performed" beside EncounterPerformed, since a QDM author writes the label. Its record
+carries every field the file gives, verbatim, and beside them what IKE resolved: the
+base as a concept, the code path as the element it names, the model it belongs to, the
+purpose of each field saying whose it is. An element is not a concept but a semantic
+about its class, the way a position is a semantic about its node kind, with the file's
+fields verbatim, the class its type names when it names exactly one, and its full type
+as a tree of the catalog's type specifiers, named, list, interval, and choice, so that
+one checker holds a library's types and a model's element types alike.
+
+Every identity is derived, a model from its name and version, a class from its model and
+its qualified name, an element from its class and its name, so importing a file twice
+writes nothing and a corrected file appends versions. The System model makes no
+concept: its types are the catalog's, and the import checks that the file's members
+agree with the catalog's positions, name and type. A required model absent from the
+store stops the import, as does a class the file does not declare, or a model the file
+neither requires nor targets.
+
+When a library is imported, every type name is resolved before anything is written. Its
+url finds the library's using declaration; the name and version there find the model,
+and a declaration without a version finds the model only when the store holds one
+version of it; the class name finds the class, whose concept lands in the tree where the
+name was written, as a System type's did already. A retrieve's code and date paths
+resolve to the elements they name, as references from the definition, walked element by
+element when dotted and each step names one class; a path that walks through a
+reference, as QUICK's medication.code does, stays text. A property access keeps its path
+as text too, and both are counted, the worklist for the evaluation step, which will
+infer the class of a source because it must. An unknown model, class, or element stops the import with its place.
+
+The generator runs the other way. Any family of the ledger's patterns marked with the
+k:ModelClassMarkPattern[] writes as model information: each pattern a class whose
+identifier is the pattern's identity, each field an element typed from the field's data
+type, the mark saying whether the class is retrievable and which field carries its code.
+The file validates against the model information schema and imports back to its
+patterns, so a library can be written against IKE's own knowledge once ANF's pattern is
+settled and marked.
+
 === The Checks Are Derived, and They Run
 
 koncept-narrative::ConstructRelationPattern[]

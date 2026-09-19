@@ -168,11 +168,13 @@ class FoundationFidelityIT {
      * Presence implication, and Presence exclusive OR (+3); and Correlation constraint, the
      * fifth criterion (+1); Measure conversion (+1); and the presence aggregates Measure all
      * present and Measure any present with their closed-world readings (+4); and the reference-set
-     * member fields, Member field constraint and Member field projection (+2). Every other construct it types or binds (EL++ AND, Is-a, Existential
+     * member fields, Member field constraint and Member field projection (+2); and the model information
+     * section (IKE-Network/ike-issues#1115): the Data model parent, its three purposes, five dialects, and
+     * sixty-five field meanings, and the unresolved marker (+75). Every other construct it types or binds (EL++ AND, Is-a, Existential
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 303;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 378;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -190,9 +192,13 @@ class FoundationFidelityIT {
      * The IKE-Network/ike-issues#1089 apparatus adds 7 — the Expression Language
      * Keyword Pattern, the Construct Denotation Pattern, the Literal Denotation
      * Pattern, the Construct Relation Pattern, and the CQL, ECL, and EL++ Dialect
-     * Patterns ({@code ExpressionLanguageSet}).
+     * Patterns ({@code ExpressionLanguageSet}). {@code ElmTreeSet} adds 3 (IKE-Network/ike-issues#1110:
+     * the tree, ordered list, and reference patterns), {@code UcumModelSet} 4 (#1114: the unit, prefix,
+     * and composed unit patterns and the UCUM dialect), and {@code ModelInformationSet} 13 (#1115: the
+     * model, requirement, class, element, context, relationship, and conversion records, the class
+     * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns).
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 21;
+    private static final int AUTHORED_CONTENT_PATTERNS = 34;
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by

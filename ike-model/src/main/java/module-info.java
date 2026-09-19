@@ -15,22 +15,18 @@
  */
 
 /**
- * How ELM logic is held in IKE: the node catalog read back from the store, the generic tree
- * builder and checker it drives, the bound enumerations, the library writer, and the importer
- * and exporter that carry a library between its two forms and the store, its names and its
- * quantities' units resolved to what they mean (IKE-Network/ike-issues#1110, #1112, #1114).
+ * Model information as knowledge: the CQL translator's model information files read into the
+ * store, each class a concept and each element a semantic, and IKE's own patterns written out
+ * as model information (IKE-Network/ike-issues#1115).
  */
-module network.ike.foundation.ike.elm {
+module network.ike.foundation.ike.model {
     requires transitive dev.ikm.tinkar.entity;
     requires dev.ikm.tinkar.common;
     requires dev.ikm.tinkar.terms;
     requires org.eclipse.collections.api;
+    requires java.xml;
     requires network.ike.foundation.ike.bindings;
     requires network.ike.foundation.ike.writer;
-    requires network.ike.foundation.ike.ucum;
-    requires network.ike.foundation.ike.model;
-    requires com.fasterxml.jackson.databind;
-    requires java.xml;
 
-    exports network.ike.foundation.ike.elm;
+    exports network.ike.foundation.ike.model;
 }

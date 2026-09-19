@@ -179,9 +179,8 @@ class ElmImporterIT {
     }
 
     @Test
-    void aSystemTypeNameBecomesItsConceptAndOnlyModelTypesAreReported() throws IOException {
-        ElmImporter.Report report = importer.importDocument(json(BASE), Store.nextStamp());
-        assertEquals(List.of(), List.copyOf(report.unresolvedTypeNames()), "Integer is a System type, resolved");
+    void aSystemTypeNameBecomesItsConceptAndAnUndeclaredModelIsRefused() throws IOException {
+        importer.importDocument(json(BASE), Store.nextStamp());
         PublicId two = ElmIdentity.definition("Base", "ExpressionDef", "Two", List.of());
         Latest<SemanticEntityVersion> latest = calculator.latest(PrimitiveData.nid(two));
         dev.ikm.tinkar.entity.graph.DiTreeEntity tree = (dev.ikm.tinkar.entity.graph.DiTreeEntity) latest.get().fieldValues().get(0);
@@ -192,10 +191,77 @@ class ElmImporterIT {
         assertTrue(valueType instanceof EntityProxy.Concept, "a System type is stored as its concept");
         assertEquals(IkeTerms.ELM_SYSTEM_INTEGER.nid(), ((EntityProxy.Concept) valueType).nid());
 
-        ElmImporter.Report fhir = importer.importDocument(json(BASE.replace("\"Base\"", "\"Modelled\"")
-                .replace("{urn:hl7-org:elm-types:r1}Integer", "{http://hl7.org/fhir}Condition")), Store.nextStamp());
-        assertEquals(List.of("{http://hl7.org/fhir}Condition"), List.copyOf(fhir.unresolvedTypeNames()),
-                "a data model's type stays text and is reported");
+        String modelled = BASE.replace("\"Base\"", "\"Modelled\"")
+                .replace("{urn:hl7-org:elm-types:r1}Integer", "{http://hl7.org/fhir}Condition");
+        ElmImportException refused = assertThrows(ElmImportException.class,
+                () -> importer.importDocument(json(modelled), Store.nextStamp()));
+        assertTrue(refused.getMessage().contains("names {http://hl7.org/fhir}Condition, and the library declares no using for"
+                + " http://hl7.org/fhir"), refused.getMessage());
+        assertFalse(PrimitiveData.get().hasPublicId(ElmIdentity.library("Modelled")), "nothing was written");
+    }
+
+    private static final String RETRIEVING = """
+            {"library": {"identifier": {"id": "Retrieving", "version": "1"},
+              "schemaIdentifier": {"id": "urn:hl7-org:elm", "version": "r1"},
+              "usings": {"def": [{"localIdentifier": "QDM", "uri": "urn:healthit-gov:qdm:v5_4", "version": "5.4"}]},
+              "statements": {"def": [
+                {"name": "Visits", "context": "Patient", "accessLevel": "Public",
+                 "expression": {"type": "Retrieve", "dataType": "{urn:healthit-gov:qdm:v5_4}PositiveEncounterPerformed",
+                                "codeProperty": "code"}},
+                {"name": "When", "context": "Patient", "accessLevel": "Public",
+                 "expression": {"type": "Property", "path": "relevantPeriod",
+                                "source": {"type": "Retrieve", "dataType": "{urn:healthit-gov:qdm:v5_4}PositiveEncounterPerformed"}}}
+              ]}}}
+            """;
+
+    @Test
+    void aRetrieveResolvesItsClassAndItsCodePathAndAPropertyPathStaysText() throws IOException {
+        ElmDocument document = json(RETRIEVING);
+        ElmImporter.Report report = importer.importDocument(document, Store.nextStamp());
+        assertEquals(1, report.references(), "the code path is the one reference");
+        assertEquals(1, report.propertyPaths(), "the property access keeps its path as text and is counted");
+
+        network.ike.foundation.ike.model.ModelTypes types = network.ike.foundation.ike.model.ModelTypes.load(calculator);
+        network.ike.foundation.ike.model.ModelTypes.Model qdm = types.model("QDM", "5.4").orElseThrow();
+        int encounter = types.classOf(qdm, "PositiveEncounterPerformed").orElseThrow().nid();
+
+        PublicId visits = ElmIdentity.definition("Retrieving", "ExpressionDef", "Visits", List.of());
+        Latest<SemanticEntityVersion> latest = calculator.latest(PrimitiveData.nid(visits));
+        dev.ikm.tinkar.entity.graph.DiTreeEntity tree = (dev.ikm.tinkar.entity.graph.DiTreeEntity) latest.get().fieldValues().get(0);
+        dev.ikm.tinkar.entity.graph.EntityVertex argument = tree.vertex(tree.successors(tree.root().vertexIndex()).get(0));
+        dev.ikm.tinkar.entity.graph.EntityVertex retrieve = tree.vertex(tree.successors(argument.vertexIndex()).get(0));
+        Object dataType = retrieve.properties().get(IkeTerms.ELM_DATATYPE_POSITION.nid());
+        assertTrue(dataType instanceof EntityProxy.Concept, "a data model's type is stored as its class concept");
+        assertEquals(encounter, ((EntityProxy.Concept) dataType).nid());
+
+        List<ImmutableList<Object>> references = referencesAbout(visits);
+        assertEquals(1, references.size());
+        assertEquals(IkeTerms.ELM_RETRIEVE.nid(), ((EntityProxy.Concept) references.get(0).get(0)).nid(), "the naming node's kind");
+        assertEquals(PrimitiveData.nid(types.element(encounter, "code").orElseThrow()),
+                ((EntityFacade) references.get(0).get(1)).nid(), "the target is the element the path names, found through the bases");
+        assertEquals("code", references.get(0).get(2), "the path as written");
+        assertEquals("{urn:healthit-gov:qdm:v5_4}PositiveEncounterPerformed", references.get(0).get(3),
+                "the class the path is read against, in the library name slot");
+
+        ElmDocument exported = new ElmExporter(catalog, calculator).export("Retrieving");
+        assertEquals(ElmCanonical.text(document), ElmCanonical.text(exported), "the type name comes back as written");
+
+        String ambiguous = RETRIEVING.replace("\"Retrieving\"", "\"Ambiguous\"").replace(", \"version\": \"5.4\"}", "}");
+        ElmImportException refused = assertThrows(ElmImportException.class,
+                () -> importer.importDocument(json(ambiguous), Store.nextStamp()));
+        assertTrue(refused.getMessage().contains("the library declares no version for QDM, and the store holds QDM 5.4, QDM 5.5;"
+                + " name one"), refused.getMessage());
+
+        String missing = RETRIEVING.replace("\"Retrieving\"", "\"Missing\"").replace("PositiveEncounterPerformed\",\n", "Nowhere\",\n");
+        ElmImportException noClass = assertThrows(ElmImportException.class,
+                () -> importer.importDocument(json(missing), Store.nextStamp()));
+        assertTrue(noClass.getMessage().contains("QDM 5.4 has no class Nowhere"), noClass.getMessage());
+
+        String badPath = RETRIEVING.replace("\"Retrieving\"", "\"Astray\"").replace("\"codeProperty\": \"code\"", "\"codeProperty\": \"nothing\"");
+        ElmImportException noElement = assertThrows(ElmImportException.class,
+                () -> importer.importDocument(json(badPath), Store.nextStamp()));
+        assertTrue(noElement.getMessage().contains("names codeProperty nothing, and the class has no element nothing"), noElement.getMessage());
+        assertFalse(PrimitiveData.get().hasPublicId(ElmIdentity.library("Astray")), "nothing was written");
     }
 
     private static List<ImmutableList<Object>> referencesAbout(PublicId definition) {

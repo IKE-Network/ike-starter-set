@@ -80,6 +80,9 @@ public final class IkeSource implements KnowledgeSetSource {
         // UcumModelSet holds what is ours about UCUM (IKE-Network/ike-issues#1114): the parents,
         // the patterns, and the dialect; the units themselves are imported, never authored.
         UcumModelSet.compose(Ike.SET);
+        // ModelInformationSet holds what is ours about model information (IKE-Network/ike-issues#1115):
+        // the Data model parent, the record patterns, the mark, and the dialects; the models are imported.
+        ModelInformationSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
         // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,

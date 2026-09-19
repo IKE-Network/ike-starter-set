@@ -27,6 +27,7 @@ import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.model.ModelTypes;
 import network.ike.foundation.ike.elm.ElmCatalog.EnumerationValue;
 import network.ike.foundation.ike.elm.ElmCatalog.Form;
 import network.ike.foundation.ike.elm.ElmCatalog.NodeKind;
@@ -52,6 +53,7 @@ public final class ElmExporter {
 
     private final ElmCatalog catalog;
     private final StampCalculator calculator;
+    private ModelTypes types;
 
     /**
      * Creates an exporter over a catalog and a view.
@@ -72,6 +74,7 @@ public final class ElmExporter {
      * @throws IllegalArgumentException if the store holds no such library
      */
     public ElmDocument export(String libraryId) {
+        this.types = ModelTypes.load(calculator);
         PublicId libraryPublicId = ElmIdentity.library(libraryId);
         if (!PrimitiveData.get().hasPublicId(libraryPublicId)) {
             throw new IllegalArgumentException("The store holds no library called " + libraryId);
@@ -146,8 +149,9 @@ public final class ElmExporter {
                         builder.add(rule.name(), enumeration.nameOf(concept.nid()).orElse(String.valueOf(concept.nid())));
                     } else if (value instanceof ConceptFacade concept) {
                         builder.add(rule.name(), ElmTypeNames.name(concept, catalog)
+                                .or(() -> types.qualifiedName(concept))
                                 .orElseThrow(() -> new IllegalStateException("A type-named position holds a concept"
-                                        + " that is not a System type of the catalog")));
+                                        + " that is neither a System type of the catalog nor a class of a model")));
                     } else {
                         builder.add(rule.name(), value);
                     }

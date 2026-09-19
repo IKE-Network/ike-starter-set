@@ -38,7 +38,8 @@ import java.util.Optional;
  * property and every edge a position its kind allows, held in the allowed form, the allowed
  * number of times, holding a value or a node of the allowed kind. Two or three operands must be
  * named as the roles first, second, and third; a list position must point at an ordered list
- * semantic. Problems are reported in plain words, one per line.
+ * semantic, except that a choice type specifier may hold its alternatives as a set, the way a
+ * model element's type does. Problems are reported in plain words, one per line.
  */
 public final class ElmConformance {
 
@@ -148,6 +149,20 @@ public final class ElmConformance {
                 continue;
             }
             counts.merge(name.get(), 1, Integer::sum);
+            if (rule.get().isList() && kind.name().equals("ChoiceTypeSpecifier") && name.get().equals("choice")
+                    && !argument.properties().containsKey(IkeTerms.ELM_LIST_ITEMS.nid())) {
+                // A choice's alternatives have no order: a model element's type holds them as the
+                // children of the choice position, a set, and a library's tree may hold them as an
+                // ordered list; either conforms.
+                ImmutableIntList alternatives = tree.successors(argument.vertexIndex());
+                if (alternatives.isEmpty()) {
+                    problems.add(kind.name() + "'s choice holds no alternative");
+                }
+                for (int j = 0; j < alternatives.size(); j++) {
+                    checkNode(tree, tree.vertex(alternatives.get(j)), catalog, problems);
+                }
+                continue;
+            }
             if (rule.get().isList()) {
                 if (!argument.properties().containsKey(IkeTerms.ELM_LIST_ITEMS.nid())) {
                     problems.add(kind.name() + "'s " + name.get() + " is a list and must point at an ordered list semantic");

@@ -21,15 +21,20 @@ import dev.ikm.tinkar.common.service.ServiceKeys;
 import dev.ikm.tinkar.common.service.ServiceProperties;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import network.ike.foundation.ike.model.ModelImporter;
+import network.ike.foundation.ike.model.ModelInfoFile;
 import network.ike.foundation.ike.terms.IkeSource;
 import network.ike.foundation.ike.ucum.UcumEssence;
 import network.ike.foundation.ike.ucum.UcumImporter;
 
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.List;
 
 /**
- * One ephemeral store with the ledger composed into it and the UCUM units imported, shared by
- * the gates of this module: the same boot the ledger's own gates use.
+ * One ephemeral store with the ledger composed into it, the UCUM units imported, and the models
+ * the corpus names imported, shared by the gates of this module: the same boot the ledger's own
+ * gates use.
  */
 final class Store {
 
@@ -58,6 +63,18 @@ final class Store {
             // The units, imported the way a knowledge base assembly imports them, so that a
             // library's quantities can name them.
             new UcumImporter(calculator).importEssence(UcumEssence.read(), nextStamp());
+            // The models the corpus was written against: System, QUICK, FHIR 4.0.1 for the one
+            // library that carries result types, and, kept beside the corpus as fixtures, the two
+            // QDM versions and FHIR 3.0.0 (IKE-Network/ike-issues#1115).
+            ModelImporter models = new ModelImporter(calculator);
+            models.importModel(ModelInfoFile.readShipped("system-modelinfo.xml"), nextStamp());
+            models.importModel(ModelInfoFile.readShipped("quick-modelinfo.xml"), nextStamp());
+            models.importModel(ModelInfoFile.readShipped("fhir-modelinfo-4.0.1.xml"), nextStamp());
+            for (String fixture : List.of("qdm-modelinfo-5.4.xml", "qdm-modelinfo-5.5.xml", "fhir-modelinfo-3.0.0.xml")) {
+                try (InputStream in = Store.class.getResourceAsStream("/model-fixtures/" + fixture)) {
+                    models.importModel(ModelInfoFile.read(in), nextStamp());
+                }
+            }
             started = true;
         }
         return calculator;
