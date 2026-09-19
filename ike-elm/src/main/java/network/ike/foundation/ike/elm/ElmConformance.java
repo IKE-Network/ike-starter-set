@@ -207,6 +207,9 @@ public final class ElmConformance {
             return;
         }
         if (rule.valueType() instanceof PrimitiveValue primitive) {
+            if (primitive.name().equals("QName") && value instanceof ConceptFacade) {
+                return; // a System type held as the catalog's concept
+            }
             boolean ok = switch (primitive.name()) {
                 case "boolean" -> value instanceof Boolean;
                 case "int", "long" -> value instanceof Integer || value instanceof Long;

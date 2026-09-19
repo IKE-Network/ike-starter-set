@@ -303,10 +303,18 @@ public final class ElmImporter {
                             List.of(path + ": " + kind.name() + "'s " + name + " is " + text + ", which is not a value of"
                                     + " its enumeration")));
                     elm.property(name, concept);
-                } else {
-                    if (rule.valueType() instanceof PrimitiveValue primitive && primitive.name().equals("QName")) {
-                        typeNames.add(String.valueOf(value));
+                } else if (rule.valueType() instanceof PrimitiveValue primitive && primitive.name().equals("QName")) {
+                    // A System type name becomes the catalog's concept for it; a data model's type
+                    // stays text until the model information import, and is reported.
+                    String text = String.valueOf(value);
+                    Optional<EntityProxy.Concept> systemType = ElmTypeNames.systemType(text, writer.builder().catalog());
+                    if (systemType.isPresent()) {
+                        elm.property(name, systemType.get());
+                    } else {
+                        typeNames.add(text);
+                        elm.property(name, value);
                     }
+                } else {
                     elm.property(name, value);
                 }
                 continue;

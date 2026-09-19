@@ -412,6 +412,16 @@ final class ExpressionLanguageSet {
                         + " claimed it turned out to be ordinary measure arithmetic instead.")
                 .isA(constructRelation);
 
+        set.concept("Identity (IkeFoundation)").at(inception)
+                .synonym("Identity")
+                .definition("A construct relation in which the two are one idea admitted twice, so"
+                        + " that every claim true of one is true of the other and nothing is lost"
+                        + " either way. It relates a type of another language to the IKE concept that"
+                        + " is the same type, where an operator of another language would instead be"
+                        + " admitted as the construct itself. The check is that the two carry the"
+                        + " same values, one to one.")
+                .isA(constructRelation);
+
         // ── Operand kind (closed): what an operator works on, from ANF ──
         set.concept("Operand kind (IkeFoundation)").at(inception)
                 .synonym("Operand kind")
@@ -469,6 +479,15 @@ final class ExpressionLanguageSet {
                         + " layer.")
                 .isA(setKind);
         EntityProxy.Concept conceptSetKind = set.conceptRef("Concept set kind (IkeFoundation)");
+
+        set.concept("Measure ratio (IkeFoundation)").at(inception)
+                .synonym("Measure ratio")
+                .definition("A numerator measure and a denominator measure, each on its own measure"
+                        + " semantic, kept as written: 1:128 stays 1:128 and 5 mg:1 mL stays a"
+                        + " strength rather than becoming a concentration, because the two parts"
+                        + " mean something apart. It is the same idea as an ELM Ratio, admitted as"
+                        + " a concept of the model.")
+                .isA(modelRoot);
 
         set.concept("Measure kind (IkeFoundation)").at(inception)
                 .synonym("Measure kind")
@@ -1659,6 +1678,15 @@ final class ExpressionLanguageSet {
                 set, keywords, cql, "year", unitKeyword, true, "Year"),
                 set, keywords, cql, "years", unitKeyword, false, "Year");
 
+        set.concept("Dimensionless number (IkeFoundation)").at(inception)
+                .synonym("Dimensionless number")
+                .definition("A measure semantic for a number that carries no unit: a count of"
+                        + " encounters, the 2 in twice, a plain figure. A value on it is just the"
+                        + " number. It is what an ELM Integer, Long, or Decimal is a measure on, the"
+                        + " whole numbers with a resolution of one and the decimals with the"
+                        + " resolution they are written to.")
+                .isA(modelRoot);
+
         set.concept("Time scale (IkeFoundation)").at(inception)
                 .synonym("Time scale")
                 .definition("A measure semantic for a position in time, counted from an origin in a"
@@ -1696,6 +1724,14 @@ final class ExpressionLanguageSet {
                         + " zone, what Java's LocalDate records. A date known to the day is a"
                         + " single value on it. It becomes a range on an epoch scale only when a"
                         + " time zone places its whole day, midnight to midnight in that zone.")
+                .isA(timeScale);
+
+        set.concept("Time of day (IkeFoundation)").at(inception)
+                .synonym("Time of day")
+                .definition("A time scale: a position within a day, counted from midnight in a unit"
+                        + " of time, with no date and no time zone, what a clock reads. A time known"
+                        + " to the minute is a single value on it. It is what an ELM Time is a"
+                        + " measure on.")
                 .isA(timeScale);
 
         set.concept("Gregorian calendar (IkeFoundation)").at(inception)

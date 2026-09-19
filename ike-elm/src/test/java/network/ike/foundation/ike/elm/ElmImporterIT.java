@@ -165,8 +165,22 @@ class ElmImporterIT {
     }
 
     @Test
-    void theTypeNamesMetAreReportedAsWritten() throws IOException {
+    void aSystemTypeNameBecomesItsConceptAndOnlyModelTypesAreReported() throws IOException {
         ElmImporter.Report report = importer.importDocument(json(BASE), Store.nextStamp());
-        assertEquals(List.of("{urn:hl7-org:elm-types:r1}Integer"), List.copyOf(report.unresolvedTypeNames()));
+        assertEquals(List.of(), List.copyOf(report.unresolvedTypeNames()), "Integer is a System type, resolved");
+        PublicId two = ElmIdentity.definition("Base", "ExpressionDef", "Two", List.of());
+        Latest<SemanticEntityVersion> latest = calculator.latest(PrimitiveData.nid(two));
+        dev.ikm.tinkar.entity.graph.DiTreeEntity tree = (dev.ikm.tinkar.entity.graph.DiTreeEntity) latest.get().fieldValues().get(0);
+        // root ExpressionDef → expression (argument) → Literal, whose valueType is the concept ELM System Integer
+        dev.ikm.tinkar.entity.graph.EntityVertex argument = tree.vertex(tree.successors(tree.root().vertexIndex()).get(0));
+        dev.ikm.tinkar.entity.graph.EntityVertex literal = tree.vertex(tree.successors(argument.vertexIndex()).get(0));
+        Object valueType = literal.properties().get(IkeTerms.ELM_VALUETYPE_POSITION.nid());
+        assertTrue(valueType instanceof EntityProxy.Concept, "a System type is stored as its concept");
+        assertEquals(IkeTerms.ELM_SYSTEM_INTEGER.nid(), ((EntityProxy.Concept) valueType).nid());
+
+        ElmImporter.Report fhir = importer.importDocument(json(BASE.replace("\"Base\"", "\"Modelled\"")
+                .replace("{urn:hl7-org:elm-types:r1}Integer", "{http://hl7.org/fhir}Condition")), Store.nextStamp());
+        assertEquals(List.of("{http://hl7.org/fhir}Condition"), List.copyOf(fhir.unresolvedTypeNames()),
+                "a data model's type stays text and is reported");
     }
 }

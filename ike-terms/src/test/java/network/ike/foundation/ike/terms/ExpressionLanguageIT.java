@@ -220,6 +220,60 @@ class ExpressionLanguageIT {
         return latest.get().fieldValues();
     }
 
+    /** Whether a relation's extending concept is one of the catalog's ELM System types. */
+    private static boolean isTypeRelation(int extendingNid) {
+        return fqn(extendingNid).startsWith("ELM System ");
+    }
+
+    @Test
+    @DisplayName("Every ELM System type relates to one of our concepts by an admitted kind, and only once")
+    void everySystemTypeRelatesToOneOfOurConcepts() {
+        Set<String> types = new java.util.TreeSet<>();
+        Set<Integer> targets = Set.of(nid("Measure kind (IkeFoundation)"), nid("Presence measure kind (IkeFoundation)"),
+                nid("Concept kind (IkeFoundation)"), nid("Concept set kind (IkeFoundation)"),
+                nid("Operand kind (IkeFoundation)"), nid("Measure ratio (IkeFoundation)"), IkeTerm.STRING.nid());
+        Set<Integer> admitted = Set.of(nid("Identity (IkeFoundation)"), logicalEquivalenceNid,
+                definitionalExtensionNid, conservativeExtensionNid);
+        for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
+            if (!isTypeRelation(relation.getKey())) {
+                continue;
+            }
+            String type = fqn(relation.getKey());
+            assertTrue(types.add(type), type + " relates more than once");
+            assertTrue(targets.contains(relation.getValue()[0]),
+                    type + " relates to " + fqn(relation.getValue()[0]) + ", which is not one of our value concepts");
+            assertTrue(admitted.contains(relation.getValue()[1]),
+                    type + " claims an unadmitted relation " + fqn(relation.getValue()[1]));
+        }
+        assertEquals(23, types.size(), "the 23 System types, each related once: " + types);
+        // The three concepts the pass added exist with the plain definitions.
+        for (String added : List.of("Dimensionless number (IkeFoundation)", "Time of day (IkeFoundation)",
+                "Measure ratio (IkeFoundation)")) {
+            assertTrue(calculator.latest(nid(added)).isPresent(), added + " exists");
+        }
+    }
+
+    @Test
+    @DisplayName("Boolean is presence by the three-row table: true Present, false Absent, null Indeterminate")
+    void booleanIsPresenceByTheThreeRowTable() {
+        int[] relation = RELATIONS.get(nid("ELM System Boolean (ELM)"));
+        assertNotNull(relation, "ELM System Boolean relates");
+        assertEquals(nid("Presence measure kind (IkeFoundation)"), relation[0]);
+        assertEquals(logicalEquivalenceNid, relation[1]);
+        // The table: each CQL truth value lands on exactly one presence literal, and each literal is one value.
+        Map<Boolean, String> table = new HashMap<>();
+        table.put(Boolean.TRUE, "Present literal (IkeFoundation)");
+        table.put(Boolean.FALSE, "Absent literal (IkeFoundation)");
+        table.put(null, "Indeterminate literal (IkeFoundation)");
+        Set<Integer> landed = new HashSet<>();
+        for (Map.Entry<Boolean, String> row : table.entrySet()) {
+            int literal = nid(row.getValue());
+            assertTrue(calculator.latest(literal).isPresent(), row.getValue() + " exists");
+            assertTrue(landed.add(literal), "two truth values land on " + row.getValue());
+        }
+        assertEquals(3, landed.size());
+    }
+
     private static String fqn(int nid) {
         return fqnCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
                 .orElse(PrimitiveData.text(nid));
@@ -287,6 +341,9 @@ class ExpressionLanguageIT {
         for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
             int extending = relation.getKey();
             int core = relation.getValue()[0];
+            if (isTypeRelation(extending)) {
+                continue; // a type carries no denotation; everySystemTypeRelatesToOneOfOurConcepts checks it
+            }
             assertNotNull(DENOTATIONS.get(extending), "Untyped extending construct: " + fqn(extending));
             assertNotNull(DENOTATIONS.get(core), "Untyped core construct: " + fqn(core));
             assertTrue(admitted.contains(relation.getValue()[1]),
@@ -299,7 +356,7 @@ class ExpressionLanguageIT {
     void logicalEquivalencesAgreeInAllDimensions() {
         List<String> checked = new ArrayList<>();
         for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
-            if (relation.getValue()[1] != logicalEquivalenceNid) {
+            if (relation.getValue()[1] != logicalEquivalenceNid || isTypeRelation(relation.getKey())) {
                 continue;
             }
             int[] extending = DENOTATIONS.get(relation.getKey());

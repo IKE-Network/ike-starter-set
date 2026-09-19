@@ -710,13 +710,55 @@ from FHIR produces. Where CQL's library structure meets IKE's definitions is the
 clause plugin work, in which a Complex Concept Clause's vertex meanings are these
 constructs.
 
+=== Data Types
+
+ELMfootnote:[HL7's ELM, the Expression Logical Model of the Clinical Quality Language
+specification, and not Elm, the programming language for browser user interfaces.] has
+twenty-three built-in kinds of value, its System types, and every literal and every type
+name in a CQL library points at one of them or at a type of the data model. Each of the
+twenty-three is a concept of the ELM node catalog, and each relates to the concept of the
+query model for the same idea by a checked relation, the way the operators do.
+
+The numbers, Integer, Long, and Decimal, are measures on k:DimensionlessNumber[], a
+measure semantic for a number that carries no unit: both bounds the value, resolution one
+for the whole numbers and the written decimal place for a decimal. The 32-bit and 64-bit
+ranges are machine limits, not meaning. Boolean is k:PresenceMeasureKind[] by logical
+equivalence: true is Present, false is Absent, null is Indeterminate, the three-row table
+the connectives already run. String is the string data type, one idea admitted twice.
+
+Date, DateTime, and Time are measures read as instants with the written precision as
+their resolution: a Date on k:GregorianCalendarDate[], a DateTime on the epoch scale in
+the zone its offset gives, a Time on k:TimeOfDay[], a position within a day counted from
+midnight with no date and no zone. A Quantity is a measure on the unit its UCUM code
+names; the units of time are concepts already, and the other units wait for the UCUM
+family, the unit staying text on the measure until then. A Ratio is a k:MeasureRatio[],
+a numerator measure and a denominator measure kept as written, so 1:128 stays 1:128.
+
+Code and Concept are k:ConceptKind[] by logical equivalence, given the code system is in
+the graph: a Code is the concept carrying that code, a Concept the concept its codes
+share, and the display text travels with the value without being part of the meaning.
+Vocabulary, ValueSet, and CodeSystem are k:ConceptSetKind[]: the set of concepts a named
+collection denotes under a view. Interval and its six typed forms are k:MeasureKind[]
+itself: bounds and inclusivities the interval's, the frame from the point type, and the
+resolution unstated; an interval of dates or times is read as a period. Any is
+k:OperandKind[], the top of one family being the top of the other.
+
+Every relation but three is a definitional extension: the ELM type can be defined from
+what the query model already says. Boolean, Code, Concept, and Any are logical
+equivalences. String and Ratio are identities, a relation kind the pass adds for types,
+where an operator of another language would instead be admitted as the construct itself.
+When a library is imported, a type name that is a System type is stored as the catalog's
+concept for it, so the tree holds a concept the relation makes ours; a type of the data
+model stays text until the model information gives those types concepts.
+
 === The Checks Are Derived, and They Run
 
 koncept-narrative::ConstructRelationPattern[]
 
 koncept-pattern-table::ConstructRelationPattern[]
 
-The set asserts seventeen relations. k:DescendantOf[], k:DescendantOrSelfOf[],
+The set asserts forty relations: seventeen among the operators, and twenty-three
+from the ELM System types of the section before. Among the operators, k:DescendantOf[], k:DescendantOrSelfOf[],
 k:AncestorOf[], and k:AncestorOrSelfOf[] are definable from k:IsA[]; k:SetAND[] is
 definable from k:ELAND[] when its operands are descendant sets, because the
 descendants of a class intersection are the intersection of the descendants, a proven

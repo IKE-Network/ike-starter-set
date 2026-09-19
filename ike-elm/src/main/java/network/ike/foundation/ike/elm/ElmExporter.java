@@ -144,6 +144,10 @@ public final class ElmExporter {
                     Object value = vertex.properties().get(positionNid);
                     if (rule.valueType() instanceof EnumerationValue enumeration && value instanceof ConceptFacade concept) {
                         builder.add(rule.name(), enumeration.nameOf(concept.nid()).orElse(String.valueOf(concept.nid())));
+                    } else if (value instanceof ConceptFacade concept) {
+                        builder.add(rule.name(), ElmTypeNames.name(concept, catalog)
+                                .orElseThrow(() -> new IllegalStateException("A type-named position holds a concept"
+                                        + " that is not a System type of the catalog")));
                     } else {
                         builder.add(rule.name(), value);
                     }
