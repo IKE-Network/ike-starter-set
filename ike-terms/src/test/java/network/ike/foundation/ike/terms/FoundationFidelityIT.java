@@ -202,7 +202,7 @@ class FoundationFidelityIT {
      * meaning and purpose, and five field meanings). Regenerated, never edited; the count
      * moves only when the pinned release does.
      */
-    private static final int IMPORTED_CATALOG_CONCEPTS = 454;
+    private static final int IMPORTED_CATALOG_CONCEPTS = 463;
     /** Patterns a catalog import mints: the ELM type position pattern. */
     private static final int IMPORTED_CATALOG_PATTERNS = 1;
 

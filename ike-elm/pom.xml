@@ -38,6 +38,11 @@
             <version>${chronology-store.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-bindings</artifactId>
             <version>${project.version}</version>

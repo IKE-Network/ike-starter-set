@@ -53,7 +53,7 @@ class ElmLibraryWriterIT {
     static void boot() throws Exception {
         calculator = Store.boot();
         builder = new ElmTreeBuilder(Store.catalog());
-        writer = new ElmLibraryWriter(builder, Ike.INCEPTION);
+        writer = new ElmLibraryWriter(builder, calculator, Ike.INCEPTION);
     }
 
     private static ImmutableList<Object> fields(int semanticNid) {

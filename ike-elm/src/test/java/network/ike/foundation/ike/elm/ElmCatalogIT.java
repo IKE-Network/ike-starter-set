@@ -44,7 +44,7 @@ class ElmCatalogIT {
 
     @Test
     void everyNodeKindOfTheSchemaIsInTheCatalog() {
-        assertEquals(270, catalog.kindCount(), "23 System types, 215 expression, 27 clinical, 5 library");
+        assertEquals(279, catalog.kindCount(), "23 System types, 215 expression, 27 clinical, 5 library, 9 containers");
         assertTrue(catalog.kind("Exists").isKindOf(catalog.kind("Expression")));
         assertTrue(catalog.kind("Exists").isKindOf(catalog.kind("UnaryExpression")));
         assertFalse(catalog.kind("Exists").isKindOf(catalog.kind("Query")));

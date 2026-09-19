@@ -23,7 +23,7 @@ import dev.ikm.tinkar.terms.EntityProxy;
 /**
  * The ELM node catalog as a ledger section, imported from the ELM specification, cqframework/clinical_quality_language v5.3.0, by {@code ike:schema-import} (IKE-Network/ike-issues#1104).
  * GENERATED FROM THE SCHEMAS: regenerate, never edit.
- * <p>270 types, 143 position names over 346 type positions, 9 schema primitives, 1 types of other schemas referred to, 3 enumerations with 14 values.
+ * <p>279 types, 144 position names over 355 type positions, 8 schema primitives, 1 types of other schemas referred to, 3 enumerations with 14 values.
  */
 final class ElmNodeCatalogSet {
 
@@ -48,8 +48,8 @@ final class ElmNodeCatalogSet {
         set.concept("ELM node catalog (ELM)").at(inception)
                 .synonym("ELM node catalog")
                 .definition("The catalog of the node kinds of the ELM specification: each kind, what it holds, and"
-                        + " what each thing it holds may be. Its 270 node kinds, each with its base and its"
-                        + " positions, its 143 position names, its 9 schema primitives, its 1 type of other"
+                        + " what each thing it holds may be. Its 279 node kinds, each with its base and its"
+                        + " positions, its 144 position names, its 8 schema primitives, its 1 type of other"
                         + " schemas it refers to, and its 3 enumerations, imported from"
                         + " cqframework/clinical_quality_language v5.3.0 and regenerated from the schemas, never"
                         + " edited. A node kind is a kind of node a tree in this language can have; a position is"
@@ -309,6 +309,10 @@ final class ElmNodeCatalogSet {
         set.concept("ELM day position (ELM)").at(inception)
                 .synonym("ELM day position")
                 .definition("The argument position named day, a child element, on 2 node kinds of the catalog.")
+                .isA(positionParent);
+        set.concept("ELM def position (ELM)").at(inception)
+                .synonym("ELM def position")
+                .definition("The argument position named def, a child element, on 9 node kinds of the catalog.")
                 .isA(positionParent);
         set.concept("ELM default position (ELM)").at(inception)
                 .synonym("ELM default position")
@@ -795,11 +799,6 @@ final class ElmNodeCatalogSet {
                 .synonym("ELM primitive anySimpleType")
                 .definition("The XML Schema primitive anySimpleType, a plain value a position of the ELM"
                         + " specification holds.")
-                .isA(primitiveParent);
-        set.concept("ELM primitive anyType (ELM)").at(inception)
-                .synonym("ELM primitive anyType")
-                .definition("The XML Schema primitive anyType, a plain value a position of the ELM specification"
-                        + " holds.")
                 .isA(primitiveParent);
         set.concept("ELM primitive anyURI (ELM)").at(inception)
                 .synonym("ELM primitive anyURI")
@@ -4425,6 +4424,72 @@ final class ElmNodeCatalogSet {
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM ContextDef name")),
                         set.conceptRef("ELM name position (ELM)"), set.conceptRef("ELM primitive string (ELM)"), 0, 1,
                         "", propertyForm);
+        set.concept("ELM Library usings (ELM)").at(inception)
+                .synonym("ELM Library usings")
+                .definition("From the ELM specification: Set of data models referenced in the Expression objects in"
+                        + " this knowledge artifact.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library usings def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM UsingDef (ELM)"), 1, -1,
+                        "A reference to a data model that is used in the artifact, e..g., the Virtual Medical Record.", edgeForm);
+        set.concept("ELM Library includes (ELM)").at(inception)
+                .synonym("ELM Library includes")
+                .definition("From the ELM specification: Set of libraries referenced by this artifact. Components"
+                        + " of referenced libraries may be used within this artifact.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library includes def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM IncludeDef (ELM)"), 1, -1,
+                        "A reference to a library whose components can be used within the artifact.", edgeForm);
+        set.concept("ELM Library parameters (ELM)").at(inception)
+                .synonym("ELM Library parameters")
+                .definition("From the ELM specification: The parameters defined within this library.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library parameters def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM ParameterDef (ELM)"), 0, -1,
+                        "", edgeForm);
+        set.concept("ELM Library codeSystems (ELM)").at(inception)
+                .synonym("ELM Library codeSystems")
+                .definition("From the ELM specification: The code systems defined within this library.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library codeSystems def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM CodeSystemDef (ELM)"), 0, -1,
+                        "", edgeForm);
+        set.concept("ELM Library valueSets (ELM)").at(inception)
+                .synonym("ELM Library valueSets")
+                .definition("From the ELM specification: The value sets defined within this library.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library valueSets def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM ValueSetDef (ELM)"), 0, -1,
+                        "", edgeForm);
+        set.concept("ELM Library codes (ELM)").at(inception)
+                .synonym("ELM Library codes")
+                .definition("From the ELM specification: The codes defined within this library.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library codes def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM CodeDef (ELM)"), 0, -1,
+                        "", edgeForm);
+        set.concept("ELM Library concepts (ELM)").at(inception)
+                .synonym("ELM Library concepts")
+                .definition("From the ELM specification: The concepts defined within this library.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library concepts def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM ConceptDef (ELM)"), 0, -1,
+                        "", edgeForm);
+        set.concept("ELM Library contexts (ELM)").at(inception)
+                .synonym("ELM Library contexts")
+                .definition("From the ELM specification: The contexts defined within this library.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library contexts def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM ContextDef (ELM)"), 0, -1,
+                        "", edgeForm);
+        set.concept("ELM Library statements (ELM)").at(inception)
+                .synonym("ELM Library statements")
+                .definition("From the ELM specification: The statements section contains the expression and"
+                        + " function definitions for the library.")
+                .isA(root)
+                .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library statements def")),
+                        set.conceptRef("ELM def position (ELM)"), set.conceptRef("ELM ExpressionDef (ELM)"), 0, -1,
+                        "", edgeForm);
         set.concept("ELM Library (ELM)").at(inception)
                 .synonym("ELM Library")
                 .definition("From the ELM specification: A Library is an instance of a CQL-ELM library.")
@@ -4436,31 +4501,31 @@ final class ElmNodeCatalogSet {
                         set.conceptRef("ELM schemaIdentifier position (ELM)"), set.conceptRef("ELM VersionedIdentifier (ELM)"), 1, 1,
                         "This is the identifier of the XML schema (and its version) which governs the structure of this Library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library usings")),
-                        set.conceptRef("ELM usings position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM usings position (ELM)"), set.conceptRef("ELM Library usings (ELM)"), 0, 1,
                         "Set of data models referenced in the Expression objects in this knowledge artifact.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library includes")),
-                        set.conceptRef("ELM includes position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM includes position (ELM)"), set.conceptRef("ELM Library includes (ELM)"), 0, 1,
                         "Set of libraries referenced by this artifact. Components of referenced libraries may be used within this artifact.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library parameters")),
-                        set.conceptRef("ELM parameters position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM parameters position (ELM)"), set.conceptRef("ELM Library parameters (ELM)"), 0, 1,
                         "The parameters defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library codeSystems")),
-                        set.conceptRef("ELM codeSystems position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM codeSystems position (ELM)"), set.conceptRef("ELM Library codeSystems (ELM)"), 0, 1,
                         "The code systems defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library valueSets")),
-                        set.conceptRef("ELM valueSets position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM valueSets position (ELM)"), set.conceptRef("ELM Library valueSets (ELM)"), 0, 1,
                         "The value sets defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library codes")),
-                        set.conceptRef("ELM codes position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM codes position (ELM)"), set.conceptRef("ELM Library codes (ELM)"), 0, 1,
                         "The codes defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library concepts")),
-                        set.conceptRef("ELM concepts position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM concepts position (ELM)"), set.conceptRef("ELM Library concepts (ELM)"), 0, 1,
                         "The concepts defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library contexts")),
-                        set.conceptRef("ELM contexts position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM contexts position (ELM)"), set.conceptRef("ELM Library contexts (ELM)"), 0, 1,
                         "The contexts defined within this library.", edgeForm)
                 .semantic(typePositions, PublicIds.of(set.uuidFor("Type position: ELM Library statements")),
-                        set.conceptRef("ELM statements position (ELM)"), set.conceptRef("ELM primitive anyType (ELM)"), 0, 1,
+                        set.conceptRef("ELM statements position (ELM)"), set.conceptRef("ELM Library statements (ELM)"), 0, 1,
                         "The statements section contains the expression and function definitions for the library.", edgeForm);
 
         // ── Enumerations and their values ──

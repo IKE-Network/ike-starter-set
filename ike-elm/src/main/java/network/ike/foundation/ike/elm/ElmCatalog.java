@@ -88,10 +88,37 @@ public final class ElmCatalog {
     /**
      * An enumeration of the catalog: the position holds one of its value concepts.
      *
-     * @param concept   the enumeration concept
-     * @param valueNids the nids of its value concepts
+     * @param concept      the enumeration concept
+     * @param valueNids    the nids of its value concepts
+     * @param valuesByName the value concepts by the name ELM writes, for example {@code Year}
      */
-    public record EnumerationValue(EntityProxy.Concept concept, Set<Integer> valueNids) implements ValueType {
+    public record EnumerationValue(EntityProxy.Concept concept, Set<Integer> valueNids,
+                                   Map<String, EntityProxy.Concept> valuesByName) implements ValueType {
+
+        /**
+         * The value concept for a value as ELM writes it.
+         *
+         * @param name the value's name, for example {@code Public}
+         * @return the concept, or empty when the enumeration has no such value
+         */
+        public Optional<EntityProxy.Concept> value(String name) {
+            return Optional.ofNullable(valuesByName.get(name));
+        }
+
+        /**
+         * The name ELM writes for a value concept.
+         *
+         * @param nid the value concept's nid
+         * @return the name, or empty when the nid is not one of this enumeration's values
+         */
+        public Optional<String> nameOf(int nid) {
+            for (Map.Entry<String, EntityProxy.Concept> entry : valuesByName.entrySet()) {
+                if (entry.getValue().nid() == nid) {
+                    return Optional.of(entry.getKey());
+                }
+            }
+            return Optional.empty();
+        }
     }
 
     /**
@@ -418,7 +445,15 @@ public final class ElmCatalog {
         }
         EnumerationValue enumeration = enumerations.get(nid);
         if (enumeration == null) {
-            enumeration = new EnumerationValue(concept, Set.copyOf(children.getOrDefault(nid, Set.of())));
+            String enumerationLabel = stripTag(labelOf(names, concept));
+            Map<String, EntityProxy.Concept> byName = new LinkedHashMap<>();
+            for (int valueNid : children.getOrDefault(nid, Set.of())) {
+                EntityProxy.Concept value = EntityProxy.Concept.make(valueNid);
+                String valueLabel = stripTag(labelOf(names, value));
+                byName.put(valueLabel.startsWith(enumerationLabel + " ")
+                        ? valueLabel.substring(enumerationLabel.length() + 1) : valueLabel, value);
+            }
+            enumeration = new EnumerationValue(concept, Set.copyOf(children.getOrDefault(nid, Set.of())), byName);
             enumerations.put(nid, enumeration);
         }
         return enumeration;

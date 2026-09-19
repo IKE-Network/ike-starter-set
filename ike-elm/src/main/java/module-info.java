@@ -25,6 +25,8 @@ module network.ike.foundation.ike.elm {
     requires dev.ikm.tinkar.terms;
     requires org.eclipse.collections.api;
     requires network.ike.foundation.ike.bindings;
+    requires com.fasterxml.jackson.databind;
+    requires java.xml;
 
     exports network.ike.foundation.ike.elm;
 }

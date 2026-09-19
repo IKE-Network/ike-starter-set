@@ -14,8 +14,8 @@ files, regenerate, and review the diff.
 
 ## Regenerating
 
-From `ike-terms`, with the tooling release that carries `ike:schema-import` and its form
-field (IKE-Network/ike-issues#1110), one line:
+From `ike-terms`, with the tooling release that carries `ike:schema-import`, its form
+field (IKE-Network/ike-issues#1110), and its reading of unnamed inner types (#1112), one line:
 
 ```bash
 ../../mvnw ike:schema-import -Dike.schemaImport.schemas=src/main/schema/elm/types.xsd,src/main/schema/elm/expression.xsd,src/main/schema/elm/clinicalexpression.xsd,src/main/schema/elm/library.xsd -Dike.schemaImport.packageName=network.ike.foundation.ike.terms -Dike.schemaImport.className=ElmNodeCatalogSet -Dike.schemaImport.tag=ELM -Dike.schemaImport.namespacePrefixes="urn:hl7-org:elm-types:r1=ELM System" -Dike.schemaImport.attribution="the ELM specification" -Dike.schemaImport.pin="cqframework/clinical_quality_language v5.3.0"

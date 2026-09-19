@@ -32,6 +32,7 @@ import java.nio.file.Files;
 final class Store {
 
     private static boolean started;
+    private static long lastTime = System.currentTimeMillis();
     private static StampCalculator calculator;
     private static ElmCatalog catalog;
 
@@ -55,6 +56,19 @@ final class Store {
             started = true;
         }
         return calculator;
+    }
+
+    /**
+     * A fresh active stamp, later than every stamp given before, on the inception stamp's author,
+     * module, and path. The store keeps one version per stamp, so each import that should leave
+     * its own mark takes one of these.
+     *
+     * @return the stamp
+     */
+    static synchronized dev.ikm.tinkar.entity.builder.Stamp nextStamp() {
+        lastTime = Math.max(lastTime + 1, System.currentTimeMillis());
+        return new dev.ikm.tinkar.entity.builder.ActiveStamp(lastTime, network.ike.foundation.ike.terms.Ike.INCEPTION.author(),
+                network.ike.foundation.ike.terms.Ike.INCEPTION.module(), network.ike.foundation.ike.terms.Ike.INCEPTION.path());
     }
 
     /**
