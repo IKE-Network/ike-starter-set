@@ -225,6 +225,12 @@ class ExpressionLanguageIT {
         return fqn(extendingNid).startsWith("ELM System ");
     }
 
+    /** A relation whose extending side is a node kind of the catalog (IKE-Network/ike-issues#1116). */
+    private static boolean isNodeKindRelation(int extendingNid) {
+        String fqn = fqn(extendingNid);
+        return fqn.startsWith("ELM ") && fqn.endsWith(" (ELM)") && !isTypeRelation(extendingNid);
+    }
+
     @Test
     @DisplayName("Every ELM System type relates to one of our concepts by an admitted kind, and only once")
     void everySystemTypeRelatesToOneOfOurConcepts() {
@@ -341,8 +347,8 @@ class ExpressionLanguageIT {
         for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
             int extending = relation.getKey();
             int core = relation.getValue()[0];
-            if (isTypeRelation(extending)) {
-                continue; // a type carries no denotation; everySystemTypeRelatesToOneOfOurConcepts checks it
+            if (isTypeRelation(extending) || isNodeKindRelation(extending)) {
+                continue; // a type or a node kind carries no denotation; their own gates check them
             }
             assertNotNull(DENOTATIONS.get(extending), "Untyped extending construct: " + fqn(extending));
             assertNotNull(DENOTATIONS.get(core), "Untyped core construct: " + fqn(core));
@@ -356,7 +362,8 @@ class ExpressionLanguageIT {
     void logicalEquivalencesAgreeInAllDimensions() {
         List<String> checked = new ArrayList<>();
         for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
-            if (relation.getValue()[1] != logicalEquivalenceNid || isTypeRelation(relation.getKey())) {
+            if (relation.getValue()[1] != logicalEquivalenceNid || isTypeRelation(relation.getKey())
+                    || isNodeKindRelation(relation.getKey())) {
                 continue;
             }
             int[] extending = DENOTATIONS.get(relation.getKey());

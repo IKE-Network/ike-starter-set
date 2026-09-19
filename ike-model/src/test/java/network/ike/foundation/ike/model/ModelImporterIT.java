@@ -191,6 +191,14 @@ class ModelImporterIT {
         assertEquals(298, qicoreReport.classes());
         assertEquals(164, uscoreReport.classes());
         assertEquals(0, fhirReport.counts().versioned());
+        assertEquals(4, quickReport.bridges(), "the corpus's four QUICK classes are bridged");
+        assertEquals(11, quickReport.readings(), "the corpus's paths on QUICK, the code paths, and the birth date");
+        assertEquals(4, fhirReport.bridges());
+        assertEquals(11, fhirReport.readings());
+        assertEquals(1, qdmReport.bridges(), "QDM's positive encounter performed");
+        assertEquals(3, qdmReport.readings(), "QDM's code, relevant period, and birth datetime");
+        assertEquals(0, systemReport.bridges());
+        assertEquals(0, qicoreReport.bridges(), "bridges are authored per model, and QI-Core has none yet");
         ImmutableList<Object> quantity = record(IkeTerms.ELM_SYSTEM_QUANTITY.nid(), IkeTerms.MODEL_CLASS_PATTERN);
         assertEquals("System.Quantity", quantity.get(2));
         assertEquals(nid(modelId(system)), ((EntityFacade) quantity.get(15)).nid(), "the record names the System model");

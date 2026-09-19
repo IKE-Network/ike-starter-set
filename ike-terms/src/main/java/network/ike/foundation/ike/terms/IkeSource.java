@@ -83,6 +83,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // ModelInformationSet holds what is ours about model information (IKE-Network/ike-issues#1115):
         // the Data model parent, the record patterns, the mark, and the dialects; the models are imported.
         ModelInformationSet.compose(Ike.SET);
+        // ElmNodeKindSet relates each admitted ELM node kind to the construct it means, the evaluator's
+        // dispatch table (IKE-Network/ike-issues#1116); it refers to the catalog, the constructs, and the
+        // model information section, so it composes after all three.
+        ElmNodeKindSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
         // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,

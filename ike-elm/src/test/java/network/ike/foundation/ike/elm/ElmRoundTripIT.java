@@ -16,17 +16,15 @@
 package network.ike.foundation.ike.elm;
 
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import network.ike.foundation.ike.fixtures.Fixtures;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -50,28 +48,22 @@ class ElmRoundTripIT {
         importer = new ElmImporter(catalog, calculator);
     }
 
-    static List<Path> fixtures() throws IOException {
-        Path root = Path.of("src", "test", "resources", "elm-fixtures");
-        List<Path> files = new ArrayList<>();
-        try (Stream<Path> walk = Files.walk(root)) {
-            walk.filter(path -> path.toString().endsWith(".json") || path.toString().endsWith(".xml"))
-                    .sorted().forEach(files::add);
-        }
-        return files;
+    static List<String> fixtures() throws IOException {
+        return Fixtures.list("elm-fixtures", name -> name.endsWith(".json") || name.endsWith(".xml"));
     }
 
-    static ElmDocument read(Path file, ElmCatalog catalog) throws IOException {
-        try (InputStream in = Files.newInputStream(file)) {
-            return file.toString().endsWith(".json") ? new ElmJsonReader(catalog).read(in) : new ElmXmlReader(catalog).read(in);
+    static ElmDocument read(String fixture, ElmCatalog catalog) throws IOException {
+        try (InputStream in = Fixtures.open(fixture)) {
+            return fixture.endsWith(".json") ? new ElmJsonReader(catalog).read(in) : new ElmXmlReader(catalog).read(in);
         }
     }
 
     @Test
     void everyFixtureRoundTripsInBothForms() throws IOException {
-        List<Path> fixtures = fixtures();
+        List<String> fixtures = fixtures();
         assertEquals(21, fixtures.size(), "the corpus: 21 libraries");
         List<String> failures = new ArrayList<>();
-        for (Path fixture : fixtures) {
+        for (String fixture : fixtures) {
             ElmDocument original = read(fixture, catalog);
             String expected = ElmCanonical.text(original);
             ElmImporter.Report report = importer.importDocument(original, Store.nextStamp());
@@ -87,10 +79,10 @@ class ElmRoundTripIT {
             String viaJson = ElmCanonical.text(fromJson);
             String viaXml = ElmCanonical.text(fromXml);
             if (!expected.equals(viaJson)) {
-                failures.add(fixture.getFileName() + " via JSON differs at " + firstDifference(expected, viaJson));
+                failures.add(fixture.substring(fixture.lastIndexOf('/') + 1) + " via JSON differs at " + firstDifference(expected, viaJson));
             }
             if (!expected.equals(viaXml)) {
-                failures.add(fixture.getFileName() + " via XML differs at " + firstDifference(expected, viaXml));
+                failures.add(fixture.substring(fixture.lastIndexOf('/') + 1) + " via XML differs at " + firstDifference(expected, viaXml));
             }
         }
         assertTrue(failures.isEmpty(), String.join("\n", failures));
@@ -98,7 +90,7 @@ class ElmRoundTripIT {
 
     @Test
     void everyStoredTreeConformsOnTheWayBackOut() throws IOException {
-        for (Path fixture : fixtures()) {
+        for (String fixture : fixtures()) {
             ElmImporter.Report report = importer.importDocument(read(fixture, catalog), Store.nextStamp());
             ElmDocument exported = new ElmExporter(catalog, calculator).export(report.libraryId());
             assertFalse(exported.definitions().isEmpty() && !report.libraryId().startsWith("BaseLibraryElm"),

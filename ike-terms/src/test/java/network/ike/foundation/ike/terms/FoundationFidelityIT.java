@@ -170,11 +170,14 @@ class FoundationFidelityIT {
      * present and Measure any present with their closed-world readings (+4); and the reference-set
      * member fields, Member field constraint and Member field projection (+2); and the model information
      * section (IKE-Network/ike-issues#1115): the Data model parent, its three purposes, five dialects, and
-     * sixty-five field meanings, and the unresolved marker (+75). Every other construct it types or binds (EL++ AND, Is-a, Existential
+     * sixty-five field meanings, and the unresolved marker (+75); and the node-kind section (#1116): the
+     * Nullary arity, the List and Tuple kinds, ten constructs the first families lacked, Circumstance kind
+     * with its three kinds, Statement reading with its nine readings, the Model bridge purpose, and four
+     * field meanings (+32). Every other construct it types or binds (EL++ AND, Is-a, Existential
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 378;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 410;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -196,9 +199,10 @@ class FoundationFidelityIT {
      * the tree, ordered list, and reference patterns), {@code UcumModelSet} 4 (#1114: the unit, prefix,
      * and composed unit patterns and the UCUM dialect), and {@code ModelInformationSet} 13 (#1115: the
      * model, requirement, class, element, context, relationship, and conversion records, the class
-     * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns).
+     * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
+     * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 34;
+    private static final int AUTHORED_CONTENT_PATTERNS = 36;
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by

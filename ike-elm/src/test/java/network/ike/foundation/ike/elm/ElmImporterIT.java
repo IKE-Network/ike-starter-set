@@ -32,7 +32,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,11 +168,11 @@ class ElmImporterIT {
 
     @Test
     void theJsonAndTheXmlOfOneLibraryImportToTheSameSemantics() throws IOException {
-        Path dir = Path.of("src", "test", "resources", "elm-fixtures", "org", "cqframework", "cql", "elm", "serializing");
-        importer.importDocument(ElmRoundTripIT.read(dir.resolve("CMS146v2_Expected_SignatureLevel_None.json"), catalog),
+        String dir = "elm-fixtures/org/cqframework/cql/elm/serializing/";
+        importer.importDocument(ElmRoundTripIT.read(dir + "CMS146v2_Expected_SignatureLevel_None.json", catalog),
                 Store.nextStamp());
         ElmImporter.Report xml = importer.importDocument(
-                ElmRoundTripIT.read(dir.resolve("CMS146v2_Expected_SignatureLevel_None.xml"), catalog), Store.nextStamp());
+                ElmRoundTripIT.read(dir + "CMS146v2_Expected_SignatureLevel_None.xml", catalog), Store.nextStamp());
         assertEquals(0, xml.counts().written(), "the XML form says what the JSON form said");
         assertEquals(0, xml.counts().versioned());
     }

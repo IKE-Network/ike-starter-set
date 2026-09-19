@@ -21,6 +21,7 @@ import dev.ikm.tinkar.common.service.ServiceKeys;
 import dev.ikm.tinkar.common.service.ServiceProperties;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import network.ike.foundation.ike.fixtures.Fixtures;
 import network.ike.foundation.ike.model.ModelImporter;
 import network.ike.foundation.ike.model.ModelInfoFile;
 import network.ike.foundation.ike.terms.IkeSource;
@@ -71,7 +72,7 @@ final class Store {
             models.importModel(ModelInfoFile.readShipped("quick-modelinfo.xml"), nextStamp());
             models.importModel(ModelInfoFile.readShipped("fhir-modelinfo-4.0.1.xml"), nextStamp());
             for (String fixture : List.of("qdm-modelinfo-5.4.xml", "qdm-modelinfo-5.5.xml", "fhir-modelinfo-3.0.0.xml")) {
-                try (InputStream in = Store.class.getResourceAsStream("/model-fixtures/" + fixture)) {
+                try (InputStream in = Fixtures.open("model-fixtures/" + fixture)) {
                     models.importModel(ModelInfoFile.read(in), nextStamp());
                 }
             }

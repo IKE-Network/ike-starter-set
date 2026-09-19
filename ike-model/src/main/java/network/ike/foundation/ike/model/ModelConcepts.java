@@ -208,6 +208,33 @@ final class ModelConcepts {
     }
 
     /**
+     * Writes the bridge authored for a class on the class.
+     *
+     * @param writer   the writer
+     * @param classId  the class's id
+     * @param classNid the class's nid
+     * @param bridge   the bridge
+     */
+    static void bridge(StoreWriter writer, PublicId classId, int classNid, ModelBridges.Bridge bridge) {
+        writer.semantic(ModelIdentity.bridge(classId), IkeTerms.MODEL_CLASS_BRIDGE_PATTERN, classNid, Lists.immutable.of(
+                bridge.circumstanceKind(), bridge.disposition().map(EntityFacade.class::cast).orElse(IkeTerms.UNRESOLVED),
+                bridge.relation()));
+    }
+
+    /**
+     * Writes the reading authored for an element on the element.
+     *
+     * @param writer     the writer
+     * @param elementId  the element's id
+     * @param elementNid the element's nid
+     * @param reading    the reading
+     */
+    static void reading(StoreWriter writer, PublicId elementId, int elementNid, ModelBridges.Reading reading) {
+        writer.semantic(ModelIdentity.reading(elementId), IkeTerms.MODEL_ELEMENT_READING_PATTERN, elementNid,
+                Lists.immutable.of(reading.reading()));
+    }
+
+    /**
      * Writes a context record on the model.
      *
      * @param writer       the writer

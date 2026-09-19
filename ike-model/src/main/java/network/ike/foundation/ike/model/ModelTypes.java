@@ -49,8 +49,9 @@ public final class ModelTypes {
      * @param name    the model's name as the file writes it
      * @param version the version as written, empty when none
      * @param url     the url a library qualifies its types by
+     * @param patientClass the class the file names as the patient, qualified, empty when none
      */
-    public record Model(int nid, PublicId id, String name, String version, String url) {
+    public record Model(int nid, PublicId id, String name, String version, String url, String patientClass) {
     }
 
     /**
@@ -99,8 +100,13 @@ public final class ModelTypes {
             }
             ImmutableList<Object> fields = latest.get().fieldValues();
             int nid = semantic.referencedComponentNid();
+            String patientClass = (String) fields.get(6);
+            String name = (String) fields.get(0);
+            if (!patientClass.isEmpty() && !patientClass.startsWith(name + ".")) {
+                patientClass = name + "." + patientClass;
+            }
             types.models.put(nid, new Model(nid, EntityService.get().getEntity(nid).orElseThrow().publicId(),
-                    (String) fields.get(0), (String) fields.get(1), (String) fields.get(2)));
+                    name, (String) fields.get(1), (String) fields.get(2), patientClass));
         });
         EntityService.get().forEachSemanticOfPattern(IkeTerms.MODEL_CLASS_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());

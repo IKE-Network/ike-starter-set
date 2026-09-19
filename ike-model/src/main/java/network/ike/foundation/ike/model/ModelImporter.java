@@ -83,7 +83,7 @@ public final class ModelImporter {
      */
     public record Report(String model, String version, PublicId modelConcept, int classes, int conceptsMade, int elements,
                          int contexts, int relationships, int conversions, int requirements, int outsideTypes,
-                         int searchesSetAside, StoreWriter.Counts counts) {
+                         int searchesSetAside, int bridges, int readings, StoreWriter.Counts counts) {
     }
 
     private static final String SYSTEM = "System";
@@ -137,9 +137,18 @@ public final class ModelImporter {
         }
         int elements = 0;
         int relationships = 0;
+        int bridges = 0;
+        int readings = 0;
         for (ClassInfo clazz : file.classes()) {
             PublicId id = resolution.own.get(clazz.qualifiedName());
             int nid = PrimitiveData.nid(id);
+            if (!resolution.system) {
+                Optional<ModelBridges.Bridge> bridge = ModelBridges.bridgeFor(model, clazz.qualifiedName());
+                if (bridge.isPresent()) {
+                    ModelConcepts.bridge(writer, id, nid, bridge.get());
+                    bridges++;
+                }
+            }
             ModelConcepts.classRecord(writer, id, nid, clazz, resolution.bases.get(clazz.qualifiedName()),
                     resolution.codeElements.getOrDefault(clazz.qualifiedName(), IkeTerms.UNRESOLVED),
                     resolution.targets.getOrDefault(clazz.qualifiedName(), IkeTerms.UNRESOLVED), modelConcept);
@@ -151,6 +160,11 @@ public final class ModelImporter {
                             ? resolution.known(element.type().name()).orElse(IkeTerms.UNRESOLVED) : IkeTerms.UNRESOLVED;
                     ModelConcepts.element(writer, elementId, nid, element, elementClass, tree);
                     elements++;
+                    Optional<ModelBridges.Reading> reading = ModelBridges.readingFor(model, clazz.qualifiedName(), element.name());
+                    if (reading.isPresent()) {
+                        ModelConcepts.reading(writer, elementId, PrimitiveData.nid(elementId), reading.get());
+                        readings++;
+                    }
                 }
             }
             for (Relationship relationship : clazz.relationships()) {
@@ -173,7 +187,7 @@ public final class ModelImporter {
         }
         return new Report(model, file.version(), modelId, file.classes().size(), conceptsMade, elements,
                 file.contexts().size(), relationships, file.conversions().size(), file.requirements().size(),
-                resolution.outside, file.searchesSetAside(), writer.counts());
+                resolution.outside, file.searchesSetAside(), bridges, readings, writer.counts());
     }
 
     /** Everything a file names, resolved before anything is written. */

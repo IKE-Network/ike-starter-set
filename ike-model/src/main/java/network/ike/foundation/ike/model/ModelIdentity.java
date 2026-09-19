@@ -133,6 +133,26 @@ public final class ModelIdentity {
     }
 
     /**
+     * The bridge on a class: what the class stands for, authored beside the files.
+     *
+     * @param classId the class's id
+     * @return the bridge semantic's id
+     */
+    public static PublicId bridge(PublicId classId) {
+        return PublicIds.of(UuidT5Generator.get(NAMESPACE, classId.asUuidArray()[0] + "; bridge"));
+    }
+
+    /**
+     * The reading on an element: which statement reading it answers.
+     *
+     * @param elementId the element's id
+     * @return the reading semantic's id
+     */
+    public static PublicId reading(PublicId elementId) {
+        return PublicIds.of(UuidT5Generator.get(NAMESPACE, elementId.asUuidArray()[0] + "; reading"));
+    }
+
+    /**
      * The record semantic hung on a component: the model, class, or mark record.
      *
      * @param component the component

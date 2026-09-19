@@ -854,6 +854,63 @@ The file validates against the model information schema and imports back to its
 patterns, so a library can be written against IKE's own knowledge once ANF's pattern is
 settled and marked.
 
+=== Evaluation
+
+A library held as trees is knowledge about a question, and evaluation asks it. The
+definitions run for a subject, or for every subject, against the statements a source
+answers under a view, and each yields a value of IKE's own kinds or a refusal that names
+its place. The evaluator is IKE's own, over the stored trees: each node kind is read into
+the operands of the construct its checked relation names, and the relations are the
+dispatch table, read from the store at load. A node whose kind has no relation is refused,
+naming the definition, the position walked to it, and the kind, never silently evaluated.
+Seventy-nine kinds are admitted in ten families, the literals, the references, the
+logical and nullological kinds, the comparisons, the intervals, the arithmetic, the
+aggregates, the queries, and the clinical kinds; the families the corpus needs.
+
+Every value carries its kind, and a missing value is a value of its kind with no content:
+Indeterminate presence, a measure with no bounds, a missing list rather than an empty one.
+A measure is two bounds on a measure semantic, and one flag says whether it is an extent. A
+value written to a resolution, an instant written to a day, spans what it could be, an
+uncertainty; CQL's interval is an extent, every point of which is meant. An uncertainty
+overlapping another without agreeing is Indeterminate, which is what CQL calls null for
+instants of differing precision; two overlapping extents are decided. The calendar words
+are IKE's units of time, weeks and finer definite spans of seconds commensurable with
+UCUM's, months and years calendar spans counted in months, so adding a month to the last
+of January lands on the last of February.
+
+The evaluator reads statements through one seam, the query model's own reading of a
+statement: subject, topic, circumstance kind, disposition, timing, result, statement
+time, associated statements. A source answers a subject's statements, or every statement.
+A retrievable class stands for a criterion, recorded on the class by the
+k:ModelClassBridgePattern[]: the circumstance kind a statement must hold, the disposition
+where the class fixes one, and the relation kind the bridge claims; the topic constraint
+takes the retrieve's codes through the class's code path. An element's reading, recorded
+by the k:ModelElementReadingPattern[], says which statement reading the element answers:
+topic, circumstance kind, disposition, timing, its start or its end, result, statement
+time, or the subject's birth date. Both are authored beside the model files and written
+at import, the corpus's classes first, each bridge a conservative extension since every
+class carries more than a statement says. A retrieve of the patient class yields the
+context's subject; a retrieve of an unbridged class, a path without a reading, and a
+context other than Patient or Unfiltered are refused with their place.
+
+The CQL project's test suite is the oracle, translated to ELM once with the translator at
+a pinned version and kept as fixtures with their notice and the script that regenerates
+them. Per family the gate asserts three exact counts: passed, the value equals the
+expected result by IKE's own equality; refused, a kind no relation admits, counted and
+named; recorded, a value that differs from the expected, a reading admitted as
+different, held under its relation. A family lands when refused is zero and the other
+counts are what the ledger says. The corpus's measure library evaluates for an authored
+child and adult over authored statements, every definition yielding, and the QDM
+libraries against QDM 5.4 and 5.5 alike.
+
+At this step the suite's 1,779 translated tests stand at 958 passed, 780 refused, and 41
+recorded, and no file is at zero refused yet: the conversions the translator inserts, As
+above all, run through every family and belong to the types family, so each family lands
+when that one does. The recorded tests are the readings IKE holds to: calendar months and
+years are neither UCUM's nor a number of days, a missing element decides a tuple
+comparison, decimals are equivalent by value, a shifted or finer-compared instant stays as
+uncertain as it is, and the ends of a number extent are its written ends.
+
 === The Checks Are Derived, and They Run
 
 koncept-narrative::ConstructRelationPattern[]
