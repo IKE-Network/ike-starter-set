@@ -87,9 +87,9 @@ final class ElmTypeSet {
 
         // ── Quantity: a measure on its unit ──
         relate(set, inception, relations, "Quantity", measureKind, extension,
-                "a measure on the unit its UCUM code names, both bounds the value, resolution the decimal"
-                        + " place written; the units of time are concepts already, the rest wait for the"
-                        + " UCUM family and stay text on the measure until then");
+                "a measure on the unit its code names, both bounds the value, resolution the decimal"
+                        + " place written; the unit is a concept, one of our units of time for a calendar"
+                        + " word and UCUM's own unit, listed or composed, for a UCUM code");
 
         // ── Ratio: a measure ratio ──
         relate(set, inception, relations, "Ratio", measureRatio, identity,

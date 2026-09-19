@@ -77,6 +77,9 @@ public final class IkeSource implements KnowledgeSetSource {
         // ElmTypeSet relates the catalog's 23 System types to the concepts of the query model
         // (IKE-Network/ike-issues#1113); it refers to both, so it composes after both.
         ElmTypeSet.compose(Ike.SET);
+        // UcumModelSet holds what is ours about UCUM (IKE-Network/ike-issues#1114): the parents,
+        // the patterns, and the dialect; the units themselves are imported, never authored.
+        UcumModelSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
         // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,

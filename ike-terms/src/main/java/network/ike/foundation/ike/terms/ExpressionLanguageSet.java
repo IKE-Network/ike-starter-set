@@ -1648,7 +1648,9 @@ final class ExpressionLanguageSet {
                 .definition("A unit of the Gregorian calendar, midnight to midnight in a time zone,"
                         + " twenty-four hours except where a clock change makes it twenty-three or"
                         + " twenty-five. It is the size of the whole day a timestamp occupies and"
-                        + " the resolution of a date known to the day. CQL's \"day\" and \"days\".")
+                        + " the resolution of a date known to the day. CQL's \"day\" and \"days\"."
+                        + " It is not UCUM's d, a fixed 86,400 seconds; a quantity written 3 'd' is a"
+                        + " measure on that unit, not on this one.")
                 .isA(unitOfTime),
                 set, keywords, cql, "day", unitKeyword, true, "Day"),
                 set, keywords, cql, "days", unitKeyword, false, "Day");
@@ -1656,7 +1658,7 @@ final class ExpressionLanguageSet {
         keyword(keyword(set.concept("Week (IkeFoundation)").at(inception)
                 .synonym("Week")
                 .definition("A unit of the Gregorian calendar, seven calendar days. CQL's \"week\""
-                        + " and \"weeks\".")
+                        + " and \"weeks\". It is not UCUM's wk, seven fixed days of 86,400 seconds.")
                 .isA(unitOfTime),
                 set, keywords, cql, "week", unitKeyword, true, "Week"),
                 set, keywords, cql, "weeks", unitKeyword, false, "Week");
@@ -1665,7 +1667,8 @@ final class ExpressionLanguageSet {
                 .synonym("Month")
                 .definition("A unit of the Gregorian calendar, twenty-eight to thirty-one days, so a"
                         + " duration in months depends on where in the calendar it starts. CQL's"
-                        + " \"month\" and \"months\".")
+                        + " \"month\" and \"months\". It is not UCUM's mo, the mean Julian month, a"
+                        + " fixed length.")
                 .isA(unitOfTime),
                 set, keywords, cql, "month", unitKeyword, true, "Month"),
                 set, keywords, cql, "months", unitKeyword, false, "Month");
@@ -1673,7 +1676,8 @@ final class ExpressionLanguageSet {
         keyword(keyword(set.concept("Year (IkeFoundation)").at(inception)
                 .synonym("Year")
                 .definition("A unit of the Gregorian calendar, twelve months, 365 or 366 days. CQL's"
-                        + " \"year\" and \"years\".")
+                        + " \"year\" and \"years\". It is not UCUM's a, the mean Julian year of 365.25"
+                        + " days.")
                 .isA(unitOfTime),
                 set, keywords, cql, "year", unitKeyword, true, "Year"),
                 set, keywords, cql, "years", unitKeyword, false, "Year");

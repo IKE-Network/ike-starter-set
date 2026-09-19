@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package network.ike.foundation.ike.elm;
+package network.ike.foundation.ike.ucum;
 
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
@@ -21,22 +21,22 @@ import dev.ikm.tinkar.common.service.ServiceKeys;
 import dev.ikm.tinkar.common.service.ServiceProperties;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.Stamp;
+import network.ike.foundation.ike.terms.Ike;
 import network.ike.foundation.ike.terms.IkeSource;
-import network.ike.foundation.ike.ucum.UcumEssence;
-import network.ike.foundation.ike.ucum.UcumImporter;
 
 import java.nio.file.Files;
 
 /**
- * One ephemeral store with the ledger composed into it and the UCUM units imported, shared by
- * the gates of this module: the same boot the ledger's own gates use.
+ * One ephemeral store with the ledger composed into it, shared by the gates of this module:
+ * the same boot the ledger's own gates use.
  */
 final class Store {
 
     private static boolean started;
     private static long lastTime = System.currentTimeMillis();
     private static StampCalculator calculator;
-    private static ElmCatalog catalog;
 
     private Store() {
     }
@@ -50,14 +50,11 @@ final class Store {
     static synchronized StampCalculator boot() throws Exception {
         if (!started) {
             CachingService.clearAll();
-            ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT, Files.createTempDirectory("ike-elm").toFile());
+            ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT, Files.createTempDirectory("ike-ucum").toFile());
             PrimitiveData.selectControllerByName("Load Ephemeral Store");
             PrimitiveData.start();
             new IkeSource().compose().write();
             calculator = Calculators.Stamp.DevelopmentLatestActiveOnly();
-            // The units, imported the way a knowledge base assembly imports them, so that a
-            // library's quantities can name them.
-            new UcumImporter(calculator).importEssence(UcumEssence.read(), nextStamp());
             started = true;
         }
         return calculator;
@@ -65,28 +62,12 @@ final class Store {
 
     /**
      * A fresh active stamp, later than every stamp given before, on the inception stamp's author,
-     * module, and path. The store keeps one version per stamp, so each import that should leave
-     * its own mark takes one of these.
+     * module, and path.
      *
      * @return the stamp
      */
-    static synchronized dev.ikm.tinkar.entity.builder.Stamp nextStamp() {
+    static synchronized Stamp nextStamp() {
         lastTime = Math.max(lastTime + 1, System.currentTimeMillis());
-        return new dev.ikm.tinkar.entity.builder.ActiveStamp(lastTime, network.ike.foundation.ike.terms.Ike.INCEPTION.author(),
-                network.ike.foundation.ike.terms.Ike.INCEPTION.module(), network.ike.foundation.ike.terms.Ike.INCEPTION.path());
-    }
-
-    /**
-     * The catalog read from the booted store, read once.
-     *
-     * @return the catalog
-     * @throws Exception if the store cannot start
-     */
-    static synchronized ElmCatalog catalog() throws Exception {
-        StampCalculator stamps = boot();
-        if (catalog == null) {
-            catalog = ElmCatalog.load(stamps);
-        }
-        return catalog;
+        return new ActiveStamp(lastTime, Ike.INCEPTION.author(), Ike.INCEPTION.module(), Ike.INCEPTION.path());
     }
 }

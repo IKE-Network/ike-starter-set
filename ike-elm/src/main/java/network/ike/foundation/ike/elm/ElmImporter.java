@@ -25,6 +25,10 @@ import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.ucum.UcumSyntaxException;
+import network.ike.foundation.ike.ucum.UcumTerm;
+import network.ike.foundation.ike.ucum.UcumUnits;
+import network.ike.foundation.ike.writer.StoreWriter;
 import network.ike.foundation.ike.elm.ElmCatalog.EnumerationValue;
 import network.ike.foundation.ike.elm.ElmCatalog.Form;
 import network.ike.foundation.ike.elm.ElmCatalog.NodeKind;
@@ -48,10 +52,12 @@ import java.util.TreeSet;
 /**
  * Imports an ELM library document into the running store (IKE-Network/ike-issues#1112): the
  * library concept, one definition semantic per definition, ordered lists where order carries
- * meaning, and a reference semantic for every distinct thing a definition names. Every name is
- * resolved before anything is written; an unresolvable name stops the import with its place
- * named. Importing the same document again writes nothing; a changed document appends
- * versions where it changed and retires what it dropped.
+ * meaning, and a reference semantic for every distinct thing a definition names, a quantity's
+ * unit among them: a CQL calendar word means IKE's unit of time, a UCUM code the unit's own
+ * concept or a composed unit made on demand (IKE-Network/ike-issues#1114). Every name is
+ * resolved before anything is written; an unresolvable name, or a unit code that cannot be
+ * read, stops the import with its place named. Importing the same document again writes
+ * nothing; a changed document appends versions where it changed and retires what it dropped.
  */
 public final class ElmImporter {
 
@@ -68,7 +74,7 @@ public final class ElmImporter {
      * @param counts              what the writer did: written, unchanged, versioned, retired
      */
     public record Report(String libraryId, PublicId library, int definitions, int references, int items, int lists,
-                         Set<String> unresolvedTypeNames, ElmLibraryWriter.Counts counts) {
+                         Set<String> unresolvedTypeNames, StoreWriter.Counts counts) {
     }
 
     /** Reference node kind to the definition kind it names. */
@@ -81,9 +87,22 @@ public final class ElmImporter {
             "CodeRef", "CodeDef",
             "ConceptRef", "ConceptDef");
 
+    /** A CQL calendar word, singular or plural, to IKE's unit of time. */
+    static final Map<String, EntityProxy.Concept> CALENDAR_UNITS = Map.ofEntries(
+            Map.entry("year", IkeTerms.YEAR), Map.entry("years", IkeTerms.YEAR),
+            Map.entry("month", IkeTerms.MONTH), Map.entry("months", IkeTerms.MONTH),
+            Map.entry("week", IkeTerms.WEEK), Map.entry("weeks", IkeTerms.WEEK),
+            Map.entry("day", IkeTerms.DAY), Map.entry("days", IkeTerms.DAY),
+            Map.entry("hour", IkeTerms.HOUR), Map.entry("hours", IkeTerms.HOUR),
+            Map.entry("minute", IkeTerms.MINUTE), Map.entry("minutes", IkeTerms.MINUTE),
+            Map.entry("second", IkeTerms.SECOND), Map.entry("seconds", IkeTerms.SECOND),
+            Map.entry("millisecond", IkeTerms.MILLISECOND), Map.entry("milliseconds", IkeTerms.MILLISECOND));
+
     private final ElmCatalog catalog;
     private final StampCalculator calculator;
     private ElmLibraryWriter writer;
+    private UcumUnits units;
+    private final Map<String, UcumTerm> pendingUnits = new LinkedHashMap<>();
 
     /**
      * Creates an importer over a catalog and a view.
@@ -109,6 +128,8 @@ public final class ElmImporter {
      */
     public Report importDocument(ElmDocument document, Stamp stamp) {
         this.writer = new ElmLibraryWriter(new ElmTreeBuilder(catalog), calculator, stamp);
+        this.units = UcumUnits.load(calculator);
+        this.pendingUnits.clear();
         Node library = document.library();
         Node identifier = library.node("identifier").orElseThrow(() ->
                 new ElmImportException(List.of("library: the document names no identifier")));
@@ -151,6 +172,9 @@ public final class ElmImporter {
         int[] itemCount = {0};
         int[] listCount = {0};
         PublicId libraryPublicId = writer.library(libraryId, version, system);
+        for (UcumTerm unit : pendingUnits.values()) {
+            units.write(unit, writer.store());
+        }
         Set<PublicId> imported = new HashSet<>();
         imported.add(ElmIdentity.libraryRecord(libraryId));
         int referenceCount = 0;
@@ -179,6 +203,15 @@ public final class ElmImporter {
                                    Map<String, Map<String, List<Definition>>> byKindAndName,
                                    Map<String, Node> includesByLocalName, Map<ReferenceKey, PublicId> targets,
                                    List<String> problems) {
+        if (node.kind().equals("Quantity")) {
+            Optional<String> unit = node.text("unit");
+            if (unit.isPresent()) {
+                ReferenceKey key = new ReferenceKey("Quantity", "", unit.get());
+                if (!targets.containsKey(key)) {
+                    resolveUnit(unit.get(), path, problems).ifPresent(id -> targets.put(key, id));
+                }
+            }
+        }
         String definitionKind = REFERENCE_KINDS.get(node.kind());
         if (definitionKind != null) {
             String name = node.text("name").orElse("");
@@ -199,6 +232,31 @@ public final class ElmImporter {
                             byKindAndName, includesByLocalName, targets, problems);
                 }
             }
+        }
+    }
+
+    /**
+     * A quantity's unit: a CQL calendar word, singular or plural, means IKE's unit of time;
+     * anything else is a UCUM code, read against the units in the store, an atom's own concept
+     * or a composed unit made when the library is written.
+     */
+    private Optional<PublicId> resolveUnit(String unit, String path, List<String> problems) {
+        EntityProxy.Concept calendar = CALENDAR_UNITS.get(unit);
+        if (calendar != null) {
+            return Optional.of(calendar.publicId());
+        }
+        if (units.isEmpty()) {
+            problems.add(path + ": Quantity's unit " + unit + " is a UCUM code, and the store holds no UCUM units;"
+                    + " import UCUM first");
+            return Optional.empty();
+        }
+        try {
+            UcumTerm term = units.parse(unit);
+            pendingUnits.putIfAbsent(term.canonicalCode(), term);
+            return Optional.of(units.identity(term));
+        } catch (UcumSyntaxException refused) {
+            problems.add(path + ": Quantity's unit cannot be read: " + refused.getMessage());
+            return Optional.empty();
         }
     }
 

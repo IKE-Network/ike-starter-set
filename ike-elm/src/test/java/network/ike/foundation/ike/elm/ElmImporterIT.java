@@ -21,8 +21,11 @@ import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.EntityService;
+import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.ucum.UcumIdentity;
+import org.eclipse.collections.api.list.ImmutableList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -78,6 +81,17 @@ class ElmImporterIT {
                  "expression": {"type": "Add",
                    "operand": [{"type": "ExpressionRef", "libraryName": "B", "name": "Two"},
                                {"type": "ExpressionRef", "libraryName": "B", "name": "Two"}]}}
+              ]}}}
+            """;
+
+    private static final String DOSED = """
+            {"library": {"identifier": {"id": "Dosed", "version": "1"},
+              "schemaIdentifier": {"id": "urn:hl7-org:elm", "version": "r1"},
+              "statements": {"def": [
+                {"name": "Threshold", "context": "Patient", "accessLevel": "Public",
+                 "expression": {"type": "Quantity", "value": 5, "unit": "mg/dL"}},
+                {"name": "Window", "context": "Patient", "accessLevel": "Public",
+                 "expression": {"type": "Quantity", "value": 3, "unit": "days"}}
               ]}}}
             """;
 
@@ -182,5 +196,55 @@ class ElmImporterIT {
                 .replace("{urn:hl7-org:elm-types:r1}Integer", "{http://hl7.org/fhir}Condition")), Store.nextStamp());
         assertEquals(List.of("{http://hl7.org/fhir}Condition"), List.copyOf(fhir.unresolvedTypeNames()),
                 "a data model's type stays text and is reported");
+    }
+
+    private static List<ImmutableList<Object>> referencesAbout(PublicId definition) {
+        List<ImmutableList<Object>> references = new ArrayList<>();
+        EntityService.get().forEachSemanticForComponentOfPattern(PrimitiveData.nid(definition),
+                IkeTerms.ELM_REFERENCE_PATTERN.nid(), semantic -> {
+                    Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
+                    if (latest.isPresent()) {
+                        references.add(latest.get().fieldValues());
+                    }
+                });
+        return references;
+    }
+
+    @Test
+    void aQuantityUnitIsAReferenceToUcumOrToOurUnitOfTime() throws IOException {
+        ElmDocument document = json(DOSED);
+        ElmImporter.Report report = importer.importDocument(document, Store.nextStamp());
+        assertEquals(2, report.references(), "one reference per definition, each to its unit");
+
+        List<ImmutableList<Object>> threshold = referencesAbout(
+                ElmIdentity.definition("Dosed", "ExpressionDef", "Threshold", List.of()));
+        assertEquals(1, threshold.size());
+        assertEquals(IkeTerms.ELM_QUANTITY.nid(), ((EntityProxy.Concept) threshold.get(0).get(0)).nid(),
+                "the kind is the naming node's kind");
+        assertEquals(PrimitiveData.nid(UcumIdentity.composedUnit("mg.dL-1")),
+                ((EntityFacade) threshold.get(0).get(1)).nid(),
+                "mg/dL means the composed unit, by its canonical code");
+        assertEquals("mg/dL", threshold.get(0).get(2), "the name as written");
+        assertTrue(PrimitiveData.get().hasPublicId(UcumIdentity.composedUnit("mg.dL-1")), "the composed unit was made");
+
+        List<ImmutableList<Object>> window = referencesAbout(
+                ElmIdentity.definition("Dosed", "ExpressionDef", "Window", List.of()));
+        assertEquals(1, window.size());
+        assertEquals(IkeTerms.DAY.nid(), ((EntityFacade) window.get(0).get(1)).nid(),
+                "a calendar word means our unit of time");
+        assertEquals("days", window.get(0).get(2));
+
+        ElmDocument exported = new ElmExporter(catalog, calculator).export("Dosed");
+        assertEquals(ElmCanonical.text(document), ElmCanonical.text(exported), "the spelling comes back as written");
+    }
+
+    @Test
+    void aUnitThatCannotBeReadIsRefusedWithItsPlace() throws IOException {
+        String misdosed = DOSED.replace("\"Dosed\"", "\"Misdosed\"").replace("mg/dL", "mg//dL");
+        ElmImportException refused = assertThrows(ElmImportException.class,
+                () -> importer.importDocument(json(misdosed), Store.nextStamp()));
+        assertTrue(refused.getMessage().contains("statements/def Threshold/expression[1]: Quantity's unit cannot be read:"
+                + " 'mg//dL' at 3"), refused.getMessage());
+        assertFalse(PrimitiveData.get().hasPublicId(ElmIdentity.library("Misdosed")), "nothing was written");
     }
 }

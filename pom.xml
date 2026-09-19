@@ -82,6 +82,8 @@
     <subprojects>
         <subproject>ike-terms</subproject>
         <subproject>ike-bindings</subproject>
+        <subproject>ike-writer</subproject>
+        <subproject>ike-ucum</subproject>
         <subproject>ike-elm</subproject>
         <subproject>ike-changeset</subproject>
         <subproject>ike-doc</subproject>

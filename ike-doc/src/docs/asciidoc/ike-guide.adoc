@@ -729,9 +729,9 @@ the connectives already run. String is the string data type, one idea admitted t
 Date, DateTime, and Time are measures read as instants with the written precision as
 their resolution: a Date on k:GregorianCalendarDate[], a DateTime on the epoch scale in
 the zone its offset gives, a Time on k:TimeOfDay[], a position within a day counted from
-midnight with no date and no zone. A Quantity is a measure on the unit its UCUM code
-names; the units of time are concepts already, and the other units wait for the UCUM
-family, the unit staying text on the measure until then. A Ratio is a k:MeasureRatio[],
+midnight with no date and no zone. A Quantity is a measure on the unit its code names, one
+of the units of time for a calendar word and UCUM's unit for a code; the units are the next
+section's. A Ratio is a k:MeasureRatio[],
 a numerator measure and a denominator measure kept as written, so 1:128 stays 1:128.
 
 Code and Concept are k:ConceptKind[] by logical equivalence, given the code system is in
@@ -750,6 +750,56 @@ where an operator of another language would instead be admitted as the construct
 When a library is imported, a type name that is a System type is stored as the catalog's
 concept for it, so the tree holds a concept the relation makes ours; a type of the data
 model stays text until the model information gives those types concepts.
+
+=== Units
+
+A quantity is a measure on a unit, and the units come from the Unified Code for Units of
+Measure, UCUM, the vocabulary CQL uses for them. UCUM's license allows its file to be
+copied and used unmodified and forbids changing or deriving from its content, so the
+starter set carries the file as its publisher issues it, with the notices the license
+asks for, and reads it when a knowledge base is assembled rather than generating a section
+from it. What the ledger holds is only what is IKE's: the parents k:UCUMProperty[],
+k:UCUMPrefix[], and k:UCUMComposedUnit[] under k:UnifiedCodeForUnitsOfMeasure[], the
+k:UCUMUnitPattern[] and k:UCUMPrefixPattern[] that record what UCUM says of a unit or a
+prefix verbatim, the k:UCUMComposedUnitPattern[] for units built by the grammar, and the
+k:UCUMDialect[] in which a unit's name and print symbol are read.
+
+The import makes a concept for each of the seven base units and the three hundred and
+five defined units, each under the property it measures, length or mass or pressure, so
+that the hundred and one properties are concepts too and a unit's place says what it measures; a
+concept for each of the twenty-four prefixes; and, for every unit, its code, its
+case-insensitive code, its print symbol, its class, whether it is metric, special, or
+arbitrary, and its definition as UCUM writes it. The names and print symbols are
+descriptions read in the UCUM dialect, so a unit is found by either. Beside UCUM's fields
+sit two of IKE's, marked as IKE's: the k:UnitDimension[], how much length, time, mass,
+angle, temperature, charge, and luminous intensity the unit carries, and the
+k:UnitMagnitude[] in the base units, both computed by following UCUM's definitions down
+to the base units. Two units convert when their dimensions agree, by the ratio of their
+magnitudes: an hour is 3600 seconds, a liter a thousandth of a cubic meter, a millimeter
+of mercury 133.322 pascals. The twenty-one special units, degrees Celsius and the
+logarithmic scales among them, are defined by functions and take no part in conversion by
+ratio; the forty-one arbitrary units, international units among them, never convert, as
+UCUM says.
+
+A unit code is more than an atom: a prefix on a metric unit, a power, a product, a
+quotient, a number, an annotation in braces that means nothing to the algebra. No family
+can list the combinations, so a composed unit is made when it is first met, a concept
+under k:UCUMComposedUnit[] identified by its canonical code, the factors in one fixed
+order, so that mg/dL and mg.dL-1 are one concept while each library keeps the spelling it
+used. A code the grammar cannot read is refused with its place, the way an unresolvable
+name is.
+
+CQL writes durations two ways, and the two are kept apart. A calendar word, days or
+months or years, singular or plural, is one of the eight units of time, k:Day[] and its
+kin, whose length depends on where it falls on the calendar. A UCUM code, d or mo or a,
+is UCUM's unit of fixed length. Where the two agree they are related by k:Identity[]:
+k:Second[], k:Minute[], and k:Hour[] to UCUM's s, min, and h, and k:Millisecond[] to the
+composed ms. Where they do not, the definitions of k:Day[], k:Week[], k:Month[], and
+k:Year[] say which UCUM unit each is not. When a library is imported, a quantity's unit
+becomes a reference from the definition to the unit's concept, calendar or UCUM, with the
+spelling as written kept on it, so the Quantity relation of the data type pass holds
+without a waiting clause: a quantity is a measure on the unit its code names, and that
+unit is a concept.
 
 === The Checks Are Derived, and They Run
 

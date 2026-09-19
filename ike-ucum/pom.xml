@@ -7,15 +7,14 @@
         <groupId>network.ike.foundation</groupId>
         <artifactId>ike-starter-set</artifactId>
     </parent>
-    <artifactId>ike-elm</artifactId>
+    <artifactId>ike-ucum</artifactId>
     <packaging>jar</packaging>
-    <name>Ike ELM Trees</name>
+    <name>Ike UCUM Units</name>
     <description>
-        How ELM logic is held in IKE (IKE-Network/ike-issues#1110): the catalog of ELM node
-        kinds read back from the store, one generic builder and checker driven by it, the
-        three ELM enumerations as bound Java enums, and the writer that records a library
-        as one semantic per definition. HL7's ELM is the Expression Logical Model of the
-        Clinical Quality Language specification, not the Elm programming language.
+        The Unified Code for Units of Measure as knowledge (IKE-Network/ike-issues#1114):
+        the unmodified UCUM file with its notices, the importer that reads it into the store
+        as concepts with every UCUM field verbatim, the grammar that composes units on
+        demand, and the reduction to base dimensions and magnitudes that IKE computes.
     </description>
     <!-- Dual licensed (IKE-Network/ike-issues#952); identical in every POM of
          this reactor. -->
@@ -38,11 +37,6 @@
             <version>${chronology-store.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-bindings</artifactId>
             <version>${project.version}</version>
@@ -50,11 +44,6 @@
         <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-writer</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>network.ike.foundation</groupId>
-            <artifactId>ike-ucum</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- The ledger, composed into an ephemeral store by the integration tests. -->
@@ -78,8 +67,6 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- The gates are integration tests (*IT): they boot an ephemeral store and
-                 compose the ledger into it, as ike-terms's gates do. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>

@@ -172,7 +172,7 @@ class FoundationFidelityIT {
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 283;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 303;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -192,7 +192,7 @@ class FoundationFidelityIT {
      * Pattern, the Construct Relation Pattern, and the CQL, ECL, and EL++ Dialect
      * Patterns ({@code ExpressionLanguageSet}).
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 17;
+    private static final int AUTHORED_CONTENT_PATTERNS = 21;
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
