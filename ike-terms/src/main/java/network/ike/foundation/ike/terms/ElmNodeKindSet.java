@@ -320,6 +320,101 @@ final class ElmNodeKindSet {
                     "the last value the written span could be, out to the precision asked"),
             new Relation("arithmetic", "LowBoundary", "Written boundary (IkeFoundation)", "extension",
                     "the first value the written span could be, out to the precision asked"),
+            // ── Intervals in full (IKE-Network/ike-issues#1120) ──
+            new Relation("intervals", "Meets", "Measure adjacency (IkeFoundation)", "identity",
+                    "whether one extent's end is the neighbour of the other's start, on either side"),
+            new Relation("intervals", "MeetsBefore", "Measure adjacency (IkeFoundation)", "extension",
+                    "adjacency with this extent first"),
+            new Relation("intervals", "MeetsAfter", "Measure adjacency (IkeFoundation)", "extension",
+                    "adjacency with this extent second"),
+            new Relation("intervals", "Starts", "Measure alignment (IkeFoundation)", "extension",
+                    "the same start, and an end no later"),
+            new Relation("intervals", "Ends", "Measure alignment (IkeFoundation)", "extension",
+                    "the same end, and a start no earlier"),
+            new Relation("intervals", "PointFrom", "Measure single point (IkeFoundation)", "identity",
+                    "the one value of an extent whose ends coincide"),
+            new Relation("intervals", "ProperIn", "Strict inclusion (IkeFoundation)", "extension",
+                    "within an extent and at neither end, or in a list of more than one element"),
+            new Relation("intervals", "ProperContains", "Strict inclusion (IkeFoundation)", "extension",
+                    "the same, read from the container's side"),
+            new Relation("intervals", "ProperIncludedIn", "Strict inclusion (IkeFoundation)", "extension",
+                    "included and not the same"),
+            new Relation("intervals", "ProperIncludes", "Strict inclusion (IkeFoundation)", "extension",
+                    "the same, read from the container's side"),
+            new Relation("intervals", "Collapse", "Extent merging (IkeFoundation)", "identity",
+                    "the fewest extents covering the same points"),
+            new Relation("intervals", "Expand", "Extent partition (IkeFoundation)", "identity",
+                    "the unit extents of a step that cover an extent, or their starts"),
+            // ── Lists, query clauses, and aggregates (IKE-Network/ike-issues#1121) ──
+            new Relation("lists", "Distinct", "Repeat removal (IkeFoundation)", "identity",
+                    "the list without repeats, a missing element the same as a missing element"),
+            new Relation("lists", "First", "Collection selection (IkeFoundation)", "extension",
+                    "the first element, missing of an empty list"),
+            new Relation("lists", "Last", "Collection selection (IkeFoundation)", "extension",
+                    "the last element, missing of an empty list"),
+            new Relation("lists", "Flatten", "List flattening (IkeFoundation)", "identity",
+                    "one level of lists lifted into their parent"),
+            new Relation("lists", "IndexOf", "Element position (IkeFoundation)", "identity",
+                    "an element's first position, or minus one"),
+            new Relation("lists", "Indexer", "Collection selection (IkeFoundation)", "extension",
+                    "the element or character at a position, missing off either end"),
+            new Relation("lists", "Length", "Collection size (IkeFoundation)", "identity",
+                    "the count of a list's elements or a text's characters"),
+            new Relation("lists", "Slice", "Collection selection (IkeFoundation)", "extension",
+                    "the elements from one position up to another"),
+            new Relation("queries", "LetClause", "Query binding (IkeFoundation)", "identity",
+                    "a name bound per row"),
+            new Relation("queries", "ReturnClause", "Query projection (IkeFoundation)", "identity",
+                    "what each kept row yields, distinct unless the clause says all"),
+            new Relation("queries", "SortClause", "Ordering (IkeFoundation)", "identity",
+                    "the rows in the order the keys give"),
+            new Relation("queries", "ByDirection", "Ordering key (IkeFoundation)", "extension",
+                    "the rows themselves, ascending or descending"),
+            new Relation("queries", "ByColumn", "Ordering key (IkeFoundation)", "extension",
+                    "a column of the rows by its path"),
+            new Relation("queries", "ByExpression", "Ordering key (IkeFoundation)", "extension",
+                    "an expression of each row"),
+            new Relation("queries", "AggregateClause", "Query folding (IkeFoundation)", "identity",
+                    "the rows folded into one value through a named accumulator"),
+            new Relation("aggregates", "Mode", "Measure mode (IkeFoundation)", "identity",
+                    "the most frequent value, the least of them when several tie"),
+            new Relation("aggregates", "Product", "Measure product (IkeFoundation)", "identity",
+                    "the product of the present values"),
+            new Relation("aggregates", "StdDev", "Measure spread (IkeFoundation)", "extension",
+                    "the sample's standard deviation at eight places"),
+            new Relation("aggregates", "PopulationStdDev", "Measure spread (IkeFoundation)", "extension",
+                    "the population's standard deviation at eight places"),
+            new Relation("aggregates", "Variance", "Measure spread (IkeFoundation)", "extension",
+                    "the sample's variance at eight places"),
+            new Relation("aggregates", "PopulationVariance", "Measure spread (IkeFoundation)", "extension",
+                    "the population's variance at eight places"),
+            // ── Strings and the message (IKE-Network/ike-issues#1122) ──
+            new Relation("strings", "Concatenate", "Text joining (IkeFoundation)", "identity",
+                    "texts joined end to end, missing when any is"),
+            new Relation("strings", "Combine", "Text joining (IkeFoundation)", "extension",
+                    "a list's texts joined with a separator"),
+            new Relation("strings", "StartsWith", "Text affix test (IkeFoundation)", "extension",
+                    "whether the text begins with the other"),
+            new Relation("strings", "EndsWith", "Text affix test (IkeFoundation)", "extension",
+                    "whether the text ends with the other"),
+            new Relation("strings", "PositionOf", "Text position (IkeFoundation)", "extension",
+                    "the first position of a pattern, or minus one"),
+            new Relation("strings", "LastPositionOf", "Text position (IkeFoundation)", "extension",
+                    "the last position of a pattern, or minus one"),
+            new Relation("strings", "Lower", "Text case (IkeFoundation)", "extension",
+                    "the text in lower case"),
+            new Relation("strings", "Upper", "Text case (IkeFoundation)", "extension",
+                    "the text in upper case"),
+            new Relation("strings", "Matches", "Text pattern match (IkeFoundation)", "identity",
+                    "whether the whole text matches a regular expression"),
+            new Relation("strings", "ReplaceMatches", "Text pattern replacement (IkeFoundation)", "identity",
+                    "every match of a regular expression replaced"),
+            new Relation("strings", "Split", "Text splitting (IkeFoundation)", "identity",
+                    "the text divided at a separator"),
+            new Relation("strings", "Substring", "Text slice (IkeFoundation)", "identity",
+                    "the characters from a position for a length"),
+            new Relation("strings", "Message", "Evaluation message (IkeFoundation)", "identity",
+                    "the source passed through, an error refusing with the message's text"),
             // ── The clock ──
             new Relation("clock", "Today", "Evaluation moment (IkeFoundation)", "extension",
                     "the date of the evaluation's moment"),
@@ -364,6 +459,11 @@ final class ElmNodeKindSet {
                 .synonym("Tuple kind")
                 .definition("An operand kind: a value of named parts, each a value of a kind of its own, read"
                         + " part by part by name.")
+                .isA(operandKind);
+        set.concept("Text kind (IkeFoundation)").at(inception)
+                .synonym("Text kind")
+                .definition("An operand kind: a sequence of characters read as written, compared character by"
+                        + " character; what CQL's String is a value of (IKE-Network/ike-issues#1122).")
                 .isA(operandKind);
         EntityProxy.Concept listKind = set.conceptRef("List kind (IkeFoundation)");
         EntityProxy.Concept tupleKind = set.conceptRef("Tuple kind (IkeFoundation)");
@@ -442,6 +542,66 @@ final class ElmNodeKindSet {
                     "Unary", "Measure kind", "Measure kind"},
             {"Written boundary", "An end of the span a value leaves unwritten, out to a precision asked: the first"
                     + " or the last value the written value could be.", "Binary", "Measure kind", "Measure kind"},
+            // ── Intervals in full (IKE-Network/ike-issues#1120) ──
+            {"Measure adjacency", "Whether one extent's end is the neighbour of the other's start at the kind's"
+                    + " step, on either side or on a named one; an unknown end leaves it open.",
+                    "Binary", "Measure kind", "Presence measure kind"},
+            {"Measure alignment", "Whether two extents share a start, the first ending no later, or share an end,"
+                    + " the first starting no earlier.", "Binary", "Measure kind", "Presence measure kind"},
+            {"Measure single point", "The one value of an extent whose ends coincide; missing when the ends are"
+                    + " unknown, refused when the extent is wider.", "Unary", "Measure kind", "Measure kind"},
+            {"Strict inclusion", "Inclusion with sameness ruled out: a value within an extent and at neither end, a"
+                    + " list holding an element among more than one, a collection within another and not the"
+                    + " same.", "Binary", "Operand kind", "Presence measure kind"},
+            {"Extent merging", "The fewest extents that cover the same points as a list of extents, those that"
+                    + " overlap or meet merged, ordered by their starts.", "Binary", "List kind", "List kind"},
+            {"Extent partition", "The unit extents of a step that cover an extent, or their starts as points;"
+                    + " nothing for an extent written coarser than the step.", "Binary", "Operand kind", "List kind"},
+            // ── Lists, query clauses, and aggregates (IKE-Network/ike-issues#1121) ──
+            {"Collection selection", "Elements of a list or characters of a text picked by position: the first, the"
+                    + " last, the one at a position, or those from one position up to another; missing off"
+                    + " either end.", "Variadic", "Operand kind", "Operand kind"},
+            {"Repeat removal", "A list with each value once, a missing element the same as a missing element, in"
+                    + " the order first seen.", "Unary", "List kind", "List kind"},
+            {"List flattening", "A list of lists lifted one level into one list.", "Unary", "List kind", "List kind"},
+            {"Element position", "The first position of an element in a list, or minus one when absent.",
+                    "Binary", "Operand kind", "Measure kind"},
+            {"Collection size", "The count of a list's elements, missing ones included, or of a text's characters.",
+                    "Unary", "Operand kind", "Measure kind"},
+            {"Query projection", "What each kept row of a query yields, distinct unless the clause says all.",
+                    "Unary", "Operand kind", "Operand kind"},
+            {"Ordering", "The rows of a query in the order its keys give, missing values first.",
+                    "Variadic", "List kind", "List kind"},
+            {"Ordering key", "One key of an ordering: the rows themselves, a column by its path, or an expression"
+                    + " of each row, ascending or descending.", "Unary", "Operand kind", "Operand kind"},
+            {"Query binding", "A name bound to a value per row of a query, for the clauses that follow.",
+                    "Unary", "Operand kind", "Operand kind"},
+            {"Query folding", "The rows of a query folded into one value through a named accumulator, from a"
+                    + " starting value or missing, over distinct rows when asked.", "Variadic", "Operand kind", "Operand kind"},
+            {"Measure mode", "The most frequent present value of a list, the least of them when several tie;"
+                    + " missing of none.", "Unary", "List kind", "Measure kind"},
+            {"Measure product", "The product of a list's present values; missing of none.", "Unary", "List kind", "Measure kind"},
+            {"Measure spread", "How far a list's present values lie from their mean: the variance or its root, of"
+                    + " the sample or of the population, at eight places; missing of none.",
+                    "Unary", "List kind", "Measure kind"},
+            // ── Strings and the message (IKE-Network/ike-issues#1122) ──
+            {"Text joining", "Texts joined end to end, or a list's texts joined with a separator; missing when a"
+                    + " text is, or the list is empty or missing.", "Variadic", "Text kind", "Text kind"},
+            {"Text affix test", "Whether a text begins or ends with another.", "Binary", "Text kind", "Presence measure kind"},
+            {"Text position", "The first or last position of a pattern in a text, or minus one.",
+                    "Binary", "Text kind", "Measure kind"},
+            {"Text case", "A text in lower or upper case.", "Unary", "Text kind", "Text kind"},
+            {"Text pattern match", "Whether the whole of a text matches a regular expression.",
+                    "Binary", "Text kind", "Presence measure kind"},
+            {"Text pattern replacement", "A text with every match of a regular expression replaced.",
+                    "Variadic", "Text kind", "Text kind"},
+            {"Text splitting", "A text divided at a separator into a list of texts, the text whole when none is"
+                    + " given or found.", "Binary", "Text kind", "List kind"},
+            {"Text slice", "The characters of a text from a position for a length; missing off either end.",
+                    "Variadic", "Text kind", "Text kind"},
+            {"Evaluation message", "A note attached to a value's evaluation, the value passed through; a message"
+                    + " of error severity whose condition holds refuses the evaluation with its text.",
+                    "Variadic", "Operand kind", "Operand kind"},
         };
         for (String[] construct : constructs) {
             set.concept(construct[0] + " (IkeFoundation)").at(inception)

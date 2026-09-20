@@ -100,7 +100,7 @@ class ElmNodeKindIT {
                     || relation.target().equals("Measure ratio (IkeFoundation)");
             assertTrue(kindTarget || DENOTED.contains(found.get(0)[0]), relation.target() + " carries a denotation");
         }
-        assertEquals(138, kinds.size(), "the first families, types, the clock, the date components, and arithmetic: " + kinds.size() + " node kinds");
+        assertEquals(184, kinds.size(), "every family of the suite: " + kinds.size() + " node kinds");
     }
 
     @Test
@@ -111,12 +111,17 @@ class ElmNodeKindIT {
                 "Kind assertion", "Kind test", "Kind conversion", "Conversion possible", "Part listing", "Deep part listing",
                 "Evaluation moment", "Written component reading", "Measure magnitude", "Measure rounding", "Remainder",
                 "Whole quotient", "Measure exponentiation", "Measure logarithm", "Kind limit", "Written precision",
-                "Neighbouring value", "Written boundary")) {
+                "Neighbouring value", "Written boundary", "Measure adjacency", "Measure alignment", "Measure single point",
+                "Strict inclusion", "Extent merging", "Extent partition", "Collection selection", "Repeat removal",
+                "List flattening", "Element position", "Collection size", "Query projection", "Ordering", "Ordering key",
+                "Query binding", "Query folding", "Measure mode", "Measure product", "Measure spread", "Text joining",
+                "Text affix test", "Text position", "Text case", "Text pattern match", "Text pattern replacement",
+                "Text splitting", "Text slice", "Evaluation message")) {
             int nid = nid(construct + " (IkeFoundation)");
             assertTrue(calculator.latest(nid).isPresent(), construct + " exists");
             assertTrue(DENOTED.contains(nid), construct + " carries a denotation");
         }
-        for (String kind : List.of("List kind", "Tuple kind", "Nullary")) {
+        for (String kind : List.of("List kind", "Tuple kind", "Text kind", "Nullary")) {
             assertTrue(calculator.latest(nid(kind + " (IkeFoundation)")).isPresent(), kind + " exists");
         }
         for (String reading : ElmNodeKindSet.READINGS) {

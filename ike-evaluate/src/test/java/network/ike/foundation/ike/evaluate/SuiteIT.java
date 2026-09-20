@@ -39,35 +39,35 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class SuiteIT {
 
     /**
-     * Per family: passed, refused, recorded, as of the arithmetic family (IKE-Network/ike-issues#1119).
-     * Nine files are at zero refused: comparison, conditional, date and time, logical,
-     * nullological, the two type files, arithmetic, and the value literals; the rest refuse their
-     * own families' kinds. The recorded tests are the readings the topic records as
+     * Per family: passed, refused, recorded, as of the last families (IKE-Network/ike-issues#1120,
+     * #1121, #1122). Every file is at zero refused: the suite's 1,779 translated tests each yield
+     * a value, and each is passed or recorded. The recorded tests are the readings the topic records as
      * IKE's own: calendar months and years against UCUM's and against days, missing elements in
      * tuples, decimal equivalence at trailing zeros, precision kept honest on shifted and compared
      * instants, the leap-day anniversary, successor and predecessor on the ends of number
-     * extents, membership in a missing collection or against an unknown end left open, the sums
-     * and products of uncertainties whose lower bound the suite itself counts a day short, numbers
-     * past the Integer range that CQL calls null and our widthless numbers keep, the five
-     * stepping tests where the suite expects the written-places step beside five expecting the
-     * eight-place step, and one millisecond parse the translator reads differently.
+     * extents, membership, the proper forms, adjacency, and inclusion against a missing collection
+     * or an unknown end left open, the sums and products of uncertainties whose lower bound the
+     * suite itself counts a day short, numbers past the Integer range that CQL calls null and our
+     * widthless numbers keep, the five stepping tests where the suite expects the written-places
+     * step beside five expecting the eight-place step, and one millisecond parse the translator
+     * reads differently.
      */
     private static final Map<String, int[]> EXPECTED = new LinkedHashMap<>();
 
     static {
-        EXPECTED.put("CqlAggregateFunctionsTest", new int[] {36, 14, 0});
-        EXPECTED.put("CqlAggregateTest", new int[] {0, 9, 0});
+        EXPECTED.put("CqlAggregateFunctionsTest", new int[] {50, 0, 0});
+        EXPECTED.put("CqlAggregateTest", new int[] {9, 0, 0});
         EXPECTED.put("CqlArithmeticFunctionsTest", new int[] {216, 0, 13});
         EXPECTED.put("CqlComparisonOperatorsTest", new int[] {244, 0, 15});
         EXPECTED.put("CqlConditionalOperatorsTest", new int[] {9, 0, 0});
         EXPECTED.put("CqlDateTimeOperatorsTest", new int[] {299, 0, 15});
-        EXPECTED.put("CqlErrorsAndMessagingOperatorsTest", new int[] {0, 3, 0});
-        EXPECTED.put("CqlIntervalOperatorsTest", new int[] {256, 131, 20});
-        EXPECTED.put("CqlListOperatorsTest", new int[] {109, 120, 2});
+        EXPECTED.put("CqlErrorsAndMessagingOperatorsTest", new int[] {3, 0, 0});
+        EXPECTED.put("CqlIntervalOperatorsTest", new int[] {384, 0, 23});
+        EXPECTED.put("CqlListOperatorsTest", new int[] {227, 0, 4});
         EXPECTED.put("CqlLogicalOperatorsTest", new int[] {39, 0, 0});
         EXPECTED.put("CqlNullologicalOperatorsTest", new int[] {22, 0, 0});
-        EXPECTED.put("CqlQueryTests", new int[] {1, 11, 0});
-        EXPECTED.put("CqlStringOperatorsTest", new int[] {5, 77, 0});
+        EXPECTED.put("CqlQueryTests", new int[] {12, 0, 0});
+        EXPECTED.put("CqlStringOperatorsTest", new int[] {82, 0, 0});
         EXPECTED.put("CqlTypeOperatorsTest", new int[] {35, 0, 0});
         EXPECTED.put("CqlTypesTest", new int[] {21, 0, 2});
         EXPECTED.put("ValueLiteralsAndSelectors", new int[] {55, 0, 0});

@@ -17,13 +17,14 @@ package network.ike.foundation.ike.evaluate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
- * The query kinds: a query over one aliased source with correlation constraints and a where
- * clause, the closed-world existence of a list, and the one element of a list. Clauses no
- * relation admits, a let, a return, a sort, an aggregate, or a second source, are refused by
- * name, since they belong to families of their own.
+ * The query kinds: a query over one or more aliased sources with let bindings, correlation
+ * constraints, a where clause, a return, a sort, or an aggregate, the closed-world existence of
+ * a list, and the one element of a list. Several sources run over their product, each row a
+ * tuple of the aliases.
  */
 final class Queries {
 
@@ -67,38 +68,203 @@ final class Queries {
         });
     }
 
+    /** One row of a query: the values its aliases stand for, and the value it yields when unprojected. */
+    private record Row(Context bound, Value yield) {
+    }
+
     private static Value query(TreeNode node, Context context) {
-        for (String clause : List.of("let", "return", "sort", "aggregate")) {
-            if (node.has(clause)) {
-                throw context.refuse("the query's " + clause + " clause is of a kind no relation admits yet");
+        List<TreeNode> sources = node.items("source");
+        if (sources.isEmpty()) {
+            throw context.refuse("the query has no source");
+        }
+        List<String> aliases = new ArrayList<>();
+        List<List<Value>> columns = new ArrayList<>();
+        boolean singular = true;
+        for (int i = 0; i < sources.size(); i++) {
+            TreeNode source = sources.get(i);
+            String alias = source.text("alias").orElseThrow(() -> context.refuse("the query's source has no alias"));
+            Value value = context.evaluator().eval(source, context.at("source[" + (i + 1) + "]"));
+            if (value.isMissing()) {
+                return sources.size() == 1 ? Missing.ANY : new Missing(Value.Kind.LIST);
+            }
+            aliases.add(alias);
+            if (value instanceof ListValue list) {
+                singular = false;
+                columns.add(list.values());
+            } else {
+                columns.add(List.of(value));
             }
         }
-        List<TreeNode> sources = node.items("source");
-        if (sources.size() != 1) {
-            throw context.refuse("the query has " + sources.size() + " sources, and one is read");
-        }
-        TreeNode source = sources.get(0);
-        String alias = source.text("alias").orElseThrow(() -> context.refuse("the query's source has no alias"));
-        Value sourceValue = context.evaluator().eval(source, context.at("source"));
-        boolean singular = !(sourceValue instanceof ListValue);
-        List<Value> elements = singular ? List.of(sourceValue) : ((ListValue) sourceValue).values();
-        if (sourceValue.isMissing()) {
-            return Missing.ANY;
+        List<Row> rows = new ArrayList<>();
+        product(aliases, columns, 0, context, new java.util.LinkedHashMap<>(), rows);
+        List<TreeNode> lets = node.items("let");
+        for (TreeNode let : lets) {
+            context.evaluator().admit(let, context.at("let"));
         }
         List<TreeNode> relationships = node.items("relationship");
         Optional<TreeNode> where = node.held("where");
-        List<Value> kept = new ArrayList<>();
-        for (Value element : elements) {
-            Context bound = context.bind(alias, element);
+        List<Row> kept = new ArrayList<>();
+        for (Row row : rows) {
+            Context bound = row.bound();
+            for (TreeNode let : lets) {
+                String name = let.text("identifier").orElseThrow(() -> context.refuse("a let clause has no identifier"));
+                bound = bound.bind(name, Operators.operand(let, "expression", bound.at("let " + name)));
+            }
             if (!related(relationships, bound) || !holds(where, bound)) {
                 continue;
             }
-            kept.add(element);
+            kept.add(new Row(bound, row.yield()));
         }
-        if (singular) {
-            return kept.isEmpty() ? Missing.ANY : kept.get(0);
+        Optional<TreeNode> aggregate = node.held("aggregate");
+        if (aggregate.isPresent()) {
+            return fold(aggregate.get(), kept, context);
         }
-        return new ListValue(kept);
+        Optional<TreeNode> returning = node.held("return");
+        List<Value> yields = new ArrayList<>();
+        boolean distinct = false;
+        if (returning.isPresent()) {
+            context.evaluator().admit(returning.get(), context.at("return"));
+            distinct = returning.get().flag("distinct").orElse(true);
+            for (Row row : kept) {
+                yields.add(Operators.operand(returning.get(), "expression", row.bound().at("return")));
+            }
+        } else {
+            for (Row row : kept) {
+                yields.add(row.yield());
+            }
+        }
+        Optional<TreeNode> sort = node.held("sort");
+        if (sort.isPresent()) {
+            context.evaluator().admit(sort.get(), context.at("sort"));
+            yields = ordered(sort.get(), yields, aliases, context);
+        }
+        if (distinct) {
+            yields = Lists.distinct(yields);
+        }
+        if (singular && sources.size() == 1 && sort.isEmpty()) {
+            return yields.isEmpty() ? Missing.ANY : yields.get(0);
+        }
+        return new ListValue(yields);
+    }
+
+    /** The rows of the sources' product, each binding every alias; one source yields its elements, several yield tuples. */
+    private static void product(List<String> aliases, List<List<Value>> columns, int depth, Context context,
+                                java.util.LinkedHashMap<String, Value> chosen, List<Row> rows) {
+        if (depth == aliases.size()) {
+            Context bound = context;
+            for (Map.Entry<String, Value> entry : chosen.entrySet()) {
+                bound = bound.bind(entry.getKey(), entry.getValue());
+            }
+            Value yield = aliases.size() == 1 ? chosen.get(aliases.get(0)) : new TupleValue(new java.util.LinkedHashMap<>(chosen));
+            rows.add(new Row(bound, yield));
+            return;
+        }
+        for (Value value : columns.get(depth)) {
+            chosen.put(aliases.get(depth), value);
+            product(aliases, columns, depth + 1, context, chosen, rows);
+            chosen.remove(aliases.get(depth));
+        }
+    }
+
+    /** The rows folded through the accumulator the clause names. */
+    private static Value fold(TreeNode aggregate, List<Row> rows, Context context) {
+        context.evaluator().admit(aggregate, context.at("aggregate"));
+        String name = aggregate.text("identifier").orElseThrow(() -> context.refuse("the aggregate clause has no identifier"));
+        Value accumulator = Operators.optionalOperand(aggregate, "starting", context.at("aggregate")).orElse(Missing.ANY);
+        List<Row> folded = rows;
+        if (aggregate.flag("distinct").orElse(false)) {
+            folded = new ArrayList<>();
+            List<Value> seen = new ArrayList<>();
+            for (Row row : rows) {
+                if (Lists.distinct(concat(seen, row.yield())).size() > seen.size()) {
+                    seen.add(row.yield());
+                    folded.add(row);
+                }
+            }
+        }
+        for (Row row : folded) {
+            accumulator = Operators.operand(aggregate, "expression", row.bound().bind(name, accumulator).at("aggregate " + name));
+        }
+        return accumulator;
+    }
+
+    private static List<Value> concat(List<Value> values, Value value) {
+        List<Value> all = new ArrayList<>(values);
+        all.add(value);
+        return all;
+    }
+
+    /**
+     * The yields in the order the sort clause's keys give, missing values first. Two measures
+     * whose order is open, an instant written to the day beside an hour within it, sort by
+     * their starts and then the coarser first, so that the day precedes its hours.
+     */
+    private static List<Value> ordered(TreeNode sort, List<Value> yields, List<String> aliases, Context context) {
+        List<TreeNode> keys = sort.items("by");
+        for (TreeNode key : keys) {
+            context.evaluator().admit(key, context.at("sort"));
+        }
+        List<Value> sorted = new ArrayList<>(yields);
+        sorted.sort((a, b) -> {
+            for (TreeNode key : keys) {
+                boolean descending = key.enumName("direction").map(direction -> direction.toLowerCase().startsWith("desc")).orElse(false);
+                int order = compare(keyOf(key, a, aliases, context), keyOf(key, b, aliases, context));
+                if (order != 0) {
+                    return descending ? -order : order;
+                }
+            }
+            return 0;
+        });
+        return sorted;
+    }
+
+    private static Value keyOf(TreeNode key, Value row, List<String> aliases, Context context) {
+        switch (key.kindName()) {
+            case "ByDirection" -> {
+                return row;
+            }
+            case "ByColumn" -> {
+                String path = key.text("path").orElseThrow(() -> context.refuse("a sort by column names no path"));
+                return References.property(row, path, context);
+            }
+            case "ByExpression" -> {
+                Context bound = context;
+                for (String alias : aliases) {
+                    bound = bound.bind(alias, row);
+                }
+                return Operators.operand(key, "expression", bound.bind("$this", row).at("sort"));
+            }
+            default -> throw context.refuse("the sort key " + key.kindName() + " is not read");
+        }
+    }
+
+    private static int compare(Value a, Value b) {
+        if (a.isMissing() || b.isMissing()) {
+            return a.isMissing() && b.isMissing() ? 0 : a.isMissing() ? -1 : 1;
+        }
+        if (a instanceof Measure ma && b instanceof Measure mb) {
+            if (Values.compare(ma, mb, Values.Order.LESS) == Presence.PRESENT) {
+                return -1;
+            }
+            if (Values.compare(ma, mb, Values.Order.GREATER) == Presence.PRESENT) {
+                return 1;
+            }
+            if (ma.bounded() && mb.bounded()) {
+                int starts = ma.lower().get().compareTo(mb.lower().get());
+                if (starts != 0) {
+                    return starts;
+                }
+                return mb.upper().get().compareTo(ma.upper().get());
+            }
+            return 0;
+        }
+        if (a instanceof Text ta && b instanceof Text tb) {
+            return ta.text().compareTo(tb.text());
+        }
+        if (a instanceof Presence pa && b instanceof Presence pb) {
+            return Integer.compare(pa.ordinal(), pb.ordinal());
+        }
+        return 0;
     }
 
     private static boolean related(List<TreeNode> relationships, Context context) {

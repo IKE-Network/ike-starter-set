@@ -58,6 +58,8 @@ final class Operators {
         Types.register(this);
         Components.register(this);
         Functions.register(this);
+        Lists.register(this);
+        Strings.register(this);
     }
 
     void put(String kind, Operator operator) {

@@ -947,11 +947,31 @@ boundaries, the first and last value the written span could be out to the precis
 which is the uncertainty span the measure already carries. A product or quotient of two
 quantities composes its unit by UCUM's algebra.
 
-After the arithmetic family the suite stands at 1,347 passed, 365 refused, and 67 recorded,
-and nine of its sixteen files are at zero refused: comparison, conditional, date and time,
-logical, nullological, the two type files, arithmetic, and the value literals. What remains
-refused is each family's own kinds: the interval kinds, the list and string kinds, the
-aggregate and query clauses, and Message. The recorded tests are the readings IKE holds to:
+The remaining families read the rest of the suite. Two extents meet when the end of one is
+the neighbour of the other's start at the kind's step, one for whole numbers, the eighth
+place for decimals, the millisecond in time; one starts or ends another when they share
+that end and the other end is no further out; the point of an extent is its one value when
+the ends coincide; the proper forms are inclusion with sameness ruled out; Collapse merges
+extents that overlap or meet into the fewest that cover the same points, and Expand
+partitions extents into the unit extents of a step, or their starts. An extent over numbers
+keeps its ends' written places, so that its step is known. The list kinds remove repeats,
+pick the first, last, or a positioned element or slice, flatten a level, give an element's
+position, and count a collection's elements or a text's characters. A query runs over the
+product of its sources, each row a tuple of the aliases; a let clause binds a name per row,
+a return clause names what each row yields, distinct unless told all, a sort clause orders
+the rows, missing values first, and an aggregate clause folds the rows through a named
+accumulator. Mode, Product, and the four spreads join the aggregates. Text is a kind of its
+own: joining, affix tests, positions, case, whole-text pattern matching and replacement,
+splitting, and slicing read a text as written, and Message passes its source through, an
+error refusing with the message's text.
+
+With every family read the suite stands at 1,707 passed, none refused, and 72 recorded, in
+all sixteen files. The recorded tests are the readings IKE holds to: calendar months and
+years are neither UCUM's nor a number of days, a missing element decides a tuple comparison,
+decimals are equivalent by value, a shifted or finer-compared instant stays as uncertain as
+it is, the ends of a number extent are its written ends, membership and inclusion against a
+missing collection or an unknown end are left open, a number past a machine limit is still
+a number, and a decimal steps at the eighth place. The recorded tests are the readings IKE holds to:
 calendar months and years are neither UCUM's nor a number of days, a missing element decides
 a tuple comparison, decimals are equivalent by value, a shifted or finer-compared instant
 stays as uncertain as it is, the ends of a number extent are its written ends, membership in

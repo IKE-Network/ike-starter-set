@@ -64,6 +64,44 @@ final class Aggregates {
                     .divide(BigDecimal.valueOf(2), Measure.PRECISION);
             return Measure.point(mean, sorted.get(0).semantic());
         }).orElse(Operators.missingMeasure()));
+        registry.put("Product", (node, context) -> measures(node, context).map(measures -> {
+            if (measures.isEmpty()) {
+                return Operators.missingMeasure();
+            }
+            List<Measure> aligned = aligned(measures, context);
+            Measure product = aligned.get(0);
+            for (int i = 1; i < aligned.size(); i++) {
+                product = Measure.point(product.value().multiply(aligned.get(i).value(), Measure.PRECISION), product.semantic())
+                        .annotatedLike(product).annotatedLike(aligned.get(i));
+            }
+            return product;
+        }).orElse(Operators.missingMeasure()));
+        registry.put("Mode", (node, context) -> {
+            Optional<List<Value>> source = source(node, context);
+            if (source.isEmpty()) {
+                return Missing.ANY;
+            }
+            List<Value> present = source.get().stream().filter(value -> !value.isMissing()).toList();
+            if (present.isEmpty()) {
+                return Missing.ANY;
+            }
+            List<Value> distinct = Lists.distinct(present);
+            Value best = null;
+            long bestCount = 0;
+            for (Value candidate : distinct) {
+                long count = present.stream().filter(value -> Values.equal(value, candidate) == Presence.PRESENT).count();
+                boolean better = count > bestCount || (count == bestCount && best != null && lessThan(candidate, best));
+                if (better) {
+                    best = candidate;
+                    bestCount = count;
+                }
+            }
+            return best;
+        });
+        registry.put("StdDev", (node, context) -> spread(node, context, true, true));
+        registry.put("PopulationStdDev", (node, context) -> spread(node, context, false, true));
+        registry.put("Variance", (node, context) -> spread(node, context, true, false));
+        registry.put("PopulationVariance", (node, context) -> spread(node, context, false, false));
         registry.put("AllTrue", (node, context) -> {
             Optional<List<Value>> source = source(node, context);
             if (source.isEmpty()) {
@@ -133,6 +171,39 @@ final class Aggregates {
             total = total.add(measure.value(), Measure.PRECISION);
         }
         return Measure.point(total, aligned.get(0).semantic());
+    }
+
+    private static boolean lessThan(Value a, Value b) {
+        if (a instanceof Measure ma && b instanceof Measure mb) {
+            return Values.compare(ma, mb, Values.Order.LESS) == Presence.PRESENT;
+        }
+        if (a instanceof Text ta && b instanceof Text tb) {
+            return ta.text().compareTo(tb.text()) < 0;
+        }
+        return false;
+    }
+
+    /** The variance of the present values, of the sample or the population, or its root, at eight places. */
+    private static Value spread(TreeNode node, Context context, boolean sample, boolean root) {
+        Optional<List<Measure>> measures = measures(node, context);
+        if (measures.isEmpty() || measures.get().isEmpty() || (sample && measures.get().size() < 2)) {
+            return Operators.missingMeasure();
+        }
+        List<Measure> aligned = aligned(measures.get(), context);
+        int n = aligned.size();
+        BigDecimal mean = BigDecimal.ZERO;
+        for (Measure measure : aligned) {
+            mean = mean.add(measure.value(), Measure.PRECISION);
+        }
+        mean = mean.divide(BigDecimal.valueOf(n), Measure.PRECISION);
+        BigDecimal squares = BigDecimal.ZERO;
+        for (Measure measure : aligned) {
+            BigDecimal deviation = measure.value().subtract(mean, Measure.PRECISION);
+            squares = squares.add(deviation.multiply(deviation, Measure.PRECISION), Measure.PRECISION);
+        }
+        BigDecimal variance = squares.divide(BigDecimal.valueOf(sample ? n - 1 : n), Measure.PRECISION);
+        double result = root ? Math.sqrt(variance.doubleValue()) : variance.doubleValue();
+        return Functions.eight(result, aligned.get(0).semantic());
     }
 
     private static Value extreme(TreeNode node, Context context, Values.Order order) {

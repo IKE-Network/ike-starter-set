@@ -172,7 +172,15 @@ final class Literals {
         Optional<Resolution> resolution = low.flatMap(Measure::resolution).or(() -> highEnd.flatMap(Measure::resolution));
         Optional<BigDecimal> lower = low.flatMap(end -> lowClosed ? end.lower() : end.upper());
         Optional<BigDecimal> upper = highEnd.flatMap(end -> highClosed ? end.upper() : end.lower());
-        return Measure.extent(lower, upper, lowClosed, highClosed, semantic, resolution);
+        Measure extent = Measure.extent(lower, upper, lowClosed, highClosed, semantic, resolution);
+        Optional<Integer> places = low.flatMap(Measure::places);
+        Optional<Integer> highPlaces = highEnd.flatMap(Measure::places);
+        if (places.isPresent() && highPlaces.isPresent()) {
+            places = Optional.of(Math.max(places.get(), highPlaces.get()));
+        } else if (places.isEmpty()) {
+            places = highPlaces;
+        }
+        return places.isPresent() ? extent.withPlaces(places.get()) : extent;
     }
 
     private static boolean closed(TreeNode node, String attribute, String expression, Context context) {
