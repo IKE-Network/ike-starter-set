@@ -100,14 +100,16 @@ class ElmNodeKindIT {
                     || relation.target().equals("Measure ratio (IkeFoundation)");
             assertTrue(kindTarget || DENOTED.contains(found.get(0)[0]), relation.target() + " carries a denotation");
         }
-        assertEquals(79, kinds.size(), "the first families: " + kinds.size() + " node kinds");
+        assertEquals(115, kinds.size(), "the first families, the types family, and the clock: " + kinds.size() + " node kinds");
     }
 
     @Test
     @DisplayName("The constructs the families lacked exist with their denotations, and the readings and circumstance kinds exist")
     void theNewConstructsReadingsAndCircumstanceKindsExist() {
         for (String construct : List.of("Written value", "Missing value", "Definition reference", "Parameter reference",
-                "Alias reference", "Property access", "Query", "Query source", "Singleton from list", "First present")) {
+                "Alias reference", "Property access", "Query", "Query source", "Singleton from list", "First present",
+                "Kind assertion", "Kind test", "Kind conversion", "Conversion possible", "Part listing", "Deep part listing",
+                "Evaluation moment")) {
             int nid = nid(construct + " (IkeFoundation)");
             assertTrue(calculator.latest(nid).isPresent(), construct + " exists");
             assertTrue(DENOTED.contains(nid), construct + " carries a denotation");

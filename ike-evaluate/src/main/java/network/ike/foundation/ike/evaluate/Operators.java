@@ -55,6 +55,7 @@ final class Operators {
         Aggregates.register(this);
         Queries.register(this);
         Clinical.register(this);
+        Types.register(this);
     }
 
     void put(String kind, Operator operator) {

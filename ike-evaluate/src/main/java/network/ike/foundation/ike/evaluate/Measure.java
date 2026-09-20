@@ -22,7 +22,9 @@ import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 /**
- * A measure: two bounds on a measure semantic, each included or not. A point is a measure whose
+ * A measure: two bounds on a measure semantic, each included or not, with two annotations that
+ * never bear on comparison: the decimal places a number was written with, whole at zero, and
+ * the offset an instant was written with, for writing it out again. A point is a measure whose
  * bounds coincide. A value written to a resolution, an instant written to a day, spans what it
  * could be, its bounds where the value could lie: an uncertainty. An extent, CQL's interval, is
  * a measure whose bounds are the ends of a range, every point of which is meant. The two are
@@ -39,9 +41,12 @@ import java.util.function.UnaryOperator;
  * @param semantic      the measure semantic
  * @param resolution    the resolution the value or the extent's ends were written at, empty when none applies
  * @param extent        true for a range of points, false for one value, certain or uncertain
+ * @param places        the decimal places a number was written with, zero for a whole number, empty off the number line
+ * @param offset        the offset from UTC an instant was written with, in minutes, empty when none was written
  */
 public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, boolean lowerIncluded, boolean upperIncluded,
-                      MeasureSemantic semantic, Optional<Resolution> resolution, boolean extent) implements Value {
+                      MeasureSemantic semantic, Optional<Resolution> resolution, boolean extent, Optional<Integer> places,
+                      Optional<Integer> offset) implements Value {
 
     /** Arithmetic on bounds, forty significant digits, half even. */
     public static final MathContext PRECISION = new MathContext(40, RoundingMode.HALF_EVEN);
@@ -64,7 +69,8 @@ public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, bo
      * @return the measure
      */
     public static Measure point(BigDecimal value, MeasureSemantic semantic) {
-        return new Measure(Optional.of(value), Optional.of(value), true, true, semantic, Optional.empty(), false);
+        return new Measure(Optional.of(value), Optional.of(value), true, true, semantic, Optional.empty(), false,
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -77,7 +83,8 @@ public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, bo
      * @return the measure
      */
     public static Measure span(BigDecimal lower, BigDecimal upper, MeasureSemantic semantic, Resolution resolution) {
-        return new Measure(Optional.of(lower), Optional.of(upper), true, true, semantic, Optional.of(resolution), false);
+        return new Measure(Optional.of(lower), Optional.of(upper), true, true, semantic, Optional.of(resolution), false,
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -98,9 +105,9 @@ public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, bo
         if (Units.isTemporal(semantic)) {
             Optional<BigDecimal> first = lowerIncluded ? lower : lower.map(bound -> bound.add(BigDecimal.ONE));
             Optional<BigDecimal> last = upperIncluded ? upper : upper.map(bound -> bound.subtract(BigDecimal.ONE));
-            return new Measure(first, last, true, true, semantic, resolution, true);
+            return new Measure(first, last, true, true, semantic, resolution, true, Optional.empty(), Optional.empty());
         }
-        return new Measure(lower, upper, lowerIncluded, upperIncluded, semantic, resolution, true);
+        return new Measure(lower, upper, lowerIncluded, upperIncluded, semantic, resolution, true, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -156,7 +163,8 @@ public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, bo
             return Optional.empty();
         }
         return Optional.of(new Measure(lower.map(bound -> bound.multiply(ratio.get(), PRECISION)),
-                upper.map(bound -> bound.multiply(ratio.get(), PRECISION)), lowerIncluded, upperIncluded, target, resolution, extent));
+                upper.map(bound -> bound.multiply(ratio.get(), PRECISION)), lowerIncluded, upperIncluded, target, resolution, extent,
+                places, offset));
     }
 
     /**
@@ -207,14 +215,22 @@ public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, bo
      * Whether this measure lies within the other: every point of this between the other's
      * bounds. For an uncertainty against an extent, Present when the whole span lies inside,
      * Absent when it lies wholly outside, Indeterminate when it straddles an end. Two extents
-     * are decided by their ends.
+     * are decided by their ends. An unknown end leaves the answer open unless the known end
+     * already excludes the whole of this measure.
      *
      * @param other the other measure, on a commensurable semantic
      * @return the presence
      */
     public Presence within(Measure other) {
-        if (!bounded() || !other.bounded()) {
+        if (!bounded()) {
             return Presence.INDETERMINATE;
+        }
+        if (!other.bounded()) {
+            boolean beyondUpper = other.upper.isPresent() && (lower.get().compareTo(other.upper.get()) > 0
+                    || (lower.get().compareTo(other.upper.get()) == 0 && !(lowerIncluded && other.upperIncluded)));
+            boolean beforeLower = other.lower.isPresent() && (upper.get().compareTo(other.lower.get()) < 0
+                    || (upper.get().compareTo(other.lower.get()) == 0 && !(upperIncluded && other.lowerIncluded)));
+            return beyondUpper || beforeLower ? Presence.ABSENT : Presence.INDETERMINATE;
         }
         int low = lower.get().compareTo(other.lower.get());
         int high = upper.get().compareTo(other.upper.get());
@@ -306,7 +322,8 @@ public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, bo
      * @return the measure
      */
     public Measure mapBounds(UnaryOperator<BigDecimal> operation, MeasureSemantic target) {
-        return new Measure(lower.map(operation), upper.map(operation), lowerIncluded, upperIncluded, target, resolution, extent);
+        return new Measure(lower.map(operation), upper.map(operation), lowerIncluded, upperIncluded, target, resolution, extent,
+                places, offset);
     }
 
     /**
@@ -316,6 +333,48 @@ public record Measure(Optional<BigDecimal> lower, Optional<BigDecimal> upper, bo
      */
     public Measure negated() {
         return new Measure(upper.map(BigDecimal::negate), lower.map(BigDecimal::negate), upperIncluded, lowerIncluded,
-                semantic, resolution, extent);
+                semantic, resolution, extent, places, offset);
+    }
+
+    /**
+     * A copy annotated with the decimal places it was written with.
+     *
+     * @param written the places, zero for a whole number
+     * @return the measure
+     */
+    public Measure withPlaces(int written) {
+        return new Measure(lower, upper, lowerIncluded, upperIncluded, semantic, resolution, extent, Optional.of(written), offset);
+    }
+
+    /**
+     * A copy annotated with the offset from UTC it was written with.
+     *
+     * @param minutes the offset in minutes
+     * @return the measure
+     */
+    public Measure withOffset(int minutes) {
+        return new Measure(lower, upper, lowerIncluded, upperIncluded, semantic, resolution, extent, places, Optional.of(minutes));
+    }
+
+    /**
+     * A copy with the annotations of another measure, for a result that inherits how its
+     * operands were written: the greater of two written places, the offset of the first.
+     *
+     * @param other the other measure
+     * @return the measure
+     */
+    public Measure annotatedLike(Measure other) {
+        Optional<Integer> written = places.isPresent() && other.places.isPresent()
+                ? Optional.of(Math.max(places.get(), other.places.get())) : places.or(other::places);
+        return new Measure(lower, upper, lowerIncluded, upperIncluded, semantic, resolution, extent, written, offset.or(other::offset));
+    }
+
+    /**
+     * Whether this is a number written whole: on the number line, with no decimal places.
+     *
+     * @return true for a whole number
+     */
+    public boolean isWhole() {
+        return places.isPresent() && places.get() == 0;
     }
 }

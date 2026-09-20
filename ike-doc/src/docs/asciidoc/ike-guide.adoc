@@ -904,12 +904,34 @@ child and adult over authored statements, every definition yielding, and the QDM
 libraries against QDM 5.4 and 5.5 alike.
 
 At this step the suite's 1,779 translated tests stand at 958 passed, 780 refused, and 41
-recorded, and no file is at zero refused yet: the conversions the translator inserts, As
-above all, run through every family and belong to the types family, so each family lands
-when that one does. The recorded tests are the readings IKE holds to: calendar months and
-years are neither UCUM's nor a number of days, a missing element decides a tuple
-comparison, decimals are equivalent by value, a shifted or finer-compared instant stays as
-uncertain as it is, and the ends of a number extent are its written ends.
+recorded before the types family, when no file was at zero refused: the conversions the
+translator inserts, As above all, ran through every family. The recorded tests are the
+readings IKE holds to: calendar months and years are neither UCUM's nor a number of days, a
+missing element decides a tuple comparison, decimals are equivalent by value, a shifted or
+finer-compared instant stays as uncertain as it is, and the ends of a number extent are its
+written ends.
+
+The types family reads ELM's type operators into IKE's kinds. A kind asserted, CQL's as,
+gives a value of the kind back, gives a missing value the kind, and otherwise yields the
+missing value of the kind, or a refusal where the assertion is strict. A kind tested, is,
+answers by our kinds, Any above all and a missing value of no kind. A kind conversion
+re-expresses content where it carries over: a whole number as a decimal at one place, a
+date as an instant, a code as a one-code concept, a value as a one-element list, text read
+into the value it writes in CQL's written forms, and a value written out as text; text that
+does not read yields a missing value, and the ConvertsTo tests are the presence that the
+conversion has a value. Two annotations make this possible without touching comparison: a
+number keeps the decimal places it was written with, whole at zero, which is how a whole
+number and a decimal are told apart, and an instant keeps the offset it was written with,
+for writing it out again. Integer and Long are one kind. ConvertQuantity is Measure
+conversion itself; a System type built as an instance reads as its literal; Children and
+Descendents list a value's parts; and Today, Now, and TimeOfDay read the evaluation's
+moment, fixed once per run.
+
+After the types family the suite stands at 1,129 passed, 599 refused, and 51 recorded.
+Four files are at zero refused, comparison, conditional, logical, and nullological; the
+two type files refuse one test each, the hour-from that belongs to the date family; and no
+type kind refuses anywhere. The ten tests recorded since are one reading, membership in a
+missing collection or against an unknown end left open where CQL decides it.
 
 === The Checks Are Derived, and They Run
 

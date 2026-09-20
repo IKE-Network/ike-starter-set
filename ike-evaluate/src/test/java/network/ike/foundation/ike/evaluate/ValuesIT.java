@@ -105,6 +105,42 @@ class ValuesIT {
     }
 
     @Test
+    void writtenPlacesAndOffsetsAreKeptAndWrittenOut() {
+        Evaluator evaluator = Evaluator.load(calculator, Authored.statements(), Authored.conceptSets());
+        Library library = evaluator.library("CMS146").orElseThrow();
+        Context context = new Context(evaluator, library, Optional.empty(), Environment.EMPTY, Map.of(), "types");
+        Measure five = Values.number(new BigDecimal("5"));
+        Measure fivePointZero = Values.number(new BigDecimal("5.0"));
+        assertTrue(five.isWhole());
+        assertFalse(fivePointZero.isWhole());
+        assertEquals(Presence.PRESENT, five.sameAs(fivePointZero), "places never bear on comparison");
+        assertEquals("5", Types.render(five).orElseThrow());
+        assertEquals("5.0", Types.render(fivePointZero).orElseThrow());
+        assertEquals("18.55", Types.render(Values.number(new BigDecimal("18.55"))).orElseThrow());
+        Value decimal = Types.convert(five, new Types.SystemTarget("Decimal"), context);
+        assertEquals("5.0", Types.render(decimal).orElseThrow(), "a whole number becomes a decimal at one place");
+        assertTrue(new Types.SystemTarget("Integer").accepts(five));
+        assertFalse(new Types.SystemTarget("Integer").accepts(fivePointZero));
+        assertTrue(new Types.SystemTarget("Decimal").accepts(fivePointZero));
+        Measure quantity = Measure.point(new BigDecimal("5.5"), evaluator.units().semanticOf("cm", context)).withPlaces(1);
+        assertEquals("5.5 'cm'", Types.render(quantity).orElseThrow());
+        Value instant = Types.convert(new Text("2014-01-01T12:05:05.955+01:30"), new Types.SystemTarget("DateTime"), context);
+        assertEquals("2014-01-01T12:05:05.955+01:30", Types.render(instant).orElseThrow(), "the written offset comes back");
+        Measure utc = Instants.dateTime(2014, Optional.of(1), Optional.of(1), Optional.of(10), Optional.of(35), Optional.of(5),
+                Optional.of(955), Optional.empty());
+        assertEquals(Presence.PRESENT, ((Measure) instant).sameAs(utc), "the offset never bears on comparison");
+        assertEquals("2000-01-01", Types.render(Instants.date(2000, Optional.of(1), Optional.of(1))).orElseThrow());
+        Value day = Types.convert(new Text("2000-01-01"), new Types.SystemTarget("DateTime"), context);
+        assertEquals("2000-01-01", Types.render(day).orElseThrow(), "no time part is written when none was");
+        Value time = Types.convert(new Text("T14:30:00.0+05:30"), new Types.SystemTarget("Time"), context);
+        assertEquals("14:30:00.000", Types.render(time).orElseThrow(), "a time's offset is dropped");
+        assertTrue(Types.convert(new Text("2014/01/01"), new Types.SystemTarget("DateTime"), context).isMissing());
+        assertEquals(Presence.ABSENT, Types.convert(new Text("NO"), new Types.SystemTarget("Boolean"), context));
+        assertEquals(Presence.INDETERMINATE, new Types.SystemTarget("Boolean").missing());
+        assertFalse(new Types.SystemTarget("Integer").accepts(Missing.ANY), "a missing value is of no kind");
+    }
+
+    @Test
     void aDurationShiftsAnInstantOnTheCalendarAndAUcumUnitConverts() {
         Evaluator evaluator = Evaluator.load(calculator, Authored.statements(), Authored.conceptSets());
         Library library = evaluator.library("CMS146").orElseThrow();

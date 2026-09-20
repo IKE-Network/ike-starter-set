@@ -174,7 +174,7 @@ final class References {
             case "highClosed" -> Presence.of(measure.upperIncluded());
             case "value" -> measure.isPoint() ? Measure.point(measure.value(), MeasureSemantic.DIMENSIONLESS)
                     : new Measure(measure.lower(), measure.upper(), measure.lowerIncluded(), measure.upperIncluded(),
-                            MeasureSemantic.DIMENSIONLESS, measure.resolution(), measure.extent());
+                            MeasureSemantic.DIMENSIONLESS, measure.resolution(), measure.extent(), measure.places(), measure.offset());
             case "numerator", "denominator" -> throw context.refuse("a measure is not a ratio");
             default -> throw context.refuse("a measure has no element " + name);
         };

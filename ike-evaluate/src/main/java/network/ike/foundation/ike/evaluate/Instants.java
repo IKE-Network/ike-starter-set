@@ -67,7 +67,8 @@ final class Instants {
                             Optional<BigDecimal> offsetHours) {
         if (hour.isEmpty()) {
             Measure date = date(year, month, day);
-            return new Measure(date.lower(), date.upper(), true, true, MeasureSemantic.EPOCH, date.resolution(), false);
+            return new Measure(date.lower(), date.upper(), true, true, MeasureSemantic.EPOCH, date.resolution(), false,
+                    Optional.empty(), Optional.empty());
         }
         LocalDateTime start = LocalDateTime.of(year, month.orElse(1), day.orElse(1), hour.get(), minute.orElse(0),
                 second.orElse(0), millisecond.orElse(0) * 1_000_000);
@@ -81,8 +82,9 @@ final class Instants {
         };
         ZoneOffset offset = offsetHours.map(hours -> ZoneOffset.ofTotalSeconds(hours.multiply(BigDecimal.valueOf(3600)).intValue()))
                 .orElse(ZoneOffset.UTC);
-        return Measure.span(millis(start.atOffset(offset).toInstant()), millis(end.atOffset(offset).toInstant()).subtract(BigDecimal.ONE),
+        Measure instant = Measure.span(millis(start.atOffset(offset).toInstant()), millis(end.atOffset(offset).toInstant()).subtract(BigDecimal.ONE),
                 MeasureSemantic.EPOCH, resolution);
+        return offsetHours.isPresent() ? instant.withOffset(offset.getTotalSeconds() / 60) : instant;
     }
 
     /** The span of a time of day written to a precision, in milliseconds from midnight. */
@@ -163,7 +165,7 @@ final class Instants {
             }
         }
         return new Measure(Optional.of(millis(from.toInstant())), Optional.of(millis(to.toInstant()).subtract(BigDecimal.ONE)),
-                true, true, measure.semantic(), Optional.of(resolution), measure.extent());
+                true, true, measure.semantic(), Optional.of(resolution), measure.extent(), measure.places(), measure.offset());
     }
 
     /** The start of the unit an instant falls in: the day for a day or coarser, else the hour, minute, second, or millisecond. */

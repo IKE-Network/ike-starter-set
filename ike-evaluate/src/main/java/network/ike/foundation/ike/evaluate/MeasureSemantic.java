@@ -29,8 +29,9 @@ import java.util.Optional;
  * @param unitNid   the unit concept, for a unit
  * @param dimension the unit's dimension text, for a unit, as the UCUM record holds it
  * @param magnitude the unit's magnitude in the base units, for a unit
+  * @param unit      the unit as written, 1 for a plain number, empty on a time scale
  */
-public record MeasureSemantic(Scale scale, int unitNid, String dimension, BigDecimal magnitude) {
+public record MeasureSemantic(Scale scale, int unitNid, String dimension, BigDecimal magnitude, String unit) {
 
     /** The scales a measure can be read on. */
     public enum Scale {
@@ -47,16 +48,16 @@ public record MeasureSemantic(Scale scale, int unitNid, String dimension, BigDec
     }
 
     /** The dimensionless number. */
-    public static final MeasureSemantic DIMENSIONLESS = new MeasureSemantic(Scale.DIMENSIONLESS, 0, "1", BigDecimal.ONE);
+    public static final MeasureSemantic DIMENSIONLESS = new MeasureSemantic(Scale.DIMENSIONLESS, 0, "1", BigDecimal.ONE, "1");
 
     /** The Gregorian calendar. */
-    public static final MeasureSemantic CALENDAR = new MeasureSemantic(Scale.CALENDAR, 0, "T", BigDecimal.ONE);
+    public static final MeasureSemantic CALENDAR = new MeasureSemantic(Scale.CALENDAR, 0, "T", BigDecimal.ONE, "");
 
     /** The epoch. */
-    public static final MeasureSemantic EPOCH = new MeasureSemantic(Scale.EPOCH, 0, "T", BigDecimal.ONE);
+    public static final MeasureSemantic EPOCH = new MeasureSemantic(Scale.EPOCH, 0, "T", BigDecimal.ONE, "");
 
     /** The day, for a time of day. */
-    public static final MeasureSemantic DAY = new MeasureSemantic(Scale.DAY, 0, "T", BigDecimal.ONE);
+    public static final MeasureSemantic DAY = new MeasureSemantic(Scale.DAY, 0, "T", BigDecimal.ONE, "");
 
     /**
      * A unit.
@@ -67,7 +68,20 @@ public record MeasureSemantic(Scale scale, int unitNid, String dimension, BigDec
      * @return the semantic
      */
     public static MeasureSemantic unit(int unitNid, String dimension, BigDecimal magnitude) {
-        return new MeasureSemantic(Scale.UNIT, unitNid, dimension, magnitude);
+        return new MeasureSemantic(Scale.UNIT, unitNid, dimension, magnitude, "");
+    }
+
+    /**
+     * A unit semantic that remembers the unit as written, for writing the measure out.
+     *
+     * @param unitNid   the unit's concept nid, 0 when none
+     * @param dimension the dimension
+     * @param magnitude the magnitude on the dimension's base
+     * @param unit      the unit as written
+     * @return the semantic
+     */
+    public static MeasureSemantic unit(int unitNid, String dimension, BigDecimal magnitude, String unit) {
+        return new MeasureSemantic(Scale.UNIT, unitNid, dimension, magnitude, unit);
     }
 
     /**

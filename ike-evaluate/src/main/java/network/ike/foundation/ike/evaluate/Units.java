@@ -79,7 +79,8 @@ final class Units {
         }
         EntityProxy.Concept calendar = CALENDAR_WORDS.get(unit);
         if (calendar != null) {
-            found = calendarSemantic(calendar);
+            MeasureSemantic word = calendarSemantic(calendar);
+            found = MeasureSemantic.unit(word.unitNid(), word.dimension(), word.magnitude(), unit);
         } else {
             if (units.isEmpty()) {
                 throw context.refuse("the unit " + unit + " is a UCUM code, and the store holds no UCUM units");
@@ -89,7 +90,7 @@ final class Units {
                 UcumReduction reduction = term.reduce(units);
                 PublicId identity = units.identity(term);
                 int nid = PrimitiveData.get().hasPublicId(identity) ? PrimitiveData.nid(identity) : 0;
-                found = MeasureSemantic.unit(nid, reduction.dimension(), reduction.magnitude());
+                found = MeasureSemantic.unit(nid, reduction.dimension(), reduction.magnitude(), unit);
             } catch (UcumSyntaxException refused) {
                 throw context.refuse("the unit " + unit + " cannot be read: " + refused.getMessage());
             }
@@ -130,7 +131,7 @@ final class Units {
 
     /** The semantic of a span of milliseconds, for widths and differences of instants. */
     static MeasureSemantic milliseconds() {
-        return MeasureSemantic.unit(IkeTerms.MILLISECOND.nid(), TIME, new BigDecimal("0.001"));
+        return MeasureSemantic.unit(IkeTerms.MILLISECOND.nid(), TIME, new BigDecimal("0.001"), "ms");
     }
 
     /**
@@ -218,6 +219,6 @@ final class Units {
 
     private static Measure atResolution(Measure measure, Optional<Resolution> resolution) {
         return new Measure(measure.lower(), measure.upper(), measure.lowerIncluded(), measure.upperIncluded(),
-                measure.semantic(), resolution, measure.extent());
+                measure.semantic(), resolution, measure.extent(), measure.places(), measure.offset());
     }
 }

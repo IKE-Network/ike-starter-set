@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * What evaluation runs on (IKE-Network/ike-issues#1116): the checked relation from each
  * admitted ELM node kind to the construct it means, the evaluator's dispatch table as
- * knowledge; the constructs the first families lacked, the values a library writes and the
+ * knowledge; the constructs the first families lacked and the types family adds, the values a library writes and the
  * structure a query has; the readings a statement answers; the kinds of circumstance; and the
  * two patterns by which a model's class stands for a criterion and a model's element for a
  * reading. A node kind with no relation here is carried in a tree and refused at evaluation.
@@ -204,7 +204,81 @@ final class ElmNodeKindSet {
             new Relation("clinical", "ValueSetRef", "Concept set kind (IkeFoundation)", "extension",
                     "the concept set the value set denotes under a view"),
             new Relation("clinical", "InValueSet", "Concept set membership (IkeFoundation)", "equivalence",
-                    "whether the concept is in the set under the view"));
+                    "whether the concept is in the set under the view"),
+            // ── Types (IKE-Network/ike-issues#1117) ──
+            new Relation("types", "As", "Kind assertion (IkeFoundation)", "identity",
+                    "the value when it is of the kind, the missing value of the kind when it is missing, missing or refused otherwise"),
+            new Relation("types", "Is", "Kind test (IkeFoundation)", "identity",
+                    "whether the value is of the kind or of one under it, Absent for a missing value"),
+            new Relation("types", "Convert", "Kind conversion (IkeFoundation)", "extension",
+                    "the value re-expressed in the kind named, where the content carries over"),
+            new Relation("types", "ToBoolean", "Kind conversion (IkeFoundation)", "extension",
+                    "a presence from the words CQL admits for one"),
+            new Relation("types", "ToChars", "Kind conversion (IkeFoundation)", "extension",
+                    "the list of a text's characters"),
+            new Relation("types", "ToConcept", "Kind conversion (IkeFoundation)", "extension",
+                    "a one-code concept from a code"),
+            new Relation("types", "ToDate", "Kind conversion (IkeFoundation)", "extension",
+                    "a date from an instant or from text written as one"),
+            new Relation("types", "ToDateTime", "Kind conversion (IkeFoundation)", "extension",
+                    "an instant from a date or from text written as one"),
+            new Relation("types", "ToDecimal", "Kind conversion (IkeFoundation)", "extension",
+                    "a number at one written place at least, from a whole number, a presence, or text"),
+            new Relation("types", "ToInteger", "Kind conversion (IkeFoundation)", "extension",
+                    "a whole number from a presence or from text written as one"),
+            new Relation("types", "ToList", "Kind conversion (IkeFoundation)", "extension",
+                    "a one-element list, empty from a missing value"),
+            new Relation("types", "ToLong", "Kind conversion (IkeFoundation)", "extension",
+                    "a whole number, the same idea as ToInteger, the width being a machine limit"),
+            new Relation("types", "ToQuantity", "Kind conversion (IkeFoundation)", "extension",
+                    "a measure from a number or from text written as a number and a quoted unit"),
+            new Relation("types", "ToRatio", "Kind conversion (IkeFoundation)", "extension",
+                    "a ratio from text written as two quantities"),
+            new Relation("types", "ToString", "Kind conversion (IkeFoundation)", "extension",
+                    "a value written out as text in CQL's written forms"),
+            new Relation("types", "ToTime", "Kind conversion (IkeFoundation)", "extension",
+                    "a time of day from text written as one, its offset dropped"),
+            new Relation("types", "CanConvert", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the conversion to the kind named has a value"),
+            new Relation("types", "ConvertsToBoolean", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a presence"),
+            new Relation("types", "ConvertsToDate", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a date"),
+            new Relation("types", "ConvertsToDateTime", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as an instant"),
+            new Relation("types", "ConvertsToDecimal", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a number"),
+            new Relation("types", "ConvertsToInteger", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a whole number"),
+            new Relation("types", "ConvertsToLong", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a whole number"),
+            new Relation("types", "ConvertsToQuantity", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a quantity"),
+            new Relation("types", "ConvertsToRatio", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a ratio"),
+            new Relation("types", "ConvertsToString", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the value writes out as text"),
+            new Relation("types", "ConvertsToTime", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the text reads as a time of day"),
+            new Relation("types", "ConvertQuantity", "Measure conversion (IkeFoundation)", "identity",
+                    "the measure re-expressed on the unit named, missing when not commensurable"),
+            new Relation("types", "CanConvertQuantity", "Conversion possible (IkeFoundation)", "extension",
+                    "whether the measure converts to the unit named"),
+            new Relation("types", "Instance", "Written value (IkeFoundation)", "extension",
+                    "a value of a System type written part by part, read as the literal of that type"),
+            new Relation("types", "Children", "Part listing (IkeFoundation)", "identity",
+                    "the parts of a tuple or the elements of a list"),
+            new Relation("types", "Descendents", "Deep part listing (IkeFoundation)", "identity",
+                    "the parts of a value and of its parts, all the way down"),
+            new Relation("types", "Descendants", "Deep part listing (IkeFoundation)", "identity",
+                    "the parts of a value and of its parts, all the way down, under the schema's other spelling"),
+            // ── The clock ──
+            new Relation("clock", "Today", "Evaluation moment (IkeFoundation)", "extension",
+                    "the date of the evaluation's moment"),
+            new Relation("clock", "Now", "Evaluation moment (IkeFoundation)", "extension",
+                    "the evaluation's moment as an instant"),
+            new Relation("clock", "TimeOfDay", "Evaluation moment (IkeFoundation)", "extension",
+                    "the time of day of the evaluation's moment"));
 
     private ElmNodeKindSet() {
     }
@@ -273,6 +347,25 @@ final class ElmNodeKindSet {
                     + " a refusal for a list of more than one.", "Unary", "List kind", "Operand kind"},
             {"First present", "The first of its operands that is not a missing value, or a missing value when"
                     + " every operand is.", "Variadic", "Operand kind", "Operand kind"},
+            // ── The types family (IKE-Network/ike-issues#1117) ──
+            {"Kind assertion", "A value taken as being of a kind: the value itself when it is of that kind, the"
+                    + " missing value of that kind when it is missing, and otherwise the missing value of that"
+                    + " kind, or a refusal where the assertion is strict.", "Unary", "Operand kind", "Operand kind"},
+            {"Kind test", "Whether a value is of a kind or of one under it: Present or Absent, and Absent for a"
+                    + " missing value, which is of no kind. A whole number and a decimal are told apart by the"
+                    + " places they were written with.", "Unary", "Operand kind", "Presence measure kind"},
+            {"Kind conversion", "A value re-expressed in another kind where its content carries over: a whole"
+                    + " number as a decimal at one place, a date as an instant, a code as a one-code concept, a"
+                    + " value as a one-element list, text read into the value it writes, a value written out as"
+                    + " text. Text that does not read yields a missing value.", "Unary", "Operand kind", "Operand kind"},
+            {"Conversion possible", "Whether a conversion has a value: of a value to a kind, or of a measure to a"
+                    + " unit. Indeterminate for a missing value.", "Unary", "Operand kind", "Presence measure kind"},
+            {"Part listing", "The parts of a value as a list: a tuple's parts, a list's elements.",
+                    "Unary", "Operand kind", "List kind"},
+            {"Deep part listing", "The parts of a value and the parts of its parts, all the way down, as one"
+                    + " list.", "Unary", "Operand kind", "List kind"},
+            {"Evaluation moment", "The moment an evaluation runs at, fixed once per run: read as a date, as an"
+                    + " instant, or as a time of day.", "Nullary", "Operand kind", "Measure kind"},
         };
         for (String[] construct : constructs) {
             set.concept(construct[0] + " (IkeFoundation)").at(inception)

@@ -113,7 +113,11 @@ final class Literals {
         String text = node.text("value").orElse("");
         return switch (local) {
             case "Boolean" -> Presence.of(Boolean.parseBoolean(text));
-            case "Integer", "Long", "Decimal" -> Values.number(new BigDecimal(text));
+            case "Integer", "Long" -> Values.number(new BigDecimal(text)).withPlaces(0);
+            case "Decimal" -> {
+                BigDecimal number = new BigDecimal(text);
+                yield Values.number(number).withPlaces(Math.max(1, number.scale()));
+            }
             case "String" -> new Text(text);
             default -> throw context.refuse("a literal of type " + local + " is not read");
         };
@@ -144,7 +148,8 @@ final class Literals {
         if (value.isEmpty()) {
             return Operators.missingMeasure();
         }
-        return Measure.point(value.get(), context.evaluator().units().semanticOf(node.text("unit").orElse(""), context));
+        return Measure.point(value.get(), context.evaluator().units().semanticOf(node.text("unit").orElse(""), context))
+                .withPlaces(Math.max(0, value.get().scale()));
     }
 
     private static Value interval(TreeNode node, Context context) {
@@ -195,19 +200,19 @@ final class Literals {
     /** A code: its code, its system read through the library's code system definitions, and its display. */
     static ConceptValue code(TreeNode node, Context context) {
         String code = node.text("code").orElse("");
-        String system = "";
-        String version = "";
         Optional<TreeNode> reference = node.held("system");
-        if (reference.isPresent()) {
-            String name = reference.get().text("name").orElse("");
-            Library library = context.evaluator().libraryNamed(context.library(), reference.get().text("libraryName").orElse(""), context);
-            Optional<Library.Definition> definition = library.definition("CodeSystemDef", name);
-            if (definition.isEmpty()) {
-                throw context.refuse("no code system " + name + " is defined in " + library.id());
-            }
-            system = definition.get().root().text("id").orElse("");
-            version = definition.get().root().text("version").orElse("");
+        String[] system = reference.isPresent() ? codeSystem(reference.get(), context) : new String[] {"", ""};
+        return new ConceptValue(code, system[0], system[1], node.text("display").orElse(""), Optional.empty());
+    }
+
+    /** The id and version a code system reference names, through the library's code system definitions. */
+    static String[] codeSystem(TreeNode reference, Context context) {
+        String name = reference.text("name").orElse("");
+        Library library = context.evaluator().libraryNamed(context.library(), reference.text("libraryName").orElse(""), context);
+        Optional<Library.Definition> definition = library.definition("CodeSystemDef", name);
+        if (definition.isEmpty()) {
+            throw context.refuse("no code system " + name + " is defined in " + library.id());
         }
-        return new ConceptValue(code, system, version, node.text("display").orElse(""), Optional.empty());
+        return new String[] {definition.get().root().text("id").orElse(""), definition.get().root().text("version").orElse("")};
     }
 }

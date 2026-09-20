@@ -77,11 +77,11 @@ final class Arithmetic {
         Measure other = converted.get();
         if (other.isPoint()) {
             BigDecimal amount = other.value();
-            return left.mapBounds(bound -> bound.add(amount, Measure.PRECISION), left.semantic());
+            return left.mapBounds(bound -> bound.add(amount, Measure.PRECISION), left.semantic()).annotatedLike(other);
         }
         if (left.isPoint()) {
             BigDecimal amount = left.value();
-            return other.mapBounds(bound -> bound.add(amount, Measure.PRECISION), left.semantic());
+            return other.mapBounds(bound -> bound.add(amount, Measure.PRECISION), left.semantic()).annotatedLike(left);
         }
         throw context.refuse("the sum of two spans is not read");
     }
@@ -117,9 +117,9 @@ final class Arithmetic {
             if (right.value().signum() == 0) {
                 return Operators.missingMeasure();
             }
-            return Measure.point(left.value().divide(right.value(), Measure.PRECISION), semantic);
+            return Measure.point(left.value().divide(right.value(), Measure.PRECISION), semantic).annotatedLike(left).annotatedLike(right);
         }
-        return Measure.point(left.value().multiply(right.value(), Measure.PRECISION), semantic);
+        return Measure.point(left.value().multiply(right.value(), Measure.PRECISION), semantic).annotatedLike(left).annotatedLike(right);
     }
 
     private static Value between(TreeNode node, Context context, boolean boundaries) {
@@ -160,7 +160,7 @@ final class Arithmetic {
         }
         return new Measure(Optional.of(BigDecimal.valueOf(Math.min(least, greatest))),
                 Optional.of(BigDecimal.valueOf(Math.max(least, greatest))), true, true, MeasureSemantic.DIMENSIONLESS,
-                Optional.empty(), false);
+                Optional.empty(), false, Optional.of(0), Optional.empty());
     }
 
     /**

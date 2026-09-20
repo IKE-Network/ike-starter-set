@@ -189,9 +189,9 @@ final class Values {
         return Instants.widenTo(measure, precision.get());
     }
 
-    /** A number as a point measure on the dimensionless number. */
+    /** A number as a point measure on the dimensionless number, its written places those of the number given. */
     static Measure number(BigDecimal value) {
-        return Measure.point(value, MeasureSemantic.DIMENSIONLESS);
+        return Measure.point(value, MeasureSemantic.DIMENSIONLESS).withPlaces(Math.max(0, value.scale()));
     }
 
     /** The measures of a list that count: not missing, and measures. */
