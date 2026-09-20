@@ -23,7 +23,8 @@ import java.util.Optional;
 /**
  * The arithmetic kinds: addition and subtraction with unit conversion and calendar shifts,
  * multiplication and division by a plain number, negation, and the durations and differences
- * between instants, with the ages they give.
+ * between instants, with the ages they give. An uncertainty adds to another bound to bound
+ * and multiplies by the extreme products of the bounds.
  */
 final class Arithmetic {
 
@@ -83,7 +84,12 @@ final class Arithmetic {
             BigDecimal amount = left.value();
             return other.mapBounds(bound -> bound.add(amount, Measure.PRECISION), left.semantic()).annotatedLike(left);
         }
-        throw context.refuse("the sum of two spans is not read");
+        if (!left.extent() && !other.extent() && left.bounded() && other.bounded()) {
+            return new Measure(Optional.of(left.lower().get().add(other.lower().get(), Measure.PRECISION)),
+                    Optional.of(left.upper().get().add(other.upper().get(), Measure.PRECISION)), true, true, left.semantic(),
+                    Optional.empty(), false, Optional.empty(), Optional.empty()).annotatedLike(left).annotatedLike(other);
+        }
+        throw context.refuse("the sum of two extents is not read");
     }
 
     private static Value product(TreeNode node, Context context, boolean divide) {
@@ -95,8 +101,8 @@ final class Arithmetic {
         }
         Measure left = a.get();
         Measure right = b.get();
-        if (!left.isPoint() || !right.isPoint()) {
-            throw context.refuse("a product takes two numbers");
+        if (left.extent() || right.extent() || !left.bounded() || !right.bounded()) {
+            throw context.refuse("a product takes two numbers or uncertainties");
         }
         MeasureSemantic semantic;
         if (right.semantic().scale() == MeasureSemantic.Scale.DIMENSIONLESS) {
@@ -114,12 +120,28 @@ final class Arithmetic {
             throw context.refuse("a product of two units composes a unit, which the arithmetic family reads");
         }
         if (divide) {
+            if (!left.isPoint() || !right.isPoint()) {
+                throw context.refuse("a quotient takes two numbers");
+            }
             if (right.value().signum() == 0) {
                 return Operators.missingMeasure();
             }
             return Measure.point(left.value().divide(right.value(), Measure.PRECISION), semantic).annotatedLike(left).annotatedLike(right);
         }
-        return Measure.point(left.value().multiply(right.value(), Measure.PRECISION), semantic).annotatedLike(left).annotatedLike(right);
+        if (left.isPoint() && right.isPoint()) {
+            return Measure.point(left.value().multiply(right.value(), Measure.PRECISION), semantic).annotatedLike(left).annotatedLike(right);
+        }
+        BigDecimal[] corners = {
+            left.lower().get().multiply(right.lower().get(), Measure.PRECISION), left.lower().get().multiply(right.upper().get(), Measure.PRECISION),
+            left.upper().get().multiply(right.lower().get(), Measure.PRECISION), left.upper().get().multiply(right.upper().get(), Measure.PRECISION)};
+        BigDecimal least = corners[0];
+        BigDecimal greatest = corners[0];
+        for (BigDecimal corner : corners) {
+            least = least.min(corner);
+            greatest = greatest.max(corner);
+        }
+        return new Measure(Optional.of(least), Optional.of(greatest), true, true, semantic, Optional.empty(), false,
+                Optional.empty(), Optional.empty()).annotatedLike(left).annotatedLike(right);
     }
 
     private static Value between(TreeNode node, Context context, boolean boundaries) {

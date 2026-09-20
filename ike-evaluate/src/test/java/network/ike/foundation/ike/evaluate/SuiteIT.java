@@ -39,15 +39,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class SuiteIT {
 
     /**
-     * Per family: passed, refused, recorded, as of the types family (IKE-Network/ike-issues#1117).
-     * The comparison, conditional, logical, and nullological files are at zero refused; the two
-     * type files refuse one test each, the hour-from that belongs to the date family; the rest
-     * refuse their own families' kinds. The recorded tests are the readings the topic records as
+     * Per family: passed, refused, recorded, as of the date components (IKE-Network/ike-issues#1118).
+     * Seven files are at zero refused: comparison, conditional, date and time, logical,
+     * nullological, and the two type files; the rest refuse their own families' kinds. The recorded tests are the readings the topic records as
      * IKE's own: calendar months and years against UCUM's and against days, missing elements in
      * tuples, decimal equivalence at trailing zeros, precision kept honest on shifted and compared
      * instants, the leap-day anniversary, successor and predecessor on the ends of number
-     * extents, membership in a missing collection or against an unknown end left open, and one
-     * millisecond parse the translator reads differently.
+     * extents, membership in a missing collection or against an unknown end left open, the sums
+     * and products of uncertainties whose lower bound the suite itself counts a day short, and
+     * one millisecond parse the translator reads differently.
      */
     private static final Map<String, int[]> EXPECTED = new LinkedHashMap<>();
 
@@ -57,7 +57,7 @@ class SuiteIT {
         EXPECTED.put("CqlArithmeticFunctionsTest", new int[] {43, 186, 0});
         EXPECTED.put("CqlComparisonOperatorsTest", new int[] {244, 0, 15});
         EXPECTED.put("CqlConditionalOperatorsTest", new int[] {9, 0, 0});
-        EXPECTED.put("CqlDateTimeOperatorsTest", new int[] {284, 18, 12});
+        EXPECTED.put("CqlDateTimeOperatorsTest", new int[] {299, 0, 15});
         EXPECTED.put("CqlErrorsAndMessagingOperatorsTest", new int[] {0, 3, 0});
         EXPECTED.put("CqlIntervalOperatorsTest", new int[] {256, 131, 20});
         EXPECTED.put("CqlListOperatorsTest", new int[] {109, 120, 2});
@@ -65,8 +65,8 @@ class SuiteIT {
         EXPECTED.put("CqlNullologicalOperatorsTest", new int[] {22, 0, 0});
         EXPECTED.put("CqlQueryTests", new int[] {1, 11, 0});
         EXPECTED.put("CqlStringOperatorsTest", new int[] {5, 77, 0});
-        EXPECTED.put("CqlTypeOperatorsTest", new int[] {34, 1, 0});
-        EXPECTED.put("CqlTypesTest", new int[] {20, 1, 2});
+        EXPECTED.put("CqlTypeOperatorsTest", new int[] {35, 0, 0});
+        EXPECTED.put("CqlTypesTest", new int[] {21, 0, 2});
         EXPECTED.put("ValueLiteralsAndSelectors", new int[] {27, 28, 0});
     }
 

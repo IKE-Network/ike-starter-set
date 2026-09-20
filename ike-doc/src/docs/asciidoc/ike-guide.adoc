@@ -927,11 +927,23 @@ conversion itself; a System type built as an instance reads as its literal; Chil
 Descendents list a value's parts; and Today, Now, and TimeOfDay read the evaluation's
 moment, fixed once per run.
 
-After the types family the suite stands at 1,129 passed, 599 refused, and 51 recorded.
-Four files are at zero refused, comparison, conditional, logical, and nullological; the
-two type files refuse one test each, the hour-from that belongs to the date family; and no
-type kind refuses anywhere. The ten tests recorded since are one reading, membership in a
-missing collection or against an unknown end left open where CQL decides it.
+The date components read one component of a value as it was written: the year, the month
+of the year, the day of the month, the hour, minute, second, or millisecond of an instant
+or a time of day, in the offset the value was written with, and the offset itself as
+hours. A component finer than the value was written to is missing, so the hour of an
+instant written to the day is null, as CQL says. Date from and time from are the kind
+conversions already read. An uncertainty adds to another bound to bound and multiplies by
+the extreme products of the bounds.
+
+After the date components the suite stands at 1,146 passed, 579 refused, and 54 recorded,
+and seven of its sixteen files are at zero refused: comparison, conditional, date and time,
+logical, nullological, and the two type files. What remains refused is each family's own
+kinds: arithmetic, the interval kinds, the list and string kinds, the aggregate and query
+clauses, and Message. The recorded tests are the readings IKE holds to: calendar months and
+years are neither UCUM's nor a number of days, a missing element decides a tuple comparison,
+decimals are equivalent by value, a shifted or finer-compared instant stays as uncertain as
+it is, the ends of a number extent are its written ends, and membership in a missing
+collection or against an unknown end is left open.
 
 === The Checks Are Derived, and They Run
 

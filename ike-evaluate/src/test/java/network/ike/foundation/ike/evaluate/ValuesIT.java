@@ -141,6 +141,18 @@ class ValuesIT {
     }
 
     @Test
+    void uncertaintiesAddBoundToBoundAndMultiplyByTheirCorners() {
+        Measure span = new Measure(Optional.of(BigDecimal.valueOf(17)), Optional.of(BigDecimal.valueOf(44)), true, true,
+                MeasureSemantic.DIMENSIONLESS, Optional.empty(), false, Optional.of(0), Optional.empty());
+        Measure minusTwo = Values.number(BigDecimal.valueOf(-2));
+        Measure sum = (Measure) Arithmetic.duration(Instants.date(2014, Optional.of(1), Optional.of(15)),
+                Instants.date(2014, Optional.of(2), Optional.empty()), Resolution.DAY, false);
+        assertEquals(Presence.PRESENT, sum.sameAs(span), "seventeen to forty-four days");
+        assertFalse(sum.extent(), "a duration between uncertain instants is an uncertainty, not an interval");
+        assertEquals(Presence.PRESENT, Presence.of(minusTwo.value().signum() < 0));
+    }
+
+    @Test
     void aDurationShiftsAnInstantOnTheCalendarAndAUcumUnitConverts() {
         Evaluator evaluator = Evaluator.load(calculator, Authored.statements(), Authored.conceptSets());
         Library library = evaluator.library("CMS146").orElseThrow();

@@ -272,6 +272,17 @@ final class ElmNodeKindSet {
                     "the parts of a value and of its parts, all the way down"),
             new Relation("types", "Descendants", "Deep part listing (IkeFoundation)", "identity",
                     "the parts of a value and of its parts, all the way down, under the schema's other spelling"),
+            // ── Date components (IKE-Network/ike-issues#1118) ──
+            new Relation("components", "DateTimeComponentFrom", "Written component reading (IkeFoundation)", "extension",
+                    "one component of an instant or a time of day as written, missing when not written to it"),
+            new Relation("components", "TimezoneOffsetFrom", "Written component reading (IkeFoundation)", "extension",
+                    "the offset an instant was written with, as hours, missing when none was written"),
+            new Relation("components", "TimezoneFrom", "Written component reading (IkeFoundation)", "extension",
+                    "the offset an instant was written with, under the schema's older spelling"),
+            new Relation("components", "DateFrom", "Kind conversion (IkeFoundation)", "extension",
+                    "the date of an instant, widened to its day on the calendar"),
+            new Relation("components", "TimeFrom", "Kind conversion (IkeFoundation)", "extension",
+                    "the time of day of an instant at its written resolution"),
             // ── The clock ──
             new Relation("clock", "Today", "Evaluation moment (IkeFoundation)", "extension",
                     "the date of the evaluation's moment"),
@@ -366,6 +377,11 @@ final class ElmNodeKindSet {
                     + " list.", "Unary", "Operand kind", "List kind"},
             {"Evaluation moment", "The moment an evaluation runs at, fixed once per run: read as a date, as an"
                     + " instant, or as a time of day.", "Nullary", "Operand kind", "Measure kind"},
+            // ── Date components (IKE-Network/ike-issues#1118) ──
+            {"Written component reading", "One component of a value as written: the year, the month of the year, the"
+                    + " day of the month, the hour, the minute, the second, or the millisecond of an instant or a"
+                    + " time of day, read in the offset the value was written with, or the offset itself. A"
+                    + " component finer than the value was written to is missing.", "Unary", "Measure kind", "Measure kind"},
         };
         for (String[] construct : constructs) {
             set.concept(construct[0] + " (IkeFoundation)").at(inception)
