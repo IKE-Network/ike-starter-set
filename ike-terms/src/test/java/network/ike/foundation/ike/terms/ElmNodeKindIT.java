@@ -100,7 +100,7 @@ class ElmNodeKindIT {
                     || relation.target().equals("Measure ratio (IkeFoundation)");
             assertTrue(kindTarget || DENOTED.contains(found.get(0)[0]), relation.target() + " carries a denotation");
         }
-        assertEquals(120, kinds.size(), "the first families, the types family, the clock, and the date components: " + kinds.size() + " node kinds");
+        assertEquals(138, kinds.size(), "the first families, types, the clock, the date components, and arithmetic: " + kinds.size() + " node kinds");
     }
 
     @Test
@@ -109,7 +109,9 @@ class ElmNodeKindIT {
         for (String construct : List.of("Written value", "Missing value", "Definition reference", "Parameter reference",
                 "Alias reference", "Property access", "Query", "Query source", "Singleton from list", "First present",
                 "Kind assertion", "Kind test", "Kind conversion", "Conversion possible", "Part listing", "Deep part listing",
-                "Evaluation moment", "Written component reading")) {
+                "Evaluation moment", "Written component reading", "Measure magnitude", "Measure rounding", "Remainder",
+                "Whole quotient", "Measure exponentiation", "Measure logarithm", "Kind limit", "Written precision",
+                "Neighbouring value", "Written boundary")) {
             int nid = nid(construct + " (IkeFoundation)");
             assertTrue(calculator.latest(nid).isPresent(), construct + " exists");
             assertTrue(DENOTED.contains(nid), construct + " carries a denotation");

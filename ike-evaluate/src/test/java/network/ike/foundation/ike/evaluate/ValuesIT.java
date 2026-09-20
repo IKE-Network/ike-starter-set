@@ -153,6 +153,31 @@ class ValuesIT {
     }
 
     @Test
+    void theArithmeticFunctionsReadWrittenPlacesAndSpans() {
+        Evaluator evaluator = Evaluator.load(calculator, Authored.statements(), Authored.conceptSets());
+        Library library = evaluator.library("CMS146").orElseThrow();
+        Context context = new Context(evaluator, library, Optional.empty(), Environment.EMPTY, Map.of(), "functions");
+        Measure onePointZero = Values.number(new BigDecimal("1.0"));
+        assertEquals("1.00000001", Types.render(Functions.eight(1.00000001, MeasureSemantic.DIMENSIONLESS)).orElseThrow());
+        assertEquals(17, Functions.digits(Resolution.MILLISECOND, false));
+        assertEquals(4, Functions.digits(Resolution.MINUTE, true));
+        assertEquals(6, Functions.digits(Resolution.MONTH, false));
+        Measure grams = Measure.point(new BigDecimal("2"), evaluator.units().semanticOf("g", context));
+        Measure centimeters = Measure.point(new BigDecimal("3"), evaluator.units().semanticOf("cm", context));
+        MeasureSemantic composed = Units.compose(grams.semantic(), centimeters.semantic(), false).orElseThrow();
+        assertEquals("g.cm", composed.unit());
+        assertTrue(composed.commensurable(evaluator.units().semanticOf("g.cm", context)), "the composed unit is UCUM's g.cm");
+        assertEquals(Presence.PRESENT, Measure.point(BigDecimal.ONE, composed).sameAs(Measure.point(BigDecimal.ONE,
+                evaluator.units().semanticOf("g.cm", context))));
+        MeasureSemantic quotient = Units.compose(grams.semantic(), centimeters.semantic(), true).orElseThrow();
+        assertEquals("g/cm", quotient.unit());
+        assertTrue(Units.compose(grams.semantic(), grams.semantic(), true).isEmpty(), "a quotient of commensurable units is a plain number");
+        assertTrue(Units.compose(evaluator.units().semanticOf("month", context), grams.semantic(), false).isEmpty(),
+                "calendar time does not compose");
+        assertFalse(onePointZero.isWhole());
+    }
+
+    @Test
     void aDurationShiftsAnInstantOnTheCalendarAndAUcumUnitConverts() {
         Evaluator evaluator = Evaluator.load(calculator, Authored.statements(), Authored.conceptSets());
         Library library = evaluator.library("CMS146").orElseThrow();

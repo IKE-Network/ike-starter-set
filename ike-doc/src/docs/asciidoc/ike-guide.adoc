@@ -935,11 +935,28 @@ instant written to the day is null, as CQL says. Date from and time from are the
 conversions already read. An uncertainty adds to another bound to bound and multiplies by
 the extreme products of the bounds.
 
-After the date components the suite stands at 1,146 passed, 579 refused, and 54 recorded,
-and seven of its sixteen files are at zero refused: comparison, conditional, date and time,
-logical, nullological, and the two type files. What remains refused is each family's own
-kinds: arithmetic, the interval kinds, the list and string kinds, the aggregate and query
-clauses, and Message. The recorded tests are the readings IKE holds to: calendar months and
+The arithmetic functions read into the measure: its magnitude; its rounding up, down,
+toward zero, or to the nearest at the places asked, half away from zero; the remainder and
+the whole quotient, missing at a zero divisor; exponentiation, exact for a whole exponent
+and at eight places otherwise; the logarithm at a base, missing of a non-positive value or
+at base one; the limits CQL writes for a type, a limit of the language rather than of the
+measure, which has no width; the written precision, a decimal's places or a date's or
+time's digits; the neighbouring values, one for a whole number, the eighth place for a
+decimal, one unit of the written resolution for a date or a time; and the written
+boundaries, the first and last value the written span could be out to the precision asked,
+which is the uncertainty span the measure already carries. A product or quotient of two
+quantities composes its unit by UCUM's algebra.
+
+After the arithmetic family the suite stands at 1,347 passed, 365 refused, and 67 recorded,
+and nine of its sixteen files are at zero refused: comparison, conditional, date and time,
+logical, nullological, the two type files, arithmetic, and the value literals. What remains
+refused is each family's own kinds: the interval kinds, the list and string kinds, the
+aggregate and query clauses, and Message. The recorded tests are the readings IKE holds to:
+calendar months and years are neither UCUM's nor a number of days, a missing element decides
+a tuple comparison, decimals are equivalent by value, a shifted or finer-compared instant
+stays as uncertain as it is, the ends of a number extent are its written ends, membership in
+a missing collection or against an unknown end is left open, and a number past a machine
+limit is still a number. The recorded tests are the readings IKE holds to: calendar months and
 years are neither UCUM's nor a number of days, a missing element decides a tuple comparison,
 decimals are equivalent by value, a shifted or finer-compared instant stays as uncertain as
 it is, the ends of a number extent are its written ends, and membership in a missing

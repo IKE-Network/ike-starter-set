@@ -283,6 +283,43 @@ final class ElmNodeKindSet {
                     "the date of an instant, widened to its day on the calendar"),
             new Relation("components", "TimeFrom", "Kind conversion (IkeFoundation)", "extension",
                     "the time of day of an instant at its written resolution"),
+            // ── Arithmetic functions (IKE-Network/ike-issues#1119) ──
+            new Relation("arithmetic", "Abs", "Measure magnitude (IkeFoundation)", "identity",
+                    "the measure with its sign dropped"),
+            new Relation("arithmetic", "Ceiling", "Measure rounding (IkeFoundation)", "extension",
+                    "the least whole number no less than the value"),
+            new Relation("arithmetic", "Floor", "Measure rounding (IkeFoundation)", "extension",
+                    "the greatest whole number no more than the value"),
+            new Relation("arithmetic", "Truncate", "Measure rounding (IkeFoundation)", "extension",
+                    "the whole number toward zero"),
+            new Relation("arithmetic", "Round", "Measure rounding (IkeFoundation)", "extension",
+                    "the nearest value at the places asked, half away from zero, one place when none is asked"),
+            new Relation("arithmetic", "Modulo", "Remainder (IkeFoundation)", "identity",
+                    "what remains after whole division, with the dividend's sign, missing at zero"),
+            new Relation("arithmetic", "TruncatedDivide", "Whole quotient (IkeFoundation)", "identity",
+                    "the quotient toward zero, missing at zero"),
+            new Relation("arithmetic", "Power", "Measure exponentiation (IkeFoundation)", "identity",
+                    "the base raised to the exponent, exact for a whole exponent"),
+            new Relation("arithmetic", "Exp", "Measure exponentiation (IkeFoundation)", "extension",
+                    "e raised to the value, at eight places"),
+            new Relation("arithmetic", "Log", "Measure logarithm (IkeFoundation)", "identity",
+                    "the logarithm at the base given, missing at base one or of a non-positive value"),
+            new Relation("arithmetic", "Ln", "Measure logarithm (IkeFoundation)", "extension",
+                    "the natural logarithm, missing of a non-positive value"),
+            new Relation("arithmetic", "MaxValue", "Kind limit (IkeFoundation)", "extension",
+                    "the greatest value CQL writes for the type named"),
+            new Relation("arithmetic", "MinValue", "Kind limit (IkeFoundation)", "extension",
+                    "the least value CQL writes for the type named"),
+            new Relation("arithmetic", "Precision", "Written precision (IkeFoundation)", "identity",
+                    "the places a decimal was written with, or the digits of a written resolution"),
+            new Relation("arithmetic", "Successor", "Neighbouring value (IkeFoundation)", "extension",
+                    "the next value at the kind's step"),
+            new Relation("arithmetic", "Predecessor", "Neighbouring value (IkeFoundation)", "extension",
+                    "the previous value at the kind's step"),
+            new Relation("arithmetic", "HighBoundary", "Written boundary (IkeFoundation)", "extension",
+                    "the last value the written span could be, out to the precision asked"),
+            new Relation("arithmetic", "LowBoundary", "Written boundary (IkeFoundation)", "extension",
+                    "the first value the written span could be, out to the precision asked"),
             // ── The clock ──
             new Relation("clock", "Today", "Evaluation moment (IkeFoundation)", "extension",
                     "the date of the evaluation's moment"),
@@ -382,6 +419,29 @@ final class ElmNodeKindSet {
                     + " day of the month, the hour, the minute, the second, or the millisecond of an instant or a"
                     + " time of day, read in the offset the value was written with, or the offset itself. A"
                     + " component finer than the value was written to is missing.", "Unary", "Measure kind", "Measure kind"},
+            // ── Arithmetic functions (IKE-Network/ike-issues#1119) ──
+            {"Measure magnitude", "A measure with its sign dropped: the distance from zero on its semantic.",
+                    "Unary", "Measure kind", "Measure kind"},
+            {"Measure rounding", "A number taken to a whole number or to a number of places: up, down, toward zero,"
+                    + " or to the nearest with a half taken away from zero.", "Unary", "Measure kind", "Measure kind"},
+            {"Remainder", "What remains of a dividend after the whole quotient is taken, with the dividend's sign;"
+                    + " missing at a zero divisor.", "Binary", "Measure kind", "Measure kind"},
+            {"Whole quotient", "The quotient of two numbers taken toward zero; missing at a zero divisor.",
+                    "Binary", "Measure kind", "Measure kind"},
+            {"Measure exponentiation", "A base raised to an exponent: exact for a whole exponent, a decimal at"
+                    + " eight places otherwise; e is a base like any other.", "Binary", "Measure kind", "Measure kind"},
+            {"Measure logarithm", "The exponent that raises a base to a value, at eight places; missing of a"
+                    + " non-positive value or at base one.", "Binary", "Measure kind", "Measure kind"},
+            {"Kind limit", "The greatest or least value a language writes for a kind: a limit of the language's"
+                    + " machine words and calendars, not of the measure, which has no width.", "Nullary",
+                    "Operand kind", "Measure kind"},
+            {"Written precision", "How finely a value was written: the places of a decimal, the digits of a"
+                    + " date's, an instant's, or a time's resolution.", "Unary", "Measure kind", "Measure kind"},
+            {"Neighbouring value", "The next or the previous value at a kind's step: one for a whole number, the"
+                    + " eighth place for a decimal, one unit of the written resolution for a date or a time.",
+                    "Unary", "Measure kind", "Measure kind"},
+            {"Written boundary", "An end of the span a value leaves unwritten, out to a precision asked: the first"
+                    + " or the last value the written value could be.", "Binary", "Measure kind", "Measure kind"},
         };
         for (String[] construct : constructs) {
             set.concept(construct[0] + " (IkeFoundation)").at(inception)

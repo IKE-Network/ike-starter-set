@@ -57,6 +57,7 @@ final class Operators {
         Clinical.register(this);
         Types.register(this);
         Components.register(this);
+        Functions.register(this);
     }
 
     void put(String kind, Operator operator) {

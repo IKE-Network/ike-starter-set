@@ -117,7 +117,11 @@ final class Arithmetic {
             right = converted.get();
             semantic = MeasureSemantic.DIMENSIONLESS;
         } else {
-            throw context.refuse("a product of two units composes a unit, which the arithmetic family reads");
+            Optional<MeasureSemantic> composed = Units.compose(left.semantic(), right.semantic(), divide);
+            if (composed.isEmpty()) {
+                throw context.refuse("the units " + left.semantic().unit() + " and " + right.semantic().unit() + " do not compose");
+            }
+            semantic = composed.get();
         }
         if (divide) {
             if (!left.isPoint() || !right.isPoint()) {

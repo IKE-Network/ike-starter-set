@@ -135,6 +135,55 @@ final class Units {
     }
 
     /**
+     * Two unit semantics composed by UCUM's algebra: exponents added for a product and
+     * subtracted for a quotient, magnitudes multiplied or divided, the unit written as the two
+     * codes joined by a dot or a slash. Empty when either side is not a UCUM unit, calendar time
+     * among them, or when the result has no dimension left, which a plain number would say better.
+     *
+     * @param left   the first unit
+     * @param right  the second unit
+     * @param divide true for a quotient
+     * @return the composed semantic
+     */
+    static Optional<MeasureSemantic> compose(MeasureSemantic left, MeasureSemantic right, boolean divide) {
+        Optional<UcumReduction> a = reductionOf(left);
+        Optional<UcumReduction> b = reductionOf(right);
+        if (a.isEmpty() || b.isEmpty()) {
+            return Optional.empty();
+        }
+        UcumReduction result = divide ? a.get().times(b.get().power(-1)) : a.get().times(b.get());
+        if (result.exponents().stream().allMatch(exponent -> exponent == 0)) {
+            return Optional.empty();
+        }
+        String other = right.unit().contains(".") || right.unit().contains("/") ? "(" + right.unit() + ")" : right.unit();
+        return Optional.of(MeasureSemantic.unit(0, result.dimension(), result.magnitude(), left.unit() + (divide ? "/" : ".") + other));
+    }
+
+    /** A unit semantic read back into UCUM's reduction: the dimension's exponents and the magnitude. */
+    static Optional<UcumReduction> reductionOf(MeasureSemantic semantic) {
+        if (semantic.scale() == MeasureSemantic.Scale.DIMENSIONLESS) {
+            return Optional.of(UcumReduction.ONE.scale(semantic.magnitude()));
+        }
+        if (semantic.scale() != MeasureSemantic.Scale.UNIT || semantic.dimension().equals(CALENDAR_TIME)) {
+            return Optional.empty();
+        }
+        java.util.List<Integer> exponents = new java.util.ArrayList<>(java.util.Collections.nCopies(UcumReduction.DIMENSIONS.size(), 0));
+        for (String factor : semantic.dimension().split("\\.")) {
+            if (factor.isEmpty()) {
+                continue;
+            }
+            String symbol = factor.substring(0, 1);
+            int exponent = factor.length() == 1 ? 1 : Integer.parseInt(factor.substring(1));
+            int index = UcumReduction.DIMENSIONS.indexOf(symbol);
+            if (index < 0) {
+                return Optional.empty();
+            }
+            exponents.set(index, exponent);
+        }
+        return Optional.of(new UcumReduction(java.util.List.copyOf(exponents), semantic.magnitude(), false, false));
+    }
+
+    /**
      * Whether a semantic is a duration: definite time or calendar time.
      *
      * @param semantic the semantic
