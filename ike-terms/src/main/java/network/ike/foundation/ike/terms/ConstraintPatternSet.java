@@ -102,7 +102,7 @@ final class ConstraintPatternSet {
         set.concept("Kind-of field constraint (IkeFoundation)").at(inception)
                 .synonym("Kind-of field constraint")
                 .definition("Legal values are the anchor concept itself plus every one of its"
-                        + " descendants (self included) — Tinkar's own \"kind of\" relation.")
+                        + " descendants (self included) — the kind-of relation.")
                 .isA(taxonomyKind);
 
         set.concept("Descendant field constraint (IkeFoundation)").at(inception)
@@ -507,7 +507,7 @@ final class ConstraintPatternSet {
                         set.conceptRef("KOMET user (SOLOR)"), 3L)
                 .semantic(set.patternRef("Starter Set Author Roster Pattern (IkeFoundation)"),
                         PublicIds.of(set.uuidFor("Roster entry: Tinkar Starter Data Author")),
-                        set.conceptRef("Tinkar Starter Data Author (User)"), 4L);
+                        set.conceptRef("Baseline starter data author (User)"), 4L);
 
         set.concept("Preferred reviewer (IkeFoundation)").at(inception)
                 .synonym("Preferred reviewer")

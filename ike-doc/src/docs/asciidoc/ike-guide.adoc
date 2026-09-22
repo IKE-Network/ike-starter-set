@@ -96,7 +96,7 @@ rows in the shape tables are read from real semantics.
 
 | STAMP
 | koncept-sigil:stamp[scale=1.5] grey pentagon +
-e.g. koncept-sigil:stamp[Active · Inception · Tinkar Starter Data Author]
+e.g. koncept-sigil:stamp[Active · Inception · Baseline starter data author]
 | The provenance every version of every component carries: status, time, author,
 module, and path. A STAMP badge leads with the pentagon sigil — a point-up
 five-dimensional radar, one reading per STAMP dimension — then the STAMP's own
@@ -1295,14 +1295,14 @@ include::cql/07-data-and-timing-operators.adoc[leveloffset=1]
 
 include::cql/08-query-and-control-flow.adoc[leveloffset=1]
 
-== Tinkar Base Model
+== IKE Base Model
 
 This chapter describes the component/chronicle/pattern-of-patterns meta-model every
 other chapter's own terminology ultimately descends from.
 
 === Components and Chronicles
 
-koncept-narrative::TinkarModelConcept[]
+koncept-narrative::IKEBaseModelConcept[]
 
 The base-model shape patterns' own tables follow, in the order the narrative names
 them: the chronicle and version shapes for components, concepts, patterns,
@@ -1328,7 +1328,7 @@ koncept-pattern-table::STAMPChronologyPattern[]
 
 koncept-pattern-table::STAMPVersionFieldPattern[]
 
-koncept-pattern-table::TinkarBaseModelComponentPattern[]
+koncept-pattern-table::IKEBaseModelComponentPattern[]
 
 koncept-pattern-table::KometBaseModelComponentPattern[]
 

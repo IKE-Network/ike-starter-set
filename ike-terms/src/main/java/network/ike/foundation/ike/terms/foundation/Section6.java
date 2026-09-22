@@ -81,7 +81,7 @@ final class Section6 {
         set.concept("Starter Data Authoring (SOLOR)", PublicIds.of(UUID.fromString("070deb74-acc5-46bf-b9c6-eaee1b58ef52"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("66c6793d-4eae-4383-a60e-d56c5a9a3788")), IkeTerm.ENGLISH_LANGUAGE, "Starter Data Authoring (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("b5580a1a-6942-458e-9e9c-8b8e5d021b0c")), IkeTerm.ENGLISH_LANGUAGE, "Metadata Authoring", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3ffd23e7-62ca-4b60-baea-8bf57b8319e7")), IkeTerm.ENGLISH_LANGUAGE, "The baseline's starter-data authoring activity — an activity, not a user (this ledger's own stamps use IKE Community). Still referenced as the meaning of the Tinkar and Komet base-model membership patterns, so it stays live and resolvable; filed under Legacy pending a purpose-built meaning concept for those patterns.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3ffd23e7-62ca-4b60-baea-8bf57b8319e7")), IkeTerm.ENGLISH_LANGUAGE, "The baseline's starter-data authoring activity — an activity, not a user (this ledger's own stamps use IKE Community). Still referenced as the meaning of the IKE and Komet base-model membership patterns, so it stays live and resolvable; filed under Legacy pending a purpose-built meaning concept for those patterns.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("0731569a-ed24-47d1-8f4c-053a875e04b3")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "070deb74-acc5-46bf-b9c6-eaee1b58ef52")
                 .statedAxioms(PublicIds.of(UUID.fromString("4f899d97-b46b-5d9e-afe3-52b0e098c676")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("c69d5dcf-f6a1-49a7-af1a-21968979d353")))
@@ -114,10 +114,14 @@ final class Section6 {
                 .semanticOn(PublicIds.of(UUID.fromString("cc33a3cb-3781-4745-8a88-e65fa6b47ed3")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("06c60a94-1750-43d1-816d-7fe9e927f58b")), IkeTerm.PREFERRED)
                 ;
 
-        set.concept("Tinkar Starter Data Author (User)", PublicIds.of(UUID.fromString("dd96b2ea-6d7b-3791-ad74-bbdc67c493c1"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6280c1e5-e3ee-4ae3-a88e-5a02dfa0dbb0")), IkeTerm.ENGLISH_LANGUAGE, "Tinkar Starter Data Author (User)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("432e4ea2-342b-4917-95bb-3e1b791723c0")), IkeTerm.ENGLISH_LANGUAGE, "Tinkar Starter Data Author", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6c1f2d80-e384-4af3-a3a6-d763546d978a")), IkeTerm.ENGLISH_LANGUAGE, "Tinkar Starter Data Author", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
+        // Declared FQN diverges from the baseline artifact (was "Tinkar Starter Data Author
+        // (User)"): the user recorded on the baseline's own versions, described by what it
+        // is rather than by the upstream name; registered in DELIBERATELY_RENAMED_FQNS
+        // (IKE-Network/ike-issues#1124).
+        set.concept("Baseline starter data author (User)", PublicIds.of(UUID.fromString("dd96b2ea-6d7b-3791-ad74-bbdc67c493c1"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6280c1e5-e3ee-4ae3-a88e-5a02dfa0dbb0")), IkeTerm.ENGLISH_LANGUAGE, "Baseline starter data author (User)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("432e4ea2-342b-4917-95bb-3e1b791723c0")), IkeTerm.ENGLISH_LANGUAGE, "Baseline starter data author", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6c1f2d80-e384-4af3-a3a6-d763546d978a")), IkeTerm.ENGLISH_LANGUAGE, "The user recorded as author on the baseline's own versions: the starter data this set was retrofitted from, an authoring activity rather than a person. This ledger's versions are authored by IKE Community.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("484caf62-f88c-4908-b85d-c32f0d96dbce")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "dd96b2ea-6d7b-3791-ad74-bbdc67c493c1")
                 .statedAxioms(PublicIds.of(UUID.fromString("4749ae4c-8587-5dfd-bc1a-f1c5951b14e0")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.USER))))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("6822a4d9-7bcd-462c-b75d-6322b682b629")))

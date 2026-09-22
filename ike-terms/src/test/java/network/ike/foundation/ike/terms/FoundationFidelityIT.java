@@ -302,9 +302,27 @@ class FoundationFidelityIT {
             // — the inherited And is the EL++ instance of Generic AND, the inherited Or is the
             // Generic OR itself, each renamed in place and keeping its identity.
             Map.entry(UUID.fromString("fa113d51-07d2-587c-8930-0bce207d506d"), "EL++ AND (SOLOR)"),
-            Map.entry(UUID.fromString("2c940bcf-22a8-5fc9-b232-580021e758ed"), "Generic OR (SOLOR)")
+            Map.entry(UUID.fromString("2c940bcf-22a8-5fc9-b232-580021e758ed"), "Generic OR (SOLOR)"),
+            // The vocabulary is IKE's; Tinkar names legacy artifacts only (IKE-Network/ike-issues#1124):
+            // foundation.Section7, the base model's own root; foundation.Section6, the user the
+            // baseline's versions name as author; foundation.Section71, the base-model membership
+            // pattern (a pattern, recorded for the registry's completeness as above).
+            Map.entry(UUID.fromString("bc59d656-83d3-47d8-9507-0e656ea95463"), "IKE base model concept"),
+            Map.entry(UUID.fromString("dd96b2ea-6d7b-3791-ad74-bbdc67c493c1"), "Baseline starter data author (User)"),
+            Map.entry(UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9"), "IKE base model component pattern")
     );
     private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
+
+    /**
+     * UUIDs of pre-existing concepts whose stated definition deliberately names no parent
+     * at all (IKE-Network/ike-issues#1124): the base root, Integrated Knowledge Management,
+     * which the baseline stated as its own parent — a cycle the classifier reduced to an
+     * empty necessary set. The ledger states the root as it is inferred: a primitive with
+     * no parents. {@link #isAParentsUnchanged()} asserts the empty parent set for these.
+     */
+    private static final Set<UUID> DELIBERATELY_PARENTLESS = Set.of(
+            UUID.fromString("7c21b6c5-cf11-5af9-893b-743f004c97f5"));
+    private static final Set<Integer> DELIBERATELY_PARENTLESS_BY_NID = new HashSet<>();
 
     /**
      * UUIDs of pre-existing concepts whose declared stated parent deliberately diverges
@@ -522,6 +540,9 @@ class FoundationFidelityIT {
             DELIBERATELY_REPARENTED_ISA_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
         }
+        for (UUID uuid : DELIBERATELY_PARENTLESS) {
+            DELIBERATELY_PARENTLESS_BY_NID.add(PrimitiveData.nid(uuid));
+        }
         for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
             DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
@@ -670,6 +691,11 @@ class FoundationFidelityIT {
                 // Deliberately no longer simple is-a (IKE-Network/ike-issues#950) —
                 // asserted shape-exactly by roleBearingReparentsStateIsAAndPartOf() and
                 // partOfIsATransitiveRoleType().
+                continue;
+            }
+            if (DELIBERATELY_PARENTLESS_BY_NID.contains(nid)) {
+                assertEquals(Set.of(), latestIsAParents(nid),
+                        "deliberately parentless nid " + nid + " states a parent (IKE-Network/ike-issues#1124)");
                 continue;
             }
             Integer newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);

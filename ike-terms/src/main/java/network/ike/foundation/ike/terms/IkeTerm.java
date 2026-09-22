@@ -503,13 +503,13 @@ public final class IkeTerm {
     public static final EntityProxy.Concept TIME_FOR_VERSION =
             EntityProxy.Concept.make("Time for version (SOLOR)", PublicIds.of(UUID.fromString("a9b0dfb2-f463-5dae-8ba8-7f2e8385571b")));
 
-    /** {@code Tinkar base model component pattern} — same identity as {@code TinkarTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN}. */
+    /** {@code IKE base model component pattern} — same identity as {@code TinkarTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN}. */
     public static final EntityProxy.Pattern TINKAR_BASE_MODEL_COMPONENT_PATTERN =
-            EntityProxy.Pattern.make("Tinkar base model component pattern", PublicIds.of(UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9")));
+            EntityProxy.Pattern.make("IKE base model component pattern", PublicIds.of(UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9")));
 
-    /** {@code Tinkar Model concept (SOLOR)} — same identity as {@code TinkarTerm.TINKAR_MODEL_CONCEPT}. */
+    /** {@code IKE base model concept} — same identity as {@code TinkarTerm.TINKAR_MODEL_CONCEPT}. */
     public static final EntityProxy.Concept TINKAR_MODEL_CONCEPT =
-            EntityProxy.Concept.make("Tinkar Model concept (SOLOR)", PublicIds.of(UUID.fromString("bc59d656-83d3-47d8-9507-0e656ea95463")));
+            EntityProxy.Concept.make("IKE base model concept", PublicIds.of(UUID.fromString("bc59d656-83d3-47d8-9507-0e656ea95463")));
 
     /** {@code Transitive Feature (SOLOR)} — same identity as {@code TinkarTerm.TRANSITIVE_PROPERTY}, the concept
      * {@code ElkSnomedDataBuilder} recognizes inside a role type's PropertySet to mark the role transitive. */

@@ -8,7 +8,7 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
 import java.util.UUID;
 
-/** The "Tinkar root concept" section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+/** The root concept section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
 final class Section70 {
 
     private Section70() {
@@ -332,12 +332,15 @@ final class Section70 {
         set.concept("Integrated Knowledge Management (SOLOR)", PublicIds.of(UUID.fromString("7c21b6c5-cf11-5af9-893b-743f004c97f5"))).at(inception)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f3269aab-5826-4449-a8b7-58e31fb3b17f")), IkeTerm.ENGLISH_LANGUAGE, "Integrated Knowledge Management (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5e4a045b-6478-458d-a7e4-3f79f8d0ffc2")), IkeTerm.PREFERRED)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("11568433-3b80-4029-99c8-b8fc9eedecfc")), IkeTerm.ENGLISH_LANGUAGE, "Tinkar root concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("11568433-3b80-4029-99c8-b8fc9eedecfc")), IkeTerm.ENGLISH_LANGUAGE, "IKE root concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("834b6a5b-6e24-4c9f-864c-38da26b13e7b")), IkeTerm.PREFERRED)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("df2c4fca-9555-42ed-9277-2809df76f918")), IkeTerm.ENGLISH_LANGUAGE, "Terminologies that are represented in a harmonized manner", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("9c6d041b-4943-41b7-af09-e14e72de9992")), IkeTerm.PREFERRED)
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("252259d4-07f5-46c8-b92d-082b3448d567")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "7c21b6c5-cf11-5af9-893b-743f004c97f5")
-                .statedAxioms(PublicIds.of(UUID.fromString("63a463d8-dbe2-5e6c-8391-2eff13f43af9")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.ROOT_VERTEX))))
+                // Definition diverges from the baseline artifact: the root named itself as its
+                // only parent, a cycle the classifier reduced to an empty necessary set anyway.
+                // The root is a primitive with no parents, stated as such (IKE-Network/ike-issues#1124).
+                .statedAxioms(PublicIds.of(UUID.fromString("63a463d8-dbe2-5e6c-8391-2eff13f43af9")), leb -> leb.NecessarySet(leb.And()))
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("5b353251-e33a-4c54-a6da-d119c758caf1")))
                 ;
 
