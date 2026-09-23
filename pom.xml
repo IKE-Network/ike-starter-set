@@ -72,8 +72,8 @@
         <!-- The chronology-store authoring tier (ike-issues#822) landed on
              tinkar-core main with the chronology-builder substrate
              (ike-issues#867); main-line SNAPSHOTs until the release cascades. -->
-        <chronology-store.version>1.127.7-SNAPSHOT</chronology-store.version>
-        <ike-knowledge-provider.version>6-SNAPSHOT</ike-knowledge-provider.version>
+        <chronology-store.version>1.127.6</chronology-store.version>
+        <ike-knowledge-provider.version>6</ike-knowledge-provider.version>
         <!-- ELM JSON is read and written with Jackson, the JSON library the platform's entity module
              already tests with; the version is not managed by ike-parent yet. -->
         <jackson.version>2.21.4</jackson.version>
