@@ -143,8 +143,11 @@ class FoundationFidelityIT {
      * {@code ProseElementSet} declares the shared prose-element role concepts at their
      * foundation home — Prose element, Prose content, and Element content, adopted
      * RichSurfaceTerms identities the prose pattern's declaration references.
+     * <p>
+     * The CQL keyword set adds 122: {@code CqlSet} mints one concept per CQL keyword,
+     * each filed under Legacy (IkeFoundation).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 101;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 223;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
