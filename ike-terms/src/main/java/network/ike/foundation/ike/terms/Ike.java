@@ -17,6 +17,7 @@ package network.ike.foundation.ike.terms;
 
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.InactiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.DefaultsTemplateTerm;
@@ -63,10 +64,10 @@ public final class Ike {
      * it. The time is the platform's named inception instant,
      * {@link PrimitiveData#INCEPTION_EPOCH} — a sentinel that renders as the word
      * "Inception" on every surface, timezone-proof — per KEC's ruling (2026-07-18): the
-     * set has not been released, so all of it is still at inception. Declaring the pair
-     * here, once, is what makes "one set of inception stamps" compiler-visible; a third
-     * IKE stamp cannot appear without editing this class, and the fidelity stamp-pair
-     * gate would refuse it.
+     * set has not been released, so all of it is still at inception. Declaring the
+     * stamps here, once, is what makes "one set of inception stamps" compiler-visible;
+     * a further IKE stamp cannot appear without editing this class, and the fidelity
+     * gate's stamp test would refuse it.
      */
     public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, MODULE, IkeTerm.DEVELOPMENT_PATH);
@@ -81,4 +82,15 @@ public final class Ike {
     public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
             IkeTerm.DEVELOPMENT_PATH);
+
+    /**
+     * The inception stamps' inactive counterpart, at the same declared instant
+     * (IKE-Network/ike-issues#1124): the baseline concepts this set retires in place
+     * carry one inactive version each under it, their names left to the baseline. The
+     * builder opens a retirement scope on such a concept without a birth scope
+     * (IKE-Network/ike-issues#1130), so the retirement is the concept's only inception
+     * version. The fidelity gate registers this stamp beside the pair.
+     */
+    public static final InactiveStamp RETIREMENT = Stamp.inactive(PrimitiveData.INCEPTION_EPOCH,
+            IKE_COMMUNITY, MODULE, IkeTerm.DEVELOPMENT_PATH);
 }

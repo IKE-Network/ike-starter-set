@@ -242,9 +242,9 @@ class FoundationFidelityIT {
     /**
      * The stamp nids present in the baseline store before replay — every stamp any
      * concept, pattern, or semantic version references. Snapshotted in
-     * {@link #loadAndSnapshot()}; {@link #replayIntroducesExactlyTheInceptionStampPair()}
-     * asserts the replay adds exactly the two inception stamps beyond these
-     * (IKE-Network/ike-issues#894).
+     * {@link #loadAndSnapshot()}; {@link #replayIntroducesExactlyTheInceptionStamps()}
+     * asserts the replay adds exactly the two inception stamps and the retirement stamp
+     * beyond these (IKE-Network/ike-issues#894, #1124).
      */
     private static final Set<Integer> BASELINE_STAMP_NIDS = new HashSet<>();
 
@@ -295,9 +295,10 @@ class FoundationFidelityIT {
             // identity under the plain name; the coordinate meaning is a fresh concept
             // (Navigation coordinate properties, CoordinateModelSet).
             Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), "Directed graph"),
-            // foundation.Section6: the baseline's unbalanced-paren birth FQN
-            // "KOMET user list (SOLOR" corrected in place (IKE-Network/ike-issues#950).
-            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), "KOMET user list (SOLOR)"),
+            // foundation.Section6 once corrected the baseline's unbalanced-paren birth FQN
+            // "KOMET user list (SOLOR" in place (IKE-Network/ike-issues#950); the concept is
+            // retired since IKE-Network/ike-issues#1124 and its descriptions stay with the
+            // baseline, text and all — no entry.
             // foundation.Section41: the query-operator naming discipline (IKE-Network/ike-issues#1089)
             // — the inherited And is the EL++ instance of Generic AND, the inherited Or is the
             // Generic OR itself, each renamed in place and keeping its identity.
@@ -325,6 +326,26 @@ class FoundationFidelityIT {
     private static final Set<Integer> DELIBERATELY_PARENTLESS_BY_NID = new HashSet<>();
 
     /**
+     * UUIDs of pre-existing concepts this set retires in place (IKE-Network/ike-issues#1124):
+     * the seven legacy user-preference and user-interface concepts the baseline filed as
+     * kinds of {@code User} (or, for the tree table, as a model concept). Each is opened
+     * at {@link Ike#RETIREMENT} without a birth scope (IKE-Network/ike-issues#1130) and
+     * carries one inactive version on the concept, one on its stated definition, and one
+     * on its base-model membership; its descriptions stay with the baseline, so the names
+     * hold. {@link #isAParentsUnchanged()} asserts the empty active parent set for these,
+     * and {@link #retiredConceptsAreInactiveWithTheirNamesIntact()} the rest.
+     */
+    private static final Set<UUID> DELIBERATELY_RETIRED = Set.of(
+            UUID.fromString("12131382-1535-5a77-928b-6eacad221ea2"),  // Path for user (SOLOR)
+            UUID.fromString("6167efcb-50e8-534d-9827-fdd60b02ae00"),  // Order for concept attachments (SOLOR)
+            UUID.fromString("69ee3f13-e2ba-5a96-9b91-5eecfad8e587"),  // Order for description attachments (SOLOR)
+            UUID.fromString("c8fd4f1b-d842-5245-9a7d-a58dc0ac1c11"),  // Module for user (SOLOR)
+            UUID.fromString("abcb0946-20e1-5483-8469-3e8fa0ce20c4"),  // Order for axiom attachments (SOLOR)
+            UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"),  // KOMET user list (SOLOR)
+            UUID.fromString("1655edd8-7b73-52c5-98b0-263d1ab3a90b")); // Concept details tree table (SOLOR)
+    private static final Set<Integer> DELIBERATELY_RETIRED_BY_NID = new HashSet<>();
+
+    /**
      * UUIDs of pre-existing concepts whose declared stated parent deliberately diverges
      * from the baseline artifact — each written in place at its section declaration —
      * mapped to the expected post-replay isA parent's own UUID.
@@ -335,6 +356,9 @@ class FoundationFidelityIT {
      * adds the repaired {@code Directed graph} under the minted {@code Graph}, and eight
      * more Legacy occupants: application machinery and association concepts the baseline
      * had filed as kinds of {@code User} (or, for the tree table, as a model concept).
+     * Seven of those eight are retired in place since IKE-Network/ike-issues#1124 (see
+     * {@link #DELIBERATELY_RETIRED}); {@code Starter Data Authoring} stays under Legacy,
+     * being the meaning of both base-model membership patterns.
      */
     private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.ofEntries(
             // The query-operator naming discipline (IKE-Network/ike-issues#1089): the inherited
@@ -351,22 +375,8 @@ class FoundationFidelityIT {
                     UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
             Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), // Directed graph
                     UUID.fromString("da454dbd-ed6e-55cf-af5a-0d51b40d7640")),  // Graph (IkeFoundation)
-            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), // KOMET user list (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
-            Map.entry(UUID.fromString("12131382-1535-5a77-928b-6eacad221ea2"), // Path for user (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("c8fd4f1b-d842-5245-9a7d-a58dc0ac1c11"), // Module for user (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("6167efcb-50e8-534d-9827-fdd60b02ae00"), // Order for concept attachments (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("69ee3f13-e2ba-5a96-9b91-5eecfad8e587"), // Order for description attachments (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("abcb0946-20e1-5483-8469-3e8fa0ce20c4"), // Order for axiom attachments (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
             Map.entry(UUID.fromString("070deb74-acc5-46bf-b9c6-eaee1b58ef52"), // Starter Data Authoring (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("1655edd8-7b73-52c5-98b0-263d1ab3a90b"), // Concept details tree table (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
             // The two-parent root (IKE-Network/ike-issues#952): organization concepts
             // leave the root — only Model concept and domain content remain.
             Map.entry(UUID.fromString("72765109-6b53-3814-9b05-34ebddd16592"), // Object (SOLOR)
@@ -543,6 +553,9 @@ class FoundationFidelityIT {
         for (UUID uuid : DELIBERATELY_PARENTLESS) {
             DELIBERATELY_PARENTLESS_BY_NID.add(PrimitiveData.nid(uuid));
         }
+        for (UUID uuid : DELIBERATELY_RETIRED) {
+            DELIBERATELY_RETIRED_BY_NID.add(PrimitiveData.nid(uuid));
+        }
         for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
             DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
@@ -698,6 +711,11 @@ class FoundationFidelityIT {
                         "deliberately parentless nid " + nid + " states a parent (IKE-Network/ike-issues#1124)");
                 continue;
             }
+            if (DELIBERATELY_RETIRED_BY_NID.contains(nid)) {
+                assertEquals(Set.of(), latestIsAParents(nid),
+                        "retired nid " + nid + " still has an active definition (IKE-Network/ike-issues#1124)");
+                continue;
+            }
             Integer newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);
             Set<Integer> expected = newParentNid != null ? Set.of(newParentNid) : entry.getValue();
             assertEquals(expected, latestIsAParents(nid), "isA parents drifted for nid " + nid);
@@ -808,10 +826,11 @@ class FoundationFidelityIT {
     }
 
     @Test
-    @DisplayName("Replay introduces exactly the inception stamp pair: the foundation-module stamp"
-            + " and its Defaults-module counterpart, both at the one declared inception time"
-            + " the platform's named inception instant (IKE-Network/ike-issues#894)")
-    void replayIntroducesExactlyTheInceptionStampPair() {
+    @DisplayName("Replay introduces exactly the inception stamps: the foundation-module stamp, its"
+            + " Defaults-module counterpart, and the retirement stamp, all at the one declared"
+            + " inception time, the platform's named inception instant"
+            + " (IKE-Network/ike-issues#894, #1124)")
+    void replayIntroducesExactlyTheInceptionStamps() {
         assertEquals(PrimitiveData.INCEPTION_EPOCH, Ike.INCEPTION.time(),
                 "the pair's declared time is the platform's named inception instant, which"
                         + " renders as the word \"Inception\" on every surface (KEC ruling,"
@@ -822,14 +841,78 @@ class FoundationFidelityIT {
                         + " badge-anatomy figure features — the tuple is part of the published"
                         + " knowledge-state");
 
+        assertEquals(PrimitiveData.INCEPTION_EPOCH, Ike.RETIREMENT.time(),
+                "the retirement stamp shares the inception instant: the retired baseline concepts"
+                        + " carry their one inactive version at inception (IKE-Network/ike-issues#1124)");
         Set<Integer> introduced = new HashSet<>(versionStampNids());
         introduced.removeAll(BASELINE_STAMP_NIDS);
         assertEquals(Set.of(PrimitiveData.nid(Ike.INCEPTION.publicId()),
-                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId())),
+                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId()),
+                        PrimitiveData.nid(Ike.RETIREMENT.publicId())),
                 introduced,
-                "replay must write versions under exactly the two inception stamps — any other"
-                        + " stamp means a working-day or revision layer survived the flatten"
-                        + " (IKE-Network/ike-issues#894)");
+                "replay must write versions under exactly the two inception stamps and the"
+                        + " retirement stamp — any other stamp means a working-day or revision layer"
+                        + " survived the flatten (IKE-Network/ike-issues#894, #1124)");
+    }
+
+    @Test
+    @DisplayName("Each retired baseline concept carries one inactive version on itself, its definition,"
+            + " and its base-model membership, all at the retirement stamp, and keeps its baseline names"
+            + " (IKE-Network/ike-issues#1124)")
+    void retiredConceptsAreInactiveWithTheirNamesIntact() {
+        int retirementStampNid = PrimitiveData.nid(Ike.RETIREMENT.publicId());
+        for (int nid : DELIBERATELY_RETIRED_BY_NID) {
+            String fqn = FQN_BEFORE.get(nid);
+            assertTrue(fqn != null && !fqn.isBlank(), "retired nid " + nid + " had a baseline name");
+            assertEquals(fqn, languageCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
+                    .orElseThrow(() -> new AssertionError("FQN disappeared for retired nid " + nid)),
+                    "the retired concept keeps its baseline fully qualified name");
+
+            List<EntityVersion> conceptVersions = new ArrayList<>();
+            for (Object versionObj : EntityHandle.get(nid).expectConcept().versions()) {
+                conceptVersions.add((EntityVersion) versionObj);
+            }
+            assertEquals(VERSION_COUNT_BEFORE.get(nid) + 1, conceptVersions.size(),
+                    fqn + ": exactly one version added");
+            assertEquals(1, conceptVersions.stream().filter(version -> version.stampNid() == retirementStampNid).count(),
+                    fqn + ": the added version is the retirement");
+            assertEquals(1, conceptVersions.stream()
+                            .filter(version -> version.stamp().state() == dev.ikm.tinkar.terms.State.INACTIVE).count(),
+                    fqn + ": one inactive version, the baseline's own versions untouched");
+
+            assertRetiredOnce(nid, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(), retirementStampNid,
+                    fqn + ": stated definition");
+            assertRetiredOnce(nid, IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN.nid(), retirementStampNid,
+                    fqn + ": base-model membership");
+
+            for (int descriptionNid : EntityService.get().semanticNidsForComponentOfPattern(
+                    nid, TinkarTerm.DESCRIPTION_PATTERN.nid())) {
+                for (Object versionObj : EntityHandle.get(descriptionNid).expectSemantic().versions()) {
+                    assertTrue(BASELINE_STAMP_NIDS.contains(((SemanticEntityVersion) versionObj).stampNid()),
+                            fqn + ": descriptions stay with the baseline, no ledger version");
+                }
+            }
+        }
+    }
+
+    /**
+     * Asserts the component's one semantic of the pattern carries exactly one version at
+     * the retirement stamp, inactive, and that it is the semantic's only inactive version.
+     */
+    private static void assertRetiredOnce(int componentNid, int patternNid, int retirementStampNid, String what) {
+        int[] semantics = EntityService.get().semanticNidsForComponentOfPattern(componentNid, patternNid);
+        assertEquals(1, semantics.length, what + ": one semantic");
+        List<SemanticEntityVersion> versions = new ArrayList<>();
+        for (Object versionObj : EntityHandle.get(semantics[0]).expectSemantic().versions()) {
+            versions.add((SemanticEntityVersion) versionObj);
+        }
+        List<SemanticEntityVersion> atRetirement = versions.stream()
+                .filter(version -> version.stampNid() == retirementStampNid).toList();
+        assertEquals(1, atRetirement.size(), what + ": one version at the retirement stamp");
+        assertEquals(dev.ikm.tinkar.terms.State.INACTIVE, atRetirement.getFirst().stamp().state(),
+                what + ": the retirement version is inactive");
+        assertEquals(1, versions.stream().filter(version -> version.stamp().state() == dev.ikm.tinkar.terms.State.INACTIVE).count(),
+                what + ": the baseline's own versions stay active");
     }
 
     @Test
