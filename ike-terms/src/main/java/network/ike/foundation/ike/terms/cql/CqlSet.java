@@ -5,14 +5,13 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 /**
  * Composes every CQL keyword section onto the caller's KnowledgeSet: 122 keywords, one
  * section each, as the CQL keyword dictionary chapter (ike-doc
- * {@code cql/09-keyword-dictionary.adoc}) defines them.
+ * {@code cql/keyword-dictionary.adoc}) defines them, filed under the CQL keyword hierarchy
+ * ({@link CqlKeywordHierarchy}).
  *
  * <p>Each keyword becomes one concept, fully qualified as the keyword plus the
  * {@code (CQL)} tag, with the keyword itself as its regular name and its dictionary entry's
- * meaning and example as its definition. Every one is filed under
- * Legacy (IkeFoundation): the dictionary's own family and subfamily grouping is carried in
- * the definitions rather than as taxonomy concepts of its own, so the keywords hang from one
- * parent and no family tree is minted alongside them.
+ * meaning and example as its definition. Every one is filed under one category of the
+ * hierarchy, which hangs from the CQL keyword root under Legacy (IkeFoundation).
  *
  * <p>No identity mapping to Komet is asserted anywhere in this package.
  *
@@ -35,6 +34,7 @@ public final class CqlSet {
      * @param set the knowledge set (the session)
      */
     public static void compose(KnowledgeSet set) {
+        CqlKeywordHierarchy.compose(set);
         After.compose(set); // after
         Aggregate.compose(set); // aggregate
         All.compose(set); // all

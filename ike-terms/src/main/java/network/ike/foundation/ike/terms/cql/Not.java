@@ -7,12 +7,11 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.util.UUID;
 
 /**
- * The "not" section — the CQL keyword {@code not} as a concept, filed under
- * Legacy (IkeFoundation). See {@link CqlSet} for what every section here holds in common.
+ * The "not" section — the CQL keyword {@code not} as a concept, filed under Logical operator
+ * keywords (CQL). See {@link CqlSet} for what every section here holds in common.
  *
- * <p>Content is the keyword's own dictionary entry ({@code cql/09-keyword-dictionary.adoc},
- * {@code [[term-not]]}): a Logical Operator of the Core Operators family, Komet status "Not yet
- * in Komet".
+ * <p>Content is the keyword's own dictionary entry ({@code cql/keyword-dictionary.adoc},
+ * {@code [[term-not]]}).
  */
 final class Not {
 
@@ -42,7 +41,7 @@ final class Not {
                         + " null.\nExample: not exists \"Exclusions\"",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("not (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("not (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("not (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Logical operator keywords (CQL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("not (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("not (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("not (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

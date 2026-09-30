@@ -7,12 +7,11 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.util.UUID;
 
 /**
- * The "between" section — the CQL keyword {@code between} as a concept, filed under
- * Legacy (IkeFoundation). See {@link CqlSet} for what every section here holds in common.
+ * The "between" section — the CQL keyword {@code between} as a concept, filed under Comparison
+ * operator keywords (CQL). See {@link CqlSet} for what every section here holds in common.
  *
- * <p>Content is the keyword's own dictionary entry ({@code cql/09-keyword-dictionary.adoc},
- * {@code [[term-between]]}): a Comparison Operator of the Core Operators family, Komet status
- * "Not yet in Komet".
+ * <p>Content is the keyword's own dictionary entry ({@code cql/keyword-dictionary.adoc},
+ * {@code [[term-between]]}).
  */
 final class Between {
 
@@ -43,7 +42,7 @@ final class Between {
                         + " Y’.\nExample: 4 between 2 and 8",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("between (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("between (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("between (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Comparison operator keywords (CQL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("between (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("between (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("between (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

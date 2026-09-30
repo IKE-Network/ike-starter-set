@@ -7,12 +7,11 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.util.UUID;
 
 /**
- * The "List" section — the CQL keyword {@code List} as a concept, filed under
- * Legacy (IkeFoundation). See {@link CqlSet} for what every section here holds in common.
+ * The "List" section — the CQL keyword {@code List} as a concept, filed under Type name
+ * keywords (CQL). See {@link CqlSet} for what every section here holds in common.
  *
- * <p>Content is the keyword's own dictionary entry ({@code cql/09-keyword-dictionary.adoc},
- * {@code [[term-List]]}): a Type Name of the Types &amp; Literals family, Komet status "Not yet
- * in Komet".
+ * <p>Content is the keyword's own dictionary entry ({@code cql/keyword-dictionary.adoc},
+ * {@code [[term-List]]}).
  */
 final class List {
 
@@ -42,7 +41,7 @@ final class List {
                         + " same type.\nExample: define \"Encounters\": [Encounter] E return E.period",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("List (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("List (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("List (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Type name keywords (CQL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("List (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("List (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("List (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

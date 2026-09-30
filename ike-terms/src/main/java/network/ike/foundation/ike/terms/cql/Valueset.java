@@ -8,11 +8,10 @@ import java.util.UUID;
 
 /**
  * The "valueset" section — the CQL keyword {@code valueset} as a concept, filed under
- * Legacy (IkeFoundation). See {@link CqlSet} for what every section here holds in common.
+ * Declaration keywords (CQL). See {@link CqlSet} for what every section here holds in common.
  *
- * <p>Content is the keyword's own dictionary entry ({@code cql/09-keyword-dictionary.adoc},
- * {@code [[term-valueset]]}): a Declaration of the Declarations family, Komet status "Not yet
- * in Komet".
+ * <p>Content is the keyword's own dictionary entry ({@code cql/keyword-dictionary.adoc},
+ * {@code [[term-valueset]]}).
  */
 final class Valueset {
 
@@ -42,7 +41,7 @@ final class Valueset {
                         + " \"Diabetes\": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001'",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("valueset (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("valueset (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("valueset (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Declaration keywords (CQL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("valueset (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("valueset (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("valueset (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

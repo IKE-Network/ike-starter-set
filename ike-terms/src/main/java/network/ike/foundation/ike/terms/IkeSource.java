@@ -99,8 +99,8 @@ public final class IkeSource implements KnowledgeSetSource {
         // DefinitionCompletionSet authors the 25 first definitions of the base-model
         // chronicle/version field concepts (IKE-Network/ike-issues#892).
         DefinitionCompletionSet.compose(Ike.SET);
-        // CqlSet mints the CQL keyword concepts, each filed under Legacy (IkeFoundation),
-        // so it composes after LegacyTerminologySet.
+        // CqlSet mints the CQL keyword hierarchy, rooted under Legacy (IkeFoundation), and
+        // the keyword concepts filed under it, so it composes after LegacyTerminologySet.
         CqlSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
