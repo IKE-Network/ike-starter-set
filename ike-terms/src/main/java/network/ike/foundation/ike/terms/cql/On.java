@@ -39,10 +39,8 @@ final class On {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "on", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
                         "Timing keyword combined with ‘or before’ / ‘or after’ to build the"
-                        + " inclusive-boundary On Or Before / On Or After operators.\n\nExample:"
-                        + " \"DischargeDateTime\" on or before end of"
-                        + " \"MeasurementPeriod\"\n\nCQL category: Data & Timing Operators >"
-                        + " Timing Operator.\n\nKomet status: Not yet in Komet.",
+                        + " inclusive-boundary On Or Before / On Or After operators.\nExample:"
+                        + " \"DischargeDateTime\" on or before end of \"MeasurementPeriod\"",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("on keyword (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("on keyword (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

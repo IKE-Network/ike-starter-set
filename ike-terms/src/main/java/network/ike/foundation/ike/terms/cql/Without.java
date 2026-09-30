@@ -38,11 +38,9 @@ final class Without {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "without (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "without", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Filters a query’s primary source to elements that do NOT have a"
-                        + " specified relationship to another source — the negated form of"
-                        + " ‘with’.\n\nExample: [\"Encounter\"] E without [\"Condition\"] C such"
-                        + " that C.encounter = E.id\n\nCQL category: Query & Control Flow > Query"
-                        + " Clause.\n\nKomet status: Not yet in Komet.",
+                        "Filters a query’s primary source to elements that do NOT have a specified"
+                        + " relationship to another source — the negated form of ‘with’.\nExample:"
+                        + " [\"Encounter\"] E without [\"Condition\"] C such that C.encounter = E.id",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("without (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("without (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

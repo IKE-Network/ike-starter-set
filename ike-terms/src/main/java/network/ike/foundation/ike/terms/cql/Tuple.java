@@ -38,10 +38,9 @@ final class Tuple {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "Tuple (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "Tuple", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Built-in type representing a structured value made of named elements,"
-                        + " each with its own type.\n\nExample: define \"PatientSummary\": Tuple"
-                        + " { name: 'Jane Doe', age: 45 }\n\nCQL category: Types & Literals >"
-                        + " Type Name.\n\nKomet status: Not yet in Komet.",
+                        "Built-in type representing a structured value made of named elements, each with"
+                        + " its own type.\nExample: define \"PatientSummary\": Tuple { name: 'Jane Doe',"
+                        + " age: 45 }",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("Tuple (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("Tuple (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

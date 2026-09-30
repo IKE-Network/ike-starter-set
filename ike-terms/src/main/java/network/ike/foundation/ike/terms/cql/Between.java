@@ -38,10 +38,9 @@ final class Between {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "between (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "between", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Tests whether a value falls within an inclusive range (e.g. ‘4 between"
-                        + " 2 and 8’); also used in ‘duration/difference in <precision> between X"
-                        + " and Y’.\n\nExample: 4 between 2 and 8\n\nCQL category: Core Operators"
-                        + " > Comparison Operator.\n\nKomet status: Not yet in Komet.",
+                        "Tests whether a value falls within an inclusive range (e.g. ‘4 between 2 and"
+                        + " 8’); also used in ‘duration/difference in <precision> between X and"
+                        + " Y’.\nExample: 4 between 2 and 8",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("between (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("between (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

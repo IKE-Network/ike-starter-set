@@ -39,9 +39,8 @@ final class When {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "when", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
                         "Introduces a condition (or a candidate value) inside a case"
-                        + " expression.\n\nExample: case\n  when \"Age\" < 18 then 'Pediatric'\n "
-                        + " else 'Adult'\nend\n\nCQL category: Query & Control Flow > Conditional"
-                        + " Expression.\n\nKomet status: Not yet in Komet.",
+                        + " expression.\nExample: case\n  when \"Age\" < 18 then 'Pediatric'\n  else"
+                        + " 'Adult'\nend",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("when (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("when (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

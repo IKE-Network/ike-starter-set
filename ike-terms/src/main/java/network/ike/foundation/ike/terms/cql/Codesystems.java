@@ -38,11 +38,9 @@ final class Codesystems {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "codesystems (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "codesystems", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Plural form used in a value set’s static binding to pin the specific"
-                        + " code systems (and versions) its expansion should use.\n\nExample:"
-                        + " valueset \"Example\": 'urn:oid:2.16.1' codesystems { \"SNOMED\","
-                        + " \"LOINC\" }\n\nCQL category: Declarations > Declaration"
-                        + " Modifier.\n\nKomet status: Not yet in Komet.",
+                        "Plural form used in a value set’s static binding to pin the specific code"
+                        + " systems (and versions) its expansion should use.\nExample: valueset"
+                        + " \"Example\": 'urn:oid:2.16.1' codesystems { \"SNOMED\", \"LOINC\" }",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("codesystems (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("codesystems (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

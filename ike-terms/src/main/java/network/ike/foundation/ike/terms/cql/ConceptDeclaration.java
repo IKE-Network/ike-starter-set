@@ -38,11 +38,9 @@ final class ConceptDeclaration {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "concept keyword (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Declares a named, reusable reference to a Concept literal — a set of"
-                        + " equivalent codes with a display string.\n\nExample: concept"
-                        + " \"Diabetes concept\": { \"Diabetes code\" } display 'Diabetes"
-                        + " mellitus'\n\nCQL category: Declarations > Declaration.\n\nKomet"
-                        + " status: Not yet in Komet.",
+                        "Declares a named, reusable reference to a Concept literal — a set of equivalent"
+                        + " codes with a display string.\nExample: concept \"Diabetes concept\": {"
+                        + " \"Diabetes code\" } display 'Diabetes mellitus'",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("concept keyword (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("concept keyword (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

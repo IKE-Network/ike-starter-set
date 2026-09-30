@@ -39,9 +39,8 @@ final class SuchThat {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "such that", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
                         "Attaches the filtering condition to a with/without relationship"
-                        + " clause.\n\nExample: [\"Encounter\"] E with [\"Condition\"] C such"
-                        + " that C.onset during E.period\n\nCQL category: Query & Control Flow >"
-                        + " Query Clause.\n\nKomet status: Not yet in Komet.",
+                        + " clause.\nExample: [\"Encounter\"] E with [\"Condition\"] C such that C.onset"
+                        + " during E.period",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("such that (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("such that (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

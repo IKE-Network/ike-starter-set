@@ -8,14 +8,13 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * {@code cql/09-keyword-dictionary.adoc}) defines them.
  *
  * <p>Each keyword becomes one concept, fully qualified as the keyword plus the
- * {@code (CQL)} tag, with the keyword itself as its regular name and its dictionary entry —
- * definition, example, category, Komet status — as its definition. Every one is filed under
+ * {@code (CQL)} tag, with the keyword itself as its regular name and its dictionary entry's
+ * meaning and example as its definition. Every one is filed under
  * Legacy (IkeFoundation): the dictionary's own family and subfamily grouping is carried in
  * the definitions rather than as taxonomy concepts of its own, so the keywords hang from one
  * parent and no family tree is minted alongside them.
  *
- * <p>Where a dictionary entry names a Komet counterpart, the definition carries that note in
- * prose. No identity mapping to Komet is asserted anywhere in this package.
+ * <p>No identity mapping to Komet is asserted anywhere in this package.
  *
  * <p>These are fresh IKE mints, not ingests: with no upstream UUID to adopt, every identity
  * — concept, each description, the identifier, the stated axioms, each dialect

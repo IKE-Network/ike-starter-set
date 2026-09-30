@@ -38,11 +38,9 @@ final class From {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "from (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "from", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Introduces the source of a query, a code declaration’s originating"
-                        + " code system, or an extraction operator (e.g. ‘date from X’,"
-                        + " ‘singleton from X’).\n\nExample: from [Encounter] E, [Condition] C"
-                        + " where E.subject = C.subject\n\nCQL category: Query & Control Flow >"
-                        + " Query Clause.\n\nKomet status: Not yet in Komet.",
+                        "Introduces the source of a query, a code declaration’s originating code system,"
+                        + " or an extraction operator (e.g. ‘date from X’, ‘singleton from X’).\nExample:"
+                        + " from [Encounter] E, [Condition] C where E.subject = C.subject",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("from (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("from (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

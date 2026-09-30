@@ -39,10 +39,8 @@ final class ConceptTypeName {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
                         "Built-in structured type representing a clinical concept as a list of"
-                        + " semantically equivalent Codes plus a display string.\n\nExample:"
-                        + " define \"DiabetesConcept\": Concept { \"DiabetesCode\" } display"
-                        + " 'Diabetes mellitus'\n\nCQL category: Types & Literals > Type"
-                        + " Name.\n\nKomet status: Not yet in Komet.",
+                        + " semantically equivalent Codes plus a display string.\nExample: define"
+                        + " \"DiabetesConcept\": Concept { \"DiabetesCode\" } display 'Diabetes mellitus'",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("Concept type name (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("Concept type name (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

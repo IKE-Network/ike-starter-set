@@ -38,11 +38,9 @@ final class OrBefore {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "or before (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "or before", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Qualifies a precision- or quantity-based timing comparison to include"
-                        + " the boundary case in the ‘before’ direction, e.g. ‘same year or"
-                        + " before’.\n\nExample: \"FollowUpDateTime\" 30 days or before"
-                        + " \"SurgeryDateTime\"\n\nCQL category: Data & Timing Operators > Timing"
-                        + " Operator.\n\nKomet status: Not yet in Komet.",
+                        "Qualifies a precision- or quantity-based timing comparison to include the"
+                        + " boundary case in the ‘before’ direction, e.g. ‘same year or before’.\nExample:"
+                        + " \"FollowUpDateTime\" 30 days or before \"SurgeryDateTime\"",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("or before (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("or before (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

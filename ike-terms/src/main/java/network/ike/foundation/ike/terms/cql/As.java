@@ -38,11 +38,9 @@ final class As {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "as (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "as", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Casts a value to a specified type at compile time (null at run time if"
-                        + " the value isn’t that type); also declares a parameter’s or argument’s"
-                        + " type.\n\nExample: define function \"GetQuantity\"(obs Observation):"
-                        + " obs.value as Quantity\n\nCQL category: Core Operators > Type"
-                        + " Operator.\n\nKomet status: Not yet in Komet.",
+                        "Casts a value to a specified type at compile time (null at run time if the value"
+                        + " isn’t that type); also declares a parameter’s or argument’s type.\nExample:"
+                        + " define function \"GetQuantity\"(obs Observation): obs.value as Quantity",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("as (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("as (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

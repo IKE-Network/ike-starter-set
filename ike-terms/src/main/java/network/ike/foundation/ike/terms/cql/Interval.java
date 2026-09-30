@@ -38,12 +38,8 @@ final class Interval {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "Interval (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "Interval", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Built-in type representing a range of ordered values, e.g."
-                        + " ‘Interval[3, 5)’.\n\nExample: define \"MeasurementPeriod\":"
-                        + " Interval[@2024-01-01, @2024-12-31]\n\nCQL category: Types & Literals"
-                        + " > Type Name.\n\nKomet status: Related concept in Komet. Related Komet"
-                        + " concept(s): Interval Set Axioms, Interval role, Interval Upper Bound,"
-                        + " Interval Lower Bound, Include Upper Bound",
+                        "Built-in type representing a range of ordered values, e.g. ‘Interval[3,"
+                        + " 5)’.\nExample: define \"MeasurementPeriod\": Interval[@2024-01-01, @2024-12-31]",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("Interval (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("Interval (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

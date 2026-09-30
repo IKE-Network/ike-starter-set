@@ -38,11 +38,9 @@ final class Starting {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "starting (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "starting", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Supplies the initial accumulator value for an aggregate clause, e.g."
-                        + " ‘aggregate Result starting 0: ...’.\n\nExample: aggregate"
-                        + " \"RunningTotal\" starting 0: RunningTotal + Claim.amount\n\nCQL"
-                        + " category: Query & Control Flow > Query Clause.\n\nKomet status: Not"
-                        + " yet in Komet.",
+                        "Supplies the initial accumulator value for an aggregate clause, e.g. ‘aggregate"
+                        + " Result starting 0: ...’.\nExample: aggregate \"RunningTotal\" starting 0:"
+                        + " RunningTotal + Claim.amount",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("starting (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("starting (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

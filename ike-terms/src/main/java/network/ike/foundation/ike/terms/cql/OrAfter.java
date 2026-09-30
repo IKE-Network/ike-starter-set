@@ -38,11 +38,9 @@ final class OrAfter {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "or after (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "or after", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Qualifies a precision- or quantity-based timing comparison to include"
-                        + " the boundary case in the ‘after’ direction, e.g. ‘same year or"
-                        + " after’, ‘3 days or after’.\n\nExample: \"DischargeDateTime\" 3 days"
-                        + " or after \"AdmissionDateTime\"\n\nCQL category: Data & Timing"
-                        + " Operators > Timing Operator.\n\nKomet status: Not yet in Komet.",
+                        "Qualifies a precision- or quantity-based timing comparison to include the"
+                        + " boundary case in the ‘after’ direction, e.g. ‘same year or after’, ‘3 days or"
+                        + " after’.\nExample: \"DischargeDateTime\" 3 days or after \"AdmissionDateTime\"",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("or after (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("or after (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))

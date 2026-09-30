@@ -38,11 +38,9 @@ final class OrMore {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "or more (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "or more", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
-                        "Qualifies a quantity offset in a timing phrase to mean ‘that amount or"
-                        + " a larger amount’.\n\nExample: \"ReadmissionDateTime\" 30 days or more"
-                        + " after \"DischargeDateTime\"\n\nCQL category: Data & Timing Operators"
-                        + " > Timing Operator.\n\nKomet status: Related concept in Komet. Related"
-                        + " Komet concept(s): Clause Greater or equal",
+                        "Qualifies a quantity offset in a timing phrase to mean ‘that amount or a larger"
+                        + " amount’.\nExample: \"ReadmissionDateTime\" 30 days or more after"
+                        + " \"DischargeDateTime\"",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("or more (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("or more (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Legacy (IkeFoundation)")))))
