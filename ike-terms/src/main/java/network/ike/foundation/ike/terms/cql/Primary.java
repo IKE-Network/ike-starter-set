@@ -29,25 +29,25 @@ final class Primary {
 
         // Derived identities (type-5, from the set's namespace). The description ids are named
         // here because the dialect semantics below attach to those descriptions by identity.
-        UUID concept = set.uuidFor("primary (CQL)");
-        UUID fullyQualifiedName = set.uuidFor("primary (CQL) fully qualified name description");
-        UUID regularName = set.uuidFor("primary (CQL) regular name description");
-        UUID definition = set.uuidFor("primary (CQL) definition description");
+        UUID conceptUUID = set.uuidFor("primary (CQL)");
+        UUID fullyQualifiedNameUUID = set.uuidFor("primary (CQL) fully qualified name description");
+        UUID regularNameUUID = set.uuidFor("primary (CQL) regular name description");
+        UUID definitionUUID = set.uuidFor("primary (CQL) definition description");
 
-        set.concept("primary (CQL)", PublicIds.of(concept)).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "primary (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "primary", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
+        set.concept("primary (CQL)", PublicIds.of(conceptUUID)).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedNameUUID), IkeTerm.ENGLISH_LANGUAGE, "primary (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularNameUUID), IkeTerm.ENGLISH_LANGUAGE, "primary", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definitionUUID), IkeTerm.ENGLISH_LANGUAGE,
                         "Begins the primary code path clause of a class type definition, naming the"
                         + " element a terminology-filtered retrieve matches against (trial-use in CQL"
                         + " 2.0).\nExample: define type AdverseEvent extends FHIR.AdverseEvent retrievable"
                         + " primary code path event",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
+                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, conceptUUID.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("primary (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Declaration modifier keywords (CQL)")))))
-                .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(fullyQualifiedNameUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(regularNameUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(definitionUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("primary (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 ;
 
     }

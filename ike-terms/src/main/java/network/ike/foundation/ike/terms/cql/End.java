@@ -28,23 +28,23 @@ final class End {
 
         // Derived identities (type-5, from the set's namespace). The description ids are named
         // here because the dialect semantics below attach to those descriptions by identity.
-        UUID concept = set.uuidFor("end (CQL)");
-        UUID fullyQualifiedName = set.uuidFor("end (CQL) fully qualified name description");
-        UUID regularName = set.uuidFor("end (CQL) regular name description");
-        UUID definition = set.uuidFor("end (CQL) definition description");
+        UUID conceptUUID = set.uuidFor("end (CQL)");
+        UUID fullyQualifiedNameUUID = set.uuidFor("end (CQL) fully qualified name description");
+        UUID regularNameUUID = set.uuidFor("end (CQL) regular name description");
+        UUID definitionUUID = set.uuidFor("end (CQL) definition description");
 
-        set.concept("end (CQL)", PublicIds.of(concept)).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "end (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "end", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
+        set.concept("end (CQL)", PublicIds.of(conceptUUID)).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedNameUUID), IkeTerm.ENGLISH_LANGUAGE, "end (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularNameUUID), IkeTerm.ENGLISH_LANGUAGE, "end", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definitionUUID), IkeTerm.ENGLISH_LANGUAGE,
                         "Returns the ending boundary point of an interval: ‘end of Interval[3,"
                         + " 5)’.\nExample: end of \"MeasurementPeriod\"",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("end (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
+                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("end (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, conceptUUID.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("end (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("List and interval operator keywords (CQL)")))))
-                .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("end (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("end (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("end (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(fullyQualifiedNameUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("end (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(regularNameUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("end (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(definitionUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("end (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 ;
 
     }

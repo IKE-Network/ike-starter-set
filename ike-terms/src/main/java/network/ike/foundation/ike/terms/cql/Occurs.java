@@ -28,24 +28,24 @@ final class Occurs {
 
         // Derived identities (type-5, from the set's namespace). The description ids are named
         // here because the dialect semantics below attach to those descriptions by identity.
-        UUID concept = set.uuidFor("occurs (CQL)");
-        UUID fullyQualifiedName = set.uuidFor("occurs (CQL) fully qualified name description");
-        UUID regularName = set.uuidFor("occurs (CQL) regular name description");
-        UUID definition = set.uuidFor("occurs (CQL) definition description");
+        UUID conceptUUID = set.uuidFor("occurs (CQL)");
+        UUID fullyQualifiedNameUUID = set.uuidFor("occurs (CQL) fully qualified name description");
+        UUID regularNameUUID = set.uuidFor("occurs (CQL) regular name description");
+        UUID definitionUUID = set.uuidFor("occurs (CQL) definition description");
 
-        set.concept("occurs (CQL)", PublicIds.of(concept)).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), IkeTerm.ENGLISH_LANGUAGE, "occurs (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), IkeTerm.ENGLISH_LANGUAGE, "occurs", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), IkeTerm.ENGLISH_LANGUAGE,
+        set.concept("occurs (CQL)", PublicIds.of(conceptUUID)).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedNameUUID), IkeTerm.ENGLISH_LANGUAGE, "occurs (CQL)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(regularNameUUID), IkeTerm.ENGLISH_LANGUAGE, "occurs", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(definitionUUID), IkeTerm.ENGLISH_LANGUAGE,
                         "Optional word that may appear anywhere ‘starts’ or ‘ends’ can appear in a timing"
                         + " phrase, purely to make it read more naturally.\nExample: \"Condition\" occurs"
                         + " during \"MeasurementPeriod\"",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
+                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, conceptUUID.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("occurs (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Timing operator keywords (CQL)")))))
-                .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(fullyQualifiedNameUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(regularNameUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(definitionUUID), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("occurs (CQL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 ;
 
     }
