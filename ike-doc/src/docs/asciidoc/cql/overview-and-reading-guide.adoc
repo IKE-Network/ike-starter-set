@@ -1,22 +1,13 @@
 == Overview and Reading Guide
 
-CQL (Clinical Quality Language) is the HL7 standard expression language used to author clinical quality measures and decision-support logic -- the language behind retrieve expressions, timing phrases, and query clauses that pull structured data from a FHIR (or QUICK-based) source and evaluate it against a measure's logic. This chapter inventories every reserved keyword and lexical construct in the language and tracks how each one is being represented as a concept inside Komet, the IKE-Foundation terminology authoring platform.
+CQL (Clinical Quality Language) is the HL7 standard expression language used to author clinical quality measures and decision-support logic -- the language behind retrieve expressions, timing phrases, and query clauses that pull structured data from a FHIR (or QUICK-based) source and evaluate it against a measure's logic. This chapter inventories every reserved keyword and lexical construct in the language. Each keyword is also composed into the IKE starter set as a concept, filed under its family and category in the CQL keyword hierarchy, so Komet, the IKE-Foundation terminology authoring platform, finds it like any other concept.
 
 Keywords are grouped into five families -- Types & Literals, Declarations, Core Operators, Data & Timing Operators, and Query & Control Flow -- each a top-level section below, with its categories as subsections.
 
-Every keyword entry carries a *category* (its grammatical role -- declaration, operator, type, and so on), a plain-language *definition* drawn from the CQL specification, a worked *example* showing it in realistic use, and a *Komet status* flag showing whether it already exists as an authored concept, has a related candidate concept, or has no match yet.
+Every keyword entry carries a *category* (its grammatical role -- declaration, operator, type, and so on), a plain-language *definition* drawn from the CQL specification, and a worked *example* showing it in realistic use.
 
 Each entry in the <<keyword-dictionary,Keyword Dictionary>> states, in order:
 
 * Its *category* (e.g. `Timing Operator`) within its family
-* Its *Komet status* -- one of:
-+
---
-*Implemented in Komet* -- a matching concept already exists in Komet's starter data.
- +
-_Related concept in Komet_ -- a concept with related or overlapping meaning exists, but not an exact match -- worth a second look before treating it as settled.
- +
-Not yet in Komet (plain text) -- no corresponding concept has been authored yet.
---
 * A plain-language *definition*
 * A worked *example* -- illustrative CQL, written to show the keyword in a realistic clinical-quality-measure context, not copied from any single real measure

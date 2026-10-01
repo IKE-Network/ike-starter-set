@@ -3,7 +3,7 @@ package network.ike.foundation.ike.terms.cql;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 
 /**
- * Composes every CQL keyword section onto the caller's KnowledgeSet: 122 keywords, one
+ * Composes every CQL keyword section onto the caller's KnowledgeSet: 136 keywords, one
  * section each, as the CQL keyword dictionary chapter (ike-doc
  * {@code cql/keyword-dictionary.adoc}) defines them, filed under the CQL keyword hierarchy
  * ({@link CqlKeywordHierarchy}).
@@ -44,6 +44,7 @@ public final class CqlSet {
         Ascending.compose(set); // ascending
         Before.compose(set); // before
         Between.compose(set); // between
+        Bind.compose(set); // bind
         By.compose(set); // by
         Called.compose(set); // called
         Case.compose(set); // case
@@ -57,6 +58,7 @@ public final class CqlSet {
         ConceptTypeName.compose(set); // Concept
         Contains.compose(set); // contains
         Context.compose(set); // context
+        Conversion.compose(set); // conversion
         Convert.compose(set); // convert
         Date.compose(set); // date
         Day.compose(set); // day
@@ -77,6 +79,8 @@ public final class CqlSet {
         Except.compose(set); // except
         Exists.compose(set); // exists
         Expand.compose(set); // expand
+        Explicit.compose(set); // explicit
+        Extends.compose(set); // extends
         False.compose(set); // false
         Flatten.compose(set); // flatten
         Fluent.compose(set); // fluent
@@ -84,7 +88,9 @@ public final class CqlSet {
         Function.compose(set); // function
         Hour.compose(set); // hour
         Hours.compose(set); // hours
+        Identifier.compose(set); // identifier
         If.compose(set); // if
+        Implicit.compose(set); // implicit
         Implies.compose(set); // implies
         In.compose(set); // in
         Include.compose(set); // include
@@ -93,6 +99,8 @@ public final class CqlSet {
         Intersect.compose(set); // intersect
         Interval.compose(set); // Interval
         Is.compose(set); // is
+        Key.compose(set); // key
+        Label.compose(set); // label
         Let.compose(set); // let
         Library.compose(set); // library
         List.compose(set); // List
@@ -117,14 +125,19 @@ public final class CqlSet {
         OrLess.compose(set); // or less
         OrMore.compose(set); // or more
         OrOn.compose(set); // or on
+        Ordered.compose(set); // ordered
         Overlaps.compose(set); // overlaps
         Parameter.compose(set); // parameter
+        Path.compose(set); // path
         Per.compose(set); // per
         Point.compose(set); // point
         Predecessor.compose(set); // predecessor
+        Primary.compose(set); // primary
         Private.compose(set); // private
         Properly.compose(set); // properly
         Public.compose(set); // public
+        Related.compose(set); // related
+        Retrievable.compose(set); // retrievable
         Return.compose(set); // return
         Same.compose(set); // same
         Second.compose(set); // second
@@ -142,6 +155,7 @@ public final class CqlSet {
         To.compose(set); // to
         True.compose(set); // true
         Tuple.compose(set); // Tuple
+        Type.compose(set); // type
         Union.compose(set); // union
         Using.compose(set); // using
         Valueset.compose(set); // valueset
