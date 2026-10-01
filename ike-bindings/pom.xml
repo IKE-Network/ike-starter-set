@@ -67,7 +67,6 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <version>237</version>
                 <executions>
                     <execution>
                         <id>generate-knowledge-bindings</id>
@@ -80,6 +79,20 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- The generated constants have no module descriptor yet (the bindings goal
+                 will grow one with the enum emitter, IKE-Network/ike-issues#1111); until
+                 then the jar names itself so modular consumers can require it. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>network.ike.foundation.ike.bindings</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

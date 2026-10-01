@@ -29,7 +29,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * concepts that carried "assemblage" in their fully qualified names are corrected in
  * place at their section declarations ({@code foundation.Section3}/{@code Section13}/
  * {@code Section18}, registered in {@code DELIBERATELY_RENAMED_FQNS}), and the three
- * already-correctly-modeled membership patterns ({@code Tinkar base model component
+ * already-correctly-modeled membership patterns ({@code IKE base model component
  * pattern}, {@code Komet base model component pattern}, {@code Version control path
  * pattern}) carry {@code Set membership (IkeFoundation)} as the purpose of their single
  * declared version in {@code foundation.Section71}. This file mints that purpose concept

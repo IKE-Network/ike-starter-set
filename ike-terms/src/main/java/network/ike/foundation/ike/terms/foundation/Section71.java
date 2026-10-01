@@ -8,7 +8,7 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
 import java.util.UUID;
 
-/** The "Tinkar root concept" section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
+/** The root concept section — a taxonomy subtree of the retrofitted starter set (IKE-Network/ike-issues#869). */
 final class Section71 {
 
     private Section71() {
@@ -101,7 +101,7 @@ final class Section71 {
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("871e69f3-e844-4342-b56f-a22188feb129")), IkeTerm.ENGLISH_LANGUAGE, "Data Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .definition("""
                         Groups concepts that represent data values and defaults — the \
-                        data-carrying side of the model, as distinct from Tinkar Model \
+                        data-carrying side of the model, as distinct from IKE base model \
                         concept's structural, self-descriptive side.""")
                 .statedAxioms(PublicIds.of(UUID.fromString("137221ba-47a9-442a-a62a-dcdd20a0d50e")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODEL_CONCEPT))))
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("515bf9ec-954d-42d8-a5e7-727e05b51602")), IkeTerm.ENGLISH_LANGUAGE, "Data Concept", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
@@ -110,9 +110,12 @@ final class Section71 {
 
         // Shape diverges from the SOLOR baseline: purpose modernized to Set membership in place
         // (IKE-Network/ike-issues#880, #894).
-        set.pattern("Tinkar base model component pattern", PublicIds.of(UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9"))).at(inception)
+        // Declared FQN diverges from the baseline artifact (was "Tinkar base model component
+        // pattern"): the base model is IKE's; registered in DELIBERATELY_RENAMED_FQNS
+        // (IKE-Network/ike-issues#1124).
+        set.pattern("IKE base model component pattern", PublicIds.of(UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9"))).at(inception)
                 .meaning(IkeTerm.STARTER_DATA_AUTHORING).purpose(set.conceptRef("Set membership (IkeFoundation)"))
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("29922b82-0026-4fe1-9a3f-c81563b7ff94")), IkeTerm.ENGLISH_LANGUAGE, "Tinkar base model component pattern", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("29922b82-0026-4fe1-9a3f-c81563b7ff94")), IkeTerm.ENGLISH_LANGUAGE, "IKE base model component pattern", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("0711a763-56f7-4dcf-b4c2-77bfc514f3dc")))
                 ;
 

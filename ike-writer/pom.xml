@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+    <parent>
+        <groupId>network.ike.foundation</groupId>
+        <artifactId>ike-starter-set</artifactId>
+    </parent>
+    <artifactId>ike-writer</artifactId>
+    <packaging>jar</packaging>
+    <name>Ike Store Writer</name>
+    <description>
+        Writing knowledge into the running store from code, as the ledger does at replay:
+        stamps, concepts with their stated parents, version-aware semantics that append
+        only when content changed, descriptions with their dialects, and retirement. The
+        importers of ELM libraries and of UCUM units record through it
+        (IKE-Network/ike-issues#1112, #1114).
+    </description>
+    <!-- Dual licensed (IKE-Network/ike-issues#952); identical in every POM of
+         this reactor. -->
+    <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International</name>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <dependencies>
+        <dependency>
+            <groupId>dev.ikm.tinkar</groupId>
+            <artifactId>entity</artifactId>
+            <version>${chronology-store.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

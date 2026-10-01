@@ -15,7 +15,7 @@ import java.util.UUID;
  * coordinate-model notion with the mathematical structure. Split under
  * IKE-Network/ike-issues#950 (settled KEC 2026-07-25): the structure keeps this birth
  * identity — renamed in place to plain {@code Directed graph} (registered in
- * {@code DELIBERATELY_RENAMED_FQNS}) and re-parented from {@code Tinkar Model concept}
+ * {@code DELIBERATELY_RENAMED_FQNS}) and re-parented from {@code IKE base model concept}
  * to the minted {@code Graph} ({@code GraphModelSet}, registered in
  * {@code DELIBERATELY_REPARENTED_ISA}) — while the coordinate half is a separate
  * concept, {@code Navigation coordinate properties}, minted in

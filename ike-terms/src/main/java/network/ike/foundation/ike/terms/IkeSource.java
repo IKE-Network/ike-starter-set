@@ -60,6 +60,34 @@ public final class IkeSource implements KnowledgeSetSource {
         // examples attach to declared-identity components the foundation sections open,
         // so it composes after FoundationSet.
         ConstraintPatternSet.compose(Ike.SET);
+        // ExpressionLanguageSet places external expression-language constructs (CQL,
+        // ECL, OWL 2 EL) relative to the EL++ core by checked relations — keyword
+        // bindings, denotations, equivalence/extension assertions
+        // (IKE-Network/ike-issues#1089); it types the taxonomy field constraint kinds
+        // ConstraintPatternSet declares, so it composes after it.
+        ExpressionLanguageSet.compose(Ike.SET);
+        // ElmNodeCatalogSet, the ELM node catalog, is generated from HL7's ELM schemas by
+        // ike:schema-import (IKE-Network/ike-issues#1104); it hangs its family root under
+        // the model concept and refers to nothing else, so it composes after the
+        // expression-language section.
+        ElmNodeCatalogSet.compose(Ike.SET);
+        // ElmTreeSet is authored beside the catalog (IKE-Network/ike-issues#1110): the tree,
+        // ordered list, and reference patterns and the three operand roles; it refers to the
+        // catalog's root and position parent, so it composes after the catalog.
+        ElmTreeSet.compose(Ike.SET);
+        // ElmTypeSet relates the catalog's 23 System types to the concepts of the query model
+        // (IKE-Network/ike-issues#1113); it refers to both, so it composes after both.
+        ElmTypeSet.compose(Ike.SET);
+        // UcumModelSet holds what is ours about UCUM (IKE-Network/ike-issues#1114): the parents,
+        // the patterns, and the dialect; the units themselves are imported, never authored.
+        UcumModelSet.compose(Ike.SET);
+        // ModelInformationSet holds what is ours about model information (IKE-Network/ike-issues#1115):
+        // the Data model parent, the record patterns, the mark, and the dialects; the models are imported.
+        ModelInformationSet.compose(Ike.SET);
+        // ElmNodeKindSet relates each admitted ELM node kind to the construct it means, the evaluator's
+        // dispatch table (IKE-Network/ike-issues#1116); it refers to the catalog, the constructs, and the
+        // model information section, so it composes after all three.
+        ElmNodeKindSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
         // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,
