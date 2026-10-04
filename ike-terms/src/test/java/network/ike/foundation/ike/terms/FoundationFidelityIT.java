@@ -102,9 +102,9 @@ class FoundationFidelityIT {
     private static final int INGEST_BOOTSTRAP_CONCEPTS = 3;
     /**
      * New concepts {@code ConstraintPatternSet} (30 — see below),
-     * {@code PatternShapeRefinementSet} (2 for Comment pattern + 23 for the
-     * remaining 16 revised patterns + 7 for the IKE-Network/ike-issues#891
-     * Model-Feature pointer fixes = 32 — the #891 fixes mint Originated Module,
+     * {@code PatternShapeRefinementSet} (2 for Comment pattern + 22 for the
+     * remaining 15 revised patterns and the STAMP model's Time + 7 for the
+     * IKE-Network/ike-issues#891 Model-Feature pointer fixes = 31 — the #891 fixes mint Originated Module,
      * Origin Module Set, Originated Path, Branch Source, Branch Point, Identified
      * Component, Axiomatized Component, and Axiom Expression (+8) while Origin
      * Subject — whose definition misdescribed the origin-path field as naming the
@@ -177,7 +177,7 @@ class FoundationFidelityIT {
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 457;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 456;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -344,6 +344,18 @@ class FoundationFidelityIT {
             UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"),  // KOMET user list (SOLOR)
             UUID.fromString("1655edd8-7b73-52c5-98b0-263d1ab3a90b")); // Concept details tree table (SOLOR)
     private static final Set<Integer> DELIBERATELY_RETIRED_BY_NID = new HashSet<>();
+
+    /**
+     * UUIDs of baseline components this set deliberately does not restate, so replay adds
+     * no version to them: the legacy {@code STAMP pattern}, a second description of a
+     * stamp's fields beside the stamp version pattern the code binds
+     * ({@code EntityBinding.Stamp.Version}), taken out of the set's source rather than
+     * retired. The baseline still carries it; {@link #notRestatedComponentsAreLeftToTheBaseline()}
+     * holds that the set adds nothing to it and attaches nothing to it.
+     */
+    private static final Set<UUID> DELIBERATELY_NOT_RESTATED = Set.of(
+            UUID.fromString("9fd67fee-abf9-551d-9d0e-76a4b1e8b4ee")); // STAMP pattern (legacy)
+    private static final Set<Integer> DELIBERATELY_NOT_RESTATED_BY_NID = new HashSet<>();
 
     /**
      * UUIDs of pre-existing concepts whose declared stated parent deliberately diverges
@@ -555,6 +567,9 @@ class FoundationFidelityIT {
         }
         for (UUID uuid : DELIBERATELY_RETIRED) {
             DELIBERATELY_RETIRED_BY_NID.add(PrimitiveData.nid(uuid));
+        }
+        for (UUID uuid : DELIBERATELY_NOT_RESTATED) {
+            DELIBERATELY_NOT_RESTATED_BY_NID.add(PrimitiveData.nid(uuid));
         }
         for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
             DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
@@ -810,18 +825,39 @@ class FoundationFidelityIT {
     }
 
     @Test
-    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge,"
-            + " no exceptions: pre-release, the ledger carries no revision layering"
-            + " (IKE-Network/ike-issues#894)")
+    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge:"
+            + " pre-release, the ledger carries no revision layering (IKE-Network/ike-issues#894);"
+            + " the deliberately not-restated legacy STAMP pattern alone gains none")
     void versionCountIncreasesByExactlyOne() {
         for (Map.Entry<Integer, Integer> entry : VERSION_COUNT_BEFORE.entrySet()) {
             int nid = entry.getKey();
+            if (DELIBERATELY_NOT_RESTATED_BY_NID.contains(nid)) {
+                continue;
+            }
             boolean isPattern = EntityHandle.get(nid).isPattern();
             int versionsAfter = isPattern
                     ? EntityHandle.get(nid).expectPattern().versions().size()
                     : EntityHandle.get(nid).expectConcept().versions().size();
             assertEquals(entry.getValue() + 1, versionsAfter,
                     "version count did not increase by exactly one for nid " + nid);
+        }
+    }
+
+    @Test
+    @DisplayName("A deliberately not-restated baseline component is left to the baseline: replay adds"
+            + " no version to it and attaches nothing to it")
+    void notRestatedComponentsAreLeftToTheBaseline() {
+        assertFalse(DELIBERATELY_NOT_RESTATED_BY_NID.isEmpty(), "the registry resolves");
+        for (int nid : DELIBERATELY_NOT_RESTATED_BY_NID) {
+            assertEquals(VERSION_COUNT_BEFORE.get(nid),
+                    EntityHandle.get(nid).expectPattern().versions().size(),
+                    "replay added a version to not-restated nid " + nid);
+            for (int semanticNid : EntityService.get().semanticNidsForComponent(nid)) {
+                for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
+                    assertTrue(BASELINE_STAMP_NIDS.contains(((SemanticEntityVersion) versionObj).stampNid()),
+                            "replay attached a semantic version to not-restated nid " + nid);
+                }
+            }
         }
     }
 

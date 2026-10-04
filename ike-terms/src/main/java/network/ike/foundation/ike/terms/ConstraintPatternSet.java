@@ -341,7 +341,7 @@ final class ConstraintPatternSet {
                         k:LeafDescendantFieldConstraint[] says only the concrete leaves qualify, never
                         the grouping concepts that exist to organize them; and
                         k:ImmediateChildFieldConstraint[] says the taxonomy is a closed one-level value
-                        list — exactly how the STAMP pattern's status field holds to the immediate
+                        list — exactly how the stamp version pattern's status field holds to the immediate
                         children of k:StatusValue[].
 
                         Because the legal set is derived rather than copied, governing it moves to
@@ -415,27 +415,27 @@ final class ConstraintPatternSet {
                                 + " relation")),
                         memberMatchRelation, immediateChild, memberMatchRelation);
 
-        // ── Worked examples: taxonomy constraints on real STAMP-pattern ──
+        // ── Worked examples: taxonomy constraints on real stamp-version-pattern ──
         // and Description-pattern fields (each field's own meaning concept per
         // Section71.java's actual .field(...) declarations, verified against
         // ike-koncepts.yml before writing).
-        set.pattern("STAMP pattern").at(inception)
+        set.pattern("STAMP version field pattern").at(inception)
                 .semantic(taxonomyConstraintPattern,
                         PublicIds.of(set.uuidFor(
-                                "Taxonomy Field Constraint: STAMP pattern Author field kind-of Author")),
-                        set.conceptRef("Author"), kindOf, set.conceptRef("Author"))
+                                "Taxonomy Field Constraint: STAMP version field pattern Author field kind-of Author")),
+                        set.conceptRef("Author field"), kindOf, set.conceptRef("Author"))
                 .semantic(taxonomyConstraintPattern,
                         PublicIds.of(set.uuidFor(
-                                "Taxonomy Field Constraint: STAMP pattern Module field kind-of Module")),
-                        set.conceptRef("Module"), kindOf, set.conceptRef("Module"))
+                                "Taxonomy Field Constraint: STAMP version field pattern Module field kind-of Module")),
+                        set.conceptRef("Module field"), kindOf, set.conceptRef("Module"))
                 .semantic(taxonomyConstraintPattern,
                         PublicIds.of(set.uuidFor(
-                                "Taxonomy Field Constraint: STAMP pattern Path field kind-of Path")),
-                        set.conceptRef("Path"), kindOf, set.conceptRef("Path"))
+                                "Taxonomy Field Constraint: STAMP version field pattern Path field kind-of Path")),
+                        set.conceptRef("Path field"), kindOf, set.conceptRef("Path"))
                 .semantic(taxonomyConstraintPattern,
-                        PublicIds.of(set.uuidFor("Taxonomy Field Constraint: STAMP pattern Status field"
+                        PublicIds.of(set.uuidFor("Taxonomy Field Constraint: STAMP version field pattern Status field"
                                 + " immediate-child of Status value")),
-                        set.conceptRef("Status value"), immediateChild, set.conceptRef("Status value"));
+                        set.conceptRef("Status field"), immediateChild, set.conceptRef("Status value"));
 
         set.pattern("Description Pattern").at(inception)
                 .semantic(taxonomyConstraintPattern,

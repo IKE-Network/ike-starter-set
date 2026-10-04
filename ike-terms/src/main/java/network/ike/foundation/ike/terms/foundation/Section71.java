@@ -143,14 +143,6 @@ final class Section71 {
 
         // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
         // (IKE-Network/ike-issues#880, #891, #894).
-        set.pattern("STAMP pattern", PublicIds.of(UUID.fromString("9fd67fee-abf9-551d-9d0e-76a4b1e8b4ee"))).at(inception)
-                .meaning(IkeTerm.VERSION_PROPERTIES).purpose(set.conceptRef("Commit Provenance (IkeFoundation)")).field(IkeTerm.STATUS_VALUE, IkeTerm.STATUS_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(set.conceptRef("Time (IkeFoundation)"), IkeTerm.TIME_FOR_VERSION, IkeTerm.LONG).field(set.conceptRef("Author"), IkeTerm.AUTHOR_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(set.conceptRef("Module"), IkeTerm.MODULE_FOR_VERSION, IkeTerm.COMPONENT_FIELD).field(set.conceptRef("Path"), IkeTerm.PATH_FOR_VERSION, IkeTerm.COMPONENT_FIELD)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("e7ae5ae3-9abd-49b3-bbb8-eccb4f406bb8")), IkeTerm.ENGLISH_LANGUAGE, "STAMP pattern", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("9614a691-a160-473d-b0d9-5af6084ceeee")))
-                ;
-
-        // Shape diverges from the SOLOR baseline: meaning/purpose rigor revised in place
-        // (IKE-Network/ike-issues#880, #891, #894).
         set.pattern("Semantic Chronology Pattern", PublicIds.of(UUID.fromString("5f0ad6ca-638e-4052-82b0-3f564ac99b3f"))).at(inception)
                 .meaning(EntityProxy.Concept.make("Semantic field", PublicIds.of(UUID.fromString("8b6c69d7-a5aa-4db2-bcea-8c7b2817b02f")))).purpose(set.conceptRef("Chronicle Identity and History (IkeFoundation)")).field(EntityProxy.Concept.make("Public ID field", PublicIds.of(UUID.fromString("196838c5-55f4-4e40-8618-b9ce60685c2f"))), EntityProxy.Concept.make("Uniquely identify knowledge graph components", PublicIds.of(UUID.fromString("dde9a93d-250c-449b-bea0-ba1133d1387b"))), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make("Semantic pattern field", PublicIds.of(UUID.fromString("19dd5dd3-1075-4113-a437-5f1f7c2d55bc"))), set.conceptRef("Pattern Membership (IkeFoundation)"), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make("Semantic referenced component field", PublicIds.of(UUID.fromString("4111ba1e-c818-4c5d-9fed-34d07298d009"))), set.conceptRef("Attachment Target (IkeFoundation)"), IkeTerm.COMPONENT_FIELD).field(EntityProxy.Concept.make("Semantic versions set", PublicIds.of(UUID.fromString("4fd69aed-556f-4938-94cc-ea7ea707ccef"))), set.conceptRef("Version History (IkeFoundation)"), IkeTerm.COMPONENT_ID_SET_FIELD)
                 .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("af8495f1-a122-4358-a214-a7af58b87ffd")), IkeTerm.ENGLISH_LANGUAGE, "Semantic Chronology Pattern", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)

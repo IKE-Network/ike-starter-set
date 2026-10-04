@@ -518,15 +518,11 @@ final class NarrativeContentSet {
                         concepts that exist solely to organize others), and
                         k:ImmediateChildFieldConstraint[] (direct children only) — an identical tuple for
                         all four, which is exactly why they are kinds within one pattern rather than four
-                        patterns. Concretely, this starter set's own STAMP pattern carries four such
-                        semantics: constrained field = k:Author[], kind = k:KindOfFieldConstraint[],
-                        anchor = k:Author[] — the same concept identifies both the field and the anchor
-                        here, since a later revision (IKE-Network/ike-issues#880) gave the Author field
-                        itself k:Author[] as its own meaning — likewise Module and Path, and a fourth
-                        whose tuple reads constrained field = k:StatusValue[], kind =
-                        k:ImmediateChildFieldConstraint[], anchor = k:StatusValue[] again: a concept can
-                        serve as both a field's own meaning and a constraint's own anchor without
-                        conflict, since the two roles are read from different fields entirely.
+                        patterns. Concretely, this starter set's own stamp version pattern carries four
+                        such semantics: constrained field = k:AuthorField[], kind =
+                        k:KindOfFieldConstraint[], anchor = k:Author[] — likewise Module and Path, and a
+                        fourth whose tuple reads constrained field = k:StatusField[], kind =
+                        k:ImmediateChildFieldConstraint[], anchor = k:StatusValue[].
 
                         k:ValueSetFieldConstraintPattern[] is the extensional shape, and it is
                         datatype-universal: the members are enumerated as data, and the member type is
@@ -677,10 +673,7 @@ final class NarrativeContentSet {
                         k:STAMPField[]/k:VersionProvenance[], plus k:StatusField[]/k:StatusForVersion[],
                         k:TimeField[]/k:TimeForVersion[] (data type k:StringDataType[]),
                         k:AuthorField[]/k:AuthorForVersion[], k:ModuleField[]/k:ModuleForVersion[], and
-                        k:PathField[]/k:PathForVersion[] — the same k:StatusForVersion[]/k:AuthorForVersion[]/
-                        k:ModuleForVersion[]/k:PathForVersion[]/k:TimeForVersion[] purpose concepts this guide's
-                        own STAMP pattern (see the STAMP Concepts chapter) also uses; the base-model layer
-                        specializes those five fields into a single, more directly authored five-field pattern.
+                        k:PathField[]/k:PathForVersion[] — the purposes the STAMP Concepts chapter names for the five dimensions.
                         k:PatternVersionPattern[] is richer still: meaning k:PatternVersionsField[], the same
                         shared purpose, and four fields — k:STAMPField[]/k:VersionProvenance[],
                         k:PatternMeaningField[] (meaning) for k:MeaningDeclaration[] (purpose),

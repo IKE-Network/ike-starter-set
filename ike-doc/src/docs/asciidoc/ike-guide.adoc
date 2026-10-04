@@ -237,17 +237,13 @@ allowed states, the module preference and exclusion, and a position (path plus t
 is both on an allowed path (at or before the coordinate's time) and in an allowed
 state — "latest state," computed the same way every time the same coordinate is used.
 
-As a pattern, k:STAMPPattern[] itself carries a referenced-component meaning of
-k:VersionProperties[] and a purpose of k:CommitProvenance[] — why the pattern exists:
-to record who committed a version, in what state, module, path, and when. Five fields
-each carry their own meaning and purpose concept: k:StatusValue[] (meaning) for
-k:StatusForVersion[] (purpose), k:Time[] (meaning) for k:TimeForVersion[] (purpose),
-and k:Author[], k:Module[], and k:Path[] (meaning) for k:AuthorForVersion[],
-k:ModuleForVersion[], and k:PathForVersion[] (purpose) respectively — the same four
-koncepts named above, plus time, now restated here by their own exact field-meaning
-identity. That shape, feature by feature, is <<koncept-pattern-table-STAMPPattern>>.
-
-koncept-pattern-table::STAMPPattern[]
+As a pattern, a STAMP version is described by k:STAMPVersionFieldPattern[]: a field
+for the stamp itself (k:STAMPField[], for k:VersionProvenance[]), then one field per
+dimension, each with its own meaning and purpose — k:StatusField[] for
+k:StatusForVersion[], k:TimeField[] for k:TimeForVersion[], and k:AuthorField[],
+k:ModuleField[], and k:PathField[] for k:AuthorForVersion[], k:ModuleForVersion[], and
+k:PathForVersion[] respectively. That shape, feature by feature, is
+<<koncept-pattern-table-STAMPVersionFieldPattern>>.
 
 == Logic Coordinates
 
@@ -1066,7 +1062,7 @@ semantic attaches to the constrained pattern as its referenced component, and re
 a pattern's constraints is retrieval by enumeration: walk the semantics attached to
 the pattern that are of the two constraint patterns. Identity is declared
 descriptively, so the ledger reads as prose — the STAMP author constraint below is
-declared as "Taxonomy Field Constraint: STAMP pattern Author field kind-of Author",
+declared as "Taxonomy Field Constraint: STAMP version field pattern Author field kind-of Author",
 the rule's own name saying exactly what it asserts.
 
 Constraint semantics compose conjunctively. Each semantic is one conjunct, and a value
@@ -1094,14 +1090,16 @@ koncept-pattern-table::TaxonomyFieldConstraintPattern[]
 
 The starter set carries five taxonomy constraints on real, long-standing patterns —
 the four STAMP dimensions and the Description Pattern's language field
-(<<koncept-pattern-table-STAMPPattern>> and <<koncept-pattern-table-DescriptionPattern>>
+(<<koncept-pattern-table-STAMPVersionFieldPattern>> and <<koncept-pattern-table-DescriptionPattern>>
 show the constrained patterns' own shapes):
 
-* k:STAMPPattern[]'s author, module, and path fields are each kind-of constrained to
-  their own dimension's taxonomy — anchors k:Author[], k:Module[], and k:Path[] — the
+* k:STAMPVersionFieldPattern[]'s author, module, and path fields (k:AuthorField[],
+  k:ModuleField[], and k:PathField[]) are each kind-of constrained to their own
+  dimension's taxonomy — anchors k:Author[], k:Module[], and k:Path[] — the
   anchor itself a legal value, and every new author, module, or path minted beneath it
   a legal value from the moment it exists.
-* k:STAMPPattern[]'s status field is immediate-child constrained to k:StatusValue[]:
+* k:STAMPVersionFieldPattern[]'s status field (k:StatusField[]) is immediate-child
+  constrained to k:StatusValue[]:
   STAMP status is a closed, one-level value list — exactly k:ActiveState[],
   k:InactiveState[], k:PrimordialState[], k:CanceledState[], and k:WithdrawnState[] —
   and the constraint says so as data.
@@ -1164,7 +1162,7 @@ ordinary content, through the same pattern any other constraint uses:
   from different fields entirely.
 
 Nothing marks these two semantics as special: they are taxonomy constraints like the
-STAMP pattern's four, retrieved the same way, composed the same way. Growing either
+stamp version pattern's four, retrieved the same way, composed the same way. Growing either
 closed list is authoring: mint the child concept, and the existing constraint admits
 it without being touched — for a relation, the bijection gate additionally requires
 its evaluator to ship in the same change.

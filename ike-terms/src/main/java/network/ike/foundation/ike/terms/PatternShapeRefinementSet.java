@@ -198,10 +198,9 @@ final class PatternShapeRefinementSet {
                         + " origin path's versions are visible from this path.")
                 .isA(IkeTerm.MODEL_CONCEPT);
 
-        // ── STAMP pattern (domain) ───────────────────────────────────────
-        // Status was already correct (StatusValue meaning / StatusForVersion purpose).
-        // Author/Module/Path reuse existing general concepts as meanings. Time has no
-        // general counterpart, so it alone needs one new meaning concept.
+        // ── STAMP model (domain) ─────────────────────────────────────────
+        // Status value, Author, Module and Path are existing general concepts; time has
+        // no general counterpart, so it alone needs one.
         set.concept("Time (IkeFoundation)").at(inception)
                 .synonym("Time")
                 .definition("A point in time, as a general concept — the meaning"
@@ -211,12 +210,6 @@ final class PatternShapeRefinementSet {
                         + " dimension of the STAMP — part of the STAMP model, stated"
                         + " logically as a Part of restriction.")
                 .statedAxioms(leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.MODEL_CONCEPT), leb.SomeRole(IkeTerm.PART_OF, leb.ConceptAxiom(set.conceptRef("STAMP (IkeFoundation)"))))));
-
-        set.concept("Commit Provenance (IkeFoundation)").at(inception)
-                .synonym("Commit Provenance")
-                .definition("Why a STAMP pattern semantic exists: to record who committed"
-                        + " a version, in what state, module, path, and when.")
-                .isA(IkeTerm.MODEL_CONCEPT);
 
         // ── Description Pattern (domain) ────────────────────────────────
         set.concept("Description Attachment (IkeFoundation)").at(inception)
