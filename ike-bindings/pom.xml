@@ -49,7 +49,6 @@
         <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-terms</artifactId>
-            <version>${project.version}</version>
             <optional>true</optional>
         </dependency>
         <!-- The knowledge-pipeline implementation, resolved by ServiceLoader inside
