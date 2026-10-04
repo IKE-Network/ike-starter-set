@@ -112,7 +112,7 @@ class ElmImporterIT {
     }
 
     private static int versionsOf(PublicId semantic) {
-        java.util.Optional<dev.ikm.tinkar.entity.SemanticRecord> record = EntityService.get().getEntity(PrimitiveData.nid(semantic));
+        java.util.Optional<dev.ikm.tinkar.entity.SemanticRecord> record = dev.ikm.tinkar.entity.EntityHandle.get(PrimitiveData.nid(semantic)).entity().filter(e -> !e.canceled()).map(e -> (dev.ikm.tinkar.entity.SemanticRecord) e);
         return record.map(r -> r.versions().size()).orElse(0);
     }
 

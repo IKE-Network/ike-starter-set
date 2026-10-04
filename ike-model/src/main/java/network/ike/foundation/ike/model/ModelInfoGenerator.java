@@ -17,6 +17,7 @@ package network.ike.foundation.ike.model;
 
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.FieldDefinitionForEntity;
 import dev.ikm.tinkar.entity.PatternEntityVersion;
@@ -89,7 +90,7 @@ public final class ModelInfoGenerator {
         xml.append("   <requiredModelInfo name=\"System\" version=\"1.0.0\"/>\n");
         for (Mark mark : marks) {
             String name = className(mark.patternNid());
-            UUID uuid = EntityService.get().getEntity(mark.patternNid()).orElseThrow().publicId().asUuidArray()[0];
+            UUID uuid = EntityHandle.get(mark.patternNid()).expectEntity().publicId().asUuidArray()[0];
             Latest<PatternEntityVersion> pattern = calculator.latest(mark.patternNid());
             String codePath = "";
             List<FieldDefinitionForEntity> fields = new ArrayList<>();

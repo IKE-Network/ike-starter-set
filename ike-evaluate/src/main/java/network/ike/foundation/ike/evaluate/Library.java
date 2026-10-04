@@ -19,6 +19,7 @@ import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.EntityFacade;
@@ -87,7 +88,7 @@ final class Library {
     static Optional<Library> load(String libraryId, StampCalculator calculator, ElmCatalog catalog) {
         PublicId libraryPublicId = ElmIdentity.library(libraryId);
         if (!PrimitiveData.get().hasPublicId(libraryPublicId)
-                || EntityService.get().getEntity(PrimitiveData.nid(libraryPublicId)).isEmpty()) {
+                || EntityHandle.get(PrimitiveData.nid(libraryPublicId)).entity().filter(e -> !e.canceled()).isEmpty()) {
             return Optional.empty();
         }
         Library library = new Library(libraryId, PrimitiveData.nid(libraryPublicId), calculator, catalog);

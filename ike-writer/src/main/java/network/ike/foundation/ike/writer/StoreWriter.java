@@ -22,6 +22,7 @@ import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.ConceptRecord;
 import dev.ikm.tinkar.entity.ConceptRecordBuilder;
 import dev.ikm.tinkar.entity.ConceptVersionRecord;
@@ -154,7 +155,7 @@ public final class StoreWriter {
      */
     public int concept(PublicId conceptId) {
         int nid = PrimitiveData.nid(conceptId);
-        if (EntityService.get().getEntity(nid).isEmpty()) {
+        if (EntityHandle.get(nid).entity().filter(e -> !e.canceled()).isEmpty()) {
             RecordListBuilder<ConceptVersionRecord> versions = RecordListBuilder.make();
             ConceptRecord bootstrap = ConceptRecord.makeNew(conceptId, versions);
             versions.add(ConceptVersionRecordBuilder.builder().chronology(bootstrap).stampNid(stampNid).build());
@@ -200,7 +201,7 @@ public final class StoreWriter {
         PublicIdentifierRecord identifier = PublicIdentifierRecord.make(semanticId);
         int nid = ScopedValue.where(PrimitiveData.SCOPED_PATTERN_PUBLICID_FOR_NID, pattern.publicId())
                 .call(() -> PrimitiveData.nid(semanticId));
-        Optional<SemanticRecord> existing = EntityService.get().getEntity(nid);
+        Optional<SemanticRecord> existing = EntityHandle.get(nid).entity().filter(e -> !e.canceled()).map(e -> (SemanticRecord) e);
         if (existing.isPresent()) {
             Latest<SemanticEntityVersion> latest = calculator.latest(nid);
             if (latest.isPresent() && latest.get().stampNid() != inactiveStampNid
@@ -299,7 +300,7 @@ public final class StoreWriter {
             return false;
         }
         int nid = PrimitiveData.nid(semanticId);
-        Optional<SemanticRecord> existing = EntityService.get().getEntity(nid);
+        Optional<SemanticRecord> existing = EntityHandle.get(nid).entity().filter(e -> !e.canceled()).map(e -> (SemanticRecord) e);
         Latest<SemanticEntityVersion> latest = calculator.latest(nid);
         if (existing.isEmpty() || latest.isAbsent()) {
             return false;
@@ -383,7 +384,7 @@ public final class StoreWriter {
     private static int writeStamp(Stamp stamp) {
         PublicId stampId = stamp.publicId();
         int stampNid = EntityService.get().nidForStamp(stampId);
-        if (EntityService.get().getEntity(stampNid).isPresent()) {
+        if (EntityHandle.get(stampNid).entity().filter(e -> !e.canceled()).isPresent()) {
             return stampNid;
         }
         UUID primordial = stampId.asUuidArray()[0];

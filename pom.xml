@@ -74,8 +74,8 @@
              retirement scope (#1130), the provider's navigation sweep (#1131) and
              these retirements together, until the next release train. A release
              pins the released versions it rides. -->
-        <chronology-store.version>1.127.7-SNAPSHOT</chronology-store.version>
-        <ike-knowledge-provider.version>7-SNAPSHOT</ike-knowledge-provider.version>
+        <chronology-store.version>1.127.7-64bit-SNAPSHOT</chronology-store.version>
+        <ike-knowledge-provider.version>7-64bit-SNAPSHOT</ike-knowledge-provider.version>
         <!-- The engine and provider on Komet main are built for Java 27 with preview
              features, so the starter set compiles and runs on Java 27 too. -->
         <java.version>27</java.version>

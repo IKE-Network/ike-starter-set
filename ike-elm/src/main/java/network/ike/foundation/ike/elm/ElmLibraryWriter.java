@@ -21,6 +21,7 @@ import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
@@ -190,7 +191,7 @@ public final class ElmLibraryWriter {
         PublicId referenceId = ElmIdentity.reference(definition, kindName, libraryName, name);
         EntityProxy.Concept kind = builder.catalog().kind(kindName).concept();
         int targetNid = PrimitiveData.nid(target);
-        Object targetFacade = EntityService.get().getEntity(targetNid)
+        Object targetFacade = EntityHandle.get(targetNid).entity().filter(e -> !e.canceled())
                 .filter(entity -> entity instanceof dev.ikm.tinkar.entity.ConceptEntity)
                 .map(entity -> (Object) EntityProxy.Concept.make(targetNid))
                 .orElse(EntityProxy.Semantic.make(targetNid));

@@ -17,6 +17,7 @@ package network.ike.foundation.ike.terms;
 
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.KnowledgeSetSource;
+import dev.ikm.tinkar.entity.builder.Stamp;
 import network.ike.foundation.ike.terms.foundation.FoundationSet;
 
 /**
@@ -46,6 +47,13 @@ public final class IkeSource implements KnowledgeSetSource {
         // baseline's own first content (Uninitialized Component), not this set's
         // bootstrap concepts.
         FoundationSet.compose(Ike.SET);
+        // The non-existent stamp: the stamp of a component's value before the component
+        // existed, which the change chronology compares a first version against. Every store
+        // needs it, and no version of the set uses it, so the set declares it outright
+        // instead of the application writing it into each store at startup. Its dimensions
+        // (Author for version, Uninitialized component) are foundation components, composed
+        // just above.
+        Ike.SET.stamp(Stamp.nonExistent());
         ConceptSet.compose(Ike.SET);
         // ProseElementSet declares the shared prose-element apparatus at its foundation
         // home (IKE-Network/ike-issues#937): the pattern the narrative sections attach
