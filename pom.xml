@@ -13,7 +13,7 @@
 
     <groupId>network.ike.foundation</groupId>
     <artifactId>ike-starter-set</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1-64bit-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Ike Starter Set</name>
