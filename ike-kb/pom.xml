@@ -14,7 +14,7 @@
 
     <name>Ike Knowledge Base</name>
     <description>
-        The full-cycle knowledge base: the base plus this set's ledger export,
+        The full-cycle knowledge base: this set's ledger export on its own,
         assembled and classified by ike:kb-assemble, exported as the standalone
         reasoned-pb protobuf, and installed into the data-source directory for
         verification in Komet. ike:knowledge-attach publishes the unreasoned-pb
@@ -68,7 +68,11 @@
                         </goals>
                         <configuration>
                             <inputs>
-                                <input>PB dev.ikm.data.tinkar:tinkar-starter-data:zip:reasoned-pb:20251009</input>
+                                <!-- The set alone, without the 20251009 baseline beneath
+                                     it: the set restates every baseline component it
+                                     keeps, so what it leaves out (the legacy STAMP
+                                     pattern, the retired SOLOR concepts) is absent from
+                                     the knowledge base, not carried in from the base. -->
                                 <input>PB ${project.basedir}/../ike-changeset/target/ike-changeset-${project.version}-unreasoned-pb.zip</input>
                                 <!-- Next iteration: change sets captured during Komet
                                      verification load on top, e.g.
@@ -90,19 +94,11 @@
                         </goals>
                         <configuration>
                             <!-- The consumer-import round trip (ike-issues#951): the
-                                 unreasoned export must load over the same base the
-                                 assembly used, manifest and count checks intact.
-                                 PRESENCE only: a FIT_REFERENCES sweep here would judge
-                                 the whole store including the base's own health — and
-                                 the 20251009 baseline carries 37 semantics of a pattern
-                                 it does not carry (upstream defect, surfaced by this
-                                 gate and excluded from our reasoned export). The full
-                                 sweep runs on the standalone reasoned artifact below,
-                                 where store content IS the artifact. -->
+                                 unreasoned export must load on its own, as the assembly
+                                 loads it, manifest and count checks intact. PRESENCE
+                                 only; the full sweep runs on the standalone reasoned
+                                 artifact below, where store content IS the artifact. -->
                             <artifact>${project.basedir}/../ike-changeset/target/ike-changeset-${project.version}-unreasoned-pb.zip</artifact>
-                            <baseInputs>
-                                <baseInput>PB dev.ikm.data.tinkar:tinkar-starter-data:zip:reasoned-pb:20251009</baseInput>
-                            </baseInputs>
                             <checks>
                                 <check>PRESENCE</check>
                             </checks>
