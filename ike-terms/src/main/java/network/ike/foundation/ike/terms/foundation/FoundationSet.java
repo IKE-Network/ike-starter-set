@@ -19,7 +19,6 @@ public final class FoundationSet {
         Section8.compose(set);
         Section9.compose(set);
         Section10.compose(set);
-        Section11.compose(set);
         Section12.compose(set);
         Section13.compose(set);
         Section14.compose(set);

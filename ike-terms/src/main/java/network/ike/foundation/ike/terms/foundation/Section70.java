@@ -42,7 +42,14 @@ final class Section70 {
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("254a16fc-8e7e-5399-a731-49fdf6e0533b")))
                 ;
 
+        // Restated from the baseline (the generator left a stub: an ambiguous axiom history),
+        // so the set holds the definition without the base, as its Temporal Set Axioms
+        // siblings do.
         set.concept("Interval Type", PublicIds.of(UUID.fromString("ba3191ee-a260-41a6-99fd-74a22fdc937e"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("7db6781a-8c25-4294-8b68-0288c04c90dd")), IkeTerm.ENGLISH_LANGUAGE, "Interval Type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .statedAxioms(PublicIds.of(UUID.fromString("3b0700a8-92fd-457f-a633-32eed9af65ee")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Temporal Set Axioms", PublicIds.of(UUID.fromString("b253e725-d7cd-46e3-bc3a-5db8b3ffbd52")))))))
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("cdfd94fe-85f9-45a2-a044-d7a3dc0d520d")), IkeTerm.ENGLISH_LANGUAGE, "Interval Type", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("b3ef77a2-a5a4-5613-ac14-4e3f285286b6")))
                 ;
 
         set.concept("Upper Bound Open", PublicIds.of(UUID.fromString("c20b3b1e-112f-4cb2-b901-4046db844629"))).at(inception)
@@ -67,7 +74,14 @@ final class Section70 {
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("7475aa07-c8e5-50d6-bb31-334edd0ceff8")))
                 ;
 
+        // Restated from the baseline (the generator left a stub: an ambiguous axiom history),
+        // so the set holds the definition without the base, as its Temporal Set Axioms
+        // siblings do.
         set.concept("Include Lower Bound", PublicIds.of(UUID.fromString("2300a210-d722-48af-8c36-118a3f980312"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("881a86bf-77ab-4378-b30f-e717d05a62ce")), IkeTerm.ENGLISH_LANGUAGE, "Include Lower Bound", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .statedAxioms(PublicIds.of(UUID.fromString("bfb479e2-59a5-4709-9355-1389149fe177")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Temporal Set Axioms", PublicIds.of(UUID.fromString("b253e725-d7cd-46e3-bc3a-5db8b3ffbd52")))))))
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3a0950fd-95da-412c-b6ee-06ccbf272480")), IkeTerm.ENGLISH_LANGUAGE, "Include Lower Bound", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("2e2e68b3-c36a-59ce-a2ae-6a4acd0c0612")))
                 ;
 
         set.concept("Concept field", PublicIds.of(UUID.fromString("ebe2aa74-f100-41b2-8d75-2d8f06ce5e4e"))).at(inception)
@@ -149,7 +163,14 @@ final class Section70 {
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("395a8595-4e3a-5f2c-935f-28ab6c0d2fff")))
                 ;
 
+        // Restated from the baseline (the generator left a stub: an ambiguous axiom history),
+        // so the set holds the definition without the base, as its Temporal Set Axioms
+        // siblings do.
         set.concept("Temporal Axiom", PublicIds.of(UUID.fromString("5144d836-18d8-4881-a377-2d4640b710a9"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("904a011a-d93b-4252-a6c0-419f525af48d")), IkeTerm.ENGLISH_LANGUAGE, "Temporal Axiom", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .statedAxioms(PublicIds.of(UUID.fromString("62cac094-3f3c-46cb-a99f-880d495edf0e")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Temporal Set Axioms", PublicIds.of(UUID.fromString("b253e725-d7cd-46e3-bc3a-5db8b3ffbd52")))))))
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("57d80aa5-4790-4672-9084-79437cda7f31")), IkeTerm.ENGLISH_LANGUAGE, "Temporal Axiom", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("f147141b-4010-56f0-bd57-a8dadd25b52e")))
                 ;
 
         set.concept("Interval Role Type", PublicIds.of(UUID.fromString("6fa58611-af37-402e-a0c2-6ee1d6068651"))).at(inception)
@@ -285,7 +306,14 @@ final class Section70 {
                 .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("c376de0a-a8f9-536c-8e33-432c0a9db06d")))
                 ;
 
+        // Restated from the baseline (the generator left a stub: an ambiguous axiom history),
+        // so the set holds the definition without the base, as its Temporal Set Axioms
+        // siblings do.
         set.concept("Include Upper Bound", PublicIds.of(UUID.fromString("990b7e1d-3dcc-4c6e-a068-e30400607d50"))).at(inception)
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("3003a78b-88d7-4a48-b1f2-c2ef1481d2ed")), IkeTerm.ENGLISH_LANGUAGE, "Include Upper Bound", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .statedAxioms(PublicIds.of(UUID.fromString("98e4aed6-234e-484b-a49a-3fac8b6b37fb")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Temporal Set Axioms", PublicIds.of(UUID.fromString("b253e725-d7cd-46e3-bc3a-5db8b3ffbd52")))))))
+                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("41046e1a-0078-4a45-880c-9d4351d58863")), IkeTerm.ENGLISH_LANGUAGE, "Include Upper Bound", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("f2d661b4-8026-5994-a31b-4637ab257e73")))
                 ;
 
         set.concept("Field definition field", PublicIds.of(UUID.fromString("14171f07-e74f-409a-b555-06b478818f76"))).at(inception)
