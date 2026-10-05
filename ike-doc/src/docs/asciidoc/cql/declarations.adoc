@@ -1,0 +1,19 @@
+== Declarations
+
+=== Declaration (13)
+
+The library-level statements that give a CQL file its shape.
+
+Members: <<term-code,`code`>>, <<term-codesystem,`codesystem`>>, <<term-concept,`concept`>>, <<term-context,`context`>>, <<term-conversion,`conversion`>>, <<term-define,`define`>>, <<term-function,`function`>>, <<term-include,`include`>>, <<term-library,`library`>>, <<term-parameter,`parameter`>>, <<term-type,`type`>>, <<term-using,`using`>>, <<term-valueset,`valueset`>>
+
+=== Declaration Modifier (17)
+
+Modifiers that refine a declaration -- an alias, a default, a version.
+
+Members: <<term-bind,`bind`>>, <<term-called,`called`>>, <<term-codesystems,`codesystems`>>, <<term-default,`default`>>, <<term-display,`display`>>, <<term-explicit,`explicit`>>, <<term-extends,`extends`>>, <<term-fluent,`fluent`>>, <<term-identifier,`identifier`>>, <<term-implicit,`implicit`>>, <<term-key,`key`>>, <<term-label,`label`>>, <<term-path,`path`>>, <<term-primary,`primary`>>, <<term-related,`related`>>, <<term-retrievable,`retrievable`>>, <<term-version,`version`>>
+
+=== Access Modifier (2)
+
+Controls whether a definition is visible outside its own library.
+
+Members: <<term-private,`private`>>, <<term-public,`public`>>

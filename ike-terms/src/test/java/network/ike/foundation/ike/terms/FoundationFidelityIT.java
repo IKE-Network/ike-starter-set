@@ -144,6 +144,10 @@ class FoundationFidelityIT {
      * foundation home — Prose element, Prose content, and Element content, adopted
      * RichSurfaceTerms identities the prose pattern's declaration references.
      * <p>
+     * The CQL keyword set adds 158: {@code CqlSet} mints one concept per CQL keyword (136)
+     * and {@code CqlKeywordHierarchy} the categories they are filed under (22 — the CQL
+     * keyword root, five families, and 16 categories).
+     * <p>
      * The IKE-Network/ike-issues#1089 query-operator apparatus adds 164:
      * {@code ExpressionLanguageSet} mints the Expression language model root (+1), the
      * Expression language family with CQL, ECL, and EL++ (+4), and their three dialects
@@ -177,7 +181,7 @@ class FoundationFidelityIT {
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 457;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 615;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field

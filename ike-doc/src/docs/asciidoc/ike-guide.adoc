@@ -1279,21 +1279,21 @@ computed identity, and the same value renders as the _default_ row of
 
 == CQL in Komet
 
-include::cql/01-overview-and-reading-guide.adoc[leveloffset=1]
+include::cql/overview-and-reading-guide.adoc[leveloffset=1]
 
-include::cql/02-running-cql-queries.adoc[leveloffset=1]
+include::cql/running-cql-queries.adoc[leveloffset=1]
 
-include::cql/03-family-summaries.adoc[leveloffset=1]
+include::cql/family-summaries.adoc[leveloffset=1]
 
-include::cql/04-types-and-literals.adoc[leveloffset=1]
+include::cql/types-and-literals.adoc[leveloffset=1]
 
-include::cql/05-declarations.adoc[leveloffset=1]
+include::cql/declarations.adoc[leveloffset=1]
 
-include::cql/06-core-operators.adoc[leveloffset=1]
+include::cql/core-operators.adoc[leveloffset=1]
 
-include::cql/07-data-and-timing-operators.adoc[leveloffset=1]
+include::cql/data-and-timing-operators.adoc[leveloffset=1]
 
-include::cql/08-query-and-control-flow.adoc[leveloffset=1]
+include::cql/query-and-control-flow.adoc[leveloffset=1]
 
 == IKE Base Model
 
@@ -1394,6 +1394,28 @@ koncept-narrative::ObjectProperties[]
 == Provenance and Root
 
 koncept-narrative::IntegratedKnowledgeManagement[]
+
+// ============================================================
+// Test ingestion (synthetic) — IKE-INGEST exercise.
+// Source: _ingest-test-source/snapshot-exports.adoc
+// Topics: test-ingest/ (domain prefix `tst`, registry test-ingest/topic-registry.yaml)
+// Standalone assembly: test-ingest/test-ingest-guide.adoc
+// Remove this whole comment block and the chapter below to un-ingest.
+// ============================================================
+
+== Working with Snapshot Exports
+
+include::test-ingest/snapshot-overview.adoc[leveloffset=+2]
+
+include::test-ingest/snapshot-anatomy.adoc[leveloffset=+2]
+
+include::test-ingest/producing-a-snapshot.adoc[leveloffset=+2]
+
+include::test-ingest/verifying-a-snapshot.adoc[leveloffset=+2]
+
+include::test-ingest/retention-and-pruning.adoc[leveloffset=+2]
+
+include::test-ingest/manifest-field-reference.adoc[leveloffset=+2]
 
 // The comprehensive, alphabetical Koncept Glossary is appended automatically
 // (koncept-glossary-all) as the final chapter.
