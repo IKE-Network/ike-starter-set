@@ -54,6 +54,11 @@ public final class IkeSource implements KnowledgeSetSource {
         // (Author for version, Uninitialized component) are foundation components, composed
         // just above.
         Ike.SET.stamp(Stamp.nonExistent());
+        // The set's stamps, generated beside its bindings so code that authors under them
+        // names them as it names the set's components.
+        Ike.SET.bindStamp(Ike.INCEPTION, Ike.STAMPS, "INCEPTION");
+        Ike.SET.bindStamp(Ike.DEFAULTS_INCEPTION, Ike.STAMPS, "DEFAULTS_INCEPTION");
+        Ike.SET.bindStamp(Stamp.nonExistent(), Ike.STAMPS, "NON_EXISTENT");
         ConceptSet.compose(Ike.SET);
         // ProseElementSet declares the shared prose-element apparatus at its foundation
         // home (IKE-Network/ike-issues#937): the pattern the narrative sections attach

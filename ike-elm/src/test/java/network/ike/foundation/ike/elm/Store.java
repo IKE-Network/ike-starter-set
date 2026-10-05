@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.elm;
 
+import network.ike.foundation.ike.bindings.IkeStamps;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -90,8 +91,8 @@ final class Store {
      */
     static synchronized dev.ikm.tinkar.entity.builder.Stamp nextStamp() {
         lastTime = Math.max(lastTime + 1, System.currentTimeMillis());
-        return new dev.ikm.tinkar.entity.builder.ActiveStamp(lastTime, network.ike.foundation.ike.terms.Ike.INCEPTION.author(),
-                network.ike.foundation.ike.terms.Ike.INCEPTION.module(), network.ike.foundation.ike.terms.Ike.INCEPTION.path());
+        return new dev.ikm.tinkar.entity.builder.ActiveStamp(lastTime, IkeStamps.INCEPTION.author(),
+                IkeStamps.INCEPTION.module(), IkeStamps.INCEPTION.path());
     }
 
     /**

@@ -17,6 +17,7 @@ package network.ike.foundation.ike.terms;
 
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.BindingClass;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.DefaultsTemplateTerm;
@@ -38,6 +39,12 @@ public final class Ike {
      * every identity in the set derives. Never change it.
      */
     public static final KnowledgeSet SET = KnowledgeSet.of("d890e06f-ec35-429a-b541-d0ead19695e2");
+
+    /**
+     * The binding class of the set's stamps: the generated {@code IkeStamps}, through which
+     * code outside the ledger authors under the set's stamps without depending on it.
+     */
+    public static final BindingClass STAMPS = SET.bindingClass("IkeStamps");
 
     /** The set's module concept — the export dimension for this knowledge. */
     public static final EntityProxy.Concept MODULE =
