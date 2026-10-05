@@ -46,6 +46,13 @@ public final class Ike {
      */
     public static final BindingClass STAMPS = SET.bindingClass("IkeStamps");
 
+    /**
+     * The kernel: the components tinkar-core and its stores name in their own code, generated
+     * into {@code dev.ikm.tinkar.terms.KernelTerm} and committed there (see
+     * {@link KernelBindings}).
+     */
+    public static final BindingClass KERNEL = SET.bindingClass("dev.ikm.tinkar.terms", "KernelTerm");
+
     /** The set's module concept — the export dimension for this knowledge. */
     public static final EntityProxy.Concept MODULE =
             SET.conceptRef("IkeFoundation module (IkeFoundation)");
