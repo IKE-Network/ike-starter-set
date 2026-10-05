@@ -213,6 +213,13 @@ class FoundationFidelityIT {
      * moves only when the pinned release does.
      */
     private static final int IMPORTED_CATALOG_CONCEPTS = 463;
+    /**
+     * Concepts the set adopts from {@code TinkarTerm}, under their established identities, as
+     * the set replaces it as the source of the platform's terms: constants live code uses that
+     * the Tinkar starter data never held. {@code SCTID}, the identifier source of the SNOMED CT
+     * identifiers the SNOMED knowledge base carries.
+     */
+    private static final int ADOPTED_TINKAR_TERM_CONCEPTS = 1;
     /** Patterns a catalog import mints: the ELM type position pattern. */
     private static final int IMPORTED_CATALOG_PATTERNS = 1;
 
@@ -635,9 +642,11 @@ class FoundationFidelityIT {
                 stampNids.add(version.stampNid());
             }
         });
-        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
-            for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
-                stampNids.add(((SemanticEntityVersion) versionObj).stampNid());
+        EntityService.get().forEachEntity(entity -> {
+            if (entity instanceof SemanticEntity<?> semantic) {
+                for (Object versionObj : semantic.versions()) {
+                    stampNids.add(((SemanticEntityVersion) versionObj).stampNid());
+                }
             }
         });
         return stampNids;
@@ -662,9 +671,9 @@ class FoundationFidelityIT {
      * calculator-latest) resolve to more than one distinct (simpleIsA, parents) shape. */
     private static boolean hasAmbiguousAxiomHistory(int componentNid) {
         Set<Object> distinctShapes = new HashSet<>();
-        for (int semanticNid : EntityService.get()
-                .semanticNidsForComponentOfPattern(componentNid, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid())) {
-            for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
+        for (SemanticEntity<?> axioms : EntityService.get()
+                .semanticsForComponentOfPattern(componentNid, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).toList()) {
+            for (Object versionObj : axioms.versions()) {
                 dev.ikm.tinkar.entity.SemanticEntityVersion version =
                         (dev.ikm.tinkar.entity.SemanticEntityVersion) versionObj;
                 DiTreeEntity tree = (DiTreeEntity) version.fieldValues().get(0);
@@ -835,8 +844,8 @@ class FoundationFidelityIT {
                     : EntityHandle.get(nid).expectConcept().versions().size();
             assertEquals(VERSION_COUNT_BEFORE.get(nid), versionsAfter,
                     "replay added a version to not-restated nid " + nid);
-            for (int semanticNid : EntityService.get().semanticNidsForComponent(nid)) {
-                for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
+            for (SemanticEntity<?> semantic : EntityService.get().semanticsForComponent(nid).toList()) {
+                for (Object versionObj : semantic.versions()) {
                     assertTrue(BASELINE_STAMP_NIDS.contains(((SemanticEntityVersion) versionObj).stampNid()),
                             "replay attached a semantic version to not-restated nid " + nid);
                 }
@@ -877,13 +886,14 @@ class FoundationFidelityIT {
         int[] patternsAfter = {0};
         EntityService.get().forEachPatternEntity(pattern -> patternsAfter[0]++);
         assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS
-                        + IMPORTED_CATALOG_CONCEPTS, conceptsAfter[0],
+                        + IMPORTED_CATALOG_CONCEPTS + ADOPTED_TINKAR_TERM_CONCEPTS, conceptsAfter[0],
                 "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
                         + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
                         + " new concepts (see AUTHORED_CONTENT_CONCEPTS,"
                         + " IKE-Network/ike-issues#880 and #885) plus " + IMPORTED_CATALOG_CONCEPTS
-                        + " imported catalog concepts (see IMPORTED_CATALOG_CONCEPTS, #1104) — no other"
-                        + " minting");
+                        + " imported catalog concepts (see IMPORTED_CATALOG_CONCEPTS, #1104) plus "
+                        + ADOPTED_TINKAR_TERM_CONCEPTS + " adopted from TinkarTerm (see"
+                        + " ADOPTED_TINKAR_TERM_CONCEPTS) — no other minting");
         assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS + IMPORTED_CATALOG_PATTERNS, patternsAfter[0],
                 "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
                         + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
@@ -1001,9 +1011,9 @@ class FoundationFidelityIT {
     private static void forEachDefaultsOrTemplateSemantic(Consumer<SemanticEntity<?>> consumer) {
         Set<Integer> attachments = attachmentConceptNids();
         Set<Integer> namingApparatus = namingApparatusPatternNids();
-        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
-            SemanticEntity<?> semantic = EntityHandle.get(semanticNid).expectSemantic();
-            if (attachments.contains(semantic.referencedComponentNid())
+        EntityService.get().forEachEntity(entity -> {
+            if (entity instanceof SemanticEntity<?> semantic
+                    && attachments.contains(semantic.referencedComponentNid())
                     && !namingApparatus.contains(semantic.patternNid())) {
                 consumer.accept(semantic);
             }
@@ -1040,8 +1050,10 @@ class FoundationFidelityIT {
         Set<Integer> attachments = attachmentConceptNids();
         Set<Integer> namingApparatus = namingApparatusPatternNids();
         int moduleNid = defaultsModuleNid();
-        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
-            SemanticEntity<?> semantic = EntityHandle.get(semanticNid).expectSemantic();
+        EntityService.get().forEachEntity(entity -> {
+            if (!(entity instanceof SemanticEntity<?> semantic)) {
+                return;
+            }
             for (SemanticEntityVersion version : semantic.versions()) {
                 if (EntityHandle.get(version.stampNid()).expectStamp().moduleNid() != moduleNid) {
                     continue;

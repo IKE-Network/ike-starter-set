@@ -15,8 +15,11 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+
+import java.util.UUID;
 
 /**
  * The concept section of the IkeFoundation ledger: the module concept, the set root, and
@@ -67,6 +70,19 @@ final class ConceptSet {
                         + " ingest, IKE-Network/ike-issues#872) rather than by an"
                         + " individual editor or an ingested upstream source.")
                 .isA(IkeTerm.USER);
+
+        // SNOMED CT's identifier source, under the identity the SNOMED knowledge base already
+        // gives its identifier semantics (ab9a0e0a is on every one of them) and the two
+        // TinkarTerm.SCTID also carries, so those semantics resolve to a concept of the set.
+        set.concept("SCTID (SOLOR)", PublicIds.of(
+                        UUID.fromString("0418a591-f75b-39ad-be2c-3ab849326da9"),
+                        UUID.fromString("87360947-e603-3397-804b-efd0fcc509b9"),
+                        UUID.fromString("ab9a0e0a-6359-5462-859c-96c3d4ef2341"))).at(inception)
+                .synonym("SNOMED CT identifier")
+                .definition("The identifier source of SNOMED CT identifiers (SCTIDs): an identifier"
+                        + " semantic whose source is this concept carries the SNOMED CT identifier of"
+                        + " the component it identifies.")
+                .isA(IkeTerm.IDENTIFIER_SOURCE);
 
         // The ingested foundation (the full starter-set ingest, #872) composes
         // in Foundation.FoundationSet, wired from IkeSource. The IKE carriers
