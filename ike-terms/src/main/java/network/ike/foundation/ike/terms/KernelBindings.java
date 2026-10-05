@@ -25,12 +25,13 @@ import java.util.UUID;
  * {@link Ike#KERNEL} ({@code dev.ikm.tinkar.terms.KernelTerm}) under the names
  * {@code TinkarTerm} gave them, so moving a reference from one to the other changes no name
  * and no identity. Generated from the set and committed into tinkar-core, which the set is
- * built with and so cannot depend on; {@code KernelDriftIT} holds the committed class to
- * this list.
+ * built with and so cannot depend on; {@code CommittedBindingsDriftTest} holds the committed
+ * class to this list.
  * <p>
  * The members are the {@code TinkarTerm} constants that main code in tinkar-core, rocks-kb
- * and ike-knowledge-provider used when the kernel was cut (2026-10-04), each one a component
- * of the set. The list shrinks as defaults move into the data.
+ * and ike-knowledge-provider used when the kernel was cut (2026-10-04), and those that
+ * tinkar-service and tinkar-composer use (2026-10-05), each one a component of the set. The
+ * list shrinks as defaults move into the data.
  */
 final class KernelBindings {
 
@@ -40,12 +41,14 @@ final class KernelBindings {
     static void compose(KnowledgeSet set) {
         bind(set, "09f12001-0e4f-51e2-9852-44862a4a0db4", "ACTIVE_STATE");
         bind(set, "fa113d51-07d2-587c-8930-0bce207d506d", "AND");
+        bind(set, "f8f936d4-3ac7-5629-9f65-9452608056a1", "ANONYMOUS_CONCEPT");
         bind(set, "b168ad04-f814-5036-b886-fd4913de88c8", "ARRAY_FIELD");
         bind(set, "4eb9de0d-7486-5f18-a9b4-82e3432f4103", "AUTHOR_FOR_VERSION");
         bind(set, "8da1c508-c2a2-4899-b26d-87f8b98a7558", "AXIOM_SYNTAX");
         bind(set, "d6b9e2cc-31c6-5e80-91b7-7537690aae32", "BOOLEAN_FIELD");
         bind(set, "dbdd8df2-aec3-596b-88fc-7b83b5594a45", "BYTE_ARRAY_FIELD");
         bind(set, "b42c1948-7645-5da8-a888-de6ec020ab98", "CANCELED_STATE");
+        bind(set, "ba2efe6b-fe56-3d91-ae0f-3b389628f74c", "CHINESE_LANGUAGE");
         bind(set, "3734fb0a-4c14-5831-9a61-4743af609e7a", "COMMENT_PATTERN");
         bind(set, "fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3", "COMPONENT_FIELD");
         bind(set, "e553d3f1-63e1-4292-a3a9-af646fe44292", "COMPONENT_ID_LIST_FIELD");
@@ -53,12 +56,16 @@ final class KernelBindings {
         bind(set, "ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557", "CONCEPT_FIELD");
         bind(set, "e89148c7-4fe2-52f8-abb9-6a53605d20cb", "CONCEPT_REFERENCE");
         bind(set, "843b0b55-8785-5544-93f6-581da9cf1ff3", "CONCRETE_DOMAIN_OPERATOR");
+        bind(set, "33aa2d26-0541-557c-b796-904cbf245101", "CZECH_LANGUAGE");
+        bind(set, "7e462e33-6d94-38ae-a044-492a857a6853", "DANISH_LANGUAGE");
         bind(set, "6b8ed642-de72-4aee-953d-42e5db92c0ab", "DATA_PROPERTY_SET");
         bind(set, "b413fe94-4ada-4aee-96f9-22be19699d40", "DECIMAL_FIELD");
         bind(set, "700546a3-09c7-3fc2-9eb9-53d318659a09", "DEFINITION_DESCRIPTION_TYPE");
         bind(set, "e7271c01-6ed4-5240-963f-34d1f24153b0", "DEFINITION_ROOT");
         bind(set, "96b61063-0d29-5aea-9652-3f5f328aadc3", "DESCRIPTION_ACCEPTABILITY");
+        bind(set, "0def37bc-7e1b-384b-a6a3-3e3ceee9c52e", "DESCRIPTION_CASE_SENSITIVE");
         bind(set, "c3dde9ea-b144-5f49-845a-20cc7d305250", "DESCRIPTION_CASE_SIGNIFICANCE");
+        bind(set, "17915e0d-ed38-3488-a35c-cda966db306a", "DESCRIPTION_INITIAL_CHARACTER_CASE_SENSITIVE");
         bind(set, "ecea41a2-f596-3d98-99d1-771b667e55b8", "DESCRIPTION_NOT_CASE_SENSITIVE");
         bind(set, "a4de0039-2625-5842-8a4c-d1ce6aebf021", "DESCRIPTION_PATTERN");
         bind(set, "ad0c19e8-2ccc-59c1-8b7e-c56c03aca8eb", "DESCRIPTION_TYPE");
@@ -66,6 +73,7 @@ final class KernelBindings {
         bind(set, "60113dfe-2bad-11eb-adc1-0242ac120002", "DIGRAPH_FIELD");
         bind(set, "f8433993-9a2d-5377-b564-80a45c7b7824", "DISJOINT_WITH");
         bind(set, "32f64fc6-5371-11eb-ae93-0242ac130002", "DITREE_FIELD");
+        bind(set, "674ad858-0224-3f90-bcf0-bc4cab753d2d", "DUTCH_LANGUAGE");
         bind(set, "9f011812-15c9-5b1b-85f8-bb262bc1b2a2", "EL_PLUS_PLUS_INFERRED_AXIOMS_PATTERN");
         bind(set, "b6d3be7d-1d7f-5c44-a425-5357f878c212", "EL_PLUS_PLUS_INFERRED_TERMINOLOGICAL_AXIOMS");
         bind(set, "1f201e12-960e-11e5-8994-feff819cdc9f", "EL_PLUS_PLUS_PROFILE");
@@ -77,8 +85,10 @@ final class KernelBindings {
         bind(set, "5e76a88e-794a-5fdd-8eb2-4a9e4b1386b6", "FEATURE");
         bind(set, "c9120d8b-1acc-5267-9f33-fa716abdb69d", "FEATURE_TYPE");
         bind(set, "6efe7087-3e3c-5b45-8109-90d7652b1506", "FLOAT_FIELD");
+        bind(set, "8b23e636-a0bd-30fb-b8e2-1f77eaa3a87e", "FRENCH_LANGUAGE");
         bind(set, "00791270-77c9-32b6-b34f-d932569bd2bf", "FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE");
         bind(set, "561f817a-130e-5e56-984d-910e9991558c", "GB_DIALECT_PATTERN");
+        bind(set, "5f144b18-76a8-5c7e-8480-55a5030d707f", "GERMAN_LANGUAGE");
         bind(set, "5d60e14b-c410-5172-9559-3c4253278ae2", "IDENTIFIER_PATTERN");
         bind(set, "5a87935c-d654-548f-82a2-0c06e3801162", "IDENTIFIER_SOURCE");
         bind(set, "b32dd26b-c3fc-487e-987e-16ace71a0d0f", "IDENTIFIER_VALUE");
@@ -94,6 +104,9 @@ final class KernelBindings {
         bind(set, "ed9d3506-65ad-48ea-bd01-95474fecdbc4", "INTERVAL_ROLE");
         bind(set, "6fa58611-af37-402e-a0c2-6ee1d6068651", "INTERVAL_ROLE_TYPE");
         bind(set, "6565f774-ff6c-4882-832f-31ddc462adf7", "INTERVAL_UPPER_BOUND");
+        bind(set, "58e82fc4-1492-5cf8-8997-43800360bbd6", "IRISH_LANGUAGE");
+        bind(set, "bdd59458-381a-5818-8577-60525f11ac6c", "ITALIAN_LANGUAGE");
+        bind(set, "bbbbf1fe-00f0-55e0-a19c-6300dbaab9b2", "KOMET_BASE_MODEL_COMPONENT_PATTERN");
         bind(set, "61c1a544-2acf-58cd-8cc0-9ac581d4227e", "KOMET_USER");
         bind(set, "f56fa231-10f9-5e7f-a86d-a1d61b5b56e3", "LANGUAGE");
         bind(set, "cd56cceb-8507-5ae5-a928-16079fe6f832", "LANGUAGE_CONCEPT_NID_FOR_DESCRIPTION");
@@ -139,6 +152,7 @@ final class KernelBindings {
         bind(set, "8aa48cfd-485b-5140-beb9-0d122f7812d9", "SUFFICIENT_SET");
         bind(set, "8bdcbe5d-e92e-5c10-845e-b585e6061672", "TEXT_FOR_DESCRIPTION");
         bind(set, "a9b0dfb2-f463-5dae-8ba8-7f2e8385571b", "TIME_FOR_VERSION");
+        bind(set, "6070f6f5-893d-5144-adce-7d305c391cf9", "TINKAR_BASE_MODEL_COMPONENT_PATTERN");
         bind(set, "53f866d0-fd61-5c85-a16c-150bd619a0ac", "TRANSITIVE_PROPERTY");
         bind(set, "55f74246-0a25-57ac-9473-a788d08fb656", "UNINITIALIZED_COMPONENT");
         bind(set, "40afdda5-89d6-4b80-8181-1ddd6eb92dc8", "UNIT_OF_MEASURE");

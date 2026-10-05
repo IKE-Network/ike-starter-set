@@ -53,6 +53,12 @@ public final class Ike {
      */
     public static final BindingClass KERNEL = SET.bindingClass("dev.ikm.tinkar.terms", "KernelTerm");
 
+    /**
+     * Komet's terms: the components Komet and its plugins name beyond the kernel, generated
+     * into {@code dev.ikm.komet.terms.KometTerm} and committed there (see {@link KometBindings}).
+     */
+    public static final BindingClass KOMET = SET.bindingClass("dev.ikm.komet.terms", "KometTerm");
+
     /** The set's module concept — the export dimension for this knowledge. */
     public static final EntityProxy.Concept MODULE =
             SET.conceptRef("IkeFoundation module (IkeFoundation)");

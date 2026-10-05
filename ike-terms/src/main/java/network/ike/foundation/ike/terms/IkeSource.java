@@ -141,8 +141,10 @@ public final class IkeSource implements KnowledgeSetSource {
         DefinitionCompletionSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
-        // The kernel binds components declared throughout the sections above, so it composes last.
+        // The kernel and Komet's terms bind components declared throughout the sections above,
+        // so they compose last.
         KernelBindings.compose(Ike.SET);
+        KometBindings.compose(Ike.SET);
         return Ike.SET;
     }
 }
