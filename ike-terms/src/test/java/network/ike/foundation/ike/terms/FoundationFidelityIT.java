@@ -700,6 +700,26 @@ class FoundationFidelityIT {
     }
 
     @Test
+    @DisplayName("Every concept and pattern in the replayed store carries a fully qualified name")
+    void everyComponentCarriesAFullyQualifiedName() {
+        // A component without one cannot be named in the language coordinates that prefer
+        // it, nor declared by the ledger generator; 63 expression-language concepts once
+        // lost theirs when a generic keyword description suppressed the derived FQN.
+        List<String> missing = new ArrayList<>();
+        EntityService.get().forEachConceptEntity(concept -> {
+            if (languageCalculator.getFullyQualifiedNameText(concept.nid()).isEmpty()) {
+                missing.add("concept " + PrimitiveData.text(concept.nid()));
+            }
+        });
+        EntityService.get().forEachPatternEntity(pattern -> {
+            if (languageCalculator.getFullyQualifiedNameText(pattern.nid()).isEmpty()) {
+                missing.add("pattern " + PrimitiveData.text(pattern.nid()));
+            }
+        });
+        assertEquals(List.of(), missing, "components without a fully qualified name");
+    }
+
+    @Test
     @DisplayName("Every pre-existing component's latest isA parent set is unchanged after replay"
             + " (except components with ambiguous axiom history, see HISTORICALLY_AMBIGUOUS_AXIOM_NIDS,"
             + " and DELIBERATELY_REPARENTED_ISA, which get their new, expected parent)")
