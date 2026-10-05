@@ -862,8 +862,7 @@ class FoundationFidelityIT {
                 "the pair's declared time is the platform's named inception instant, which"
                         + " renders as the word \"Inception\" on every surface (KEC ruling,"
                         + " IKE-Network/ike-issues#894)");
-        assertEquals(UUID.fromString("45b13d09-7c50-5495-8460-aef66a2ae615"),
-                Ike.INCEPTION.publicId().asUuidArray()[0],
+        assertTrue(Ike.INCEPTION.publicId().contains(UUID.fromString("45b13d09-7c50-5495-8460-aef66a2ae615")),
                 "the foundation inception tuple must derive the stamp identity the guide's"
                         + " badge-anatomy figure features — the tuple is part of the published"
                         + " knowledge-state");
@@ -1217,7 +1216,7 @@ class FoundationFidelityIT {
         // collisions (OWL Axiom Syntax, Identifier, Module origins, Path origins) were
         // fixed with distinct referenced-component meanings in PatternShapeRefinementSet,
         // and the exemption registry that pinned them is gone — no pattern may collide.
-        Set<UUID> colliding = new HashSet<>();
+        Set<String> colliding = new HashSet<>();
         for (KnowledgeSet.Declaration declaration : Ike.SET.declarations()) {
             if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
                 continue;
@@ -1230,7 +1229,7 @@ class FoundationFidelityIT {
             PatternEntityVersion version = latest.get();
             for (FieldDefinitionForEntity field : version.fieldDefinitions()) {
                 if (field.meaningNid() == version.semanticMeaningNid()) {
-                    colliding.add(declaration.publicId().asUuidArray()[0]);
+                    colliding.add(declaration.publicId().idString());
                 }
             }
         }

@@ -96,7 +96,7 @@ public final class ElmIdentity {
      * @return the derived public id
      */
     public static PublicId list(PublicId definition, String positionPath) {
-        return PublicIds.of(UuidT5Generator.get(definition.asUuidArray()[0], "list " + positionPath));
+        return PublicIds.of(UuidT5Generator.get(definition.leastUuid(), "list " + positionPath));
     }
 
     /**
@@ -109,7 +109,7 @@ public final class ElmIdentity {
      * @return the derived public id
      */
     public static PublicId reference(PublicId definition, String referenceKind, String libraryName, String name) {
-        return PublicIds.of(UuidT5Generator.get(definition.asUuidArray()[0],
+        return PublicIds.of(UuidT5Generator.get(definition.leastUuid(),
                 "reference " + referenceKind + " " + libraryName + "." + name));
     }
 
@@ -122,6 +122,6 @@ public final class ElmIdentity {
      * @return the derived vertex UUID
      */
     public static UUID vertex(PublicId tree, String path) {
-        return UuidT5Generator.get(tree.asUuidArray()[0], "vertex " + path);
+        return UuidT5Generator.get(tree.leastUuid(), "vertex " + path);
     }
 }

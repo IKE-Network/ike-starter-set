@@ -99,9 +99,9 @@ public final class ElmLibraryWriter {
     public PublicId library(String libraryId, String version, String system) {
         PublicId libraryPublicId = ElmIdentity.library(libraryId);
         int libraryNid = store.concept(libraryPublicId);
-        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.asUuidArray()[0], "fqn"),
+        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "fqn"),
                 libraryId + " (CQL library)", TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.asUuidArray()[0], "name"),
+        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "name"),
                 libraryId, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE);
 
         ElmNode identifier = builder.node("VersionedIdentifier").property("id", libraryId);
@@ -133,9 +133,9 @@ public final class ElmLibraryWriter {
         PublicId definitionId = ElmIdentity.definition(libraryId, root.kind().name(), name, operandTypes);
         int libraryNid = PrimitiveData.nid(ElmIdentity.library(libraryId));
         int definitionNid = writeTree(definitionId, libraryNid, builder.build(root, definitionId));
-        int descriptionNid = store.describe(definitionNid, UuidT5Generator.get(definitionId.asUuidArray()[0], "name"),
+        int descriptionNid = store.describe(definitionNid, UuidT5Generator.get(definitionId.leastUuid(), "name"),
                 name, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE);
-        store.dialect(descriptionNid, UuidT5Generator.get(definitionId.asUuidArray()[0], "cql-dialect"),
+        store.dialect(descriptionNid, UuidT5Generator.get(definitionId.leastUuid(), "cql-dialect"),
                 IkeTerms.CQL_DIALECT_PATTERN, TinkarTerm.PREFERRED);
         return definitionId;
     }

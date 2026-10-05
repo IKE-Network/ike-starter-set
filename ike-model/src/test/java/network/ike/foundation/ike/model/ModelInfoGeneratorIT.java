@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -64,7 +65,7 @@ class ModelInfoGeneratorIT {
 
     private static void mark(StoreWriter writer, EntityProxy.Pattern pattern, String model, boolean retrievable,
                              EntityProxy.Concept codeField) {
-        writer.semantic(PublicIds.of(UuidT5Generator.get(pattern.publicId().asUuidArray()[0], "class mark " + model)),
+        writer.semantic(PublicIds.of(UuidT5Generator.get(pattern.publicId().leastUuid(), "class mark " + model)),
                 IkeTerms.MODEL_CLASS_MARK_PATTERN, pattern.nid(), Lists.immutable.of(model, retrievable, codeField));
     }
 
@@ -104,7 +105,9 @@ class ModelInfoGeneratorIT {
         assertEquals(List.of(new ModelInfoFile.Requirement("System", "1.0.0")), file.requirements());
         assertEquals(2, file.classes().size());
         ClassInfo unit = file.classNamed("UCUM.UCUM Unit").orElseThrow();
-        assertEquals("urn:uuid:" + IkeTerms.UCUM_UNIT_PATTERN.publicId().asUuidArray()[0], unit.identifier(),
+        assertTrue(unit.identifier().startsWith("urn:uuid:"), "the class carries a UUID identifier");
+        assertTrue(IkeTerms.UCUM_UNIT_PATTERN.publicId().contains(
+                        UUID.fromString(unit.identifier().substring("urn:uuid:".length()))),
                 "the class carries the pattern's identity");
         assertEquals("UCUM code", unit.primaryCodePath());
         assertEquals(11, unit.elements().size());

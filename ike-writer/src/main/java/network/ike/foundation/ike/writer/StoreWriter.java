@@ -174,7 +174,7 @@ public final class StoreWriter {
      * @return the axiom semantic's nid
      */
     public int statedParent(PublicId conceptId, PublicId parentId) {
-        UUID conceptUuid = conceptId.asUuidArray()[0];
+        UUID conceptUuid = conceptId.leastUuid();
         PublicId axiomId = PublicIds.of(UuidT5Generator.get(conceptUuid, "stated axioms"));
         int[] ordinal = {0};
         LogicalExpressionBuilder builder = new LogicalExpressionBuilder(
@@ -387,10 +387,10 @@ public final class StoreWriter {
         if (EntityHandle.get(stampNid).entity().filter(e -> !e.canceled()).isPresent()) {
             return stampNid;
         }
-        UUID primordial = stampId.asUuidArray()[0];
+        PublicIdentifierRecord identifier = PublicIdentifierRecord.make(stampId);
         RecordListBuilder<StampVersionRecord> versionRecords = RecordListBuilder.make();
-        StampRecord stampEntity = new StampRecord(primordial.getMostSignificantBits(),
-                primordial.getLeastSignificantBits(), stampId.additionalUuidLongs(), stampNid, versionRecords);
+        StampRecord stampEntity = new StampRecord(identifier.mostSignificantBits(),
+                identifier.leastSignificantBits(), identifier.additionalUuidLongs(), stampNid, versionRecords);
         versionRecords.add(new StampVersionRecord(stampEntity, stamp.state().nid(), stamp.time(),
                 stamp.author().nid(), stamp.module().nid(), stamp.path().nid()));
         versionRecords.build();

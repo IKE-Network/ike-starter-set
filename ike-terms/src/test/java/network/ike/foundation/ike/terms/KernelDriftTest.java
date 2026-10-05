@@ -112,8 +112,8 @@ class KernelDriftTest {
                 continue;
             }
             PublicId committedId = entry.getValue().publicId();
-            // Every UUID, as a set: their order is the proxy's (tinkar-core's KernelTermIdentityTest
-            // holds the first UUID to TinkarTerm's), not the set's.
+            // Every UUID, as a set: public ids match on any UUID, in any order, and a binding must
+            // lose none (tinkar-core's KernelTermIdentityTest holds the kernel to TinkarTerm likewise).
             if (!java.util.Set.of(declaration.publicId().asUuidArray()).equals(java.util.Set.of(committedId.asUuidArray()))) {
                 drift.add(entry.getKey() + ": committed as " + committedId.idString()
                         + ", the set has " + declaration.publicId().idString());

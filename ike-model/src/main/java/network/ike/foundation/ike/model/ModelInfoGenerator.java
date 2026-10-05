@@ -90,7 +90,7 @@ public final class ModelInfoGenerator {
         xml.append("   <requiredModelInfo name=\"System\" version=\"1.0.0\"/>\n");
         for (Mark mark : marks) {
             String name = className(mark.patternNid());
-            UUID uuid = EntityHandle.get(mark.patternNid()).expectEntity().publicId().asUuidArray()[0];
+            UUID uuid = EntityHandle.get(mark.patternNid()).expectEntity().publicId().leastUuid();
             Latest<PatternEntityVersion> pattern = calculator.latest(mark.patternNid());
             String codePath = "";
             List<FieldDefinitionForEntity> fields = new ArrayList<>();
