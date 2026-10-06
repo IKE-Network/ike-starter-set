@@ -15,6 +15,9 @@
  */
 package network.ike.foundation.ike.model;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy;
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityHandle;
@@ -23,7 +26,6 @@ import dev.ikm.tinkar.entity.FieldDefinitionForEntity;
 import dev.ikm.tinkar.entity.PatternEntityVersion;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.EntityFacade;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 
 import java.util.ArrayList;
@@ -159,26 +161,26 @@ public final class ModelInfoGenerator {
      * @return the type in the model information's syntax
      */
     static String typeFor(int dataTypeNid) {
-        if (dataTypeNid == TinkarTerm.STRING.nid() || dataTypeNid == TinkarTerm.STRING_FIELD.nid()) {
+        if (dataTypeNid == KernelTerm.STRING.nid()) {
             return "System.String";
         }
-        if (dataTypeNid == TinkarTerm.BOOLEAN_FIELD.nid()) {
+        if (dataTypeNid == KernelTerm.BOOLEAN_FIELD.nid()) {
             return "System.Boolean";
         }
-        if (dataTypeNid == TinkarTerm.INTEGER_FIELD.nid()) {
+        if (dataTypeNid == KernelTerm.INTEGER_FIELD.nid()) {
             return "System.Integer";
         }
-        if (dataTypeNid == TinkarTerm.LONG.nid() || dataTypeNid == TinkarTerm.LONG_FIELD.nid()) {
+        if (dataTypeNid == KernelTerm.LONG.nid()) {
             return "System.Long";
         }
-        if (dataTypeNid == TinkarTerm.DECIMAL_FIELD.nid() || dataTypeNid == TinkarTerm.FLOAT_FIELD.nid()
-                || dataTypeNid == TinkarTerm.DOUBLE_FIELD.nid()) {
+        if (dataTypeNid == KernelTerm.DECIMAL_FIELD.nid() || dataTypeNid == KernelTerm.FLOAT_FIELD.nid()
+                || dataTypeNid == IkeTerms.DOUBLE_DISPLAY_FIELD.nid()) {
             return "System.Decimal";
         }
-        if (dataTypeNid == TinkarTerm.CONCEPT_FIELD.nid()) {
+        if (dataTypeNid == KernelTerm.CONCEPT_FIELD.nid()) {
             return "System.Code";
         }
-        if (dataTypeNid == TinkarTerm.COMPONENT_ID_LIST_FIELD.nid() || dataTypeNid == TinkarTerm.COMPONENT_ID_SET_FIELD.nid()) {
+        if (dataTypeNid == KernelTerm.COMPONENT_ID_LIST_FIELD.nid() || dataTypeNid == KernelTerm.COMPONENT_ID_SET_FIELD.nid()) {
             return "List<System.Any>";
         }
         return "System.Any";

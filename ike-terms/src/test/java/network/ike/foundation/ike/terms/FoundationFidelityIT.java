@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.IntIdList;
 import dev.ikm.tinkar.common.id.IntIdSet;
 import dev.ikm.tinkar.common.id.PublicIds;
@@ -50,7 +51,6 @@ import dev.ikm.tinkar.entity.load.LoadEntitiesFromProtobufFile;
 import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -214,12 +214,12 @@ class FoundationFidelityIT {
      */
     private static final int IMPORTED_CATALOG_CONCEPTS = 463;
     /**
-     * Concepts the set adopts from {@code TinkarTerm}, under their established identities, as
-     * the set replaces it as the source of the platform's terms: constants live code uses that
+     * Concepts the set adopts under their established identities, as the set became the
+     * source of the platform's terms: constants live code uses that
      * the Tinkar starter data never held. {@code SCTID}, the identifier source of the SNOMED CT
      * identifiers the SNOMED knowledge base carries.
      */
-    private static final int ADOPTED_TINKAR_TERM_CONCEPTS = 1;
+    private static final int ADOPTED_ESTABLISHED_CONCEPTS = 1;
     /** Patterns a catalog import mints: the ELM type position pattern. */
     private static final int IMPORTED_CATALOG_PATTERNS = 1;
 
@@ -233,7 +233,7 @@ class FoundationFidelityIT {
      * no new version to their axiom semantic (confirmed empirically — same version
      * count before and after). The likely cause is a path-coordinate bootstrap
      * characteristic: before replay, no stamp anywhere in this store is on
-     * {@code TinkarTerm.DEVELOPMENT_PATH} (the raw starter data is entirely on
+     * {@code KernelTerm.DEVELOPMENT_PATH} (the raw starter data is entirely on
      * Primordial path), so "latest on development" has no real cutoff to resolve
      * against for a component whose own history spans more than one shape; after
      * replay stamps ~407 new Development-path versions (this ledger's own inception
@@ -656,7 +656,7 @@ class FoundationFidelityIT {
         Set<Integer> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                     AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
@@ -672,7 +672,7 @@ class FoundationFidelityIT {
     private static boolean hasAmbiguousAxiomHistory(int componentNid) {
         Set<Object> distinctShapes = new HashSet<>();
         for (SemanticEntity<?> axioms : EntityService.get()
-                .semanticsForComponentOfPattern(componentNid, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).toList()) {
+                .semanticsForComponentOfPattern(componentNid, KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).toList()) {
             for (Object versionObj : axioms.versions()) {
                 dev.ikm.tinkar.entity.SemanticEntityVersion version =
                         (dev.ikm.tinkar.entity.SemanticEntityVersion) versionObj;
@@ -752,7 +752,7 @@ class FoundationFidelityIT {
         List<DiTreeEntity> trees = new ArrayList<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) ->
                         trees.add((DiTreeEntity) semanticVersion.fieldValues().get(0)));
         return trees;
@@ -791,17 +791,17 @@ class FoundationFidelityIT {
 
             List<EntityVertex> conceptAtoms = childrenWithMeaning(tree, and, LogicalAxiomSemantic.CONCEPT);
             assertEquals(1, conceptAtoms.size(), "expected one is-a ConceptAxiom for nid " + nid);
-            ConceptFacade isAParent = conceptAtoms.getFirst().propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            ConceptFacade isAParent = conceptAtoms.getFirst().propertyFast(KernelTerm.CONCEPT_REFERENCE);
             assertEquals(parentNid, isAParent.nid(), "is-a parent drifted for nid " + nid);
 
             List<EntityVertex> roles = childrenWithMeaning(tree, and, LogicalAxiomSemantic.ROLE);
             assertEquals(1, roles.size(), "expected one Part of role for nid " + nid);
             EntityVertex role = roles.getFirst();
-            ConceptFacade roleType = role.propertyFast(TinkarTerm.ROLE_TYPE);
+            ConceptFacade roleType = role.propertyFast(KernelTerm.ROLE_TYPE);
             assertEquals(partOfNid, roleType.nid(), "role type must be Part of for nid " + nid);
             List<EntityVertex> restrictions = childrenWithMeaning(tree, role, LogicalAxiomSemantic.CONCEPT);
             assertEquals(1, restrictions.size(), "expected one role restriction for nid " + nid);
-            ConceptFacade whole = restrictions.getFirst().propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            ConceptFacade whole = restrictions.getFirst().propertyFast(KernelTerm.CONCEPT_REFERENCE);
             int expectedWholeNid = DELIBERATELY_PART_OF_WHOLE_BY_NID.getOrDefault(nid, parentNid);
             assertEquals(expectedWholeNid, whole.nid(),
                     "partOf whole drifted for nid " + nid);
@@ -826,7 +826,7 @@ class FoundationFidelityIT {
 
         Set<Integer> propertyConcepts = new HashSet<>();
         for (EntityVertex atom : childrenWithMeaning(tree, ands.getFirst(), LogicalAxiomSemantic.CONCEPT)) {
-            ConceptFacade referenced = atom.propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            ConceptFacade referenced = atom.propertyFast(KernelTerm.CONCEPT_REFERENCE);
             propertyConcepts.add(referenced.nid());
         }
         assertEquals(Set.of(PrimitiveData.nid(ROLE_TYPE_UUID), PrimitiveData.nid(TRANSITIVE_FEATURE_UUID)),
@@ -905,14 +905,14 @@ class FoundationFidelityIT {
         int[] patternsAfter = {0};
         EntityService.get().forEachPatternEntity(pattern -> patternsAfter[0]++);
         assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS
-                        + IMPORTED_CATALOG_CONCEPTS + ADOPTED_TINKAR_TERM_CONCEPTS, conceptsAfter[0],
+                        + IMPORTED_CATALOG_CONCEPTS + ADOPTED_ESTABLISHED_CONCEPTS, conceptsAfter[0],
                 "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
                         + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
                         + " new concepts (see AUTHORED_CONTENT_CONCEPTS,"
                         + " IKE-Network/ike-issues#880 and #885) plus " + IMPORTED_CATALOG_CONCEPTS
                         + " imported catalog concepts (see IMPORTED_CATALOG_CONCEPTS, #1104) plus "
-                        + ADOPTED_TINKAR_TERM_CONCEPTS + " adopted from TinkarTerm (see"
-                        + " ADOPTED_TINKAR_TERM_CONCEPTS) — no other minting");
+                        + ADOPTED_ESTABLISHED_CONCEPTS + " adopted under established identities (see"
+                        + " ADOPTED_ESTABLISHED_CONCEPTS) — no other minting");
         assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS + IMPORTED_CATALOG_PATTERNS, patternsAfter[0],
                 "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
                         + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
@@ -969,8 +969,8 @@ class FoundationFidelityIT {
      * @return the nids of the naming-apparatus patterns
      */
     private static Set<Integer> namingApparatusPatternNids() {
-        return Set.of(TinkarTerm.DESCRIPTION_PATTERN.nid(),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(),
+        return Set.of(KernelTerm.DESCRIPTION_PATTERN.nid(),
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(),
                 // The Prose element pattern: DefaultsAndTemplatesSet authors a curated
                 // narrative ABOUT Default value concept (a domain description of the
                 // koncept, IKE-Network/ike-issues#888) — foundation-module terminology
@@ -1344,7 +1344,7 @@ class FoundationFidelityIT {
                     .map(FoundationFidelityIT::normalized).orElse("");
             boolean hasRealDefinition = false;
             for (SemanticEntityVersion definitionVersion : languageCalculator
-                    .getDescriptionsForComponentOfType(nid, TinkarTerm.DEFINITION_DESCRIPTION_TYPE.nid())) {
+                    .getDescriptionsForComponentOfType(nid, KernelTerm.DEFINITION_DESCRIPTION_TYPE.nid())) {
                 String definition = languageCalculator.getTextFromSemanticVersion(definitionVersion)
                         .map(FoundationFidelityIT::normalized).orElse("");
                 if (!definition.isEmpty() && !definition.equals(label) && !definition.equals(regularName)) {

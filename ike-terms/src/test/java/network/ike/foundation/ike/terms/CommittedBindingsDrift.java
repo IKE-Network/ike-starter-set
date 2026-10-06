@@ -105,7 +105,7 @@ final class CommittedBindingsDrift {
             }
             PublicId committedId = entry.getValue().publicId();
             // Every UUID, as a set: public ids match on any UUID, in any order, and a binding must
-            // lose none (tinkar-core's KernelTermIdentityTest holds the kernel to TinkarTerm likewise).
+            // lose none.
             if (!Set.of(declaration.publicId().asUuidArray()).equals(Set.of(committedId.asUuidArray()))) {
                 drift.add(entry.getKey() + ": committed as " + committedId.idString()
                         + ", the set has " + declaration.publicId().idString());

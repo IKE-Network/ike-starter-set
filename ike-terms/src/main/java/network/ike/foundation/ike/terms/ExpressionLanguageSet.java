@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.ConceptBuilder;
@@ -153,13 +154,13 @@ final class ExpressionLanguageSet {
                         PublicIds.of(set.uuidFor(
                                 "Keyword binding: " + logic.label() + " '" + keyword + "' names " + owner)),
                         logic.language(), keyword, role)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(set.uuidFor(descriptionId)),
-                        IkeTerm.ENGLISH_LANGUAGE, keyword, set.conceptRef("Description case sensitive"),
-                        IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(set.uuidFor(descriptionId)),
+                        KernelTerm.ENGLISH_LANGUAGE, keyword, set.conceptRef("Description case sensitive"),
+                        KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semanticOn(PublicIds.of(set.uuidFor(descriptionId)), logic.dialectPattern(),
                         PublicIds.of(set.uuidFor(
                                 "Dialect: " + logic.label() + " '" + keyword + "' on " + owner)),
-                        preferred ? IkeTerm.PREFERRED : IkeTerm.ACCEPTABLE);
+                        preferred ? KernelTerm.PREFERRED : EntityProxy.Concept.make("Acceptable (SOLOR)", PublicIds.of("12b9e103-060e-3256-9982-18c1191af60e")));
     }
 
     /**
@@ -185,7 +186,7 @@ final class ExpressionLanguageSet {
                         + " takes and what it yields; and the checked relations between a construct"
                         + " and a core construct, which are logical equivalence, definitional"
                         + " extension, and conservative extension.")
-                .isA(IkeTerm.MODEL_CONCEPT)
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")))
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ExpressionLanguageModel (Expression Languages — One AND, Four"
@@ -275,24 +276,24 @@ final class ExpressionLanguageSet {
                 .isA(set.conceptRef("English Dialect"));
 
         set.pattern(CQL_DIALECT_PATTERN_FQN).at(inception)
-                .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY)
-                .purpose(IkeTerm.DESCRIPTION_SEMANTIC)
-                .field(set.conceptRef("CQL dialect (IkeFoundation)"), IkeTerm.DESCRIPTION_ACCEPTABILITY,
-                        IkeTerm.COMPONENT_FIELD)
+                .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
+                .field(set.conceptRef("CQL dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
+                        KernelTerm.COMPONENT_FIELD)
                 .definition("Records whether a description is preferred or acceptable in the CQL"
                         + " dialect. One field: that description's acceptability for this dialect.");
         set.pattern(ECL_DIALECT_PATTERN_FQN).at(inception)
-                .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY)
-                .purpose(IkeTerm.DESCRIPTION_SEMANTIC)
-                .field(set.conceptRef("ECL dialect (IkeFoundation)"), IkeTerm.DESCRIPTION_ACCEPTABILITY,
-                        IkeTerm.COMPONENT_FIELD)
+                .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
+                .field(set.conceptRef("ECL dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
+                        KernelTerm.COMPONENT_FIELD)
                 .definition("Records whether a description is preferred or acceptable in the ECL"
                         + " dialect. One field: that description's acceptability for this dialect.");
         set.pattern(EL_DIALECT_PATTERN_FQN).at(inception)
-                .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY)
-                .purpose(IkeTerm.DESCRIPTION_SEMANTIC)
-                .field(set.conceptRef("EL++ dialect (IkeFoundation)"), IkeTerm.DESCRIPTION_ACCEPTABILITY,
-                        IkeTerm.COMPONENT_FIELD)
+                .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
+                .field(set.conceptRef("EL++ dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
+                        KernelTerm.COMPONENT_FIELD)
                 .definition("Records whether a description is preferred or acceptable in the EL++"
                         + " dialect. One field: that description's acceptability for this dialect.");
 
@@ -598,7 +599,7 @@ final class ExpressionLanguageSet {
                 .synonym("Binding language")
                 .definition("The logic a keyword binding admits the named construct, kind, or"
                         + " literal to.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(KernelTerm.CONCEPT_FIELD);
         EntityProxy.Concept bindingLanguage = set.conceptRef("Binding language (IkeFoundation)");
 
         set.concept("Keyword text (IkeFoundation)").at(inception)
@@ -613,13 +614,13 @@ final class ExpressionLanguageSet {
                 .synonym("Core construct")
                 .definition("The construct a relation assertion relates the extending construct to:"
                         + " a construct of the EL++ core.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(KernelTerm.CONCEPT_FIELD);
         EntityProxy.Concept coreConstruct = set.conceptRef("Core construct (IkeFoundation)");
 
         set.concept("Result kind (IkeFoundation)").at(inception)
                 .synonym("Result kind")
                 .definition("The operand kind of the result a construct or a literal yields.")
-                .isA(IkeTerm.CONCEPT_FIELD);
+                .isA(KernelTerm.CONCEPT_FIELD);
         EntityProxy.Concept resultKind = set.conceptRef("Result kind (IkeFoundation)");
 
         set.concept("Lower bound value (IkeFoundation)").at(inception)
@@ -745,10 +746,10 @@ final class ExpressionLanguageSet {
                 .meaning(set.conceptRef("Keyword binding (IkeFoundation)"))
                 .purpose(set.conceptRef("Construct admission (IkeFoundation)"))
                 .field(bindingLanguage, set.conceptRef("Language membership (IkeFoundation)"),
-                        IkeTerm.COMPONENT_FIELD)
-                .field(keywordText, set.conceptRef("Surface spelling (IkeFoundation)"), IkeTerm.STRING)
+                        KernelTerm.COMPONENT_FIELD)
+                .field(keywordText, set.conceptRef("Surface spelling (IkeFoundation)"), KernelTerm.STRING)
                 .field(lexicalRole, set.conceptRef("Grammatical placement (IkeFoundation)"),
-                        IkeTerm.COMPONENT_FIELD)
+                        KernelTerm.COMPONENT_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ExpressionLanguageKeywordPattern (Expression Languages — Which"
@@ -775,9 +776,9 @@ final class ExpressionLanguageSet {
         set.pattern(DENOTATION_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("Construct denotation (IkeFoundation)"))
                 .purpose(set.conceptRef("Well-typed relation (IkeFoundation)"))
-                .field(operandKind, set.conceptRef("Operand typing (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
-                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
-                .field(arity, set.conceptRef("Operand count (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                .field(operandKind, set.conceptRef("Operand typing (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                .field(arity, set.conceptRef("Operand count (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ConstructDenotationPattern (Expression Languages — Kinds Make"
@@ -804,11 +805,11 @@ final class ExpressionLanguageSet {
         set.pattern(LITERAL_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("Literal denotation (IkeFoundation)"))
                 .purpose(set.conceptRef("Fixed value (IkeFoundation)"))
-                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("Lower bound value (IkeFoundation)"),
-                        set.conceptRef("Literal lower bound (IkeFoundation)"), IkeTerm.INTEGER_FIELD)
+                        set.conceptRef("Literal lower bound (IkeFoundation)"), KernelTerm.INTEGER_FIELD)
                 .field(set.conceptRef("Upper bound value (IkeFoundation)"),
-                        set.conceptRef("Literal upper bound (IkeFoundation)"), IkeTerm.INTEGER_FIELD)
+                        set.conceptRef("Literal upper bound (IkeFoundation)"), KernelTerm.INTEGER_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: LiteralDenotationPattern (Expression Languages — The Middle"
@@ -837,8 +838,8 @@ final class ExpressionLanguageSet {
         set.pattern(RELATION_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("Construct relation assertion (IkeFoundation)"))
                 .purpose(set.conceptRef("Checked relation (IkeFoundation)"))
-                .field(coreConstruct, set.conceptRef("Relation target (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
-                .field(constructRelation, set.conceptRef("Relation kind (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
+                .field(coreConstruct, set.conceptRef("Relation target (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                .field(constructRelation, set.conceptRef("Relation kind (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ConstructRelationPattern (Expression Languages — Obligations"
@@ -882,7 +883,7 @@ final class ExpressionLanguageSet {
                         + " things that belong to every operand class at once, Set AND keeps the"
                         + " members found in every operand set, whatever kind of thing they are,"
                         + " and Presence AND is Present only when every operand is Present.")
-                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .isA(EntityProxy.Concept.make("Connective operator (SOLOR)", PublicIds.of("3fdcaadc-d972-58e9-84f1-b3a39903b076")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Generic AND")),
                         operandKind, operandKind, variadic);
         EntityProxy.Concept genericAnd = set.conceptRef(GENERIC_AND_FQN);
@@ -902,7 +903,7 @@ final class ExpressionLanguageSet {
                         + " the definition root that anchors an expression, and the concept"
                         + " reference that names a class. Their inherited home beside the"
                         + " connectives was a filing accident.")
-                .isA(IkeTerm.TINKAR_MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("IKE base model concept", PublicIds.of("bc59d656-83d3-47d8-9507-0e656ea95463")));
 
         // ── Type keywords: CQL's types normalize to ANF kinds ───────────
         keyword(set.concept("Presence measure kind (IkeFoundation)").at(inception), set, keywords,
@@ -940,7 +941,7 @@ final class ExpressionLanguageSet {
                 .synonym("Present literal")
                 .definition("One of the three presence values: the determination found the topic"
                         + " present. The value CQL's \"true\" names.")
-                .isA(IkeTerm.LITERAL_VALUE)
+                .isA(KernelTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Present literal")),
                         presenceMeasureKind, 1, 1),
                 set, keywords, cql, "true", literalKeyword, true, "Present literal");
@@ -951,7 +952,7 @@ final class ExpressionLanguageSet {
                         + " absent. Absent is a finding, not a gap: a subject with no statement on"
                         + " the topic has no record, not an Absent. The value CQL's \"false\""
                         + " names.")
-                .isA(IkeTerm.LITERAL_VALUE)
+                .isA(KernelTerm.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Absent literal")),
                         presenceMeasureKind, 0, 0),
                 set, keywords, cql, "false", literalKeyword, true, "Absent literal");
@@ -971,7 +972,7 @@ final class ExpressionLanguageSet {
                         + " that NOT leaves unchanged, and it is what CQL's \"null\" becomes when"
                         + " \"null\" stands for a determination that was performed and did not"
                         + " resolve.")
-                .isA(IkeTerm.LITERAL_VALUE, indeterminateResult)
+                .isA(KernelTerm.LITERAL_VALUE, indeterminateResult)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Indeterminate literal")),
                         presenceMeasureKind, 0, 1),
                 set, keywords, cql, "null", literalKeyword, true, "Indeterminate literal");
@@ -1014,7 +1015,7 @@ final class ExpressionLanguageSet {
                         + " is stored as Absent, never as NOT Present. It is not a subtraction of"
                         + " one set from another, which is Set difference, and it has no generic"
                         + " parent, because EL++ has no NOT.")
-                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .isA(EntityProxy.Concept.make("Connective operator (SOLOR)", PublicIds.of("3fdcaadc-d972-58e9-84f1-b3a39903b076")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence NOT")),
                         presenceMeasureKind, presenceMeasureKind, unary),
                 set, keywords, cql, "not", operatorKeyword, true, "Presence NOT");
@@ -1029,7 +1030,7 @@ final class ExpressionLanguageSet {
                         + " NOT of the first joined by Presence OR with the second, so it is"
                         + " definable from Presence OR. CQL's \"implies\" is this, and its"
                         + " nine-row table follows from the bounds.")
-                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .isA(EntityProxy.Concept.make("Connective operator (SOLOR)", PublicIds.of("3fdcaadc-d972-58e9-84f1-b3a39903b076")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence implication")),
                         presenceMeasureKind, presenceMeasureKind, binary)
                 .semantic(relations, PublicIds.of(set.uuidFor(
@@ -1045,7 +1046,7 @@ final class ExpressionLanguageSet {
                         + " OR of the two joined by Presence AND with Presence NOT of their"
                         + " Presence AND, so it is definable from Presence AND. CQL's \"xor\" is"
                         + " this, and its nine-row table follows from the bounds.")
-                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .isA(EntityProxy.Concept.make("Connective operator (SOLOR)", PublicIds.of("3fdcaadc-d972-58e9-84f1-b3a39903b076")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Presence exclusive OR")),
                         presenceMeasureKind, presenceMeasureKind, binary)
                 .semantic(relations, PublicIds.of(set.uuidFor(
@@ -1132,7 +1133,7 @@ final class ExpressionLanguageSet {
                         + " The result and the normal range are two cross-cutting measurements of"
                         + " one statement, and that relation can be decided only with the"
                         + " statement's own range.")
-                .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure within")),
                         measureKind, presenceMeasureKind, binary);
         within = keyword(within, set, keywords, cql, "included in", operatorKeyword, true, "Measure within");
@@ -1146,7 +1147,7 @@ final class ExpressionLanguageSet {
                 .definition("An operator on two measures on one scale that yields a presence value:"
                         + " whether the first encloses the second. Measure within with the"
                         + " operands swapped.")
-                .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure contains")),
                         measureKind, presenceMeasureKind, binary);
         contains = keyword(contains, set, keywords, cql, "includes", operatorKeyword, true, "Measure contains");
@@ -1161,7 +1162,7 @@ final class ExpressionLanguageSet {
                         + " that day, is Indeterminate. For a moment against a period the question"
                         + " becomes whether the moment is inside the period, which is Measure"
                         + " within.")
-                .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure overlaps")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, "overlaps", operatorKeyword, true, "Measure overlaps");
@@ -1179,7 +1180,7 @@ final class ExpressionLanguageSet {
                         + " same way as Less than on every pair of measures, and the set asserts"
                         + " that equivalence. CQL's \"before\"; \"on or before\" and \"before or on\""
                         + " are Less than or equal to.")
-                .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure before")),
                         measureKind, presenceMeasureKind, binary)
                 .semantic(relations, PublicIds.of(set.uuidFor(
@@ -1195,7 +1196,7 @@ final class ExpressionLanguageSet {
                         + " equivalence. CQL's \"after\"; \"on or after\" and \"after or on\" are"
                         + " Greater than or equal to, and \"30 days or more after\" a discharge is"
                         + " Greater than or equal to against the discharge plus 30 days.")
-                .isA(IkeTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure after")),
                         measureKind, presenceMeasureKind, binary)
                 .semantic(relations, PublicIds.of(set.uuidFor(
@@ -1922,7 +1923,7 @@ final class ExpressionLanguageSet {
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " below it in the is-a hierarchy under the view, not including itself."
                         + " Definable from Is-a. The construct ECL's \"<\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Descendant of")),
                         conceptKind, conceptSetKind, unary)
                 .semantic(relations,
@@ -1936,7 +1937,7 @@ final class ExpressionLanguageSet {
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " below it in the is-a hierarchy under the view, itself included."
                         + " Definable from Is-a. The construct ECL's \"<<\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Descendant or self of")),
                         conceptKind, conceptSetKind, unary)
                 .semantic(relations,
@@ -1951,7 +1952,7 @@ final class ExpressionLanguageSet {
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " above it in the is-a hierarchy under the view, not including itself."
                         + " Definable from Is-a. The construct ECL's \">\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Ancestor of")),
                         conceptKind, conceptSetKind, unary)
                 .semantic(relations,
@@ -1964,7 +1965,7 @@ final class ExpressionLanguageSet {
                 .definition("A taxonomy operator that yields, for an anchor concept, every concept"
                         + " above it in the is-a hierarchy under the view, itself included."
                         + " Definable from Is-a. The construct ECL's \">>\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Ancestor or self of")),
                         conceptKind, conceptSetKind, unary)
                 .semantic(relations,
@@ -2029,7 +2030,7 @@ final class ExpressionLanguageSet {
                         + " value is Absent, and a subject with no statement has no record. The"
                         + " construct ECL's \"MINUS\" names on concept sets and CQL's \"except\""
                         + " names on lists of statements: one operation, two spellings.")
-                .isA(IkeTerm.CONNECTIVE_OPERATOR)
+                .isA(EntityProxy.Concept.make("Connective operator (SOLOR)", PublicIds.of("3fdcaadc-d972-58e9-84f1-b3a39903b076")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Set difference")),
                         setKind, setKind, binary),
                 set, keywords, ecl, "MINUS", operatorKeyword, true, "Set difference"),
@@ -2042,7 +2043,7 @@ final class ExpressionLanguageSet {
                         + " concepts its active membership semantics list: a fixed concept set,"
                         + " which is what a CQL value set is too. Not derived from is-a, so no"
                         + " relation to the core is claimed. The construct ECL's \"^\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Member of reference set")),
                         conceptKind, conceptSetKind, unary),
                 set, keywords, ecl, "^", operatorKeyword, true, "Member of reference set"),
@@ -2055,7 +2056,7 @@ final class ExpressionLanguageSet {
                         + " set. Those are the members below an existential restriction over that"
                         + " attribute, so this is definable from Existential restriction. The"
                         + " construct ECL's \":\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute refinement")),
                         conceptSetKind, conceptSetKind, unary)
                 .semantic(relations,
@@ -2072,7 +2073,7 @@ final class ExpressionLanguageSet {
                         + " set is computed under the view and a concept is either in it or not."
                         + " Distinct from Member of reference set, which yields the set: ECL's"
                         + " \"^\" names the set, CQL's \"in\" tests membership.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set membership")),
                         conceptKind, presenceMeasureKind, unary),
                 set, keywords, cql, "in", operatorKeyword, true, "Concept set membership");
@@ -2088,7 +2089,7 @@ final class ExpressionLanguageSet {
                         + " restriction over the grouping attribute with a conjunction inside, so"
                         + " this is definable from Existential restriction. The construct ECL's"
                         + " \"{ }\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute group refinement")),
                         conceptSetKind, conceptSetKind, unary)
                 .semantic(relations,
@@ -2107,7 +2108,7 @@ final class ExpressionLanguageSet {
                         + " recorded. It counts the attributes in the definition under the view,"
                         + " which EL++ cannot express, so it is distinct and no relation to the"
                         + " core is claimed. The construct ECL's \"[ ]\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute count refinement")),
                         conceptSetKind, conceptSetKind, unary),
                 set, keywords, ecl, "[ ]", operatorKeyword, true, "Attribute count refinement");
@@ -2121,7 +2122,7 @@ final class ExpressionLanguageSet {
                         + " the statement layer, computed over the definitions under the view,"
                         + " and distinct. ECL's reverse flag \"R\" is this projection with Set"
                         + " AND and carries no binding. The construct ECL's \".\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Attribute value projection")),
                         conceptSetKind, conceptSetKind, unary),
                 set, keywords, ecl, ".", operatorKeyword, true, "Attribute value projection");
@@ -2137,7 +2138,7 @@ final class ExpressionLanguageSet {
                         + " spelling with the profile fixed; \"+HISTORY\" alone is the moderate"
                         + " profile. It reads association data, not definitions, so it is"
                         + " distinct.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Concept set history extension")),
                         conceptSetKind, conceptSetKind, unary);
         history = keyword(history, set, keywords, ecl, "+HISTORY", operatorKeyword, true, "Concept set history extension");
@@ -2155,7 +2156,7 @@ final class ExpressionLanguageSet {
                         + " is in the list, then their concepts. It reads membership data under"
                         + " the view, not definitions, so it is distinct and no relation to the"
                         + " core is claimed. The construct ECL's \"{{ M }}\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Member field constraint")),
                         conceptKind, conceptSetKind, unary),
                 set, keywords, ecl, "{{ M }}", operatorKeyword, true, "Member field constraint");
@@ -2171,7 +2172,7 @@ final class ExpressionLanguageSet {
                         + " numbers or text has no query kind here, so projecting it is refused."
                         + " It reads membership data under the view, so it is distinct. The"
                         + " construct ECL's \"^ [ ]\" names.")
-                .isA(IkeTerm.TAXONOMY_OPERATOR)
+                .isA(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Member field projection")),
                         conceptKind, conceptSetKind, unary),
                 set, keywords, ecl, "^ [ ]", operatorKeyword, true, "Member field projection");
@@ -2208,7 +2209,7 @@ final class ExpressionLanguageSet {
                         + " middle is never dropped by default: a filter's criteria say which"
                         + " outcomes count. The store speaks only for itself: no statement means no"
                         + " record here.")
-                .isA(IkeTerm.MEANING);
+                .isA(EntityProxy.Concept.make("Meaning (SOLOR)", PublicIds.of("a06158ff-e08a-5d7d-bcfa-6cbfdb138910")));
         EntityProxy.Concept statementOperator = set.conceptRef("Statement operator (IkeFoundation)");
 
         set.concept("Criterion (IkeFoundation)").at(inception)

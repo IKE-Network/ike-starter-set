@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.ucum;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
@@ -25,7 +26,6 @@ import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.writer.StoreWriter;
 import org.eclipse.collections.api.list.ImmutableList;
@@ -90,7 +90,7 @@ class UcumImporterIT {
 
     private static Set<Integer> statedParents(PublicId concept) {
         Set<Integer> parents = new HashSet<>();
-        for (ImmutableList<Object> fields : semanticsAbout(nid(concept), TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
+        for (ImmutableList<Object> fields : semanticsAbout(nid(concept), KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
             DiTreeEntity tree = (DiTreeEntity) fields.get(0);
             collectReferences(tree, tree.root(), parents);
         }
@@ -110,7 +110,7 @@ class UcumImporterIT {
 
     private static List<Description> descriptions(int componentNid) {
         List<Description> found = new ArrayList<>();
-        EntityService.get().forEachSemanticForComponentOfPattern(componentNid, TinkarTerm.DESCRIPTION_PATTERN.nid(),
+        EntityService.get().forEachSemanticForComponentOfPattern(componentNid, KernelTerm.DESCRIPTION_PATTERN.nid(),
                 semantic -> {
                     Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                     if (latest.isPresent()) {
@@ -208,28 +208,28 @@ class UcumImporterIT {
         for (UcumEssence.Unit unit : essence.units()) {
             int nid = nid(UcumIdentity.unit(unit.code()));
             for (String name : unit.names()) {
-                assertTrue(hasDescription(nid, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, name, true),
+                assertTrue(hasDescription(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, name, true),
                         unit.code() + " is found by " + name);
             }
             if (!unit.printSymbol().isEmpty()) {
-                assertTrue(hasDescription(nid, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, unit.printSymbol(), true),
+                assertTrue(hasDescription(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, unit.printSymbol(), true),
                         unit.code() + " is found by its symbol " + unit.printSymbol());
             }
-            assertTrue(hasDescription(nid, TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
+            assertTrue(hasDescription(nid, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
                     unit.names().get(0) + ", " + unit.code() + " (UCUM)", false), unit.code() + " fully qualified");
         }
-        assertTrue(hasDescription(nid(UcumIdentity.unit("min")), TinkarTerm.DEFINITION_DESCRIPTION_TYPE, "60 s", false),
+        assertTrue(hasDescription(nid(UcumIdentity.unit("min")), KernelTerm.DEFINITION_DESCRIPTION_TYPE, "60 s", false),
                 "the definition as UCUM writes it");
-        assertTrue(hasDescription(nid(UcumIdentity.unit("Cel")), TinkarTerm.DEFINITION_DESCRIPTION_TYPE, "1 cel(1 K)", false),
+        assertTrue(hasDescription(nid(UcumIdentity.unit("Cel")), KernelTerm.DEFINITION_DESCRIPTION_TYPE, "1 cel(1 K)", false),
                 "a special unit's definition names its function");
         assertTrue(descriptions(nid(UcumIdentity.unit("m"))).stream()
-                .noneMatch(d -> d.typeNid() == TinkarTerm.DEFINITION_DESCRIPTION_TYPE.nid()), "a base unit has no definition");
+                .noneMatch(d -> d.typeNid() == KernelTerm.DEFINITION_DESCRIPTION_TYPE.nid()), "a base unit has no definition");
         int time = nid(UcumIdentity.property("time"));
-        assertTrue(hasDescription(time, TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, "time (UCUM property)", false));
-        assertTrue(hasDescription(time, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, "time", true));
+        assertTrue(hasDescription(time, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, "time (UCUM property)", false));
+        assertTrue(hasDescription(time, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, "time", true));
         int kilo = nid(UcumIdentity.prefix("k"));
-        assertTrue(hasDescription(kilo, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, "kilo", true));
-        assertTrue(hasDescription(kilo, TinkarTerm.DEFINITION_DESCRIPTION_TYPE, "1e3", false));
+        assertTrue(hasDescription(kilo, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, "kilo", true));
+        assertTrue(hasDescription(kilo, KernelTerm.DEFINITION_DESCRIPTION_TYPE, "1e3", false));
     }
 
     @Test
@@ -249,7 +249,7 @@ class UcumImporterIT {
         for (Map.Entry<EntityProxy.Concept, String> calendar : Map.of(IkeTerms.DAY, "UCUM's d,", IkeTerms.WEEK, "UCUM's wk",
                 IkeTerms.MONTH, "UCUM's mo", IkeTerms.YEAR, "UCUM's a").entrySet()) {
             assertTrue(descriptions(calendar.getKey().nid()).stream().anyMatch(d ->
-                            d.typeNid() == TinkarTerm.DEFINITION_DESCRIPTION_TYPE.nid() && d.text().contains(calendar.getValue())),
+                            d.typeNid() == KernelTerm.DEFINITION_DESCRIPTION_TYPE.nid() && d.text().contains(calendar.getValue())),
                     calendar.getKey().description() + " says it is not " + calendar.getValue());
         }
         for (EntityProxy.Concept ours : List.of(IkeTerms.DAY, IkeTerms.WEEK, IkeTerms.MONTH, IkeTerms.YEAR)) {
@@ -299,7 +299,7 @@ class UcumImporterIT {
         assertEquals(false, record.get(3));
         assertEquals(false, record.get(4));
         assertTrue(statedParents(first).contains(IkeTerms.UCUM_COMPOSED_UNIT.nid()));
-        assertTrue(hasDescription(nid(first), TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, "mg.dL-1", true));
+        assertTrue(hasDescription(nid(first), KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, "mg.dL-1", true));
         assertEquals(nid(UcumIdentity.unit("m")), nid(units.write(units.parse("m{tissue}"), writer)), "an annotated atom is the atom");
         assertEquals(nid(UcumIdentity.unit("cd")), nid(units.identity(units.parse("cd"))));
         assertThrows(UcumSyntaxException.class, () -> units.parse("xyz"));

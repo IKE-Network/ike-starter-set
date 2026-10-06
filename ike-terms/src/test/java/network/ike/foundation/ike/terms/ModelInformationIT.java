@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -81,12 +82,12 @@ class ModelInformationIT {
         assertEquals(nid("Model class kind (IkeFoundation)"), clazz.get(0).meaningNid());
         assertEquals(nid("Class name (IkeFoundation)"), clazz.get(2).meaningNid());
         assertEquals(nid("Class base (IkeFoundation)"), clazz.get(6).meaningNid());
-        assertEquals(IkeTerm.CONCEPT_FIELD.nid(), clazz.get(6).dataTypeNid());
+        assertEquals(KernelTerm.CONCEPT_FIELD.nid(), clazz.get(6).dataTypeNid());
         assertEquals(resolution, clazz.get(6).purposeNid(), "the resolved base is IKE's");
         assertEquals(nid("Class retrievable (IkeFoundation)"), clazz.get(7).meaningNid());
-        assertEquals(IkeTerm.BOOLEAN_FIELD.nid(), clazz.get(7).dataTypeNid());
+        assertEquals(KernelTerm.BOOLEAN_FIELD.nid(), clazz.get(7).dataTypeNid());
         assertEquals(nid("Class primary code element (IkeFoundation)"), clazz.get(9).meaningNid());
-        assertEquals(IkeTerm.COMPONENT_FIELD.nid(), clazz.get(9).dataTypeNid());
+        assertEquals(KernelTerm.COMPONENT_FIELD.nid(), clazz.get(9).dataTypeNid());
         assertEquals(resolution, clazz.get(9).purposeNid());
         assertEquals(nid("Class target type (IkeFoundation)"), clazz.get(12).meaningNid());
         assertEquals(resolution, clazz.get(12).purposeNid());
@@ -101,9 +102,9 @@ class ModelInformationIT {
         assertEquals(nid("Element name (IkeFoundation)"), element.get(0).meaningNid());
         assertEquals(nid("Element type (IkeFoundation)"), element.get(1).meaningNid());
         assertEquals(nid("Element class (IkeFoundation)"), element.get(2).meaningNid());
-        assertEquals(IkeTerm.CONCEPT_FIELD.nid(), element.get(2).dataTypeNid());
+        assertEquals(KernelTerm.CONCEPT_FIELD.nid(), element.get(2).dataTypeNid());
         assertEquals(nid("Element type specifier (IkeFoundation)"), element.get(3).meaningNid());
-        assertEquals(IkeTerm.DITREE_FIELD.nid(), element.get(3).dataTypeNid());
+        assertEquals(KernelTerm.DITREE_FIELD.nid(), element.get(3).dataTypeNid());
         assertEquals(resolution, element.get(2).purposeNid());
         assertEquals(resolution, element.get(3).purposeNid());
         for (int i = 4; i < 17; i++) {
@@ -122,7 +123,7 @@ class ModelInformationIT {
         assertEquals(nid("Model version (IkeFoundation)"), model.get(1).meaningNid());
         assertEquals(nid("Model url (IkeFoundation)"), model.get(2).meaningNid());
         assertEquals(nid("Model case sensitive (IkeFoundation)"), model.get(10).meaningNid());
-        assertEquals(IkeTerm.BOOLEAN_FIELD.nid(), model.get(10).dataTypeNid());
+        assertEquals(KernelTerm.BOOLEAN_FIELD.nid(), model.get(10).dataTypeNid());
         for (FieldDefinitionForEntity field : model) {
             assertEquals(record, field.purposeNid(), "every model field is the file's record");
         }
@@ -137,7 +138,7 @@ class ModelInformationIT {
         List<FieldDefinitionForEntity> relationship = fields(ModelInformationSet.RELATIONSHIP_PATTERN_FQN);
         assertEquals(4, relationship.size());
         assertEquals(nid("Relationship context (IkeFoundation)"), relationship.get(1).meaningNid());
-        assertEquals(IkeTerm.COMPONENT_FIELD.nid(), relationship.get(1).dataTypeNid());
+        assertEquals(KernelTerm.COMPONENT_FIELD.nid(), relationship.get(1).dataTypeNid());
         List<FieldDefinitionForEntity> conversion = fields(ModelInformationSet.CONVERSION_PATTERN_FQN);
         assertEquals(4, conversion.size());
         assertEquals(nid("Conversion target class (IkeFoundation)"), conversion.get(2).meaningNid());
@@ -152,7 +153,7 @@ class ModelInformationIT {
         assertEquals(nid("Mark model name (IkeFoundation)"), mark.get(0).meaningNid());
         assertEquals(nid("Mark retrievable (IkeFoundation)"), mark.get(1).meaningNid());
         assertEquals(nid("Mark code field (IkeFoundation)"), mark.get(2).meaningNid());
-        assertEquals(IkeTerm.CONCEPT_FIELD.nid(), mark.get(2).dataTypeNid());
+        assertEquals(KernelTerm.CONCEPT_FIELD.nid(), mark.get(2).dataTypeNid());
         for (FieldDefinitionForEntity field : mark) {
             assertEquals(generation, field.purposeNid(), "every mark field is IKE's generation");
         }

@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -28,7 +29,6 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -75,7 +75,7 @@ class ElmTreeIT {
     private static Set<Integer> statedParents(String conceptFqn) {
         Set<Integer> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(set.conceptRef(conceptFqn),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                     AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
@@ -92,7 +92,7 @@ class ElmTreeIT {
         assertEquals(1, fields.size());
         assertEquals(set.conceptRef("ELM tree (ELM)").nid(), fields.get(0).meaningNid());
         assertEquals(set.conceptRef("ELM definition (ELM)").nid(), fields.get(0).purposeNid());
-        assertEquals(IkeTerm.DITREE_FIELD.nid(), fields.get(0).dataTypeNid());
+        assertEquals(KernelTerm.DITREE_FIELD.nid(), fields.get(0).dataTypeNid());
     }
 
     @Test
@@ -101,7 +101,7 @@ class ElmTreeIT {
         assertEquals(1, fields.size());
         assertEquals(set.conceptRef("ELM list items (ELM)").nid(), fields.get(0).meaningNid());
         assertEquals(set.conceptRef("ELM order (ELM)").nid(), fields.get(0).purposeNid());
-        assertEquals(IkeTerm.COMPONENT_ID_LIST_FIELD.nid(), fields.get(0).dataTypeNid());
+        assertEquals(KernelTerm.COMPONENT_ID_LIST_FIELD.nid(), fields.get(0).dataTypeNid());
     }
 
     @Test
@@ -109,13 +109,13 @@ class ElmTreeIT {
         List<FieldDefinitionForEntity> fields = fields(ElmTreeSet.REFERENCE_PATTERN_FQN);
         assertEquals(4, fields.size());
         assertEquals(set.conceptRef("ELM reference kind (ELM)").nid(), fields.get(0).meaningNid());
-        assertEquals(IkeTerm.CONCEPT_FIELD.nid(), fields.get(0).dataTypeNid());
+        assertEquals(KernelTerm.CONCEPT_FIELD.nid(), fields.get(0).dataTypeNid());
         assertEquals(set.conceptRef("ELM referenced definition (ELM)").nid(), fields.get(1).meaningNid());
-        assertEquals(IkeTerm.COMPONENT_FIELD.nid(), fields.get(1).dataTypeNid());
+        assertEquals(KernelTerm.COMPONENT_FIELD.nid(), fields.get(1).dataTypeNid());
         assertEquals(set.conceptRef("ELM name as written (ELM)").nid(), fields.get(2).meaningNid());
-        assertEquals(IkeTerm.STRING.nid(), fields.get(2).dataTypeNid());
+        assertEquals(KernelTerm.STRING.nid(), fields.get(2).dataTypeNid());
         assertEquals(set.conceptRef("ELM library name as written (ELM)").nid(), fields.get(3).meaningNid());
-        assertEquals(IkeTerm.STRING.nid(), fields.get(3).dataTypeNid());
+        assertEquals(KernelTerm.STRING.nid(), fields.get(3).dataTypeNid());
         int reference = set.conceptRef("ELM reference (ELM)").nid();
         for (FieldDefinitionForEntity field : fields) {
             assertEquals(reference, field.purposeNid(), "every reference field serves the reference");
@@ -136,7 +136,7 @@ class ElmTreeIT {
         List<FieldDefinitionForEntity> fields = fields(ElmNodeCatalogSet.TYPE_POSITION_PATTERN_FQN);
         assertEquals(6, fields.size(), "position, value type, minimum, maximum, note, form");
         assertEquals(set.conceptRef("ELM form field (ELM)").nid(), fields.get(5).meaningNid());
-        assertEquals(IkeTerm.COMPONENT_FIELD.nid(), fields.get(5).dataTypeNid());
+        assertEquals(KernelTerm.COMPONENT_FIELD.nid(), fields.get(5).dataTypeNid());
 
         int propertyForm = set.conceptRef("ELM property form (ELM)").nid();
         int edgeForm = set.conceptRef("ELM edge form (ELM)").nid();

@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 
@@ -38,7 +40,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * {@code SOLORConceptAssemblage} (the pattern) is left untouched entirely — it is
  * dormant (zero live semantics anywhere in the ingested foundation, confirmed before this
  * file was written) — and is cited in the narrative only as legacy prior art, the same
- * treatment already given {@code TinkarTerm.CONCEPT_CONSTRAINTS} when
+ * treatment already given {@code Concept constraints (SOLOR)} when
  * {@code ConstraintPatternSet} was minted. {@code Solor Concepts Pattern (IkeFoundation)}
  * is the fresh IKE-native replacement going forward. {@code Membership semantic (SOLOR)}
  * itself stays real and unrenamed — just no longer this project's own preferred
@@ -65,7 +67,7 @@ final class AssemblageTerminologySet {
                 .definition("A component's role as an element of a pattern's own set of"
                         + " semantics — the modern replacement for the deprecated SOLOR term"
                         + " Membership semantic.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
 
         // ── Solor Concepts Pattern: the IKE-native replacement for the dormant ──
         // SOLORConceptAssemblage — untouched, cited as legacy prior art only.

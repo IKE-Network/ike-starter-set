@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.PatternBuilder;
@@ -124,10 +126,10 @@ final class ModelInformationSet {
                             + " unit is found by its name and its symbol.")
                     .isA(root);
             set.pattern(dialectPatternFqn(model)).at(inception)
-                    .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY)
-                    .purpose(IkeTerm.DESCRIPTION_SEMANTIC)
-                    .field(set.conceptRef(model + " dialect (IkeFoundation)"), IkeTerm.DESCRIPTION_ACCEPTABILITY,
-                            IkeTerm.COMPONENT_FIELD)
+                    .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                    .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
+                    .field(set.conceptRef(model + " dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
+                            KernelTerm.COMPONENT_FIELD)
                     .definition("Records whether a description is preferred or acceptable in the " + model
                             + " dialect. One field: that description's acceptability for this dialect.");
         }
@@ -218,11 +220,11 @@ final class ModelInformationSet {
         for (String name : new String[] {"Model name", "Model version", "Model url", "Model target url",
                 "Model target version", "Model target qualifier", "Model patient class",
                 "Model patient class identifier", "Model patient birth date property", "Model default context"}) {
-            model = model.field(set.conceptRef(name + " (IkeFoundation)"), record, IkeTerm.STRING);
+            model = model.field(set.conceptRef(name + " (IkeFoundation)"), record, KernelTerm.STRING);
         }
-        model.field(set.conceptRef("Model case sensitive (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("Model strict retrieve typing (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("Model schema location (IkeFoundation)"), record, IkeTerm.STRING)
+        model.field(set.conceptRef("Model case sensitive (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Model strict retrieve typing (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Model schema location (IkeFoundation)"), record, KernelTerm.STRING)
                 .definition("What a model information file says of the model itself, kept verbatim: its name,"
                         + " version, and url, the model it stands on, its qualifier, its patient class and"
                         + " birth date element, its default context, and its flags.");
@@ -230,9 +232,9 @@ final class ModelInformationSet {
         set.pattern(REQUIREMENT_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(record)
-                .field(set.conceptRef("Required model name (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Required model version (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Required model (IkeFoundation)"), resolution, IkeTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Required model name (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Required model version (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Required model (IkeFoundation)"), resolution, KernelTerm.CONCEPT_FIELD)
                 .definition("A model this model requires, as the file writes it, and that model's concept in"
                         + " the store, which must be there before this model is imported.");
 
@@ -240,22 +242,22 @@ final class ModelInformationSet {
         set.pattern(CLASS_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(record)
-                .field(set.conceptRef("Model class kind (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class namespace (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class name (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class identifier (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class label (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class base type (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class base (IkeFoundation)"), resolution, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Class retrievable (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("Class primary code path (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class primary code element (IkeFoundation)"), resolution, IkeTerm.COMPONENT_FIELD)
-                .field(set.conceptRef("Class primary value set path (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class target (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class target type (IkeFoundation)"), resolution, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Class description (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class comment (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Class model (IkeFoundation)"), resolution, IkeTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Model class kind (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class namespace (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class name (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class identifier (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class label (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class base type (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class base (IkeFoundation)"), resolution, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Class retrievable (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Class primary code path (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class primary code element (IkeFoundation)"), resolution, KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("Class primary value set path (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class target (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class target type (IkeFoundation)"), resolution, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Class description (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class comment (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Class model (IkeFoundation)"), resolution, KernelTerm.CONCEPT_FIELD)
                 .definition("What a model information file says of one class, kept verbatim, and what IKE"
                         + " resolved of it: the kind, namespace, name, identifier, and label, the base type as"
                         + " written and as a concept, whether retrievable, the code path as written and as the"
@@ -267,23 +269,23 @@ final class ModelInformationSet {
         set.pattern(ELEMENT_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(record)
-                .field(set.conceptRef("Element name (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element type (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element class (IkeFoundation)"), resolution, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Element type specifier (IkeFoundation)"), resolution, IkeTerm.DITREE_FIELD)
-                .field(set.conceptRef("Element minimum (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element maximum (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element prohibited (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("Element must support (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("Element one based (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("Element target (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element label (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element description (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element definition (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element comment (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element binding name (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element binding strength (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Element binding value set (IkeFoundation)"), record, IkeTerm.STRING)
+                .field(set.conceptRef("Element name (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element type (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element class (IkeFoundation)"), resolution, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Element type specifier (IkeFoundation)"), resolution, KernelTerm.DITREE_FIELD)
+                .field(set.conceptRef("Element minimum (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element maximum (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element prohibited (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Element must support (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Element one based (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Element target (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element label (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element description (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element definition (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element comment (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element binding name (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element binding strength (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Element binding value set (IkeFoundation)"), record, KernelTerm.STRING)
                 .definition("What a model information file says of one element of a class, kept verbatim, and"
                         + " what IKE resolved of it: the name, the type as written, the class the type names"
                         + " when it names one, the type as a tree of the catalog's type specifiers, the bounds,"
@@ -295,11 +297,11 @@ final class ModelInformationSet {
         set.pattern(CONTEXT_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(record)
-                .field(set.conceptRef("Context name (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Context type (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Context class (IkeFoundation)"), resolution, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Context key element (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Context birth date element (IkeFoundation)"), record, IkeTerm.STRING)
+                .field(set.conceptRef("Context name (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Context type (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Context class (IkeFoundation)"), resolution, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Context key element (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Context birth date element (IkeFoundation)"), record, KernelTerm.STRING)
                 .definition("A context a library may run in, as the file writes it on the model: its name, the"
                         + " class that is the context as written and as a concept, the element that keys it,"
                         + " and the element that carries its birth date. One semantic per context, about the"
@@ -307,10 +309,10 @@ final class ModelInformationSet {
         set.pattern(RELATIONSHIP_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(record)
-                .field(set.conceptRef("Relationship context name (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Relationship context (IkeFoundation)"), resolution, IkeTerm.COMPONENT_FIELD)
-                .field(set.conceptRef("Relationship key element (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Relationship to target (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Relationship context name (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Relationship context (IkeFoundation)"), resolution, KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("Relationship key element (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Relationship to target (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
                 .definition("How a class reaches a context, as the file writes it on the class: the context's"
                         + " name and its record, the element by which the class reaches it, and whether the"
                         + " file declares the relationship on the target model. One semantic per relationship,"
@@ -318,10 +320,10 @@ final class ModelInformationSet {
         set.pattern(CONVERSION_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(record)
-                .field(set.conceptRef("Conversion from type (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Conversion to type (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Conversion target class (IkeFoundation)"), resolution, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Conversion function (IkeFoundation)"), record, IkeTerm.STRING)
+                .field(set.conceptRef("Conversion from type (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Conversion to type (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Conversion target class (IkeFoundation)"), resolution, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Conversion function (IkeFoundation)"), record, KernelTerm.STRING)
                 .definition("A conversion the file declares between two types, about the type converted from:"
                         + " the two types as written, the type converted to as a concept, and the function the"
                         + " file names, which the translator writes into a library as an explicit call.");
@@ -330,9 +332,9 @@ final class ModelInformationSet {
         set.pattern(MARK_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(generation)
-                .field(set.conceptRef("Mark model name (IkeFoundation)"), generation, IkeTerm.STRING)
-                .field(set.conceptRef("Mark retrievable (IkeFoundation)"), generation, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("Mark code field (IkeFoundation)"), generation, IkeTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Mark model name (IkeFoundation)"), generation, KernelTerm.STRING)
+                .field(set.conceptRef("Mark retrievable (IkeFoundation)"), generation, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Mark code field (IkeFoundation)"), generation, KernelTerm.CONCEPT_FIELD)
                 .definition("The mark on one of IKE's own patterns that writes it into model information as a"
                         + " class: the model the class belongs to, whether a library may retrieve it, and the"
                         + " field that carries its code. Every field of the pattern becomes an element whose"

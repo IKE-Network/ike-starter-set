@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -464,7 +465,7 @@ final class NarrativeContentSet {
                         separate, disjoint one: Komet's own pattern-authoring UI (`PatternFieldsController`,
                         kview) draws its "choose a data type" list from this branch, while a pattern's real
                         field declaration draws its `dataType` tag from k:DisplayFields[] instead
-                        (`IkeTerm.LONG`, `IkeTerm.STRING`, `IkeTerm.COMPONENT_FIELD`, and so on, throughout
+                        (`KernelTerm.LONG`, `KernelTerm.STRING`, `KernelTerm.COMPONENT_FIELD`, and so on, throughout
                         this starter set's own source) — two families that happen to describe the same idea
                         twice, not one. Reparented under k:Legacy[] here as a deprecation signal; the
                         disconnect on the komet side is tracked as ikmdev/komet#880.

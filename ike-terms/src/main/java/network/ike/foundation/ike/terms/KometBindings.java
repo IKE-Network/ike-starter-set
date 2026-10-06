@@ -31,8 +31,8 @@ import java.util.UUID;
  * class to this list.
  * <p>
  * The members are the {@code KometTerm} constants Komet had (2026-10-05), less
- * {@code CURRENT_ACTIVITY}, which nothing named, and the {@code TinkarTerm} constants that main
- * code in Komet and its plugins used beyond the kernel, each one a component of the set.
+ * {@code CURRENT_ACTIVITY}, which nothing named, and the constants that main code in Komet
+ * and its plugins used beyond the kernel, each one a component of the set.
  * Komet's window, pane and preference settings are not here: they name JavaFX properties,
  * nothing reaches a store, and they stay in Komet's hand-written {@code KometSettingTerm}.
  */

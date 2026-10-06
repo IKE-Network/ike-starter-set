@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -55,7 +56,7 @@ final class ElmTypeSet {
         EntityProxy.Concept conceptSetKind = set.conceptRef("Concept set kind (IkeFoundation)");
         EntityProxy.Concept operandKind = set.conceptRef("Operand kind (IkeFoundation)");
         EntityProxy.Concept measureRatio = set.conceptRef("Measure ratio (IkeFoundation)");
-        EntityProxy.Concept string = IkeTerm.STRING;
+        EntityProxy.Concept string = KernelTerm.STRING;
 
         // ── Numbers: measures on the dimensionless number ──
         relate(set, inception, relations, "Integer", measureKind, extension,

@@ -15,12 +15,12 @@
  */
 package network.ike.foundation.ike.evaluate;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.builder.Stamp;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.writer.StoreWriter;
 
@@ -88,7 +88,7 @@ final class Authored {
         for (Map.Entry<PublicId, String> entry : names.entrySet()) {
             int nid = writer.concept(entry.getKey());
             writer.describe(nid, UuidT5Generator.get(NAMESPACE, entry.getValue() + " name"), entry.getValue(),
-                    TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
+                    KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
             NIDS.put(entry.getKey(), nid);
         }
     }

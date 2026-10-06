@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
@@ -35,8 +36,8 @@ import java.util.UUID;
  * Component, ComponentIdSet, ComponentIdList, DiTree, DiGraph, Concept, Semantic,
  * Integer, Float, Boolean, ByteArray, Array, Instant, Long, Decimal. Each field's
  * {@code dataType} is the concept {@code ConceptToDataType} actually recognizes for that
- * type, verified by UUID against its {@code TinkarTerm} references and bound through
- * {@link IkeTerm}'s declared identities. The pattern's single semantic is its own default value semantic
+ * type, verified by UUID against the concepts it compares with, and bound through the
+ * kernel or a declared identity. The pattern's single semantic is its own default value semantic
  * ({@link DefaultsAndTemplatesSet}'s apparatus, extended here in a sibling file composed
  * immediately after it — the apparatus file mints the category; this file is its first
  * full-breadth consumer): referenced component {@code Default value concept}, computed
@@ -246,30 +247,29 @@ final class DataTypeDefaultsSet {
 
         // ── The pattern: sixteen fields in ConceptToDataType's convert order ──
         // Each field's dataType is the identity ConceptToDataType compares against,
-        // bound through IkeTerm's declared-identity constants (UUIDs restated verbatim
-        // from TinkarTerm; see this file's javadoc).
+        // bound through the kernel or a declared identity (see this file's javadoc).
         EntityProxy.Concept exemplar = set.conceptRef("Data type default exemplar (IkeFoundation)");
         set.pattern("Data Type Defaults Pattern (IkeFoundation)").at(apparatus)
                 .meaning(set.conceptRef("Defaulted Data Types (IkeFoundation)"))
                 .purpose(set.conceptRef("Data Type Default Provision (IkeFoundation)"))
-                .field(set.conceptRef("String default (IkeFoundation)"), exemplar, IkeTerm.STRING)
-                .field(set.conceptRef("Component default (IkeFoundation)"), exemplar, IkeTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("String default (IkeFoundation)"), exemplar, KernelTerm.STRING)
+                .field(set.conceptRef("Component default (IkeFoundation)"), exemplar, KernelTerm.COMPONENT_FIELD)
                 .field(set.conceptRef("ComponentIdSet default (IkeFoundation)"), exemplar,
-                        IkeTerm.COMPONENT_ID_SET_FIELD)
+                        KernelTerm.COMPONENT_ID_SET_FIELD)
                 .field(set.conceptRef("ComponentIdList default (IkeFoundation)"), exemplar,
-                        IkeTerm.COMPONENT_ID_LIST_FIELD)
-                .field(set.conceptRef("DiTree default (IkeFoundation)"), exemplar, IkeTerm.DITREE_FIELD)
-                .field(set.conceptRef("DiGraph default (IkeFoundation)"), exemplar, IkeTerm.DIGRAPH_FIELD)
-                .field(set.conceptRef("Concept default (IkeFoundation)"), exemplar, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Semantic default (IkeFoundation)"), exemplar, IkeTerm.SEMANTIC_FIELD_TYPE)
-                .field(set.conceptRef("Integer default (IkeFoundation)"), exemplar, IkeTerm.INTEGER_FIELD)
-                .field(set.conceptRef("Float default (IkeFoundation)"), exemplar, IkeTerm.FLOAT_FIELD)
-                .field(set.conceptRef("Boolean default (IkeFoundation)"), exemplar, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("ByteArray default (IkeFoundation)"), exemplar, IkeTerm.BYTE_ARRAY_FIELD)
-                .field(set.conceptRef("Array default (IkeFoundation)"), exemplar, IkeTerm.ARRAY_FIELD)
-                .field(set.conceptRef("Instant default (IkeFoundation)"), exemplar, IkeTerm.INSTANT_LITERAL)
-                .field(set.conceptRef("Long default (IkeFoundation)"), exemplar, IkeTerm.LONG)
-                .field(set.conceptRef("Decimal default (IkeFoundation)"), exemplar, IkeTerm.DECIMAL_FIELD)
+                        KernelTerm.COMPONENT_ID_LIST_FIELD)
+                .field(set.conceptRef("DiTree default (IkeFoundation)"), exemplar, KernelTerm.DITREE_FIELD)
+                .field(set.conceptRef("DiGraph default (IkeFoundation)"), exemplar, KernelTerm.DIGRAPH_FIELD)
+                .field(set.conceptRef("Concept default (IkeFoundation)"), exemplar, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Semantic default (IkeFoundation)"), exemplar, KernelTerm.SEMANTIC_FIELD_TYPE)
+                .field(set.conceptRef("Integer default (IkeFoundation)"), exemplar, KernelTerm.INTEGER_FIELD)
+                .field(set.conceptRef("Float default (IkeFoundation)"), exemplar, KernelTerm.FLOAT_FIELD)
+                .field(set.conceptRef("Boolean default (IkeFoundation)"), exemplar, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("ByteArray default (IkeFoundation)"), exemplar, KernelTerm.BYTE_ARRAY_FIELD)
+                .field(set.conceptRef("Array default (IkeFoundation)"), exemplar, KernelTerm.ARRAY_FIELD)
+                .field(set.conceptRef("Instant default (IkeFoundation)"), exemplar, KernelTerm.INSTANT_LITERAL)
+                .field(set.conceptRef("Long default (IkeFoundation)"), exemplar, KernelTerm.LONG)
+                .field(set.conceptRef("Decimal default (IkeFoundation)"), exemplar, KernelTerm.DECIMAL_FIELD)
                 // Curated narrative (IKE-Network/ike-issues#888): domain description OF
                 // this pattern — foundation-module terminology like its descriptions,
                 // never defaults/template content (the module's live-and-die invariant
@@ -320,31 +320,31 @@ final class DataTypeDefaultsSet {
                         // String
                         "UNINITIALIZED",
                         // Component
-                        IkeTerm.UNINITIALIZED_COMPONENT,
+                        KernelTerm.UNINITIALIZED_COMPONENT,
                         // ComponentIdSet — singleton set of the loud placeholder
-                        PublicIds.set.of(IkeTerm.UNINITIALIZED_COMPONENT.publicId()),
+                        PublicIds.set.of(KernelTerm.UNINITIALIZED_COMPONENT.publicId()),
                         // ComponentIdList — singleton list of the loud placeholder
-                        PublicIds.list.of(IkeTerm.UNINITIALIZED_COMPONENT.publicId()),
+                        PublicIds.list.of(KernelTerm.UNINITIALIZED_COMPONENT.publicId()),
                         // DiTree — the smallest well-formed tree, one Uninitialized vertex
                         new GraphFieldValue.Tree(
                                 List.of(new GraphFieldValue.Vertex(
                                         set.uuidFor("Data Type Defaults Pattern DiTree default vertex"),
-                                        IkeTerm.UNINITIALIZED_COMPONENT)),
+                                        KernelTerm.UNINITIALIZED_COMPONENT)),
                                 0, List.of()),
                         // DiGraph — the deliberate simple cycle A → B, B → A; a pure
                         // cycle has no roots
                         new GraphFieldValue.Graph(
                                 List.of(new GraphFieldValue.Vertex(
                                                 set.uuidFor("Data Type Defaults Pattern DiGraph default vertex A"),
-                                                IkeTerm.UNINITIALIZED_COMPONENT),
+                                                KernelTerm.UNINITIALIZED_COMPONENT),
                                         new GraphFieldValue.Vertex(
                                                 set.uuidFor("Data Type Defaults Pattern DiGraph default vertex B"),
-                                                IkeTerm.UNINITIALIZED_COMPONENT)),
+                                                KernelTerm.UNINITIALIZED_COMPONENT)),
                                 List.of(),
                                 List.of(new GraphFieldValue.Edge(0, 1),
                                         new GraphFieldValue.Edge(1, 0))),
                         // Concept
-                        IkeTerm.UNINITIALIZED_COMPONENT,
+                        KernelTerm.UNINITIALIZED_COMPONENT,
                         // Semantic — the FQN description OF Uninitialized Component
                         uninitializedFqnDescription,
                         // Integer — stretched sevens (nine)

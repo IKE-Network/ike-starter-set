@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.BindingClass;
@@ -89,7 +90,7 @@ public final class Ike {
      * gate's stamp test would refuse it.
      */
     public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
-            IKE_COMMUNITY, MODULE, IkeTerm.DEVELOPMENT_PATH);
+            IKE_COMMUNITY, MODULE, KernelTerm.DEVELOPMENT_PATH);
 
     /**
      * The inception stamp's Defaults-and-templates-module counterpart, at the same
@@ -100,5 +101,5 @@ public final class Ike {
      */
     public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
-            IkeTerm.DEVELOPMENT_PATH);
+            KernelTerm.DEVELOPMENT_PATH);
 }

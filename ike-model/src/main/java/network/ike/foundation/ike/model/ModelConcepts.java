@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.model;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
@@ -23,7 +24,6 @@ import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.model.ModelInfoFile.ClassInfo;
 import network.ike.foundation.ike.model.ModelInfoFile.Context;
@@ -110,9 +110,9 @@ final class ModelConcepts {
         writer.statedParent(id, IkeTerms.DATA_MODEL.publicId());
         String title = title(file.name(), file.version());
         writer.describe(nid, ModelIdentity.description(id, "fqn"), title + " (data model)",
-                TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
-        writer.describe(nid, ModelIdentity.description(id, "name"), title, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE,
-                TinkarTerm.PREFERRED);
+                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
+        writer.describe(nid, ModelIdentity.description(id, "name"), title, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE,
+                KernelTerm.PREFERRED);
         writer.semantic(ModelIdentity.record(id), IkeTerms.DATA_MODEL_RECORD_PATTERN, nid, Lists.immutable.of(
                 file.name(), file.version(), file.url(), file.targetUrl(), file.targetVersion(), file.targetQualifier(),
                 file.patientClassName(), file.patientClassIdentifier(), file.patientBirthDatePropertyName(),
@@ -156,14 +156,14 @@ final class ModelConcepts {
         String title = title(file.name(), file.version());
         Optional<EntityProxy.Pattern> dialect = dialectPattern(file.name());
         writer.describe(nid, ModelIdentity.description(id, "fqn"), local + " (" + title + ")",
-                TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
-        named(writer, nid, id, "name", local, TinkarTerm.PREFERRED, dialect);
+                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
+        named(writer, nid, id, "name", local, KernelTerm.PREFERRED, dialect);
         if (!clazz.label().isEmpty() && !clazz.label().equals(local)) {
-            named(writer, nid, id, "label", clazz.label(), TinkarTerm.ACCEPTABLE, dialect);
+            named(writer, nid, id, "label", clazz.label(), IkeTerms.ACCEPTABLE, dialect);
         }
         if (!clazz.definition().isEmpty()) {
             writer.describe(nid, ModelIdentity.description(id, "definition"), clazz.definition(),
-                    TinkarTerm.DEFINITION_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
+                    KernelTerm.DEFINITION_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
         }
         return nid;
     }
@@ -289,7 +289,7 @@ final class ModelConcepts {
      * @return the text, or empty
      */
     static Optional<String> fullyQualifiedName(int nid, StampCalculator calculator) {
-        return descriptionOfType(nid, TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE.nid(), calculator);
+        return descriptionOfType(nid, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE.nid(), calculator);
     }
 
     /**
@@ -300,12 +300,12 @@ final class ModelConcepts {
      * @return the text, or empty
      */
     static Optional<String> regularName(int nid, StampCalculator calculator) {
-        return descriptionOfType(nid, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid(), calculator);
+        return descriptionOfType(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid(), calculator);
     }
 
     private static Optional<String> descriptionOfType(int nid, int typeNid, StampCalculator calculator) {
         String[] found = {null};
-        EntityService.get().forEachSemanticForComponentOfPattern(nid, TinkarTerm.DESCRIPTION_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticForComponentOfPattern(nid, KernelTerm.DESCRIPTION_PATTERN.nid(), semantic -> {
             if (found[0] != null) {
                 return;
             }
@@ -320,10 +320,10 @@ final class ModelConcepts {
     private static void named(StoreWriter writer, int nid, PublicId id, String role, String text,
                               EntityProxy.Concept usAcceptability, Optional<EntityProxy.Pattern> dialect) {
         int description = writer.describe(nid, ModelIdentity.description(id, role), text,
-                TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
+                KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
         if (dialect.isPresent()) {
             writer.dialect(description, ModelIdentity.description(id, role + " model-dialect"), dialect.get(),
-                    TinkarTerm.PREFERRED);
+                    KernelTerm.PREFERRED);
         }
     }
 }

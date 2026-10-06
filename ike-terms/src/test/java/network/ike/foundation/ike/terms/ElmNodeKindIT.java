@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -148,7 +149,7 @@ class ElmNodeKindIT {
         assertEquals(nid("Bridge relation kind (IkeFoundation)"), fields.get(2).meaningNid());
         for (FieldDefinitionForEntity field : fields) {
             assertEquals(bridge, field.purposeNid());
-            assertEquals(IkeTerm.CONCEPT_FIELD.nid(), field.dataTypeNid());
+            assertEquals(KernelTerm.CONCEPT_FIELD.nid(), field.dataTypeNid());
         }
         Latest<PatternEntityVersion> readingPattern = calculator.latest(set.patternRef(ElmNodeKindSet.READING_PATTERN_FQN).nid());
         List<FieldDefinitionForEntity> reading = new ArrayList<>();

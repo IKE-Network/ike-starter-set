@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.writer;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.IntIdList;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.id.PublicIds;
@@ -44,7 +45,6 @@ import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.entity.graph.adaptor.axiom.LogicalExpressionBuilder;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.api.list.primitive.ImmutableIntList;
@@ -182,7 +182,7 @@ public final class StoreWriter {
                 () -> UuidT5Generator.get(conceptUuid, "axiom vertex " + ordinal[0]++));
         builder.NecessarySet(builder.And(builder.ConceptAxiom(EntityProxy.Concept.make(PrimitiveData.nid(parentId)))));
         DiTreeEntity tree = (DiTreeEntity) builder.build().sourceGraph();
-        return semantic(axiomId, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN, PrimitiveData.nid(conceptId),
+        return semantic(axiomId, KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN, PrimitiveData.nid(conceptId),
                 Lists.immutable.of(tree));
     }
 
@@ -251,7 +251,7 @@ public final class StoreWriter {
      * @return the description semantic's nid
      */
     public int describe(int aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type) {
-        return describe(aboutNid, descriptionUuid, text, type, TinkarTerm.PREFERRED);
+        return describe(aboutNid, descriptionUuid, text, type, KernelTerm.PREFERRED);
     }
 
     /**
@@ -267,9 +267,9 @@ public final class StoreWriter {
      */
     public int describe(int aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type,
                         EntityProxy.Concept usAcceptability) {
-        int descriptionNid = semantic(PublicIds.of(descriptionUuid), TinkarTerm.DESCRIPTION_PATTERN, aboutNid,
-                Lists.immutable.of(TinkarTerm.ENGLISH_LANGUAGE, text, TinkarTerm.DESCRIPTION_NOT_CASE_SENSITIVE, type));
-        dialect(descriptionNid, UuidT5Generator.get(descriptionUuid, "us-dialect"), TinkarTerm.US_DIALECT_PATTERN,
+        int descriptionNid = semantic(PublicIds.of(descriptionUuid), KernelTerm.DESCRIPTION_PATTERN, aboutNid,
+                Lists.immutable.of(KernelTerm.ENGLISH_LANGUAGE, text, KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, type));
+        dialect(descriptionNid, UuidT5Generator.get(descriptionUuid, "us-dialect"), KernelTerm.US_DIALECT_PATTERN,
                 usAcceptability);
         return descriptionNid;
     }

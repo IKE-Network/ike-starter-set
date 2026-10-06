@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 
@@ -51,7 +53,7 @@ final class LicenseModelSet {
                         + " knowledge content, Apache 2.0 alongside it, declared in"
                         + " every POM of the reactor and carried here as concepts"
                         + " (IKE-Network/ike-issues#952).")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
 
         set.concept("Apache 2.0 license (IkeFoundation)").at(inception)
                 .synonym("Apache 2.0 license")

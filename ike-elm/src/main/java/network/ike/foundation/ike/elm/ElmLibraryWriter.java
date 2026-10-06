@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.elm;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.IntIdList;
 import dev.ikm.tinkar.common.id.IntIds;
 import dev.ikm.tinkar.common.id.PublicId;
@@ -26,7 +27,6 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.writer.StoreWriter;
 import org.eclipse.collections.api.factory.Lists;
@@ -100,9 +100,9 @@ public final class ElmLibraryWriter {
         PublicId libraryPublicId = ElmIdentity.library(libraryId);
         int libraryNid = store.concept(libraryPublicId);
         store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "fqn"),
-                libraryId + " (CQL library)", TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
+                libraryId + " (CQL library)", KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
         store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "name"),
-                libraryId, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE);
+                libraryId, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE);
 
         ElmNode identifier = builder.node("VersionedIdentifier").property("id", libraryId);
         if (!version.isEmpty()) {
@@ -134,9 +134,9 @@ public final class ElmLibraryWriter {
         int libraryNid = PrimitiveData.nid(ElmIdentity.library(libraryId));
         int definitionNid = writeTree(definitionId, libraryNid, builder.build(root, definitionId));
         int descriptionNid = store.describe(definitionNid, UuidT5Generator.get(definitionId.leastUuid(), "name"),
-                name, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE);
+                name, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE);
         store.dialect(descriptionNid, UuidT5Generator.get(definitionId.leastUuid(), "cql-dialect"),
-                IkeTerms.CQL_DIALECT_PATTERN, TinkarTerm.PREFERRED);
+                IkeTerms.CQL_DIALECT_PATTERN, KernelTerm.PREFERRED);
         return definitionId;
     }
 

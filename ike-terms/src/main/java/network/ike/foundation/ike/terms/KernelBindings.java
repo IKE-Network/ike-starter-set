@@ -22,13 +22,12 @@ import java.util.UUID;
 
 /**
  * The kernel: the components tinkar-core and its stores name in their own code, bound in
- * {@link Ike#KERNEL} ({@code dev.ikm.tinkar.terms.KernelTerm}) under the names
- * {@code TinkarTerm} gave them, so moving a reference from one to the other changes no name
- * and no identity. Generated from the set and committed into tinkar-core, which the set is
+ * {@link Ike#KERNEL} ({@code dev.ikm.tinkar.terms.KernelTerm}) under the names that code
+ * already used for them, so the move to the kernel changed no name and no identity. Generated from the set and committed into tinkar-core, which the set is
  * built with and so cannot depend on; {@code CommittedBindingsDriftTest} holds the committed
  * class to this list.
  * <p>
- * The members are the {@code TinkarTerm} constants that main code in tinkar-core, rocks-kb
+ * The members are the constants that main code in tinkar-core, rocks-kb
  * and ike-knowledge-provider used when the kernel was cut (2026-10-04), and those that
  * tinkar-service and tinkar-composer use (2026-10-05), each one a component of the set. The
  * list shrinks as defaults move into the data.
