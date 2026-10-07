@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -30,7 +32,6 @@ import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import org.eclipse.collections.api.list.ImmutableList;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -237,7 +238,7 @@ class ExpressionLanguageIT {
         Set<String> types = new java.util.TreeSet<>();
         Set<Integer> targets = Set.of(nid("Measure kind (IkeFoundation)"), nid("Presence measure kind (IkeFoundation)"),
                 nid("Concept kind (IkeFoundation)"), nid("Concept set kind (IkeFoundation)"),
-                nid("Operand kind (IkeFoundation)"), nid("Measure ratio (IkeFoundation)"), IkeTerm.STRING.nid());
+                nid("Operand kind (IkeFoundation)"), nid("Measure ratio (IkeFoundation)"), KernelTerm.STRING.nid());
         Set<Integer> admitted = Set.of(nid("Identity (IkeFoundation)"), logicalEquivalenceNid,
                 definitionalExtensionNid, conservativeExtensionNid);
         for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
@@ -300,7 +301,7 @@ class ExpressionLanguageIT {
         Set<Integer> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                     AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
@@ -318,10 +319,10 @@ class ExpressionLanguageIT {
     private static List<Name> regularNamesOf(int conceptNid) {
         List<Name> names = new ArrayList<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
-                EntityProxy.Concept.make(conceptNid), TinkarTerm.DESCRIPTION_PATTERN,
+                EntityProxy.Concept.make(conceptNid), KernelTerm.DESCRIPTION_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     ImmutableList<Object> fields = semanticVersion.fieldValues();
-                    if (nidOf(fields.get(3)) == IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid()) {
+                    if (nidOf(fields.get(3)) == KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid()) {
                         names.add(new Name(semanticVersion.nid(), (String) fields.get(1)));
                     }
                 });
@@ -501,10 +502,10 @@ class ExpressionLanguageIT {
                             continue;
                         }
                         Set<Integer> acceptabilities = acceptabilitiesOf(name.descriptionNid(), dialect);
-                        if (acceptabilities.contains(IkeTerm.PREFERRED.nid())) {
+                        if (acceptabilities.contains(KernelTerm.PREFERRED.nid())) {
                             preferredPerConstruct.merge(named, 1, Integer::sum);
                             found = true;
-                        } else if (acceptabilities.contains(IkeTerm.ACCEPTABLE.nid())) {
+                        } else if (acceptabilities.contains(EntityProxy.Concept.make("Acceptable (SOLOR)", PublicIds.of("12b9e103-060e-3256-9982-18c1191af60e")).nid())) {
                             found = true;
                         }
                     }
@@ -564,8 +565,8 @@ class ExpressionLanguageIT {
                 boolean preferredIsQualified = false;
                 for (Name name : regularNamesOf(instance)) {
                     if (name.text().equals(expected)
-                            && acceptabilitiesOf(name.descriptionNid(), IkeTerm.US_DIALECT_PATTERN)
-                                    .contains(IkeTerm.PREFERRED.nid())) {
+                            && acceptabilitiesOf(name.descriptionNid(), KernelTerm.US_DIALECT_PATTERN)
+                                    .contains(KernelTerm.PREFERRED.nid())) {
                         preferredIsQualified = true;
                     }
                 }
@@ -881,7 +882,7 @@ class ExpressionLanguageIT {
             assertEquals(conceptSetKind, denotation[0], construct.getKey() + " takes a concept set");
             assertEquals(conceptSetKind, denotation[1], construct.getKey() + " yields a concept set");
             assertEquals(unary, denotation[2], construct.getKey() + " is unary");
-            assertTrue(latestIsAParents(constructNid).contains(IkeTerm.TAXONOMY_OPERATOR.nid()),
+            assertTrue(latestIsAParents(constructNid).contains(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")).nid()),
                     construct.getKey() + " is a taxonomy operator");
             assertEquals(constructNid, only(eclNid, construct.getValue()));
         }
@@ -1024,7 +1025,7 @@ class ExpressionLanguageIT {
             assertNotNull(denotation, "Untyped " + construct.getKey());
             assertEquals(conceptKind, denotation[0], construct.getKey() + " takes a reference set");
             assertEquals(conceptSetKind, denotation[1], construct.getKey() + " yields a concept set");
-            assertTrue(latestIsAParents(constructNid).contains(IkeTerm.TAXONOMY_OPERATOR.nid()),
+            assertTrue(latestIsAParents(constructNid).contains(EntityProxy.Concept.make("Taxonomy operator (SOLOR)", PublicIds.of("e9252365-7a43-57ea-bf94-3f23bab4ef99")).nid()),
                     construct.getKey() + " is a taxonomy operator");
             assertNull(RELATIONS.get(constructNid), construct.getKey() + " claims no relation");
             assertEquals(constructNid, only(eclNid, construct.getValue()));

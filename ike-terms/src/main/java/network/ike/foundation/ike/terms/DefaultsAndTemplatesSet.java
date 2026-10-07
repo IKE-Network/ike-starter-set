@@ -100,7 +100,7 @@ final class DefaultsAndTemplatesSet {
                         + " here, in the foundation module; the instance content it"
                         + " describes is packaged separately in the Defaults and"
                         + " templates module.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
 
         set.concept("Default value concept (IkeFoundation)").at(apparatus)
                 .synonym("Default value concept")
@@ -182,7 +182,7 @@ final class DefaultsAndTemplatesSet {
                         + " preferences for exchange: include this module to carry"
                         + " defaults and templates alongside domain content, exclude it"
                         + " to leave them behind.")
-                .isA(IkeTerm.MODULE)
+                .isA(EntityProxy.Concept.make("Module (SOLOR)", PublicIds.of("40d1c869-b509-32f8-b735-836eac577a67")))
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: DefaultsAndTemplatesModule (Default Values — The Defaults and"

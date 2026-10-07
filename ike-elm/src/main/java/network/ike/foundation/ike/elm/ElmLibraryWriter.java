@@ -15,17 +15,18 @@
  */
 package network.ike.foundation.ike.elm;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.IntIdList;
 import dev.ikm.tinkar.common.id.IntIds;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.writer.StoreWriter;
 import org.eclipse.collections.api.factory.Lists;
@@ -98,10 +99,10 @@ public final class ElmLibraryWriter {
     public PublicId library(String libraryId, String version, String system) {
         PublicId libraryPublicId = ElmIdentity.library(libraryId);
         int libraryNid = store.concept(libraryPublicId);
-        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.asUuidArray()[0], "fqn"),
-                libraryId + " (CQL library)", TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
-        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.asUuidArray()[0], "name"),
-                libraryId, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE);
+        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "fqn"),
+                libraryId + " (CQL library)", KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
+        store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "name"),
+                libraryId, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE);
 
         ElmNode identifier = builder.node("VersionedIdentifier").property("id", libraryId);
         if (!version.isEmpty()) {
@@ -132,10 +133,10 @@ public final class ElmLibraryWriter {
         PublicId definitionId = ElmIdentity.definition(libraryId, root.kind().name(), name, operandTypes);
         int libraryNid = PrimitiveData.nid(ElmIdentity.library(libraryId));
         int definitionNid = writeTree(definitionId, libraryNid, builder.build(root, definitionId));
-        int descriptionNid = store.describe(definitionNid, UuidT5Generator.get(definitionId.asUuidArray()[0], "name"),
-                name, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE);
-        store.dialect(descriptionNid, UuidT5Generator.get(definitionId.asUuidArray()[0], "cql-dialect"),
-                IkeTerms.CQL_DIALECT_PATTERN, TinkarTerm.PREFERRED);
+        int descriptionNid = store.describe(definitionNid, UuidT5Generator.get(definitionId.leastUuid(), "name"),
+                name, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE);
+        store.dialect(descriptionNid, UuidT5Generator.get(definitionId.leastUuid(), "cql-dialect"),
+                IkeTerms.CQL_DIALECT_PATTERN, KernelTerm.PREFERRED);
         return definitionId;
     }
 
@@ -190,7 +191,7 @@ public final class ElmLibraryWriter {
         PublicId referenceId = ElmIdentity.reference(definition, kindName, libraryName, name);
         EntityProxy.Concept kind = builder.catalog().kind(kindName).concept();
         int targetNid = PrimitiveData.nid(target);
-        Object targetFacade = EntityService.get().getEntity(targetNid)
+        Object targetFacade = EntityHandle.get(targetNid).entity().filter(e -> !e.canceled())
                 .filter(entity -> entity instanceof dev.ikm.tinkar.entity.ConceptEntity)
                 .map(entity -> (Object) EntityProxy.Concept.make(targetNid))
                 .orElse(EntityProxy.Semantic.make(targetNid));

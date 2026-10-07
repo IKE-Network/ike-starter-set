@@ -16,6 +16,7 @@
 package network.ike.foundation.ike.elm;
 
 import dev.ikm.tinkar.common.bind.EnumConceptBinding;
+import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import network.ike.foundation.ike.bindings.IkeTerms;
@@ -42,12 +43,12 @@ class EnumBindingIT {
 
     @Test
     void everyConstantCarriesItsCatalogConceptsIdentity() {
-        assertEquals(IkeTerms.ELM_ACCESSMODIFIER_PUBLIC.publicId().asUuidArray()[0],
-                AccessModifier.PUBLIC.publicId().asUuidArray()[0]);
-        assertEquals(IkeTerms.ELM_DATETIMEPRECISION_MILLISECOND.publicId().asUuidArray()[0],
-                DateTimePrecision.MILLISECOND.publicId().asUuidArray()[0]);
-        assertEquals(IkeTerms.ELM_SORTDIRECTION_DESCENDING.publicId().asUuidArray()[0],
-                SortDirection.DESCENDING.publicId().asUuidArray()[0]);
+        assertTrue(PublicId.equals(IkeTerms.ELM_ACCESSMODIFIER_PUBLIC.publicId(),
+                AccessModifier.PUBLIC.publicId()));
+        assertTrue(PublicId.equals(IkeTerms.ELM_DATETIMEPRECISION_MILLISECOND.publicId(),
+                DateTimePrecision.MILLISECOND.publicId()));
+        assertTrue(PublicId.equals(IkeTerms.ELM_SORTDIRECTION_DESCENDING.publicId(),
+                SortDirection.DESCENDING.publicId()));
         List<EnumConceptBinding> all = new java.util.ArrayList<>();
         all.addAll(List.of(AccessModifier.values()));
         all.addAll(List.of(DateTimePrecision.values()));

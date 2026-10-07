@@ -15,10 +15,10 @@
  */
 package network.ike.foundation.ike.ucum;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.writer.StoreWriter;
 import org.eclipse.collections.api.factory.Lists;
@@ -49,8 +49,8 @@ final class UcumConcepts {
         int nid = writer.concept(id);
         writer.statedParent(id, IkeTerms.UCUM_PROPERTY.publicId());
         writer.describe(nid, UcumIdentity.description(id, "fqn"), property + " (UCUM property)",
-                TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
-        named(writer, nid, id, "name 0", property, TinkarTerm.PREFERRED, TinkarTerm.PREFERRED);
+                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
+        named(writer, nid, id, "name 0", property, KernelTerm.PREFERRED, KernelTerm.PREFERRED);
         return id;
     }
 
@@ -79,18 +79,18 @@ final class UcumConcepts {
         int nid = writer.concept(id);
         writer.statedParent(id, UcumIdentity.property(property));
         writer.describe(nid, UcumIdentity.description(id, "fqn"), names.get(0) + ", " + code + " (UCUM)",
-                TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
+                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
         for (int i = 0; i < names.size(); i++) {
-            named(writer, nid, id, "name " + i, names.get(i), i == 0 ? TinkarTerm.PREFERRED : TinkarTerm.ACCEPTABLE,
-                    TinkarTerm.PREFERRED);
+            named(writer, nid, id, "name " + i, names.get(i), i == 0 ? KernelTerm.PREFERRED : IkeTerms.ACCEPTABLE,
+                    KernelTerm.PREFERRED);
         }
         if (!printSymbol.isEmpty() && !names.contains(printSymbol)) {
-            named(writer, nid, id, "print symbol", printSymbol, TinkarTerm.ACCEPTABLE, TinkarTerm.ACCEPTABLE);
+            named(writer, nid, id, "print symbol", printSymbol, IkeTerms.ACCEPTABLE, IkeTerms.ACCEPTABLE);
         }
         if (!definitionUnit.isEmpty()) {
             writer.describe(nid, UcumIdentity.description(id, "definition"),
-                    (definitionValue + " " + definitionUnit).trim(), TinkarTerm.DEFINITION_DESCRIPTION_TYPE,
-                    TinkarTerm.PREFERRED);
+                    (definitionValue + " " + definitionUnit).trim(), KernelTerm.DEFINITION_DESCRIPTION_TYPE,
+                    KernelTerm.PREFERRED);
         }
         writer.semantic(UcumIdentity.record(id), IkeTerms.UCUM_UNIT_PATTERN, nid, Lists.immutable.of(
                 code, caseInsensitiveCode, printSymbol, unitClass, metric, special, arbitrary,
@@ -110,13 +110,13 @@ final class UcumConcepts {
         int nid = writer.concept(id);
         writer.statedParent(id, IkeTerms.UCUM_PREFIX.publicId());
         writer.describe(nid, UcumIdentity.description(id, "fqn"), prefix.name() + ", " + prefix.code() + " (UCUM)",
-                TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
-        named(writer, nid, id, "name 0", prefix.name(), TinkarTerm.PREFERRED, TinkarTerm.PREFERRED);
+                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
+        named(writer, nid, id, "name 0", prefix.name(), KernelTerm.PREFERRED, KernelTerm.PREFERRED);
         if (!prefix.printSymbol().isEmpty() && !prefix.printSymbol().equals(prefix.name())) {
-            named(writer, nid, id, "print symbol", prefix.printSymbol(), TinkarTerm.ACCEPTABLE, TinkarTerm.ACCEPTABLE);
+            named(writer, nid, id, "print symbol", prefix.printSymbol(), IkeTerms.ACCEPTABLE, IkeTerms.ACCEPTABLE);
         }
         writer.describe(nid, UcumIdentity.description(id, "definition"), prefix.value(),
-                TinkarTerm.DEFINITION_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
+                KernelTerm.DEFINITION_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
         writer.semantic(UcumIdentity.record(id), IkeTerms.UCUM_PREFIX_PATTERN, nid, Lists.immutable.of(
                 prefix.code(), prefix.caseInsensitiveCode(), prefix.printSymbol(), prefix.factor()));
         return id;
@@ -138,8 +138,8 @@ final class UcumConcepts {
         int nid = writer.concept(id);
         writer.statedParent(id, IkeTerms.UCUM_COMPOSED_UNIT.publicId());
         writer.describe(nid, UcumIdentity.description(id, "fqn"), canonical + " (UCUM composed unit)",
-                TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, TinkarTerm.PREFERRED);
-        named(writer, nid, id, "name 0", canonical, TinkarTerm.PREFERRED, TinkarTerm.PREFERRED);
+                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
+        named(writer, nid, id, "name 0", canonical, KernelTerm.PREFERRED, KernelTerm.PREFERRED);
         writer.semantic(UcumIdentity.record(id), IkeTerms.UCUM_COMPOSED_UNIT_PATTERN, nid, Lists.immutable.of(
                 canonical, reduction.dimension(), reduction.magnitude(), reduction.special(), reduction.arbitrary()));
         return id;
@@ -162,7 +162,7 @@ final class UcumConcepts {
     private static void named(StoreWriter writer, int nid, PublicId id, String role, String text,
                               EntityProxy.Concept usAcceptability, EntityProxy.Concept ucumAcceptability) {
         int description = writer.describe(nid, UcumIdentity.description(id, role), text,
-                TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
+                KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
         writer.dialect(description, UcumIdentity.description(id, role + " ucum-dialect"), IkeTerms.UCUM_DIALECT_PATTERN,
                 ucumAcceptability);
     }

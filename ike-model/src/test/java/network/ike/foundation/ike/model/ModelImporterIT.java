@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.model;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
@@ -25,7 +26,6 @@ import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.model.ModelInfoFile.ClassInfo;
 import network.ike.foundation.ike.model.ModelInfoFile.Element;
@@ -117,7 +117,7 @@ class ModelImporterIT {
 
     private static Set<Integer> statedParents(PublicId concept) {
         Set<Integer> parents = new HashSet<>();
-        for (ImmutableList<Object> fields : semanticsAbout(nid(concept), TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
+        for (ImmutableList<Object> fields : semanticsAbout(nid(concept), KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
             DiTreeEntity tree = (DiTreeEntity) fields.get(0);
             collect(tree, tree.root(), parents);
         }
@@ -137,7 +137,7 @@ class ModelImporterIT {
 
     private static List<Description> descriptions(int componentNid) {
         List<Description> found = new ArrayList<>();
-        EntityService.get().forEachSemanticForComponentOfPattern(componentNid, TinkarTerm.DESCRIPTION_PATTERN.nid(),
+        EntityService.get().forEachSemanticForComponentOfPattern(componentNid, KernelTerm.DESCRIPTION_PATTERN.nid(),
                 semantic -> {
                     Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                     if (latest.isPresent()) {
@@ -203,9 +203,9 @@ class ModelImporterIT {
         assertEquals("System.Quantity", quantity.get(2));
         assertEquals(nid(modelId(system)), ((EntityFacade) quantity.get(15)).nid(), "the record names the System model");
         assertTrue(statedParents(modelId(fhir)).contains(IkeTerms.DATA_MODEL.nid()), "a model hangs under Data model");
-        assertTrue(hasDescription(nid(modelId(fhir)), TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
+        assertTrue(hasDescription(nid(modelId(fhir)), KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
                 "FHIR 4.0.1 (data model)", null));
-        assertTrue(hasDescription(nid(modelId(quick)), TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
+        assertTrue(hasDescription(nid(modelId(quick)), KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
                 "QUICK (data model)", null));
     }
 
@@ -238,21 +238,21 @@ class ModelImporterIT {
                 assertEquals(expectedBase, base, clazz.qualifiedName() + " base");
                 assertTrue(statedParents(id).contains(expectedBase), clazz.qualifiedName() + " hangs under its base");
                 String local = clazz.localName(file.name());
-                assertTrue(hasDescription(nid, TinkarTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
+                assertTrue(hasDescription(nid, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
                         local + " (" + ModelConcepts.title(file.name(), file.version()) + ")", null), clazz.qualifiedName() + " fqn");
-                assertTrue(hasDescription(nid, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, local, dialect),
+                assertTrue(hasDescription(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, local, dialect),
                         clazz.qualifiedName() + " is found by its name in the dialect");
                 if (!clazz.label().isEmpty() && !clazz.label().equals(local)) {
-                    assertTrue(hasDescription(nid, TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE, clazz.label(), dialect),
+                    assertTrue(hasDescription(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, clazz.label(), dialect),
                             clazz.qualifiedName() + " is found by its label in the dialect");
                 }
                 if (!clazz.definition().isEmpty()) {
-                    assertTrue(hasDescription(nid, TinkarTerm.DEFINITION_DESCRIPTION_TYPE, clazz.definition(), null),
+                    assertTrue(hasDescription(nid, KernelTerm.DEFINITION_DESCRIPTION_TYPE, clazz.definition(), null),
                             clazz.qualifiedName() + " definition");
                 }
             }
         }
-        assertTrue(hasDescription(nid(classId(qdm, "QDM.PositiveEncounterPerformed")), TinkarTerm.REGULAR_NAME_DESCRIPTION_TYPE,
+        assertTrue(hasDescription(nid(classId(qdm, "QDM.PositiveEncounterPerformed")), KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE,
                 "Encounter, Performed", IkeTerms.QDM_DIALECT_PATTERN), "a QDM author's name for the class");
     }
 

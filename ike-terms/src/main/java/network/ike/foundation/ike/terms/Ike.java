@@ -15,8 +15,10 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.BindingClass;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.DefaultsTemplateTerm;
@@ -38,6 +40,25 @@ public final class Ike {
      * every identity in the set derives. Never change it.
      */
     public static final KnowledgeSet SET = KnowledgeSet.of("d890e06f-ec35-429a-b541-d0ead19695e2");
+
+    /**
+     * The binding class of the set's stamps: the generated {@code IkeStamps}, through which
+     * code outside the ledger authors under the set's stamps without depending on it.
+     */
+    public static final BindingClass STAMPS = SET.bindingClass("IkeStamps");
+
+    /**
+     * The kernel: the components tinkar-core and its stores name in their own code, generated
+     * into {@code dev.ikm.tinkar.terms.KernelTerm} and committed there (see
+     * {@link KernelBindings}).
+     */
+    public static final BindingClass KERNEL = SET.bindingClass("dev.ikm.tinkar.terms", "KernelTerm");
+
+    /**
+     * Komet's terms: the components Komet and its plugins name beyond the kernel, generated
+     * into {@code dev.ikm.komet.terms.KometTerm} and committed there (see {@link KometBindings}).
+     */
+    public static final BindingClass KOMET = SET.bindingClass("dev.ikm.komet.terms", "KometTerm");
 
     /** The set's module concept — the export dimension for this knowledge. */
     public static final EntityProxy.Concept MODULE =
@@ -69,7 +90,7 @@ public final class Ike {
      * gate's stamp test would refuse it.
      */
     public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
-            IKE_COMMUNITY, MODULE, IkeTerm.DEVELOPMENT_PATH);
+            IKE_COMMUNITY, MODULE, KernelTerm.DEVELOPMENT_PATH);
 
     /**
      * The inception stamp's Defaults-and-templates-module counterpart, at the same
@@ -80,5 +101,5 @@ public final class Ike {
      */
     public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
-            IkeTerm.DEVELOPMENT_PATH);
+            KernelTerm.DEVELOPMENT_PATH);
 }

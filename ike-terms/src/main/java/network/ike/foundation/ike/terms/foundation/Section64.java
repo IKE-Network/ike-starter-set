@@ -1,10 +1,10 @@
 package network.ike.foundation.ike.terms.foundation;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.terms.IkeTerm;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -18,75 +18,75 @@ final class Section64 {
         ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Purpose", PublicIds.of(UUID.fromString("c3dffc48-6493-54df-a2f0-14be8ba03091"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f0b05661-0bff-4bf2-9568-5ae5e3dc94f5")), IkeTerm.ENGLISH_LANGUAGE, "Purpose", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9e815a92-6438-405f-a00e-2692bbf869c0")), IkeTerm.ENGLISH_LANGUAGE, "Purpose", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0ecc5a56-ef03-4210-8dd2-bad08d94bad1")), IkeTerm.ENGLISH_LANGUAGE, "The reason for which a value in a pattern was created or for which it exists.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("273fc3d5-bd50-4bc3-88c2-a87ebbd35a97")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c3dffc48-6493-54df-a2f0-14be8ba03091")
-                .statedAxioms(PublicIds.of(UUID.fromString("d67636a4-1d54-54eb-9840-74367968de97")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.TINKAR_MODEL_CONCEPT))))
-                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("2327114e-720a-4648-9583-650477767e4f")))
-                .semanticOn(PublicIds.of(UUID.fromString("f0b05661-0bff-4bf2-9568-5ae5e3dc94f5")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b5f7329e-f91a-4d8c-ad21-c9a761cf5184")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("9e815a92-6438-405f-a00e-2692bbf869c0")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("c0d1627a-3536-468a-a095-ac09fc17f255")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("0ecc5a56-ef03-4210-8dd2-bad08d94bad1")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("c3bb4727-e18d-4a54-bb75-b20d9c722b96")), IkeTerm.PREFERRED)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("f0b05661-0bff-4bf2-9568-5ae5e3dc94f5")), KernelTerm.ENGLISH_LANGUAGE, "Purpose", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("9e815a92-6438-405f-a00e-2692bbf869c0")), KernelTerm.ENGLISH_LANGUAGE, "Purpose", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0ecc5a56-ef03-4210-8dd2-bad08d94bad1")), KernelTerm.ENGLISH_LANGUAGE, "The reason for which a value in a pattern was created or for which it exists.", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("273fc3d5-bd50-4bc3-88c2-a87ebbd35a97")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "c3dffc48-6493-54df-a2f0-14be8ba03091")
+                .statedAxioms(PublicIds.of(UUID.fromString("d67636a4-1d54-54eb-9840-74367968de97")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("IKE base model concept", PublicIds.of("bc59d656-83d3-47d8-9507-0e656ea95463"))))))
+                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("2327114e-720a-4648-9583-650477767e4f")))
+                .semanticOn(PublicIds.of(UUID.fromString("f0b05661-0bff-4bf2-9568-5ae5e3dc94f5")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b5f7329e-f91a-4d8c-ad21-c9a761cf5184")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("9e815a92-6438-405f-a00e-2692bbf869c0")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("c0d1627a-3536-468a-a095-ac09fc17f255")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("0ecc5a56-ef03-4210-8dd2-bad08d94bad1")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("c3bb4727-e18d-4a54-bb75-b20d9c722b96")), KernelTerm.PREFERRED)
                 ;
 
         set.concept("Navigation (SOLOR)", PublicIds.of(UUID.fromString("4d9707d8-adf0-5b15-89fc-039e4ff6fec8"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("74d77d37-0b36-431d-a1bc-b4e023a79c19")), IkeTerm.ENGLISH_LANGUAGE, "Navigation (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("db897443-7146-44bf-9b95-a8522eec7620")), IkeTerm.ENGLISH_LANGUAGE, "Navigation", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("32fca61e-c947-4674-984b-42de6acb35ba")), IkeTerm.ENGLISH_LANGUAGE, "Navigation", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("3a98ccf5-9a3c-4d04-a2e5-fd2189f2be65")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "4d9707d8-adf0-5b15-89fc-039e4ff6fec8")
-                .statedAxioms(PublicIds.of(UUID.fromString("24151757-85c1-5f77-a343-dcf1a1223ebd")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.PURPOSE))))
-                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("2d584c8c-6aa1-4d6b-9dfb-d440295586c2")))
-                .semanticOn(PublicIds.of(UUID.fromString("74d77d37-0b36-431d-a1bc-b4e023a79c19")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("58a0cceb-74a5-4abc-a6f2-3fb780ccdc00")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("db897443-7146-44bf-9b95-a8522eec7620")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5f43a37d-678c-4379-a3bd-35dbb47783a6")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("32fca61e-c947-4674-984b-42de6acb35ba")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("401c8742-a5b1-4d79-9145-5d9cf5cce762")), IkeTerm.PREFERRED)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("74d77d37-0b36-431d-a1bc-b4e023a79c19")), KernelTerm.ENGLISH_LANGUAGE, "Navigation (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("db897443-7146-44bf-9b95-a8522eec7620")), KernelTerm.ENGLISH_LANGUAGE, "Navigation", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("32fca61e-c947-4674-984b-42de6acb35ba")), KernelTerm.ENGLISH_LANGUAGE, "Navigation", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("3a98ccf5-9a3c-4d04-a2e5-fd2189f2be65")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "4d9707d8-adf0-5b15-89fc-039e4ff6fec8")
+                .statedAxioms(PublicIds.of(UUID.fromString("24151757-85c1-5f77-a343-dcf1a1223ebd")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Purpose (SOLOR)", PublicIds.of("c3dffc48-6493-54df-a2f0-14be8ba03091"))))))
+                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("2d584c8c-6aa1-4d6b-9dfb-d440295586c2")))
+                .semanticOn(PublicIds.of(UUID.fromString("74d77d37-0b36-431d-a1bc-b4e023a79c19")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("58a0cceb-74a5-4abc-a6f2-3fb780ccdc00")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("db897443-7146-44bf-9b95-a8522eec7620")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5f43a37d-678c-4379-a3bd-35dbb47783a6")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("32fca61e-c947-4674-984b-42de6acb35ba")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("401c8742-a5b1-4d79-9145-5d9cf5cce762")), KernelTerm.PREFERRED)
                 ;
 
         set.concept("Navigation concept set (SOLOR)", PublicIds.of(UUID.fromString("fc965c5d-ad17-555e-bcb5-b78fd45c8c5f"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("8e051e4f-72b3-4889-8e33-201556752813")), IkeTerm.ENGLISH_LANGUAGE, "Navigation concept set (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("36ff964b-1503-4a99-a1d0-2f5acc9c6820")), IkeTerm.ENGLISH_LANGUAGE, "Navigation set", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("99253983-b68f-4193-90f3-12d354e4e6cb")), IkeTerm.ENGLISH_LANGUAGE, "The pattern-selection dimension of the navigation coordinate: the navigation patterns — stated or inferred — traversal reads parent/child structure from. Part of the navigation coordinate properties family.", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("260629c1-3ce7-4149-b840-5314737cb7c4")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "fc965c5d-ad17-555e-bcb5-b78fd45c8c5f")
-                .statedAxioms(PublicIds.of(UUID.fromString("561e4bac-7fed-52a5-8be4-a48435f60bc8")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Navigation coordinate properties (IkeFoundation)")), leb.SomeRole(IkeTerm.PART_OF, leb.ConceptAxiom(set.conceptRef("Navigation coordinate properties (IkeFoundation)"))))))
-                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("88634391-20f0-4a6a-8b07-b7dcc739569b")))
-                .semanticOn(PublicIds.of(UUID.fromString("8e051e4f-72b3-4889-8e33-201556752813")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("7276310e-982c-4656-9914-2ae254f09e1a")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("36ff964b-1503-4a99-a1d0-2f5acc9c6820")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("9950a59e-0529-4802-b332-6c553c4595fc")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("99253983-b68f-4193-90f3-12d354e4e6cb")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("e8bb53d5-2a7e-4063-a20c-0f3801f7daf6")), IkeTerm.PREFERRED)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("8e051e4f-72b3-4889-8e33-201556752813")), KernelTerm.ENGLISH_LANGUAGE, "Navigation concept set (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("36ff964b-1503-4a99-a1d0-2f5acc9c6820")), KernelTerm.ENGLISH_LANGUAGE, "Navigation set", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("99253983-b68f-4193-90f3-12d354e4e6cb")), KernelTerm.ENGLISH_LANGUAGE, "The pattern-selection dimension of the navigation coordinate: the navigation patterns — stated or inferred — traversal reads parent/child structure from. Part of the navigation coordinate properties family.", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("260629c1-3ce7-4149-b840-5314737cb7c4")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "fc965c5d-ad17-555e-bcb5-b78fd45c8c5f")
+                .statedAxioms(PublicIds.of(UUID.fromString("561e4bac-7fed-52a5-8be4-a48435f60bc8")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Navigation coordinate properties (IkeFoundation)")), leb.SomeRole(EntityProxy.Concept.make("Part of (SOLOR)", PublicIds.of("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73")), leb.ConceptAxiom(set.conceptRef("Navigation coordinate properties (IkeFoundation)"))))))
+                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("88634391-20f0-4a6a-8b07-b7dcc739569b")))
+                .semanticOn(PublicIds.of(UUID.fromString("8e051e4f-72b3-4889-8e33-201556752813")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("7276310e-982c-4656-9914-2ae254f09e1a")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("36ff964b-1503-4a99-a1d0-2f5acc9c6820")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("9950a59e-0529-4802-b332-6c553c4595fc")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("99253983-b68f-4193-90f3-12d354e4e6cb")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("e8bb53d5-2a7e-4063-a20c-0f3801f7daf6")), KernelTerm.PREFERRED)
                 ;
 
         set.concept("Navigation vertex (SOLOR)", PublicIds.of(UUID.fromString("c7f01834-34ca-5f8b-8f80-193fbeb12eae"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("294959ce-e10d-4909-9250-94d80b9d646f")), IkeTerm.ENGLISH_LANGUAGE, "Navigation vertex (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6930ec4d-dc6a-4d67-8df1-fbc2ae3d42fa")), IkeTerm.ENGLISH_LANGUAGE, "Navigation vertex", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5f73add0-258c-457c-b95f-97ccf0a34e7d")), IkeTerm.ENGLISH_LANGUAGE, "Navigation vertex", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("909d36f0-2927-4ea0-b8fa-bb148ac86c0b")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "c7f01834-34ca-5f8b-8f80-193fbeb12eae")
-                .statedAxioms(PublicIds.of(UUID.fromString("c9153e98-2218-5a5a-aa86-6b961f3ba8c6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.NAVIGATION))))
-                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("66352f99-addb-4059-aa99-bd72fd5fb02f")))
-                .semanticOn(PublicIds.of(UUID.fromString("294959ce-e10d-4909-9250-94d80b9d646f")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("8ba626d3-c8d2-42cd-8172-ce2bee6f2b0f")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("6930ec4d-dc6a-4d67-8df1-fbc2ae3d42fa")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("82d15b6e-140c-4dc1-9e59-5ed15f21b846")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("5f73add0-258c-457c-b95f-97ccf0a34e7d")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5a9fc28e-8ddf-419a-b86d-1b4d315bed15")), IkeTerm.PREFERRED)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("294959ce-e10d-4909-9250-94d80b9d646f")), KernelTerm.ENGLISH_LANGUAGE, "Navigation vertex (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("6930ec4d-dc6a-4d67-8df1-fbc2ae3d42fa")), KernelTerm.ENGLISH_LANGUAGE, "Navigation vertex", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("5f73add0-258c-457c-b95f-97ccf0a34e7d")), KernelTerm.ENGLISH_LANGUAGE, "Navigation vertex", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("909d36f0-2927-4ea0-b8fa-bb148ac86c0b")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "c7f01834-34ca-5f8b-8f80-193fbeb12eae")
+                .statedAxioms(PublicIds.of(UUID.fromString("c9153e98-2218-5a5a-aa86-6b961f3ba8c6")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Navigation (SOLOR)", PublicIds.of("4d9707d8-adf0-5b15-89fc-039e4ff6fec8"))))))
+                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("66352f99-addb-4059-aa99-bd72fd5fb02f")))
+                .semanticOn(PublicIds.of(UUID.fromString("294959ce-e10d-4909-9250-94d80b9d646f")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("8ba626d3-c8d2-42cd-8172-ce2bee6f2b0f")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("6930ec4d-dc6a-4d67-8df1-fbc2ae3d42fa")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("82d15b6e-140c-4dc1-9e59-5ed15f21b846")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("5f73add0-258c-457c-b95f-97ccf0a34e7d")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5a9fc28e-8ddf-419a-b86d-1b4d315bed15")), KernelTerm.PREFERRED)
                 ;
 
         set.concept("Is-a inferred navigation (SOLOR)", PublicIds.of(UUID.fromString("b620768f-1479-5afa-a027-5a9ae6caf0d5"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("df7c458c-5066-4f4b-a33d-4f6bd11ecb2b")), IkeTerm.ENGLISH_LANGUAGE, "Is-a inferred navigation (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("014eed70-29c3-4c5c-95e3-a57b9af7ec2d")), IkeTerm.ENGLISH_LANGUAGE, "Is-a inferred navigation", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1b7bbc5c-0efa-4344-9444-25d2c019ffe6")), IkeTerm.ENGLISH_LANGUAGE, "Designates the parent child relationship following the application of the reasoner", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("02947123-a8ed-41a3-bb66-e38dbb1d16b3")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "b620768f-1479-5afa-a027-5a9ae6caf0d5")
-                .statedAxioms(PublicIds.of(UUID.fromString("c5b57cbf-fbd2-50f9-bce3-11783d689203")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.NAVIGATION))))
-                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("1728e365-6f31-46ae-a026-a0a74467bea5")))
-                .semanticOn(PublicIds.of(UUID.fromString("df7c458c-5066-4f4b-a33d-4f6bd11ecb2b")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b7a71ca0-0b1b-43dd-b98d-604ece34ef0e")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("014eed70-29c3-4c5c-95e3-a57b9af7ec2d")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("31529253-c884-4acf-8f35-28797d79c566")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("1b7bbc5c-0efa-4344-9444-25d2c019ffe6")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("23cdbbd5-1e2c-473e-bbf1-78c35e71de97")), IkeTerm.PREFERRED)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("df7c458c-5066-4f4b-a33d-4f6bd11ecb2b")), KernelTerm.ENGLISH_LANGUAGE, "Is-a inferred navigation (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("014eed70-29c3-4c5c-95e3-a57b9af7ec2d")), KernelTerm.ENGLISH_LANGUAGE, "Is-a inferred navigation", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1b7bbc5c-0efa-4344-9444-25d2c019ffe6")), KernelTerm.ENGLISH_LANGUAGE, "Designates the parent child relationship following the application of the reasoner", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("02947123-a8ed-41a3-bb66-e38dbb1d16b3")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "b620768f-1479-5afa-a027-5a9ae6caf0d5")
+                .statedAxioms(PublicIds.of(UUID.fromString("c5b57cbf-fbd2-50f9-bce3-11783d689203")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Navigation (SOLOR)", PublicIds.of("4d9707d8-adf0-5b15-89fc-039e4ff6fec8"))))))
+                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("1728e365-6f31-46ae-a026-a0a74467bea5")))
+                .semanticOn(PublicIds.of(UUID.fromString("df7c458c-5066-4f4b-a33d-4f6bd11ecb2b")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b7a71ca0-0b1b-43dd-b98d-604ece34ef0e")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("014eed70-29c3-4c5c-95e3-a57b9af7ec2d")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("31529253-c884-4acf-8f35-28797d79c566")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("1b7bbc5c-0efa-4344-9444-25d2c019ffe6")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("23cdbbd5-1e2c-473e-bbf1-78c35e71de97")), KernelTerm.PREFERRED)
                 ;
 
         set.concept("Is-a stated navigation (SOLOR)", PublicIds.of(UUID.fromString("d555dde9-c97e-5480-819a-7472eda3dbfa"))).at(inception)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("31b4e8f4-0c80-48a2-b7e2-955bd3709ea9")), IkeTerm.ENGLISH_LANGUAGE, "Is-a stated navigation (SOLOR)", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("dfc7314d-c6cb-4e9a-ad26-dec0f12c47b8")), IkeTerm.ENGLISH_LANGUAGE, "Is-a stated navigation", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("10c77b6d-661a-44b5-909e-59af35f8c500")), IkeTerm.ENGLISH_LANGUAGE, "Designates the parent child relationship as authored", IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("bd1740cb-9fee-4194-9576-9ce1e364a958")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, "d555dde9-c97e-5480-819a-7472eda3dbfa")
-                .statedAxioms(PublicIds.of(UUID.fromString("daf4090b-0161-5c11-a372-b7f593944849")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(IkeTerm.NAVIGATION))))
-                .semantic(IkeTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("69f34aaf-ef61-4f99-befd-fdb0bcb83815")))
-                .semanticOn(PublicIds.of(UUID.fromString("31b4e8f4-0c80-48a2-b7e2-955bd3709ea9")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("59ea9bf9-870a-4bb1-be1c-d85122a7410a")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("dfc7314d-c6cb-4e9a-ad26-dec0f12c47b8")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("bc1abdd3-4585-4baf-84cb-afd29105125a")), IkeTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("10c77b6d-661a-44b5-909e-59af35f8c500")), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("0d4f76b0-b83f-48ac-8ebd-d8e027f79821")), IkeTerm.PREFERRED)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("31b4e8f4-0c80-48a2-b7e2-955bd3709ea9")), KernelTerm.ENGLISH_LANGUAGE, "Is-a stated navigation (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("dfc7314d-c6cb-4e9a-ad26-dec0f12c47b8")), KernelTerm.ENGLISH_LANGUAGE, "Is-a stated navigation", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("10c77b6d-661a-44b5-909e-59af35f8c500")), KernelTerm.ENGLISH_LANGUAGE, "Designates the parent child relationship as authored", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("bd1740cb-9fee-4194-9576-9ce1e364a958")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "d555dde9-c97e-5480-819a-7472eda3dbfa")
+                .statedAxioms(PublicIds.of(UUID.fromString("daf4090b-0161-5c11-a372-b7f593944849")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Navigation (SOLOR)", PublicIds.of("4d9707d8-adf0-5b15-89fc-039e4ff6fec8"))))))
+                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("69f34aaf-ef61-4f99-befd-fdb0bcb83815")))
+                .semanticOn(PublicIds.of(UUID.fromString("31b4e8f4-0c80-48a2-b7e2-955bd3709ea9")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("59ea9bf9-870a-4bb1-be1c-d85122a7410a")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("dfc7314d-c6cb-4e9a-ad26-dec0f12c47b8")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("bc1abdd3-4585-4baf-84cb-afd29105125a")), KernelTerm.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("10c77b6d-661a-44b5-909e-59af35f8c500")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("0d4f76b0-b83f-48ac-8ebd-d8e027f79821")), KernelTerm.PREFERRED)
                 ;
 
     }

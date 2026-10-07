@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.elm;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.language.calculator.LanguageCalculator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
@@ -24,7 +25,6 @@ import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
 
 import java.util.ArrayList;
@@ -544,7 +544,7 @@ public final class ElmCatalog {
         private static Set<Integer> statedParents(StampCalculator calculator, int conceptNid) {
             Set<Integer> parents = new HashSet<>();
             calculator.forEachSemanticVersionForComponentOfPattern(EntityProxy.Concept.make(conceptNid),
-                    TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                    KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                     (semanticVersion, entityVersion, patternVersion) -> {
                         DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                         AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);

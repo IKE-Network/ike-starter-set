@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.EntityProxy;
@@ -102,10 +104,10 @@ final class UcumModelSet {
                         + " a unit is found by either, the way a definition is found by its name.")
                 .isA(root);
         set.pattern(DIALECT_PATTERN_FQN).at(inception)
-                .meaning(IkeTerm.DESCRIPTION_ACCEPTABILITY)
-                .purpose(IkeTerm.DESCRIPTION_SEMANTIC)
-                .field(set.conceptRef("UCUM dialect (IkeFoundation)"), IkeTerm.DESCRIPTION_ACCEPTABILITY,
-                        IkeTerm.COMPONENT_FIELD)
+                .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
+                .field(set.conceptRef("UCUM dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
+                        KernelTerm.COMPONENT_FIELD)
                 .definition("Records whether a description is preferred or acceptable in the UCUM"
                         + " dialect. One field: that description's acceptability for this dialect.");
 
@@ -147,17 +149,17 @@ final class UcumModelSet {
         set.pattern(UNIT_PATTERN_FQN).at(inception)
                 .meaning(root)
                 .purpose(record)
-                .field(set.conceptRef("UCUM code (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM case-insensitive code (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM print symbol (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM class (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM metric (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("UCUM special (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("UCUM arbitrary (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("UCUM definition value (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM definition unit (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("Unit dimension (IkeFoundation)"), reduction, IkeTerm.STRING)
-                .field(set.conceptRef("Unit magnitude (IkeFoundation)"), reduction, IkeTerm.DECIMAL_FIELD)
+                .field(set.conceptRef("UCUM code (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM case-insensitive code (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM print symbol (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM class (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM metric (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("UCUM special (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("UCUM arbitrary (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("UCUM definition value (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM definition unit (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("Unit dimension (IkeFoundation)"), reduction, KernelTerm.STRING)
+                .field(set.conceptRef("Unit magnitude (IkeFoundation)"), reduction, KernelTerm.DECIMAL_FIELD)
                 .definition("What UCUM says of one unit, kept verbatim, and what IKE computes from it: the"
                         + " code, the case-insensitive code, the print symbol, the class, whether metric,"
                         + " special, or arbitrary, the definition's value and unit as written, and IKE's"
@@ -168,10 +170,10 @@ final class UcumModelSet {
         set.pattern(PREFIX_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef(PREFIX_FQN))
                 .purpose(record)
-                .field(set.conceptRef("UCUM code (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM case-insensitive code (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM print symbol (IkeFoundation)"), record, IkeTerm.STRING)
-                .field(set.conceptRef("UCUM prefix factor (IkeFoundation)"), record, IkeTerm.DECIMAL_FIELD)
+                .field(set.conceptRef("UCUM code (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM case-insensitive code (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM print symbol (IkeFoundation)"), record, KernelTerm.STRING)
+                .field(set.conceptRef("UCUM prefix factor (IkeFoundation)"), record, KernelTerm.DECIMAL_FIELD)
                 .definition("What UCUM says of one prefix, kept verbatim: the code, the case-insensitive"
                         + " code, the print symbol, and the factor.");
 
@@ -179,11 +181,11 @@ final class UcumModelSet {
         set.pattern(COMPOSED_UNIT_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef(COMPOSED_UNIT_FQN))
                 .purpose(reduction)
-                .field(set.conceptRef("Unit canonical code (IkeFoundation)"), reduction, IkeTerm.STRING)
-                .field(set.conceptRef("Unit dimension (IkeFoundation)"), reduction, IkeTerm.STRING)
-                .field(set.conceptRef("Unit magnitude (IkeFoundation)"), reduction, IkeTerm.DECIMAL_FIELD)
-                .field(set.conceptRef("UCUM special (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
-                .field(set.conceptRef("UCUM arbitrary (IkeFoundation)"), record, IkeTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("Unit canonical code (IkeFoundation)"), reduction, KernelTerm.STRING)
+                .field(set.conceptRef("Unit dimension (IkeFoundation)"), reduction, KernelTerm.STRING)
+                .field(set.conceptRef("Unit magnitude (IkeFoundation)"), reduction, KernelTerm.DECIMAL_FIELD)
+                .field(set.conceptRef("UCUM special (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
+                .field(set.conceptRef("UCUM arbitrary (IkeFoundation)"), record, KernelTerm.BOOLEAN_FIELD)
                 .definition("A unit composed by UCUM's grammar: its canonical code, IKE's dimension and"
                         + " magnitude for it, and whether any factor is special or arbitrary, in which case"
                         + " it does not convert.");

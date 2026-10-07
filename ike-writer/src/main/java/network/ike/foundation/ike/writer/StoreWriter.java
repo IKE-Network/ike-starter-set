@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.writer;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.IntIdList;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.id.PublicIds;
@@ -22,6 +23,7 @@ import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.ConceptRecord;
 import dev.ikm.tinkar.entity.ConceptRecordBuilder;
 import dev.ikm.tinkar.entity.ConceptVersionRecord;
@@ -43,7 +45,6 @@ import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.entity.graph.adaptor.axiom.LogicalExpressionBuilder;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.api.list.primitive.ImmutableIntList;
@@ -154,7 +155,7 @@ public final class StoreWriter {
      */
     public int concept(PublicId conceptId) {
         int nid = PrimitiveData.nid(conceptId);
-        if (EntityService.get().getEntity(nid).isEmpty()) {
+        if (EntityHandle.get(nid).entity().filter(e -> !e.canceled()).isEmpty()) {
             RecordListBuilder<ConceptVersionRecord> versions = RecordListBuilder.make();
             ConceptRecord bootstrap = ConceptRecord.makeNew(conceptId, versions);
             versions.add(ConceptVersionRecordBuilder.builder().chronology(bootstrap).stampNid(stampNid).build());
@@ -173,7 +174,7 @@ public final class StoreWriter {
      * @return the axiom semantic's nid
      */
     public int statedParent(PublicId conceptId, PublicId parentId) {
-        UUID conceptUuid = conceptId.asUuidArray()[0];
+        UUID conceptUuid = conceptId.leastUuid();
         PublicId axiomId = PublicIds.of(UuidT5Generator.get(conceptUuid, "stated axioms"));
         int[] ordinal = {0};
         LogicalExpressionBuilder builder = new LogicalExpressionBuilder(
@@ -181,7 +182,7 @@ public final class StoreWriter {
                 () -> UuidT5Generator.get(conceptUuid, "axiom vertex " + ordinal[0]++));
         builder.NecessarySet(builder.And(builder.ConceptAxiom(EntityProxy.Concept.make(PrimitiveData.nid(parentId)))));
         DiTreeEntity tree = (DiTreeEntity) builder.build().sourceGraph();
-        return semantic(axiomId, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN, PrimitiveData.nid(conceptId),
+        return semantic(axiomId, KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN, PrimitiveData.nid(conceptId),
                 Lists.immutable.of(tree));
     }
 
@@ -200,7 +201,7 @@ public final class StoreWriter {
         PublicIdentifierRecord identifier = PublicIdentifierRecord.make(semanticId);
         int nid = ScopedValue.where(PrimitiveData.SCOPED_PATTERN_PUBLICID_FOR_NID, pattern.publicId())
                 .call(() -> PrimitiveData.nid(semanticId));
-        Optional<SemanticRecord> existing = EntityService.get().getEntity(nid);
+        Optional<SemanticRecord> existing = EntityHandle.get(nid).entity().filter(e -> !e.canceled()).map(e -> (SemanticRecord) e);
         if (existing.isPresent()) {
             Latest<SemanticEntityVersion> latest = calculator.latest(nid);
             if (latest.isPresent() && latest.get().stampNid() != inactiveStampNid
@@ -250,7 +251,7 @@ public final class StoreWriter {
      * @return the description semantic's nid
      */
     public int describe(int aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type) {
-        return describe(aboutNid, descriptionUuid, text, type, TinkarTerm.PREFERRED);
+        return describe(aboutNid, descriptionUuid, text, type, KernelTerm.PREFERRED);
     }
 
     /**
@@ -266,9 +267,9 @@ public final class StoreWriter {
      */
     public int describe(int aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type,
                         EntityProxy.Concept usAcceptability) {
-        int descriptionNid = semantic(PublicIds.of(descriptionUuid), TinkarTerm.DESCRIPTION_PATTERN, aboutNid,
-                Lists.immutable.of(TinkarTerm.ENGLISH_LANGUAGE, text, TinkarTerm.DESCRIPTION_NOT_CASE_SENSITIVE, type));
-        dialect(descriptionNid, UuidT5Generator.get(descriptionUuid, "us-dialect"), TinkarTerm.US_DIALECT_PATTERN,
+        int descriptionNid = semantic(PublicIds.of(descriptionUuid), KernelTerm.DESCRIPTION_PATTERN, aboutNid,
+                Lists.immutable.of(KernelTerm.ENGLISH_LANGUAGE, text, KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, type));
+        dialect(descriptionNid, UuidT5Generator.get(descriptionUuid, "us-dialect"), KernelTerm.US_DIALECT_PATTERN,
                 usAcceptability);
         return descriptionNid;
     }
@@ -299,7 +300,7 @@ public final class StoreWriter {
             return false;
         }
         int nid = PrimitiveData.nid(semanticId);
-        Optional<SemanticRecord> existing = EntityService.get().getEntity(nid);
+        Optional<SemanticRecord> existing = EntityHandle.get(nid).entity().filter(e -> !e.canceled()).map(e -> (SemanticRecord) e);
         Latest<SemanticEntityVersion> latest = calculator.latest(nid);
         if (existing.isEmpty() || latest.isAbsent()) {
             return false;
@@ -383,13 +384,13 @@ public final class StoreWriter {
     private static int writeStamp(Stamp stamp) {
         PublicId stampId = stamp.publicId();
         int stampNid = EntityService.get().nidForStamp(stampId);
-        if (EntityService.get().getEntity(stampNid).isPresent()) {
+        if (EntityHandle.get(stampNid).entity().filter(e -> !e.canceled()).isPresent()) {
             return stampNid;
         }
-        UUID primordial = stampId.asUuidArray()[0];
+        PublicIdentifierRecord identifier = PublicIdentifierRecord.make(stampId);
         RecordListBuilder<StampVersionRecord> versionRecords = RecordListBuilder.make();
-        StampRecord stampEntity = new StampRecord(primordial.getMostSignificantBits(),
-                primordial.getLeastSignificantBits(), stampId.additionalUuidLongs(), stampNid, versionRecords);
+        StampRecord stampEntity = new StampRecord(identifier.mostSignificantBits(),
+                identifier.leastSignificantBits(), identifier.additionalUuidLongs(), stampNid, versionRecords);
         versionRecords.add(new StampVersionRecord(stampEntity, stamp.state().nid(), stamp.time(),
                 stamp.author().nid(), stamp.module().nid(), stamp.path().nid()));
         versionRecords.build();

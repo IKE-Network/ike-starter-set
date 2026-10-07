@@ -77,7 +77,7 @@ public final class ModelIdentity {
      * @return the identity
      */
     public static PublicId element(PublicId classId, String elementName) {
-        return PublicIds.of(UuidT5Generator.get(classId.asUuidArray()[0], "element " + elementName));
+        return PublicIds.of(UuidT5Generator.get(classId.leastUuid(), "element " + elementName));
     }
 
     /**
@@ -102,7 +102,7 @@ public final class ModelIdentity {
      * @return the identity
      */
     public static PublicId relationship(PublicId classId, String contextName, String keyElement, boolean toTarget) {
-        return PublicIds.of(UuidT5Generator.get(classId.asUuidArray()[0],
+        return PublicIds.of(UuidT5Generator.get(classId.leastUuid(),
                 (toTarget ? "target relationship " : "relationship ") + contextName + " by " + keyElement));
     }
 
@@ -115,7 +115,7 @@ public final class ModelIdentity {
      * @return the identity
      */
     public static PublicId conversion(PublicId fromClassId, String toType, String functionName) {
-        return PublicIds.of(UuidT5Generator.get(fromClassId.asUuidArray()[0],
+        return PublicIds.of(UuidT5Generator.get(fromClassId.leastUuid(),
                 "conversion to " + toType + " by " + functionName));
     }
 
@@ -128,7 +128,7 @@ public final class ModelIdentity {
      * @return the identity
      */
     public static PublicId requirement(PublicId modelId, String requiredName, String requiredVersion) {
-        return PublicIds.of(UuidT5Generator.get(modelId.asUuidArray()[0],
+        return PublicIds.of(UuidT5Generator.get(modelId.leastUuid(),
                 "requires " + requiredName + " " + requiredVersion));
     }
 
@@ -139,7 +139,7 @@ public final class ModelIdentity {
      * @return the bridge semantic's id
      */
     public static PublicId bridge(PublicId classId) {
-        return PublicIds.of(UuidT5Generator.get(NAMESPACE, classId.asUuidArray()[0] + "; bridge"));
+        return PublicIds.of(UuidT5Generator.get(NAMESPACE, classId.leastUuid() + "; bridge"));
     }
 
     /**
@@ -149,7 +149,7 @@ public final class ModelIdentity {
      * @return the reading semantic's id
      */
     public static PublicId reading(PublicId elementId) {
-        return PublicIds.of(UuidT5Generator.get(NAMESPACE, elementId.asUuidArray()[0] + "; reading"));
+        return PublicIds.of(UuidT5Generator.get(NAMESPACE, elementId.leastUuid() + "; reading"));
     }
 
     /**
@@ -159,7 +159,7 @@ public final class ModelIdentity {
      * @return the identity
      */
     public static PublicId record(PublicId component) {
-        return PublicIds.of(UuidT5Generator.get(component.asUuidArray()[0], "model information record"));
+        return PublicIds.of(UuidT5Generator.get(component.leastUuid(), "model information record"));
     }
 
     /**
@@ -170,7 +170,7 @@ public final class ModelIdentity {
      * @return the identity
      */
     public static UUID description(PublicId component, String role) {
-        return UuidT5Generator.get(component.asUuidArray()[0], role);
+        return UuidT5Generator.get(component.leastUuid(), role);
     }
 
     /**
@@ -181,6 +181,6 @@ public final class ModelIdentity {
      * @return the vertex's identity
      */
     public static UUID vertex(PublicId elementId, String path) {
-        return UuidT5Generator.get(elementId.asUuidArray()[0], "vertex " + path);
+        return UuidT5Generator.get(elementId.leastUuid(), "vertex " + path);
     }
 }

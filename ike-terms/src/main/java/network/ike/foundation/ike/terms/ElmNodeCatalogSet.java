@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -54,7 +55,7 @@ final class ElmNodeCatalogSet {
                         + " cqframework/clinical_quality_language v5.3.0 and regenerated from the schemas, never"
                         + " edited. A node kind is a kind of node a tree in this language can have; a position is"
                         + " a named place in a node that holds a child or a value.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
         EntityProxy.Concept root = set.conceptRef(ROOT_FQN);
 
         set.concept("ELM position (ELM)").at(inception)
@@ -137,12 +138,12 @@ final class ElmNodeCatalogSet {
         set.pattern(TYPE_POSITION_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("ELM type position (ELM)"))
                 .purpose(structure)
-                .field(set.conceptRef("ELM position field (ELM)"), structure, IkeTerm.COMPONENT_FIELD)
-                .field(set.conceptRef("ELM value type field (ELM)"), structure, IkeTerm.COMPONENT_FIELD)
-                .field(set.conceptRef("ELM minimum field (ELM)"), structure, IkeTerm.INTEGER_FIELD)
-                .field(set.conceptRef("ELM maximum field (ELM)"), structure, IkeTerm.INTEGER_FIELD)
-                .field(set.conceptRef("ELM position note field (ELM)"), structure, IkeTerm.STRING)
-                .field(set.conceptRef("ELM form field (ELM)"), structure, IkeTerm.COMPONENT_FIELD);
+                .field(set.conceptRef("ELM position field (ELM)"), structure, KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("ELM value type field (ELM)"), structure, KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("ELM minimum field (ELM)"), structure, KernelTerm.INTEGER_FIELD)
+                .field(set.conceptRef("ELM maximum field (ELM)"), structure, KernelTerm.INTEGER_FIELD)
+                .field(set.conceptRef("ELM position note field (ELM)"), structure, KernelTerm.STRING)
+                .field(set.conceptRef("ELM form field (ELM)"), structure, KernelTerm.COMPONENT_FIELD);
         EntityProxy.Concept propertyForm = set.conceptRef("ELM property form (ELM)");
         EntityProxy.Concept edgeForm = set.conceptRef("ELM edge form (ELM)");
         EntityProxy.Pattern typePositions = set.patternRef(TYPE_POSITION_PATTERN_FQN);

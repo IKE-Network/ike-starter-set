@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 
@@ -73,7 +75,7 @@ final class GraphModelSet {
                         + " Directed tree (both at once). A concept whose values merely"
                         + " have this shape — a data type, a default — is about a graph,"
                         + " not a kind of graph, and lives with its own family.")
-                .isA(IkeTerm.TINKAR_MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("IKE base model concept", PublicIds.of("bc59d656-83d3-47d8-9507-0e656ea95463")));
 
         set.concept("Tree (IkeFoundation)").at(inception)
                 .synonym("Tree")
@@ -93,7 +95,7 @@ final class GraphModelSet {
                         + " classified taxonomy a DAG rather than a tree. This is the"
                         + " shape of each stored logical expression (see EL++ ditree)"
                         + " and of the value a DiTree data type field carries.")
-                .isA(IkeTerm.DIRECTED_GRAPH, set.conceptRef("Tree (IkeFoundation)"));
+                .isA(EntityProxy.Concept.make("Directed graph (SOLOR)", PublicIds.of("47a787a7-bdce-528d-bfcc-fde1add8d599")), set.conceptRef("Tree (IkeFoundation)"));
 
         set.concept("EL++ ditree (IkeFoundation)").at(inception)
                 .synonym("EL++ ditree")

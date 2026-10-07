@@ -19,6 +19,7 @@ import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
+import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.ConceptFacade;
@@ -105,7 +106,7 @@ public final class ModelTypes {
             if (!patientClass.isEmpty() && !patientClass.startsWith(name + ".")) {
                 patientClass = name + "." + patientClass;
             }
-            types.models.put(nid, new Model(nid, EntityService.get().getEntity(nid).orElseThrow().publicId(),
+            types.models.put(nid, new Model(nid, EntityHandle.get(nid).expectEntity().publicId(),
                     name, (String) fields.get(1), (String) fields.get(2), patientClass));
         });
         EntityService.get().forEachSemanticOfPattern(IkeTerms.MODEL_CLASS_PATTERN.nid(), semantic -> {
@@ -235,7 +236,7 @@ public final class ModelTypes {
         int current = classNid;
         for (int depth = 0; depth < 64 && classes.containsKey(current); depth++) {
             ClassEntry entry = classes.get(current);
-            PublicId id = ModelIdentity.element(EntityService.get().getEntity(entry.nid()).orElseThrow().publicId(), name);
+            PublicId id = ModelIdentity.element(EntityHandle.get(entry.nid()).expectEntity().publicId(), name);
             if (exists(id)) {
                 return Optional.of(id);
             }
@@ -255,7 +256,7 @@ public final class ModelTypes {
      * @return true when the store holds a component under it
      */
     public static boolean exists(PublicId id) {
-        return PrimitiveData.get().hasPublicId(id) && EntityService.get().getEntity(PrimitiveData.nid(id)).isPresent();
+        return PrimitiveData.get().hasPublicId(id) && EntityHandle.get(PrimitiveData.nid(id)).entity().filter(e -> !e.canceled()).isPresent();
     }
 
     /**

@@ -87,7 +87,7 @@ public final class UcumIdentity {
      * @return the identity
      */
     public static PublicId record(PublicId concept) {
-        return PublicIds.of(UuidT5Generator.get(concept.asUuidArray()[0], "record"));
+        return PublicIds.of(UuidT5Generator.get(concept.leastUuid(), "record"));
     }
 
     /**
@@ -98,7 +98,7 @@ public final class UcumIdentity {
      * @return the identity
      */
     public static UUID description(PublicId concept, String role) {
-        return UuidT5Generator.get(concept.asUuidArray()[0], role);
+        return UuidT5Generator.get(concept.leastUuid(), role);
     }
 
     /**

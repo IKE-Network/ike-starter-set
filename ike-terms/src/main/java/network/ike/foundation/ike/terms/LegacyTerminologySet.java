@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 
@@ -67,6 +69,6 @@ final class LegacyTerminologySet {
                         + " nothing about whether the content is still resolvable or"
                         + " referenced elsewhere -- it may well be -- only that it is no"
                         + " longer this project's preferred terminology going forward.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
     }
 }

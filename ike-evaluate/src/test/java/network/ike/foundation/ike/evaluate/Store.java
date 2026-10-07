@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.evaluate;
 
+import network.ike.foundation.ike.bindings.IkeStamps;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -30,7 +31,6 @@ import network.ike.foundation.ike.elm.ElmJsonReader;
 import network.ike.foundation.ike.fixtures.Fixtures;
 import network.ike.foundation.ike.model.ModelImporter;
 import network.ike.foundation.ike.model.ModelInfoFile;
-import network.ike.foundation.ike.terms.Ike;
 import network.ike.foundation.ike.terms.IkeSource;
 import network.ike.foundation.ike.ucum.UcumEssence;
 import network.ike.foundation.ike.ucum.UcumImporter;
@@ -105,7 +105,7 @@ final class Store {
     /** A fresh active stamp, later than every stamp given before. */
     static synchronized Stamp nextStamp() {
         lastTime = Math.max(lastTime + 1, System.currentTimeMillis());
-        return new ActiveStamp(lastTime, Ike.INCEPTION.author(), Ike.INCEPTION.module(), Ike.INCEPTION.path());
+        return new ActiveStamp(lastTime, IkeStamps.INCEPTION.author(), IkeStamps.INCEPTION.module(), IkeStamps.INCEPTION.path());
     }
 
     static synchronized ElmCatalog catalog() throws Exception {

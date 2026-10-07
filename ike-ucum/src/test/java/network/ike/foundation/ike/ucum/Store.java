@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.ucum;
 
+import network.ike.foundation.ike.bindings.IkeStamps;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -23,7 +24,6 @@ import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
-import network.ike.foundation.ike.terms.Ike;
 import network.ike.foundation.ike.terms.IkeSource;
 
 import java.nio.file.Files;
@@ -68,6 +68,6 @@ final class Store {
      */
     static synchronized Stamp nextStamp() {
         lastTime = Math.max(lastTime + 1, System.currentTimeMillis());
-        return new ActiveStamp(lastTime, Ike.INCEPTION.author(), Ike.INCEPTION.module(), Ike.INCEPTION.path());
+        return new ActiveStamp(lastTime, IkeStamps.INCEPTION.author(), IkeStamps.INCEPTION.module(), IkeStamps.INCEPTION.path());
     }
 }

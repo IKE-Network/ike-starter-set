@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -689,9 +690,9 @@ final class ElmNodeKindSet {
         set.pattern(BRIDGE_PATTERN_FQN).at(inception)
                 .meaning(dataModel)
                 .purpose(bridge)
-                .field(set.conceptRef("Bridge circumstance kind (IkeFoundation)"), bridge, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Bridge disposition (IkeFoundation)"), bridge, IkeTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Bridge relation kind (IkeFoundation)"), bridge, IkeTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Bridge circumstance kind (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Bridge disposition (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Bridge relation kind (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
                 .definition("The criterion a retrievable class stands for, on the class: the circumstance kind a"
                         + " statement must hold, the disposition it must carry when the class fixes one, and the"
                         + " relation kind the bridge claims. The topic constraint takes the retrieve's codes through"
@@ -699,7 +700,7 @@ final class ElmNodeKindSet {
         set.pattern(READING_PATTERN_FQN).at(inception)
                 .meaning(dataModel)
                 .purpose(bridge)
-                .field(set.conceptRef("Element reading (IkeFoundation)"), bridge, IkeTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Element reading (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
                 .definition("The statement reading a model's element answers, on the element record, so that a"
                         + " property access on a statement reads the timing, the result, the topic, or the"
                         + " subject's fact the element stands for.");

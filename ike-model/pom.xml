@@ -39,18 +39,15 @@
         <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-bindings</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-writer</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <!-- The ledger, composed into an ephemeral store by the integration tests. -->
         <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-terms</artifactId>
-            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

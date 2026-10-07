@@ -50,10 +50,15 @@
         <dependency>
             <groupId>network.ike.foundation</groupId>
             <artifactId>ike-changeset</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <properties>
+        <!-- Where kb-assemble installs the knowledge base for Komet; override to keep a
+             second build (a feature sibling) from replacing the one in use. -->
+        <ike-kb.install.directory>${user.home}/Solor/ike-kb</ike-kb.install.directory>
+    </properties>
 
     <build>
         <plugins>
@@ -79,7 +84,7 @@
                                 <input>CHANGESET ${user.home}/Solor/ike-kb/changeSets/User_yyyyMMdd_HHmmss_ike-cs.zip</input>
                                 -->
                             </inputs>
-                            <installDirectory>${user.home}/Solor/ike-kb</installDirectory>
+                            <installDirectory>${ike-kb.install.directory}</installDirectory>
                             <!-- The classified store's standalone export; attached
                                  under the aggregator coordinate below, not this
                                  module's (ike-issues#933). -->

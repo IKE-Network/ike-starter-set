@@ -15,6 +15,10 @@
  */
 package network.ike.foundation.ike.elm;
 
+import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.Stamp;
+import network.ike.foundation.ike.bindings.IkeStamps;
 import dev.ikm.tinkar.common.id.IntIdList;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
@@ -24,9 +28,7 @@ import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import network.ike.foundation.ike.bindings.IkeTerms;
-import network.ike.foundation.ike.terms.Ike;
 import org.eclipse.collections.api.list.ImmutableList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -53,7 +55,7 @@ class ElmLibraryWriterIT {
     static void boot() throws Exception {
         calculator = Store.boot();
         builder = new ElmTreeBuilder(Store.catalog());
-        writer = new ElmLibraryWriter(builder, calculator, Ike.INCEPTION);
+        writer = new ElmLibraryWriter(builder, calculator, (ActiveStamp) Stamp.from(IkeStamps.INCEPTION));
     }
 
     private static ImmutableList<Object> fields(int semanticNid) {
@@ -112,7 +114,7 @@ class ElmLibraryWriterIT {
         }
 
         int defineNid = PrimitiveData.nid(ElmIdentity.definition("Diabetes", "ExpressionDef", "Has Diabetes", List.of()));
-        List<Integer> descriptions = semanticsAbout(defineNid, TinkarTerm.DESCRIPTION_PATTERN);
+        List<Integer> descriptions = semanticsAbout(defineNid, KernelTerm.DESCRIPTION_PATTERN);
         assertEquals(1, descriptions.size());
         assertEquals("Has Diabetes", fields(descriptions.get(0)).get(1));
         assertEquals(1, semanticsAbout(descriptions.get(0), IkeTerms.CQL_DIALECT_PATTERN).size(),

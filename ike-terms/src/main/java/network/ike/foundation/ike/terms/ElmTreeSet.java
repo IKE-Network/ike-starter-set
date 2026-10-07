@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.EntityProxy;
@@ -72,7 +74,7 @@ final class ElmTreeSet {
                         + " ordered lists where order carries meaning, and references as links."
                         + " The ELM node catalog says what each node may hold; this family says how"
                         + " a library's definitions are recorded as semantics.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
         EntityProxy.Concept root = set.conceptRef(ROOT_FQN);
         EntityProxy.Concept positionParent = set.conceptRef(POSITION_PARENT_FQN);
 
@@ -123,7 +125,7 @@ final class ElmTreeSet {
                 .meaning(set.conceptRef("ELM library of definitions (ELM)"))
                 .purpose(set.conceptRef("ELM definition (ELM)"))
                 .field(set.conceptRef("ELM tree (ELM)"), set.conceptRef("ELM definition (ELM)"),
-                        IkeTerm.DITREE_FIELD)
+                        KernelTerm.DITREE_FIELD)
                 .definition("One definition of a library, or the library's own identity record, as"
                         + " one tree of ELM nodes, about the library concept. One field: the tree."
                         + " Each definition semantic also carries a description with its name in the"
@@ -146,7 +148,7 @@ final class ElmTreeSet {
                 .meaning(set.conceptRef("ELM definition (ELM)"))
                 .purpose(set.conceptRef("ELM order (ELM)"))
                 .field(set.conceptRef("ELM list items (ELM)"), set.conceptRef("ELM order (ELM)"),
-                        IkeTerm.COMPONENT_ID_LIST_FIELD)
+                        KernelTerm.COMPONENT_ID_LIST_FIELD)
                 .definition("The items an ELM list position holds, in order, each an ELM tree of its"
                         + " own, about the definition whose tree points at the list. One field: the"
                         + " items. Reordering is a new version of the list; editing an item is a new"
@@ -183,11 +185,11 @@ final class ElmTreeSet {
         set.pattern(REFERENCE_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("ELM definition (ELM)"))
                 .purpose(reference)
-                .field(set.conceptRef("ELM reference kind (ELM)"), reference, IkeTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("ELM reference kind (ELM)"), reference, KernelTerm.CONCEPT_FIELD)
                 .field(set.conceptRef("ELM referenced definition (ELM)"), reference,
-                        IkeTerm.COMPONENT_FIELD)
-                .field(set.conceptRef("ELM name as written (ELM)"), reference, IkeTerm.STRING)
-                .field(set.conceptRef("ELM library name as written (ELM)"), reference, IkeTerm.STRING)
+                        KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("ELM name as written (ELM)"), reference, KernelTerm.STRING)
+                .field(set.conceptRef("ELM library name as written (ELM)"), reference, KernelTerm.STRING)
                 .definition("One thing a definition names, about the definition semantic that names"
                         + " it: the kind of thing, the definition it is as a link, and the names as"
                         + " written. One semantic per distinct thing named, not per place it is named;"

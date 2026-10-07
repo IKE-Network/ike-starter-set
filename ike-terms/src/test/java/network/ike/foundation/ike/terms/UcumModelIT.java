@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -71,12 +72,12 @@ class UcumModelIT {
         List<FieldDefinitionForEntity> fields = fields(UcumModelSet.UNIT_PATTERN_FQN);
         assertEquals(11, fields.size());
         assertEquals(set.conceptRef("UCUM code (IkeFoundation)").nid(), fields.get(0).meaningNid());
-        assertEquals(IkeTerm.STRING.nid(), fields.get(0).dataTypeNid());
+        assertEquals(KernelTerm.STRING.nid(), fields.get(0).dataTypeNid());
         assertEquals(set.conceptRef("UCUM metric (IkeFoundation)").nid(), fields.get(4).meaningNid());
-        assertEquals(IkeTerm.BOOLEAN_FIELD.nid(), fields.get(4).dataTypeNid());
+        assertEquals(KernelTerm.BOOLEAN_FIELD.nid(), fields.get(4).dataTypeNid());
         assertEquals(set.conceptRef("Unit dimension (IkeFoundation)").nid(), fields.get(9).meaningNid());
         assertEquals(set.conceptRef("Unit magnitude (IkeFoundation)").nid(), fields.get(10).meaningNid());
-        assertEquals(IkeTerm.DECIMAL_FIELD.nid(), fields.get(10).dataTypeNid());
+        assertEquals(KernelTerm.DECIMAL_FIELD.nid(), fields.get(10).dataTypeNid());
         int record = set.conceptRef("UCUM record (IkeFoundation)").nid();
         int reduction = set.conceptRef("Unit reduction (IkeFoundation)").nid();
         for (int i = 0; i < 9; i++) {
@@ -91,7 +92,7 @@ class UcumModelIT {
         List<FieldDefinitionForEntity> prefix = fields(UcumModelSet.PREFIX_PATTERN_FQN);
         assertEquals(4, prefix.size());
         assertEquals(set.conceptRef("UCUM prefix factor (IkeFoundation)").nid(), prefix.get(3).meaningNid());
-        assertEquals(IkeTerm.DECIMAL_FIELD.nid(), prefix.get(3).dataTypeNid());
+        assertEquals(KernelTerm.DECIMAL_FIELD.nid(), prefix.get(3).dataTypeNid());
         List<FieldDefinitionForEntity> composed = fields(UcumModelSet.COMPOSED_UNIT_PATTERN_FQN);
         assertEquals(5, composed.size());
         assertEquals(set.conceptRef("Unit canonical code (IkeFoundation)").nid(), composed.get(0).meaningNid());
