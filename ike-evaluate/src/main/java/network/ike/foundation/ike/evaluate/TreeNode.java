@@ -15,7 +15,7 @@
  */
 package network.ike.foundation.ike.evaluate;
 
-import dev.ikm.tinkar.common.id.IntIdList;
+import dev.ikm.tinkar.common.id.LongIdList;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
@@ -56,7 +56,7 @@ final class TreeNode {
                 new IllegalStateException("a stored vertex means a concept that is not a node kind of the catalog"));
     }
 
-    static Optional<TreeNode> root(int treeSemanticNid, ElmCatalog catalog, StampCalculator calculator) {
+    static Optional<TreeNode> root(long treeSemanticNid, ElmCatalog catalog, StampCalculator calculator) {
         Latest<SemanticEntityVersion> latest = calculator.latest(treeSemanticNid);
         if (latest.isAbsent() || !(latest.get().fieldValues().get(0) instanceof DiTreeEntity tree)) {
             return Optional.empty();
@@ -72,7 +72,7 @@ final class TreeNode {
         return kind.name();
     }
 
-    int kindNid() {
+    long kindNid() {
         return vertex.getMeaningNid();
     }
 
@@ -138,7 +138,7 @@ final class TreeNode {
         Object list = argument.get().properties().get(IkeTerms.ELM_LIST_ITEMS.nid());
         if (list instanceof EntityProxy.Semantic semantic) {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
-            if (latest.isPresent() && latest.get().fieldValues().get(0) instanceof IntIdList itemNids) {
+            if (latest.isPresent() && latest.get().fieldValues().get(0) instanceof LongIdList itemNids) {
                 for (int i = 0; i < itemNids.size(); i++) {
                     root(itemNids.get(i), catalog, calculator).ifPresent(items::add);
                 }
@@ -185,7 +185,7 @@ final class TreeNode {
         if (rule.isEmpty()) {
             return Optional.empty();
         }
-        int positionNid = rule.get().position().nid();
+        long positionNid = rule.get().position().nid();
         ImmutableIntList successors = tree.successors(vertex.vertexIndex());
         for (int i = 0; i < successors.size(); i++) {
             EntityVertex argument = tree.vertex(successors.get(i));

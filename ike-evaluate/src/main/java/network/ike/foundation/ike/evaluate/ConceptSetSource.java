@@ -31,5 +31,5 @@ public interface ConceptSetSource {
      * @param identifier the value set's identifier as the library wrote it
      * @return the members' nids, or empty when the source knows no such value set
      */
-    Optional<Set<Integer>> members(String identifier);
+    Optional<Set<Long>> members(String identifier);
 }

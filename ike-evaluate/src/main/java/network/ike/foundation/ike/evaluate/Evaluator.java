@@ -261,7 +261,7 @@ public final class Evaluator {
     }
 
     /** The class a retrieve's data type names, through the library's using declarations. */
-    int classFor(String dataType, Context context) {
+    long classFor(String dataType, Context context) {
         int close = dataType.indexOf('}');
         if (!dataType.startsWith("{") || close < 0) {
             throw context.refuse("the data type " + dataType + " is not written as {url}name");

@@ -117,7 +117,7 @@ public final class ModelImporter {
         StoreWriter writer = new StoreWriter(calculator, stamp);
         String model = file.name();
         PublicId modelId = ModelIdentity.model(model, file.version());
-        int modelNid = ModelConcepts.model(writer, file, modelId);
+        long modelNid = ModelConcepts.model(writer, file, modelId);
         EntityProxy.Concept modelConcept = EntityProxy.Concept.make(modelNid);
         for (Requirement requirement : file.requirements()) {
             ModelConcepts.requirement(writer, modelId, modelNid, requirement,
@@ -141,7 +141,7 @@ public final class ModelImporter {
         int readings = 0;
         for (ClassInfo clazz : file.classes()) {
             PublicId id = resolution.own.get(clazz.qualifiedName());
-            int nid = PrimitiveData.nid(id);
+            long nid = PrimitiveData.nid(id);
             if (!resolution.system) {
                 Optional<ModelBridges.Bridge> bridge = ModelBridges.bridgeFor(model, clazz.qualifiedName());
                 if (bridge.isPresent()) {
@@ -436,15 +436,15 @@ public final class ModelImporter {
                 if (id == null) {
                     continue;
                 }
-                Map<String, Integer> positions = new HashMap<>();
+                Map<String, Long> positions = new HashMap<>();
                 EntityService.get().forEachSemanticForComponentOfPattern(PrimitiveData.nid(id),
                         IkeTerms.ELM_TYPE_POSITION_PATTERN.nid(), semantic -> {
                             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                             if (latest.isAbsent()) {
                                 return;
                             }
-                            int positionNid = ((EntityFacade) latest.get().fieldValues().get(0)).nid();
-                            int typeNid = ((EntityFacade) latest.get().fieldValues().get(1)).nid();
+                            long positionNid = ((EntityFacade) latest.get().fieldValues().get(0)).nid();
+                            long typeNid = ((EntityFacade) latest.get().fieldValues().get(1)).nid();
                             ModelConcepts.fullyQualifiedName(positionNid, calculator).ifPresent(text -> {
                                 int cut = text.indexOf(" position");
                                 if (text.startsWith("ELM ") && cut > 4) {
@@ -455,7 +455,7 @@ public final class ModelImporter {
                 for (Element element : clazz.elements()) {
                     TypeSpecifier named = element.type().isNamed() ? element.type()
                             : element.type().form() == ModelInfoFile.Form.LIST ? element.type().inner() : null;
-                    Integer expected = named != null && named.isNamed()
+                    Long expected = named != null && named.isNamed()
                             ? known(named.name()).map(EntityProxy.Concept::nid).orElse(null) : null;
                     String member = clazz.qualifiedName() + "." + element.name();
                     if (!positions.containsKey(element.name())) {

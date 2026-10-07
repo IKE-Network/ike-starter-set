@@ -85,7 +85,7 @@ public final class ElmConformance {
         int secondCount = 0;
         int thirdCount = 0;
 
-        for (int keyNid : vertex.properties().keySet().toArray()) {
+        for (long keyNid : vertex.properties().keySet().toArray()) {
             Optional<String> name = catalog.positionName(keyNid);
             if (name.isEmpty()) {
                 problems.add(kind.name() + " holds a property keyed by a concept that is not a position");
@@ -107,7 +107,7 @@ public final class ElmConformance {
         ImmutableIntList successors = tree.successors(vertex.vertexIndex());
         for (int i = 0; i < successors.size(); i++) {
             EntityVertex argument = tree.vertex(successors.get(i));
-            int meaning = argument.getMeaningNid();
+            long meaning = argument.getMeaningNid();
             if (meaning == IkeTerms.ELM_FIRST_OPERAND_POSITION.nid()
                     || meaning == IkeTerms.ELM_SECOND_OPERAND_POSITION.nid()
                     || meaning == IkeTerms.ELM_THIRD_OPERAND_POSITION.nid()) {

@@ -61,14 +61,14 @@ final class Clinical {
             throw context.refuse("no value set " + name + " is defined in " + library.id());
         }
         String id = definition.get().root().text("id").orElse("");
-        Optional<Set<Integer>> members = context.evaluator().conceptSets().members(id);
+        Optional<Set<Long>> members = context.evaluator().conceptSets().members(id);
         if (members.isEmpty()) {
             throw context.refuse("the value set " + name + " (" + id + ") is not in the concept set source");
         }
         return new ConceptSetValue(name, members.get());
     }
 
-    private static boolean inSet(Value code, Set<Integer> members, Context context) {
+    private static boolean inSet(Value code, Set<Long> members, Context context) {
         if (code instanceof ConceptValue concept) {
             return concept.nid().isPresent() && members.contains(concept.nid().get());
         }
@@ -89,7 +89,7 @@ final class Clinical {
         }
         Object dataType = node.property("dataType").orElseThrow(() -> context.refuse("the retrieve names no data type"));
         Evaluator evaluator = context.evaluator();
-        int classNid = dataType instanceof EntityProxy.Concept concept ? concept.nid()
+        long classNid = dataType instanceof EntityProxy.Concept concept ? concept.nid()
                 : evaluator.classFor(String.valueOf(dataType), context);
         Bridges bridges = evaluator.bridges();
         if (bridges.isPatientClass(classNid)) {
@@ -103,13 +103,13 @@ final class Clinical {
         Optional<String> codeProperty = node.text("codeProperty");
         if (codes.isPresent()) {
             String path = codeProperty.orElseThrow(() -> context.refuse("the retrieve filters by codes and names no code path"));
-            int reading = readingOfPath(bridges, classNid, path, context);
+            long reading = readingOfPath(bridges, classNid, path, context);
             if (reading != IkeTerms.TOPIC_READING.nid()) {
                 throw context.refuse("the code path " + path + " of " + className(bridges.types(), classNid) + " does not read the topic");
             }
         }
         Optional<Value> dateRange = Operators.optionalOperand(node, "dateRange", context);
-        Optional<Integer> dateReading = Optional.empty();
+        Optional<Long> dateReading = Optional.empty();
         if (dateRange.isPresent()) {
             String path = node.text("dateProperty").orElseThrow(() ->
                     context.refuse("the retrieve filters by a date range and names no date path"));
@@ -144,7 +144,7 @@ final class Clinical {
         if (codes.isMissing()) {
             return false;
         }
-        Set<Integer> members;
+        Set<Long> members;
         if (codes instanceof ConceptSetValue set) {
             members = set.members();
         } else if (codes instanceof ConceptValue concept) {
@@ -169,18 +169,18 @@ final class Clinical {
      * The reading at the end of a path on a class, walked element by element while each step
      * names one class; the reading is taken from the deepest element reached.
      */
-    private static int readingOfPath(Bridges bridges, int classNid, String path, Context context) {
+    private static long readingOfPath(Bridges bridges, long classNid, String path, Context context) {
         ModelTypes types = bridges.types();
         String[] segments = path.split("\\.");
-        int current = classNid;
-        Optional<Integer> reading = Optional.empty();
+        long current = classNid;
+        Optional<Long> reading = Optional.empty();
         for (String segment : segments) {
             Optional<PublicId> element = types.element(current, segment);
             if (element.isEmpty()) {
                 break;
             }
             reading = bridges.readingOf(current, segment);
-            Optional<Integer> next = types.elementClass(element.get());
+            Optional<Long> next = types.elementClass(element.get());
             if (next.isEmpty()) {
                 break;
             }
@@ -189,7 +189,7 @@ final class Clinical {
         return reading.orElseThrow(() -> context.refuse("the path " + path + " of " + className(types, classNid) + " has no reading"));
     }
 
-    static String className(ModelTypes types, int classNid) {
+    static String className(ModelTypes types, long classNid) {
         Optional<ModelTypes.ClassEntry> entry = types.classEntry(classNid);
         if (entry.isEmpty()) {
             return PrimitiveData.text(classNid);
@@ -199,7 +199,7 @@ final class Clinical {
         return model.map(found -> local + " of " + found.name() + " " + found.version()).orElse(local);
     }
 
-    static EntityProxy.Concept concept(int nid) {
+    static EntityProxy.Concept concept(long nid) {
         return EntityProxy.Concept.make(nid);
     }
 }

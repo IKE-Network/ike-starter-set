@@ -105,8 +105,8 @@ class ElmImporterIT {
         return new ElmJsonReader(catalog).read(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)));
     }
 
-    private static List<Integer> semanticsAbout(int componentNid, EntityProxy.Pattern pattern) {
-        List<Integer> nids = new ArrayList<>();
+    private static List<Long> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
+        List<Long> nids = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(), semantic -> nids.add(semantic.nid()));
         return nids;
     }
@@ -134,7 +134,7 @@ class ElmImporterIT {
         ElmImporter.Report report = importer.importDocument(json(DEPENDENT), Store.nextStamp());
         assertEquals(1, report.references(), "one distinct thing named, though it is named twice");
         PublicId twice = ElmIdentity.definition("Dependent", "ExpressionDef", "Twice", List.of());
-        List<Integer> references = semanticsAbout(PrimitiveData.nid(twice), IkeTerms.ELM_REFERENCE_PATTERN);
+        List<Long> references = semanticsAbout(PrimitiveData.nid(twice), IkeTerms.ELM_REFERENCE_PATTERN);
         assertEquals(1, references.size());
         Latest<SemanticEntityVersion> reference = calculator.latest(references.get(0));
         Object target = reference.get().fieldValues().get(1);
@@ -222,7 +222,7 @@ class ElmImporterIT {
 
         network.ike.foundation.ike.model.ModelTypes types = network.ike.foundation.ike.model.ModelTypes.load(calculator);
         network.ike.foundation.ike.model.ModelTypes.Model qdm = types.model("QDM", "5.4").orElseThrow();
-        int encounter = types.classOf(qdm, "PositiveEncounterPerformed").orElseThrow().nid();
+        long encounter = types.classOf(qdm, "PositiveEncounterPerformed").orElseThrow().nid();
 
         PublicId visits = ElmIdentity.definition("Retrieving", "ExpressionDef", "Visits", List.of());
         Latest<SemanticEntityVersion> latest = calculator.latest(PrimitiveData.nid(visits));

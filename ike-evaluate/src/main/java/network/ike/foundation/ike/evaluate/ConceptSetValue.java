@@ -24,7 +24,7 @@ import java.util.Set;
  * @param name    the value set's identifier as the library wrote it
  * @param members the members' nids
  */
-public record ConceptSetValue(String name, Set<Integer> members) implements Value {
+public record ConceptSetValue(String name, Set<Long> members) implements Value {
 
     /**
      * Keeps the members immutable.

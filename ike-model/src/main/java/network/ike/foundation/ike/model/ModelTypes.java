@@ -52,7 +52,7 @@ public final class ModelTypes {
      * @param url     the url a library qualifies its types by
      * @param patientClass the class the file names as the patient, qualified, empty when none
      */
-    public record Model(int nid, PublicId id, String name, String version, String url, String patientClass) {
+    public record Model(long nid, PublicId id, String name, String version, String url, String patientClass) {
     }
 
     /**
@@ -63,7 +63,7 @@ public final class ModelTypes {
      * @param qualifiedName the name qualified by the model, as the record holds it
      * @param baseNid       the base class's nid, or the model's when the class has none
      */
-    public record ClassEntry(int nid, int modelNid, String qualifiedName, int baseNid) {
+    public record ClassEntry(long nid, long modelNid, String qualifiedName, long baseNid) {
 
         /**
          * The name without the model's qualifier.
@@ -77,9 +77,9 @@ public final class ModelTypes {
         }
     }
 
-    private final Map<Integer, Model> models = new LinkedHashMap<>();
-    private final Map<Integer, ClassEntry> classes = new HashMap<>();
-    private final Map<Integer, Map<String, ClassEntry>> byModelAndName = new HashMap<>();
+    private final Map<Long, Model> models = new LinkedHashMap<>();
+    private final Map<Long, ClassEntry> classes = new HashMap<>();
+    private final Map<Long, Map<String, ClassEntry>> byModelAndName = new HashMap<>();
     private final StampCalculator calculator;
 
     private ModelTypes(StampCalculator calculator) {
@@ -100,7 +100,7 @@ public final class ModelTypes {
                 return;
             }
             ImmutableList<Object> fields = latest.get().fieldValues();
-            int nid = semantic.referencedComponentNid();
+            long nid = semantic.referencedComponentNid();
             String patientClass = (String) fields.get(6);
             String name = (String) fields.get(0);
             if (!patientClass.isEmpty() && !patientClass.startsWith(name + ".")) {
@@ -115,7 +115,7 @@ public final class ModelTypes {
                 return;
             }
             ImmutableList<Object> fields = latest.get().fieldValues();
-            int nid = semantic.referencedComponentNid();
+            long nid = semantic.referencedComponentNid();
             ClassEntry entry = new ClassEntry(nid, ((EntityFacade) fields.get(15)).nid(), (String) fields.get(2),
                     ((EntityFacade) fields.get(6)).nid());
             types.classes.put(nid, entry);
@@ -196,7 +196,7 @@ public final class ModelTypes {
      * @param nid the model concept's nid
      * @return the model, or empty
      */
-    public Optional<Model> modelOf(int nid) {
+    public Optional<Model> modelOf(long nid) {
         return Optional.ofNullable(models.get(nid));
     }
 
@@ -221,7 +221,7 @@ public final class ModelTypes {
      * @param nid the class component's nid
      * @return the class, or empty when the component is no class
      */
-    public Optional<ClassEntry> classEntry(int nid) {
+    public Optional<ClassEntry> classEntry(long nid) {
         return Optional.ofNullable(classes.get(nid));
     }
 
@@ -232,8 +232,8 @@ public final class ModelTypes {
      * @param name     the element's name
      * @return the element record's public id, or empty
      */
-    public Optional<PublicId> element(int classNid, String name) {
-        int current = classNid;
+    public Optional<PublicId> element(long classNid, String name) {
+        long current = classNid;
         for (int depth = 0; depth < 64 && classes.containsKey(current); depth++) {
             ClassEntry entry = classes.get(current);
             PublicId id = ModelIdentity.element(EntityHandle.get(entry.nid()).expectEntity().publicId(), name);
@@ -265,7 +265,7 @@ public final class ModelTypes {
      * @param elementId the element record
      * @return the class's nid, or empty when the element's type names no single class
      */
-    public Optional<Integer> elementClass(PublicId elementId) {
+    public Optional<Long> elementClass(PublicId elementId) {
         if (!exists(elementId)) {
             return Optional.empty();
         }
@@ -273,7 +273,7 @@ public final class ModelTypes {
         if (latest.isAbsent()) {
             return Optional.empty();
         }
-        int nid = ((EntityFacade) latest.get().fieldValues().get(2)).nid();
+        long nid = ((EntityFacade) latest.get().fieldValues().get(2)).nid();
         return nid == IkeTerms.UNRESOLVED.nid() || !classes.containsKey(nid) ? Optional.empty() : Optional.of(nid);
     }
 

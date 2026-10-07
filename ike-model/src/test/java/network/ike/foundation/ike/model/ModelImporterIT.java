@@ -69,7 +69,7 @@ class ModelImporterIT {
     private static ModelImporter.Report qicoreReport;
     private static ModelImporter.Report uscoreReport;
 
-    private record Description(int nid, String text, int typeNid) {
+    private record Description(long nid, String text, long typeNid) {
     }
 
     @BeforeAll
@@ -88,11 +88,11 @@ class ModelImporterIT {
         uscoreReport = importer.importModel(ModelInfoFile.readShipped("uscore-modelinfo-3.1.1.xml"), Store.nextStamp());
     }
 
-    private static int nid(PublicId id) {
+    private static long nid(PublicId id) {
         return PrimitiveData.nid(id);
     }
 
-    private static List<ImmutableList<Object>> semanticsAbout(int componentNid, EntityProxy.Pattern pattern) {
+    private static List<ImmutableList<Object>> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
         List<ImmutableList<Object>> fields = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
@@ -103,7 +103,7 @@ class ModelImporterIT {
         return fields;
     }
 
-    private static ImmutableList<Object> record(int componentNid, EntityProxy.Pattern pattern) {
+    private static ImmutableList<Object> record(long componentNid, EntityProxy.Pattern pattern) {
         List<ImmutableList<Object>> records = semanticsAbout(componentNid, pattern);
         assertEquals(1, records.size(), "one record of " + pattern.description() + " on " + componentNid);
         return records.get(0);
@@ -115,8 +115,8 @@ class ModelImporterIT {
         return latest.get().fieldValues();
     }
 
-    private static Set<Integer> statedParents(PublicId concept) {
-        Set<Integer> parents = new HashSet<>();
+    private static Set<Long> statedParents(PublicId concept) {
+        Set<Long> parents = new HashSet<>();
         for (ImmutableList<Object> fields : semanticsAbout(nid(concept), KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
             DiTreeEntity tree = (DiTreeEntity) fields.get(0);
             collect(tree, tree.root(), parents);
@@ -124,7 +124,7 @@ class ModelImporterIT {
         return parents;
     }
 
-    private static void collect(DiTreeEntity tree, EntityVertex vertex, Set<Integer> found) {
+    private static void collect(DiTreeEntity tree, EntityVertex vertex, Set<Long> found) {
         for (Object value : vertex.properties().values()) {
             if (value instanceof EntityFacade facade) {
                 found.add(facade.nid());
@@ -135,7 +135,7 @@ class ModelImporterIT {
         }
     }
 
-    private static List<Description> descriptions(int componentNid) {
+    private static List<Description> descriptions(long componentNid) {
         List<Description> found = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, KernelTerm.DESCRIPTION_PATTERN.nid(),
                 semantic -> {
@@ -148,7 +148,7 @@ class ModelImporterIT {
         return found;
     }
 
-    private static boolean hasDescription(int componentNid, EntityProxy.Concept type, String text, EntityProxy.Pattern dialect) {
+    private static boolean hasDescription(long componentNid, EntityProxy.Concept type, String text, EntityProxy.Pattern dialect) {
         for (Description description : descriptions(componentNid)) {
             if (description.typeNid() == type.nid() && description.text().equals(text)
                     && (dialect == null || !semanticsAbout(description.nid(), dialect).isEmpty())) {
@@ -213,11 +213,11 @@ class ModelImporterIT {
     @DisplayName("Every class carries its fields verbatim, under its base class, in its model's dialect")
     void everyClassCarriesItsFieldsVerbatimUnderItsBase() {
         for (ModelInfoFile file : List.of(fhir, qdm)) {
-            int modelNid = nid(modelId(file));
+            long modelNid = nid(modelId(file));
             EntityProxy.Pattern dialect = file.name().equals("FHIR") ? IkeTerms.FHIR_DIALECT_PATTERN : IkeTerms.QDM_DIALECT_PATTERN;
             for (ClassInfo clazz : file.classes()) {
                 PublicId id = classId(file, clazz.qualifiedName());
-                int nid = nid(id);
+                long nid = nid(id);
                 ImmutableList<Object> fields = record(nid, IkeTerms.MODEL_CLASS_PATTERN);
                 assertEquals(clazz.kind(), fields.get(0));
                 assertEquals(clazz.namespace(), fields.get(1));
@@ -232,8 +232,8 @@ class ModelImporterIT {
                 assertEquals(clazz.description(), fields.get(13));
                 assertEquals(clazz.comment(), fields.get(14));
                 assertEquals(modelNid, ((EntityFacade) fields.get(15)).nid());
-                int base = ((EntityFacade) fields.get(6)).nid();
-                int expectedBase = clazz.baseType().isEmpty() || clazz.baseType().startsWith("System.") ? modelNid
+                long base = ((EntityFacade) fields.get(6)).nid();
+                long expectedBase = clazz.baseType().isEmpty() || clazz.baseType().startsWith("System.") ? modelNid
                         : nid(classId(file, clazz.baseType()));
                 assertEquals(expectedBase, base, clazz.qualifiedName() + " base");
                 assertTrue(statedParents(id).contains(expectedBase), clazz.qualifiedName() + " hangs under its base");
@@ -270,10 +270,10 @@ class ModelImporterIT {
                 assertEquals(element.definition(), fields.get(12));
                 assertEquals(element.bindingName(), fields.get(14));
                 assertEquals(element.bindingStrength(), fields.get(15));
-                int elementClass = ((EntityFacade) fields.get(2)).nid();
+                long elementClass = ((EntityFacade) fields.get(2)).nid();
                 DiTreeEntity tree = (DiTreeEntity) fields.get(3);
                 if (element.type().form() == Form.NAMED) {
-                    int expected = element.type().name().startsWith("System.")
+                    long expected = element.type().name().startsWith("System.")
                             ? ModelConcepts.systemType(element.type().name().substring(7)).orElseThrow().nid()
                             : nid(classId(fhir, element.type().name()));
                     assertEquals(expected, elementClass, clazz.qualifiedName() + "." + element.name());

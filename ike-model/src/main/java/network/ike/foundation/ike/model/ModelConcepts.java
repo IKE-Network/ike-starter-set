@@ -105,8 +105,8 @@ final class ModelConcepts {
      * @param id     the model's identity
      * @return the model concept's nid
      */
-    static int model(StoreWriter writer, ModelInfoFile file, PublicId id) {
-        int nid = writer.concept(id);
+    static long model(StoreWriter writer, ModelInfoFile file, PublicId id) {
+        long nid = writer.concept(id);
         writer.statedParent(id, IkeTerms.DATA_MODEL.publicId());
         String title = title(file.name(), file.version());
         writer.describe(nid, ModelIdentity.description(id, "fqn"), title + " (data model)",
@@ -130,7 +130,7 @@ final class ModelConcepts {
      * @param requirement the requirement as written
      * @param required    the required model's concept
      */
-    static void requirement(StoreWriter writer, PublicId modelId, int modelNid, Requirement requirement,
+    static void requirement(StoreWriter writer, PublicId modelId, long modelNid, Requirement requirement,
                             EntityProxy.Concept required) {
         writer.semantic(ModelIdentity.requirement(modelId, requirement.name(), requirement.version()),
                 IkeTerms.MODEL_REQUIREMENT_PATTERN, modelNid,
@@ -148,9 +148,9 @@ final class ModelConcepts {
      * @param base      the base class's concept, or the model's when the class has none
      * @return the class concept's nid
      */
-    static int classConcept(StoreWriter writer, ModelInfoFile file, ClassInfo clazz, PublicId id,
+    static long classConcept(StoreWriter writer, ModelInfoFile file, ClassInfo clazz, PublicId id,
                             EntityProxy.Concept base) {
-        int nid = writer.concept(id);
+        long nid = writer.concept(id);
         writer.statedParent(id, base.publicId());
         String local = clazz.localName(file.name());
         String title = title(file.name(), file.version());
@@ -180,7 +180,7 @@ final class ModelConcepts {
      * @param target      the class of another model this one stands on, or the unresolved marker
      * @param model       the model's concept
      */
-    static void classRecord(StoreWriter writer, PublicId classId, int classNid, ClassInfo clazz, EntityProxy.Concept base,
+    static void classRecord(StoreWriter writer, PublicId classId, long classNid, ClassInfo clazz, EntityProxy.Concept base,
                             EntityFacade codeElement, EntityProxy.Concept target, EntityProxy.Concept model) {
         writer.semantic(ModelIdentity.record(classId), IkeTerms.MODEL_CLASS_PATTERN, classNid, Lists.immutable.of(
                 clazz.kind(), clazz.namespace(), clazz.qualifiedName(), clazz.identifier(), clazz.label(),
@@ -198,7 +198,7 @@ final class ModelConcepts {
      * @param elementClass the class the type names when it names one, or the unresolved marker
      * @param tree         the type as a tree
      */
-    static void element(StoreWriter writer, PublicId elementId, int classNid, Element element,
+    static void element(StoreWriter writer, PublicId elementId, long classNid, Element element,
                         EntityProxy.Concept elementClass, DiTreeEntity tree) {
         writer.semantic(elementId, IkeTerms.MODEL_ELEMENT_PATTERN, classNid, Lists.immutable.of(
                 element.name(), element.typeAsWritten(), elementClass, tree, element.minimum(), element.maximum(),
@@ -215,7 +215,7 @@ final class ModelConcepts {
      * @param classNid the class's nid
      * @param bridge   the bridge
      */
-    static void bridge(StoreWriter writer, PublicId classId, int classNid, ModelBridges.Bridge bridge) {
+    static void bridge(StoreWriter writer, PublicId classId, long classNid, ModelBridges.Bridge bridge) {
         writer.semantic(ModelIdentity.bridge(classId), IkeTerms.MODEL_CLASS_BRIDGE_PATTERN, classNid, Lists.immutable.of(
                 bridge.circumstanceKind(), bridge.disposition().map(EntityFacade.class::cast).orElse(IkeTerms.UNRESOLVED),
                 bridge.relation()));
@@ -229,7 +229,7 @@ final class ModelConcepts {
      * @param elementNid the element's nid
      * @param reading    the reading
      */
-    static void reading(StoreWriter writer, PublicId elementId, int elementNid, ModelBridges.Reading reading) {
+    static void reading(StoreWriter writer, PublicId elementId, long elementNid, ModelBridges.Reading reading) {
         writer.semantic(ModelIdentity.reading(elementId), IkeTerms.MODEL_ELEMENT_READING_PATTERN, elementNid,
                 Lists.immutable.of(reading.reading()));
     }
@@ -243,7 +243,7 @@ final class ModelConcepts {
      * @param context      the context as written
      * @param contextClass the class that is the context
      */
-    static void context(StoreWriter writer, PublicId contextId, int modelNid, Context context,
+    static void context(StoreWriter writer, PublicId contextId, long modelNid, Context context,
                         EntityProxy.Concept contextClass) {
         writer.semantic(contextId, IkeTerms.MODEL_CONTEXT_PATTERN, modelNid, Lists.immutable.of(
                 context.name(), context.type(), contextClass, context.keyElement(), context.birthDateElement()));
@@ -258,7 +258,7 @@ final class ModelConcepts {
      * @param relationship the relationship as written
      * @param contextRecord the context's record on the model, or the unresolved marker
      */
-    static void relationship(StoreWriter writer, PublicId classId, int classNid, Relationship relationship,
+    static void relationship(StoreWriter writer, PublicId classId, long classNid, Relationship relationship,
                              EntityFacade contextRecord) {
         writer.semantic(ModelIdentity.relationship(classId, relationship.context(), relationship.keyElement(), relationship.toTarget()),
                 IkeTerms.MODEL_CONTEXT_RELATIONSHIP_PATTERN, classNid, Lists.immutable.of(
@@ -274,7 +274,7 @@ final class ModelConcepts {
      * @param conversion the conversion as written
      * @param target     the type converted to
      */
-    static void conversion(StoreWriter writer, PublicId fromId, int fromNid, Conversion conversion,
+    static void conversion(StoreWriter writer, PublicId fromId, long fromNid, Conversion conversion,
                            EntityProxy.Concept target) {
         writer.semantic(ModelIdentity.conversion(fromId, conversion.toType(), conversion.functionName()),
                 IkeTerms.MODEL_CONVERSION_PATTERN, fromNid, Lists.immutable.of(
@@ -288,7 +288,7 @@ final class ModelConcepts {
      * @param calculator the view
      * @return the text, or empty
      */
-    static Optional<String> fullyQualifiedName(int nid, StampCalculator calculator) {
+    static Optional<String> fullyQualifiedName(long nid, StampCalculator calculator) {
         return descriptionOfType(nid, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE.nid(), calculator);
     }
 
@@ -299,11 +299,11 @@ final class ModelConcepts {
      * @param calculator the view
      * @return the text, or empty
      */
-    static Optional<String> regularName(int nid, StampCalculator calculator) {
+    static Optional<String> regularName(long nid, StampCalculator calculator) {
         return descriptionOfType(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid(), calculator);
     }
 
-    private static Optional<String> descriptionOfType(int nid, int typeNid, StampCalculator calculator) {
+    private static Optional<String> descriptionOfType(long nid, long typeNid, StampCalculator calculator) {
         String[] found = {null};
         EntityService.get().forEachSemanticForComponentOfPattern(nid, KernelTerm.DESCRIPTION_PATTERN.nid(), semantic -> {
             if (found[0] != null) {
@@ -317,9 +317,9 @@ final class ModelConcepts {
         return Optional.ofNullable(found[0]);
     }
 
-    private static void named(StoreWriter writer, int nid, PublicId id, String role, String text,
+    private static void named(StoreWriter writer, long nid, PublicId id, String role, String text,
                               EntityProxy.Concept usAcceptability, Optional<EntityProxy.Pattern> dialect) {
-        int description = writer.describe(nid, ModelIdentity.description(id, role), text,
+        long description = writer.describe(nid, ModelIdentity.description(id, role), text,
                 KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
         if (dialect.isPresent()) {
             writer.dialect(description, ModelIdentity.description(id, role + " model-dialect"), dialect.get(),

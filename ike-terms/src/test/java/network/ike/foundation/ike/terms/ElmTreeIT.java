@@ -72,8 +72,8 @@ class ElmTreeIT {
         return fields;
     }
 
-    private static Set<Integer> statedParents(String conceptFqn) {
-        Set<Integer> parents = new HashSet<>();
+    private static Set<Long> statedParents(String conceptFqn) {
+        Set<Long> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(set.conceptRef(conceptFqn),
                 KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
@@ -116,7 +116,7 @@ class ElmTreeIT {
         assertEquals(KernelTerm.STRING.nid(), fields.get(2).dataTypeNid());
         assertEquals(set.conceptRef("ELM library name as written (ELM)").nid(), fields.get(3).meaningNid());
         assertEquals(KernelTerm.STRING.nid(), fields.get(3).dataTypeNid());
-        int reference = set.conceptRef("ELM reference (ELM)").nid();
+        long reference = set.conceptRef("ELM reference (ELM)").nid();
         for (FieldDefinitionForEntity field : fields) {
             assertEquals(reference, field.purposeNid(), "every reference field serves the reference");
         }
@@ -124,7 +124,7 @@ class ElmTreeIT {
 
     @Test
     void theThreeOperandRolesArePositionsOfTheCatalog() {
-        int positionParent = set.conceptRef(ElmTreeSet.POSITION_PARENT_FQN).nid();
+        long positionParent = set.conceptRef(ElmTreeSet.POSITION_PARENT_FQN).nid();
         for (String role : List.of(ElmTreeSet.FIRST_OPERAND_FQN, ElmTreeSet.SECOND_OPERAND_FQN,
                 ElmTreeSet.THIRD_OPERAND_FQN)) {
             assertEquals(Set.of(positionParent), statedParents(role), role + " hangs under the position parent");
@@ -138,17 +138,17 @@ class ElmTreeIT {
         assertEquals(set.conceptRef("ELM form field (ELM)").nid(), fields.get(5).meaningNid());
         assertEquals(KernelTerm.COMPONENT_FIELD.nid(), fields.get(5).dataTypeNid());
 
-        int propertyForm = set.conceptRef("ELM property form (ELM)").nid();
-        int edgeForm = set.conceptRef("ELM edge form (ELM)").nid();
-        int dataType = set.conceptRef("ELM dataType position (ELM)").nid();
-        int codes = set.conceptRef("ELM codes position (ELM)").nid();
-        List<int[]> seen = new ArrayList<>();
+        long propertyForm = set.conceptRef("ELM property form (ELM)").nid();
+        long edgeForm = set.conceptRef("ELM edge form (ELM)").nid();
+        long dataType = set.conceptRef("ELM dataType position (ELM)").nid();
+        long codes = set.conceptRef("ELM codes position (ELM)").nid();
+        List<long[]> seen = new ArrayList<>();
         calculator.forEachSemanticVersionForComponentOfPattern(set.conceptRef("ELM Retrieve (ELM)"),
                 set.patternRef(ElmNodeCatalogSet.TYPE_POSITION_PATTERN_FQN),
                 (semanticVersion, entityVersion, patternVersion) -> {
-                    int position = ((EntityProxy.Concept) semanticVersion.fieldValues().get(0)).nid();
-                    int form = ((EntityProxy.Concept) semanticVersion.fieldValues().get(5)).nid();
-                    seen.add(new int[] {position, form});
+                    long position = ((EntityProxy.Concept) semanticVersion.fieldValues().get(0)).nid();
+                    long form = ((EntityProxy.Concept) semanticVersion.fieldValues().get(5)).nid();
+                    seen.add(new long[] {position, form});
                 });
         assertTrue(seen.stream().anyMatch(pair -> pair[0] == dataType && pair[1] == propertyForm),
                 "Retrieve's dataType, an attribute, is held as a property");

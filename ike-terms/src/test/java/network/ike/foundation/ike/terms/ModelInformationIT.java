@@ -68,14 +68,14 @@ class ModelInformationIT {
         return fields;
     }
 
-    private static int nid(String fqn) {
+    private static long nid(String fqn) {
         return set.conceptRef(fqn).nid();
     }
 
     @Test
     void theClassAndElementRecordsSayWhoseEachFieldIs() {
-        int record = nid("Model information record (IkeFoundation)");
-        int resolution = nid("Model resolution (IkeFoundation)");
+        long record = nid("Model information record (IkeFoundation)");
+        long resolution = nid("Model resolution (IkeFoundation)");
 
         List<FieldDefinitionForEntity> clazz = fields(ModelInformationSet.CLASS_PATTERN_FQN);
         assertEquals(16, clazz.size());
@@ -115,8 +115,8 @@ class ModelInformationIT {
 
     @Test
     void theModelContextRelationshipConversionAndRequirementRecordsCarryTheirFields() {
-        int record = nid("Model information record (IkeFoundation)");
-        int resolution = nid("Model resolution (IkeFoundation)");
+        long record = nid("Model information record (IkeFoundation)");
+        long resolution = nid("Model resolution (IkeFoundation)");
         List<FieldDefinitionForEntity> model = fields(ModelInformationSet.MODEL_PATTERN_FQN);
         assertEquals(13, model.size());
         assertEquals(nid("Model name (IkeFoundation)"), model.get(0).meaningNid());
@@ -147,7 +147,7 @@ class ModelInformationIT {
 
     @Test
     void theMarkTheDialectsAndTheParentExist() {
-        int generation = nid("Model generation (IkeFoundation)");
+        long generation = nid("Model generation (IkeFoundation)");
         List<FieldDefinitionForEntity> mark = fields(ModelInformationSet.MARK_PATTERN_FQN);
         assertEquals(3, mark.size());
         assertEquals(nid("Mark model name (IkeFoundation)"), mark.get(0).meaningNid());

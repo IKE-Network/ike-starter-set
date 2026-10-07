@@ -55,7 +55,7 @@ class EnumBindingIT {
         all.addAll(List.of(SortDirection.values()));
         assertEquals(14, all.size());
         for (EnumConceptBinding constant : all) {
-            int nid = PrimitiveData.nid(constant.publicId());
+            long nid = PrimitiveData.nid(constant.publicId());
             assertTrue(calculator.latest(nid).isPresent(), constant + " is a concept in the store");
         }
     }

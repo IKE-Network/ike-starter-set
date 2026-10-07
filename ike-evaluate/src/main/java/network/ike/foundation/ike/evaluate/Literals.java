@@ -124,7 +124,7 @@ final class Literals {
     }
 
     /** The local name of a System type held as the catalog's concept for it. */
-    private static String systemTypeName(int nid) {
+    private static String systemTypeName(long nid) {
         if (nid == IkeTerms.ELM_SYSTEM_BOOLEAN.nid()) {
             return "Boolean";
         }

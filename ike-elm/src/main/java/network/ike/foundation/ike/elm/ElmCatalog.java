@@ -92,7 +92,7 @@ public final class ElmCatalog {
      * @param valueNids    the nids of its value concepts
      * @param valuesByName the value concepts by the name ELM writes, for example {@code Year}
      */
-    public record EnumerationValue(EntityProxy.Concept concept, Set<Integer> valueNids,
+    public record EnumerationValue(EntityProxy.Concept concept, Set<Long> valueNids,
                                    Map<String, EntityProxy.Concept> valuesByName) implements ValueType {
 
         /**
@@ -111,7 +111,7 @@ public final class ElmCatalog {
          * @param nid the value concept's nid
          * @return the name, or empty when the nid is not one of this enumeration's values
          */
-        public Optional<String> nameOf(int nid) {
+        public Optional<String> nameOf(long nid) {
             for (Map.Entry<String, EntityProxy.Concept> entry : valuesByName.entrySet()) {
                 if (entry.getValue().nid() == nid) {
                     return Optional.of(entry.getKey());
@@ -265,12 +265,12 @@ public final class ElmCatalog {
     }
 
     private final Map<String, NodeKind> kindsByName;
-    private final Map<Integer, NodeKind> kindsByNid;
-    private final Map<Integer, String> positionNamesByNid;
-    private final Map<Integer, EnumerationValue> enumerationsByNid;
+    private final Map<Long, NodeKind> kindsByNid;
+    private final Map<Long, String> positionNamesByNid;
+    private final Map<Long, EnumerationValue> enumerationsByNid;
 
-    private ElmCatalog(Map<String, NodeKind> kindsByName, Map<Integer, NodeKind> kindsByNid,
-                       Map<Integer, String> positionNamesByNid, Map<Integer, EnumerationValue> enumerationsByNid) {
+    private ElmCatalog(Map<String, NodeKind> kindsByName, Map<Long, NodeKind> kindsByNid,
+                       Map<Long, String> positionNamesByNid, Map<Long, EnumerationValue> enumerationsByNid) {
         this.kindsByName = Collections.unmodifiableMap(kindsByName);
         this.kindsByNid = Collections.unmodifiableMap(kindsByNid);
         this.positionNamesByNid = Collections.unmodifiableMap(positionNamesByNid);
@@ -299,7 +299,7 @@ public final class ElmCatalog {
      * @param nid a concept nid
      * @return the kind, or empty when the nid is not a node kind
      */
-    public Optional<NodeKind> kindOf(int nid) {
+    public Optional<NodeKind> kindOf(long nid) {
         return Optional.ofNullable(kindsByNid.get(nid));
     }
 
@@ -309,7 +309,7 @@ public final class ElmCatalog {
      * @param nid a concept nid
      * @return the position's name, or empty
      */
-    public Optional<String> positionName(int nid) {
+    public Optional<String> positionName(long nid) {
         return Optional.ofNullable(positionNamesByNid.get(nid));
     }
 
@@ -319,7 +319,7 @@ public final class ElmCatalog {
      * @param nid a concept nid
      * @return the enumeration, or empty
      */
-    public Optional<EnumerationValue> enumerationOf(int nid) {
+    public Optional<EnumerationValue> enumerationOf(long nid) {
         return Optional.ofNullable(enumerationsByNid.get(nid));
     }
 
@@ -340,16 +340,16 @@ public final class ElmCatalog {
      */
     public static ElmCatalog load(StampCalculator calculator) {
         LanguageCalculator names = Calculators.Language.UsEnglishFullyQualifiedName(calculator.stampCoordinate());
-        int rootNid = IkeTerms.ELM_NODE_CATALOG.nid();
-        int propertyFormNid = IkeTerms.ELM_PROPERTY_FORM.nid();
+        long rootNid = IkeTerms.ELM_NODE_CATALOG.nid();
+        long propertyFormNid = IkeTerms.ELM_PROPERTY_FORM.nid();
 
         // Stated parents of every concept in the catalog family, found by walking down from the root.
-        Map<Integer, Set<Integer>> children = new HashMap<>();
-        Map<Integer, Set<Integer>> parents = new HashMap<>();
+        Map<Long, Set<Long>> children = new HashMap<>();
+        Map<Long, Set<Long>> parents = new HashMap<>();
         collectFamily(calculator, rootNid, children, parents, new HashSet<>());
 
         // The raw position records, by the node kind they are about.
-        Map<Integer, List<Object[]>> rawByKind = new HashMap<>();
+        Map<Long, List<Object[]>> rawByKind = new HashMap<>();
         EntityService.get().forEachSemanticOfPattern(IkeTerms.ELM_TYPE_POSITION_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isPresent()) {
@@ -360,17 +360,17 @@ public final class ElmCatalog {
 
         // Kinds: every concept under a root-level kind, where a root-level kind is a child of the
         // root that has position records itself or somewhere below it.
-        Set<Integer> kindNids = new HashSet<>();
-        for (int child : children.getOrDefault(rootNid, Set.of())) {
+        Set<Long> kindNids = new HashSet<>();
+        for (long child : children.getOrDefault(rootNid, Set.of())) {
             if (child == IkeTerms.ELM_POSITION.nid() || child == IkeTerms.ELM_PRIMITIVE.nid()
                     || child == IkeTerms.ELM_EXTERNAL_TYPE.nid()) {
                 continue;
             }
-            Set<Integer> below = new HashSet<>();
+            Set<Long> below = new HashSet<>();
             descendants(child, children, below);
             below.add(child);
             boolean anyPositions = false;
-            for (int nid : below) {
+            for (long nid : below) {
                 if (rawByKind.containsKey(nid)) {
                     anyPositions = true;
                     break;
@@ -381,13 +381,13 @@ public final class ElmCatalog {
             }
         }
 
-        Map<Integer, NodeKind> kindsByNid = new HashMap<>();
+        Map<Long, NodeKind> kindsByNid = new HashMap<>();
         Map<String, NodeKind> kindsByName = new LinkedHashMap<>();
-        for (int kindNid : kindNids) {
+        for (long kindNid : kindNids) {
             shell(kindNid, names, parents, kindNids, kindsByNid, kindsByName);
         }
-        Map<Integer, String> positionNames = new HashMap<>();
-        Map<Integer, EnumerationValue> enumerations = new HashMap<>();
+        Map<Long, String> positionNames = new HashMap<>();
+        Map<Long, EnumerationValue> enumerations = new HashMap<>();
         for (NodeKind kind : kindsByNid.values()) {
             List<PositionRule> own = new ArrayList<>();
             for (Object[] raw : rawByKind.getOrDefault(kind.concept().nid(), List.of())) {
@@ -407,15 +407,15 @@ public final class ElmCatalog {
         return new ElmCatalog(kindsByName, kindsByNid, positionNames, enumerations);
     }
 
-    private static NodeKind shell(int kindNid, LanguageCalculator names, Map<Integer, Set<Integer>> parents,
-                                  Set<Integer> kindNids, Map<Integer, NodeKind> kindsByNid,
+    private static NodeKind shell(long kindNid, LanguageCalculator names, Map<Long, Set<Long>> parents,
+                                  Set<Long> kindNids, Map<Long, NodeKind> kindsByNid,
                                   Map<String, NodeKind> kindsByName) {
         NodeKind built = kindsByNid.get(kindNid);
         if (built != null) {
             return built;
         }
         Optional<NodeKind> base = Optional.empty();
-        for (int parent : parents.getOrDefault(kindNid, Set.of())) {
+        for (long parent : parents.getOrDefault(kindNid, Set.of())) {
             if (kindNids.contains(parent)) {
                 base = Optional.of(shell(parent, names, parents, kindNids, kindsByNid, kindsByName));
             }
@@ -428,14 +428,14 @@ public final class ElmCatalog {
     }
 
     private static ValueType valueTypeOf(EntityProxy.Concept concept, LanguageCalculator names,
-                                         Map<Integer, Set<Integer>> parents, Map<Integer, Set<Integer>> children,
-                                         Map<Integer, NodeKind> kindsByNid, Map<Integer, EnumerationValue> enumerations) {
-        int nid = concept.nid();
+                                         Map<Long, Set<Long>> parents, Map<Long, Set<Long>> children,
+                                         Map<Long, NodeKind> kindsByNid, Map<Long, EnumerationValue> enumerations) {
+        long nid = concept.nid();
         NodeKind kind = kindsByNid.get(nid);
         if (kind != null) {
             return new KindValue(kind);
         }
-        Set<Integer> conceptParents = parents.getOrDefault(nid, Set.of());
+        Set<Long> conceptParents = parents.getOrDefault(nid, Set.of());
         if (conceptParents.contains(IkeTerms.ELM_PRIMITIVE.nid())) {
             String label = labelOf(names, concept);
             return new PrimitiveValue(stripTag(label).substring("ELM primitive ".length()), concept);
@@ -447,7 +447,7 @@ public final class ElmCatalog {
         if (enumeration == null) {
             String enumerationLabel = stripTag(labelOf(names, concept));
             Map<String, EntityProxy.Concept> byName = new LinkedHashMap<>();
-            for (int valueNid : children.getOrDefault(nid, Set.of())) {
+            for (long valueNid : children.getOrDefault(nid, Set.of())) {
                 EntityProxy.Concept value = EntityProxy.Concept.make(valueNid);
                 String valueLabel = stripTag(labelOf(names, value));
                 byName.put(valueLabel.startsWith(enumerationLabel + " ")
@@ -459,29 +459,29 @@ public final class ElmCatalog {
         return enumeration;
     }
 
-    private static void collectFamily(StampCalculator calculator, int nid, Map<Integer, Set<Integer>> children,
-                                      Map<Integer, Set<Integer>> parents, Set<Integer> visited) {
+    private static void collectFamily(StampCalculator calculator, long nid, Map<Long, Set<Long>> children,
+                                      Map<Long, Set<Long>> parents, Set<Long> visited) {
         if (!visited.add(nid)) {
             return;
         }
         // Children are found through their own stated parents: every concept whose stated
         // definition names this one. The store answers that through the stated-axiom
         // semantics of each candidate, so the walk reads each candidate's parents once.
-        for (int child : statedChildren(calculator, nid)) {
+        for (long child : statedChildren(calculator, nid)) {
             children.computeIfAbsent(nid, k -> new HashSet<>()).add(child);
             parents.computeIfAbsent(child, k -> new HashSet<>()).add(nid);
             collectFamily(calculator, child, children, parents, visited);
         }
     }
 
-    private static Set<Integer> statedChildren(StampCalculator calculator, int parentNid) {
+    private static Set<Long> statedChildren(StampCalculator calculator, long parentNid) {
         // A parent is named inside its children's stated-axiom trees, which the store indexes
         // by the child, not the parent, so children come from one scan of the concepts.
         return FamilyScan.conceptsNamingAsParent(calculator, parentNid);
     }
 
-    private static void descendants(int nid, Map<Integer, Set<Integer>> children, Set<Integer> into) {
-        for (int child : children.getOrDefault(nid, Set.of())) {
+    private static void descendants(long nid, Map<Long, Set<Long>> children, Set<Long> into) {
+        for (long child : children.getOrDefault(nid, Set.of())) {
             if (into.add(child)) {
                 descendants(child, children, into);
             }
@@ -521,17 +521,17 @@ public final class ElmCatalog {
      */
     static final class FamilyScan {
 
-        private static Map<Integer, Set<Integer>> childrenByParent;
+        private static Map<Long, Set<Long>> childrenByParent;
         private static StampCalculator scannedWith;
 
         private FamilyScan() {
         }
 
-        static synchronized Set<Integer> conceptsNamingAsParent(StampCalculator calculator, int parentNid) {
+        static synchronized Set<Long> conceptsNamingAsParent(StampCalculator calculator, long parentNid) {
             if (childrenByParent == null || scannedWith != calculator) {
-                Map<Integer, Set<Integer>> map = new HashMap<>();
+                Map<Long, Set<Long>> map = new HashMap<>();
                 EntityService.get().forEachConceptEntity(concept -> {
-                    for (int parent : statedParents(calculator, concept.nid())) {
+                    for (long parent : statedParents(calculator, concept.nid())) {
                         map.computeIfAbsent(parent, k -> new HashSet<>()).add(concept.nid());
                     }
                 });
@@ -541,8 +541,8 @@ public final class ElmCatalog {
             return childrenByParent.getOrDefault(parentNid, Set.of());
         }
 
-        private static Set<Integer> statedParents(StampCalculator calculator, int conceptNid) {
-            Set<Integer> parents = new HashSet<>();
+        private static Set<Long> statedParents(StampCalculator calculator, long conceptNid) {
+            Set<Long> parents = new HashSet<>();
             calculator.forEachSemanticVersionForComponentOfPattern(EntityProxy.Concept.make(conceptNid),
                     KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                     (semanticVersion, entityVersion, patternVersion) -> {

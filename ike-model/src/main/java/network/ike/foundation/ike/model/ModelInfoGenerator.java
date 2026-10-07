@@ -46,7 +46,7 @@ import java.util.UUID;
  */
 public final class ModelInfoGenerator {
 
-    private record Mark(int patternNid, boolean retrievable, int codeFieldNid) {
+    private record Mark(long patternNid, boolean retrievable, long codeFieldNid) {
     }
 
     private final StampCalculator calculator;
@@ -136,7 +136,7 @@ public final class ModelInfoGenerator {
      * @param patternNid the pattern
      * @return the name
      */
-    String className(int patternNid) {
+    String className(long patternNid) {
         String name = ModelConcepts.regularName(patternNid, calculator)
                 .or(() -> ModelConcepts.fullyQualifiedName(patternNid, calculator).map(ModelInfoGenerator::withoutNamespace))
                 .orElse("Pattern " + patternNid);
@@ -160,7 +160,7 @@ public final class ModelInfoGenerator {
      * @param dataTypeNid the field's data type
      * @return the type in the model information's syntax
      */
-    static String typeFor(int dataTypeNid) {
+    static String typeFor(long dataTypeNid) {
         if (dataTypeNid == KernelTerm.STRING.nid()) {
             return "System.String";
         }
@@ -207,7 +207,7 @@ public final class ModelInfoGenerator {
      * @param modelName  the model
      * @return true when marked
      */
-    public boolean isMarked(int patternNid, String modelName) {
+    public boolean isMarked(long patternNid, String modelName) {
         boolean[] marked = {false};
         EntityService.get().forEachSemanticForComponentOfPattern(patternNid, IkeTerms.MODEL_CLASS_MARK_PATTERN.nid(),
                 semantic -> {
@@ -226,7 +226,7 @@ public final class ModelInfoGenerator {
      * @param nid the component
      * @return the name, or empty
      */
-    public Optional<String> nameOf(int nid) {
+    public Optional<String> nameOf(long nid) {
         return ModelConcepts.regularName(nid, calculator);
     }
 }

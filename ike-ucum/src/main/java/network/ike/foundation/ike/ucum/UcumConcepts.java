@@ -46,7 +46,7 @@ final class UcumConcepts {
      */
     static PublicId property(StoreWriter writer, String property) {
         PublicId id = UcumIdentity.property(property);
-        int nid = writer.concept(id);
+        long nid = writer.concept(id);
         writer.statedParent(id, IkeTerms.UCUM_PROPERTY.publicId());
         writer.describe(nid, UcumIdentity.description(id, "fqn"), property + " (UCUM property)",
                 KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
@@ -76,7 +76,7 @@ final class UcumConcepts {
                          String printSymbol, String property, String unitClass, boolean metric, boolean special,
                          boolean arbitrary, String definitionValue, String definitionUnit, UcumReduction reduction) {
         PublicId id = UcumIdentity.unit(code);
-        int nid = writer.concept(id);
+        long nid = writer.concept(id);
         writer.statedParent(id, UcumIdentity.property(property));
         writer.describe(nid, UcumIdentity.description(id, "fqn"), names.get(0) + ", " + code + " (UCUM)",
                 KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
@@ -107,7 +107,7 @@ final class UcumConcepts {
      */
     static PublicId prefix(StoreWriter writer, UcumEssence.Prefix prefix) {
         PublicId id = UcumIdentity.prefix(prefix.code());
-        int nid = writer.concept(id);
+        long nid = writer.concept(id);
         writer.statedParent(id, IkeTerms.UCUM_PREFIX.publicId());
         writer.describe(nid, UcumIdentity.description(id, "fqn"), prefix.name() + ", " + prefix.code() + " (UCUM)",
                 KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
@@ -135,7 +135,7 @@ final class UcumConcepts {
     static PublicId composedUnit(StoreWriter writer, UcumTerm term, UcumReduction reduction) {
         String canonical = term.canonicalCode();
         PublicId id = UcumIdentity.composedUnit(canonical);
-        int nid = writer.concept(id);
+        long nid = writer.concept(id);
         writer.statedParent(id, IkeTerms.UCUM_COMPOSED_UNIT.publicId());
         writer.describe(nid, UcumIdentity.description(id, "fqn"), canonical + " (UCUM composed unit)",
                 KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
@@ -159,9 +159,9 @@ final class UcumConcepts {
                 PrimitiveData.nid(unit), Lists.immutable.of(ours, IkeTerms.IDENTITY));
     }
 
-    private static void named(StoreWriter writer, int nid, PublicId id, String role, String text,
+    private static void named(StoreWriter writer, long nid, PublicId id, String role, String text,
                               EntityProxy.Concept usAcceptability, EntityProxy.Concept ucumAcceptability) {
-        int description = writer.describe(nid, UcumIdentity.description(id, role), text,
+        long description = writer.describe(nid, UcumIdentity.description(id, role), text,
                 KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
         writer.dialect(description, UcumIdentity.description(id, role + " ucum-dialect"), IkeTerms.UCUM_DIALECT_PATTERN,
                 ucumAcceptability);

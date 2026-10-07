@@ -69,7 +69,7 @@ class ModelInfoGeneratorIT {
                 IkeTerms.MODEL_CLASS_MARK_PATTERN, pattern.nid(), Lists.immutable.of(model, retrievable, codeField));
     }
 
-    private static List<ImmutableList<Object>> semanticsAbout(int componentNid, EntityProxy.Pattern pattern) {
+    private static List<ImmutableList<Object>> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
         List<ImmutableList<Object>> fields = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());

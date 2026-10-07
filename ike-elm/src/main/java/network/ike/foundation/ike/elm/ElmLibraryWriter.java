@@ -16,8 +16,8 @@
 package network.ike.foundation.ike.elm;
 
 import dev.ikm.tinkar.terms.KernelTerm;
-import dev.ikm.tinkar.common.id.IntIdList;
-import dev.ikm.tinkar.common.id.IntIds;
+import dev.ikm.tinkar.common.id.LongIdList;
+import dev.ikm.tinkar.common.id.LongIds;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
@@ -98,7 +98,7 @@ public final class ElmLibraryWriter {
      */
     public PublicId library(String libraryId, String version, String system) {
         PublicId libraryPublicId = ElmIdentity.library(libraryId);
-        int libraryNid = store.concept(libraryPublicId);
+        long libraryNid = store.concept(libraryPublicId);
         store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "fqn"),
                 libraryId + " (CQL library)", KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE);
         store.describe(libraryNid, UuidT5Generator.get(libraryPublicId.leastUuid(), "name"),
@@ -131,9 +131,9 @@ public final class ElmLibraryWriter {
      */
     public PublicId definition(String libraryId, ElmNode root, String name, List<String> operandTypes) {
         PublicId definitionId = ElmIdentity.definition(libraryId, root.kind().name(), name, operandTypes);
-        int libraryNid = PrimitiveData.nid(ElmIdentity.library(libraryId));
-        int definitionNid = writeTree(definitionId, libraryNid, builder.build(root, definitionId));
-        int descriptionNid = store.describe(definitionNid, UuidT5Generator.get(definitionId.leastUuid(), "name"),
+        long libraryNid = PrimitiveData.nid(ElmIdentity.library(libraryId));
+        long definitionNid = writeTree(definitionId, libraryNid, builder.build(root, definitionId));
+        long descriptionNid = store.describe(definitionNid, UuidT5Generator.get(definitionId.leastUuid(), "name"),
                 name, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE);
         store.dialect(descriptionNid, UuidT5Generator.get(definitionId.leastUuid(), "cql-dialect"),
                 IkeTerms.CQL_DIALECT_PATTERN, KernelTerm.PREFERRED);
@@ -151,7 +151,7 @@ public final class ElmLibraryWriter {
      */
     public PublicId item(String libraryId, ElmNode root, String content) {
         PublicId itemId = ElmIdentity.item(libraryId, content);
-        int libraryNid = PrimitiveData.nid(ElmIdentity.library(libraryId));
+        long libraryNid = PrimitiveData.nid(ElmIdentity.library(libraryId));
         writeTree(itemId, libraryNid, builder.build(root, itemId));
         return itemId;
     }
@@ -167,11 +167,11 @@ public final class ElmLibraryWriter {
      */
     public PublicId orderedList(PublicId definition, String positionPath, List<PublicId> items) {
         PublicId listId = ElmIdentity.list(definition, positionPath);
-        int[] nids = new int[items.size()];
+        long[] nids = new long[items.size()];
         for (int i = 0; i < items.size(); i++) {
             nids[i] = PrimitiveData.nid(items.get(i));
         }
-        IntIdList itemNids = IntIds.list.of(nids);
+        LongIdList itemNids = LongIds.list.of(nids);
         store.semantic(listId, IkeTerms.ELM_ORDERED_LIST_PATTERN, PrimitiveData.nid(definition),
                 Lists.immutable.of(itemNids));
         return listId;
@@ -190,7 +190,7 @@ public final class ElmLibraryWriter {
     public PublicId reference(PublicId definition, String kindName, PublicId target, String name, String libraryName) {
         PublicId referenceId = ElmIdentity.reference(definition, kindName, libraryName, name);
         EntityProxy.Concept kind = builder.catalog().kind(kindName).concept();
-        int targetNid = PrimitiveData.nid(target);
+        long targetNid = PrimitiveData.nid(target);
         Object targetFacade = EntityHandle.get(targetNid).entity().filter(e -> !e.canceled())
                 .filter(entity -> entity instanceof dev.ikm.tinkar.entity.ConceptEntity)
                 .map(entity -> (Object) EntityProxy.Concept.make(targetNid))
@@ -210,7 +210,7 @@ public final class ElmLibraryWriter {
         return store.retire(semanticId);
     }
 
-    private int writeTree(PublicId semanticId, int aboutNid, DiTreeEntity tree) {
+    private long writeTree(PublicId semanticId, long aboutNid, DiTreeEntity tree) {
         return store.semantic(semanticId, IkeTerms.ELM_TREE_PATTERN, aboutNid, Lists.immutable.of(tree));
     }
 }

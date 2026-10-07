@@ -15,7 +15,7 @@
  */
 package network.ike.foundation.ike.elm;
 
-import dev.ikm.tinkar.common.id.IntIdList;
+import dev.ikm.tinkar.common.id.LongIdList;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
@@ -79,7 +79,7 @@ public final class ElmExporter {
         if (!PrimitiveData.get().hasPublicId(libraryPublicId)) {
             throw new IllegalArgumentException("The store holds no library called " + libraryId);
         }
-        int libraryNid = PrimitiveData.nid(libraryPublicId);
+        long libraryNid = PrimitiveData.nid(libraryPublicId);
         Node record = latestTree(PrimitiveData.nid(ElmIdentity.libraryRecord(libraryId)))
                 .map(tree -> toNode(tree, tree.root()))
                 .orElseThrow(() -> new IllegalArgumentException("The library " + libraryId + " has no identity record"));
@@ -126,7 +126,7 @@ public final class ElmExporter {
         return new ElmDocument(library.build());
     }
 
-    private Optional<DiTreeEntity> latestTree(int semanticNid) {
+    private Optional<DiTreeEntity> latestTree(long semanticNid) {
         Latest<SemanticEntityVersion> latest = calculator.latest(semanticNid);
         if (latest.isAbsent()) {
             return Optional.empty();
@@ -141,7 +141,7 @@ public final class ElmExporter {
         NodeBuilder builder = new NodeBuilder(kind.name());
         ImmutableIntList successors = tree.successors(vertex.vertexIndex());
         for (PositionRule rule : kind.positions()) {
-            int positionNid = rule.position().nid();
+            long positionNid = rule.position().nid();
             if (rule.form() == Form.PROPERTY) {
                 if (vertex.properties().containsKey(positionNid)) {
                     Object value = vertex.properties().get(positionNid);
@@ -162,7 +162,7 @@ public final class ElmExporter {
                 Node[] roles = new Node[3];
                 for (int i = 0; i < successors.size(); i++) {
                     EntityVertex argument = tree.vertex(successors.get(i));
-                    int meaning = argument.getMeaningNid();
+                    long meaning = argument.getMeaningNid();
                     int place = meaning == IkeTerms.ELM_FIRST_OPERAND_POSITION.nid() ? 0
                             : meaning == IkeTerms.ELM_SECOND_OPERAND_POSITION.nid() ? 1
                             : meaning == IkeTerms.ELM_THIRD_OPERAND_POSITION.nid() ? 2 : -1;
@@ -189,7 +189,7 @@ public final class ElmExporter {
                     Object list = argument.properties().get(IkeTerms.ELM_LIST_ITEMS.nid());
                     if (list instanceof EntityProxy.Semantic semantic) {
                         Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
-                        if (latest.isPresent() && latest.get().fieldValues().get(0) instanceof IntIdList items) {
+                        if (latest.isPresent() && latest.get().fieldValues().get(0) instanceof LongIdList items) {
                             for (int j = 0; j < items.size(); j++) {
                                 latestTree(items.get(j)).ifPresent(itemTree ->
                                         builder.add(rule.name(), toNode(itemTree, itemTree.root())));

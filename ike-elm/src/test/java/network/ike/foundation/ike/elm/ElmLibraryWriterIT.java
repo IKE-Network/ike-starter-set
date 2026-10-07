@@ -19,7 +19,7 @@ import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import network.ike.foundation.ike.bindings.IkeStamps;
-import dev.ikm.tinkar.common.id.IntIdList;
+import dev.ikm.tinkar.common.id.LongIdList;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
@@ -58,14 +58,14 @@ class ElmLibraryWriterIT {
         writer = new ElmLibraryWriter(builder, calculator, (ActiveStamp) Stamp.from(IkeStamps.INCEPTION));
     }
 
-    private static ImmutableList<Object> fields(int semanticNid) {
+    private static ImmutableList<Object> fields(long semanticNid) {
         Latest<SemanticEntityVersion> latest = calculator.latest(semanticNid);
         assertTrue(latest.isPresent(), "semantic " + semanticNid + " has a latest version");
         return latest.get().fieldValues();
     }
 
-    private static List<Integer> semanticsAbout(int componentNid, EntityProxy.Pattern pattern) {
-        List<Integer> nids = new ArrayList<>();
+    private static List<Long> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
+        List<Long> nids = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(),
                 semantic -> nids.add(semantic.nid()));
         return nids;
@@ -103,31 +103,31 @@ class ElmLibraryWriterIT {
     @Test
     void theLibraryBecomesOneConceptAndItsSemantics() {
         PublicId library = writeDiabetes();
-        int libraryNid = PrimitiveData.nid(library);
+        long libraryNid = PrimitiveData.nid(library);
         assertTrue(calculator.latest(libraryNid).isPresent(), "the library concept has a version");
 
-        List<Integer> trees = semanticsAbout(libraryNid, IkeTerms.ELM_TREE_PATTERN);
+        List<Long> trees = semanticsAbout(libraryNid, IkeTerms.ELM_TREE_PATTERN);
         assertEquals(6, trees.size(), "identity record, using, value set, context, define, and one item");
-        for (int nid : trees) {
+        for (long nid : trees) {
             DiTreeEntity tree = (DiTreeEntity) fields(nid).get(0);
             assertTrue(ElmConformance.check(tree, builder.catalog()).isEmpty(), "every stored tree conforms");
         }
 
-        int defineNid = PrimitiveData.nid(ElmIdentity.definition("Diabetes", "ExpressionDef", "Has Diabetes", List.of()));
-        List<Integer> descriptions = semanticsAbout(defineNid, KernelTerm.DESCRIPTION_PATTERN);
+        long defineNid = PrimitiveData.nid(ElmIdentity.definition("Diabetes", "ExpressionDef", "Has Diabetes", List.of()));
+        List<Long> descriptions = semanticsAbout(defineNid, KernelTerm.DESCRIPTION_PATTERN);
         assertEquals(1, descriptions.size());
         assertEquals("Has Diabetes", fields(descriptions.get(0)).get(1));
         assertEquals(1, semanticsAbout(descriptions.get(0), IkeTerms.CQL_DIALECT_PATTERN).size(),
                 "the name is a description in the CQL dialect");
 
-        List<Integer> lists = semanticsAbout(defineNid, IkeTerms.ELM_ORDERED_LIST_PATTERN);
+        List<Long> lists = semanticsAbout(defineNid, IkeTerms.ELM_ORDERED_LIST_PATTERN);
         assertEquals(1, lists.size());
-        IntIdList items = (IntIdList) fields(lists.get(0)).get(0);
+        LongIdList items = (LongIdList) fields(lists.get(0)).get(0);
         assertEquals(1, items.size());
         assertEquals(PrimitiveData.nid(ElmIdentity.item("Diabetes", "AliasedQuerySource C = [Condition: Diabetes]")),
                 items.get(0));
 
-        List<Integer> references = semanticsAbout(defineNid, IkeTerms.ELM_REFERENCE_PATTERN);
+        List<Long> references = semanticsAbout(defineNid, IkeTerms.ELM_REFERENCE_PATTERN);
         assertEquals(1, references.size());
         ImmutableList<Object> fields = fields(references.get(0));
         assertEquals(IkeTerms.ELM_VALUESETREF.nid(), ((EntityProxy.Concept) fields.get(0)).nid());

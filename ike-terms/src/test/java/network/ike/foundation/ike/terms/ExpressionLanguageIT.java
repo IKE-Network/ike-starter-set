@@ -71,47 +71,47 @@ class ExpressionLanguageIT {
     private static StampCalculator calculator;
     private static LanguageCalculator fqnCalculator;
 
-    private static int keywordPatternNid;
-    private static int denotationPatternNid;
-    private static int literalPatternNid;
-    private static int relationPatternNid;
+    private static long keywordPatternNid;
+    private static long denotationPatternNid;
+    private static long literalPatternNid;
+    private static long relationPatternNid;
 
-    private static int operatorKeywordNid;
-    private static int typeKeywordNid;
-    private static int literalKeywordNid;
-    private static int functionNameNid;
-    private static int unitKeywordNid;
-    private static int declarationKeywordNid;
-    private static int conservativeExtensionNid;
-    private static int logicalEquivalenceNid;
-    private static int definitionalExtensionNid;
-    private static int operandKindRootNid;
-    private static int presenceMeasureKindNid;
+    private static long operatorKeywordNid;
+    private static long typeKeywordNid;
+    private static long literalKeywordNid;
+    private static long functionNameNid;
+    private static long unitKeywordNid;
+    private static long declarationKeywordNid;
+    private static long conservativeExtensionNid;
+    private static long logicalEquivalenceNid;
+    private static long definitionalExtensionNid;
+    private static long operandKindRootNid;
+    private static long presenceMeasureKindNid;
 
-    private static int cqlNid;
-    private static int eclNid;
-    private static int elNid;
-    private static int genericAndNid;
-    private static int genericOrNid;
+    private static long cqlNid;
+    private static long eclNid;
+    private static long elNid;
+    private static long genericAndNid;
+    private static long genericOrNid;
 
     /** Operator nid → (operand kind, result kind, arity) nids. */
-    private static final Map<Integer, int[]> DENOTATIONS = new HashMap<>();
+    private static final Map<Long, long[]> DENOTATIONS = new HashMap<>();
     /** Literal nid → (result kind nid, lower bound, upper bound). */
-    private static final Map<Integer, int[]> LITERALS = new HashMap<>();
+    private static final Map<Long, long[]> LITERALS = new HashMap<>();
     /** Extending construct nid → (core construct nid, relation nid). */
-    private static final Map<Integer, int[]> RELATIONS = new HashMap<>();
+    private static final Map<Long, long[]> RELATIONS = new HashMap<>();
     /** Logic nid → keyword text → nids of what the keyword names (usually one). */
-    private static final Map<Integer, Map<String, List<Integer>>> KEYWORDS = new HashMap<>();
+    private static final Map<Long, Map<String, List<Long>>> KEYWORDS = new HashMap<>();
     /** Logic nid → keyword text → lexical role nid. */
-    private static final Map<Integer, Map<String, Integer>> ROLES = new HashMap<>();
+    private static final Map<Long, Map<String, Long>> ROLES = new HashMap<>();
     /** Logic nid → its dialect pattern. */
-    private static final Map<Integer, EntityProxy.Pattern> DIALECTS = new HashMap<>();
+    private static final Map<Long, EntityProxy.Pattern> DIALECTS = new HashMap<>();
     /** The eight operand kinds beneath the root. */
-    private static final Set<Integer> KINDS = new HashSet<>();
+    private static final Set<Long> KINDS = new HashSet<>();
     /** Generic nid → nids of the concepts whose latest stated parents include it. */
-    private static final Map<Integer, Set<Integer>> CHILDREN = new HashMap<>();
+    private static final Map<Long, Set<Long>> CHILDREN = new HashMap<>();
     /** Operand kind nid → the layer qualifier its instances' names begin with. */
-    private static final Map<Integer, String> QUALIFIERS = new HashMap<>();
+    private static final Map<Long, String> QUALIFIERS = new HashMap<>();
 
     @BeforeAll
     static void composeWriteAndRead() throws Exception {
@@ -165,34 +165,34 @@ class ExpressionLanguageIT {
         EntityService.get().forEachSemanticOfPattern(denotationPatternNid, semantic -> {
             ImmutableList<Object> fields = latestFields(semantic.nid());
             DENOTATIONS.put(semantic.referencedComponentNid(),
-                    new int[] {nidOf(fields.get(0)), nidOf(fields.get(1)), nidOf(fields.get(2))});
+                    new long[] {nidOf(fields.get(0)), nidOf(fields.get(1)), nidOf(fields.get(2))});
         });
         EntityService.get().forEachSemanticOfPattern(literalPatternNid, semantic -> {
             ImmutableList<Object> fields = latestFields(semantic.nid());
             LITERALS.put(semantic.referencedComponentNid(),
-                    new int[] {nidOf(fields.get(0)), (Integer) fields.get(1), (Integer) fields.get(2)});
+                    new long[] {nidOf(fields.get(0)), (Integer) fields.get(1), (Integer) fields.get(2)});
         });
         EntityService.get().forEachSemanticOfPattern(relationPatternNid, semantic -> {
             ImmutableList<Object> fields = latestFields(semantic.nid());
             RELATIONS.put(semantic.referencedComponentNid(),
-                    new int[] {nidOf(fields.get(0)), nidOf(fields.get(1))});
+                    new long[] {nidOf(fields.get(0)), nidOf(fields.get(1))});
         });
         EntityService.get().forEachSemanticOfPattern(keywordPatternNid, semantic -> {
             ImmutableList<Object> fields = latestFields(semantic.nid());
-            int language = nidOf(fields.get(0));
+            long language = nidOf(fields.get(0));
             String keyword = (String) fields.get(1);
-            int role = nidOf(fields.get(2));
+            long role = nidOf(fields.get(2));
             KEYWORDS.computeIfAbsent(language, ignored -> new HashMap<>())
                     .computeIfAbsent(keyword, ignored -> new ArrayList<>())
                     .add(semantic.referencedComponentNid());
-            Integer previousRole = ROLES.computeIfAbsent(language, ignored -> new HashMap<>())
+            Long previousRole = ROLES.computeIfAbsent(language, ignored -> new HashMap<>())
                     .put(keyword, role);
             assertTrue(previousRole == null || previousRole == role,
                     "Keyword '" + keyword + "' bound with two lexical roles in " + fqn(language));
         });
-        Set<Integer> generics = Set.of(genericAndNid, genericOrNid);
+        Set<Long> generics = Set.of(genericAndNid, genericOrNid);
         EntityService.get().forEachConceptEntity(concept -> {
-            for (int parent : latestIsAParents(concept.nid())) {
+            for (long parent : latestIsAParents(concept.nid())) {
                 if (generics.contains(parent)) {
                     CHILDREN.computeIfAbsent(parent, ignored -> new HashSet<>()).add(concept.nid());
                 }
@@ -205,29 +205,29 @@ class ExpressionLanguageIT {
         PrimitiveData.stop();
     }
 
-    private static int nid(String fqn) {
+    private static long nid(String fqn) {
         return set.conceptRef(fqn).nid();
     }
 
-    private static int nidOf(Object fieldValue) {
+    private static long nidOf(Object fieldValue) {
         assertTrue(fieldValue instanceof EntityFacade,
                 "Expected a component field value, got " + fieldValue);
         return ((EntityFacade) fieldValue).nid();
     }
 
-    private static ImmutableList<Object> latestFields(int semanticNid) {
+    private static ImmutableList<Object> latestFields(long semanticNid) {
         Latest<SemanticEntityVersion> latest = calculator.latest(semanticNid);
         assertTrue(latest.isPresent(), "No latest active version for semantic " + semanticNid);
         return latest.get().fieldValues();
     }
 
     /** Whether a relation's extending concept is one of the catalog's ELM System types. */
-    private static boolean isTypeRelation(int extendingNid) {
+    private static boolean isTypeRelation(long extendingNid) {
         return fqn(extendingNid).startsWith("ELM System ");
     }
 
     /** A relation whose extending side is a node kind of the catalog (IKE-Network/ike-issues#1116). */
-    private static boolean isNodeKindRelation(int extendingNid) {
+    private static boolean isNodeKindRelation(long extendingNid) {
         String fqn = fqn(extendingNid);
         return fqn.startsWith("ELM ") && fqn.endsWith(" (ELM)") && !isTypeRelation(extendingNid);
     }
@@ -236,12 +236,12 @@ class ExpressionLanguageIT {
     @DisplayName("Every ELM System type relates to one of our concepts by an admitted kind, and only once")
     void everySystemTypeRelatesToOneOfOurConcepts() {
         Set<String> types = new java.util.TreeSet<>();
-        Set<Integer> targets = Set.of(nid("Measure kind (IkeFoundation)"), nid("Presence measure kind (IkeFoundation)"),
+        Set<Long> targets = Set.of(nid("Measure kind (IkeFoundation)"), nid("Presence measure kind (IkeFoundation)"),
                 nid("Concept kind (IkeFoundation)"), nid("Concept set kind (IkeFoundation)"),
                 nid("Operand kind (IkeFoundation)"), nid("Measure ratio (IkeFoundation)"), KernelTerm.STRING.nid());
-        Set<Integer> admitted = Set.of(nid("Identity (IkeFoundation)"), logicalEquivalenceNid,
+        Set<Long> admitted = Set.of(nid("Identity (IkeFoundation)"), logicalEquivalenceNid,
                 definitionalExtensionNid, conservativeExtensionNid);
-        for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
+        for (Map.Entry<Long, long[]> relation : RELATIONS.entrySet()) {
             if (!isTypeRelation(relation.getKey())) {
                 continue;
             }
@@ -263,7 +263,7 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Boolean is presence by the three-row table: true Present, false Absent, null Indeterminate")
     void booleanIsPresenceByTheThreeRowTable() {
-        int[] relation = RELATIONS.get(nid("ELM System Boolean (ELM)"));
+        long[] relation = RELATIONS.get(nid("ELM System Boolean (ELM)"));
         assertNotNull(relation, "ELM System Boolean relates");
         assertEquals(nid("Presence measure kind (IkeFoundation)"), relation[0]);
         assertEquals(logicalEquivalenceNid, relation[1]);
@@ -272,16 +272,16 @@ class ExpressionLanguageIT {
         table.put(Boolean.TRUE, "Present literal (IkeFoundation)");
         table.put(Boolean.FALSE, "Absent literal (IkeFoundation)");
         table.put(null, "Indeterminate literal (IkeFoundation)");
-        Set<Integer> landed = new HashSet<>();
+        Set<Long> landed = new HashSet<>();
         for (Map.Entry<Boolean, String> row : table.entrySet()) {
-            int literal = nid(row.getValue());
+            long literal = nid(row.getValue());
             assertTrue(calculator.latest(literal).isPresent(), row.getValue() + " exists");
             assertTrue(landed.add(literal), "two truth values land on " + row.getValue());
         }
         assertEquals(3, landed.size());
     }
 
-    private static String fqn(int nid) {
+    private static String fqn(long nid) {
         return fqnCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
                 .orElse(PrimitiveData.text(nid));
     }
@@ -290,15 +290,15 @@ class ExpressionLanguageIT {
         return fullyQualifiedName.replaceAll("\\s*\\([^()]*\\)\\s*$", "");
     }
 
-    private static int only(int language, String keyword) {
-        List<Integer> named = KEYWORDS.get(language).get(keyword);
+    private static long only(long language, String keyword) {
+        List<Long> named = KEYWORDS.get(language).get(keyword);
         assertNotNull(named, "No binding for '" + keyword + "' in " + fqn(language));
         assertEquals(1, named.size(), "'" + keyword + "' names more than one thing in " + fqn(language));
         return named.get(0);
     }
 
-    private static Set<Integer> latestIsAParents(int componentNid) {
-        Set<Integer> parents = new HashSet<>();
+    private static Set<Long> latestIsAParents(long componentNid) {
+        Set<Long> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
                 KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
@@ -313,10 +313,10 @@ class ExpressionLanguageIT {
     }
 
     /** A regular-name description of a concept: its nid and its text. */
-    private record Name(int descriptionNid, String text) {
+    private record Name(long descriptionNid, String text) {
     }
 
-    private static List<Name> regularNamesOf(int conceptNid) {
+    private static List<Name> regularNamesOf(long conceptNid) {
         List<Name> names = new ArrayList<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(conceptNid), KernelTerm.DESCRIPTION_PATTERN,
@@ -329,8 +329,8 @@ class ExpressionLanguageIT {
         return names;
     }
 
-    private static Set<Integer> acceptabilitiesOf(int descriptionNid, EntityProxy.Pattern dialectPattern) {
-        Set<Integer> acceptabilities = new HashSet<>();
+    private static Set<Long> acceptabilitiesOf(long descriptionNid, EntityProxy.Pattern dialectPattern) {
+        Set<Long> acceptabilities = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Semantic.make(descriptionNid), dialectPattern,
                 (semanticVersion, entityVersion, patternVersion) ->
@@ -344,10 +344,10 @@ class ExpressionLanguageIT {
     @DisplayName("Every relation's two constructs carry a denotation and claim one of the three relations")
     void everyRelationIsTypedAndAdmitted() {
         assertFalse(RELATIONS.isEmpty(), "The set declares relation assertions");
-        Set<Integer> admitted = Set.of(conservativeExtensionNid, logicalEquivalenceNid, definitionalExtensionNid);
-        for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
-            int extending = relation.getKey();
-            int core = relation.getValue()[0];
+        Set<Long> admitted = Set.of(conservativeExtensionNid, logicalEquivalenceNid, definitionalExtensionNid);
+        for (Map.Entry<Long, long[]> relation : RELATIONS.entrySet()) {
+            long extending = relation.getKey();
+            long core = relation.getValue()[0];
             if (isTypeRelation(extending) || isNodeKindRelation(extending)) {
                 continue; // a type or a node kind carries no denotation; their own gates check them
             }
@@ -362,13 +362,13 @@ class ExpressionLanguageIT {
     @DisplayName("A logical equivalence agrees with its core in operand kind, result kind, and arity")
     void logicalEquivalencesAgreeInAllDimensions() {
         List<String> checked = new ArrayList<>();
-        for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
+        for (Map.Entry<Long, long[]> relation : RELATIONS.entrySet()) {
             if (relation.getValue()[1] != logicalEquivalenceNid || isTypeRelation(relation.getKey())
                     || isNodeKindRelation(relation.getKey())) {
                 continue;
             }
-            int[] extending = DENOTATIONS.get(relation.getKey());
-            int[] core = DENOTATIONS.get(relation.getValue()[0]);
+            long[] extending = DENOTATIONS.get(relation.getKey());
+            long[] core = DENOTATIONS.get(relation.getValue()[0]);
             String claim = fqn(relation.getKey()) + " is logically equivalent to " + fqn(relation.getValue()[0]);
             for (int dimension = 0; dimension < 3; dimension++) {
                 assertEquals(core[dimension], extending[dimension],
@@ -382,12 +382,12 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("A conservative extension agrees with its core in operand kind, result kind, and arity")
     void conservativeExtensionsAgreeInKindsAndArity() {
-        for (Map.Entry<Integer, int[]> relation : RELATIONS.entrySet()) {
+        for (Map.Entry<Long, long[]> relation : RELATIONS.entrySet()) {
             if (relation.getValue()[1] != conservativeExtensionNid) {
                 continue;
             }
-            int[] extending = DENOTATIONS.get(relation.getKey());
-            int[] core = DENOTATIONS.get(relation.getValue()[0]);
+            long[] extending = DENOTATIONS.get(relation.getKey());
+            long[] core = DENOTATIONS.get(relation.getValue()[0]);
             String claim = fqn(relation.getKey()) + " conservatively extends " + fqn(relation.getValue()[0]);
             for (int dimension = 0; dimension < 3; dimension++) {
                 assertEquals(core[dimension], extending[dimension],
@@ -401,12 +401,12 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("A binding names what its lexical role says: an operator or function with a denotation, a kind, a literal with bounds, a unit of time, or a declared thing that is a kind or a typed operator")
     void bindingsNameWhatTheirRoleSays() {
-        int bindings = 0;
-        int unitOfTime = nid("Unit of time (IkeFoundation)");
-        for (Map.Entry<Integer, Map<String, List<Integer>>> logic : KEYWORDS.entrySet()) {
-            for (Map.Entry<String, List<Integer>> keyword : logic.getValue().entrySet()) {
-                int role = ROLES.get(logic.getKey()).get(keyword.getKey());
-                for (int named : keyword.getValue()) {
+        long bindings = 0;
+        long unitOfTime = nid("Unit of time (IkeFoundation)");
+        for (Map.Entry<Long, Map<String, List<Long>>> logic : KEYWORDS.entrySet()) {
+            for (Map.Entry<String, List<Long>> keyword : logic.getValue().entrySet()) {
+                long role = ROLES.get(logic.getKey()).get(keyword.getKey());
+                for (long named : keyword.getValue()) {
                     String where = "'" + keyword.getKey() + "' in " + fqn(logic.getKey());
                     if (role == operatorKeywordNid || role == functionNameNid) {
                         assertNotNull(DENOTATIONS.get(named), where + " names an untyped operator " + fqn(named));
@@ -433,15 +433,15 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("One keyword names two constructs in one logic only when their operand kinds differ")
     void overloadsAreDistinguishedByKind() {
-        for (Map.Entry<Integer, Map<String, List<Integer>>> logic : KEYWORDS.entrySet()) {
-            for (Map.Entry<String, List<Integer>> keyword : logic.getValue().entrySet()) {
-                List<Integer> named = keyword.getValue();
+        for (Map.Entry<Long, Map<String, List<Long>>> logic : KEYWORDS.entrySet()) {
+            for (Map.Entry<String, List<Long>> keyword : logic.getValue().entrySet()) {
+                List<Long> named = keyword.getValue();
                 if (named.size() < 2) {
                     continue;
                 }
-                Set<Integer> operandKinds = new HashSet<>();
-                for (int construct : named) {
-                    int[] denotation = DENOTATIONS.get(construct);
+                Set<Long> operandKinds = new HashSet<>();
+                for (long construct : named) {
+                    long[] denotation = DENOTATIONS.get(construct);
                     assertNotNull(denotation, "Overloaded keyword names an untyped construct " + fqn(construct));
                     operandKinds.add(denotation[0]);
                 }
@@ -489,19 +489,19 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Every keyword binding gives its construct a dialect-scoped name spelled as the logic spells it, one preferred per construct")
     void dialectNamesMatchBindings() {
-        int checked = 0;
-        for (Map.Entry<Integer, Map<String, List<Integer>>> logic : KEYWORDS.entrySet()) {
+        long checked = 0;
+        for (Map.Entry<Long, Map<String, List<Long>>> logic : KEYWORDS.entrySet()) {
             EntityProxy.Pattern dialect = DIALECTS.get(logic.getKey());
             assertNotNull(dialect, "No dialect pattern for " + fqn(logic.getKey()));
-            Map<Integer, Integer> preferredPerConstruct = new HashMap<>();
-            for (Map.Entry<String, List<Integer>> keyword : logic.getValue().entrySet()) {
-                for (int named : keyword.getValue()) {
+            Map<Long, Integer> preferredPerConstruct = new HashMap<>();
+            for (Map.Entry<String, List<Long>> keyword : logic.getValue().entrySet()) {
+                for (long named : keyword.getValue()) {
                     boolean found = false;
                     for (Name name : regularNamesOf(named)) {
                         if (!name.text().equals(keyword.getKey())) {
                             continue;
                         }
-                        Set<Integer> acceptabilities = acceptabilitiesOf(name.descriptionNid(), dialect);
+                        Set<Long> acceptabilities = acceptabilitiesOf(name.descriptionNid(), dialect);
                         if (acceptabilities.contains(KernelTerm.PREFERRED.nid())) {
                             preferredPerConstruct.merge(named, 1, Integer::sum);
                             found = true;
@@ -514,7 +514,7 @@ class ExpressionLanguageIT {
                     checked++;
                 }
             }
-            for (Map.Entry<Integer, Integer> preferred : preferredPerConstruct.entrySet()) {
+            for (Map.Entry<Long, Integer> preferred : preferredPerConstruct.entrySet()) {
                 assertEquals(1, preferred.getValue(), fqn(preferred.getKey()) + " has more than one preferred name in "
                         + fqn(logic.getKey()));
             }
@@ -527,9 +527,9 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("The generics' children are exactly the layer instances, and every keyword binds to an instance")
     void genericsHaveExactlyTheLayerInstances() {
-        int elAnd = nid(ExpressionLanguageSet.EL_AND_FQN);
-        int setAnd = nid("Set AND (IkeFoundation)");
-        int presenceAnd = nid("Presence AND (IkeFoundation)");
+        long elAnd = nid(ExpressionLanguageSet.EL_AND_FQN);
+        long setAnd = nid("Set AND (IkeFoundation)");
+        long presenceAnd = nid("Presence AND (IkeFoundation)");
         assertEquals(Set.of(elAnd, setAnd, presenceAnd), CHILDREN.get(genericAndNid),
                 "Generic AND has exactly three instances");
         assertEquals(Set.of(nid("Set OR (IkeFoundation)"), nid("Presence OR (IkeFoundation)")), CHILDREN.get(genericOrNid),
@@ -539,9 +539,9 @@ class ExpressionLanguageIT {
         assertEquals(setAnd, only(eclNid, "AND"));
         assertEquals(setAnd, only(cqlNid, "intersect"));
         assertEquals(elAnd, only(elNid, "AND"));
-        for (Map<String, List<Integer>> roster : KEYWORDS.values()) {
-            for (List<Integer> named : roster.values()) {
-                for (int construct : named) {
+        for (Map<String, List<Long>> roster : KEYWORDS.values()) {
+            for (List<Long> named : roster.values()) {
+                for (long construct : named) {
                     assertTrue(construct != genericAndNid && construct != genericOrNid,
                             "A keyword binds to a generic: " + fqn(construct));
                 }
@@ -552,11 +552,11 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Naming discipline: an instance is its layer qualifier plus the generic's word, a word shared at the seam written once, and its US English preferred name is that qualified name")
     void namingDisciplineHolds() {
-        int checked = 0;
-        for (Map.Entry<Integer, Set<Integer>> generic : CHILDREN.entrySet()) {
+        long checked = 0;
+        for (Map.Entry<Long, Set<Long>> generic : CHILDREN.entrySet()) {
             String word = withoutTag(fqn(generic.getKey())).replaceFirst("^Generic ", "");
-            for (int instance : generic.getValue()) {
-                int[] denotation = DENOTATIONS.get(instance);
+            for (long instance : generic.getValue()) {
+                long[] denotation = DENOTATIONS.get(instance);
                 assertNotNull(denotation, "Untyped instance " + fqn(instance));
                 String qualifier = QUALIFIERS.get(denotation[0]);
                 assertNotNull(qualifier, "No layer qualifier for operand kind " + fqn(denotation[0]));
@@ -597,15 +597,15 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Every measure operator takes measures and yields a measure, and CQL's arithmetic and bound keywords name them")
     void measureOperatorsTakeAndYieldMeasures() {
-        int measureKind = nid("Measure kind (IkeFoundation)");
-        int measureOperator = nid("Measure operator (IkeFoundation)");
+        long measureKind = nid("Measure kind (IkeFoundation)");
+        long measureOperator = nid("Measure operator (IkeFoundation)");
         Map<String, String> arities = Map.of(
                 "Measure addition", "Variadic", "Measure subtraction", "Binary",
                 "Measure multiplication", "Variadic", "Measure division", "Binary",
                 "Measure lower bound", "Unary", "Measure upper bound", "Unary", "Measure width", "Unary");
         for (Map.Entry<String, String> operator : arities.entrySet()) {
-            int operatorNid = nid(operator.getKey() + " (IkeFoundation)");
-            int[] denotation = DENOTATIONS.get(operatorNid);
+            long operatorNid = nid(operator.getKey() + " (IkeFoundation)");
+            long[] denotation = DENOTATIONS.get(operatorNid);
             assertNotNull(denotation, "Untyped " + operator.getKey());
             assertEquals(measureKind, denotation[0], operator.getKey() + " takes measures");
             assertEquals(measureKind, denotation[1], operator.getKey() + " yields a measure");
@@ -627,12 +627,12 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Aggregates take a measure list and yield a measure, the projection produces the list, the selections keep statements, and CQL's function names bind to the aggregates")
     void aggregatesProjectionAndSelectionsAreTyped() {
-        int measureKind = nid("Measure kind (IkeFoundation)");
-        int measureListKind = nid("Measure list kind (IkeFoundation)");
-        int statementSetKind = nid("Statement set kind (IkeFoundation)");
-        int unary = nid("Unary (IkeFoundation)");
-        int measureAggregate = nid("Measure aggregate (IkeFoundation)");
-        int statementOperator = nid("Statement operator (IkeFoundation)");
+        long measureKind = nid("Measure kind (IkeFoundation)");
+        long measureListKind = nid("Measure list kind (IkeFoundation)");
+        long statementSetKind = nid("Statement set kind (IkeFoundation)");
+        long unary = nid("Unary (IkeFoundation)");
+        long measureAggregate = nid("Measure aggregate (IkeFoundation)");
+        long statementOperator = nid("Statement operator (IkeFoundation)");
         assertTrue(KINDS.contains(measureListKind), "Measure list is an operand kind");
         assertTrue(latestIsAParents(measureAggregate).contains(nid("Measure operator (IkeFoundation)")),
                 "Measure aggregate is a measure operator");
@@ -640,8 +640,8 @@ class ExpressionLanguageIT {
                 "Measure count", "Count", "Measure sum", "Sum", "Measure least", "Min",
                 "Measure greatest", "Max", "Measure mean", "Avg", "Measure median", "Median");
         for (Map.Entry<String, String> aggregate : functions.entrySet()) {
-            int aggregateNid = nid(aggregate.getKey() + " (IkeFoundation)");
-            int[] denotation = DENOTATIONS.get(aggregateNid);
+            long aggregateNid = nid(aggregate.getKey() + " (IkeFoundation)");
+            long[] denotation = DENOTATIONS.get(aggregateNid);
             assertNotNull(denotation, "Untyped " + aggregate.getKey());
             assertEquals(measureListKind, denotation[0], aggregate.getKey() + " takes a measure list");
             assertEquals(measureKind, denotation[1], aggregate.getKey() + " yields a measure");
@@ -651,16 +651,16 @@ class ExpressionLanguageIT {
             assertEquals(functionNameNid, ROLES.get(cqlNid).get(aggregate.getValue()),
                     aggregate.getValue() + " binds as a function name");
         }
-        int[] projection = DENOTATIONS.get(nid("Measure projection (IkeFoundation)"));
+        long[] projection = DENOTATIONS.get(nid("Measure projection (IkeFoundation)"));
         assertNotNull(projection, "Untyped Measure projection");
         assertEquals(statementSetKind, projection[0], "Measure projection takes a statement set");
         assertEquals(measureListKind, projection[1], "Measure projection yields a measure list");
         for (String selection : List.of("Least selection", "Greatest selection", "Measure projection")) {
-            int selectionNid = nid(selection + " (IkeFoundation)");
+            long selectionNid = nid(selection + " (IkeFoundation)");
             assertTrue(latestIsAParents(selectionNid).contains(statementOperator), selection + " is a statement operator");
         }
         for (String selection : List.of("Least selection", "Greatest selection")) {
-            int[] denotation = DENOTATIONS.get(nid(selection + " (IkeFoundation)"));
+            long[] denotation = DENOTATIONS.get(nid(selection + " (IkeFoundation)"));
             assertNotNull(denotation, "Untyped " + selection);
             assertEquals(statementSetKind, denotation[0], selection + " takes a statement set");
             assertEquals(statementSetKind, denotation[1], selection + " yields a statement set");
@@ -672,22 +672,22 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("The timing bindings name the inclusive comparisons and Measure within, in names two constructs of different kinds, Measure whole unit is a measure operator, and before and after claim their equivalences")
     void timingBindingsEquivalencesAndWholeUnit() {
-        int lessThanOrEqual = nid("Less than or equal to (SOLOR)");
-        int greaterThanOrEqual = nid("Greater than or equal to (SOLOR)");
-        int within = nid("Measure within (IkeFoundation)");
+        long lessThanOrEqual = nid("Less than or equal to (SOLOR)");
+        long greaterThanOrEqual = nid("Greater than or equal to (SOLOR)");
+        long within = nid("Measure within (IkeFoundation)");
         assertEquals(lessThanOrEqual, only(cqlNid, "on or before"));
         assertEquals(lessThanOrEqual, only(cqlNid, "before or on"));
         assertEquals(greaterThanOrEqual, only(cqlNid, "on or after"));
         assertEquals(greaterThanOrEqual, only(cqlNid, "after or on"));
         assertEquals(within, only(cqlNid, "within"));
         assertEquals(nid("Measure subtraction (IkeFoundation)"), only(cqlNid, "difference between"));
-        List<Integer> in = KEYWORDS.get(cqlNid).get("in");
+        List<Long> in = KEYWORDS.get(cqlNid).get("in");
         assertNotNull(in, "CQL's in is bound");
         assertEquals(Set.of(nid("Concept set membership (IkeFoundation)"), within), new HashSet<>(in),
                 "CQL's in names concept set membership and Measure within, one keyword on two kinds");
-        int wholeUnit = nid("Measure whole unit (IkeFoundation)");
-        int measureKind = nid("Measure kind (IkeFoundation)");
-        int[] denotation = DENOTATIONS.get(wholeUnit);
+        long wholeUnit = nid("Measure whole unit (IkeFoundation)");
+        long measureKind = nid("Measure kind (IkeFoundation)");
+        long[] denotation = DENOTATIONS.get(wholeUnit);
         assertNotNull(denotation, "Untyped Measure whole unit");
         assertEquals(measureKind, denotation[0], "Measure whole unit takes a measure");
         assertEquals(measureKind, denotation[1], "Measure whole unit yields a measure");
@@ -695,11 +695,11 @@ class ExpressionLanguageIT {
         assertTrue(latestIsAParents(wholeUnit).contains(nid("Measure operator (IkeFoundation)")),
                 "Measure whole unit is a measure operator");
         assertEquals(wholeUnit, only(cqlNid, "date from"));
-        int[] before = RELATIONS.get(nid("Measure before (IkeFoundation)"));
+        long[] before = RELATIONS.get(nid("Measure before (IkeFoundation)"));
         assertNotNull(before, "Measure before claims a relation");
         assertEquals(nid("Less than (SOLOR)"), before[0], "Measure before relates to Less than");
         assertEquals(logicalEquivalenceNid, before[1], "Measure before claims logical equivalence");
-        int[] after = RELATIONS.get(nid("Measure after (IkeFoundation)"));
+        long[] after = RELATIONS.get(nid("Measure after (IkeFoundation)"));
         assertNotNull(after, "Measure after claims a relation");
         assertEquals(nid("Greater than (SOLOR)"), after[0], "Measure after relates to Greater than");
         assertEquals(logicalEquivalenceNid, after[1], "Measure after claims logical equivalence");
@@ -708,7 +708,7 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Obligation: Measure before decides as Less than and Measure after as Greater than on every ordering of the four ends with every combination of included and excluded ends")
     void beforeIsLessThanOnEveryEndOrdering() {
-        int tried = 0;
+        long tried = 0;
         for (int lowerA = 0; lowerA <= 3; lowerA++) {
             for (int upperA = lowerA; upperA <= 3; upperA++) {
                 for (int lowerB = 0; lowerB <= 3; lowerB++) {
@@ -788,24 +788,24 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Each unit keyword, singular and plural, names one unit of time; the scales, the calendar, the readings, and the zones have their parents")
     void unitsScalesCalendarAndReadings() {
-        int unitOfTime = nid("Unit of time (IkeFoundation)");
+        long unitOfTime = nid("Unit of time (IkeFoundation)");
         Map<String, String> plurals = Map.of("millisecond", "milliseconds", "second", "seconds",
                 "minute", "minutes", "hour", "hours", "day", "days", "week", "weeks",
                 "month", "months", "year", "years");
         for (Map.Entry<String, String> unit : plurals.entrySet()) {
             String name = Character.toUpperCase(unit.getKey().charAt(0)) + unit.getKey().substring(1);
-            int unitNid = nid(name + " (IkeFoundation)");
+            long unitNid = nid(name + " (IkeFoundation)");
             assertEquals(unitNid, only(cqlNid, unit.getKey()), unit.getKey() + " names " + name);
             assertEquals(unitNid, only(cqlNid, unit.getValue()), unit.getValue() + " names " + name);
             assertEquals(unitKeywordNid, ROLES.get(cqlNid).get(unit.getKey()), unit.getKey() + " is a unit keyword");
             assertEquals(unitKeywordNid, ROLES.get(cqlNid).get(unit.getValue()), unit.getValue() + " is a unit keyword");
             assertTrue(latestIsAParents(unitNid).contains(unitOfTime), name + " is a unit of time");
         }
-        int timeScale = nid("Time scale (IkeFoundation)");
+        long timeScale = nid("Time scale (IkeFoundation)");
         for (String scale : List.of("Unix epoch milliseconds", "Unix epoch seconds", "Gregorian calendar date")) {
             assertTrue(latestIsAParents(nid(scale + " (IkeFoundation)")).contains(timeScale), scale + " is a time scale");
         }
-        int timeReading = nid("Time reading (IkeFoundation)");
+        long timeReading = nid("Time reading (IkeFoundation)");
         for (String reading : List.of("Instant", "Period")) {
             assertTrue(latestIsAParents(nid(reading + " (IkeFoundation)")).contains(timeReading), reading + " is a time reading");
         }
@@ -824,15 +824,15 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Merge and split take a measure list and yield one, the two spans take two measures and yield a period, and collapse and expand name the list operators")
     void daysCoveredOperatorsAreTyped() {
-        int measureKind = nid("Measure kind (IkeFoundation)");
-        int measureListKind = nid("Measure list kind (IkeFoundation)");
-        int unary = nid("Unary (IkeFoundation)");
-        int binary = nid("Binary (IkeFoundation)");
-        int measureListOperator = nid("Measure list operator (IkeFoundation)");
-        int measureOperator = nid("Measure operator (IkeFoundation)");
+        long measureKind = nid("Measure kind (IkeFoundation)");
+        long measureListKind = nid("Measure list kind (IkeFoundation)");
+        long unary = nid("Unary (IkeFoundation)");
+        long binary = nid("Binary (IkeFoundation)");
+        long measureListOperator = nid("Measure list operator (IkeFoundation)");
+        long measureOperator = nid("Measure operator (IkeFoundation)");
         for (String operator : List.of("Measure list merge", "Measure list split")) {
-            int operatorNid = nid(operator + " (IkeFoundation)");
-            int[] denotation = DENOTATIONS.get(operatorNid);
+            long operatorNid = nid(operator + " (IkeFoundation)");
+            long[] denotation = DENOTATIONS.get(operatorNid);
             assertNotNull(denotation, "Untyped " + operator);
             assertEquals(measureListKind, denotation[0], operator + " takes a measure list");
             assertEquals(measureListKind, denotation[1], operator + " yields a measure list");
@@ -840,8 +840,8 @@ class ExpressionLanguageIT {
             assertTrue(latestIsAParents(operatorNid).contains(measureListOperator), operator + " is a measure list operator");
         }
         for (String span : List.of("Measure outer span", "Measure inner span")) {
-            int spanNid = nid(span + " (IkeFoundation)");
-            int[] denotation = DENOTATIONS.get(spanNid);
+            long spanNid = nid(span + " (IkeFoundation)");
+            long[] denotation = DENOTATIONS.get(spanNid);
             assertNotNull(denotation, "Untyped " + span);
             assertEquals(measureKind, denotation[0], span + " takes measures");
             assertEquals(measureKind, denotation[1], span + " yields a measure");
@@ -857,16 +857,16 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("ECL's comparisons name the comparison operators, < and > being one keyword on two kinds, and its four remaining constructs are typed, bound, and related as claimed")
     void eclRemainderIsTypedAndBound() {
-        int conceptKind = nid("Concept kind (IkeFoundation)");
-        int conceptSetKind = nid("Concept set kind (IkeFoundation)");
-        int measureKind = nid("Measure kind (IkeFoundation)");
-        int unary = nid("Unary (IkeFoundation)");
+        long conceptKind = nid("Concept kind (IkeFoundation)");
+        long conceptSetKind = nid("Concept set kind (IkeFoundation)");
+        long measureKind = nid("Measure kind (IkeFoundation)");
+        long unary = nid("Unary (IkeFoundation)");
         assertEquals(nid("Less than or equal to (SOLOR)"), only(eclNid, "<="));
         assertEquals(nid("Greater than or equal to (SOLOR)"), only(eclNid, ">="));
         assertEquals(nid("Equal to (SOLOR)"), only(eclNid, "="));
         for (String[] overload : new String[][] {{"<", "Descendant of (IkeFoundation)", "Less than (SOLOR)"},
                 {">", "Ancestor of (IkeFoundation)", "Greater than (SOLOR)"}}) {
-            List<Integer> named = KEYWORDS.get(eclNid).get(overload[0]);
+            List<Long> named = KEYWORDS.get(eclNid).get(overload[0]);
             assertEquals(Set.of(nid(overload[1]), nid(overload[2])), new HashSet<>(named),
                     "ECL's " + overload[0] + " names a hierarchy operator on a concept and a comparison on a value");
             assertEquals(conceptKind, DENOTATIONS.get(nid(overload[1]))[0]);
@@ -876,8 +876,8 @@ class ExpressionLanguageIT {
                 "Attribute count refinement", "[ ]", "Attribute value projection", ".",
                 "Concept set history extension", "+HISTORY");
         for (Map.Entry<String, String> construct : spellings.entrySet()) {
-            int constructNid = nid(construct.getKey() + " (IkeFoundation)");
-            int[] denotation = DENOTATIONS.get(constructNid);
+            long constructNid = nid(construct.getKey() + " (IkeFoundation)");
+            long[] denotation = DENOTATIONS.get(constructNid);
             assertNotNull(denotation, "Untyped " + construct.getKey());
             assertEquals(conceptSetKind, denotation[0], construct.getKey() + " takes a concept set");
             assertEquals(conceptSetKind, denotation[1], construct.getKey() + " yields a concept set");
@@ -886,11 +886,11 @@ class ExpressionLanguageIT {
                     construct.getKey() + " is a taxonomy operator");
             assertEquals(constructNid, only(eclNid, construct.getValue()));
         }
-        int history = nid("Concept set history extension (IkeFoundation)");
+        long history = nid("Concept set history extension (IkeFoundation)");
         for (String profile : List.of("+HISTORY-MIN", "+HISTORY-MOD", "+HISTORY-MAX")) {
             assertEquals(history, only(eclNid, profile), profile + " is a spelling of the history extension");
         }
-        int[] group = RELATIONS.get(nid("Attribute group refinement (IkeFoundation)"));
+        long[] group = RELATIONS.get(nid("Attribute group refinement (IkeFoundation)"));
         assertNotNull(group, "Attribute group refinement claims a relation");
         assertEquals(nid("Existential restriction"), group[0]);
         assertEquals(definitionalExtensionNid, group[1]);
@@ -905,23 +905,23 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Conditional is typed at the root and variadic, if and case name it, the two new connectives claim their definitional extensions, and is null, is true, and is false are spellings of Equal to")
     void conditionalAndNewConnectives() {
-        int conditional = nid("Conditional (IkeFoundation)");
-        int[] denotation = DENOTATIONS.get(conditional);
+        long conditional = nid("Conditional (IkeFoundation)");
+        long[] denotation = DENOTATIONS.get(conditional);
         assertNotNull(denotation, "Untyped Conditional");
         assertEquals(operandKindRootNid, denotation[0], "Conditional takes any kind");
         assertEquals(operandKindRootNid, denotation[1], "Conditional yields the branches' kind");
         assertEquals(nid("Variadic (IkeFoundation)"), denotation[2], "Conditional is variadic");
         assertEquals(conditional, only(cqlNid, "if"));
         assertEquals(conditional, only(cqlNid, "case"));
-        int[] implication = RELATIONS.get(nid("Presence implication (IkeFoundation)"));
+        long[] implication = RELATIONS.get(nid("Presence implication (IkeFoundation)"));
         assertNotNull(implication, "Presence implication claims a relation");
         assertEquals(nid("Presence OR (IkeFoundation)"), implication[0]);
         assertEquals(definitionalExtensionNid, implication[1]);
-        int[] exclusiveOr = RELATIONS.get(nid("Presence exclusive OR (IkeFoundation)"));
+        long[] exclusiveOr = RELATIONS.get(nid("Presence exclusive OR (IkeFoundation)"));
         assertNotNull(exclusiveOr, "Presence exclusive OR claims a relation");
         assertEquals(nid("Presence AND (IkeFoundation)"), exclusiveOr[0]);
         assertEquals(definitionalExtensionNid, exclusiveOr[1]);
-        int equalTo = nid("Equal to (SOLOR)");
+        long equalTo = nid("Equal to (SOLOR)");
         for (String spelling : List.of("is null", "is true", "is false")) {
             assertEquals(equalTo, only(cqlNid, spelling), spelling + " is a spelling of Equal to");
         }
@@ -932,8 +932,8 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Correlation constraint is a criterion on one statement yielding a presence value, with names it, and without is a spelling of Set difference")
     void correlationConstraintIsACriterion() {
-        int correlation = nid("Correlation constraint (IkeFoundation)");
-        int[] denotation = DENOTATIONS.get(correlation);
+        long correlation = nid("Correlation constraint (IkeFoundation)");
+        long[] denotation = DENOTATIONS.get(correlation);
         assertNotNull(denotation, "Untyped Correlation constraint");
         assertEquals(nid("Statement kind (IkeFoundation)"), denotation[0], "Correlation constraint tests a statement");
         assertEquals(presenceMeasureKindNid, denotation[1], "Correlation constraint yields a presence value");
@@ -964,16 +964,16 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Measure conversion takes a measure and yields a measure, is a measure operator definable from Measure multiplication, and convert names it")
     void measureConversionIsTypedAndRelated() {
-        int conversion = nid("Measure conversion (IkeFoundation)");
-        int measureKind = nid("Measure kind (IkeFoundation)");
-        int[] denotation = DENOTATIONS.get(conversion);
+        long conversion = nid("Measure conversion (IkeFoundation)");
+        long measureKind = nid("Measure kind (IkeFoundation)");
+        long[] denotation = DENOTATIONS.get(conversion);
         assertNotNull(denotation, "Untyped Measure conversion");
         assertEquals(measureKind, denotation[0], "Measure conversion takes a measure");
         assertEquals(measureKind, denotation[1], "Measure conversion yields a measure");
         assertEquals(nid("Unary (IkeFoundation)"), denotation[2], "Measure conversion is unary");
         assertTrue(latestIsAParents(conversion).contains(nid("Measure operator (IkeFoundation)")),
                 "Measure conversion is a measure operator");
-        int[] relation = RELATIONS.get(conversion);
+        long[] relation = RELATIONS.get(conversion);
         assertNotNull(relation, "Measure conversion claims a relation");
         assertEquals(nid("Measure multiplication (IkeFoundation)"), relation[0]);
         assertEquals(definitionalExtensionNid, relation[1]);
@@ -985,22 +985,22 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("The presence aggregates take a measure list and yield a presence value, the closed-world ones conservatively extend them, and AllTrue and AnyTrue name the closed-world ones as function names")
     void presenceAggregatesAndClosedWorldReadings() {
-        int measureListKind = nid("Measure list kind (IkeFoundation)");
-        int measureAggregate = nid("Measure aggregate (IkeFoundation)");
+        long measureListKind = nid("Measure list kind (IkeFoundation)");
+        long measureAggregate = nid("Measure aggregate (IkeFoundation)");
         for (String aggregate : List.of("Measure all present", "Measure any present",
                 "Closed-world all present", "Closed-world any present")) {
-            int aggregateNid = nid(aggregate + " (IkeFoundation)");
-            int[] denotation = DENOTATIONS.get(aggregateNid);
+            long aggregateNid = nid(aggregate + " (IkeFoundation)");
+            long[] denotation = DENOTATIONS.get(aggregateNid);
             assertNotNull(denotation, "Untyped " + aggregate);
             assertEquals(measureListKind, denotation[0], aggregate + " takes a measure list");
             assertEquals(presenceMeasureKindNid, denotation[1], aggregate + " yields a presence value");
             assertTrue(latestIsAParents(aggregateNid).contains(measureAggregate), aggregate + " is an aggregate");
         }
-        int[] all = RELATIONS.get(nid("Closed-world all present (IkeFoundation)"));
+        long[] all = RELATIONS.get(nid("Closed-world all present (IkeFoundation)"));
         assertNotNull(all, "Closed-world all present claims a relation");
         assertEquals(nid("Measure all present (IkeFoundation)"), all[0]);
         assertEquals(conservativeExtensionNid, all[1]);
-        int[] any = RELATIONS.get(nid("Closed-world any present (IkeFoundation)"));
+        long[] any = RELATIONS.get(nid("Closed-world any present (IkeFoundation)"));
         assertNotNull(any, "Closed-world any present claims a relation");
         assertEquals(nid("Measure any present (IkeFoundation)"), any[0]);
         assertEquals(conservativeExtensionNid, any[1]);
@@ -1016,12 +1016,12 @@ class ExpressionLanguageIT {
     @Test
     @DisplayName("Member field constraint and Member field projection take a reference set and yield a concept set, are taxonomy operators, claim no relation, and ECL's member syntax names them")
     void memberFieldsAreTypedAndBound() {
-        int conceptKind = nid("Concept kind (IkeFoundation)");
-        int conceptSetKind = nid("Concept set kind (IkeFoundation)");
+        long conceptKind = nid("Concept kind (IkeFoundation)");
+        long conceptSetKind = nid("Concept set kind (IkeFoundation)");
         Map<String, String> spellings = Map.of("Member field constraint", "{{ M }}", "Member field projection", "^ [ ]");
         for (Map.Entry<String, String> construct : spellings.entrySet()) {
-            int constructNid = nid(construct.getKey() + " (IkeFoundation)");
-            int[] denotation = DENOTATIONS.get(constructNid);
+            long constructNid = nid(construct.getKey() + " (IkeFoundation)");
+            long[] denotation = DENOTATIONS.get(constructNid);
             assertNotNull(denotation, "Untyped " + construct.getKey());
             assertEquals(conceptKind, denotation[0], construct.getKey() + " takes a reference set");
             assertEquals(conceptSetKind, denotation[1], construct.getKey() + " yields a concept set");
@@ -1038,11 +1038,11 @@ class ExpressionLanguageIT {
     private record Bounds(int lower, int upper) {
     }
 
-    private static Bounds boundsOf(int literalNid) {
-        int[] literal = LITERALS.get(literalNid);
+    private static Bounds boundsOf(long literalNid) {
+        long[] literal = LITERALS.get(literalNid);
         assertNotNull(literal, "No literal denotation for " + fqn(literalNid));
         assertEquals(presenceMeasureKindNid, literal[0], fqn(literalNid) + " is not a presence literal");
-        return new Bounds(literal[1], literal[2]);
+        return new Bounds(Math.toIntExact(literal[1]), Math.toIntExact(literal[2]));
     }
 
     private static Bounds presenceAnd(Bounds a, Bounds b) {

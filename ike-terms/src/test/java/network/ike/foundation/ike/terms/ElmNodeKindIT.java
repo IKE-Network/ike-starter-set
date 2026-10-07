@@ -54,8 +54,8 @@ class ElmNodeKindIT {
 
     private static KnowledgeSet set;
     private static StampCalculator calculator;
-    private static final Map<Integer, List<int[]>> RELATIONS = new HashMap<>();
-    private static final Set<Integer> DENOTED = new HashSet<>();
+    private static final Map<Long, List<long[]>> RELATIONS = new HashMap<>();
+    private static final Set<Long> DENOTED = new HashSet<>();
 
     @BeforeAll
     static void composeAndWrite() throws Exception {
@@ -70,7 +70,7 @@ class ElmNodeKindIT {
                 semantic -> {
                     Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                     if (latest.isPresent()) {
-                        RELATIONS.computeIfAbsent(semantic.referencedComponentNid(), key -> new ArrayList<>()).add(new int[] {
+                        RELATIONS.computeIfAbsent(semantic.referencedComponentNid(), key -> new ArrayList<>()).add(new long[] {
                                 ((EntityFacade) latest.get().fieldValues().get(0)).nid(),
                                 ((EntityFacade) latest.get().fieldValues().get(1)).nid()});
                     }
@@ -79,21 +79,21 @@ class ElmNodeKindIT {
                 semantic -> DENOTED.add(semantic.referencedComponentNid()));
     }
 
-    private static int nid(String fqn) {
+    private static long nid(String fqn) {
         return set.conceptRef(fqn).nid();
     }
 
     @Test
     @DisplayName("Every admitted node kind relates once, to the construct the section names, by the kind it claims")
     void everyAdmittedNodeKindRelatesOnce() {
-        Map<String, Integer> claims = Map.of("identity", nid("Identity (IkeFoundation)"),
+        Map<String, Long> claims = Map.of("identity", nid("Identity (IkeFoundation)"),
                 "equivalence", nid("Logical equivalence (IkeFoundation)"),
                 "extension", nid("Definitional extension (IkeFoundation)"),
                 "conservative", nid("Conservative extension (IkeFoundation)"));
         Set<String> kinds = new HashSet<>();
         for (ElmNodeKindSet.Relation relation : ElmNodeKindSet.RELATIONS) {
             assertTrue(kinds.add(relation.kind()), relation.kind() + " is declared twice");
-            List<int[]> found = RELATIONS.get(nid("ELM " + relation.kind() + " (ELM)"));
+            List<long[]> found = RELATIONS.get(nid("ELM " + relation.kind() + " (ELM)"));
             assertEquals(1, found == null ? 0 : found.size(), relation.kind() + " relates exactly once");
             assertEquals(nid(relation.target()), found.get(0)[0], relation.kind() + " targets " + relation.target());
             assertEquals(claims.get(relation.claim()).intValue(), found.get(0)[1], relation.kind() + " claims " + relation.claim());
@@ -118,7 +118,7 @@ class ElmNodeKindIT {
                 "Query binding", "Query folding", "Measure mode", "Measure product", "Measure spread", "Text joining",
                 "Text affix test", "Text position", "Text case", "Text pattern match", "Text pattern replacement",
                 "Text splitting", "Text slice", "Evaluation message")) {
-            int nid = nid(construct + " (IkeFoundation)");
+            long nid = nid(construct + " (IkeFoundation)");
             assertTrue(calculator.latest(nid).isPresent(), construct + " exists");
             assertTrue(DENOTED.contains(nid), construct + " carries a denotation");
         }
@@ -137,7 +137,7 @@ class ElmNodeKindIT {
     @Test
     @DisplayName("The bridge and reading patterns carry their fields, purposed as the model bridge")
     void theBridgeAndReadingPatternsCarryTheirFields() {
-        int bridge = nid("Model bridge (IkeFoundation)");
+        long bridge = nid("Model bridge (IkeFoundation)");
         Latest<PatternEntityVersion> bridgePattern = calculator.latest(set.patternRef(ElmNodeKindSet.BRIDGE_PATTERN_FQN).nid());
         List<FieldDefinitionForEntity> fields = new ArrayList<>();
         for (FieldDefinitionForEntity field : bridgePattern.get().fieldDefinitions()) {

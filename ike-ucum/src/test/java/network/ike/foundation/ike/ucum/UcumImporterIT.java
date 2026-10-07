@@ -57,7 +57,7 @@ class UcumImporterIT {
     private static UcumEssence essence;
     private static UcumImporter.Report report;
 
-    private record Description(int nid, String text, int typeNid) {
+    private record Description(long nid, String text, long typeNid) {
     }
 
     @BeforeAll
@@ -67,11 +67,11 @@ class UcumImporterIT {
         report = new UcumImporter(calculator).importEssence(essence, Store.nextStamp());
     }
 
-    private static int nid(PublicId id) {
+    private static long nid(PublicId id) {
         return PrimitiveData.nid(id);
     }
 
-    private static List<ImmutableList<Object>> semanticsAbout(int componentNid, EntityProxy.Pattern pattern) {
+    private static List<ImmutableList<Object>> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
         List<ImmutableList<Object>> fields = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
@@ -88,8 +88,8 @@ class UcumImporterIT {
         return records.get(0);
     }
 
-    private static Set<Integer> statedParents(PublicId concept) {
-        Set<Integer> parents = new HashSet<>();
+    private static Set<Long> statedParents(PublicId concept) {
+        Set<Long> parents = new HashSet<>();
         for (ImmutableList<Object> fields : semanticsAbout(nid(concept), KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
             DiTreeEntity tree = (DiTreeEntity) fields.get(0);
             collectReferences(tree, tree.root(), parents);
@@ -97,7 +97,7 @@ class UcumImporterIT {
         return parents;
     }
 
-    private static void collectReferences(DiTreeEntity tree, EntityVertex vertex, Set<Integer> found) {
+    private static void collectReferences(DiTreeEntity tree, EntityVertex vertex, Set<Long> found) {
         for (Object value : vertex.properties().values()) {
             if (value instanceof EntityFacade facade) {
                 found.add(facade.nid());
@@ -108,7 +108,7 @@ class UcumImporterIT {
         }
     }
 
-    private static List<Description> descriptions(int componentNid) {
+    private static List<Description> descriptions(long componentNid) {
         List<Description> found = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, KernelTerm.DESCRIPTION_PATTERN.nid(),
                 semantic -> {
@@ -122,11 +122,11 @@ class UcumImporterIT {
         return found;
     }
 
-    private static boolean readInUcumDialect(int descriptionNid) {
+    private static boolean readInUcumDialect(long descriptionNid) {
         return !semanticsAbout(descriptionNid, IkeTerms.UCUM_DIALECT_PATTERN).isEmpty();
     }
 
-    private static boolean hasDescription(int componentNid, EntityProxy.Concept type, String text, boolean inUcumDialect) {
+    private static boolean hasDescription(long componentNid, EntityProxy.Concept type, String text, boolean inUcumDialect) {
         for (Description description : descriptions(componentNid)) {
             if (description.typeNid() == type.nid() && description.text().equals(text)
                     && (!inUcumDialect || readInUcumDialect(description.nid()))) {
@@ -206,7 +206,7 @@ class UcumImporterIT {
     @DisplayName("A unit is found by each of its names and by its print symbol, read in the UCUM dialect")
     void aUnitIsFoundByItsNamesAndSymbol() {
         for (UcumEssence.Unit unit : essence.units()) {
-            int nid = nid(UcumIdentity.unit(unit.code()));
+            long nid = nid(UcumIdentity.unit(unit.code()));
             for (String name : unit.names()) {
                 assertTrue(hasDescription(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, name, true),
                         unit.code() + " is found by " + name);
@@ -224,10 +224,10 @@ class UcumImporterIT {
                 "a special unit's definition names its function");
         assertTrue(descriptions(nid(UcumIdentity.unit("m"))).stream()
                 .noneMatch(d -> d.typeNid() == KernelTerm.DEFINITION_DESCRIPTION_TYPE.nid()), "a base unit has no definition");
-        int time = nid(UcumIdentity.property("time"));
+        long time = nid(UcumIdentity.property("time"));
         assertTrue(hasDescription(time, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, "time (UCUM property)", false));
         assertTrue(hasDescription(time, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, "time", true));
-        int kilo = nid(UcumIdentity.prefix("k"));
+        long kilo = nid(UcumIdentity.prefix("k"));
         assertTrue(hasDescription(kilo, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, "kilo", true));
         assertTrue(hasDescription(kilo, KernelTerm.DEFINITION_DESCRIPTION_TYPE, "1e3", false));
     }

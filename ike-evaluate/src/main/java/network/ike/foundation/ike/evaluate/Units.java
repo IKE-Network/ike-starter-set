@@ -89,7 +89,7 @@ final class Units {
                 UcumTerm term = units.parse(unit);
                 UcumReduction reduction = term.reduce(units);
                 PublicId identity = units.identity(term);
-                int nid = PrimitiveData.get().hasPublicId(identity) ? PrimitiveData.nid(identity) : 0;
+                long nid = PrimitiveData.get().hasPublicId(identity) ? PrimitiveData.nid(identity) : 0;
                 found = MeasureSemantic.unit(nid, reduction.dimension(), reduction.magnitude(), unit);
             } catch (UcumSyntaxException refused) {
                 throw context.refuse("the unit " + unit + " cannot be read: " + refused.getMessage());
@@ -237,7 +237,7 @@ final class Units {
      * millisecond for a UCUM unit, which is definite.
      */
     static Resolution unitResolution(MeasureSemantic semantic) {
-        int nid = semantic.unitNid();
+        long nid = semantic.unitNid();
         if (nid == IkeTerms.YEAR.nid()) {
             return Resolution.YEAR;
         }

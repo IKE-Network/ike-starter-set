@@ -21,7 +21,7 @@ package network.ike.foundation.ike.evaluate;
  * @param subject  the subject
  * @param classNid the patient class the retrieve named
  */
-public record SubjectValue(Subject subject, int classNid) implements Value {
+public record SubjectValue(Subject subject, long classNid) implements Value {
 
     /**
      * The kind of this value.

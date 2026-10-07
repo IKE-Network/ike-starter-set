@@ -22,7 +22,7 @@ package network.ike.foundation.ike.evaluate;
  * @param statement the statement
  * @param classNid  the class concept the statement was retrieved as
  */
-public record StatementValue(Statement statement, int classNid) implements Value {
+public record StatementValue(Statement statement, long classNid) implements Value {
 
     /**
      * The kind of this value.

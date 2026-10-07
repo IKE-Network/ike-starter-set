@@ -16,7 +16,7 @@
 package network.ike.foundation.ike.writer;
 
 import dev.ikm.tinkar.terms.KernelTerm;
-import dev.ikm.tinkar.common.id.IntIdList;
+import dev.ikm.tinkar.common.id.LongIdList;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.service.PrimitiveData;
@@ -112,8 +112,8 @@ public final class StoreWriter {
     }
 
     private final StampCalculator calculator;
-    private final int stampNid;
-    private final int inactiveStampNid;
+    private final long stampNid;
+    private final long inactiveStampNid;
     private final Counts counts = new Counts();
 
     /**
@@ -153,8 +153,8 @@ public final class StoreWriter {
      * @param conceptId the concept's public id
      * @return the concept's nid
      */
-    public int concept(PublicId conceptId) {
-        int nid = PrimitiveData.nid(conceptId);
+    public long concept(PublicId conceptId) {
+        long nid = PrimitiveData.nid(conceptId);
         if (EntityHandle.get(nid).entity().filter(e -> !e.canceled()).isEmpty()) {
             RecordListBuilder<ConceptVersionRecord> versions = RecordListBuilder.make();
             ConceptRecord bootstrap = ConceptRecord.makeNew(conceptId, versions);
@@ -173,7 +173,7 @@ public final class StoreWriter {
      * @param parentId  the parent concept
      * @return the axiom semantic's nid
      */
-    public int statedParent(PublicId conceptId, PublicId parentId) {
+    public long statedParent(PublicId conceptId, PublicId parentId) {
         UUID conceptUuid = conceptId.leastUuid();
         PublicId axiomId = PublicIds.of(UuidT5Generator.get(conceptUuid, "stated axioms"));
         int[] ordinal = {0};
@@ -196,10 +196,10 @@ public final class StoreWriter {
      * @param fieldValues            its field values, in the pattern's order
      * @return the semantic's nid
      */
-    public int semantic(PublicId semanticId, EntityProxy.Pattern pattern, int referencedComponentNid,
+    public long semantic(PublicId semanticId, EntityProxy.Pattern pattern, long referencedComponentNid,
                         ImmutableList<Object> fieldValues) {
         PublicIdentifierRecord identifier = PublicIdentifierRecord.make(semanticId);
-        int nid = ScopedValue.where(PrimitiveData.SCOPED_PATTERN_PUBLICID_FOR_NID, pattern.publicId())
+        long nid = ScopedValue.where(PrimitiveData.SCOPED_PATTERN_PUBLICID_FOR_NID, pattern.publicId())
                 .call(() -> PrimitiveData.nid(semanticId));
         Optional<SemanticRecord> existing = EntityHandle.get(nid).entity().filter(e -> !e.canceled()).map(e -> (SemanticRecord) e);
         if (existing.isPresent()) {
@@ -250,7 +250,7 @@ public final class StoreWriter {
      * @param type            the description type, a fully qualified name or a regular name
      * @return the description semantic's nid
      */
-    public int describe(int aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type) {
+    public long describe(long aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type) {
         return describe(aboutNid, descriptionUuid, text, type, KernelTerm.PREFERRED);
     }
 
@@ -265,9 +265,9 @@ public final class StoreWriter {
      * @param usAcceptability preferred or acceptable in the US dialect
      * @return the description semantic's nid
      */
-    public int describe(int aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type,
+    public long describe(long aboutNid, UUID descriptionUuid, String text, EntityProxy.Concept type,
                         EntityProxy.Concept usAcceptability) {
-        int descriptionNid = semantic(PublicIds.of(descriptionUuid), KernelTerm.DESCRIPTION_PATTERN, aboutNid,
+        long descriptionNid = semantic(PublicIds.of(descriptionUuid), KernelTerm.DESCRIPTION_PATTERN, aboutNid,
                 Lists.immutable.of(KernelTerm.ENGLISH_LANGUAGE, text, KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, type));
         dialect(descriptionNid, UuidT5Generator.get(descriptionUuid, "us-dialect"), KernelTerm.US_DIALECT_PATTERN,
                 usAcceptability);
@@ -283,7 +283,7 @@ public final class StoreWriter {
      * @param acceptability  preferred or acceptable
      * @return the dialect semantic's nid
      */
-    public int dialect(int descriptionNid, UUID dialectUuid, EntityProxy.Pattern dialectPattern,
+    public long dialect(long descriptionNid, UUID dialectUuid, EntityProxy.Pattern dialectPattern,
                        EntityProxy.Concept acceptability) {
         return semantic(PublicIds.of(dialectUuid), dialectPattern, descriptionNid, Lists.immutable.of(acceptability));
     }
@@ -299,7 +299,7 @@ public final class StoreWriter {
         if (!PrimitiveData.get().hasPublicId(semanticId)) {
             return false;
         }
-        int nid = PrimitiveData.nid(semanticId);
+        long nid = PrimitiveData.nid(semanticId);
         Optional<SemanticRecord> existing = EntityHandle.get(nid).entity().filter(e -> !e.canceled()).map(e -> (SemanticRecord) e);
         Latest<SemanticEntityVersion> latest = calculator.latest(nid);
         if (existing.isEmpty() || latest.isAbsent()) {
@@ -345,7 +345,7 @@ public final class StoreWriter {
         if (a instanceof EntityFacade facadeA && b instanceof EntityFacade facadeB) {
             return facadeA.nid() == facadeB.nid();
         }
-        if (a instanceof IntIdList listA && b instanceof IntIdList listB) {
+        if (a instanceof LongIdList listA && b instanceof LongIdList listB) {
             return listA.equals(listB);
         }
         return Objects.equals(a, b);
@@ -355,7 +355,7 @@ public final class StoreWriter {
         if (a.getMeaningNid() != b.getMeaningNid() || a.properties().size() != b.properties().size()) {
             return false;
         }
-        for (int key : a.properties().keySet().toArray()) {
+        for (long key : a.properties().keySet().toArray()) {
             if (!b.properties().containsKey(key) || !sameValue(a.properties().get(key), b.properties().get(key))) {
                 return false;
             }
@@ -381,9 +381,9 @@ public final class StoreWriter {
         return true;
     }
 
-    private static int writeStamp(Stamp stamp) {
+    private static long writeStamp(Stamp stamp) {
         PublicId stampId = stamp.publicId();
-        int stampNid = EntityService.get().nidForStamp(stampId);
+        long stampNid = EntityService.get().nidForStamp(stampId);
         if (EntityHandle.get(stampNid).entity().filter(e -> !e.canceled()).isPresent()) {
             return stampNid;
         }

@@ -67,7 +67,7 @@ final class Authored {
     static final String QDM_PREVENTIVE_ESTABLISHED = "urn:oid:2.16.840.1.113883.3.464.1003.101.12.1025";
     static final String QDM_PREVENTIVE_INITIAL = "urn:oid:2.16.840.1.113883.3.464.1003.101.12.1023";
 
-    private static final Map<PublicId, Integer> NIDS = new HashMap<>();
+    private static final Map<PublicId, Long> NIDS = new HashMap<>();
 
     private Authored() {
     }
@@ -86,15 +86,15 @@ final class Authored {
                 OFFICE_VISIT, "Office visit", WELLNESS_VISIT, "Annual wellness visit", AMOXICILLIN, "Amoxicillin",
                 STREP_TEST, "Group A streptococcus test");
         for (Map.Entry<PublicId, String> entry : names.entrySet()) {
-            int nid = writer.concept(entry.getKey());
+            long nid = writer.concept(entry.getKey());
             writer.describe(nid, UuidT5Generator.get(NAMESPACE, entry.getValue() + " name"), entry.getValue(),
                     KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
             NIDS.put(entry.getKey(), nid);
         }
     }
 
-    static int nid(PublicId concept) {
-        Integer nid = NIDS.get(concept);
+    static long nid(PublicId concept) {
+        Long nid = NIDS.get(concept);
         if (nid == null) {
             throw new IllegalStateException("the topics are not written yet");
         }
@@ -171,7 +171,7 @@ final class Authored {
 
     /** The concept sets the corpus names, by value set identifier. */
     static AuthoredConceptSets conceptSets() {
-        Map<String, Set<Integer>> sets = new HashMap<>();
+        Map<String, Set<Long>> sets = new HashMap<>();
         sets.put(ACUTE_PHARYNGITIS, Set.of(nid(PHARYNGITIS)));
         sets.put(ACUTE_TONSILLITIS, Set.of(nid(TONSILLITIS)));
         sets.put(AMBULATORY_VISIT, Set.of(nid(OFFICE_VISIT)));
@@ -199,9 +199,9 @@ final class Authored {
     }
 
     /** A concept set source over a map. */
-    record AuthoredConceptSets(Map<String, Set<Integer>> sets) implements ConceptSetSource {
+    record AuthoredConceptSets(Map<String, Set<Long>> sets) implements ConceptSetSource {
         @Override
-        public Optional<Set<Integer>> members(String identifier) {
+        public Optional<Set<Long>> members(String identifier) {
             return Optional.ofNullable(sets.get(identifier));
         }
     }

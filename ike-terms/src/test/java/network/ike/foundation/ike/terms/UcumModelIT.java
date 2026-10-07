@@ -78,8 +78,8 @@ class UcumModelIT {
         assertEquals(set.conceptRef("Unit dimension (IkeFoundation)").nid(), fields.get(9).meaningNid());
         assertEquals(set.conceptRef("Unit magnitude (IkeFoundation)").nid(), fields.get(10).meaningNid());
         assertEquals(KernelTerm.DECIMAL_FIELD.nid(), fields.get(10).dataTypeNid());
-        int record = set.conceptRef("UCUM record (IkeFoundation)").nid();
-        int reduction = set.conceptRef("Unit reduction (IkeFoundation)").nid();
+        long record = set.conceptRef("UCUM record (IkeFoundation)").nid();
+        long reduction = set.conceptRef("Unit reduction (IkeFoundation)").nid();
         for (int i = 0; i < 9; i++) {
             assertEquals(record, fields.get(i).purposeNid(), "field " + i + " is UCUM's record");
         }

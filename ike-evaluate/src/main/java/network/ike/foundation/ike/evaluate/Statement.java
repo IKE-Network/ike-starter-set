@@ -35,7 +35,7 @@ import java.util.Optional;
  * @param statementTime       when the statement was made
  * @param associated          the statements this one is associated with
  */
-public record Statement(PublicId id, Subject subject, int topicNid, int circumstanceKindNid, Optional<Integer> dispositionNid,
+public record Statement(PublicId id, Subject subject, long topicNid, long circumstanceKindNid, Optional<Long> dispositionNid,
                         Measure timing, Optional<Measure> result, Measure statementTime, List<PublicId> associated) {
 
     /**

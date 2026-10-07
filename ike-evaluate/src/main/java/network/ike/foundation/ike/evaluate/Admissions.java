@@ -40,10 +40,10 @@ public final class Admissions {
      * @param constructNid the construct the node kind means
      * @param relationNid  the kind of relation claimed
      */
-    public record Admission(int constructNid, int relationNid) {
+    public record Admission(long constructNid, long relationNid) {
     }
 
-    private final Map<Integer, Admission> byKind = new HashMap<>();
+    private final Map<Long, Admission> byKind = new HashMap<>();
 
     private Admissions() {
     }
@@ -58,7 +58,7 @@ public final class Admissions {
     public static Admissions load(StampCalculator calculator, ElmCatalog catalog) {
         Admissions admissions = new Admissions();
         EntityService.get().forEachSemanticOfPattern(IkeTerms.CONSTRUCT_RELATION_PATTERN.nid(), semantic -> {
-            int extending = semantic.referencedComponentNid();
+            long extending = semantic.referencedComponentNid();
             if (catalog.kindOf(extending).isEmpty()) {
                 return;
             }
@@ -77,7 +77,7 @@ public final class Admissions {
      * @param kindNid the node kind's concept
      * @return the admission, or empty when no relation admits it
      */
-    public Optional<Admission> of(int kindNid) {
+    public Optional<Admission> of(long kindNid) {
         return Optional.ofNullable(byKind.get(kindNid));
     }
 

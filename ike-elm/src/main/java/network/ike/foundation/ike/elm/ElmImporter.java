@@ -317,7 +317,7 @@ public final class ElmImporter {
         if (dataType.isEmpty() || !typeConcepts.containsKey(dataType.get())) {
             return;
         }
-        int classNid = typeConcepts.get(dataType.get()).nid();
+        long classNid = typeConcepts.get(dataType.get()).nid();
         for (String position : List.of("codeProperty", "dateProperty", "dateLowProperty", "dateHighProperty")) {
             Optional<String> written = node.text(position);
             if (written.isEmpty()) {
@@ -328,7 +328,7 @@ public final class ElmImporter {
                 continue;
             }
             String[] segments = written.get().split("\\.");
-            int current = classNid;
+            long current = classNid;
             PublicId element = null;
             boolean walked = true;
             for (int i = 0; i < segments.length && walked; i++) {
@@ -344,7 +344,7 @@ public final class ElmImporter {
                 }
                 element = found.get();
                 if (i < segments.length - 1) {
-                    Optional<Integer> next = types.elementClass(element);
+                    Optional<Long> next = types.elementClass(element);
                     if (next.isEmpty()) {
                         walked = false;
                     } else {
@@ -576,7 +576,7 @@ public final class ElmImporter {
     }
 
     private void retireVanished(PublicId libraryPublicId, Set<PublicId> imported) {
-        int libraryNid = PrimitiveData.nid(libraryPublicId);
+        long libraryNid = PrimitiveData.nid(libraryPublicId);
         List<PublicId> vanished = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(libraryNid, IkeTerms.ELM_TREE_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());

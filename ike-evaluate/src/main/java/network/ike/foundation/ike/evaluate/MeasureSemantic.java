@@ -31,7 +31,7 @@ import java.util.Optional;
  * @param magnitude the unit's magnitude in the base units, for a unit
   * @param unit      the unit as written, 1 for a plain number, empty on a time scale
  */
-public record MeasureSemantic(Scale scale, int unitNid, String dimension, BigDecimal magnitude, String unit) {
+public record MeasureSemantic(Scale scale, long unitNid, String dimension, BigDecimal magnitude, String unit) {
 
     /** The scales a measure can be read on. */
     public enum Scale {
@@ -67,7 +67,7 @@ public record MeasureSemantic(Scale scale, int unitNid, String dimension, BigDec
      * @param magnitude its magnitude in the base units
      * @return the semantic
      */
-    public static MeasureSemantic unit(int unitNid, String dimension, BigDecimal magnitude) {
+    public static MeasureSemantic unit(long unitNid, String dimension, BigDecimal magnitude) {
         return new MeasureSemantic(Scale.UNIT, unitNid, dimension, magnitude, "");
     }
 
@@ -80,7 +80,7 @@ public record MeasureSemantic(Scale scale, int unitNid, String dimension, BigDec
      * @param unit      the unit as written
      * @return the semantic
      */
-    public static MeasureSemantic unit(int unitNid, String dimension, BigDecimal magnitude, String unit) {
+    public static MeasureSemantic unit(long unitNid, String dimension, BigDecimal magnitude, String unit) {
         return new MeasureSemantic(Scale.UNIT, unitNid, dimension, magnitude, unit);
     }
 

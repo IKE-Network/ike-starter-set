@@ -30,7 +30,7 @@ import java.util.Optional;
  * @param display the display text as written, empty when none
  * @param nid     the concept's nid in the store, when the code resolves to one
  */
-public record ConceptValue(String code, String system, String version, String display, Optional<Integer> nid)
+public record ConceptValue(String code, String system, String version, String display, Optional<Long> nid)
         implements Value {
 
     /**

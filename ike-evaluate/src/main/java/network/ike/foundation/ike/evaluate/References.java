@@ -116,12 +116,12 @@ final class References {
     }
 
     private interface ReadingValue {
-        Value of(int readingNid);
+        Value of(long readingNid);
     }
 
-    private static Value reading(int classNid, String element, Context context, ReadingValue value) {
+    private static Value reading(long classNid, String element, Context context, ReadingValue value) {
         Bridges bridges = context.evaluator().bridges();
-        Optional<Integer> readingNid = bridges.readingOf(classNid, element);
+        Optional<Long> readingNid = bridges.readingOf(classNid, element);
         if (readingNid.isEmpty()) {
             throw context.refuse("the element " + element + " of " + bridges.types().qualifiedName(dev.ikm.tinkar.terms.EntityProxy.Concept.make(classNid)).orElse("the class")
                     + " has no reading");
@@ -130,7 +130,7 @@ final class References {
     }
 
     /** What a statement answers for a reading. */
-    static Value statementReading(Statement statement, int readingNid, Context context) {
+    static Value statementReading(Statement statement, long readingNid, Context context) {
         if (readingNid == IkeTerms.TOPIC_READING.nid()) {
             return concept(statement.topicNid());
         }
@@ -162,7 +162,7 @@ final class References {
     }
 
     /** A concept value for a stored concept, named by its text in the store. */
-    static ConceptValue concept(int nid) {
+    static ConceptValue concept(long nid) {
         return new ConceptValue("", "", "", PrimitiveData.text(nid), Optional.of(nid));
     }
 

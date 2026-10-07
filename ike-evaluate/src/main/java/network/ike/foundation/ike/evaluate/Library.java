@@ -49,7 +49,7 @@ final class Library {
      * @param name its name, or its local identifier for a using or an include
      * @param root the root of its tree
      */
-    record Definition(int nid, String kind, String name, TreeNode root) {
+    record Definition(long nid, String kind, String name, TreeNode root) {
     }
 
     /**
@@ -63,14 +63,14 @@ final class Library {
     }
 
     private final String id;
-    private final int nid;
+    private final long nid;
     private final Map<String, Map<String, Definition>> definitions = new LinkedHashMap<>();
     private final List<Definition> inOrder = new ArrayList<>();
-    private final Map<Integer, Map<ReferenceKey, Integer>> references = new HashMap<>();
+    private final Map<Long, Map<ReferenceKey, Long>> references = new HashMap<>();
     private final StampCalculator calculator;
     private final ElmCatalog catalog;
 
-    private Library(String id, int nid, StampCalculator calculator, ElmCatalog catalog) {
+    private Library(String id, long nid, StampCalculator calculator, ElmCatalog catalog) {
         this.id = id;
         this.nid = nid;
         this.calculator = calculator;
@@ -92,7 +92,7 @@ final class Library {
             return Optional.empty();
         }
         Library library = new Library(libraryId, PrimitiveData.nid(libraryPublicId), calculator, catalog);
-        int recordNid = PrimitiveData.get().hasPublicId(ElmIdentity.libraryRecord(libraryId))
+        long recordNid = PrimitiveData.get().hasPublicId(ElmIdentity.libraryRecord(libraryId))
                 ? PrimitiveData.nid(ElmIdentity.libraryRecord(libraryId)) : Integer.MIN_VALUE;
         EntityService.get().forEachSemanticForComponentOfPattern(library.nid, IkeTerms.ELM_TREE_PATTERN.nid(), semantic -> {
             if (semantic.nid() == recordNid) {
@@ -127,13 +127,13 @@ final class Library {
     }
 
     /** What a definition names, resolved when the library was imported. */
-    Map<ReferenceKey, Integer> referencesOf(Definition definition) {
+    Map<ReferenceKey, Long> referencesOf(Definition definition) {
         return references.computeIfAbsent(definition.nid(), nid -> {
-            Map<ReferenceKey, Integer> found = new HashMap<>();
+            Map<ReferenceKey, Long> found = new HashMap<>();
             EntityService.get().forEachSemanticForComponentOfPattern(nid, IkeTerms.ELM_REFERENCE_PATTERN.nid(), semantic -> {
                 Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                 if (latest.isPresent()) {
-                    int kindNid = ((EntityFacade) latest.get().fieldValues().get(0)).nid();
+                    long kindNid = ((EntityFacade) latest.get().fieldValues().get(0)).nid();
                     String kind = catalog.kindOf(kindNid).map(ElmCatalog.NodeKind::name).orElse("");
                     found.put(new ReferenceKey(kind, (String) latest.get().fieldValues().get(3),
                             (String) latest.get().fieldValues().get(2)), ((EntityFacade) latest.get().fieldValues().get(1)).nid());
@@ -144,7 +144,7 @@ final class Library {
     }
 
     /** The definition a stored semantic nid identifies. */
-    Optional<Definition> definitionAt(int definitionNid) {
+    Optional<Definition> definitionAt(long definitionNid) {
         for (Definition definition : inOrder) {
             if (definition.nid() == definitionNid) {
                 return Optional.of(definition);

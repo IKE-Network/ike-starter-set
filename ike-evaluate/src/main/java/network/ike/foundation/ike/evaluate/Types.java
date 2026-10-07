@@ -271,9 +271,9 @@ final class Types {
         }
     }
 
-    private static final Map<Integer, String> SYSTEM_TYPES = new HashMap<>();
+    private static final Map<Long, String> SYSTEM_TYPES = new HashMap<>();
 
-    private static synchronized Map<Integer, String> systemTypes() {
+    private static synchronized Map<Long, String> systemTypes() {
         if (SYSTEM_TYPES.isEmpty()) {
             EntityProxy.Concept[] concepts = {IkeTerms.ELM_SYSTEM_ANY, IkeTerms.ELM_SYSTEM_BOOLEAN, IkeTerms.ELM_SYSTEM_CODE,
                 IkeTerms.ELM_SYSTEM_CODESYSTEM, IkeTerms.ELM_SYSTEM_CONCEPT, IkeTerms.ELM_SYSTEM_DATE, IkeTerms.ELM_SYSTEM_DATEINTERVAL,
@@ -293,11 +293,11 @@ final class Types {
     }
 
     /** The System type a stored type concept names, empty for a data model's class. */
-    static Optional<String> systemTypeName(int nid) {
+    static Optional<String> systemTypeName(long nid) {
         return Optional.ofNullable(systemTypes().get(nid));
     }
 
-    private static Target system(int nid, Context context) {
+    private static Target system(long nid, Context context) {
         return new SystemTarget(systemTypeName(nid).orElseThrow(() ->
                 context.refuse("the type " + PrimitiveData.text(nid) + " is a data model's class, and a model's instances are not values yet")));
     }
@@ -770,7 +770,7 @@ final class Types {
             }
             case "ValueSet", "CodeSystem", "Vocabulary" -> {
                 String id = text(parts, "id");
-                Set<Integer> members = context.evaluator().conceptSets().members(id).orElse(Set.of());
+                Set<Long> members = context.evaluator().conceptSets().members(id).orElse(Set.of());
                 String label = parts.containsKey("name") ? text(parts, "name") : id;
                 return new ConceptSetValue(label, members);
             }
