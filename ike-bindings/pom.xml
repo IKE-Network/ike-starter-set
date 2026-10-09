@@ -52,12 +52,14 @@
             <optional>true</optional>
         </dependency>
         <!-- The knowledge-pipeline implementation, resolved by ServiceLoader inside
-             the goal's forked seam. -->
+             the goal's forked seam — optional, never propagated: a consumer of the
+             bindings needs the terms surface only, and this version is the reactor's. -->
         <dependency>
             <groupId>network.ike.knowledge</groupId>
             <artifactId>ike-knowledge-provider</artifactId>
             <version>${ike-knowledge-provider.version}</version>
             <scope>runtime</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
