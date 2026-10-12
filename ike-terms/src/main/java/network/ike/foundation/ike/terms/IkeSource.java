@@ -58,6 +58,7 @@ public final class IkeSource implements KnowledgeSetSource {
         // names them as it names the set's components.
         Ike.SET.bindStamp(Ike.INCEPTION, Ike.STAMPS, "INCEPTION");
         Ike.SET.bindStamp(Ike.DEFAULTS_INCEPTION, Ike.STAMPS, "DEFAULTS_INCEPTION");
+        Ike.SET.bindStamp(Ike.ASCIIDOC_INCEPTION, Ike.STAMPS, "ASCIIDOC_INCEPTION");
         Ike.SET.bindStamp(Stamp.nonExistent(), Ike.STAMPS, "NON_EXISTENT");
         ConceptSet.compose(Ike.SET);
         // ProseElementSet declares the shared prose-element apparatus at its foundation
@@ -143,6 +144,12 @@ public final class IkeSource implements KnowledgeSetSource {
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         // The kernel and Komet's terms bind components declared throughout the sections above,
         // so they compose last.
+        // AsciiDocModelSet declares the AsciiDoc document model — the primitives a parse of
+        // an IKE AsciiDoc document produces, in their own module — and the git-provenance
+        // apparatus that stamps a document materialized from a repository
+        // (IKE-Network/ike-issues#468). Its lines are prose elements, so it composes after
+        // ProseElementSet.
+        AsciiDocModelSet.compose(Ike.SET);
         KernelBindings.compose(Ike.SET);
         KometBindings.compose(Ike.SET);
         return Ike.SET;

@@ -177,7 +177,15 @@ class FoundationFidelityIT {
      * restriction, the five comparison operators, the two taxonomy field constraint kinds)
      * is a resumed declared identity, not a mint.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456;
+    /**
+     * The IKE-Network/ike-issues#468 AsciiDoc document model adds 70: {@code AsciiDocModelSet}
+     * mints the AsciiDoc document module and model root, the element kinds (document, section,
+     * block and seventeen block kinds, the inline reference family of six, the composition
+     * pair), the twenty-five fields and purposes, and the git-provenance family (model root,
+     * author/module/path homes, purpose, git source and its two fields, affirmation and its
+     * two fields).
+     */
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -202,7 +210,7 @@ class FoundationFidelityIT {
      * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
      * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final long AUTHORED_CONTENT_PATTERNS = 36;
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12;   // + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468)
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
@@ -875,8 +883,8 @@ class FoundationFidelityIT {
 
     @Test
     @DisplayName("Replay introduces exactly the inception stamps: the foundation-module stamp and its"
-            + " Defaults-module counterpart, both at the one declared inception time, the platform's"
-            + " named inception instant (IKE-Network/ike-issues#894)")
+            + " Defaults-module and AsciiDoc-module counterparts, all at the one declared inception time,"
+            + " the platform's named inception instant (IKE-Network/ike-issues#894, #468)")
     void replayIntroducesExactlyTheInceptionStamps() {
         assertEquals(PrimitiveData.INCEPTION_EPOCH, Ike.INCEPTION.time(),
                 "the pair's declared time is the platform's named inception instant, which"
@@ -890,9 +898,10 @@ class FoundationFidelityIT {
         Set<Long> introduced = new HashSet<>(versionStampNids());
         introduced.removeAll(BASELINE_STAMP_NIDS);
         assertEquals(Set.of(PrimitiveData.nid(Ike.INCEPTION.publicId()),
-                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId())),
+                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId()),
+                        PrimitiveData.nid(Ike.ASCIIDOC_INCEPTION.publicId())),
                 introduced,
-                "replay must write versions under exactly the two inception stamps — any other"
+                "replay must write versions under exactly the three inception stamps — any other"
                         + " stamp means a working-day or revision layer survived the flatten"
                         + " (IKE-Network/ike-issues#894)");
     }

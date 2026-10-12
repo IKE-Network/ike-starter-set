@@ -64,6 +64,13 @@ public final class Ike {
     public static final EntityProxy.Concept MODULE =
             SET.conceptRef("IkeFoundation module (IkeFoundation)");
 
+    /**
+     * The AsciiDoc document module — the export dimension that carries or omits the
+     * AsciiDoc document vocabulary as a unit (IKE-Network/ike-issues#468); declared by
+     * {@link AsciiDocModelSet}.
+     */
+    public static final EntityProxy.Concept ASCIIDOC_MODULE =
+            SET.conceptRef(AsciiDocModelSet.MODULE_FQN);
     /** The set's root concept. */
     public static final EntityProxy.Concept ROOT =
             SET.conceptRef("IkeFoundation root (IkeFoundation)");
@@ -102,4 +109,13 @@ public final class Ike {
     public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
             KernelTerm.DEVELOPMENT_PATH);
+
+    /**
+     * The inception stamp's AsciiDoc-document-module counterpart, at the same declared
+     * time: the module dimension alone separates the AsciiDoc document vocabulary
+     * ({@link AsciiDocModelSet}) from the foundation terminology, so a store can carry or
+     * omit it as a unit (IKE-Network/ike-issues#468).
+     */
+    public static final ActiveStamp ASCIIDOC_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
+            IKE_COMMUNITY, ASCIIDOC_MODULE, KernelTerm.DEVELOPMENT_PATH);
 }
