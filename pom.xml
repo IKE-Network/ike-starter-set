@@ -63,7 +63,14 @@
     <!-- Required: ike-parent's enforcer fails an inheriting project whose effective
          site URL still points at the in-reactor location (ike-issues#380/#383). -->
     <distributionManagement>
-        <site>
+        <!-- child.site.url.inherit.append.path="true" is load-bearing: ike-parent
+             declares its own <site> with the attribute false, and an override that
+             omits the attribute inherits it, so every module would take this URL
+             verbatim and stage into the aggregator's own directory, where the
+             parallel site:stage copies collide (ike-issues#1284). With it, the
+             modules publish at ike-starter-set/<module>/ as the site's menu
+             expects. -->
+        <site child.site.url.inherit.append.path="true">
             <id>ike-site</id>
             <url>https://ike.network/ike-starter-set/</url>
         </site>
