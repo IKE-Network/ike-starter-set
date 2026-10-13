@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"m":"network.ike.foundation.ike.terms","l":"network.ike.foundation.ike.terms"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"m":"network.ike.foundation.ike.terms","l":"network.ike.foundation.ike.terms"},{"m":"network.ike.foundation.ike.terms","l":"network.ike.foundation.ike.terms.foundation"}];updateSearchResults();

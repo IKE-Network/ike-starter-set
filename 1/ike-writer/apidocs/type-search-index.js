@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"network.ike.foundation.ike.writer","l":"StoreWriter.Counts"},{"p":"network.ike.foundation.ike.writer","l":"StoreWriter"}];updateSearchResults();
