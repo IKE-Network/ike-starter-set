@@ -24,7 +24,8 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import org.eclipse.collections.api.list.ImmutableList;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public final class ModelTypes {
      */
     public static ModelTypes load(StampCalculator calculator) {
         ModelTypes types = new ModelTypes(calculator);
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.DATA_MODEL_RECORD_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.DATA_MODEL_RECORD_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isAbsent()) {
                 return;
@@ -109,7 +110,7 @@ public final class ModelTypes {
             types.models.put(nid, new Model(nid, EntityHandle.get(nid).expectEntity().publicId(),
                     name, (String) fields.get(1), (String) fields.get(2), patientClass));
         });
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.MODEL_CLASS_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.MODEL_CLASS_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isAbsent()) {
                 return;
@@ -274,7 +275,7 @@ public final class ModelTypes {
             return Optional.empty();
         }
         long nid = ((EntityFacade) latest.get().fieldValues().get(2)).nid();
-        return nid == IkeTerms.UNRESOLVED.nid() || !classes.containsKey(nid) ? Optional.empty() : Optional.of(nid);
+        return nid == IkeConcept.UNRESOLVED.nid() || !classes.containsKey(nid) ? Optional.empty() : Optional.of(nid);
     }
 
     /**

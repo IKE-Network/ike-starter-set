@@ -16,7 +16,7 @@
 package network.ike.foundation.ike.evaluate;
 
 import dev.ikm.tinkar.common.service.PrimitiveData;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -87,7 +87,7 @@ final class References {
         }
         if (source instanceof SubjectValue subject) {
             return reading(subject.classNid(), name, context, readingNid -> {
-                if (readingNid == IkeTerms.SUBJECT_BIRTH_DATE_READING.nid()) {
+                if (readingNid == IkeConcept.SUBJECT_BIRTH_DATE_READING.nid()) {
                     return subject.subject().birthDate().map(Value.class::cast).orElse(Operators.missingMeasure());
                 }
                 throw context.refuse("the element " + name + " reads the statement, and the value is the subject");
@@ -131,31 +131,31 @@ final class References {
 
     /** What a statement answers for a reading. */
     static Value statementReading(Statement statement, long readingNid, Context context) {
-        if (readingNid == IkeTerms.TOPIC_READING.nid()) {
+        if (readingNid == IkeConcept.TOPIC_READING.nid()) {
             return concept(statement.topicNid());
         }
-        if (readingNid == IkeTerms.CIRCUMSTANCE_KIND_READING.nid()) {
+        if (readingNid == IkeConcept.CIRCUMSTANCE_KIND_READING.nid()) {
             return concept(statement.circumstanceKindNid());
         }
-        if (readingNid == IkeTerms.DISPOSITION_READING.nid()) {
+        if (readingNid == IkeConcept.DISPOSITION_READING.nid()) {
             return statement.dispositionNid().map(References::concept).map(Value.class::cast).orElse(new Missing(Value.Kind.CONCEPT));
         }
-        if (readingNid == IkeTerms.TIMING_READING.nid()) {
+        if (readingNid == IkeConcept.TIMING_READING.nid()) {
             return statement.timing();
         }
-        if (readingNid == IkeTerms.TIMING_START_READING.nid()) {
+        if (readingNid == IkeConcept.TIMING_START_READING.nid()) {
             return Intervals.start(statement.timing());
         }
-        if (readingNid == IkeTerms.TIMING_END_READING.nid()) {
+        if (readingNid == IkeConcept.TIMING_END_READING.nid()) {
             return Intervals.end(statement.timing());
         }
-        if (readingNid == IkeTerms.RESULT_READING.nid()) {
+        if (readingNid == IkeConcept.RESULT_READING.nid()) {
             return statement.result().map(Value.class::cast).orElse(Operators.missingMeasure());
         }
-        if (readingNid == IkeTerms.STATEMENT_TIME_READING.nid()) {
+        if (readingNid == IkeConcept.STATEMENT_TIME_READING.nid()) {
             return statement.statementTime();
         }
-        if (readingNid == IkeTerms.SUBJECT_BIRTH_DATE_READING.nid()) {
+        if (readingNid == IkeConcept.SUBJECT_BIRTH_DATE_READING.nid()) {
             return statement.subject().birthDate().map(Value.class::cast).orElse(Operators.missingMeasure());
         }
         throw context.refuse("the reading " + PrimitiveData.text(readingNid) + " is not one the evaluator answers");

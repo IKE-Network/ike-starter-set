@@ -19,7 +19,7 @@ import dev.ikm.tinkar.common.bind.EnumConceptBinding;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -43,11 +43,11 @@ class EnumBindingIT {
 
     @Test
     void everyConstantCarriesItsCatalogConceptsIdentity() {
-        assertTrue(PublicId.equals(IkeTerms.ELM_ACCESSMODIFIER_PUBLIC.publicId(),
+        assertTrue(PublicId.equals(IkeConcept.ELM_ACCESSMODIFIER_PUBLIC.publicId(),
                 AccessModifier.PUBLIC.publicId()));
-        assertTrue(PublicId.equals(IkeTerms.ELM_DATETIMEPRECISION_MILLISECOND.publicId(),
+        assertTrue(PublicId.equals(IkeConcept.ELM_DATETIMEPRECISION_MILLISECOND.publicId(),
                 DateTimePrecision.MILLISECOND.publicId()));
-        assertTrue(PublicId.equals(IkeTerms.ELM_SORTDIRECTION_DESCENDING.publicId(),
+        assertTrue(PublicId.equals(IkeConcept.ELM_SORTDIRECTION_DESCENDING.publicId(),
                 SortDirection.DESCENDING.publicId()));
         List<EnumConceptBinding> all = new java.util.ArrayList<>();
         all.addAll(List.of(AccessModifier.values()));

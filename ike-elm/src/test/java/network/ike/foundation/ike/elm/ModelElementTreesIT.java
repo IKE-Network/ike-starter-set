@@ -20,7 +20,8 @@ import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,17 +55,17 @@ class ModelElementTreesIT {
         int[] choices = {0};
         int[] lists = {0};
         List<String> problems = new ArrayList<>();
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.MODEL_ELEMENT_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.MODEL_ELEMENT_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isAbsent()) {
                 return;
             }
             DiTreeEntity tree = (DiTreeEntity) latest.get().fieldValues().get(3);
             trees[0]++;
-            if (tree.root().getMeaningNid() == IkeTerms.ELM_CHOICETYPESPECIFIER.nid()) {
+            if (tree.root().getMeaningNid() == IkeConcept.ELM_CHOICETYPESPECIFIER.nid()) {
                 choices[0]++;
             }
-            if (tree.root().getMeaningNid() == IkeTerms.ELM_LISTTYPESPECIFIER.nid()) {
+            if (tree.root().getMeaningNid() == IkeConcept.ELM_LISTTYPESPECIFIER.nid()) {
                 lists[0]++;
             }
             for (String problem : ElmConformance.check(tree, catalog)) {

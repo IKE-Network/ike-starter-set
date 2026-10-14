@@ -22,7 +22,7 @@ import java.util.UUID;
 
 /**
  * The kernel: the components tinkar-core and its stores name in their own code, bound in
- * {@link Ike#KERNEL} ({@code dev.ikm.tinkar.terms.KernelTerm}) under the names that code
+ * {@link Ike#KERNEL} ({@code dev.ikm.tinkar.terms.KernelConcept} and {@code KernelPattern}) under the names that code
  * already used for them, so the move to the kernel changed no name and no identity. Generated from the set and committed into tinkar-core, which the set is
  * built with and so cannot depend on; {@code CommittedBindingsDriftTest} holds the committed
  * class to this list.

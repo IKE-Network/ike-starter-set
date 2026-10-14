@@ -20,6 +20,7 @@ import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
 import dev.ikm.tinkar.common.service.ServiceProperties;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.entity.builder.KnowledgeSet.Declaration.Kind;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -36,13 +37,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * The binding classes committed outside the set are the classes this set generates: the kernel
- * tinkar-core commits ({@code dev.ikm.tinkar.terms.KernelTerm}) and Komet's terms, which Komet's
- * {@code komet-terms} module commits ({@code dev.ikm.komet.terms.KometTerm}). Neither repository
+ * tinkar-core commits ({@code dev.ikm.tinkar.terms.KernelConcept} and {@code KernelPattern}) and
+ * Komet's terms, which Komet's {@code komet-terms} module commits ({@code dev.ikm.komet.terms.KometConcept}). Neither repository
  * can depend on the set it builds or feeds, so each commits the generated class; this test is
  * what keeps them from drifting (see {@link CommittedBindingsDrift}).
  * <p>
  * Every run writes the classes the set generates to {@code target/kernel} and
- * {@code target/komet}; when a committed class differs, copying the generated file over it is
+ * {@code target/komet}; when a committed enum differs, copying the generated files over it is
  * the regeneration.
  */
 class CommittedBindingsDriftTest {
@@ -66,25 +67,33 @@ class CommittedBindingsDriftTest {
     @Test
     @DisplayName("The kernel tinkar-core commits is the kernel the set generates")
     void committedKernelMatchesTheSet() throws Exception {
-        Path generated = CommittedBindingsDrift.generate(set, Ike.KERNEL, "kernel");
-        Map<String, KnowledgeSet.Declaration> expected = CommittedBindingsDrift.expected(set, Ike.KERNEL);
-        assertTrue(expected.size() > 100, "the kernel binds the components tinkar-core names");
-        assertCommitted("dev.ikm.tinkar.terms.KernelTerm", expected, generated,
-                "tinkar-core/terms/src/main/java/dev/ikm/tinkar/terms/KernelTerm.java");
+        List<Path> generated = CommittedBindingsDrift.generate(set, Ike.KERNEL, "kernel");
+        Map<String, KnowledgeSet.Declaration> concepts = CommittedBindingsDrift.expected(set, Ike.KERNEL, Kind.CONCEPT);
+        assertTrue(concepts.size() > 100, "the kernel binds the components tinkar-core names");
+        assertCommitted("dev.ikm.tinkar.terms.KernelConcept", concepts, generated,
+                "tinkar-core/terms/src/main/java/dev/ikm/tinkar/terms/");
+        assertCommitted("dev.ikm.tinkar.terms.KernelPattern",
+                CommittedBindingsDrift.expected(set, Ike.KERNEL, Kind.PATTERN), generated,
+                "tinkar-core/terms/src/main/java/dev/ikm/tinkar/terms/");
     }
 
     @Test
-    @DisplayName("The KometTerm Komet commits is the KometTerm the set generates")
-    void committedKometTermMatchesTheSet() throws Exception {
-        Path generated = CommittedBindingsDrift.generate(set, Ike.KOMET, "komet");
-        Map<String, KnowledgeSet.Declaration> expected = CommittedBindingsDrift.expected(set, Ike.KOMET);
-        assertTrue(expected.size() > 50, "KometTerm binds the components Komet names");
-        assertCommitted("dev.ikm.komet.terms.KometTerm", expected, generated,
-                "komet/komet-terms/src/main/java/dev/ikm/komet/terms/KometTerm.java");
+    @DisplayName("The Komet terms Komet commits are the ones the set generates")
+    void committedKometTermsMatchTheSet() throws Exception {
+        List<Path> generated = CommittedBindingsDrift.generate(set, Ike.KOMET, "komet");
+        Map<String, KnowledgeSet.Declaration> concepts = CommittedBindingsDrift.expected(set, Ike.KOMET, Kind.CONCEPT);
+        assertTrue(concepts.size() > 50, "Komet binds the components it names");
+        assertCommitted("dev.ikm.komet.terms.KometConcept", concepts, generated,
+                "komet/komet-terms/src/main/java/dev/ikm/komet/terms/");
+        Map<String, KnowledgeSet.Declaration> patterns = CommittedBindingsDrift.expected(set, Ike.KOMET, Kind.PATTERN);
+        if (!patterns.isEmpty()) {
+            assertCommitted("dev.ikm.komet.terms.KometPattern", patterns, generated,
+                    "komet/komet-terms/src/main/java/dev/ikm/komet/terms/");
+        }
     }
 
     private static void assertCommitted(String className, Map<String, KnowledgeSet.Declaration> expected,
-                                        Path generated, String committedAt) throws Exception {
+                                        List<Path> generated, String committedAt) throws Exception {
         String regenerate = "regenerate by copying " + generated + " to " + committedAt;
         Class<?> committed;
         try {

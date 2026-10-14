@@ -76,7 +76,7 @@
                         </goals>
                         <configuration>
                             <packageName>network.ike.foundation.ike.bindings</packageName>
-                            <className>IkeTerms</className>
+                            <className>Ike</className>
                         </configuration>
                     </execution>
                 </executions>

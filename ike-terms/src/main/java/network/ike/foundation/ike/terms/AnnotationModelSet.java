@@ -18,8 +18,9 @@ package network.ike.foundation.ike.terms;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
 
 /**
  * Declares annotation (IKE-Network/ike-issues#1300; ike-lab-documents topics
@@ -114,14 +115,14 @@ final class AnnotationModelSet {
                         + " Annotations materialized from git stamp under the repository's own module.")
                 .isA(MODULE_SOLOR, set.conceptRef(fqn("Annotation model")));
 
-        EntityProxy.Concept purpose = set.conceptRef(fqn("Reviewed provenance"));
+        ConceptFacade purpose = set.conceptRef(fqn("Reviewed provenance"));
         set.pattern(fqn("Annotation pattern")).at(inception)
                 .meaning(set.conceptRef(fqn("Annotation")))
                 .purpose(purpose)
-                .field(set.conceptRef(fqn("Annotation kind")), purpose, KernelTerm.CONCEPT_FIELD)
-                .field(set.conceptRef(fqn("Reviewed version")), purpose, KernelTerm.COMPONENT_FIELD)
-                .field(set.conceptRef(fqn("Annotated elements")), purpose, KernelTerm.COMPONENT_ID_LIST_FIELD)
-                .field(COMMENT_SOLOR, purpose, KernelTerm.STRING)
+                .field(set.conceptRef(fqn("Annotation kind")), purpose, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("Reviewed version")), purpose, KernelConcept.COMPONENT_FIELD)
+                .field(set.conceptRef(fqn("Annotated elements")), purpose, KernelConcept.COMPONENT_ID_LIST_FIELD)
+                .field(COMMENT_SOLOR, purpose, KernelConcept.STRING)
                 .synonym("Annotation pattern")
                 .definition("An annotation of the referenced component: its kind, the reviewed"
                         + " version's STAMP, the elements it covers (empty for the whole component),"

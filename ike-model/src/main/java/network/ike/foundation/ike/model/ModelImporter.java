@@ -24,9 +24,11 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.model.ModelInfoFile.ClassInfo;
 import network.ike.foundation.ike.model.ModelInfoFile.Context;
 import network.ike.foundation.ike.model.ModelInfoFile.Conversion;
@@ -118,7 +120,7 @@ public final class ModelImporter {
         String model = file.name();
         PublicId modelId = ModelIdentity.model(model, file.version());
         long modelNid = ModelConcepts.model(writer, file, modelId);
-        EntityProxy.Concept modelConcept = EntityProxy.Concept.make(modelNid);
+        ConceptFacade modelConcept = EntityProxy.Concept.make(modelNid);
         for (Requirement requirement : file.requirements()) {
             ModelConcepts.requirement(writer, modelId, modelNid, requirement,
                     EntityProxy.Concept.make(resolution.required.get(requirement.name()).nid()));
@@ -150,14 +152,14 @@ public final class ModelImporter {
                 }
             }
             ModelConcepts.classRecord(writer, id, nid, clazz, resolution.bases.get(clazz.qualifiedName()),
-                    resolution.codeElements.getOrDefault(clazz.qualifiedName(), IkeTerms.UNRESOLVED),
-                    resolution.targets.getOrDefault(clazz.qualifiedName(), IkeTerms.UNRESOLVED), modelConcept);
+                    resolution.codeElements.getOrDefault(clazz.qualifiedName(), IkeConcept.UNRESOLVED),
+                    resolution.targets.getOrDefault(clazz.qualifiedName(), IkeConcept.UNRESOLVED), modelConcept);
             if (!resolution.system) {
                 for (Element element : clazz.elements()) {
                     PublicId elementId = ModelIdentity.element(id, element.name());
                     DiTreeEntity tree = ModelTypeTrees.build(element.type(), elementId, resolution::known);
-                    EntityProxy.Concept elementClass = element.type().isNamed()
-                            ? resolution.known(element.type().name()).orElse(IkeTerms.UNRESOLVED) : IkeTerms.UNRESOLVED;
+                    ConceptFacade elementClass = element.type().isNamed()
+                            ? resolution.known(element.type().name()).orElse(IkeConcept.UNRESOLVED) : IkeConcept.UNRESOLVED;
                     ModelConcepts.element(writer, elementId, nid, element, elementClass, tree);
                     elements++;
                     Optional<ModelBridges.Reading> reading = ModelBridges.readingFor(model, clazz.qualifiedName(), element.name());
@@ -170,20 +172,20 @@ public final class ModelImporter {
             for (Relationship relationship : clazz.relationships()) {
                 EntityFacade context = resolution.contextIds.containsKey(relationship.context())
                         ? EntityProxy.Semantic.make(PrimitiveData.nid(resolution.contextIds.get(relationship.context())))
-                        : IkeTerms.UNRESOLVED;
+                        : IkeConcept.UNRESOLVED;
                 ModelConcepts.relationship(writer, id, nid, relationship, context);
                 relationships++;
             }
         }
         for (Context context : file.contexts()) {
             ModelConcepts.context(writer, resolution.contextIds.get(context.name()), modelNid, context,
-                    resolution.known(context.type()).orElse(IkeTerms.UNRESOLVED));
+                    resolution.known(context.type()).orElse(IkeConcept.UNRESOLVED));
         }
         for (Conversion conversion : file.conversions()) {
-            EntityProxy.Concept from = resolution.known(conversion.fromType()).orElseThrow();
+            ConceptFacade from = resolution.known(conversion.fromType()).orElseThrow();
             TypeSpecifier to = ModelInfoFile.parseTypeText(conversion.toType(), model);
             ModelConcepts.conversion(writer, from.publicId(), from.nid(), conversion,
-                    to.isNamed() ? resolution.known(to.name()).orElse(IkeTerms.UNRESOLVED) : IkeTerms.UNRESOLVED);
+                    to.isNamed() ? resolution.known(to.name()).orElse(IkeConcept.UNRESOLVED) : IkeConcept.UNRESOLVED);
         }
         return new Report(model, file.version(), modelId, file.classes().size(), conceptsMade, elements,
                 file.contexts().size(), relationships, file.conversions().size(), file.requirements().size(),
@@ -202,11 +204,11 @@ public final class ModelImporter {
         private Optional<ModelTypes.Model> target = Optional.empty();
         private final Map<String, PublicId> own = new LinkedHashMap<>();
         private final java.util.Set<String> existing = new java.util.HashSet<>();
-        private final Map<String, EntityProxy.Concept> bases = new HashMap<>();
+        private final Map<String, ConceptFacade> bases = new HashMap<>();
         private final Map<String, EntityFacade> codeElements = new HashMap<>();
-        private final Map<String, EntityProxy.Concept> targets = new HashMap<>();
+        private final Map<String, ConceptFacade> targets = new HashMap<>();
         private final Map<String, PublicId> contextIds = new LinkedHashMap<>();
-        private final Map<String, Optional<EntityProxy.Concept>> names = new HashMap<>();
+        private final Map<String, Optional<ConceptFacade>> names = new HashMap<>();
         private int outside;
 
         Resolution(ModelInfoFile file, ModelTypes types) {
@@ -237,7 +239,7 @@ public final class ModelImporter {
             for (ClassInfo clazz : file.classes()) {
                 PublicId id;
                 if (system) {
-                    Optional<EntityProxy.Concept> type = ModelConcepts.systemType(clazz.localName(model));
+                    Optional<ConceptFacade> type = ModelConcepts.systemType(clazz.localName(model));
                     if (type.isEmpty()) {
                         problems.add(model + ": " + clazz.qualifiedName() + " is not a type of the catalog");
                         continue;
@@ -253,7 +255,7 @@ public final class ModelImporter {
                 own.put(clazz.qualifiedName(), id);
             }
             stop();
-            EntityProxy.Concept modelConcept = EntityProxy.Concept.make(
+            ConceptFacade modelConcept = EntityProxy.Concept.make(
                     PrimitiveData.nid(ModelIdentity.model(model, file.version())));
             for (ClassInfo clazz : file.classes()) {
                 String place = model + "." + clazz.localName(model);
@@ -309,7 +311,7 @@ public final class ModelImporter {
         }
 
         /** What a qualified name means, once resolved; empty for a name that means nothing in the store. */
-        Optional<EntityProxy.Concept> known(String qualified) {
+        Optional<ConceptFacade> known(String qualified) {
             return names.getOrDefault(qualified, Optional.empty());
         }
 
@@ -325,15 +327,15 @@ public final class ModelImporter {
             }
         }
 
-        private Optional<EntityProxy.Concept> strict(String qualified, String place) {
+        private Optional<ConceptFacade> strict(String qualified, String place) {
             return resolve(qualified, place, false);
         }
 
-        private Optional<EntityProxy.Concept> lenient(String qualified) {
+        private Optional<ConceptFacade> lenient(String qualified) {
             return resolve(qualified, "", true);
         }
 
-        private Optional<EntityProxy.Concept> resolve(String qualified, String place, boolean lenient) {
+        private Optional<ConceptFacade> resolve(String qualified, String place, boolean lenient) {
             if (qualified.isEmpty()) {
                 if (!lenient && !place.isEmpty()) {
                     outside++;
@@ -346,7 +348,7 @@ public final class ModelImporter {
             int dot = qualified.indexOf('.');
             String prefix = dot < 0 ? model : qualified.substring(0, dot);
             String local = dot < 0 ? qualified : qualified.substring(dot + 1);
-            Optional<EntityProxy.Concept> found = Optional.empty();
+            Optional<ConceptFacade> found = Optional.empty();
             if (prefix.equals(model)) {
                 PublicId id = own.get(qualified);
                 if (id != null) {
@@ -438,7 +440,7 @@ public final class ModelImporter {
                 }
                 Map<String, Long> positions = new HashMap<>();
                 EntityService.get().forEachSemanticForComponentOfPattern(PrimitiveData.nid(id),
-                        IkeTerms.ELM_TYPE_POSITION_PATTERN.nid(), semantic -> {
+                        IkePattern.ELM_TYPE_POSITION_PATTERN.nid(), semantic -> {
                             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                             if (latest.isAbsent()) {
                                 return;
@@ -456,7 +458,7 @@ public final class ModelImporter {
                     TypeSpecifier named = element.type().isNamed() ? element.type()
                             : element.type().form() == ModelInfoFile.Form.LIST ? element.type().inner() : null;
                     Long expected = named != null && named.isNamed()
-                            ? known(named.name()).map(EntityProxy.Concept::nid).orElse(null) : null;
+                            ? known(named.name()).map(ConceptFacade::nid).orElse(null) : null;
                     String member = clazz.qualifiedName() + "." + element.name();
                     if (!positions.containsKey(element.name())) {
                         problems.add(member + " is a member in the file and not a position in the catalog");

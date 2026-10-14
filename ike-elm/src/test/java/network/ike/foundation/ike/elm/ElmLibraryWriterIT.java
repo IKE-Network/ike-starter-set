@@ -15,10 +15,13 @@
  */
 package network.ike.foundation.ike.elm;
 
-import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.Stamp;
-import network.ike.foundation.ike.bindings.IkeStamps;
+import dev.ikm.tinkar.terms.KernelPattern;
+import dev.ikm.tinkar.terms.PatternFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
+import network.ike.foundation.ike.bindings.IkeStamp;
 import dev.ikm.tinkar.common.id.LongIdList;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
@@ -28,7 +31,6 @@ import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
 import org.eclipse.collections.api.list.ImmutableList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -55,7 +57,7 @@ class ElmLibraryWriterIT {
     static void boot() throws Exception {
         calculator = Store.boot();
         builder = new ElmTreeBuilder(Store.catalog());
-        writer = new ElmLibraryWriter(builder, calculator, (ActiveStamp) Stamp.from(IkeStamps.INCEPTION));
+        writer = new ElmLibraryWriter(builder, calculator, (ActiveStamp) Stamp.from(IkeStamp.INCEPTION.stamp()));
     }
 
     private static ImmutableList<Object> fields(long semanticNid) {
@@ -64,7 +66,7 @@ class ElmLibraryWriterIT {
         return latest.get().fieldValues();
     }
 
-    private static List<Long> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
+    private static List<Long> semanticsAbout(long componentNid, PatternFacade pattern) {
         List<Long> nids = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(),
                 semantic -> nids.add(semantic.nid()));
@@ -106,7 +108,7 @@ class ElmLibraryWriterIT {
         long libraryNid = PrimitiveData.nid(library);
         assertTrue(calculator.latest(libraryNid).isPresent(), "the library concept has a version");
 
-        List<Long> trees = semanticsAbout(libraryNid, IkeTerms.ELM_TREE_PATTERN);
+        List<Long> trees = semanticsAbout(libraryNid, IkePattern.ELM_TREE_PATTERN);
         assertEquals(6, trees.size(), "identity record, using, value set, context, define, and one item");
         for (long nid : trees) {
             DiTreeEntity tree = (DiTreeEntity) fields(nid).get(0);
@@ -114,23 +116,23 @@ class ElmLibraryWriterIT {
         }
 
         long defineNid = PrimitiveData.nid(ElmIdentity.definition("Diabetes", "ExpressionDef", "Has Diabetes", List.of()));
-        List<Long> descriptions = semanticsAbout(defineNid, KernelTerm.DESCRIPTION_PATTERN);
+        List<Long> descriptions = semanticsAbout(defineNid, KernelPattern.DESCRIPTION_PATTERN);
         assertEquals(1, descriptions.size());
         assertEquals("Has Diabetes", fields(descriptions.get(0)).get(1));
-        assertEquals(1, semanticsAbout(descriptions.get(0), IkeTerms.CQL_DIALECT_PATTERN).size(),
+        assertEquals(1, semanticsAbout(descriptions.get(0), IkePattern.CQL_DIALECT_PATTERN).size(),
                 "the name is a description in the CQL dialect");
 
-        List<Long> lists = semanticsAbout(defineNid, IkeTerms.ELM_ORDERED_LIST_PATTERN);
+        List<Long> lists = semanticsAbout(defineNid, IkePattern.ELM_ORDERED_LIST_PATTERN);
         assertEquals(1, lists.size());
         LongIdList items = (LongIdList) fields(lists.get(0)).get(0);
         assertEquals(1, items.size());
         assertEquals(PrimitiveData.nid(ElmIdentity.item("Diabetes", "AliasedQuerySource C = [Condition: Diabetes]")),
                 items.get(0));
 
-        List<Long> references = semanticsAbout(defineNid, IkeTerms.ELM_REFERENCE_PATTERN);
+        List<Long> references = semanticsAbout(defineNid, IkePattern.ELM_REFERENCE_PATTERN);
         assertEquals(1, references.size());
         ImmutableList<Object> fields = fields(references.get(0));
-        assertEquals(IkeTerms.ELM_VALUESETREF.nid(), ((EntityProxy.Concept) fields.get(0)).nid());
+        assertEquals(IkeConcept.ELM_VALUESETREF.nid(), ((EntityProxy.Concept) fields.get(0)).nid());
         assertEquals(PrimitiveData.nid(ElmIdentity.definition("Diabetes", "ValueSetDef", "Diabetes", List.of())),
                 ((EntityProxy.Semantic) fields.get(1)).nid());
         assertEquals("Diabetes", fields.get(2));
@@ -142,7 +144,7 @@ class ElmLibraryWriterIT {
         PublicId first = writeDiabetes();
         PublicId second = writeDiabetes();
         assertEquals(first, second);
-        assertEquals(6, semanticsAbout(PrimitiveData.nid(first), IkeTerms.ELM_TREE_PATTERN).size(),
+        assertEquals(6, semanticsAbout(PrimitiveData.nid(first), IkePattern.ELM_TREE_PATTERN).size(),
                 "no second set of semantics appears");
     }
 }

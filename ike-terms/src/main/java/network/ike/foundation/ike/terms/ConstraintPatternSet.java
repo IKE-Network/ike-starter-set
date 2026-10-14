@@ -15,10 +15,12 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.PatternFacade;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
@@ -83,7 +85,7 @@ final class ConstraintPatternSet {
 
         // The shared prose-element pattern, declared at its foundation home by
         // ProseElementSet (IKE-Network/ike-issues#937), which composes earlier.
-        EntityProxy.Pattern proseElementPattern =
+        PatternFacade proseElementPattern =
                 set.patternRef(ProseElementSet.PROSE_ELEMENT_PATTERN_FQN);
 
         // ── Taxonomy field constraint kind + its 4 values ───────────────
@@ -98,7 +100,7 @@ final class ConstraintPatternSet {
                         + " the constrained pattern field, derived from the taxonomy under"
                         + " the checking view.")
                 .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"));
-        EntityProxy.Concept taxonomyKind = set.conceptRef("Taxonomy field constraint kind (IkeFoundation)");
+        ConceptFacade taxonomyKind = set.conceptRef("Taxonomy field constraint kind (IkeFoundation)");
 
         set.concept("Kind-of field constraint (IkeFoundation)").at(inception)
                 .synonym("Kind-of field constraint")
@@ -130,25 +132,25 @@ final class ConstraintPatternSet {
                 .synonym("Constrained field")
                 .definition("The field-meaning concept of the pattern field this constraint"
                         + " governs.")
-                .isA(KernelTerm.CONCEPT_FIELD);
+                .isA(KernelConcept.CONCEPT_FIELD);
 
         set.concept("Constraint kind (IkeFoundation)").at(inception)
                 .synonym("Constraint kind")
                 .definition("Which Taxonomy field constraint kind this constraint semantic"
                         + " expresses.")
-                .isA(KernelTerm.CONCEPT_FIELD);
+                .isA(KernelConcept.CONCEPT_FIELD);
 
         set.concept("Constraint anchor concept (IkeFoundation)").at(inception)
                 .synonym("Constraint anchor concept")
                 .definition("The concept a kind-of, descendant, leaf-descendant, or"
                         + " immediate-child constraint is relative to.")
-                .isA(KernelTerm.CONCEPT_FIELD);
+                .isA(KernelConcept.CONCEPT_FIELD);
 
         set.concept("Value-set pattern (IkeFoundation)").at(inception)
                 .synonym("Value-set pattern")
                 .definition("For a value-set constraint, the pattern whose active semantics"
                         + " enumerate the legal values.")
-                .isA(KernelTerm.CONCEPT_FIELD);
+                .isA(KernelConcept.CONCEPT_FIELD);
 
         set.concept("Value-set field (IkeFoundation)").at(inception)
                 .synonym("Value-set field")
@@ -158,7 +160,7 @@ final class ConstraintPatternSet {
                         + " referenced-component meaning when the members are the referenced"
                         + " components themselves (a membership pattern) — disambiguating"
                         + " when that pattern carries other fields, such as a sort order.")
-                .isA(KernelTerm.CONCEPT_FIELD);
+                .isA(KernelConcept.CONCEPT_FIELD);
 
         // ── The member match relation taxonomy ──────────────────────────
         // How a value must match an enumerated member is a concept, never invented
@@ -206,7 +208,7 @@ final class ConstraintPatternSet {
                         one-to-one with the service-loaded evaluators, so minting a relation without
                         shipping its evaluator fails, and shipping an evaluator without minting its
                         relation fails.""");
-        EntityProxy.Concept memberMatchRelation = set.conceptRef("Member match relation (IkeFoundation)");
+        ConceptFacade memberMatchRelation = set.conceptRef("Member match relation (IkeFoundation)");
 
         set.concept("Equal match relation (IkeFoundation)").at(inception)
                 .synonym("Equal")
@@ -317,11 +319,11 @@ final class ConstraintPatternSet {
                 .meaning(set.conceptRef("Constrained Pattern (IkeFoundation)"))
                 .purpose(set.conceptRef("Field Value Restriction (IkeFoundation)"))
                 .field(set.conceptRef("Constrained field (IkeFoundation)"),
-                        set.conceptRef("Constraint Scope (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Constraint Scope (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .field(set.conceptRef("Constraint kind (IkeFoundation)"),
-                        set.conceptRef("Constraint Rule (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Constraint Rule (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .field(set.conceptRef("Constraint anchor concept (IkeFoundation)"),
-                        set.conceptRef("Taxonomy Reference Point (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Taxonomy Reference Point (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 // Curated narrative (IKE-Network/ike-issues#888): domain description OF
                 // this pattern, complementing — never repeating — the Constrained
                 // Pattern hub narrative (NarrativeContentSet), which carries the
@@ -358,13 +360,13 @@ final class ConstraintPatternSet {
                 .meaning(set.conceptRef("Constrained Pattern (IkeFoundation)"))
                 .purpose(set.conceptRef("Field Value Restriction (IkeFoundation)"))
                 .field(set.conceptRef("Constrained field (IkeFoundation)"),
-                        set.conceptRef("Constraint Scope (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Constraint Scope (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .field(set.conceptRef("Value-set pattern (IkeFoundation)"),
-                        set.conceptRef("Legal Value Source (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Legal Value Source (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .field(set.conceptRef("Value-set field (IkeFoundation)"),
-                        set.conceptRef("Value Disambiguation (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Value Disambiguation (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .field(memberMatchRelation,
-                        set.conceptRef("Match Rule (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Match Rule (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 // Curated narrative (IKE-Network/ike-issues#888) — see the taxonomy
                 // pattern's note above.
                 .semantic(proseElementPattern,
@@ -389,14 +391,14 @@ final class ConstraintPatternSet {
                         the legal set evolves version by version, with no edit to the constraint
                         semantic itself.""");
 
-        EntityProxy.Pattern taxonomyConstraintPattern =
+        PatternFacade taxonomyConstraintPattern =
                 set.patternRef("Taxonomy Field Constraint Pattern (IkeFoundation)");
-        EntityProxy.Pattern valueSetConstraintPattern =
+        PatternFacade valueSetConstraintPattern =
                 set.patternRef("Value-set Field Constraint Pattern (IkeFoundation)");
-        EntityProxy.Concept kindOf = set.conceptRef("Kind-of field constraint (IkeFoundation)");
-        EntityProxy.Concept immediateChild = set.conceptRef("Immediate child field constraint (IkeFoundation)");
-        EntityProxy.Concept constraintKindMeaning = set.conceptRef("Constraint kind (IkeFoundation)");
-        EntityProxy.Concept equalMatchRelation = set.conceptRef("Equal match relation (IkeFoundation)");
+        ConceptFacade kindOf = set.conceptRef("Kind-of field constraint (IkeFoundation)");
+        ConceptFacade immediateChild = set.conceptRef("Immediate child field constraint (IkeFoundation)");
+        ConceptFacade constraintKindMeaning = set.conceptRef("Constraint kind (IkeFoundation)");
+        ConceptFacade equalMatchRelation = set.conceptRef("Equal match relation (IkeFoundation)");
 
         // ── Bootstrap self-application: the apparatus constrains itself ──
         // Ordinary content, not special machinery: each pattern's own discriminator
@@ -459,7 +461,7 @@ final class ConstraintPatternSet {
         set.concept("Roster author (IkeFoundation)").at(inception)
                 .synonym("Roster author")
                 .definition("The author concept named by one roster entry.")
-                .isA(KernelTerm.CONCEPT_FIELD);
+                .isA(KernelConcept.CONCEPT_FIELD);
         set.concept("Roster order (IkeFoundation)").at(inception)
                 .synonym("Roster order")
                 .definition("The roster entry's display order — the \"additional"
@@ -494,9 +496,9 @@ final class ConstraintPatternSet {
                 .meaning(set.conceptRef("Starter set author roster (IkeFoundation)"))
                 .purpose(set.conceptRef("Roster Membership (IkeFoundation)"))
                 .field(set.conceptRef("Roster author (IkeFoundation)"),
-                        set.conceptRef("Roster Entry (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Roster Entry (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .field(set.conceptRef("Roster order (IkeFoundation)"),
-                        set.conceptRef("Display Sequence (IkeFoundation)"), KernelTerm.LONG)
+                        set.conceptRef("Display Sequence (IkeFoundation)"), KernelConcept.LONG)
                 .semantic(set.patternRef("Starter Set Author Roster Pattern (IkeFoundation)"),
                         PublicIds.of(set.uuidFor("Roster entry: Gretel")),
                         set.conceptRef("Gretel (User)"), 1L)
@@ -514,7 +516,7 @@ final class ConstraintPatternSet {
                 .synonym("Preferred reviewer")
                 .definition("Illustrative constrained field: the reviewer a"
                         + " Preferred Reviewer Pattern semantic names.")
-                .isA(KernelTerm.CONCEPT_FIELD);
+                .isA(KernelConcept.CONCEPT_FIELD);
         set.concept("Preferred reviewer assignment (IkeFoundation)").at(inception)
                 .synonym("Preferred reviewer assignment")
                 .definition("Illustrative pattern whose single field is constrained to"
@@ -541,7 +543,7 @@ final class ConstraintPatternSet {
                 .meaning(set.conceptRef("Preferred reviewer assignment (IkeFoundation)"))
                 .purpose(set.conceptRef("Review Routing (IkeFoundation)"))
                 .field(set.conceptRef("Preferred reviewer (IkeFoundation)"),
-                        set.conceptRef("Assigned Reviewer (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                        set.conceptRef("Assigned Reviewer (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .semantic(valueSetConstraintPattern,
                         PublicIds.of(set.uuidFor("Value-set Field Constraint: Preferred Reviewer Pattern"
                                 + " reviewer field Equal to a Starter Set Author Roster author")),

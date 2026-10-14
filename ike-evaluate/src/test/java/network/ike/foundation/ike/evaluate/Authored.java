@@ -15,13 +15,13 @@
  */
 package network.ike.foundation.ike.evaluate;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.builder.Stamp;
-import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.writer.StoreWriter;
 
 import java.math.BigDecimal;
@@ -88,7 +88,7 @@ final class Authored {
         for (Map.Entry<PublicId, String> entry : names.entrySet()) {
             long nid = writer.concept(entry.getKey());
             writer.describe(nid, UuidT5Generator.get(NAMESPACE, entry.getValue() + " name"), entry.getValue(),
-                    KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
+                    KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE, KernelConcept.PREFERRED);
             NIDS.put(entry.getKey(), nid);
         }
     }
@@ -149,22 +149,22 @@ final class Authored {
         Measure onset = day(2013, 3, 1);
         Measure abatement = day(2013, 3, 10);
         statements.add(new Statement(id("statement child pharyngitis"), child, nid(PHARYNGITIS),
-                IkeTerms.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), through(onset, abatement), Optional.empty(),
+                IkeConcept.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), through(onset, abatement), Optional.empty(),
                 at(2013, 3, 1, 9, 0), List.of()));
         statements.add(new Statement(id("statement child office visit"), child, nid(OFFICE_VISIT),
-                IkeTerms.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), through(at(2013, 3, 2, 9, 0), at(2013, 3, 2, 10, 0)),
+                IkeConcept.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), through(at(2013, 3, 2, 9, 0), at(2013, 3, 2, 10, 0)),
                 Optional.empty(), at(2013, 3, 2, 9, 0), List.of()));
         statements.add(new Statement(id("statement child prescription"), child, nid(AMOXICILLIN),
-                IkeTerms.REQUEST_CIRCUMSTANCE.nid(), Optional.empty(), during(at(2013, 3, 2, 10, 30)), Optional.empty(),
+                IkeConcept.REQUEST_CIRCUMSTANCE.nid(), Optional.empty(), during(at(2013, 3, 2, 10, 30)), Optional.empty(),
                 at(2013, 3, 2, 10, 30), List.of()));
         statements.add(new Statement(id("statement child prior prescription"), child, nid(AMOXICILLIN),
-                IkeTerms.REQUEST_CIRCUMSTANCE.nid(), Optional.empty(), during(at(2013, 2, 20, 10, 0)), Optional.empty(),
+                IkeConcept.REQUEST_CIRCUMSTANCE.nid(), Optional.empty(), during(at(2013, 2, 20, 10, 0)), Optional.empty(),
                 at(2013, 2, 20, 10, 0), List.of()));
         statements.add(new Statement(id("statement child strep test"), child, nid(STREP_TEST),
-                IkeTerms.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), during(at(2013, 3, 2, 9, 30)),
+                IkeConcept.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), during(at(2013, 3, 2, 9, 30)),
                 Optional.of(Measure.point(BigDecimal.ONE, MeasureSemantic.DIMENSIONLESS)), at(2013, 3, 2, 11, 0), List.of()));
         statements.add(new Statement(id("statement adult pharyngitis"), adult, nid(PHARYNGITIS),
-                IkeTerms.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), through(day(2013, 5, 1), day(2013, 5, 8)),
+                IkeConcept.PERFORMANCE_CIRCUMSTANCE.nid(), Optional.empty(), through(day(2013, 5, 1), day(2013, 5, 8)),
                 Optional.empty(), at(2013, 5, 1, 8, 0), List.of()));
         return new AuthoredStatements(statements);
     }

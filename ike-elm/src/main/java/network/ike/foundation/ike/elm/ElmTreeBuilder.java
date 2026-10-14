@@ -21,7 +21,7 @@ import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 
 import java.util.Map;
 
@@ -109,7 +109,7 @@ public final class ElmTreeBuilder {
             ElmCatalog.PositionRule rule = node.kind().position(list.getKey()).orElseThrow();
             EntityVertex argumentVertex = EntityVertex.make(ElmIdentity.vertex(treeId, path + "/" + list.getKey()),
                     rule.position().nid());
-            argumentVertex.putUncommittedProperty(IkeTerms.ELM_LIST_ITEMS.nid(),
+            argumentVertex.putUncommittedProperty(IkeConcept.ELM_LIST_ITEMS.nid(),
                     EntityProxy.Semantic.make(PrimitiveData.nid(list.getValue())));
             argumentVertex.commitProperties();
             builder.addVertex(argumentVertex);

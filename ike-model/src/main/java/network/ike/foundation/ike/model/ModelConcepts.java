@@ -15,16 +15,19 @@
  */
 package network.ike.foundation.ike.model;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.KernelPattern;
+import dev.ikm.tinkar.terms.PatternFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
-import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.model.ModelInfoFile.ClassInfo;
 import network.ike.foundation.ike.model.ModelInfoFile.Context;
 import network.ike.foundation.ike.model.ModelInfoFile.Conversion;
@@ -46,22 +49,22 @@ import java.util.Optional;
 final class ModelConcepts {
 
     /** The System types by local name: the catalog's concepts, never made by an import. */
-    private static final Map<String, EntityProxy.Concept> SYSTEM_TYPES = Map.ofEntries(
-            Map.entry("Any", IkeTerms.ELM_SYSTEM_ANY), Map.entry("Boolean", IkeTerms.ELM_SYSTEM_BOOLEAN),
-            Map.entry("Integer", IkeTerms.ELM_SYSTEM_INTEGER), Map.entry("Long", IkeTerms.ELM_SYSTEM_LONG),
-            Map.entry("Decimal", IkeTerms.ELM_SYSTEM_DECIMAL), Map.entry("String", IkeTerms.ELM_SYSTEM_STRING),
-            Map.entry("DateTime", IkeTerms.ELM_SYSTEM_DATETIME), Map.entry("Date", IkeTerms.ELM_SYSTEM_DATE),
-            Map.entry("Time", IkeTerms.ELM_SYSTEM_TIME), Map.entry("Quantity", IkeTerms.ELM_SYSTEM_QUANTITY),
-            Map.entry("Ratio", IkeTerms.ELM_SYSTEM_RATIO), Map.entry("Code", IkeTerms.ELM_SYSTEM_CODE),
-            Map.entry("Concept", IkeTerms.ELM_SYSTEM_CONCEPT), Map.entry("Vocabulary", IkeTerms.ELM_SYSTEM_VOCABULARY),
-            Map.entry("ValueSet", IkeTerms.ELM_SYSTEM_VALUESET), Map.entry("CodeSystem", IkeTerms.ELM_SYSTEM_CODESYSTEM),
-            Map.entry("Interval", IkeTerms.ELM_SYSTEM_INTERVAL));
+    private static final Map<String, ConceptFacade> SYSTEM_TYPES = Map.ofEntries(
+            Map.entry("Any", IkeConcept.ELM_SYSTEM_ANY), Map.entry("Boolean", IkeConcept.ELM_SYSTEM_BOOLEAN),
+            Map.entry("Integer", IkeConcept.ELM_SYSTEM_INTEGER), Map.entry("Long", IkeConcept.ELM_SYSTEM_LONG),
+            Map.entry("Decimal", IkeConcept.ELM_SYSTEM_DECIMAL), Map.entry("String", IkeConcept.ELM_SYSTEM_STRING),
+            Map.entry("DateTime", IkeConcept.ELM_SYSTEM_DATETIME), Map.entry("Date", IkeConcept.ELM_SYSTEM_DATE),
+            Map.entry("Time", IkeConcept.ELM_SYSTEM_TIME), Map.entry("Quantity", IkeConcept.ELM_SYSTEM_QUANTITY),
+            Map.entry("Ratio", IkeConcept.ELM_SYSTEM_RATIO), Map.entry("Code", IkeConcept.ELM_SYSTEM_CODE),
+            Map.entry("Concept", IkeConcept.ELM_SYSTEM_CONCEPT), Map.entry("Vocabulary", IkeConcept.ELM_SYSTEM_VOCABULARY),
+            Map.entry("ValueSet", IkeConcept.ELM_SYSTEM_VALUESET), Map.entry("CodeSystem", IkeConcept.ELM_SYSTEM_CODESYSTEM),
+            Map.entry("Interval", IkeConcept.ELM_SYSTEM_INTERVAL));
 
     /** The dialect each shipped model's names and labels are read in. */
-    private static final Map<String, EntityProxy.Pattern> DIALECTS = Map.of(
-            "FHIR", IkeTerms.FHIR_DIALECT_PATTERN, "QDM", IkeTerms.QDM_DIALECT_PATTERN,
-            "QUICK", IkeTerms.QUICK_DIALECT_PATTERN, "QICore", IkeTerms.QI_CORE_DIALECT_PATTERN,
-            "USCore", IkeTerms.US_CORE_DIALECT_PATTERN);
+    private static final Map<String, PatternFacade> DIALECTS = Map.of(
+            "FHIR", IkePattern.FHIR_DIALECT_PATTERN, "QDM", IkePattern.QDM_DIALECT_PATTERN,
+            "QUICK", IkePattern.QUICK_DIALECT_PATTERN, "QICore", IkePattern.QI_CORE_DIALECT_PATTERN,
+            "USCore", IkePattern.US_CORE_DIALECT_PATTERN);
 
     private ModelConcepts() {
     }
@@ -72,7 +75,7 @@ final class ModelConcepts {
      * @param localName the type's name without the model, for example {@code Quantity}
      * @return the concept, or empty when the catalog has no such type
      */
-    static Optional<EntityProxy.Concept> systemType(String localName) {
+    static Optional<ConceptFacade> systemType(String localName) {
         return Optional.ofNullable(SYSTEM_TYPES.get(localName));
     }
 
@@ -82,7 +85,7 @@ final class ModelConcepts {
      * @param modelName the model's name as the file writes it
      * @return the pattern, or empty
      */
-    static Optional<EntityProxy.Pattern> dialectPattern(String modelName) {
+    static Optional<PatternFacade> dialectPattern(String modelName) {
         return Optional.ofNullable(DIALECTS.get(modelName));
     }
 
@@ -107,13 +110,13 @@ final class ModelConcepts {
      */
     static long model(StoreWriter writer, ModelInfoFile file, PublicId id) {
         long nid = writer.concept(id);
-        writer.statedParent(id, IkeTerms.DATA_MODEL.publicId());
+        writer.statedParent(id, IkeConcept.DATA_MODEL.publicId());
         String title = title(file.name(), file.version());
         writer.describe(nid, ModelIdentity.description(id, "fqn"), title + " (data model)",
-                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
-        writer.describe(nid, ModelIdentity.description(id, "name"), title, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE,
-                KernelTerm.PREFERRED);
-        writer.semantic(ModelIdentity.record(id), IkeTerms.DATA_MODEL_RECORD_PATTERN, nid, Lists.immutable.of(
+                KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelConcept.PREFERRED);
+        writer.describe(nid, ModelIdentity.description(id, "name"), title, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE,
+                KernelConcept.PREFERRED);
+        writer.semantic(ModelIdentity.record(id), IkePattern.DATA_MODEL_RECORD_PATTERN, nid, Lists.immutable.of(
                 file.name(), file.version(), file.url(), file.targetUrl(), file.targetVersion(), file.targetQualifier(),
                 file.patientClassName(), file.patientClassIdentifier(), file.patientBirthDatePropertyName(),
                 file.defaultContext(), file.caseSensitive().orElse(false), file.strictRetrieveTyping().orElse(false),
@@ -131,9 +134,9 @@ final class ModelConcepts {
      * @param required    the required model's concept
      */
     static void requirement(StoreWriter writer, PublicId modelId, long modelNid, Requirement requirement,
-                            EntityProxy.Concept required) {
+                            ConceptFacade required) {
         writer.semantic(ModelIdentity.requirement(modelId, requirement.name(), requirement.version()),
-                IkeTerms.MODEL_REQUIREMENT_PATTERN, modelNid,
+                IkePattern.MODEL_REQUIREMENT_PATTERN, modelNid,
                 Lists.immutable.of(requirement.name(), requirement.version(), required));
     }
 
@@ -149,21 +152,21 @@ final class ModelConcepts {
      * @return the class concept's nid
      */
     static long classConcept(StoreWriter writer, ModelInfoFile file, ClassInfo clazz, PublicId id,
-                            EntityProxy.Concept base) {
+                            ConceptFacade base) {
         long nid = writer.concept(id);
         writer.statedParent(id, base.publicId());
         String local = clazz.localName(file.name());
         String title = title(file.name(), file.version());
-        Optional<EntityProxy.Pattern> dialect = dialectPattern(file.name());
+        Optional<PatternFacade> dialect = dialectPattern(file.name());
         writer.describe(nid, ModelIdentity.description(id, "fqn"), local + " (" + title + ")",
-                KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
-        named(writer, nid, id, "name", local, KernelTerm.PREFERRED, dialect);
+                KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE, KernelConcept.PREFERRED);
+        named(writer, nid, id, "name", local, KernelConcept.PREFERRED, dialect);
         if (!clazz.label().isEmpty() && !clazz.label().equals(local)) {
-            named(writer, nid, id, "label", clazz.label(), IkeTerms.ACCEPTABLE, dialect);
+            named(writer, nid, id, "label", clazz.label(), IkeConcept.ACCEPTABLE, dialect);
         }
         if (!clazz.definition().isEmpty()) {
             writer.describe(nid, ModelIdentity.description(id, "definition"), clazz.definition(),
-                    KernelTerm.DEFINITION_DESCRIPTION_TYPE, KernelTerm.PREFERRED);
+                    KernelConcept.DEFINITION_DESCRIPTION_TYPE, KernelConcept.PREFERRED);
         }
         return nid;
     }
@@ -180,9 +183,9 @@ final class ModelConcepts {
      * @param target      the class of another model this one stands on, or the unresolved marker
      * @param model       the model's concept
      */
-    static void classRecord(StoreWriter writer, PublicId classId, long classNid, ClassInfo clazz, EntityProxy.Concept base,
-                            EntityFacade codeElement, EntityProxy.Concept target, EntityProxy.Concept model) {
-        writer.semantic(ModelIdentity.record(classId), IkeTerms.MODEL_CLASS_PATTERN, classNid, Lists.immutable.of(
+    static void classRecord(StoreWriter writer, PublicId classId, long classNid, ClassInfo clazz, ConceptFacade base,
+                            EntityFacade codeElement, ConceptFacade target, ConceptFacade model) {
+        writer.semantic(ModelIdentity.record(classId), IkePattern.MODEL_CLASS_PATTERN, classNid, Lists.immutable.of(
                 clazz.kind(), clazz.namespace(), clazz.qualifiedName(), clazz.identifier(), clazz.label(),
                 clazz.baseType(), base, clazz.retrievable(), clazz.primaryCodePath(), codeElement,
                 clazz.primaryValueSetPath(), clazz.target(), target, clazz.description(), clazz.comment(), model));
@@ -199,8 +202,8 @@ final class ModelConcepts {
      * @param tree         the type as a tree
      */
     static void element(StoreWriter writer, PublicId elementId, long classNid, Element element,
-                        EntityProxy.Concept elementClass, DiTreeEntity tree) {
-        writer.semantic(elementId, IkeTerms.MODEL_ELEMENT_PATTERN, classNid, Lists.immutable.of(
+                        ConceptFacade elementClass, DiTreeEntity tree) {
+        writer.semantic(elementId, IkePattern.MODEL_ELEMENT_PATTERN, classNid, Lists.immutable.of(
                 element.name(), element.typeAsWritten(), elementClass, tree, element.minimum(), element.maximum(),
                 element.prohibited(), element.mustSupport(), element.oneBased(), element.target(), element.label(),
                 element.description(), element.definition(), element.comment(), element.bindingName(),
@@ -216,8 +219,8 @@ final class ModelConcepts {
      * @param bridge   the bridge
      */
     static void bridge(StoreWriter writer, PublicId classId, long classNid, ModelBridges.Bridge bridge) {
-        writer.semantic(ModelIdentity.bridge(classId), IkeTerms.MODEL_CLASS_BRIDGE_PATTERN, classNid, Lists.immutable.of(
-                bridge.circumstanceKind(), bridge.disposition().map(EntityFacade.class::cast).orElse(IkeTerms.UNRESOLVED),
+        writer.semantic(ModelIdentity.bridge(classId), IkePattern.MODEL_CLASS_BRIDGE_PATTERN, classNid, Lists.immutable.of(
+                bridge.circumstanceKind(), bridge.disposition().map(EntityFacade.class::cast).orElse(IkeConcept.UNRESOLVED),
                 bridge.relation()));
     }
 
@@ -230,7 +233,7 @@ final class ModelConcepts {
      * @param reading    the reading
      */
     static void reading(StoreWriter writer, PublicId elementId, long elementNid, ModelBridges.Reading reading) {
-        writer.semantic(ModelIdentity.reading(elementId), IkeTerms.MODEL_ELEMENT_READING_PATTERN, elementNid,
+        writer.semantic(ModelIdentity.reading(elementId), IkePattern.MODEL_ELEMENT_READING_PATTERN, elementNid,
                 Lists.immutable.of(reading.reading()));
     }
 
@@ -244,8 +247,8 @@ final class ModelConcepts {
      * @param contextClass the class that is the context
      */
     static void context(StoreWriter writer, PublicId contextId, long modelNid, Context context,
-                        EntityProxy.Concept contextClass) {
-        writer.semantic(contextId, IkeTerms.MODEL_CONTEXT_PATTERN, modelNid, Lists.immutable.of(
+                        ConceptFacade contextClass) {
+        writer.semantic(contextId, IkePattern.MODEL_CONTEXT_PATTERN, modelNid, Lists.immutable.of(
                 context.name(), context.type(), contextClass, context.keyElement(), context.birthDateElement()));
     }
 
@@ -261,7 +264,7 @@ final class ModelConcepts {
     static void relationship(StoreWriter writer, PublicId classId, long classNid, Relationship relationship,
                              EntityFacade contextRecord) {
         writer.semantic(ModelIdentity.relationship(classId, relationship.context(), relationship.keyElement(), relationship.toTarget()),
-                IkeTerms.MODEL_CONTEXT_RELATIONSHIP_PATTERN, classNid, Lists.immutable.of(
+                IkePattern.MODEL_CONTEXT_RELATIONSHIP_PATTERN, classNid, Lists.immutable.of(
                         relationship.context(), contextRecord, relationship.keyElement(), relationship.toTarget()));
     }
 
@@ -275,9 +278,9 @@ final class ModelConcepts {
      * @param target     the type converted to
      */
     static void conversion(StoreWriter writer, PublicId fromId, long fromNid, Conversion conversion,
-                           EntityProxy.Concept target) {
+                           ConceptFacade target) {
         writer.semantic(ModelIdentity.conversion(fromId, conversion.toType(), conversion.functionName()),
-                IkeTerms.MODEL_CONVERSION_PATTERN, fromNid, Lists.immutable.of(
+                IkePattern.MODEL_CONVERSION_PATTERN, fromNid, Lists.immutable.of(
                         conversion.fromType(), conversion.toType(), target, conversion.functionName()));
     }
 
@@ -289,7 +292,7 @@ final class ModelConcepts {
      * @return the text, or empty
      */
     static Optional<String> fullyQualifiedName(long nid, StampCalculator calculator) {
-        return descriptionOfType(nid, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE.nid(), calculator);
+        return descriptionOfType(nid, KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE.nid(), calculator);
     }
 
     /**
@@ -300,12 +303,12 @@ final class ModelConcepts {
      * @return the text, or empty
      */
     static Optional<String> regularName(long nid, StampCalculator calculator) {
-        return descriptionOfType(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid(), calculator);
+        return descriptionOfType(nid, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE.nid(), calculator);
     }
 
     private static Optional<String> descriptionOfType(long nid, long typeNid, StampCalculator calculator) {
         String[] found = {null};
-        EntityService.get().forEachSemanticForComponentOfPattern(nid, KernelTerm.DESCRIPTION_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticForComponentOfPattern(nid, KernelPattern.DESCRIPTION_PATTERN.nid(), semantic -> {
             if (found[0] != null) {
                 return;
             }
@@ -318,12 +321,12 @@ final class ModelConcepts {
     }
 
     private static void named(StoreWriter writer, long nid, PublicId id, String role, String text,
-                              EntityProxy.Concept usAcceptability, Optional<EntityProxy.Pattern> dialect) {
+                              ConceptFacade usAcceptability, Optional<PatternFacade> dialect) {
         long description = writer.describe(nid, ModelIdentity.description(id, role), text,
-                KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
+                KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE, usAcceptability);
         if (dialect.isPresent()) {
             writer.dialect(description, ModelIdentity.description(id, role + " model-dialect"), dialect.get(),
-                    KernelTerm.PREFERRED);
+                    KernelConcept.PREFERRED);
         }
     }
 }

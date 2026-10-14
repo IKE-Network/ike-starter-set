@@ -16,7 +16,9 @@
 package network.ike.foundation.ike.terms;
 
 import dev.ikm.tinkar.common.id.PublicIds;
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.KernelPattern;
+import dev.ikm.tinkar.terms.PatternFacade;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -105,7 +107,7 @@ class ExpressionLanguageIT {
     /** Logic nid → keyword text → lexical role nid. */
     private static final Map<Long, Map<String, Long>> ROLES = new HashMap<>();
     /** Logic nid → its dialect pattern. */
-    private static final Map<Long, EntityProxy.Pattern> DIALECTS = new HashMap<>();
+    private static final Map<Long, PatternFacade> DIALECTS = new HashMap<>();
     /** The eight operand kinds beneath the root. */
     private static final Set<Long> KINDS = new HashSet<>();
     /** Generic nid → nids of the concepts whose latest stated parents include it. */
@@ -238,7 +240,7 @@ class ExpressionLanguageIT {
         Set<String> types = new java.util.TreeSet<>();
         Set<Long> targets = Set.of(nid("Measure kind (IkeFoundation)"), nid("Presence measure kind (IkeFoundation)"),
                 nid("Concept kind (IkeFoundation)"), nid("Concept set kind (IkeFoundation)"),
-                nid("Operand kind (IkeFoundation)"), nid("Measure ratio (IkeFoundation)"), KernelTerm.STRING.nid());
+                nid("Operand kind (IkeFoundation)"), nid("Measure ratio (IkeFoundation)"), KernelConcept.STRING.nid());
         Set<Long> admitted = Set.of(nid("Identity (IkeFoundation)"), logicalEquivalenceNid,
                 definitionalExtensionNid, conservativeExtensionNid);
         for (Map.Entry<Long, long[]> relation : RELATIONS.entrySet()) {
@@ -301,7 +303,7 @@ class ExpressionLanguageIT {
         Set<Long> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelPattern.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                     AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
@@ -319,17 +321,17 @@ class ExpressionLanguageIT {
     private static List<Name> regularNamesOf(long conceptNid) {
         List<Name> names = new ArrayList<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
-                EntityProxy.Concept.make(conceptNid), KernelTerm.DESCRIPTION_PATTERN,
+                EntityProxy.Concept.make(conceptNid), KernelPattern.DESCRIPTION_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     ImmutableList<Object> fields = semanticVersion.fieldValues();
-                    if (nidOf(fields.get(3)) == KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE.nid()) {
+                    if (nidOf(fields.get(3)) == KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE.nid()) {
                         names.add(new Name(semanticVersion.nid(), (String) fields.get(1)));
                     }
                 });
         return names;
     }
 
-    private static Set<Long> acceptabilitiesOf(long descriptionNid, EntityProxy.Pattern dialectPattern) {
+    private static Set<Long> acceptabilitiesOf(long descriptionNid, PatternFacade dialectPattern) {
         Set<Long> acceptabilities = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Semantic.make(descriptionNid), dialectPattern,
@@ -491,7 +493,7 @@ class ExpressionLanguageIT {
     void dialectNamesMatchBindings() {
         long checked = 0;
         for (Map.Entry<Long, Map<String, List<Long>>> logic : KEYWORDS.entrySet()) {
-            EntityProxy.Pattern dialect = DIALECTS.get(logic.getKey());
+            PatternFacade dialect = DIALECTS.get(logic.getKey());
             assertNotNull(dialect, "No dialect pattern for " + fqn(logic.getKey()));
             Map<Long, Integer> preferredPerConstruct = new HashMap<>();
             for (Map.Entry<String, List<Long>> keyword : logic.getValue().entrySet()) {
@@ -502,7 +504,7 @@ class ExpressionLanguageIT {
                             continue;
                         }
                         Set<Long> acceptabilities = acceptabilitiesOf(name.descriptionNid(), dialect);
-                        if (acceptabilities.contains(KernelTerm.PREFERRED.nid())) {
+                        if (acceptabilities.contains(KernelConcept.PREFERRED.nid())) {
                             preferredPerConstruct.merge(named, 1, Integer::sum);
                             found = true;
                         } else if (acceptabilities.contains(EntityProxy.Concept.make("Acceptable (SOLOR)", PublicIds.of("12b9e103-060e-3256-9982-18c1191af60e")).nid())) {
@@ -565,8 +567,8 @@ class ExpressionLanguageIT {
                 boolean preferredIsQualified = false;
                 for (Name name : regularNamesOf(instance)) {
                     if (name.text().equals(expected)
-                            && acceptabilitiesOf(name.descriptionNid(), KernelTerm.US_DIALECT_PATTERN)
-                                    .contains(KernelTerm.PREFERRED.nid())) {
+                            && acceptabilitiesOf(name.descriptionNid(), KernelPattern.US_DIALECT_PATTERN)
+                                    .contains(KernelConcept.PREFERRED.nid())) {
                         preferredIsQualified = true;
                     }
                 }

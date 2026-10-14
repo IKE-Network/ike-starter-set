@@ -15,7 +15,6 @@
  */
 package network.ike.foundation.ike.elm;
 
-import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.coordinate.Calculators;
 import dev.ikm.tinkar.coordinate.language.calculator.LanguageCalculator;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
@@ -24,8 +23,11 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.builder.generator.AxiomDecompiler;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.KernelPattern;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,7 +62,7 @@ public final class ElmCatalog {
          *
          * @return the concept
          */
-        EntityProxy.Concept concept();
+        ConceptFacade concept();
     }
 
     /**
@@ -71,7 +73,7 @@ public final class ElmCatalog {
      */
     public record KindValue(NodeKind kind) implements ValueType {
         @Override
-        public EntityProxy.Concept concept() {
+        public ConceptFacade concept() {
             return kind.concept();
         }
     }
@@ -82,7 +84,7 @@ public final class ElmCatalog {
      * @param name    the primitive's local name, for example {@code string}
      * @param concept the catalog concept
      */
-    public record PrimitiveValue(String name, EntityProxy.Concept concept) implements ValueType {
+    public record PrimitiveValue(String name, ConceptFacade concept) implements ValueType {
     }
 
     /**
@@ -92,8 +94,8 @@ public final class ElmCatalog {
      * @param valueNids    the nids of its value concepts
      * @param valuesByName the value concepts by the name ELM writes, for example {@code Year}
      */
-    public record EnumerationValue(EntityProxy.Concept concept, Set<Long> valueNids,
-                                   Map<String, EntityProxy.Concept> valuesByName) implements ValueType {
+    public record EnumerationValue(ConceptFacade concept, Set<Long> valueNids,
+                                   Map<String, ConceptFacade> valuesByName) implements ValueType {
 
         /**
          * The value concept for a value as ELM writes it.
@@ -101,7 +103,7 @@ public final class ElmCatalog {
          * @param name the value's name, for example {@code Public}
          * @return the concept, or empty when the enumeration has no such value
          */
-        public Optional<EntityProxy.Concept> value(String name) {
+        public Optional<ConceptFacade> value(String name) {
             return Optional.ofNullable(valuesByName.get(name));
         }
 
@@ -112,7 +114,7 @@ public final class ElmCatalog {
          * @return the name, or empty when the nid is not one of this enumeration's values
          */
         public Optional<String> nameOf(long nid) {
-            for (Map.Entry<String, EntityProxy.Concept> entry : valuesByName.entrySet()) {
+            for (Map.Entry<String, ConceptFacade> entry : valuesByName.entrySet()) {
                 if (entry.getValue().nid() == nid) {
                     return Optional.of(entry.getKey());
                 }
@@ -126,7 +128,7 @@ public final class ElmCatalog {
      *
      * @param concept the catalog concept
      */
-    public record ExternalValue(EntityProxy.Concept concept) implements ValueType {
+    public record ExternalValue(ConceptFacade concept) implements ValueType {
     }
 
     /**
@@ -139,7 +141,7 @@ public final class ElmCatalog {
      * @param maximum   the most values allowed, or {@code -1} for no limit
      * @param form      whether our vertex holds it as a property or as an edge
      */
-    public record PositionRule(String name, EntityProxy.Concept position, ValueType valueType,
+    public record PositionRule(String name, ConceptFacade position, ValueType valueType,
                                int minimum, int maximum, Form form) {
 
         /**
@@ -168,11 +170,11 @@ public final class ElmCatalog {
      */
     public static final class NodeKind {
         private final String name;
-        private final EntityProxy.Concept concept;
+        private final ConceptFacade concept;
         private final Optional<NodeKind> base;
         private List<PositionRule> ownPositions = List.of();
 
-        NodeKind(String name, EntityProxy.Concept concept, Optional<NodeKind> base) {
+        NodeKind(String name, ConceptFacade concept, Optional<NodeKind> base) {
             this.name = name;
             this.concept = concept;
             this.base = base;
@@ -196,7 +198,7 @@ public final class ElmCatalog {
          *
          * @return the concept
          */
-        public EntityProxy.Concept concept() {
+        public ConceptFacade concept() {
             return concept;
         }
 
@@ -340,8 +342,8 @@ public final class ElmCatalog {
      */
     public static ElmCatalog load(StampCalculator calculator) {
         LanguageCalculator names = Calculators.Language.UsEnglishFullyQualifiedName(calculator.stampCoordinate());
-        long rootNid = IkeTerms.ELM_NODE_CATALOG.nid();
-        long propertyFormNid = IkeTerms.ELM_PROPERTY_FORM.nid();
+        long rootNid = IkeConcept.ELM_NODE_CATALOG.nid();
+        long propertyFormNid = IkeConcept.ELM_PROPERTY_FORM.nid();
 
         // Stated parents of every concept in the catalog family, found by walking down from the root.
         Map<Long, Set<Long>> children = new HashMap<>();
@@ -350,7 +352,7 @@ public final class ElmCatalog {
 
         // The raw position records, by the node kind they are about.
         Map<Long, List<Object[]>> rawByKind = new HashMap<>();
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.ELM_TYPE_POSITION_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.ELM_TYPE_POSITION_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isPresent()) {
                 rawByKind.computeIfAbsent(semantic.referencedComponentNid(), k -> new ArrayList<>())
@@ -362,8 +364,8 @@ public final class ElmCatalog {
         // root that has position records itself or somewhere below it.
         Set<Long> kindNids = new HashSet<>();
         for (long child : children.getOrDefault(rootNid, Set.of())) {
-            if (child == IkeTerms.ELM_POSITION.nid() || child == IkeTerms.ELM_PRIMITIVE.nid()
-                    || child == IkeTerms.ELM_EXTERNAL_TYPE.nid()) {
+            if (child == IkeConcept.ELM_POSITION.nid() || child == IkeConcept.ELM_PRIMITIVE.nid()
+                    || child == IkeConcept.ELM_EXTERNAL_TYPE.nid()) {
                 continue;
             }
             Set<Long> below = new HashSet<>();
@@ -391,11 +393,11 @@ public final class ElmCatalog {
         for (NodeKind kind : kindsByNid.values()) {
             List<PositionRule> own = new ArrayList<>();
             for (Object[] raw : rawByKind.getOrDefault(kind.concept().nid(), List.of())) {
-                EntityProxy.Concept position = (EntityProxy.Concept) raw[0];
-                EntityProxy.Concept valueTypeConcept = (EntityProxy.Concept) raw[1];
+                ConceptFacade position = (EntityProxy.Concept) raw[0];
+                ConceptFacade valueTypeConcept = (EntityProxy.Concept) raw[1];
                 int minimum = (Integer) raw[2];
                 int maximum = (Integer) raw[3];
-                EntityProxy.Concept form = (EntityProxy.Concept) raw[5];
+                ConceptFacade form = (EntityProxy.Concept) raw[5];
                 String positionName = positionNames.computeIfAbsent(position.nid(),
                         nid -> positionNameOf(names, position));
                 ValueType valueType = valueTypeOf(valueTypeConcept, names, parents, children, kindsByNid, enumerations);
@@ -420,14 +422,14 @@ public final class ElmCatalog {
                 base = Optional.of(shell(parent, names, parents, kindNids, kindsByNid, kindsByName));
             }
         }
-        EntityProxy.Concept concept = EntityProxy.Concept.make(kindNid);
+        ConceptFacade concept = EntityProxy.Concept.make(kindNid);
         NodeKind kind = new NodeKind(kindNameOf(names, concept), concept, base);
         kindsByNid.put(kindNid, kind);
         kindsByName.put(kind.name(), kind);
         return kind;
     }
 
-    private static ValueType valueTypeOf(EntityProxy.Concept concept, LanguageCalculator names,
+    private static ValueType valueTypeOf(ConceptFacade concept, LanguageCalculator names,
                                          Map<Long, Set<Long>> parents, Map<Long, Set<Long>> children,
                                          Map<Long, NodeKind> kindsByNid, Map<Long, EnumerationValue> enumerations) {
         long nid = concept.nid();
@@ -436,19 +438,19 @@ public final class ElmCatalog {
             return new KindValue(kind);
         }
         Set<Long> conceptParents = parents.getOrDefault(nid, Set.of());
-        if (conceptParents.contains(IkeTerms.ELM_PRIMITIVE.nid())) {
+        if (conceptParents.contains(IkeConcept.ELM_PRIMITIVE.nid())) {
             String label = labelOf(names, concept);
             return new PrimitiveValue(stripTag(label).substring("ELM primitive ".length()), concept);
         }
-        if (conceptParents.contains(IkeTerms.ELM_EXTERNAL_TYPE.nid())) {
+        if (conceptParents.contains(IkeConcept.ELM_EXTERNAL_TYPE.nid())) {
             return new ExternalValue(concept);
         }
         EnumerationValue enumeration = enumerations.get(nid);
         if (enumeration == null) {
             String enumerationLabel = stripTag(labelOf(names, concept));
-            Map<String, EntityProxy.Concept> byName = new LinkedHashMap<>();
+            Map<String, ConceptFacade> byName = new LinkedHashMap<>();
             for (long valueNid : children.getOrDefault(nid, Set.of())) {
-                EntityProxy.Concept value = EntityProxy.Concept.make(valueNid);
+                ConceptFacade value = EntityProxy.Concept.make(valueNid);
                 String valueLabel = stripTag(labelOf(names, value));
                 byName.put(valueLabel.startsWith(enumerationLabel + " ")
                         ? valueLabel.substring(enumerationLabel.length() + 1) : valueLabel, value);
@@ -488,17 +490,17 @@ public final class ElmCatalog {
         }
     }
 
-    private static String labelOf(LanguageCalculator names, EntityProxy.Concept concept) {
+    private static String labelOf(LanguageCalculator names, ConceptFacade concept) {
         return names.getFullyQualifiedNameText(concept)
                 .orElseThrow(() -> new IllegalStateException("No fully qualified name for " + concept.nid()));
     }
 
-    private static String kindNameOf(LanguageCalculator names, EntityProxy.Concept concept) {
+    private static String kindNameOf(LanguageCalculator names, ConceptFacade concept) {
         String label = labelOf(names, concept);
         return stripTag(label).substring("ELM ".length());
     }
 
-    private static String positionNameOf(LanguageCalculator names, EntityProxy.Concept concept) {
+    private static String positionNameOf(LanguageCalculator names, ConceptFacade concept) {
         String label = stripTag(labelOf(names, concept)).substring("ELM ".length());
         int comma = label.indexOf(", ");
         if (comma >= 0) {
@@ -544,7 +546,7 @@ public final class ElmCatalog {
         private static Set<Long> statedParents(StampCalculator calculator, long conceptNid) {
             Set<Long> parents = new HashSet<>();
             calculator.forEachSemanticVersionForComponentOfPattern(EntityProxy.Concept.make(conceptNid),
-                    KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                    KernelPattern.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                     (semanticVersion, entityVersion, patternVersion) -> {
                         DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                         AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);

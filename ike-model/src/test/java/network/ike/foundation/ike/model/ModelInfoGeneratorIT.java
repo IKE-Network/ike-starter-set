@@ -24,9 +24,12 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.FieldDefinitionForEntity;
 import dev.ikm.tinkar.entity.PatternEntityVersion;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.PatternFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.model.ModelInfoFile.ClassInfo;
 import network.ike.foundation.ike.model.ModelInfoFile.Element;
 import network.ike.foundation.ike.writer.StoreWriter;
@@ -63,13 +66,13 @@ class ModelInfoGeneratorIT {
         new ModelImporter(calculator).importModel(ModelInfoFile.readShipped("system-modelinfo.xml"), Store.nextStamp());
     }
 
-    private static void mark(StoreWriter writer, EntityProxy.Pattern pattern, String model, boolean retrievable,
-                             EntityProxy.Concept codeField) {
+    private static void mark(StoreWriter writer, PatternFacade pattern, String model, boolean retrievable,
+                             ConceptFacade codeField) {
         writer.semantic(PublicIds.of(UuidT5Generator.get(pattern.publicId().leastUuid(), "class mark " + model)),
-                IkeTerms.MODEL_CLASS_MARK_PATTERN, pattern.nid(), Lists.immutable.of(model, retrievable, codeField));
+                IkePattern.MODEL_CLASS_MARK_PATTERN, pattern.nid(), Lists.immutable.of(model, retrievable, codeField));
     }
 
-    private static List<ImmutableList<Object>> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
+    private static List<ImmutableList<Object>> semanticsAbout(long componentNid, PatternFacade pattern) {
         List<ImmutableList<Object>> fields = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
@@ -80,7 +83,7 @@ class ModelInfoGeneratorIT {
         return fields;
     }
 
-    private static Set<String> fieldNames(EntityProxy.Pattern pattern, ModelInfoGenerator generator) {
+    private static Set<String> fieldNames(PatternFacade pattern, ModelInfoGenerator generator) {
         Set<String> names = new HashSet<>();
         Latest<PatternEntityVersion> latest = calculator.latest(pattern.nid());
         for (FieldDefinitionForEntity field : latest.get().fieldDefinitions()) {
@@ -93,10 +96,10 @@ class ModelInfoGeneratorIT {
     @DisplayName("A marked family writes as model information that imports back to its patterns and fields")
     void aMarkedFamilyWritesAsModelInformationThatImportsBackToItsPatterns() throws Exception {
         StoreWriter writer = new StoreWriter(calculator, Store.nextStamp());
-        mark(writer, IkeTerms.UCUM_UNIT_PATTERN, "UCUM", false, IkeTerms.UCUM_CODE);
-        mark(writer, IkeTerms.UCUM_PREFIX_PATTERN, "UCUM", false, IkeTerms.UCUM_CODE);
+        mark(writer, IkePattern.UCUM_UNIT_PATTERN, "UCUM", false, IkeConcept.UCUM_CODE);
+        mark(writer, IkePattern.UCUM_PREFIX_PATTERN, "UCUM", false, IkeConcept.UCUM_CODE);
         ModelInfoGenerator generator = new ModelInfoGenerator(calculator);
-        assertTrue(generator.isMarked(IkeTerms.UCUM_UNIT_PATTERN.nid(), "UCUM"));
+        assertTrue(generator.isMarked(IkePattern.UCUM_UNIT_PATTERN.nid(), "UCUM"));
 
         String xml = generator.write("UCUM", "2.2", "urn:ike:model:ucum");
         ModelInfoFile file = ModelInfoFile.readValidated(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
@@ -106,7 +109,7 @@ class ModelInfoGeneratorIT {
         assertEquals(2, file.classes().size());
         ClassInfo unit = file.classNamed("UCUM.UCUM Unit").orElseThrow();
         assertTrue(unit.identifier().startsWith("urn:uuid:"), "the class carries a UUID identifier");
-        assertTrue(IkeTerms.UCUM_UNIT_PATTERN.publicId().contains(
+        assertTrue(IkePattern.UCUM_UNIT_PATTERN.publicId().contains(
                         UUID.fromString(unit.identifier().substring("urn:uuid:".length()))),
                 "the class carries the pattern's identity");
         assertEquals("UCUM code", unit.primaryCodePath());
@@ -121,25 +124,25 @@ class ModelInfoGeneratorIT {
         assertEquals(2, report.classes());
         assertEquals(0, report.conceptsMade(), "the classes are the patterns; no concept is made");
         assertEquals(15, report.elements());
-        List<ImmutableList<Object>> records = semanticsAbout(IkeTerms.UCUM_UNIT_PATTERN.nid(), IkeTerms.MODEL_CLASS_PATTERN);
+        List<ImmutableList<Object>> records = semanticsAbout(IkePattern.UCUM_UNIT_PATTERN.nid(), IkePattern.MODEL_CLASS_PATTERN);
         assertEquals(1, records.size(), "the class record hangs on the pattern");
         assertEquals("UCUM.UCUM Unit", records.get(0).get(2));
         assertEquals(PrimitiveData.nid(ModelIdentity.model("UCUM", "2.2")), ((EntityFacade) records.get(0).get(15)).nid());
 
         Set<String> elements = new HashSet<>();
-        for (ImmutableList<Object> record : semanticsAbout(IkeTerms.UCUM_UNIT_PATTERN.nid(), IkeTerms.MODEL_ELEMENT_PATTERN)) {
+        for (ImmutableList<Object> record : semanticsAbout(IkePattern.UCUM_UNIT_PATTERN.nid(), IkePattern.MODEL_ELEMENT_PATTERN)) {
             elements.add((String) record.get(0));
             if (record.get(0).equals("UCUM code")) {
-                assertEquals(IkeTerms.ELM_SYSTEM_STRING.nid(), ((EntityFacade) record.get(2)).nid());
+                assertEquals(IkeConcept.ELM_SYSTEM_STRING.nid(), ((EntityFacade) record.get(2)).nid());
             }
         }
-        assertEquals(fieldNames(IkeTerms.UCUM_UNIT_PATTERN, generator), elements, "every element is a field of the pattern");
+        assertEquals(fieldNames(IkePattern.UCUM_UNIT_PATTERN, generator), elements, "every element is a field of the pattern");
 
         ModelTypes types = ModelTypes.load(calculator);
         ModelTypes.Model model = types.model("UCUM", "2.2").orElseThrow();
-        assertEquals(IkeTerms.UCUM_UNIT_PATTERN.nid(), types.classOf(model, "UCUM Unit").orElseThrow().nid(),
+        assertEquals(IkePattern.UCUM_UNIT_PATTERN.nid(), types.classOf(model, "UCUM Unit").orElseThrow().nid(),
                 "a library's type name resolves to the pattern");
-        assertEquals("{urn:ike:model:ucum}UCUM Unit", types.qualifiedName(EntityProxy.Concept.make(IkeTerms.UCUM_UNIT_PATTERN.nid())).orElseThrow());
+        assertEquals("{urn:ike:model:ucum}UCUM Unit", types.qualifiedName(EntityProxy.Concept.make(IkePattern.UCUM_UNIT_PATTERN.nid())).orElseThrow());
     }
 
     private static Element element(ClassInfo clazz, String name) {

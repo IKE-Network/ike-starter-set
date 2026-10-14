@@ -15,11 +15,12 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.terms.EntityProxy;
+import dev.ikm.tinkar.terms.ConceptFacade;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.PatternFacade;
 
 /**
  * The data type pass (IKE-Network/ike-issues#1113): each of the 23 ELM System types, concepts of
@@ -45,18 +46,18 @@ final class ElmTypeSet {
      */
     static void compose(KnowledgeSet set) {
         ActiveStamp inception = Ike.INCEPTION;
-        EntityProxy.Pattern relations = set.patternRef(ExpressionLanguageSet.RELATION_PATTERN_FQN);
-        EntityProxy.Concept identity = set.conceptRef("Identity (IkeFoundation)");
-        EntityProxy.Concept equivalence = set.conceptRef("Logical equivalence (IkeFoundation)");
-        EntityProxy.Concept extension = set.conceptRef("Definitional extension (IkeFoundation)");
+        PatternFacade relations = set.patternRef(ExpressionLanguageSet.RELATION_PATTERN_FQN);
+        ConceptFacade identity = set.conceptRef("Identity (IkeFoundation)");
+        ConceptFacade equivalence = set.conceptRef("Logical equivalence (IkeFoundation)");
+        ConceptFacade extension = set.conceptRef("Definitional extension (IkeFoundation)");
 
-        EntityProxy.Concept measureKind = set.conceptRef("Measure kind (IkeFoundation)");
-        EntityProxy.Concept presenceMeasureKind = set.conceptRef("Presence measure kind (IkeFoundation)");
-        EntityProxy.Concept conceptKind = set.conceptRef("Concept kind (IkeFoundation)");
-        EntityProxy.Concept conceptSetKind = set.conceptRef("Concept set kind (IkeFoundation)");
-        EntityProxy.Concept operandKind = set.conceptRef("Operand kind (IkeFoundation)");
-        EntityProxy.Concept measureRatio = set.conceptRef("Measure ratio (IkeFoundation)");
-        EntityProxy.Concept string = KernelTerm.STRING;
+        ConceptFacade measureKind = set.conceptRef("Measure kind (IkeFoundation)");
+        ConceptFacade presenceMeasureKind = set.conceptRef("Presence measure kind (IkeFoundation)");
+        ConceptFacade conceptKind = set.conceptRef("Concept kind (IkeFoundation)");
+        ConceptFacade conceptSetKind = set.conceptRef("Concept set kind (IkeFoundation)");
+        ConceptFacade operandKind = set.conceptRef("Operand kind (IkeFoundation)");
+        ConceptFacade measureRatio = set.conceptRef("Measure ratio (IkeFoundation)");
+        ConceptFacade string = KernelConcept.STRING;
 
         // ── Numbers: measures on the dimensionless number ──
         relate(set, inception, relations, "Integer", measureKind, extension,
@@ -143,8 +144,8 @@ final class ElmTypeSet {
      * catalog declares, gains a relation semantic naming its target and its kind. The reason is
      * the seed of the semantic's identity and the plain words the record keeps.
      */
-    private static void relate(KnowledgeSet set, ActiveStamp inception, EntityProxy.Pattern relations,
-                               String systemType, EntityProxy.Concept target, EntityProxy.Concept kind,
+    private static void relate(KnowledgeSet set, ActiveStamp inception, PatternFacade relations,
+                               String systemType, ConceptFacade target, ConceptFacade kind,
                                String reason) {
         set.concept("ELM System " + systemType + " (ELM)").at(inception)
                 .semantic(relations, PublicIds.of(set.uuidFor(

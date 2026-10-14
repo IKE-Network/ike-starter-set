@@ -15,11 +15,11 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.PatternFacade;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
  * Curated, long-form AsciiDoc manuscript content, attached to this set's own hub
@@ -66,7 +66,7 @@ final class NarrativeContentSet {
         // The shared prose-element pattern, declared at its foundation home by
         // ProseElementSet (IKE-Network/ike-issues#937) — the registry answers the
         // declared identity because ProseElementSet composes before this section.
-        EntityProxy.Pattern proseElementPattern =
+        PatternFacade proseElementPattern =
                 set.patternRef(ProseElementSet.PROSE_ELEMENT_PATTERN_FQN);
 
         // The guide's five manuscript chapters (IKE-Network/ike-issues#879), each attached to
@@ -465,7 +465,7 @@ final class NarrativeContentSet {
                         separate, disjoint one: Komet's own pattern-authoring UI (`PatternFieldsController`,
                         kview) draws its "choose a data type" list from this branch, while a pattern's real
                         field declaration draws its `dataType` tag from k:DisplayFields[] instead
-                        (`KernelTerm.LONG`, `KernelTerm.STRING`, `KernelTerm.COMPONENT_FIELD`, and so on, throughout
+                        (`KernelConcept.LONG`, `KernelConcept.STRING`, `KernelConcept.COMPONENT_FIELD`, and so on, throughout
                         this starter set's own source) — two families that happen to describe the same idea
                         twice, not one. Reparented under k:Legacy[] here as a deprecation signal; the
                         disconnect on the komet side is tracked as ikmdev/komet#880.

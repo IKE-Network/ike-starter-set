@@ -17,8 +17,8 @@ package network.ike.foundation.ike.evaluate;
 
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
-import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.ConceptFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import network.ike.foundation.ike.ucum.UcumReduction;
 import network.ike.foundation.ike.ucum.UcumSyntaxException;
 import network.ike.foundation.ike.ucum.UcumTerm;
@@ -45,15 +45,15 @@ final class Units {
     /** The dimension of calendar time: months, which no number of seconds fixes. */
     static final String CALENDAR_TIME = "T.calendar";
 
-    private static final Map<String, EntityProxy.Concept> CALENDAR_WORDS = Map.ofEntries(
-            Map.entry("year", IkeTerms.YEAR), Map.entry("years", IkeTerms.YEAR),
-            Map.entry("month", IkeTerms.MONTH), Map.entry("months", IkeTerms.MONTH),
-            Map.entry("week", IkeTerms.WEEK), Map.entry("weeks", IkeTerms.WEEK),
-            Map.entry("day", IkeTerms.DAY), Map.entry("days", IkeTerms.DAY),
-            Map.entry("hour", IkeTerms.HOUR), Map.entry("hours", IkeTerms.HOUR),
-            Map.entry("minute", IkeTerms.MINUTE), Map.entry("minutes", IkeTerms.MINUTE),
-            Map.entry("second", IkeTerms.SECOND), Map.entry("seconds", IkeTerms.SECOND),
-            Map.entry("millisecond", IkeTerms.MILLISECOND), Map.entry("milliseconds", IkeTerms.MILLISECOND));
+    private static final Map<String, ConceptFacade> CALENDAR_WORDS = Map.ofEntries(
+            Map.entry("year", IkeConcept.YEAR), Map.entry("years", IkeConcept.YEAR),
+            Map.entry("month", IkeConcept.MONTH), Map.entry("months", IkeConcept.MONTH),
+            Map.entry("week", IkeConcept.WEEK), Map.entry("weeks", IkeConcept.WEEK),
+            Map.entry("day", IkeConcept.DAY), Map.entry("days", IkeConcept.DAY),
+            Map.entry("hour", IkeConcept.HOUR), Map.entry("hours", IkeConcept.HOUR),
+            Map.entry("minute", IkeConcept.MINUTE), Map.entry("minutes", IkeConcept.MINUTE),
+            Map.entry("second", IkeConcept.SECOND), Map.entry("seconds", IkeConcept.SECOND),
+            Map.entry("millisecond", IkeConcept.MILLISECOND), Map.entry("milliseconds", IkeConcept.MILLISECOND));
 
     private final UcumUnits units;
     private final Map<String, MeasureSemantic> read = new HashMap<>();
@@ -77,7 +77,7 @@ final class Units {
         if (found != null) {
             return found;
         }
-        EntityProxy.Concept calendar = CALENDAR_WORDS.get(unit);
+        ConceptFacade calendar = CALENDAR_WORDS.get(unit);
         if (calendar != null) {
             MeasureSemantic word = calendarSemantic(calendar);
             found = MeasureSemantic.unit(word.unitNid(), word.dimension(), word.magnitude(), unit);
@@ -100,30 +100,30 @@ final class Units {
     }
 
     /** IKE's unit of time as a semantic: a span of seconds, or of calendar months. */
-    static MeasureSemantic calendarSemantic(EntityProxy.Concept unit) {
-        if (unit.nid() == IkeTerms.YEAR.nid()) {
+    static MeasureSemantic calendarSemantic(ConceptFacade unit) {
+        if (unit.nid() == IkeConcept.YEAR.nid()) {
             return MeasureSemantic.unit(unit.nid(), CALENDAR_TIME, BigDecimal.valueOf(12));
         }
-        if (unit.nid() == IkeTerms.MONTH.nid()) {
+        if (unit.nid() == IkeConcept.MONTH.nid()) {
             return MeasureSemantic.unit(unit.nid(), CALENDAR_TIME, BigDecimal.ONE);
         }
-        if (unit.nid() == IkeTerms.MILLISECOND.nid()) {
+        if (unit.nid() == IkeConcept.MILLISECOND.nid()) {
             return MeasureSemantic.unit(unit.nid(), TIME, new BigDecimal("0.001"));
         }
         return MeasureSemantic.unit(unit.nid(), TIME, BigDecimal.valueOf(seconds(unit)));
     }
 
-    private static long seconds(EntityProxy.Concept unit) {
-        if (unit.nid() == IkeTerms.WEEK.nid()) {
+    private static long seconds(ConceptFacade unit) {
+        if (unit.nid() == IkeConcept.WEEK.nid()) {
             return 604_800L;
         }
-        if (unit.nid() == IkeTerms.DAY.nid()) {
+        if (unit.nid() == IkeConcept.DAY.nid()) {
             return 86_400L;
         }
-        if (unit.nid() == IkeTerms.HOUR.nid()) {
+        if (unit.nid() == IkeConcept.HOUR.nid()) {
             return 3_600L;
         }
-        if (unit.nid() == IkeTerms.MINUTE.nid()) {
+        if (unit.nid() == IkeConcept.MINUTE.nid()) {
             return 60L;
         }
         return 1L;
@@ -131,7 +131,7 @@ final class Units {
 
     /** The semantic of a span of milliseconds, for widths and differences of instants. */
     static MeasureSemantic milliseconds() {
-        return MeasureSemantic.unit(IkeTerms.MILLISECOND.nid(), TIME, new BigDecimal("0.001"), "ms");
+        return MeasureSemantic.unit(IkeConcept.MILLISECOND.nid(), TIME, new BigDecimal("0.001"), "ms");
     }
 
     /**
@@ -238,22 +238,22 @@ final class Units {
      */
     static Resolution unitResolution(MeasureSemantic semantic) {
         long nid = semantic.unitNid();
-        if (nid == IkeTerms.YEAR.nid()) {
+        if (nid == IkeConcept.YEAR.nid()) {
             return Resolution.YEAR;
         }
-        if (nid == IkeTerms.MONTH.nid()) {
+        if (nid == IkeConcept.MONTH.nid()) {
             return Resolution.MONTH;
         }
-        if (nid == IkeTerms.WEEK.nid() || nid == IkeTerms.DAY.nid()) {
+        if (nid == IkeConcept.WEEK.nid() || nid == IkeConcept.DAY.nid()) {
             return Resolution.DAY;
         }
-        if (nid == IkeTerms.HOUR.nid()) {
+        if (nid == IkeConcept.HOUR.nid()) {
             return Resolution.HOUR;
         }
-        if (nid == IkeTerms.MINUTE.nid()) {
+        if (nid == IkeConcept.MINUTE.nid()) {
             return Resolution.MINUTE;
         }
-        if (nid == IkeTerms.SECOND.nid()) {
+        if (nid == IkeConcept.SECOND.nid()) {
             return Resolution.SECOND;
         }
         return Resolution.MILLISECOND;

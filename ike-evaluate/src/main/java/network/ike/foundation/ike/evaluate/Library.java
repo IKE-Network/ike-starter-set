@@ -23,7 +23,7 @@ import dev.ikm.tinkar.entity.EntityHandle;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.EntityFacade;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.elm.ElmCatalog;
 import network.ike.foundation.ike.elm.ElmIdentity;
 
@@ -94,7 +94,7 @@ final class Library {
         Library library = new Library(libraryId, PrimitiveData.nid(libraryPublicId), calculator, catalog);
         long recordNid = PrimitiveData.get().hasPublicId(ElmIdentity.libraryRecord(libraryId))
                 ? PrimitiveData.nid(ElmIdentity.libraryRecord(libraryId)) : Integer.MIN_VALUE;
-        EntityService.get().forEachSemanticForComponentOfPattern(library.nid, IkeTerms.ELM_TREE_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticForComponentOfPattern(library.nid, IkePattern.ELM_TREE_PATTERN.nid(), semantic -> {
             if (semantic.nid() == recordNid) {
                 return;
             }
@@ -130,7 +130,7 @@ final class Library {
     Map<ReferenceKey, Long> referencesOf(Definition definition) {
         return references.computeIfAbsent(definition.nid(), nid -> {
             Map<ReferenceKey, Long> found = new HashMap<>();
-            EntityService.get().forEachSemanticForComponentOfPattern(nid, IkeTerms.ELM_REFERENCE_PATTERN.nid(), semantic -> {
+            EntityService.get().forEachSemanticForComponentOfPattern(nid, IkePattern.ELM_REFERENCE_PATTERN.nid(), semantic -> {
                 Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                 if (latest.isPresent()) {
                     long kindNid = ((EntityFacade) latest.get().fieldValues().get(0)).nid();

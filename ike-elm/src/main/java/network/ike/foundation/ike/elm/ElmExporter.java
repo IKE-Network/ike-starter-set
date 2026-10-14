@@ -26,7 +26,8 @@ import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.model.ModelTypes;
 import network.ike.foundation.ike.elm.ElmCatalog.EnumerationValue;
 import network.ike.foundation.ike.elm.ElmCatalog.Form;
@@ -89,7 +90,7 @@ public final class ElmExporter {
         for (Map.Entry<String, String> container : ElmDocument.containers().entrySet()) {
             containerOfKind.put(container.getValue(), container.getKey());
         }
-        EntityService.get().forEachSemanticForComponentOfPattern(libraryNid, IkeTerms.ELM_TREE_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticForComponentOfPattern(libraryNid, IkePattern.ELM_TREE_PATTERN.nid(), semantic -> {
             latestTree(semantic.nid()).ifPresent(tree -> {
                 Optional<NodeKind> root = catalog.kindOf(tree.root().getMeaningNid());
                 if (root.isEmpty()) {
@@ -163,9 +164,9 @@ public final class ElmExporter {
                 for (int i = 0; i < successors.size(); i++) {
                     EntityVertex argument = tree.vertex(successors.get(i));
                     long meaning = argument.getMeaningNid();
-                    int place = meaning == IkeTerms.ELM_FIRST_OPERAND_POSITION.nid() ? 0
-                            : meaning == IkeTerms.ELM_SECOND_OPERAND_POSITION.nid() ? 1
-                            : meaning == IkeTerms.ELM_THIRD_OPERAND_POSITION.nid() ? 2 : -1;
+                    int place = meaning == IkeConcept.ELM_FIRST_OPERAND_POSITION.nid() ? 0
+                            : meaning == IkeConcept.ELM_SECOND_OPERAND_POSITION.nid() ? 1
+                            : meaning == IkeConcept.ELM_THIRD_OPERAND_POSITION.nid() ? 2 : -1;
                     if (place >= 0) {
                         ImmutableIntList held = tree.successors(argument.vertexIndex());
                         if (!held.isEmpty()) {
@@ -186,7 +187,7 @@ public final class ElmExporter {
                     continue;
                 }
                 if (rule.isList()) {
-                    Object list = argument.properties().get(IkeTerms.ELM_LIST_ITEMS.nid());
+                    Object list = argument.properties().get(IkeConcept.ELM_LIST_ITEMS.nid());
                     if (list instanceof EntityProxy.Semantic semantic) {
                         Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                         if (latest.isPresent() && latest.get().fieldValues().get(0) instanceof LongIdList items) {

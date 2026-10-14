@@ -15,11 +15,14 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.KernelPattern;
+import dev.ikm.tinkar.terms.PatternFacade;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.ConceptBuilder;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
@@ -125,7 +128,7 @@ final class ExpressionLanguageSet {
     }
 
     /** One logic: its language concept, its dialect pattern, and the label its ids use. */
-    private record Logic(String label, EntityProxy.Concept language, EntityProxy.Pattern dialectPattern) {
+    private record Logic(String label, ConceptFacade language, PatternFacade dialectPattern) {
     }
 
     /**
@@ -146,7 +149,7 @@ final class ExpressionLanguageSet {
      * @return the scope, for chaining
      */
     private static ConceptBuilder.ActiveScope keyword(ConceptBuilder.ActiveScope scope, KnowledgeSet set,
-            EntityProxy.Pattern keywords, Logic logic, String keyword, EntityProxy.Concept role,
+            PatternFacade keywords, Logic logic, String keyword, ConceptFacade role,
             boolean preferred, String owner) {
         String descriptionId = "Description: " + logic.label() + " '" + keyword + "' on " + owner;
         return scope
@@ -154,13 +157,13 @@ final class ExpressionLanguageSet {
                         PublicIds.of(set.uuidFor(
                                 "Keyword binding: " + logic.label() + " '" + keyword + "' names " + owner)),
                         logic.language(), keyword, role)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(set.uuidFor(descriptionId)),
-                        KernelTerm.ENGLISH_LANGUAGE, keyword, set.conceptRef("Description case sensitive"),
-                        KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(set.uuidFor(descriptionId)),
+                        KernelConcept.ENGLISH_LANGUAGE, keyword, set.conceptRef("Description case sensitive"),
+                        KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE)
                 .semanticOn(PublicIds.of(set.uuidFor(descriptionId)), logic.dialectPattern(),
                         PublicIds.of(set.uuidFor(
                                 "Dialect: " + logic.label() + " '" + keyword + "' on " + owner)),
-                        preferred ? KernelTerm.PREFERRED : EntityProxy.Concept.make("Acceptable (SOLOR)", PublicIds.of("12b9e103-060e-3256-9982-18c1191af60e")));
+                        preferred ? KernelConcept.PREFERRED : EntityProxy.Concept.make("Acceptable (SOLOR)", PublicIds.of("12b9e103-060e-3256-9982-18c1191af60e")));
     }
 
     /**
@@ -173,7 +176,7 @@ final class ExpressionLanguageSet {
         // (IKE-Network/ike-issues#894).
         ActiveStamp inception = Ike.INCEPTION;
 
-        EntityProxy.Pattern proseElementPattern =
+        PatternFacade proseElementPattern =
                 set.patternRef(ProseElementSet.PROSE_ELEMENT_PATTERN_FQN);
 
         // ── Family root ─────────────────────────────────────────────────
@@ -212,7 +215,7 @@ final class ExpressionLanguageSet {
                         of thing. NOT gets no generic, because EL++ has none, sets have
                         k:SetDifference[], and k:PresenceNOT[] swaps a presence value. That is the check
                         that the shape is right.""");
-        EntityProxy.Concept modelRoot = set.conceptRef("Expression language model (IkeFoundation)");
+        ConceptFacade modelRoot = set.conceptRef("Expression language model (IkeFoundation)");
 
         // ── Logics and their dialects ───────────────────────────────────
         set.concept("Expression language (IkeFoundation)").at(inception)
@@ -223,7 +226,7 @@ final class ExpressionLanguageSet {
                         + " are exactly the constructs its keyword bindings name. Each has a"
                         + " dialect of English through which its own spellings display.")
                 .isA(modelRoot);
-        EntityProxy.Concept expressionLanguage = set.conceptRef("Expression language (IkeFoundation)");
+        ConceptFacade expressionLanguage = set.conceptRef("Expression language (IkeFoundation)");
 
         set.concept("Clinical Quality Language (IkeFoundation)").at(inception)
                 .synonym("Clinical Quality Language")
@@ -276,24 +279,24 @@ final class ExpressionLanguageSet {
                 .isA(set.conceptRef("English Dialect"));
 
         set.pattern(CQL_DIALECT_PATTERN_FQN).at(inception)
-                .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                .meaning(KernelConcept.DESCRIPTION_ACCEPTABILITY)
                 .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
-                .field(set.conceptRef("CQL dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
-                        KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("CQL dialect (IkeFoundation)"), KernelConcept.DESCRIPTION_ACCEPTABILITY,
+                        KernelConcept.COMPONENT_FIELD)
                 .definition("Records whether a description is preferred or acceptable in the CQL"
                         + " dialect. One field: that description's acceptability for this dialect.");
         set.pattern(ECL_DIALECT_PATTERN_FQN).at(inception)
-                .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                .meaning(KernelConcept.DESCRIPTION_ACCEPTABILITY)
                 .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
-                .field(set.conceptRef("ECL dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
-                        KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("ECL dialect (IkeFoundation)"), KernelConcept.DESCRIPTION_ACCEPTABILITY,
+                        KernelConcept.COMPONENT_FIELD)
                 .definition("Records whether a description is preferred or acceptable in the ECL"
                         + " dialect. One field: that description's acceptability for this dialect.");
         set.pattern(EL_DIALECT_PATTERN_FQN).at(inception)
-                .meaning(KernelTerm.DESCRIPTION_ACCEPTABILITY)
+                .meaning(KernelConcept.DESCRIPTION_ACCEPTABILITY)
                 .purpose(EntityProxy.Concept.make("Description semantic (SOLOR)", PublicIds.of("81487d5f-6115-51e2-a3b3-93d783888eb8")))
-                .field(set.conceptRef("EL++ dialect (IkeFoundation)"), KernelTerm.DESCRIPTION_ACCEPTABILITY,
-                        KernelTerm.COMPONENT_FIELD)
+                .field(set.conceptRef("EL++ dialect (IkeFoundation)"), KernelConcept.DESCRIPTION_ACCEPTABILITY,
+                        KernelConcept.COMPONENT_FIELD)
                 .definition("Records whether a description is preferred or acceptable in the EL++"
                         + " dialect. One field: that description's acceptability for this dialect.");
 
@@ -313,21 +316,21 @@ final class ExpressionLanguageSet {
                         + " of its members: Operator keyword, Type keyword, Unit keyword, Literal"
                         + " keyword, Function name, and Declaration keyword.")
                 .isA(modelRoot);
-        EntityProxy.Concept lexicalRole = set.conceptRef("Lexical role (IkeFoundation)");
+        ConceptFacade lexicalRole = set.conceptRef("Lexical role (IkeFoundation)");
 
         set.concept("Operator keyword (IkeFoundation)").at(inception)
                 .synonym("Operator keyword")
                 .definition("A lexical role: the keyword names an operation applied to operands, so"
                         + " the binding names a construct.")
                 .isA(lexicalRole);
-        EntityProxy.Concept operatorKeyword = set.conceptRef("Operator keyword (IkeFoundation)");
+        ConceptFacade operatorKeyword = set.conceptRef("Operator keyword (IkeFoundation)");
 
         set.concept("Type keyword (IkeFoundation)").at(inception)
                 .synonym("Type keyword")
                 .definition("A lexical role: the keyword names a type of the logic, so the binding"
                         + " names the operand kind that type is represented as.")
                 .isA(lexicalRole);
-        EntityProxy.Concept typeKeyword = set.conceptRef("Type keyword (IkeFoundation)");
+        ConceptFacade typeKeyword = set.conceptRef("Type keyword (IkeFoundation)");
 
         set.concept("Unit keyword (IkeFoundation)").at(inception)
                 .synonym("Unit keyword")
@@ -335,14 +338,14 @@ final class ExpressionLanguageSet {
                         + " precision. Singular and plural spellings are two bindings on one unit"
                         + " concept.")
                 .isA(lexicalRole);
-        EntityProxy.Concept unitKeyword = set.conceptRef("Unit keyword (IkeFoundation)");
+        ConceptFacade unitKeyword = set.conceptRef("Unit keyword (IkeFoundation)");
 
         set.concept("Literal keyword (IkeFoundation)").at(inception)
                 .synonym("Literal keyword")
                 .definition("A lexical role: the keyword is itself a fixed value of the logic, so"
                         + " the binding names the literal that carries that value's bounds.")
                 .isA(lexicalRole);
-        EntityProxy.Concept literalKeyword = set.conceptRef("Literal keyword (IkeFoundation)");
+        ConceptFacade literalKeyword = set.conceptRef("Literal keyword (IkeFoundation)");
 
         set.concept("Function name (IkeFoundation)").at(inception)
                 .synonym("Function name")
@@ -352,7 +355,7 @@ final class ExpressionLanguageSet {
                         + " The binding is the same as an operator keyword's; only the spelling on"
                         + " the page differs.")
                 .isA(lexicalRole);
-        EntityProxy.Concept functionName = set.conceptRef("Function name (IkeFoundation)");
+        ConceptFacade functionName = set.conceptRef("Function name (IkeFoundation)");
 
         set.concept("Declaration keyword (IkeFoundation)").at(inception)
                 .synonym("Declaration keyword")
@@ -364,7 +367,7 @@ final class ExpressionLanguageSet {
                         + " several equivalent codes is one concept with identifiers in several"
                         + " code systems.")
                 .isA(lexicalRole);
-        EntityProxy.Concept declarationKeyword = set.conceptRef("Declaration keyword (IkeFoundation)");
+        ConceptFacade declarationKeyword = set.conceptRef("Declaration keyword (IkeFoundation)");
 
         // ── Construct relation (closed) ─────────────────────────────────
         set.concept("Construct relation (IkeFoundation)").at(inception)
@@ -379,7 +382,7 @@ final class ExpressionLanguageSet {
                         + " to its generic parent is a different claim, the same idea at another"
                         + " kind, and is not a construct relation.")
                 .isA(modelRoot);
-        EntityProxy.Concept constructRelation = set.conceptRef("Construct relation (IkeFoundation)");
+        ConceptFacade constructRelation = set.conceptRef("Construct relation (IkeFoundation)");
 
         set.concept("Logical equivalence (IkeFoundation)").at(inception)
                 .synonym("Logical equivalence")
@@ -389,7 +392,7 @@ final class ExpressionLanguageSet {
                         + " the inputs are finite, and equality over the conformance corpus for"
                         + " concept sets.")
                 .isA(constructRelation);
-        EntityProxy.Concept logicalEquivalence = set.conceptRef("Logical equivalence (IkeFoundation)");
+        ConceptFacade logicalEquivalence = set.conceptRef("Logical equivalence (IkeFoundation)");
 
         set.concept("Definitional extension (IkeFoundation)").at(inception)
                 .synonym("Definitional extension")
@@ -399,7 +402,7 @@ final class ExpressionLanguageSet {
                         + " extend a core construct that builds classes. The check is that the"
                         + " construct's own evaluation equals its definition over a corpus.")
                 .isA(constructRelation);
-        EntityProxy.Concept definitionalExtension = set.conceptRef("Definitional extension (IkeFoundation)");
+        ConceptFacade definitionalExtension = set.conceptRef("Definitional extension (IkeFoundation)");
 
         set.concept("Conservative extension (IkeFoundation)").at(inception)
                 .synonym("Conservative extension")
@@ -438,7 +441,7 @@ final class ExpressionLanguageSet {
                         + " kind with Concept set"
                         + " kind, Statement set kind, and Subject set kind beneath it.")
                 .isA(modelRoot);
-        EntityProxy.Concept operandKind = set.conceptRef("Operand kind (IkeFoundation)");
+        ConceptFacade operandKind = set.conceptRef("Operand kind (IkeFoundation)");
 
         set.concept("Class kind (IkeFoundation)").at(inception)
                 .synonym("Class kind")
@@ -446,7 +449,7 @@ final class ExpressionLanguageSet {
                         + " which is what the EL++ class constructors take and yield. The EL++"
                         + " layer.")
                 .isA(operandKind);
-        EntityProxy.Concept classKind = set.conceptRef("Class kind (IkeFoundation)");
+        ConceptFacade classKind = set.conceptRef("Class kind (IkeFoundation)");
 
         set.concept("Axiom kind (IkeFoundation)").at(inception)
                 .synonym("Axiom kind")
@@ -454,7 +457,7 @@ final class ExpressionLanguageSet {
                         + " former yields: a necessary set, a sufficient set, a disjointness, or an"
                         + " is-a.")
                 .isA(operandKind);
-        EntityProxy.Concept axiomKind = set.conceptRef("Axiom kind (IkeFoundation)");
+        ConceptFacade axiomKind = set.conceptRef("Axiom kind (IkeFoundation)");
 
         set.concept("Concept kind (IkeFoundation)").at(inception)
                 .synonym("Concept kind")
@@ -462,7 +465,7 @@ final class ExpressionLanguageSet {
                         + " statement, the anchor of a Descendant of or Ancestor of, and the value"
                         + " a CQL Code or Concept is represented as.")
                 .isA(operandKind);
-        EntityProxy.Concept conceptKind = set.conceptRef("Concept kind (IkeFoundation)");
+        ConceptFacade conceptKind = set.conceptRef("Concept kind (IkeFoundation)");
 
         set.concept("Set kind (IkeFoundation)").at(inception)
                 .synonym("Set kind")
@@ -471,7 +474,7 @@ final class ExpressionLanguageSet {
                         + " of the members rides on the operands. Its members are Concept set kind,"
                         + " Statement set kind, and Subject set kind.")
                 .isA(operandKind);
-        EntityProxy.Concept setKind = set.conceptRef("Set kind (IkeFoundation)");
+        ConceptFacade setKind = set.conceptRef("Set kind (IkeFoundation)");
         set.concept("Concept set kind (IkeFoundation)").at(inception)
                 .synonym("Concept set kind")
                 .definition("An operand kind: a finite set of concepts computed under a view, which"
@@ -479,7 +482,7 @@ final class ExpressionLanguageSet {
                         + " yield, and what a topic constraint selects statements by. The topic"
                         + " layer.")
                 .isA(setKind);
-        EntityProxy.Concept conceptSetKind = set.conceptRef("Concept set kind (IkeFoundation)");
+        ConceptFacade conceptSetKind = set.conceptRef("Concept set kind (IkeFoundation)");
 
         set.concept("Measure ratio (IkeFoundation)").at(inception)
                 .synonym("Measure ratio")
@@ -512,7 +515,7 @@ final class ExpressionLanguageSet {
                         + " The measure semantic of a measure operator's result must be a concept"
                         + " the knowledge layer already defines.")
                 .isA(operandKind);
-        EntityProxy.Concept measureKind = set.conceptRef("Measure kind (IkeFoundation)");
+        ConceptFacade measureKind = set.conceptRef("Measure kind (IkeFoundation)");
 
         set.concept("Presence measure kind (IkeFoundation)").at(inception)
                 .synonym("Presence measure kind")
@@ -527,7 +530,7 @@ final class ExpressionLanguageSet {
                         + " whole presence frame, both points at once, so it is a value with width"
                         + " and not a third truth value. The presence layer.")
                 .isA(measureKind);
-        EntityProxy.Concept presenceMeasureKind = set.conceptRef("Presence measure kind (IkeFoundation)");
+        ConceptFacade presenceMeasureKind = set.conceptRef("Presence measure kind (IkeFoundation)");
 
         set.concept("Statement set kind (IkeFoundation)").at(inception)
                 .synonym("Statement set kind")
@@ -542,8 +545,8 @@ final class ExpressionLanguageSet {
                 .synonym("Statement kind")
                 .definition("An operand kind: one ANF statement, which is what a criterion tests.")
                 .isA(operandKind);
-        EntityProxy.Concept statementSetKind = set.conceptRef("Statement set kind (IkeFoundation)");
-        EntityProxy.Concept statementKind = set.conceptRef("Statement kind (IkeFoundation)");
+        ConceptFacade statementSetKind = set.conceptRef("Statement set kind (IkeFoundation)");
+        ConceptFacade statementKind = set.conceptRef("Statement kind (IkeFoundation)");
 
         set.concept("Subject set kind (IkeFoundation)").at(inception)
                 .synonym("Subject set kind")
@@ -551,7 +554,7 @@ final class ExpressionLanguageSet {
                         + " over ANF ultimately answers with, the subjects for which a statement"
                         + " set is not empty.")
                 .isA(setKind);
-        EntityProxy.Concept subjectSetKind = set.conceptRef("Subject set kind (IkeFoundation)");
+        ConceptFacade subjectSetKind = set.conceptRef("Subject set kind (IkeFoundation)");
 
         set.concept("Measure list kind (IkeFoundation)").at(inception)
                 .synonym("Measure list kind")
@@ -561,7 +564,7 @@ final class ExpressionLanguageSet {
                         + " aggregate takes, and it is a list rather than a set because a sum or a"
                         + " mean must count every statement.")
                 .isA(operandKind);
-        EntityProxy.Concept measureListKind = set.conceptRef("Measure list kind (IkeFoundation)");
+        ConceptFacade measureListKind = set.conceptRef("Measure list kind (IkeFoundation)");
 
         // ── Arity (closed) ──────────────────────────────────────────────
         set.concept("Arity (IkeFoundation)").at(inception)
@@ -571,7 +574,7 @@ final class ExpressionLanguageSet {
                         + " takes no operands and has no arity; it carries a literal denotation"
                         + " instead. Its members are Unary, Binary, and Variadic.")
                 .isA(modelRoot);
-        EntityProxy.Concept arity = set.conceptRef("Arity (IkeFoundation)");
+        ConceptFacade arity = set.conceptRef("Arity (IkeFoundation)");
 
         set.concept("Unary (IkeFoundation)").at(inception)
                 .synonym("Unary")
@@ -579,28 +582,28 @@ final class ExpressionLanguageSet {
                         + " attribute of an existential restriction, the concept set of a topic"
                         + " constraint, or the criterion of a filter, is unary in its operand.")
                 .isA(arity);
-        EntityProxy.Concept unary = set.conceptRef("Unary (IkeFoundation)");
+        ConceptFacade unary = set.conceptRef("Unary (IkeFoundation)");
 
         set.concept("Binary (IkeFoundation)").at(inception)
                 .synonym("Binary")
                 .definition("An arity: two operands.")
                 .isA(arity);
-        EntityProxy.Concept binary = set.conceptRef("Binary (IkeFoundation)");
+        ConceptFacade binary = set.conceptRef("Binary (IkeFoundation)");
 
         set.concept("Variadic (IkeFoundation)").at(inception)
                 .synonym("Variadic")
                 .definition("An arity: any number of operands, as with the EL++ set formers and the"
                         + " concept-set and statement-set ANDs and ORs.")
                 .isA(arity);
-        EntityProxy.Concept variadic = set.conceptRef("Variadic (IkeFoundation)");
+        ConceptFacade variadic = set.conceptRef("Variadic (IkeFoundation)");
 
         // ── Field-meaning concepts ──────────────────────────────────────
         set.concept("Binding language (IkeFoundation)").at(inception)
                 .synonym("Binding language")
                 .definition("The logic a keyword binding admits the named construct, kind, or"
                         + " literal to.")
-                .isA(KernelTerm.CONCEPT_FIELD);
-        EntityProxy.Concept bindingLanguage = set.conceptRef("Binding language (IkeFoundation)");
+                .isA(KernelConcept.CONCEPT_FIELD);
+        ConceptFacade bindingLanguage = set.conceptRef("Binding language (IkeFoundation)");
 
         set.concept("Keyword text (IkeFoundation)").at(inception)
                 .synonym("Keyword text")
@@ -608,20 +611,20 @@ final class ExpressionLanguageSet {
                         + " the logic's grammar uses. Also the text of the dialect-scoped name the"
                         + " same declaration produces.")
                 .isA(modelRoot);
-        EntityProxy.Concept keywordText = set.conceptRef("Keyword text (IkeFoundation)");
+        ConceptFacade keywordText = set.conceptRef("Keyword text (IkeFoundation)");
 
         set.concept("Core construct (IkeFoundation)").at(inception)
                 .synonym("Core construct")
                 .definition("The construct a relation assertion relates the extending construct to:"
                         + " a construct of the EL++ core.")
-                .isA(KernelTerm.CONCEPT_FIELD);
-        EntityProxy.Concept coreConstruct = set.conceptRef("Core construct (IkeFoundation)");
+                .isA(KernelConcept.CONCEPT_FIELD);
+        ConceptFacade coreConstruct = set.conceptRef("Core construct (IkeFoundation)");
 
         set.concept("Result kind (IkeFoundation)").at(inception)
                 .synonym("Result kind")
                 .definition("The operand kind of the result a construct or a literal yields.")
-                .isA(KernelTerm.CONCEPT_FIELD);
-        EntityProxy.Concept resultKind = set.conceptRef("Result kind (IkeFoundation)");
+                .isA(KernelConcept.CONCEPT_FIELD);
+        ConceptFacade resultKind = set.conceptRef("Result kind (IkeFoundation)");
 
         set.concept("Lower bound value (IkeFoundation)").at(inception)
                 .synonym("Lower bound value")
@@ -746,10 +749,10 @@ final class ExpressionLanguageSet {
                 .meaning(set.conceptRef("Keyword binding (IkeFoundation)"))
                 .purpose(set.conceptRef("Construct admission (IkeFoundation)"))
                 .field(bindingLanguage, set.conceptRef("Language membership (IkeFoundation)"),
-                        KernelTerm.COMPONENT_FIELD)
-                .field(keywordText, set.conceptRef("Surface spelling (IkeFoundation)"), KernelTerm.STRING)
+                        KernelConcept.COMPONENT_FIELD)
+                .field(keywordText, set.conceptRef("Surface spelling (IkeFoundation)"), KernelConcept.STRING)
                 .field(lexicalRole, set.conceptRef("Grammatical placement (IkeFoundation)"),
-                        KernelTerm.COMPONENT_FIELD)
+                        KernelConcept.COMPONENT_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ExpressionLanguageKeywordPattern (Expression Languages — Which"
@@ -776,9 +779,9 @@ final class ExpressionLanguageSet {
         set.pattern(DENOTATION_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("Construct denotation (IkeFoundation)"))
                 .purpose(set.conceptRef("Well-typed relation (IkeFoundation)"))
-                .field(operandKind, set.conceptRef("Operand typing (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
-                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
-                .field(arity, set.conceptRef("Operand count (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                .field(operandKind, set.conceptRef("Operand typing (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
+                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
+                .field(arity, set.conceptRef("Operand count (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ConstructDenotationPattern (Expression Languages — Kinds Make"
@@ -805,11 +808,11 @@ final class ExpressionLanguageSet {
         set.pattern(LITERAL_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("Literal denotation (IkeFoundation)"))
                 .purpose(set.conceptRef("Fixed value (IkeFoundation)"))
-                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                .field(resultKind, set.conceptRef("Result typing (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .field(set.conceptRef("Lower bound value (IkeFoundation)"),
-                        set.conceptRef("Literal lower bound (IkeFoundation)"), KernelTerm.INTEGER_FIELD)
+                        set.conceptRef("Literal lower bound (IkeFoundation)"), KernelConcept.INTEGER_FIELD)
                 .field(set.conceptRef("Upper bound value (IkeFoundation)"),
-                        set.conceptRef("Literal upper bound (IkeFoundation)"), KernelTerm.INTEGER_FIELD)
+                        set.conceptRef("Literal upper bound (IkeFoundation)"), KernelConcept.INTEGER_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: LiteralDenotationPattern (Expression Languages — The Middle"
@@ -838,8 +841,8 @@ final class ExpressionLanguageSet {
         set.pattern(RELATION_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("Construct relation assertion (IkeFoundation)"))
                 .purpose(set.conceptRef("Checked relation (IkeFoundation)"))
-                .field(coreConstruct, set.conceptRef("Relation target (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
-                .field(constructRelation, set.conceptRef("Relation kind (IkeFoundation)"), KernelTerm.COMPONENT_FIELD)
+                .field(coreConstruct, set.conceptRef("Relation target (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
+                .field(constructRelation, set.conceptRef("Relation kind (IkeFoundation)"), KernelConcept.COMPONENT_FIELD)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ConstructRelationPattern (Expression Languages — Obligations"
@@ -865,10 +868,10 @@ final class ExpressionLanguageSet {
                         test. For concept sets, equality is checked over the reasoner conformance kit. An
                         assertion whose check cannot run fails the gate rather than standing as prose.""");
 
-        EntityProxy.Pattern keywords = set.patternRef(KEYWORD_PATTERN_FQN);
-        EntityProxy.Pattern denotations = set.patternRef(DENOTATION_PATTERN_FQN);
-        EntityProxy.Pattern literals = set.patternRef(LITERAL_PATTERN_FQN);
-        EntityProxy.Pattern relations = set.patternRef(RELATION_PATTERN_FQN);
+        PatternFacade keywords = set.patternRef(KEYWORD_PATTERN_FQN);
+        PatternFacade denotations = set.patternRef(DENOTATION_PATTERN_FQN);
+        PatternFacade literals = set.patternRef(LITERAL_PATTERN_FQN);
+        PatternFacade relations = set.patternRef(RELATION_PATTERN_FQN);
 
         // ── The generics: one idea, no keyword ──────────────────────────
         set.concept(GENERIC_AND_FQN).at(inception)
@@ -886,7 +889,7 @@ final class ExpressionLanguageSet {
                 .isA(EntityProxy.Concept.make("Connective operator (SOLOR)", PublicIds.of("3fdcaadc-d972-58e9-84f1-b3a39903b076")))
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Generic AND")),
                         operandKind, operandKind, variadic);
-        EntityProxy.Concept genericAnd = set.conceptRef(GENERIC_AND_FQN);
+        ConceptFacade genericAnd = set.conceptRef(GENERIC_AND_FQN);
 
         // The inherited Or concept is the Generic OR itself: EL++ has no disjunction, so
         // there is no class instance, and the identity code holds for a disjunction
@@ -894,7 +897,7 @@ final class ExpressionLanguageSet {
         set.concept(GENERIC_OR_FQN).at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Generic OR")),
                         operandKind, operandKind, variadic);
-        EntityProxy.Concept genericOr = set.conceptRef(GENERIC_OR_FQN);
+        ConceptFacade genericOr = set.conceptRef(GENERIC_OR_FQN);
 
 
         set.concept(LOGICAL_EXPRESSION_VERTEX_FQN).at(inception)
@@ -934,14 +937,14 @@ final class ExpressionLanguageSet {
                         + " reason is an associated statement. A subject with no statement at all"
                         + " simply has no record here.")
                 .isA(modelRoot);
-        EntityProxy.Concept indeterminateResult = set.conceptRef("Indeterminate result (IkeFoundation)");
+        ConceptFacade indeterminateResult = set.conceptRef("Indeterminate result (IkeFoundation)");
 
         // ── Presence literals: the middle as a value ────────────────────
         keyword(set.concept("Present literal (IkeFoundation)").at(inception)
                 .synonym("Present literal")
                 .definition("One of the three presence values: the determination found the topic"
                         + " present. The value CQL's \"true\" names.")
-                .isA(KernelTerm.LITERAL_VALUE)
+                .isA(KernelConcept.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Present literal")),
                         presenceMeasureKind, 1, 1),
                 set, keywords, cql, "true", literalKeyword, true, "Present literal");
@@ -952,7 +955,7 @@ final class ExpressionLanguageSet {
                         + " absent. Absent is a finding, not a gap: a subject with no statement on"
                         + " the topic has no record, not an Absent. The value CQL's \"false\""
                         + " names.")
-                .isA(KernelTerm.LITERAL_VALUE)
+                .isA(KernelConcept.LITERAL_VALUE)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Absent literal")),
                         presenceMeasureKind, 0, 0),
                 set, keywords, cql, "false", literalKeyword, true, "Absent literal");
@@ -972,7 +975,7 @@ final class ExpressionLanguageSet {
                         + " that NOT leaves unchanged, and it is what CQL's \"null\" becomes when"
                         + " \"null\" stands for a determination that was performed and did not"
                         + " resolve.")
-                .isA(KernelTerm.LITERAL_VALUE, indeterminateResult)
+                .isA(KernelConcept.LITERAL_VALUE, indeterminateResult)
                 .semantic(literals, PublicIds.of(set.uuidFor("Literal denotation: Indeterminate literal")),
                         presenceMeasureKind, 0, 1),
                 set, keywords, cql, "null", literalKeyword, true, "Indeterminate literal");
@@ -1020,8 +1023,8 @@ final class ExpressionLanguageSet {
                         presenceMeasureKind, presenceMeasureKind, unary),
                 set, keywords, cql, "not", operatorKeyword, true, "Presence NOT");
 
-        EntityProxy.Concept presenceAnd = set.conceptRef("Presence AND (IkeFoundation)");
-        EntityProxy.Concept presenceOr = set.conceptRef("Presence OR (IkeFoundation)");
+        ConceptFacade presenceAnd = set.conceptRef("Presence AND (IkeFoundation)");
+        ConceptFacade presenceOr = set.conceptRef("Presence OR (IkeFoundation)");
         keyword(set.concept("Presence implication (IkeFoundation)").at(inception)
                 .synonym("Presence implication")
                 .definition("A connective operator on two presence values: Present when the first"
@@ -1115,8 +1118,8 @@ final class ExpressionLanguageSet {
                 set, keywords, cql, "is false", operatorKeyword, false, "Equal to");
 
         // ── Measure relations: one family for presence, quantity, and time
-        EntityProxy.Concept lessThan = set.conceptRef("Less than (SOLOR)");
-        EntityProxy.Concept greaterThan = set.conceptRef("Greater than (SOLOR)");
+        ConceptFacade lessThan = set.conceptRef("Less than (SOLOR)");
+        ConceptFacade greaterThan = set.conceptRef("Greater than (SOLOR)");
         ConceptBuilder.ActiveScope within = set.concept("Measure within (IkeFoundation)").at(inception)
                 .synonym("Measure within")
                 .definition("An operator on two measures on one scale that yields a presence value:"
@@ -1133,7 +1136,7 @@ final class ExpressionLanguageSet {
                         + " The result and the normal range are two cross-cutting measurements of"
                         + " one statement, and that relation can be decided only with the"
                         + " statement's own range.")
-                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelConcept.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure within")),
                         measureKind, presenceMeasureKind, binary);
         within = keyword(within, set, keywords, cql, "included in", operatorKeyword, true, "Measure within");
@@ -1147,7 +1150,7 @@ final class ExpressionLanguageSet {
                 .definition("An operator on two measures on one scale that yields a presence value:"
                         + " whether the first encloses the second. Measure within with the"
                         + " operands swapped.")
-                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelConcept.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure contains")),
                         measureKind, presenceMeasureKind, binary);
         contains = keyword(contains, set, keywords, cql, "includes", operatorKeyword, true, "Measure contains");
@@ -1162,7 +1165,7 @@ final class ExpressionLanguageSet {
                         + " that day, is Indeterminate. For a moment against a period the question"
                         + " becomes whether the moment is inside the period, which is Measure"
                         + " within.")
-                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelConcept.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure overlaps")),
                         measureKind, presenceMeasureKind, binary),
                 set, keywords, cql, "overlaps", operatorKeyword, true, "Measure overlaps");
@@ -1180,7 +1183,7 @@ final class ExpressionLanguageSet {
                         + " same way as Less than on every pair of measures, and the set asserts"
                         + " that equivalence. CQL's \"before\"; \"on or before\" and \"before or on\""
                         + " are Less than or equal to.")
-                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelConcept.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure before")),
                         measureKind, presenceMeasureKind, binary)
                 .semantic(relations, PublicIds.of(set.uuidFor(
@@ -1196,7 +1199,7 @@ final class ExpressionLanguageSet {
                         + " equivalence. CQL's \"after\"; \"on or after\" and \"after or on\" are"
                         + " Greater than or equal to, and \"30 days or more after\" a discharge is"
                         + " Greater than or equal to against the discharge plus 30 days.")
-                .isA(KernelTerm.CONCRETE_DOMAIN_OPERATOR)
+                .isA(KernelConcept.CONCRETE_DOMAIN_OPERATOR)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure after")),
                         measureKind, presenceMeasureKind, binary)
                 .semantic(relations, PublicIds.of(set.uuidFor(
@@ -1230,7 +1233,7 @@ final class ExpressionLanguageSet {
                         + " unit, Measure outer span, Measure inner span, Measure conversion, and"
                         + " Measure aggregate, which works over a list of measures.")
                 .isA(modelRoot);
-        EntityProxy.Concept measureOperator = set.conceptRef("Measure operator (IkeFoundation)");
+        ConceptFacade measureOperator = set.conceptRef("Measure operator (IkeFoundation)");
 
         keyword(set.concept("Measure addition (IkeFoundation)").at(inception)
                 .synonym("Measure addition")
@@ -1423,7 +1426,7 @@ final class ExpressionLanguageSet {
                         + " Measure any present, Closed-world all present, and Closed-world any"
                         + " present.")
                 .isA(measureOperator);
-        EntityProxy.Concept measureAggregate = set.conceptRef("Measure aggregate (IkeFoundation)");
+        ConceptFacade measureAggregate = set.conceptRef("Measure aggregate (IkeFoundation)");
 
         keyword(set.concept("Measure count (IkeFoundation)").at(inception)
                 .synonym("Measure count")
@@ -1506,7 +1509,7 @@ final class ExpressionLanguageSet {
                 .isA(measureAggregate)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure all present")),
                         measureListKind, presenceMeasureKind, unary);
-        EntityProxy.Concept measureAllPresent = set.conceptRef("Measure all present (IkeFoundation)");
+        ConceptFacade measureAllPresent = set.conceptRef("Measure all present (IkeFoundation)");
 
         set.concept("Measure any present (IkeFoundation)").at(inception)
                 .synonym("Measure any present")
@@ -1520,7 +1523,7 @@ final class ExpressionLanguageSet {
                 .isA(measureAggregate)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Measure any present")),
                         measureListKind, presenceMeasureKind, unary);
-        EntityProxy.Concept measureAnyPresent = set.conceptRef("Measure any present (IkeFoundation)");
+        ConceptFacade measureAnyPresent = set.conceptRef("Measure any present (IkeFoundation)");
 
         keyword(set.concept("Closed-world all present (IkeFoundation)").at(inception)
                 .synonym("Closed-world all present")
@@ -1563,7 +1566,7 @@ final class ExpressionLanguageSet {
                         + " operator produces another list, which an aggregate can then count or"
                         + " sum. Its members are Measure list merge and Measure list split.")
                 .isA(modelRoot);
-        EntityProxy.Concept measureListOperator = set.conceptRef("Measure list operator (IkeFoundation)");
+        ConceptFacade measureListOperator = set.conceptRef("Measure list operator (IkeFoundation)");
 
         keyword(set.concept("Measure list merge (IkeFoundation)").at(inception)
                 .synonym("Measure list merge")
@@ -1609,7 +1612,7 @@ final class ExpressionLanguageSet {
                         + " Second, Minute, Hour, Day, Week, Month, and Year, and CQL's unit"
                         + " keywords name them, the singular and the plural on one concept.")
                 .isA(modelRoot);
-        EntityProxy.Concept unitOfTime = set.conceptRef("Unit of time (IkeFoundation)");
+        ConceptFacade unitOfTime = set.conceptRef("Unit of time (IkeFoundation)");
 
         keyword(keyword(set.concept("Millisecond (IkeFoundation)").at(inception)
                 .synonym("Millisecond")
@@ -1704,7 +1707,7 @@ final class ExpressionLanguageSet {
                         + " Unix epoch milliseconds, Unix epoch seconds, and Gregorian calendar"
                         + " date.")
                 .isA(modelRoot);
-        EntityProxy.Concept timeScale = set.conceptRef("Time scale (IkeFoundation)");
+        ConceptFacade timeScale = set.conceptRef("Time scale (IkeFoundation)");
 
         set.concept("Unix epoch milliseconds (IkeFoundation)").at(inception)
                 .synonym("Unix epoch milliseconds")
@@ -1761,7 +1764,7 @@ final class ExpressionLanguageSet {
                         + " and the zones, not the combinations. Its members are Instant and"
                         + " Period.")
                 .isA(modelRoot);
-        EntityProxy.Concept timeReading = set.conceptRef("Time reading (IkeFoundation)");
+        ConceptFacade timeReading = set.conceptRef("Time reading (IkeFoundation)");
 
         set.concept("Instant (IkeFoundation)").at(inception)
                 .synonym("Instant")
@@ -1795,7 +1798,7 @@ final class ExpressionLanguageSet {
                         + " zone when it has one and the query's otherwise. Its member is UTC"
                         + " offset.")
                 .isA(modelRoot);
-        EntityProxy.Concept timeZone = set.conceptRef("Time zone (IkeFoundation)");
+        ConceptFacade timeZone = set.conceptRef("Time zone (IkeFoundation)");
 
         set.concept("UTC offset (IkeFoundation)").at(inception)
                 .synonym("UTC offset")
@@ -1826,7 +1829,7 @@ final class ExpressionLanguageSet {
                         + " query decides abnormal by comparing the result with the normal range as"
                         + " measures, and reads the flag only as what the laboratory said.")
                 .isA(modelRoot);
-        EntityProxy.Concept statementMeasure = set.conceptRef("Statement measure (IkeFoundation)");
+        ConceptFacade statementMeasure = set.conceptRef("Statement measure (IkeFoundation)");
         set.concept("Result measure (IkeFoundation)").at(inception)
                 .synonym("Result measure")
                 .definition("A statement measure: the statement's one result, what was determined,"
@@ -1872,7 +1875,7 @@ final class ExpressionLanguageSet {
                         + " Period start measure, Period duration measure, Event separation"
                         + " measure, Event duration measure, and Event frequency measure.")
                 .isA(statementMeasure);
-        EntityProxy.Concept repetitionMeasure = set.conceptRef("Repetition measure (IkeFoundation)");
+        ConceptFacade repetitionMeasure = set.conceptRef("Repetition measure (IkeFoundation)");
         set.concept("Period start measure (IkeFoundation)").at(inception)
                 .synonym("Period start measure")
                 .definition("A repetition measure: when the repeated action should begin, on a"
@@ -1903,9 +1906,9 @@ final class ExpressionLanguageSet {
         // Resumed declared identities. EL++ AND is the inherited And concept, renamed and
         // re-parented in place at foundation.Section41; EL++ has no surface syntax, so its
         // dialect carries the set's own rendering.
-        EntityProxy.Concept elAnd = set.conceptRef(EL_AND_FQN);
-        EntityProxy.Concept isA = set.conceptRef("Is-a");
-        EntityProxy.Concept existentialRestriction = set.conceptRef("Existential restriction");
+        ConceptFacade elAnd = set.conceptRef(EL_AND_FQN);
+        ConceptFacade isA = set.conceptRef("Is-a");
+        ConceptFacade existentialRestriction = set.conceptRef("Existential restriction");
         keyword(set.concept(EL_AND_FQN).at(inception)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: EL++ AND")),
                         classKind, classKind, variadic),
@@ -1930,7 +1933,7 @@ final class ExpressionLanguageSet {
                         PublicIds.of(set.uuidFor("Construct relation: Descendant of definitionally extends Is-a")),
                         isA, definitionalExtension),
                 set, keywords, ecl, "<", operatorKeyword, true, "Descendant of");
-        EntityProxy.Concept descendantOf = set.conceptRef("Descendant of (IkeFoundation)");
+        ConceptFacade descendantOf = set.conceptRef("Descendant of (IkeFoundation)");
 
         keyword(set.concept("Descendant or self of (IkeFoundation)").at(inception)
                 .synonym("Descendant or self of")
@@ -1945,7 +1948,7 @@ final class ExpressionLanguageSet {
                                 "Construct relation: Descendant or self of definitionally extends Is-a")),
                         isA, definitionalExtension),
                 set, keywords, ecl, "<<", operatorKeyword, true, "Descendant or self of");
-        EntityProxy.Concept descendantOrSelfOf = set.conceptRef("Descendant or self of (IkeFoundation)");
+        ConceptFacade descendantOrSelfOf = set.conceptRef("Descendant or self of (IkeFoundation)");
 
         keyword(set.concept("Ancestor of (IkeFoundation)").at(inception)
                 .synonym("Ancestor of")
@@ -2210,7 +2213,7 @@ final class ExpressionLanguageSet {
                         + " outcomes count. The store speaks only for itself: no statement means no"
                         + " record here.")
                 .isA(EntityProxy.Concept.make("Meaning (SOLOR)", PublicIds.of("a06158ff-e08a-5d7d-bcfa-6cbfdb138910")));
-        EntityProxy.Concept statementOperator = set.conceptRef("Statement operator (IkeFoundation)");
+        ConceptFacade statementOperator = set.conceptRef("Statement operator (IkeFoundation)");
 
         set.concept("Criterion (IkeFoundation)").at(inception)
                 .synonym("Criterion")
@@ -2222,7 +2225,7 @@ final class ExpressionLanguageSet {
                         + " constraint, and Correlation constraint, and criteria combine with AND,"
                         + " OR, and NOT.")
                 .isA(modelRoot);
-        EntityProxy.Concept criterion = set.conceptRef("Criterion (IkeFoundation)");
+        ConceptFacade criterion = set.conceptRef("Criterion (IkeFoundation)");
 
         set.concept("Topic constraint (IkeFoundation)").at(inception)
                 .synonym("Topic constraint")
@@ -2362,7 +2365,7 @@ final class ExpressionLanguageSet {
                 .isA(statementOperator)
                 .semantic(denotations, PublicIds.of(set.uuidFor("Denotation: Existence")),
                         statementSetKind, presenceMeasureKind, unary);
-        EntityProxy.Concept existence = set.conceptRef("Existence (IkeFoundation)");
+        ConceptFacade existence = set.conceptRef("Existence (IkeFoundation)");
 
         keyword(set.concept("Closed-world existence (IkeFoundation)").at(inception)
                 .synonym("Closed-world existence")

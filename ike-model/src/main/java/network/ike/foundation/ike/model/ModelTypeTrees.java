@@ -18,8 +18,8 @@ package network.ike.foundation.ike.model;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
-import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.ConceptFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import network.ike.foundation.ike.model.ModelInfoFile.TypeSpecifier;
 
 import java.util.Optional;
@@ -46,7 +46,7 @@ final class ModelTypeTrees {
      * @return the tree
      */
     static DiTreeEntity build(TypeSpecifier type, PublicId elementId,
-                              Function<String, Optional<EntityProxy.Concept>> resolve) {
+                              Function<String, Optional<ConceptFacade>> resolve) {
         DiTreeEntity.Builder builder = DiTreeEntity.builder();
         EntityVertex root = add(builder, type, elementId, "type", resolve);
         builder.setRoot(root);
@@ -54,29 +54,29 @@ final class ModelTypeTrees {
     }
 
     private static EntityVertex add(DiTreeEntity.Builder builder, TypeSpecifier type, PublicId elementId, String path,
-                                    Function<String, Optional<EntityProxy.Concept>> resolve) {
+                                    Function<String, Optional<ConceptFacade>> resolve) {
         switch (type.form()) {
             case NAMED: {
                 EntityVertex vertex = EntityVertex.make(ModelIdentity.vertex(elementId, path),
-                        IkeTerms.ELM_NAMEDTYPESPECIFIER.nid());
+                        IkeConcept.ELM_NAMEDTYPESPECIFIER.nid());
                 Object value = resolve.apply(type.name()).map(concept -> (Object) concept).orElse(type.name());
-                vertex.putUncommittedProperty(IkeTerms.ELM_NAME_POSITION.nid(), value);
+                vertex.putUncommittedProperty(IkeConcept.ELM_NAME_POSITION.nid(), value);
                 vertex.commitProperties();
                 builder.addVertex(vertex);
                 return vertex;
             }
             case LIST:
-                return held(builder, IkeTerms.ELM_LISTTYPESPECIFIER, IkeTerms.ELM_ELEMENTTYPE_POSITION, "elementType",
+                return held(builder, IkeConcept.ELM_LISTTYPESPECIFIER, IkeConcept.ELM_ELEMENTTYPE_POSITION, "elementType",
                         type, elementId, path, resolve);
             case INTERVAL:
-                return held(builder, IkeTerms.ELM_INTERVALTYPESPECIFIER, IkeTerms.ELM_POINTTYPE_POSITION, "pointType",
+                return held(builder, IkeConcept.ELM_INTERVALTYPESPECIFIER, IkeConcept.ELM_POINTTYPE_POSITION, "pointType",
                         type, elementId, path, resolve);
             default: {
                 EntityVertex vertex = EntityVertex.make(ModelIdentity.vertex(elementId, path),
-                        IkeTerms.ELM_CHOICETYPESPECIFIER.nid());
+                        IkeConcept.ELM_CHOICETYPESPECIFIER.nid());
                 builder.addVertex(vertex);
                 EntityVertex argument = EntityVertex.make(ModelIdentity.vertex(elementId, path + "/choice"),
-                        IkeTerms.ELM_CHOICE_POSITION.nid());
+                        IkeConcept.ELM_CHOICE_POSITION.nid());
                 builder.addVertex(argument);
                 builder.addEdge(argument.vertexIndex(), vertex.vertexIndex());
                 int index = 0;
@@ -90,9 +90,9 @@ final class ModelTypeTrees {
         }
     }
 
-    private static EntityVertex held(DiTreeEntity.Builder builder, EntityProxy.Concept kind, EntityProxy.Concept position,
+    private static EntityVertex held(DiTreeEntity.Builder builder, ConceptFacade kind, ConceptFacade position,
                                      String positionName, TypeSpecifier type, PublicId elementId, String path,
-                                     Function<String, Optional<EntityProxy.Concept>> resolve) {
+                                     Function<String, Optional<ConceptFacade>> resolve) {
         EntityVertex vertex = EntityVertex.make(ModelIdentity.vertex(elementId, path), kind.nid());
         builder.addVertex(vertex);
         EntityVertex argument = EntityVertex.make(ModelIdentity.vertex(elementId, path + "/" + positionName), position.nid());

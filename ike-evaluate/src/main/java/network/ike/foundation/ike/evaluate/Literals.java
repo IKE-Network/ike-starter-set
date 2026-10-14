@@ -17,7 +17,7 @@ package network.ike.foundation.ike.evaluate;
 
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -125,19 +125,19 @@ final class Literals {
 
     /** The local name of a System type held as the catalog's concept for it. */
     private static String systemTypeName(long nid) {
-        if (nid == IkeTerms.ELM_SYSTEM_BOOLEAN.nid()) {
+        if (nid == IkeConcept.ELM_SYSTEM_BOOLEAN.nid()) {
             return "Boolean";
         }
-        if (nid == IkeTerms.ELM_SYSTEM_INTEGER.nid()) {
+        if (nid == IkeConcept.ELM_SYSTEM_INTEGER.nid()) {
             return "Integer";
         }
-        if (nid == IkeTerms.ELM_SYSTEM_LONG.nid()) {
+        if (nid == IkeConcept.ELM_SYSTEM_LONG.nid()) {
             return "Long";
         }
-        if (nid == IkeTerms.ELM_SYSTEM_DECIMAL.nid()) {
+        if (nid == IkeConcept.ELM_SYSTEM_DECIMAL.nid()) {
             return "Decimal";
         }
-        if (nid == IkeTerms.ELM_SYSTEM_STRING.nid()) {
+        if (nid == IkeConcept.ELM_SYSTEM_STRING.nid()) {
             return "String";
         }
         return PrimitiveData.text(nid);

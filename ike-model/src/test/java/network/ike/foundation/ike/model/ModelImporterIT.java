@@ -15,7 +15,11 @@
  */
 package network.ike.foundation.ike.model;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.KernelPattern;
+import dev.ikm.tinkar.terms.PatternFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
@@ -24,9 +28,9 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
 import network.ike.foundation.ike.model.ModelInfoFile.ClassInfo;
 import network.ike.foundation.ike.model.ModelInfoFile.Element;
 import network.ike.foundation.ike.model.ModelInfoFile.Form;
@@ -92,7 +96,7 @@ class ModelImporterIT {
         return PrimitiveData.nid(id);
     }
 
-    private static List<ImmutableList<Object>> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
+    private static List<ImmutableList<Object>> semanticsAbout(long componentNid, PatternFacade pattern) {
         List<ImmutableList<Object>> fields = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
@@ -103,7 +107,7 @@ class ModelImporterIT {
         return fields;
     }
 
-    private static ImmutableList<Object> record(long componentNid, EntityProxy.Pattern pattern) {
+    private static ImmutableList<Object> record(long componentNid, PatternFacade pattern) {
         List<ImmutableList<Object>> records = semanticsAbout(componentNid, pattern);
         assertEquals(1, records.size(), "one record of " + pattern.description() + " on " + componentNid);
         return records.get(0);
@@ -117,7 +121,7 @@ class ModelImporterIT {
 
     private static Set<Long> statedParents(PublicId concept) {
         Set<Long> parents = new HashSet<>();
-        for (ImmutableList<Object> fields : semanticsAbout(nid(concept), KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
+        for (ImmutableList<Object> fields : semanticsAbout(nid(concept), KernelPattern.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN)) {
             DiTreeEntity tree = (DiTreeEntity) fields.get(0);
             collect(tree, tree.root(), parents);
         }
@@ -137,7 +141,7 @@ class ModelImporterIT {
 
     private static List<Description> descriptions(long componentNid) {
         List<Description> found = new ArrayList<>();
-        EntityService.get().forEachSemanticForComponentOfPattern(componentNid, KernelTerm.DESCRIPTION_PATTERN.nid(),
+        EntityService.get().forEachSemanticForComponentOfPattern(componentNid, KernelPattern.DESCRIPTION_PATTERN.nid(),
                 semantic -> {
                     Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                     if (latest.isPresent()) {
@@ -148,7 +152,7 @@ class ModelImporterIT {
         return found;
     }
 
-    private static boolean hasDescription(long componentNid, EntityProxy.Concept type, String text, EntityProxy.Pattern dialect) {
+    private static boolean hasDescription(long componentNid, ConceptFacade type, String text, PatternFacade dialect) {
         for (Description description : descriptions(componentNid)) {
             if (description.typeNid() == type.nid() && description.text().equals(text)
                     && (dialect == null || !semanticsAbout(description.nid(), dialect).isEmpty())) {
@@ -199,13 +203,13 @@ class ModelImporterIT {
         assertEquals(3, qdmReport.readings(), "QDM's code, relevant period, and birth datetime");
         assertEquals(0, systemReport.bridges());
         assertEquals(0, qicoreReport.bridges(), "bridges are authored per model, and QI-Core has none yet");
-        ImmutableList<Object> quantity = record(IkeTerms.ELM_SYSTEM_QUANTITY.nid(), IkeTerms.MODEL_CLASS_PATTERN);
+        ImmutableList<Object> quantity = record(IkeConcept.ELM_SYSTEM_QUANTITY.nid(), IkePattern.MODEL_CLASS_PATTERN);
         assertEquals("System.Quantity", quantity.get(2));
         assertEquals(nid(modelId(system)), ((EntityFacade) quantity.get(15)).nid(), "the record names the System model");
-        assertTrue(statedParents(modelId(fhir)).contains(IkeTerms.DATA_MODEL.nid()), "a model hangs under Data model");
-        assertTrue(hasDescription(nid(modelId(fhir)), KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
+        assertTrue(statedParents(modelId(fhir)).contains(IkeConcept.DATA_MODEL.nid()), "a model hangs under Data model");
+        assertTrue(hasDescription(nid(modelId(fhir)), KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
                 "FHIR 4.0.1 (data model)", null));
-        assertTrue(hasDescription(nid(modelId(quick)), KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
+        assertTrue(hasDescription(nid(modelId(quick)), KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
                 "QUICK (data model)", null));
     }
 
@@ -214,11 +218,11 @@ class ModelImporterIT {
     void everyClassCarriesItsFieldsVerbatimUnderItsBase() {
         for (ModelInfoFile file : List.of(fhir, qdm)) {
             long modelNid = nid(modelId(file));
-            EntityProxy.Pattern dialect = file.name().equals("FHIR") ? IkeTerms.FHIR_DIALECT_PATTERN : IkeTerms.QDM_DIALECT_PATTERN;
+            PatternFacade dialect = file.name().equals("FHIR") ? IkePattern.FHIR_DIALECT_PATTERN : IkePattern.QDM_DIALECT_PATTERN;
             for (ClassInfo clazz : file.classes()) {
                 PublicId id = classId(file, clazz.qualifiedName());
                 long nid = nid(id);
-                ImmutableList<Object> fields = record(nid, IkeTerms.MODEL_CLASS_PATTERN);
+                ImmutableList<Object> fields = record(nid, IkePattern.MODEL_CLASS_PATTERN);
                 assertEquals(clazz.kind(), fields.get(0));
                 assertEquals(clazz.namespace(), fields.get(1));
                 assertEquals(clazz.qualifiedName(), fields.get(2));
@@ -238,22 +242,22 @@ class ModelImporterIT {
                 assertEquals(expectedBase, base, clazz.qualifiedName() + " base");
                 assertTrue(statedParents(id).contains(expectedBase), clazz.qualifiedName() + " hangs under its base");
                 String local = clazz.localName(file.name());
-                assertTrue(hasDescription(nid, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
+                assertTrue(hasDescription(nid, KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE,
                         local + " (" + ModelConcepts.title(file.name(), file.version()) + ")", null), clazz.qualifiedName() + " fqn");
-                assertTrue(hasDescription(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, local, dialect),
+                assertTrue(hasDescription(nid, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE, local, dialect),
                         clazz.qualifiedName() + " is found by its name in the dialect");
                 if (!clazz.label().isEmpty() && !clazz.label().equals(local)) {
-                    assertTrue(hasDescription(nid, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE, clazz.label(), dialect),
+                    assertTrue(hasDescription(nid, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE, clazz.label(), dialect),
                             clazz.qualifiedName() + " is found by its label in the dialect");
                 }
                 if (!clazz.definition().isEmpty()) {
-                    assertTrue(hasDescription(nid, KernelTerm.DEFINITION_DESCRIPTION_TYPE, clazz.definition(), null),
+                    assertTrue(hasDescription(nid, KernelConcept.DEFINITION_DESCRIPTION_TYPE, clazz.definition(), null),
                             clazz.qualifiedName() + " definition");
                 }
             }
         }
-        assertTrue(hasDescription(nid(classId(qdm, "QDM.PositiveEncounterPerformed")), KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE,
-                "Encounter, Performed", IkeTerms.QDM_DIALECT_PATTERN), "a QDM author's name for the class");
+        assertTrue(hasDescription(nid(classId(qdm, "QDM.PositiveEncounterPerformed")), KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE,
+                "Encounter, Performed", IkePattern.QDM_DIALECT_PATTERN), "a QDM author's name for the class");
     }
 
     @Test
@@ -277,13 +281,13 @@ class ModelImporterIT {
                             ? ModelConcepts.systemType(element.type().name().substring(7)).orElseThrow().nid()
                             : nid(classId(fhir, element.type().name()));
                     assertEquals(expected, elementClass, clazz.qualifiedName() + "." + element.name());
-                    assertEquals(IkeTerms.ELM_NAMEDTYPESPECIFIER.nid(), tree.root().getMeaningNid());
-                    assertEquals(expected, ((EntityFacade) tree.root().properties().get(IkeTerms.ELM_NAME_POSITION.nid())).nid());
+                    assertEquals(IkeConcept.ELM_NAMEDTYPESPECIFIER.nid(), tree.root().getMeaningNid());
+                    assertEquals(expected, ((EntityFacade) tree.root().properties().get(IkeConcept.ELM_NAME_POSITION.nid())).nid());
                 } else {
-                    assertEquals(IkeTerms.UNRESOLVED.nid(), elementClass, clazz.qualifiedName() + "." + element.name()
+                    assertEquals(IkeConcept.UNRESOLVED.nid(), elementClass, clazz.qualifiedName() + "." + element.name()
                             + " names more than one class");
-                    assertEquals(element.type().form() == Form.LIST ? IkeTerms.ELM_LISTTYPESPECIFIER.nid()
-                            : IkeTerms.ELM_CHOICETYPESPECIFIER.nid(), tree.root().getMeaningNid());
+                    assertEquals(element.type().form() == Form.LIST ? IkeConcept.ELM_LISTTYPESPECIFIER.nid()
+                            : IkeConcept.ELM_CHOICETYPESPECIFIER.nid(), tree.root().getMeaningNid());
                 }
                 checked++;
             }
@@ -292,20 +296,20 @@ class ModelImporterIT {
 
         DiTreeEntity identifier = (DiTreeEntity) latestFields(ModelIdentity.element(classId(fhir, "FHIR.Condition"), "identifier")).get(3);
         EntityVertex argument = identifier.vertex(identifier.successors(identifier.root().vertexIndex()).get(0));
-        assertEquals(IkeTerms.ELM_ELEMENTTYPE_POSITION.nid(), argument.getMeaningNid(), "a list holds its item type at the elementType position");
+        assertEquals(IkeConcept.ELM_ELEMENTTYPE_POSITION.nid(), argument.getMeaningNid(), "a list holds its item type at the elementType position");
         EntityVertex item = identifier.vertex(identifier.successors(argument.vertexIndex()).get(0));
-        assertEquals(IkeTerms.ELM_NAMEDTYPESPECIFIER.nid(), item.getMeaningNid());
-        assertEquals(nid(classId(fhir, "FHIR.Identifier")), ((EntityFacade) item.properties().get(IkeTerms.ELM_NAME_POSITION.nid())).nid());
+        assertEquals(IkeConcept.ELM_NAMEDTYPESPECIFIER.nid(), item.getMeaningNid());
+        assertEquals(nid(classId(fhir, "FHIR.Identifier")), ((EntityFacade) item.properties().get(IkeConcept.ELM_NAME_POSITION.nid())).nid());
 
         DiTreeEntity subject = (DiTreeEntity) latestFields(ModelIdentity.element(classId(fhir, "FHIR.ActivityDefinition"), "subject")).get(3);
         EntityVertex choice = subject.vertex(subject.successors(subject.root().vertexIndex()).get(0));
-        assertEquals(IkeTerms.ELM_CHOICE_POSITION.nid(), choice.getMeaningNid());
+        assertEquals(IkeConcept.ELM_CHOICE_POSITION.nid(), choice.getMeaningNid());
         assertEquals(2, subject.successors(choice.vertexIndex()).size(), "the alternatives are the children of the choice position");
 
         ImmutableList<Object> outside = latestFields(ModelIdentity.element(classId(quick, "QUICK.base64Binary"), "value"));
-        assertEquals(IkeTerms.UNRESOLVED.nid(), ((EntityFacade) outside.get(2)).nid());
+        assertEquals(IkeConcept.UNRESOLVED.nid(), ((EntityFacade) outside.get(2)).nid());
         DiTreeEntity outsideTree = (DiTreeEntity) outside.get(3);
-        assertEquals("xs.base64Binary", outsideTree.root().properties().get(IkeTerms.ELM_NAME_POSITION.nid()),
+        assertEquals("xs.base64Binary", outsideTree.root().properties().get(IkeConcept.ELM_NAME_POSITION.nid()),
                 "a type outside every model stays text in the tree");
     }
 
@@ -313,18 +317,18 @@ class ModelImporterIT {
     @DisplayName("Code paths resolve to elements, and contexts, relationships, conversions, and requirements are recorded")
     void codePathsContextsRelationshipsConversionsAndRequirements() {
         PublicId condition = classId(fhir, "FHIR.Condition");
-        ImmutableList<Object> conditionRecord = record(nid(condition), IkeTerms.MODEL_CLASS_PATTERN);
+        ImmutableList<Object> conditionRecord = record(nid(condition), IkePattern.MODEL_CLASS_PATTERN);
         assertEquals(nid(ModelIdentity.element(condition, "code")), ((EntityFacade) conditionRecord.get(9)).nid(),
                 "the code path resolves to the element it names");
 
         ClassInfo profile = qdm.classes().stream()
                 .filter(clazz -> clazz.kind().equals("ProfileInfo") && clazz.elements().isEmpty() && !clazz.primaryCodePath().isEmpty())
                 .findFirst().orElseThrow();
-        ImmutableList<Object> profileRecord = record(nid(classId(qdm, profile.qualifiedName())), IkeTerms.MODEL_CLASS_PATTERN);
-        assertTrue(((EntityFacade) profileRecord.get(9)).nid() != IkeTerms.UNRESOLVED.nid(),
+        ImmutableList<Object> profileRecord = record(nid(classId(qdm, profile.qualifiedName())), IkePattern.MODEL_CLASS_PATTERN);
+        assertTrue(((EntityFacade) profileRecord.get(9)).nid() != IkeConcept.UNRESOLVED.nid(),
                 profile.qualifiedName() + " resolves its code path through its base class");
 
-        List<ImmutableList<Object>> contexts = semanticsAbout(nid(modelId(fhir)), IkeTerms.MODEL_CONTEXT_PATTERN);
+        List<ImmutableList<Object>> contexts = semanticsAbout(nid(modelId(fhir)), IkePattern.MODEL_CONTEXT_PATTERN);
         assertEquals(5, contexts.size());
         ImmutableList<Object> patient = contexts.stream().filter(fields -> fields.get(0).equals("Patient")).findFirst().orElseThrow();
         assertEquals("FHIR.Patient", patient.get(1));
@@ -332,7 +336,7 @@ class ModelImporterIT {
         assertEquals("id", patient.get(3));
         assertEquals("birthDate.value", patient.get(4));
 
-        List<ImmutableList<Object>> relationships = semanticsAbout(nid(condition), IkeTerms.MODEL_CONTEXT_RELATIONSHIP_PATTERN);
+        List<ImmutableList<Object>> relationships = semanticsAbout(nid(condition), IkePattern.MODEL_CONTEXT_RELATIONSHIP_PATTERN);
         assertFalse(relationships.isEmpty(), "Condition reaches a context");
         ImmutableList<Object> toPatient = relationships.stream().filter(fields -> fields.get(0).equals("Patient")).findFirst().orElseThrow();
         assertEquals(nid(ModelIdentity.context(fhir.name(), fhir.version(), "Patient")), ((EntityFacade) toPatient.get(1)).nid());
@@ -340,13 +344,13 @@ class ModelImporterIT {
                 .filter(relationship -> relationship.context().equals("Patient")).findFirst().orElseThrow().keyElement(), toPatient.get(2));
         assertEquals(false, toPatient.get(3));
 
-        List<ImmutableList<Object>> conversions = semanticsAbout(nid(classId(fhir, "FHIR.Coding")), IkeTerms.MODEL_CONVERSION_PATTERN);
+        List<ImmutableList<Object>> conversions = semanticsAbout(nid(classId(fhir, "FHIR.Coding")), IkePattern.MODEL_CONVERSION_PATTERN);
         ImmutableList<Object> toCode = conversions.stream().filter(fields -> fields.get(1).equals("System.Code")).findFirst().orElseThrow();
         assertEquals("FHIR.Coding", toCode.get(0));
-        assertEquals(IkeTerms.ELM_SYSTEM_CODE.nid(), ((EntityFacade) toCode.get(2)).nid());
+        assertEquals(IkeConcept.ELM_SYSTEM_CODE.nid(), ((EntityFacade) toCode.get(2)).nid());
         assertEquals("FHIRHelpers.ToCode", toCode.get(3));
 
-        List<ImmutableList<Object>> requirements = semanticsAbout(nid(modelId(fhir)), IkeTerms.MODEL_REQUIREMENT_PATTERN);
+        List<ImmutableList<Object>> requirements = semanticsAbout(nid(modelId(fhir)), IkePattern.MODEL_REQUIREMENT_PATTERN);
         assertEquals(1, requirements.size());
         assertEquals("System", requirements.get(0).get(0));
         assertEquals(nid(modelId(system)), ((EntityFacade) requirements.get(0).get(2)).nid());
@@ -370,8 +374,8 @@ class ModelImporterIT {
         assertTrue(types.element(condition.nid(), "nothing").isEmpty());
         assertEquals("{http://hl7.org/fhir}Condition", types.qualifiedName(EntityProxy.Concept.make(condition.nid())).orElseThrow());
         ModelTypes.Model systemModel = types.model("System", "1.0.0").orElseThrow();
-        assertEquals(IkeTerms.ELM_SYSTEM_QUANTITY.nid(), types.classOf(systemModel, "Quantity").orElseThrow().nid());
-        assertEquals("{urn:hl7-org:elm-types:r1}Quantity", types.qualifiedName(IkeTerms.ELM_SYSTEM_QUANTITY).orElseThrow());
+        assertEquals(IkeConcept.ELM_SYSTEM_QUANTITY.nid(), types.classOf(systemModel, "Quantity").orElseThrow().nid());
+        assertEquals("{urn:hl7-org:elm-types:r1}Quantity", types.qualifiedName(IkeConcept.ELM_SYSTEM_QUANTITY).orElseThrow());
         ModelTypes.Model quickModel = types.model("QUICK", "").orElseThrow();
         assertEquals("{http://hl7.org/fhir}Composition.Event",
                 types.qualifiedName(EntityProxy.Concept.make(types.classOf(quickModel, "Composition.Event").orElseThrow().nid())).orElseThrow());
@@ -398,7 +402,7 @@ class ModelImporterIT {
                 ModelInfoFile.read(new ByteArrayInputStream(corrected.getBytes(StandardCharsets.UTF_8))), Store.nextStamp());
         assertEquals(1, correction.counts().versioned(), "one record changed");
         assertEquals(0, correction.counts().written());
-        assertEquals("a corrected file", record(nid(classId(qdm, "QDM.Patient")), IkeTerms.MODEL_CLASS_PATTERN).get(14));
+        assertEquals("a corrected file", record(nid(classId(qdm, "QDM.Patient")), IkePattern.MODEL_CLASS_PATTERN).get(14));
         ModelImporter.Report restored = importer.importModel(qdm, Store.nextStamp());
         assertEquals(1, restored.counts().versioned());
     }

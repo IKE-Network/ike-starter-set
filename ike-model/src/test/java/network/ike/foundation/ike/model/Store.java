@@ -15,7 +15,7 @@
  */
 package network.ike.foundation.ike.model;
 
-import network.ike.foundation.ike.bindings.IkeStamps;
+import network.ike.foundation.ike.bindings.IkeStamp;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -68,6 +68,6 @@ final class Store {
      */
     static synchronized Stamp nextStamp() {
         lastTime = Math.max(lastTime + 1, System.currentTimeMillis());
-        return new ActiveStamp(lastTime, IkeStamps.INCEPTION.author(), IkeStamps.INCEPTION.module(), IkeStamps.INCEPTION.path());
+        return new ActiveStamp(lastTime, IkeStamp.INCEPTION.stamp().author(), IkeStamp.INCEPTION.stamp().module(), IkeStamp.INCEPTION.stamp().path());
     }
 }

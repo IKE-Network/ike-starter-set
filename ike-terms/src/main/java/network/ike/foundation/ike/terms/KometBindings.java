@@ -22,7 +22,7 @@ import java.util.UUID;
 
 /**
  * Komet's terms: the components Komet and its plugins name in their own code beyond the
- * kernel, bound in {@link Ike#KOMET} ({@code dev.ikm.komet.terms.KometTerm}) under the names
+ * kernel, bound in {@link Ike#KOMET} ({@code dev.ikm.komet.terms.KometConcept}) under the names
  * Komet already gave them, with misspellings fixed ({@code PATH_OPTIONS_FOR_EDIT_COORDINATE},
  * {@code PROMOTION_PATH_FOR_EDIT_COORDINATE}). Several are bound in the set's own classes too,
  * under the set's names ({@code IMAGE_FIELD} is {@code IMAGE_DISPLAY_FIELD} there): a component
@@ -30,7 +30,7 @@ import java.util.UUID;
  * Komet's {@code komet-terms} module; {@code CommittedBindingsDriftTest} holds the committed
  * class to this list.
  * <p>
- * The members are the {@code KometTerm} constants Komet had (2026-10-05), less
+ * The members are the {@code KometTerm} constants Komet had (2026-10-05), generated as {@code KometConcept} since 2026-10-14, less
  * {@code CURRENT_ACTIVITY}, which nothing named, and the constants that main code in Komet
  * and its plugins used beyond the kernel, each one a component of the set.
  * Komet's window, pane and preference settings are not here: they name JavaFX properties,

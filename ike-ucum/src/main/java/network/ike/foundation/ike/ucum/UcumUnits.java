@@ -20,7 +20,7 @@ import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.writer.StoreWriter;
 import org.eclipse.collections.api.list.ImmutableList;
 
@@ -55,7 +55,7 @@ public final class UcumUnits implements UcumSymbols {
      */
     public static UcumUnits load(StampCalculator calculator) {
         UcumUnits units = new UcumUnits();
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.UCUM_UNIT_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.UCUM_UNIT_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isAbsent()) {
                 return;
@@ -65,7 +65,7 @@ public final class UcumUnits implements UcumSymbols {
             units.atoms.put(code, new Atom(code, (Boolean) fields.get(4), UcumReduction.of((String) fields.get(9),
                     UcumConcepts.magnitude(fields.get(10)), (Boolean) fields.get(5), (Boolean) fields.get(6))));
         });
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.UCUM_PREFIX_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.UCUM_PREFIX_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isAbsent()) {
                 return;

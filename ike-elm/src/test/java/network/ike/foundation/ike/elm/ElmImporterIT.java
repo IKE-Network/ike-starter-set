@@ -23,7 +23,9 @@ import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.PatternFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.ucum.UcumIdentity;
 import org.eclipse.collections.api.list.ImmutableList;
 import org.junit.jupiter.api.BeforeAll;
@@ -105,7 +107,7 @@ class ElmImporterIT {
         return new ElmJsonReader(catalog).read(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)));
     }
 
-    private static List<Long> semanticsAbout(long componentNid, EntityProxy.Pattern pattern) {
+    private static List<Long> semanticsAbout(long componentNid, PatternFacade pattern) {
         List<Long> nids = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(componentNid, pattern.nid(), semantic -> nids.add(semantic.nid()));
         return nids;
@@ -134,7 +136,7 @@ class ElmImporterIT {
         ElmImporter.Report report = importer.importDocument(json(DEPENDENT), Store.nextStamp());
         assertEquals(1, report.references(), "one distinct thing named, though it is named twice");
         PublicId twice = ElmIdentity.definition("Dependent", "ExpressionDef", "Twice", List.of());
-        List<Long> references = semanticsAbout(PrimitiveData.nid(twice), IkeTerms.ELM_REFERENCE_PATTERN);
+        List<Long> references = semanticsAbout(PrimitiveData.nid(twice), IkePattern.ELM_REFERENCE_PATTERN);
         assertEquals(1, references.size());
         Latest<SemanticEntityVersion> reference = calculator.latest(references.get(0));
         Object target = reference.get().fieldValues().get(1);
@@ -186,9 +188,9 @@ class ElmImporterIT {
         // root ExpressionDef → expression (argument) → Literal, whose valueType is the concept ELM System Integer
         dev.ikm.tinkar.entity.graph.EntityVertex argument = tree.vertex(tree.successors(tree.root().vertexIndex()).get(0));
         dev.ikm.tinkar.entity.graph.EntityVertex literal = tree.vertex(tree.successors(argument.vertexIndex()).get(0));
-        Object valueType = literal.properties().get(IkeTerms.ELM_VALUETYPE_POSITION.nid());
+        Object valueType = literal.properties().get(IkeConcept.ELM_VALUETYPE_POSITION.nid());
         assertTrue(valueType instanceof EntityProxy.Concept, "a System type is stored as its concept");
-        assertEquals(IkeTerms.ELM_SYSTEM_INTEGER.nid(), ((EntityProxy.Concept) valueType).nid());
+        assertEquals(IkeConcept.ELM_SYSTEM_INTEGER.nid(), ((EntityProxy.Concept) valueType).nid());
 
         String modelled = BASE.replace("\"Base\"", "\"Modelled\"")
                 .replace("{urn:hl7-org:elm-types:r1}Integer", "{http://hl7.org/fhir}Condition");
@@ -229,13 +231,13 @@ class ElmImporterIT {
         dev.ikm.tinkar.entity.graph.DiTreeEntity tree = (dev.ikm.tinkar.entity.graph.DiTreeEntity) latest.get().fieldValues().get(0);
         dev.ikm.tinkar.entity.graph.EntityVertex argument = tree.vertex(tree.successors(tree.root().vertexIndex()).get(0));
         dev.ikm.tinkar.entity.graph.EntityVertex retrieve = tree.vertex(tree.successors(argument.vertexIndex()).get(0));
-        Object dataType = retrieve.properties().get(IkeTerms.ELM_DATATYPE_POSITION.nid());
+        Object dataType = retrieve.properties().get(IkeConcept.ELM_DATATYPE_POSITION.nid());
         assertTrue(dataType instanceof EntityProxy.Concept, "a data model's type is stored as its class concept");
         assertEquals(encounter, ((EntityProxy.Concept) dataType).nid());
 
         List<ImmutableList<Object>> references = referencesAbout(visits);
         assertEquals(1, references.size());
-        assertEquals(IkeTerms.ELM_RETRIEVE.nid(), ((EntityProxy.Concept) references.get(0).get(0)).nid(), "the naming node's kind");
+        assertEquals(IkeConcept.ELM_RETRIEVE.nid(), ((EntityProxy.Concept) references.get(0).get(0)).nid(), "the naming node's kind");
         assertEquals(PrimitiveData.nid(types.element(encounter, "code").orElseThrow()),
                 ((EntityFacade) references.get(0).get(1)).nid(), "the target is the element the path names, found through the bases");
         assertEquals("code", references.get(0).get(2), "the path as written");
@@ -266,7 +268,7 @@ class ElmImporterIT {
     private static List<ImmutableList<Object>> referencesAbout(PublicId definition) {
         List<ImmutableList<Object>> references = new ArrayList<>();
         EntityService.get().forEachSemanticForComponentOfPattern(PrimitiveData.nid(definition),
-                IkeTerms.ELM_REFERENCE_PATTERN.nid(), semantic -> {
+                IkePattern.ELM_REFERENCE_PATTERN.nid(), semantic -> {
                     Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                     if (latest.isPresent()) {
                         references.add(latest.get().fieldValues());
@@ -284,7 +286,7 @@ class ElmImporterIT {
         List<ImmutableList<Object>> threshold = referencesAbout(
                 ElmIdentity.definition("Dosed", "ExpressionDef", "Threshold", List.of()));
         assertEquals(1, threshold.size());
-        assertEquals(IkeTerms.ELM_QUANTITY.nid(), ((EntityProxy.Concept) threshold.get(0).get(0)).nid(),
+        assertEquals(IkeConcept.ELM_QUANTITY.nid(), ((EntityProxy.Concept) threshold.get(0).get(0)).nid(),
                 "the kind is the naming node's kind");
         assertEquals(PrimitiveData.nid(UcumIdentity.composedUnit("mg.dL-1")),
                 ((EntityFacade) threshold.get(0).get(1)).nid(),
@@ -295,7 +297,7 @@ class ElmImporterIT {
         List<ImmutableList<Object>> window = referencesAbout(
                 ElmIdentity.definition("Dosed", "ExpressionDef", "Window", List.of()));
         assertEquals(1, window.size());
-        assertEquals(IkeTerms.DAY.nid(), ((EntityFacade) window.get(0).get(1)).nid(),
+        assertEquals(IkeConcept.DAY.nid(), ((EntityFacade) window.get(0).get(1)).nid(),
                 "a calendar word means our unit of time");
         assertEquals("days", window.get(0).get(2));
 

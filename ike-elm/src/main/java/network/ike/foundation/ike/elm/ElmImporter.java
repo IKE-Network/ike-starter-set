@@ -23,8 +23,10 @@ import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.model.ModelTypes;
 import network.ike.foundation.ike.ucum.UcumSyntaxException;
 import network.ike.foundation.ike.ucum.UcumTerm;
@@ -89,15 +91,15 @@ public final class ElmImporter {
             "ConceptRef", "ConceptDef");
 
     /** A CQL calendar word, singular or plural, to IKE's unit of time. */
-    static final Map<String, EntityProxy.Concept> CALENDAR_UNITS = Map.ofEntries(
-            Map.entry("year", IkeTerms.YEAR), Map.entry("years", IkeTerms.YEAR),
-            Map.entry("month", IkeTerms.MONTH), Map.entry("months", IkeTerms.MONTH),
-            Map.entry("week", IkeTerms.WEEK), Map.entry("weeks", IkeTerms.WEEK),
-            Map.entry("day", IkeTerms.DAY), Map.entry("days", IkeTerms.DAY),
-            Map.entry("hour", IkeTerms.HOUR), Map.entry("hours", IkeTerms.HOUR),
-            Map.entry("minute", IkeTerms.MINUTE), Map.entry("minutes", IkeTerms.MINUTE),
-            Map.entry("second", IkeTerms.SECOND), Map.entry("seconds", IkeTerms.SECOND),
-            Map.entry("millisecond", IkeTerms.MILLISECOND), Map.entry("milliseconds", IkeTerms.MILLISECOND));
+    static final Map<String, ConceptFacade> CALENDAR_UNITS = Map.ofEntries(
+            Map.entry("year", IkeConcept.YEAR), Map.entry("years", IkeConcept.YEAR),
+            Map.entry("month", IkeConcept.MONTH), Map.entry("months", IkeConcept.MONTH),
+            Map.entry("week", IkeConcept.WEEK), Map.entry("weeks", IkeConcept.WEEK),
+            Map.entry("day", IkeConcept.DAY), Map.entry("days", IkeConcept.DAY),
+            Map.entry("hour", IkeConcept.HOUR), Map.entry("hours", IkeConcept.HOUR),
+            Map.entry("minute", IkeConcept.MINUTE), Map.entry("minutes", IkeConcept.MINUTE),
+            Map.entry("second", IkeConcept.SECOND), Map.entry("seconds", IkeConcept.SECOND),
+            Map.entry("millisecond", IkeConcept.MILLISECOND), Map.entry("milliseconds", IkeConcept.MILLISECOND));
 
     private final ElmCatalog catalog;
     private final StampCalculator calculator;
@@ -105,7 +107,7 @@ public final class ElmImporter {
     private UcumUnits units;
     private final Map<String, UcumTerm> pendingUnits = new LinkedHashMap<>();
     private ModelTypes types;
-    private final Map<String, EntityProxy.Concept> typeConcepts = new HashMap<>();
+    private final Map<String, ConceptFacade> typeConcepts = new HashMap<>();
     private int propertyPaths;
     private int unwalkedPaths;
 
@@ -253,7 +255,7 @@ public final class ElmImporter {
         if (typeConcepts.containsKey(text)) {
             return;
         }
-        Optional<EntityProxy.Concept> system = ElmTypeNames.systemType(text, catalog);
+        Optional<ConceptFacade> system = ElmTypeNames.systemType(text, catalog);
         if (system.isPresent()) {
             typeConcepts.put(text, system.get());
             return;
@@ -405,7 +407,7 @@ public final class ElmImporter {
      * or a composed unit made when the library is written.
      */
     private Optional<PublicId> resolveUnit(String unit, String path, List<String> problems) {
-        EntityProxy.Concept calendar = CALENDAR_UNITS.get(unit);
+        ConceptFacade calendar = CALENDAR_UNITS.get(unit);
         if (calendar != null) {
             return Optional.of(calendar.publicId());
         }
@@ -521,7 +523,7 @@ public final class ElmImporter {
                 Object value = values.get(0);
                 if (rule.valueType() instanceof EnumerationValue enumeration) {
                     String text = String.valueOf(value);
-                    EntityProxy.Concept concept = enumeration.value(text).orElseThrow(() -> new ElmImportException(
+                    ConceptFacade concept = enumeration.value(text).orElseThrow(() -> new ElmImportException(
                             List.of(path + ": " + kind.name() + "'s " + name + " is " + text + ", which is not a value of"
                                     + " its enumeration")));
                     elm.property(name, concept);
@@ -529,7 +531,7 @@ public final class ElmImporter {
                     // Every type name was resolved before writing: a System type to the catalog's
                     // concept, a data model's type to its class concept.
                     String text = String.valueOf(value);
-                    EntityProxy.Concept concept = typeConcepts.get(text);
+                    ConceptFacade concept = typeConcepts.get(text);
                     if (concept == null) {
                         throw new ElmImportException(List.of(path + ": " + text + " was not resolved before writing"));
                     }
@@ -578,7 +580,7 @@ public final class ElmImporter {
     private void retireVanished(PublicId libraryPublicId, Set<PublicId> imported) {
         long libraryNid = PrimitiveData.nid(libraryPublicId);
         List<PublicId> vanished = new ArrayList<>();
-        EntityService.get().forEachSemanticForComponentOfPattern(libraryNid, IkeTerms.ELM_TREE_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticForComponentOfPattern(libraryNid, IkePattern.ELM_TREE_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isAbsent()) {
                 return;

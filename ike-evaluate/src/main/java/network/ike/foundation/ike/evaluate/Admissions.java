@@ -20,7 +20,7 @@ import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.EntityFacade;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.elm.ElmCatalog;
 
 import java.util.HashMap;
@@ -57,7 +57,7 @@ public final class Admissions {
      */
     public static Admissions load(StampCalculator calculator, ElmCatalog catalog) {
         Admissions admissions = new Admissions();
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.CONSTRUCT_RELATION_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.CONSTRUCT_RELATION_PATTERN.nid(), semantic -> {
             long extending = semantic.referencedComponentNid();
             if (catalog.kindOf(extending).isEmpty()) {
                 return;

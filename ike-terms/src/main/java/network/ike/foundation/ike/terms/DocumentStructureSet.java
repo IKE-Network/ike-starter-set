@@ -18,8 +18,9 @@ package network.ike.foundation.ike.terms;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
 
 /**
  * Declares the structure a document and a conversation journal have in common
@@ -132,15 +133,15 @@ final class DocumentStructureSet {
                 "Carrying a structured document's structure: the purpose of the document block"
                         + " and document attributes patterns and their fields.");
 
-        EntityProxy.Concept structure = set.conceptRef(fqn("Document structure"));
+        ConceptFacade structure = set.conceptRef(fqn("Document structure"));
         set.pattern(fqn("Document block pattern")).at(foundation)
                 .meaning(set.conceptRef(fqn("Document element")))
                 .purpose(structure)
-                .field(set.conceptRef(fqn("Document element kind")), structure, KernelTerm.COMPONENT_FIELD)
-                .field(set.conceptRef(fqn("Document element level")), structure, KernelTerm.INTEGER_FIELD)
-                .field(set.conceptRef(fqn("Document element title")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Document element parameters")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Document element members")), structure, KernelTerm.COMPONENT_ID_LIST_FIELD)
+                .field(set.conceptRef(fqn("Document element kind")), structure, KernelConcept.COMPONENT_FIELD)
+                .field(set.conceptRef(fqn("Document element level")), structure, KernelConcept.INTEGER_FIELD)
+                .field(set.conceptRef(fqn("Document element title")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Document element parameters")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Document element members")), structure, KernelConcept.COMPONENT_ID_LIST_FIELD)
                 .synonym("Document block pattern")
                 .definition("One element of a structured document — a section, a block, a row, a"
                         + " cell, a list, an item or a turn — with its kind, level, title,"
@@ -160,7 +161,7 @@ final class DocumentStructureSet {
                 .synonym("Komet assistant")
                 .definition("The author of the Komet assistant's turns in a conversation journal,"
                         + " and of what the assistant proposes; a person settles what it proposes.")
-                .isA(KernelTerm.USER);
+                .isA(KernelConcept.USER);
         set.concept(fqn("Conversation journal module")).at(foundation)
                 .synonym("Conversation journal module")
                 .definition("The module every conversation journal's lines, elements and manifest"

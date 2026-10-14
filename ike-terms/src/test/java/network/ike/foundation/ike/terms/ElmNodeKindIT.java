@@ -15,7 +15,6 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.common.service.ServiceKeys;
@@ -29,6 +28,7 @@ import dev.ikm.tinkar.entity.PatternEntityVersion;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.EntityFacade;
+import dev.ikm.tinkar.terms.KernelConcept;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -149,7 +149,7 @@ class ElmNodeKindIT {
         assertEquals(nid("Bridge relation kind (IkeFoundation)"), fields.get(2).meaningNid());
         for (FieldDefinitionForEntity field : fields) {
             assertEquals(bridge, field.purposeNid());
-            assertEquals(KernelTerm.CONCEPT_FIELD.nid(), field.dataTypeNid());
+            assertEquals(KernelConcept.CONCEPT_FIELD.nid(), field.dataTypeNid());
         }
         Latest<PatternEntityVersion> readingPattern = calculator.latest(set.patternRef(ElmNodeKindSet.READING_PATTERN_FQN).nid());
         List<FieldDefinitionForEntity> reading = new ArrayList<>();

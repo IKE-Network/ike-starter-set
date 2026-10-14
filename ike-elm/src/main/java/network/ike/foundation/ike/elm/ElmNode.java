@@ -16,8 +16,8 @@
 package network.ike.foundation.ike.elm;
 
 import dev.ikm.tinkar.common.id.PublicId;
-import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.ConceptFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import network.ike.foundation.ike.elm.ElmCatalog.Form;
 import network.ike.foundation.ike.elm.ElmCatalog.NodeKind;
 import network.ike.foundation.ike.elm.ElmCatalog.PositionRule;
@@ -44,7 +44,7 @@ public final class ElmNode {
      * @param name     the position's name, or {@code first}, {@code second}, {@code third}
      * @param child    the node held
      */
-    public record Argument(EntityProxy.Concept position, String name, ElmNode child) {
+    public record Argument(ConceptFacade position, String name, ElmNode child) {
     }
 
     private final NodeKind kind;
@@ -147,7 +147,7 @@ public final class ElmNode {
      * @throws IllegalArgumentException if the kind takes no fixed set of operands
      */
     public ElmNode first(ElmNode child) {
-        return role(IkeTerms.ELM_FIRST_OPERAND_POSITION, "first", child);
+        return role(IkeConcept.ELM_FIRST_OPERAND_POSITION, "first", child);
     }
 
     /**
@@ -158,7 +158,7 @@ public final class ElmNode {
      * @throws IllegalArgumentException if the kind takes no fixed set of operands
      */
     public ElmNode second(ElmNode child) {
-        return role(IkeTerms.ELM_SECOND_OPERAND_POSITION, "second", child);
+        return role(IkeConcept.ELM_SECOND_OPERAND_POSITION, "second", child);
     }
 
     /**
@@ -173,7 +173,7 @@ public final class ElmNode {
         if (roles.isEmpty() || roles.get().maximum() < 3) {
             throw new IllegalArgumentException(kind.name() + " takes no third operand");
         }
-        return role(IkeTerms.ELM_THIRD_OPERAND_POSITION, "third", child);
+        return role(IkeConcept.ELM_THIRD_OPERAND_POSITION, "third", child);
     }
 
     /**
@@ -207,7 +207,7 @@ public final class ElmNode {
         return Optional.empty();
     }
 
-    private ElmNode role(EntityProxy.Concept roleConcept, String name, ElmNode child) {
+    private ElmNode role(ConceptFacade roleConcept, String name, ElmNode child) {
         if (rolesRule().isEmpty()) {
             throw new IllegalArgumentException(kind.name() + " takes no operands named " + name
                     + ": it has no position of exactly two or three values");

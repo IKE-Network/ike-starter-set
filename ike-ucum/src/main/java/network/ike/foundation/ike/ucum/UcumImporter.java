@@ -18,7 +18,7 @@ package network.ike.foundation.ike.ucum;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.builder.Stamp;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import network.ike.foundation.ike.writer.StoreWriter;
 
 import java.util.List;
@@ -84,12 +84,12 @@ public final class UcumImporter {
         for (UcumEssence.Prefix prefix : essence.prefixes()) {
             UcumConcepts.prefix(writer, prefix);
         }
-        UcumConcepts.identity(writer, UcumIdentity.unit("s"), "s", IkeTerms.SECOND, "Second");
-        UcumConcepts.identity(writer, UcumIdentity.unit("min"), "min", IkeTerms.MINUTE, "Minute");
-        UcumConcepts.identity(writer, UcumIdentity.unit("h"), "h", IkeTerms.HOUR, "Hour");
+        UcumConcepts.identity(writer, UcumIdentity.unit("s"), "s", IkeConcept.SECOND, "Second");
+        UcumConcepts.identity(writer, UcumIdentity.unit("min"), "min", IkeConcept.MINUTE, "Minute");
+        UcumConcepts.identity(writer, UcumIdentity.unit("h"), "h", IkeConcept.HOUR, "Hour");
         UcumTerm millisecond = UcumGrammar.parse("ms", essence);
         PublicId ms = UcumConcepts.composedUnit(writer, millisecond, millisecond.reduce(essence));
-        UcumConcepts.identity(writer, ms, millisecond.canonicalCode(), IkeTerms.MILLISECOND, "Millisecond");
+        UcumConcepts.identity(writer, ms, millisecond.canonicalCode(), IkeConcept.MILLISECOND, "Millisecond");
         return new Report(essence.properties().size(), essence.baseUnits().size(), essence.units().size(),
                 essence.prefixes().size(), 1, 4, writer.counts());
     }

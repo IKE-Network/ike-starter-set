@@ -1,6 +1,7 @@
 package network.ike.foundation.ike.terms.foundation;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.KernelPattern;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -18,51 +19,51 @@ final class Section35 {
         ActiveStamp inception = network.ike.foundation.ike.terms.Ike.INCEPTION;
 
         set.concept("Component type focus (SOLOR)", PublicIds.of(UUID.fromString("f1f179d0-26af-5123-9b29-9fc6cd01dd29"))).at(inception)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("eb4bd537-5b29-449c-9798-aeb95d56cecd")), KernelTerm.ENGLISH_LANGUAGE, "Component type focus (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0b65dda0-b2bd-48ae-a3ba-1e465daf4798")), KernelTerm.ENGLISH_LANGUAGE, "Component type focus", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("253fab55-ce5b-42e8-9eea-cc856e24b921")), KernelTerm.ENGLISH_LANGUAGE, "Focus type of component", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("4b3ed6e0-49ff-443e-a945-d6ca2c52796f")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "f1f179d0-26af-5123-9b29-9fc6cd01dd29")
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("eb4bd537-5b29-449c-9798-aeb95d56cecd")), KernelConcept.ENGLISH_LANGUAGE, "Component type focus (SOLOR)", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("0b65dda0-b2bd-48ae-a3ba-1e465daf4798")), KernelConcept.ENGLISH_LANGUAGE, "Component type focus", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("253fab55-ce5b-42e8-9eea-cc856e24b921")), KernelConcept.ENGLISH_LANGUAGE, "Focus type of component", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("4b3ed6e0-49ff-443e-a945-d6ca2c52796f")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "f1f179d0-26af-5123-9b29-9fc6cd01dd29")
                 .statedAxioms(PublicIds.of(UUID.fromString("0fbf89bc-93c2-55b0-ae6e-9649d2b8db63")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("IKE base model concept", PublicIds.of("bc59d656-83d3-47d8-9507-0e656ea95463"))))))
-                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("f4cc29cc-bc14-4328-86ce-b86c0b54add3")))
-                .semanticOn(PublicIds.of(UUID.fromString("eb4bd537-5b29-449c-9798-aeb95d56cecd")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("728661b5-cac7-466b-8cdb-e4d8e5263528")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("0b65dda0-b2bd-48ae-a3ba-1e465daf4798")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("27d420ad-b09f-4911-b161-5b35310dc195")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("253fab55-ce5b-42e8-9eea-cc856e24b921")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("50f0a9f5-55d6-4b84-9206-a4f49290e550")), KernelTerm.PREFERRED)
+                .semantic(KernelPattern.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("f4cc29cc-bc14-4328-86ce-b86c0b54add3")))
+                .semanticOn(PublicIds.of(UUID.fromString("eb4bd537-5b29-449c-9798-aeb95d56cecd")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("728661b5-cac7-466b-8cdb-e4d8e5263528")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("0b65dda0-b2bd-48ae-a3ba-1e465daf4798")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("27d420ad-b09f-4911-b161-5b35310dc195")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("253fab55-ce5b-42e8-9eea-cc856e24b921")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("50f0a9f5-55d6-4b84-9206-a4f49290e550")), KernelConcept.PREFERRED)
                 ;
 
         set.concept("Concept focus (SOLOR)", PublicIds.of(UUID.fromString("dca9854d-9e4c-5e8a-8b30-6c1af6901bb8"))).at(inception)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("229a5aea-9df5-4732-8d6b-8ed485074c41")), KernelTerm.ENGLISH_LANGUAGE, "Concept focus (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("43902790-b740-44fb-b6cb-7a20020c5385")), KernelTerm.ENGLISH_LANGUAGE, "Concept focus", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("70a95faa-822f-4098-904c-c2e0cef24ba6")), KernelTerm.ENGLISH_LANGUAGE, "Concept focus", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("98b908a7-8fcd-44ec-afd9-338cfc07750d")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "dca9854d-9e4c-5e8a-8b30-6c1af6901bb8")
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("229a5aea-9df5-4732-8d6b-8ed485074c41")), KernelConcept.ENGLISH_LANGUAGE, "Concept focus (SOLOR)", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("43902790-b740-44fb-b6cb-7a20020c5385")), KernelConcept.ENGLISH_LANGUAGE, "Concept focus", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("70a95faa-822f-4098-904c-c2e0cef24ba6")), KernelConcept.ENGLISH_LANGUAGE, "Concept focus", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("98b908a7-8fcd-44ec-afd9-338cfc07750d")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "dca9854d-9e4c-5e8a-8b30-6c1af6901bb8")
                 .statedAxioms(PublicIds.of(UUID.fromString("496c2dab-7d21-5e0a-8bfc-f4396a463501")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component type focus (SOLOR)", PublicIds.of("f1f179d0-26af-5123-9b29-9fc6cd01dd29"))))))
-                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("34f7a5a4-4664-4ceb-832b-ff5aaa907889")))
-                .semanticOn(PublicIds.of(UUID.fromString("229a5aea-9df5-4732-8d6b-8ed485074c41")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("dbfddfa0-1c68-4ac2-8576-f16308e1251c")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("43902790-b740-44fb-b6cb-7a20020c5385")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b088ce55-115d-4f4b-a319-367b91cc39d0")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("70a95faa-822f-4098-904c-c2e0cef24ba6")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("bdb1f062-144c-45dc-9e45-6472f68bf642")), KernelTerm.PREFERRED)
+                .semantic(KernelPattern.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("34f7a5a4-4664-4ceb-832b-ff5aaa907889")))
+                .semanticOn(PublicIds.of(UUID.fromString("229a5aea-9df5-4732-8d6b-8ed485074c41")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("dbfddfa0-1c68-4ac2-8576-f16308e1251c")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("43902790-b740-44fb-b6cb-7a20020c5385")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("b088ce55-115d-4f4b-a319-367b91cc39d0")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("70a95faa-822f-4098-904c-c2e0cef24ba6")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("bdb1f062-144c-45dc-9e45-6472f68bf642")), KernelConcept.PREFERRED)
                 ;
 
         set.concept("Axiom focus (SOLOR)", PublicIds.of(UUID.fromString("9c6fbddd-58bd-5881-b926-c813bbff849b"))).at(inception)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("823a7eee-fde7-4964-a407-1181e592eb34")), KernelTerm.ENGLISH_LANGUAGE, "Axiom focus (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("37705299-7a2d-46b8-9760-daf643f68d77")), KernelTerm.ENGLISH_LANGUAGE, "Axiom focus", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1709386f-9130-4f11-ac43-02fe7f9bb71d")), KernelTerm.ENGLISH_LANGUAGE, "A statement or proposition that is assumed to be true without requiring proof, it serves as a foundation principles on which a system or theory is built. Focus refers to the central point of attention or concentration on a specific concept/axioms", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("a9ff2040-3a06-485e-b164-823f37c6ecfe")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "9c6fbddd-58bd-5881-b926-c813bbff849b")
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("823a7eee-fde7-4964-a407-1181e592eb34")), KernelConcept.ENGLISH_LANGUAGE, "Axiom focus (SOLOR)", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("37705299-7a2d-46b8-9760-daf643f68d77")), KernelConcept.ENGLISH_LANGUAGE, "Axiom focus", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("1709386f-9130-4f11-ac43-02fe7f9bb71d")), KernelConcept.ENGLISH_LANGUAGE, "A statement or proposition that is assumed to be true without requiring proof, it serves as a foundation principles on which a system or theory is built. Focus refers to the central point of attention or concentration on a specific concept/axioms", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("a9ff2040-3a06-485e-b164-823f37c6ecfe")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "9c6fbddd-58bd-5881-b926-c813bbff849b")
                 .statedAxioms(PublicIds.of(UUID.fromString("4e3bc3ec-dafb-535d-a6af-f08291071ae7")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component type focus (SOLOR)", PublicIds.of("f1f179d0-26af-5123-9b29-9fc6cd01dd29"))))))
-                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("70643d78-bcbe-4656-9206-53ee91853da0")))
-                .semanticOn(PublicIds.of(UUID.fromString("823a7eee-fde7-4964-a407-1181e592eb34")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("4291e69a-93e7-4839-92f2-b5cefc9d3dbb")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("37705299-7a2d-46b8-9760-daf643f68d77")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("ff1cf8bc-b2ae-4048-b726-ff41735df3c3")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("1709386f-9130-4f11-ac43-02fe7f9bb71d")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("2afc7d9f-6acf-46e5-aef0-3424521895c0")), KernelTerm.PREFERRED)
+                .semantic(KernelPattern.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("70643d78-bcbe-4656-9206-53ee91853da0")))
+                .semanticOn(PublicIds.of(UUID.fromString("823a7eee-fde7-4964-a407-1181e592eb34")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("4291e69a-93e7-4839-92f2-b5cefc9d3dbb")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("37705299-7a2d-46b8-9760-daf643f68d77")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("ff1cf8bc-b2ae-4048-b726-ff41735df3c3")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("1709386f-9130-4f11-ac43-02fe7f9bb71d")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("2afc7d9f-6acf-46e5-aef0-3424521895c0")), KernelConcept.PREFERRED)
                 ;
 
         set.concept("Description focus (SOLOR)", PublicIds.of(UUID.fromString("6edf734d-7f57-5430-9164-6ee0824fd94b"))).at(inception)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("11614fdc-1dd7-4ea1-8c4e-62fc4feecef6")), KernelTerm.ENGLISH_LANGUAGE, "Description focus (SOLOR)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("55c3d405-df44-49dc-a536-6dd2049ac5f5")), KernelTerm.ENGLISH_LANGUAGE, "Description focus", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("abf0aa8d-427b-4e7e-9484-0717aa1d2622")), KernelTerm.ENGLISH_LANGUAGE, "Description focus", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)
-                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("dba3bcf4-66a5-4f56-a02d-24e190671e86")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "6edf734d-7f57-5430-9164-6ee0824fd94b")
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("11614fdc-1dd7-4ea1-8c4e-62fc4feecef6")), KernelConcept.ENGLISH_LANGUAGE, "Description focus (SOLOR)", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("55c3d405-df44-49dc-a536-6dd2049ac5f5")), KernelConcept.ENGLISH_LANGUAGE, "Description focus", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.REGULAR_NAME_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.DESCRIPTION_PATTERN, PublicIds.of(UUID.fromString("abf0aa8d-427b-4e7e-9484-0717aa1d2622")), KernelConcept.ENGLISH_LANGUAGE, "Description focus", KernelConcept.DESCRIPTION_NOT_CASE_SENSITIVE, KernelConcept.DEFINITION_DESCRIPTION_TYPE)
+                .semantic(KernelPattern.IDENTIFIER_PATTERN, PublicIds.of(UUID.fromString("dba3bcf4-66a5-4f56-a02d-24e190671e86")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), "6edf734d-7f57-5430-9164-6ee0824fd94b")
                 .statedAxioms(PublicIds.of(UUID.fromString("c1ddad0b-615b-5290-bde4-290b6bceea91")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(EntityProxy.Concept.make("Component type focus (SOLOR)", PublicIds.of("f1f179d0-26af-5123-9b29-9fc6cd01dd29"))))))
-                .semantic(KernelTerm.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("8dfbaa03-846b-4e78-bfa2-e366cf79689c")))
-                .semanticOn(PublicIds.of(UUID.fromString("11614fdc-1dd7-4ea1-8c4e-62fc4feecef6")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("a0657581-84aa-44ce-8ddd-8b101294fc6c")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("55c3d405-df44-49dc-a536-6dd2049ac5f5")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5a377fce-6fbb-4df6-ac56-5cd47e0b7e23")), KernelTerm.PREFERRED)
-                .semanticOn(PublicIds.of(UUID.fromString("abf0aa8d-427b-4e7e-9484-0717aa1d2622")), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("920b56b7-ee4c-48ea-9b1f-1ed5c30cc824")), KernelTerm.PREFERRED)
+                .semantic(KernelPattern.TINKAR_BASE_MODEL_COMPONENT_PATTERN, PublicIds.of(UUID.fromString("8dfbaa03-846b-4e78-bfa2-e366cf79689c")))
+                .semanticOn(PublicIds.of(UUID.fromString("11614fdc-1dd7-4ea1-8c4e-62fc4feecef6")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("a0657581-84aa-44ce-8ddd-8b101294fc6c")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("55c3d405-df44-49dc-a536-6dd2049ac5f5")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("5a377fce-6fbb-4df6-ac56-5cd47e0b7e23")), KernelConcept.PREFERRED)
+                .semanticOn(PublicIds.of(UUID.fromString("abf0aa8d-427b-4e7e-9484-0717aa1d2622")), KernelPattern.US_DIALECT_PATTERN, PublicIds.of(UUID.fromString("920b56b7-ee4c-48ea-9b1f-1ed5c30cc824")), KernelConcept.PREFERRED)
                 ;
 
     }

@@ -18,7 +18,7 @@ package network.ike.foundation.ike.elm;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.terms.ConceptFacade;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import network.ike.foundation.ike.elm.ElmCatalog.EnumerationValue;
 import network.ike.foundation.ike.elm.ElmCatalog.Form;
 import network.ike.foundation.ike.elm.ElmCatalog.KindValue;
@@ -108,17 +108,17 @@ public final class ElmConformance {
         for (int i = 0; i < successors.size(); i++) {
             EntityVertex argument = tree.vertex(successors.get(i));
             long meaning = argument.getMeaningNid();
-            if (meaning == IkeTerms.ELM_FIRST_OPERAND_POSITION.nid()
-                    || meaning == IkeTerms.ELM_SECOND_OPERAND_POSITION.nid()
-                    || meaning == IkeTerms.ELM_THIRD_OPERAND_POSITION.nid()) {
+            if (meaning == IkeConcept.ELM_FIRST_OPERAND_POSITION.nid()
+                    || meaning == IkeConcept.ELM_SECOND_OPERAND_POSITION.nid()
+                    || meaning == IkeConcept.ELM_THIRD_OPERAND_POSITION.nid()) {
                 Optional<PositionRule> roles = rolesRule(kind);
                 if (roles.isEmpty()) {
                     problems.add(kind.name() + " takes no operands named first, second, or third");
                     continue;
                 }
-                if (meaning == IkeTerms.ELM_FIRST_OPERAND_POSITION.nid()) {
+                if (meaning == IkeConcept.ELM_FIRST_OPERAND_POSITION.nid()) {
                     firstCount++;
-                } else if (meaning == IkeTerms.ELM_SECOND_OPERAND_POSITION.nid()) {
+                } else if (meaning == IkeConcept.ELM_SECOND_OPERAND_POSITION.nid()) {
                     secondCount++;
                 } else {
                     thirdCount++;
@@ -150,7 +150,7 @@ public final class ElmConformance {
             }
             counts.merge(name.get(), 1, Integer::sum);
             if (rule.get().isList() && kind.name().equals("ChoiceTypeSpecifier") && name.get().equals("choice")
-                    && !argument.properties().containsKey(IkeTerms.ELM_LIST_ITEMS.nid())) {
+                    && !argument.properties().containsKey(IkeConcept.ELM_LIST_ITEMS.nid())) {
                 // A choice's alternatives have no order: a model element's type holds them as the
                 // children of the choice position, a set, and a library's tree may hold them as an
                 // ordered list; either conforms.
@@ -164,7 +164,7 @@ public final class ElmConformance {
                 continue;
             }
             if (rule.get().isList()) {
-                if (!argument.properties().containsKey(IkeTerms.ELM_LIST_ITEMS.nid())) {
+                if (!argument.properties().containsKey(IkeConcept.ELM_LIST_ITEMS.nid())) {
                     problems.add(kind.name() + "'s " + name.get() + " is a list and must point at an ordered list semantic");
                 }
                 if (!tree.successors(argument.vertexIndex()).isEmpty()) {

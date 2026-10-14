@@ -15,20 +15,20 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.BindingClass;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.Stamp;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.DefaultsTemplateTerm;
-import dev.ikm.tinkar.terms.EntityProxy;
+import dev.ikm.tinkar.terms.KernelConcept;
 
 /**
  * Ledger-internal handles for the IkeFoundation knowledge set: the session root and the
  * reference handles the sections cite. Handles are conveniences over derived
  * identities — never identity sources. Consumers use the generated bindings class
- * (network.ike.foundation.ike.bindings.IkeTerms), not this one.
+ * (network.ike.foundation.ike.bindings.IkeConcept and IkePattern), not this one.
  */
 public final class Ike {
 
@@ -42,26 +42,27 @@ public final class Ike {
     public static final KnowledgeSet SET = KnowledgeSet.of("d890e06f-ec35-429a-b541-d0ead19695e2");
 
     /**
-     * The binding class of the set's stamps: the generated {@code IkeStamps}, through which
-     * code outside the ledger authors under the set's stamps without depending on it.
+     * The binding class of the set's stamps: the generated {@code IkeStamp} enum, through which
+     * code outside the ledger authors under the set's stamps without depending on it. Named
+     * like the set's own bindings ({@code Ike}), so the stamps join them as their stamp enum.
      */
-    public static final BindingClass STAMPS = SET.bindingClass("IkeStamps");
+    public static final BindingClass STAMPS = SET.bindingClass("Ike");
 
     /**
      * The kernel: the components tinkar-core and its stores name in their own code, generated
-     * into {@code dev.ikm.tinkar.terms.KernelTerm} and committed there (see
-     * {@link KernelBindings}).
+     * into {@code dev.ikm.tinkar.terms.KernelConcept} and {@code KernelPattern} and committed
+     * there (see {@link KernelBindings}).
      */
-    public static final BindingClass KERNEL = SET.bindingClass("dev.ikm.tinkar.terms", "KernelTerm");
+    public static final BindingClass KERNEL = SET.bindingClass("dev.ikm.tinkar.terms", "Kernel");
 
     /**
      * Komet's terms: the components Komet and its plugins name beyond the kernel, generated
-     * into {@code dev.ikm.komet.terms.KometTerm} and committed there (see {@link KometBindings}).
+     * into {@code dev.ikm.komet.terms.KometConcept} and committed there (see {@link KometBindings}).
      */
-    public static final BindingClass KOMET = SET.bindingClass("dev.ikm.komet.terms", "KometTerm");
+    public static final BindingClass KOMET = SET.bindingClass("dev.ikm.komet.terms", "Komet");
 
     /** The set's module concept — the export dimension for this knowledge. */
-    public static final EntityProxy.Concept MODULE =
+    public static final ConceptFacade MODULE =
             SET.conceptRef("IkeFoundation module (IkeFoundation)");
 
     /**
@@ -69,10 +70,10 @@ public final class Ike {
      * AsciiDoc document vocabulary as a unit (IKE-Network/ike-issues#468); declared by
      * {@link AsciiDocModelSet}.
      */
-    public static final EntityProxy.Concept ASCIIDOC_MODULE =
+    public static final ConceptFacade ASCIIDOC_MODULE =
             SET.conceptRef(AsciiDocModelSet.MODULE_FQN);
     /** The set's root concept. */
-    public static final EntityProxy.Concept ROOT =
+    public static final ConceptFacade ROOT =
             SET.conceptRef("IkeFoundation root (IkeFoundation)");
 
     /**
@@ -82,7 +83,7 @@ public final class Ike {
      * or an ingested upstream source. Resolves the curator-identity TODO this
      * scaffold generates by default.
      */
-    public static final EntityProxy.Concept IKE_COMMUNITY =
+    public static final ConceptFacade IKE_COMMUNITY =
             SET.conceptRef("IKE Community (IkeFoundation)");
 
     /**
@@ -97,7 +98,7 @@ public final class Ike {
      * gate's stamp test would refuse it.
      */
     public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
-            IKE_COMMUNITY, MODULE, KernelTerm.DEVELOPMENT_PATH);
+            IKE_COMMUNITY, MODULE, KernelConcept.DEVELOPMENT_PATH);
 
     /**
      * The inception stamp's Defaults-and-templates-module counterpart, at the same
@@ -108,7 +109,7 @@ public final class Ike {
      */
     public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
-            KernelTerm.DEVELOPMENT_PATH);
+            KernelConcept.DEVELOPMENT_PATH);
 
     /**
      * The inception stamp's AsciiDoc-document-module counterpart, at the same declared
@@ -117,5 +118,5 @@ public final class Ike {
      * omit it as a unit (IKE-Network/ike-issues#468).
      */
     public static final ActiveStamp ASCIIDOC_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
-            IKE_COMMUNITY, ASCIIDOC_MODULE, KernelTerm.DEVELOPMENT_PATH);
+            IKE_COMMUNITY, ASCIIDOC_MODULE, KernelConcept.DEVELOPMENT_PATH);
 }

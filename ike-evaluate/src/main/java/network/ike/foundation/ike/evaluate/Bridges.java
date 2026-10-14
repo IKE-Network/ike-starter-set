@@ -22,7 +22,8 @@ import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.EntityFacade;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import network.ike.foundation.ike.model.ModelTypes;
 
 import java.util.Optional;
@@ -59,12 +60,12 @@ final class Bridges {
     /** The bridge on a class, if one is authored. */
     Optional<Bridge> bridgeOf(long classNid) {
         Bridge[] found = {null};
-        EntityService.get().forEachSemanticForComponentOfPattern(classNid, IkeTerms.MODEL_CLASS_BRIDGE_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticForComponentOfPattern(classNid, IkePattern.MODEL_CLASS_BRIDGE_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isPresent() && found[0] == null) {
                 long disposition = ((EntityFacade) latest.get().fieldValues().get(1)).nid();
                 found[0] = new Bridge(((EntityFacade) latest.get().fieldValues().get(0)).nid(),
-                        disposition == IkeTerms.UNRESOLVED.nid() ? Optional.empty() : Optional.of(disposition),
+                        disposition == IkeConcept.UNRESOLVED.nid() ? Optional.empty() : Optional.of(disposition),
                         ((EntityFacade) latest.get().fieldValues().get(2)).nid());
             }
         });
@@ -79,7 +80,7 @@ final class Bridges {
         }
         long elementNid = PrimitiveData.nid(element.get());
         Long[] found = {null};
-        EntityService.get().forEachSemanticForComponentOfPattern(elementNid, IkeTerms.MODEL_ELEMENT_READING_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticForComponentOfPattern(elementNid, IkePattern.MODEL_ELEMENT_READING_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isPresent() && found[0] == null) {
                 found[0] = ((EntityFacade) latest.get().fieldValues().get(0)).nid();

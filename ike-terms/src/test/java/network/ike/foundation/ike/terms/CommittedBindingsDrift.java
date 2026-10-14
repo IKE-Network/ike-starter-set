@@ -19,11 +19,9 @@ import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.entity.builder.BindingClass;
 import dev.ikm.tinkar.entity.builder.BindingsWriter;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.terms.EntityProxy;
+import dev.ikm.tinkar.terms.EntityFacade;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +31,10 @@ import java.util.TreeMap;
 
 /**
  * A binding class generated from the set and committed where it is used, compared with the
- * class the set generates now: the same constants, each with the set's identity and fully
- * qualified name, and nothing the set lacks. The committing repository cannot depend on the set
- * (the set is built with it), so a committed class can drift; the tests that use this are what
- * keep it from drifting.
+ * enums the set generates now: for each kind, the same constants, each with the set's identity
+ * and fully qualified name, and nothing the set lacks. The committing repository cannot depend
+ * on the set (the set is built with it), so a committed enum can drift; the tests that use this
+ * are what keep it from drifting.
  */
 final class CommittedBindingsDrift {
 
@@ -44,30 +42,33 @@ final class CommittedBindingsDrift {
     }
 
     /**
-     * Writes the class the set generates for a binding class, below {@code target/<directory>}.
+     * Writes the enums the set generates for a binding class, below {@code target/<directory>}.
      *
      * @param set          the composed set
      * @param bindingClass the binding class, with a package of its own
      * @param directory    the directory below {@code target}
-     * @return the absolute path of the generated source
-     * @throws IOException if the file cannot be written
+     * @return the written files, absolute
+     * @throws IOException if a file cannot be written
      */
-    static Path generate(KnowledgeSet set, BindingClass bindingClass, String directory) throws IOException {
-        return BindingsWriter.writeBindingClass(set, bindingClass, Path.of("target", directory)).toAbsolutePath();
+    static List<Path> generate(KnowledgeSet set, BindingClass bindingClass, String directory) throws IOException {
+        return BindingsWriter.writeBindingClass(set, bindingClass, Path.of("target", directory)).stream()
+                .map(Path::toAbsolutePath).toList();
     }
 
     /**
-     * The set's bindings in a binding class, by constant.
+     * The constants the set binds in a binding class, of one kind of component, by name.
      *
      * @param set          the composed set
      * @param bindingClass the binding class
-     * @return each constant's declaration
+     * @param kind         the kind of component
+     * @return the declarations by constant name
      */
-    static Map<String, KnowledgeSet.Declaration> expected(KnowledgeSet set, BindingClass bindingClass) {
+    static Map<String, KnowledgeSet.Declaration> expected(KnowledgeSet set, BindingClass bindingClass,
+                                                          KnowledgeSet.Declaration.Kind kind) {
         Map<String, KnowledgeSet.Declaration> expected = new TreeMap<>();
         for (KnowledgeSet.Declaration declaration : set.declarations()) {
             String constant = declaration.bindings().get(bindingClass);
-            if (constant != null) {
+            if (constant != null && declaration.kind() == kind) {
                 expected.put(constant, declaration);
             }
         }
@@ -75,21 +76,16 @@ final class CommittedBindingsDrift {
     }
 
     /**
-     * How the committed class differs from the set's bindings: constants one has and the other
-     * lacks, and constants whose UUIDs or fully qualified name differ.
+     * Where a committed enum differs from what the set binds.
      *
-     * @param expected  the set's bindings, by constant
-     * @param committed the committed class
-     * @return one line per difference; empty when there is none
-     * @throws IllegalAccessException if a constant cannot be read
+     * @param expected  the set's declarations by constant name, of the enum's kind
+     * @param committed the committed enum
+     * @return one line per difference; empty when none
      */
-    static List<String> drift(Map<String, KnowledgeSet.Declaration> expected, Class<?> committed)
-            throws IllegalAccessException {
-        Map<String, EntityProxy> constants = new TreeMap<>();
-        for (Field field : committed.getFields()) {
-            if (Modifier.isStatic(field.getModifiers()) && EntityProxy.class.isAssignableFrom(field.getType())) {
-                constants.put(field.getName(), (EntityProxy) field.get(null));
-            }
+    static List<String> drift(Map<String, KnowledgeSet.Declaration> expected, Class<?> committed) {
+        Map<String, EntityFacade> constants = new TreeMap<>();
+        for (Object constant : committed.getEnumConstants()) {
+            constants.put(((Enum<?>) constant).name(), (EntityFacade) constant);
         }
         List<String> drift = new ArrayList<>();
         for (String constant : expected.keySet()) {
@@ -97,7 +93,7 @@ final class CommittedBindingsDrift {
                 drift.add(constant + ": in the set's bindings, not committed");
             }
         }
-        for (Map.Entry<String, EntityProxy> entry : constants.entrySet()) {
+        for (Map.Entry<String, EntityFacade> entry : constants.entrySet()) {
             KnowledgeSet.Declaration declaration = expected.get(entry.getKey());
             if (declaration == null) {
                 drift.add(entry.getKey() + ": committed, not in the set's bindings");

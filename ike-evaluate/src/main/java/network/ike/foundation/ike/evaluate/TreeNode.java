@@ -21,8 +21,9 @@ import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import network.ike.foundation.ike.elm.ElmCatalog;
 import network.ike.foundation.ike.elm.ElmCatalog.EnumerationValue;
 import network.ike.foundation.ike.elm.ElmCatalog.NodeKind;
@@ -135,7 +136,7 @@ final class TreeNode {
         if (argument.isEmpty()) {
             return items;
         }
-        Object list = argument.get().properties().get(IkeTerms.ELM_LIST_ITEMS.nid());
+        Object list = argument.get().properties().get(IkeConcept.ELM_LIST_ITEMS.nid());
         if (list instanceof EntityProxy.Semantic semantic) {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isPresent() && latest.get().fieldValues().get(0) instanceof LongIdList itemNids) {
@@ -159,16 +160,16 @@ final class TreeNode {
             return List.of(single.get());
         }
         List<TreeNode> roles = new ArrayList<>();
-        role(IkeTerms.ELM_FIRST_OPERAND_POSITION).ifPresent(roles::add);
-        role(IkeTerms.ELM_SECOND_OPERAND_POSITION).ifPresent(roles::add);
-        role(IkeTerms.ELM_THIRD_OPERAND_POSITION).ifPresent(roles::add);
+        role(IkeConcept.ELM_FIRST_OPERAND_POSITION).ifPresent(roles::add);
+        role(IkeConcept.ELM_SECOND_OPERAND_POSITION).ifPresent(roles::add);
+        role(IkeConcept.ELM_THIRD_OPERAND_POSITION).ifPresent(roles::add);
         if (!roles.isEmpty()) {
             return roles;
         }
         return items("operand");
     }
 
-    Optional<TreeNode> role(EntityProxy.Concept position) {
+    Optional<TreeNode> role(ConceptFacade position) {
         ImmutableIntList successors = tree.successors(vertex.vertexIndex());
         for (int i = 0; i < successors.size(); i++) {
             EntityVertex argument = tree.vertex(successors.get(i));

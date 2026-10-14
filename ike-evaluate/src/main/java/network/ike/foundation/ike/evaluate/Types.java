@@ -16,8 +16,9 @@
 package network.ike.foundation.ike.evaluate;
 
 import dev.ikm.tinkar.common.service.PrimitiveData;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -275,13 +276,13 @@ final class Types {
 
     private static synchronized Map<Long, String> systemTypes() {
         if (SYSTEM_TYPES.isEmpty()) {
-            EntityProxy.Concept[] concepts = {IkeTerms.ELM_SYSTEM_ANY, IkeTerms.ELM_SYSTEM_BOOLEAN, IkeTerms.ELM_SYSTEM_CODE,
-                IkeTerms.ELM_SYSTEM_CODESYSTEM, IkeTerms.ELM_SYSTEM_CONCEPT, IkeTerms.ELM_SYSTEM_DATE, IkeTerms.ELM_SYSTEM_DATEINTERVAL,
-                IkeTerms.ELM_SYSTEM_DATETIME, IkeTerms.ELM_SYSTEM_DATETIMEINTERVAL, IkeTerms.ELM_SYSTEM_DECIMAL,
-                IkeTerms.ELM_SYSTEM_DECIMALINTERVAL, IkeTerms.ELM_SYSTEM_INTEGER, IkeTerms.ELM_SYSTEM_INTEGERINTERVAL,
-                IkeTerms.ELM_SYSTEM_INTERVAL, IkeTerms.ELM_SYSTEM_LONG, IkeTerms.ELM_SYSTEM_QUANTITY, IkeTerms.ELM_SYSTEM_QUANTITYINTERVAL,
-                IkeTerms.ELM_SYSTEM_RATIO, IkeTerms.ELM_SYSTEM_STRING, IkeTerms.ELM_SYSTEM_TIME, IkeTerms.ELM_SYSTEM_TIMEINTERVAL,
-                IkeTerms.ELM_SYSTEM_VALUESET, IkeTerms.ELM_SYSTEM_VOCABULARY};
+            ConceptFacade[] concepts = {IkeConcept.ELM_SYSTEM_ANY, IkeConcept.ELM_SYSTEM_BOOLEAN, IkeConcept.ELM_SYSTEM_CODE,
+                IkeConcept.ELM_SYSTEM_CODESYSTEM, IkeConcept.ELM_SYSTEM_CONCEPT, IkeConcept.ELM_SYSTEM_DATE, IkeConcept.ELM_SYSTEM_DATEINTERVAL,
+                IkeConcept.ELM_SYSTEM_DATETIME, IkeConcept.ELM_SYSTEM_DATETIMEINTERVAL, IkeConcept.ELM_SYSTEM_DECIMAL,
+                IkeConcept.ELM_SYSTEM_DECIMALINTERVAL, IkeConcept.ELM_SYSTEM_INTEGER, IkeConcept.ELM_SYSTEM_INTEGERINTERVAL,
+                IkeConcept.ELM_SYSTEM_INTERVAL, IkeConcept.ELM_SYSTEM_LONG, IkeConcept.ELM_SYSTEM_QUANTITY, IkeConcept.ELM_SYSTEM_QUANTITYINTERVAL,
+                IkeConcept.ELM_SYSTEM_RATIO, IkeConcept.ELM_SYSTEM_STRING, IkeConcept.ELM_SYSTEM_TIME, IkeConcept.ELM_SYSTEM_TIMEINTERVAL,
+                IkeConcept.ELM_SYSTEM_VALUESET, IkeConcept.ELM_SYSTEM_VOCABULARY};
             String[] names = {"Any", "Boolean", "Code", "CodeSystem", "Concept", "Date", "DateInterval", "DateTime", "DateTimeInterval",
                 "Decimal", "DecimalInterval", "Integer", "IntegerInterval", "Interval", "Long", "Quantity", "QuantityInterval", "Ratio",
                 "String", "Time", "TimeInterval", "ValueSet", "Vocabulary"};

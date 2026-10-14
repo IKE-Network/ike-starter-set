@@ -15,10 +15,12 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.PatternFacade;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 
 /**
@@ -56,7 +58,7 @@ final class ElmNodeCatalogSet {
                         + " edited. A node kind is a kind of node a tree in this language can have; a position is"
                         + " a named place in a node that holds a child or a value.")
                 .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
-        EntityProxy.Concept root = set.conceptRef(ROOT_FQN);
+        ConceptFacade root = set.conceptRef(ROOT_FQN);
 
         set.concept("ELM position (ELM)").at(inception)
                 .synonym("ELM position")
@@ -65,7 +67,7 @@ final class ElmNodeCatalogSet {
                         + " Which types have it, with what value type and how many, is recorded on each type by"
                         + " the type position pattern.")
                 .isA(root);
-        EntityProxy.Concept positionParent = set.conceptRef("ELM position (ELM)");
+        ConceptFacade positionParent = set.conceptRef("ELM position (ELM)");
 
         set.concept("ELM primitive (ELM)").at(inception)
                 .synonym("ELM primitive")
@@ -73,7 +75,7 @@ final class ElmNodeCatalogSet {
                         + " node kind of the catalog: what a position holds when it holds a plain value and not a"
                         + " node.")
                 .isA(root);
-        EntityProxy.Concept primitiveParent = set.conceptRef("ELM primitive (ELM)");
+        ConceptFacade primitiveParent = set.conceptRef("ELM primitive (ELM)");
 
         set.concept("ELM external type (ELM)").at(inception)
                 .synonym("ELM external type")
@@ -81,7 +83,7 @@ final class ElmNodeCatalogSet {
                         + " the catalog names it so that every reference resolves, and says no more about it than"
                         + " its name and its namespace.")
                 .isA(root);
-        EntityProxy.Concept externalParent = set.conceptRef("ELM external type (ELM)");
+        ConceptFacade externalParent = set.conceptRef("ELM external type (ELM)");
 
         // ── The type position pattern: which positions each type has ──
         set.concept("ELM type position (ELM)").at(inception)
@@ -96,7 +98,7 @@ final class ElmNodeCatalogSet {
                 .definition("Why type positions are recorded: so that a tree can be checked against the catalog and"
                         + " a reader can know what each node may hold.")
                 .isA(root);
-        EntityProxy.Concept structure = set.conceptRef("ELM catalog structure (ELM)");
+        ConceptFacade structure = set.conceptRef("ELM catalog structure (ELM)");
         set.concept("ELM property form (ELM)").at(inception)
                 .synonym("ELM property form")
                 .definition("The form of a position that holds a plain value, an attribute in the schema: our"
@@ -138,15 +140,15 @@ final class ElmNodeCatalogSet {
         set.pattern(TYPE_POSITION_PATTERN_FQN).at(inception)
                 .meaning(set.conceptRef("ELM type position (ELM)"))
                 .purpose(structure)
-                .field(set.conceptRef("ELM position field (ELM)"), structure, KernelTerm.COMPONENT_FIELD)
-                .field(set.conceptRef("ELM value type field (ELM)"), structure, KernelTerm.COMPONENT_FIELD)
-                .field(set.conceptRef("ELM minimum field (ELM)"), structure, KernelTerm.INTEGER_FIELD)
-                .field(set.conceptRef("ELM maximum field (ELM)"), structure, KernelTerm.INTEGER_FIELD)
-                .field(set.conceptRef("ELM position note field (ELM)"), structure, KernelTerm.STRING)
-                .field(set.conceptRef("ELM form field (ELM)"), structure, KernelTerm.COMPONENT_FIELD);
-        EntityProxy.Concept propertyForm = set.conceptRef("ELM property form (ELM)");
-        EntityProxy.Concept edgeForm = set.conceptRef("ELM edge form (ELM)");
-        EntityProxy.Pattern typePositions = set.patternRef(TYPE_POSITION_PATTERN_FQN);
+                .field(set.conceptRef("ELM position field (ELM)"), structure, KernelConcept.COMPONENT_FIELD)
+                .field(set.conceptRef("ELM value type field (ELM)"), structure, KernelConcept.COMPONENT_FIELD)
+                .field(set.conceptRef("ELM minimum field (ELM)"), structure, KernelConcept.INTEGER_FIELD)
+                .field(set.conceptRef("ELM maximum field (ELM)"), structure, KernelConcept.INTEGER_FIELD)
+                .field(set.conceptRef("ELM position note field (ELM)"), structure, KernelConcept.STRING)
+                .field(set.conceptRef("ELM form field (ELM)"), structure, KernelConcept.COMPONENT_FIELD);
+        ConceptFacade propertyForm = set.conceptRef("ELM property form (ELM)");
+        ConceptFacade edgeForm = set.conceptRef("ELM edge form (ELM)");
+        PatternFacade typePositions = set.patternRef(TYPE_POSITION_PATTERN_FQN);
 
         // ── Positions: one concept per name, shared across types ──
         set.concept("ELM accessLevel position (ELM)").at(inception)

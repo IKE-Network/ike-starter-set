@@ -18,7 +18,7 @@ package network.ike.foundation.ike.evaluate;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import network.ike.foundation.ike.model.ModelTypes;
 
 import java.util.ArrayList;
@@ -104,7 +104,7 @@ final class Clinical {
         if (codes.isPresent()) {
             String path = codeProperty.orElseThrow(() -> context.refuse("the retrieve filters by codes and names no code path"));
             long reading = readingOfPath(bridges, classNid, path, context);
-            if (reading != IkeTerms.TOPIC_READING.nid()) {
+            if (reading != IkeConcept.TOPIC_READING.nid()) {
                 throw context.refuse("the code path " + path + " of " + className(bridges.types(), classNid) + " does not read the topic");
             }
         }

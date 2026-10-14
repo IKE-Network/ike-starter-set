@@ -19,7 +19,9 @@ import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.util.uuid.UuidT5Generator;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
+import dev.ikm.tinkar.terms.PatternFacade;
 
 import java.util.UUID;
 
@@ -78,7 +80,7 @@ final class DefaultsAndTemplatesSet {
 
         // The shared prose-element pattern, declared at its foundation home by
         // ProseElementSet (IKE-Network/ike-issues#937), which composes earlier.
-        EntityProxy.Pattern proseElementPattern =
+        PatternFacade proseElementPattern =
                 set.patternRef(ProseElementSet.PROSE_ELEMENT_PATTERN_FQN);
 
         // ── Apparatus concepts (foundation module) ──────────────────────
@@ -212,9 +214,9 @@ final class DefaultsAndTemplatesSet {
         // content (IKE-Network/ike-issues#894).
         ActiveStamp defaults = Ike.DEFAULTS_INCEPTION;
 
-        EntityProxy.Pattern preferredReviewerPattern =
+        PatternFacade preferredReviewerPattern =
                 set.patternRef("Preferred Reviewer Pattern (IkeFoundation)");
-        EntityProxy.Concept defaultValueConcept =
+        ConceptFacade defaultValueConcept =
                 set.conceptRef("Default value concept (IkeFoundation)");
         UUID defaultIdentity = UuidT5Generator.singleSemanticUuid(
                 preferredReviewerPattern.publicId(), defaultValueConcept.publicId());

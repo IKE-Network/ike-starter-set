@@ -18,8 +18,9 @@ package network.ike.foundation.ike.terms;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
+import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
 
 /**
  * Declares the AsciiDoc document model (IKE-Network/ike-issues#468): the primitives a parse
@@ -200,53 +201,53 @@ final class AsciiDocModelSet {
                         + " reference patterns and their fields.");
 
         // ── Patterns ─────────────────────────────────────────────────────────────
-        EntityProxy.Concept structure = set.conceptRef(DocumentStructureSet.fqn("Document structure"));
-        EntityProxy.Concept reference = set.conceptRef(fqn("AsciiDoc reference"));
+        ConceptFacade structure = set.conceptRef(DocumentStructureSet.fqn("Document structure"));
+        ConceptFacade reference = set.conceptRef(fqn("AsciiDoc reference"));
         set.pattern(fqn("AsciiDoc document attributes pattern")).at(asciidoc)
                 .meaning(set.conceptRef(fqn("AsciiDoc document")))
                 .purpose(structure)
-                .field(set.conceptRef(fqn("AsciiDoc document title")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic id")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic type")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic status")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic keywords")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic scope note")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic license")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic citation")), structure, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Topic provenance")), structure, KernelTerm.STRING)
+                .field(set.conceptRef(fqn("AsciiDoc document title")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic id")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic type")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic status")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic keywords")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic scope note")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic license")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic citation")), structure, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Topic provenance")), structure, KernelConcept.STRING)
                 .synonym("AsciiDoc document attributes pattern")
                 .definition("A document's title and topic attributes, one version per commit that"
                         + " changed them; absent attributes are empty.");
         reference(set, asciidoc, "AsciiDoc index term reference pattern", "AsciiDoc index term reference", reference,
                 "An index term on a line: the text as written and the concept it resolved to.")
-                .field(set.conceptRef(fqn("AsciiDoc term text")), reference, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("AsciiDoc referenced concept")), reference, KernelTerm.COMPONENT_FIELD);
+                .field(set.conceptRef(fqn("AsciiDoc term text")), reference, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("AsciiDoc referenced concept")), reference, KernelConcept.COMPONENT_FIELD);
         reference(set, asciidoc, "AsciiDoc cross reference pattern", "AsciiDoc cross reference", reference,
                 "A cross reference on a line: its target anchor and display text.")
-                .field(set.conceptRef(fqn("AsciiDoc reference target")), reference, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("AsciiDoc reference text")), reference, KernelTerm.STRING);
+                .field(set.conceptRef(fqn("AsciiDoc reference target")), reference, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("AsciiDoc reference text")), reference, KernelConcept.STRING);
         reference(set, asciidoc, "AsciiDoc citation pattern", "AsciiDoc citation", reference,
                 "A citation on a line: its key and the bibliography entry it resolved to.")
-                .field(set.conceptRef(fqn("AsciiDoc citation key")), reference, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("AsciiDoc referenced entry")), reference, KernelTerm.COMPONENT_FIELD);
+                .field(set.conceptRef(fqn("AsciiDoc citation key")), reference, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("AsciiDoc referenced entry")), reference, KernelConcept.COMPONENT_FIELD);
         reference(set, asciidoc, "AsciiDoc footnote pattern", "AsciiDoc footnote", reference,
                 "A footnote on a line.")
-                .field(set.conceptRef(fqn("AsciiDoc footnote text")), reference, KernelTerm.STRING);
+                .field(set.conceptRef(fqn("AsciiDoc footnote text")), reference, KernelConcept.STRING);
         reference(set, asciidoc, "AsciiDoc link pattern", "AsciiDoc link", reference,
                 "A link on a line: its URL and display text.")
-                .field(set.conceptRef(fqn("AsciiDoc reference target")), reference, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("AsciiDoc reference text")), reference, KernelTerm.STRING);
+                .field(set.conceptRef(fqn("AsciiDoc reference target")), reference, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("AsciiDoc reference text")), reference, KernelConcept.STRING);
         reference(set, asciidoc, "AsciiDoc estimate mark pattern", "AsciiDoc estimate mark", reference,
                 "An estimate mark on a line, with the note the mark carries.")
-                .field(set.conceptRef(fqn("AsciiDoc footnote text")), reference, KernelTerm.STRING);
+                .field(set.conceptRef(fqn("AsciiDoc footnote text")), reference, KernelConcept.STRING);
         reference(set, asciidoc, "AsciiDoc include pattern", "AsciiDoc include", reference,
                 "An include directive: its target and verbatim parameters.")
-                .field(set.conceptRef(fqn("AsciiDoc reference target")), reference, KernelTerm.STRING)
-                .field(set.conceptRef(DocumentStructureSet.fqn("Document element parameters")), reference, KernelTerm.STRING);
+                .field(set.conceptRef(fqn("AsciiDoc reference target")), reference, KernelConcept.STRING)
+                .field(set.conceptRef(DocumentStructureSet.fqn("Document element parameters")), reference, KernelConcept.STRING);
         reference(set, asciidoc, "AsciiDoc conditional pattern", "AsciiDoc conditional", reference,
                 "A conditional directive: the attribute it tests and whether it is negated.")
-                .field(set.conceptRef(fqn("AsciiDoc attribute name")), reference, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("AsciiDoc negated")), reference, KernelTerm.BOOLEAN_FIELD);
+                .field(set.conceptRef(fqn("AsciiDoc attribute name")), reference, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("AsciiDoc negated")), reference, KernelConcept.BOOLEAN_FIELD);
 
         // ── Git provenance, in the foundation module: it serves any file, not AsciiDoc alone ──
         set.concept(fqn("Git provenance model")).at(foundation)
@@ -262,7 +263,7 @@ final class AsciiDocModelSet {
                 .synonym("Git author")
                 .definition("The home of author concepts derived from git identities: one per"
                         + " person, keyed by canonical email after mailmap consolidation.")
-                .isA(KernelTerm.USER, set.conceptRef(fqn("Git provenance model")));
+                .isA(KernelConcept.USER, set.conceptRef(fqn("Git provenance model")));
         set.concept(fqn("Git module")).at(foundation)
                 .synonym("Git module")
                 .definition("The home of module concepts derived from repositories or Kompendium"
@@ -292,12 +293,12 @@ final class AsciiDocModelSet {
                 .synonym("Source commit")
                 .definition("The full SHA of the commit a version came from.")
                 .isA(set.conceptRef(fqn("Git provenance model")));
-        EntityProxy.Concept provenance = set.conceptRef(fqn("Git provenance"));
+        ConceptFacade provenance = set.conceptRef(fqn("Git provenance"));
         set.pattern(fqn("Git source pattern")).at(foundation)
                 .meaning(set.conceptRef(fqn("Git source")))
                 .purpose(provenance)
-                .field(set.conceptRef(fqn("Source path")), provenance, KernelTerm.STRING)
-                .field(set.conceptRef(fqn("Source commit")), provenance, KernelTerm.STRING)
+                .field(set.conceptRef(fqn("Source path")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Source commit")), provenance, KernelConcept.STRING)
                 .synonym("Git source pattern")
                 .definition("A document's git source: path and commit, one version per commit"
                         + " that changed the file.");
@@ -322,7 +323,7 @@ final class AsciiDocModelSet {
     }
 
     private static dev.ikm.tinkar.entity.builder.PatternBuilder.ActiveScope reference(KnowledgeSet set, ActiveStamp stamp,
-            String patternName, String meaningName, EntityProxy.Concept purpose, String definition) {
+            String patternName, String meaningName, ConceptFacade purpose, String definition) {
         return set.pattern(fqn(patternName)).at(stamp)
                 .meaning(set.conceptRef(fqn(meaningName)))
                 .purpose(purpose)

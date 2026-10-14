@@ -17,7 +17,9 @@ package network.ike.foundation.ike.model;
 
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 import dev.ikm.tinkar.coordinate.stamp.calculator.Latest;
 import dev.ikm.tinkar.coordinate.stamp.calculator.StampCalculator;
 import dev.ikm.tinkar.entity.EntityHandle;
@@ -26,7 +28,6 @@ import dev.ikm.tinkar.entity.FieldDefinitionForEntity;
 import dev.ikm.tinkar.entity.PatternEntityVersion;
 import dev.ikm.tinkar.entity.SemanticEntityVersion;
 import dev.ikm.tinkar.terms.EntityFacade;
-import network.ike.foundation.ike.bindings.IkeTerms;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -70,7 +71,7 @@ public final class ModelInfoGenerator {
      */
     public String write(String modelName, String version, String url) {
         List<Mark> marks = new ArrayList<>();
-        EntityService.get().forEachSemanticOfPattern(IkeTerms.MODEL_CLASS_MARK_PATTERN.nid(), semantic -> {
+        EntityService.get().forEachSemanticOfPattern(IkePattern.MODEL_CLASS_MARK_PATTERN.nid(), semantic -> {
             Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
             if (latest.isPresent() && modelName.equals(latest.get().fieldValues().get(0))) {
                 marks.add(new Mark(semantic.referencedComponentNid(), (Boolean) latest.get().fieldValues().get(1),
@@ -161,26 +162,26 @@ public final class ModelInfoGenerator {
      * @return the type in the model information's syntax
      */
     static String typeFor(long dataTypeNid) {
-        if (dataTypeNid == KernelTerm.STRING.nid()) {
+        if (dataTypeNid == KernelConcept.STRING.nid()) {
             return "System.String";
         }
-        if (dataTypeNid == KernelTerm.BOOLEAN_FIELD.nid()) {
+        if (dataTypeNid == KernelConcept.BOOLEAN_FIELD.nid()) {
             return "System.Boolean";
         }
-        if (dataTypeNid == KernelTerm.INTEGER_FIELD.nid()) {
+        if (dataTypeNid == KernelConcept.INTEGER_FIELD.nid()) {
             return "System.Integer";
         }
-        if (dataTypeNid == KernelTerm.LONG.nid()) {
+        if (dataTypeNid == KernelConcept.LONG.nid()) {
             return "System.Long";
         }
-        if (dataTypeNid == KernelTerm.DECIMAL_FIELD.nid() || dataTypeNid == KernelTerm.FLOAT_FIELD.nid()
-                || dataTypeNid == IkeTerms.DOUBLE_DISPLAY_FIELD.nid()) {
+        if (dataTypeNid == KernelConcept.DECIMAL_FIELD.nid() || dataTypeNid == KernelConcept.FLOAT_FIELD.nid()
+                || dataTypeNid == IkeConcept.DOUBLE_DISPLAY_FIELD.nid()) {
             return "System.Decimal";
         }
-        if (dataTypeNid == KernelTerm.CONCEPT_FIELD.nid()) {
+        if (dataTypeNid == KernelConcept.CONCEPT_FIELD.nid()) {
             return "System.Code";
         }
-        if (dataTypeNid == KernelTerm.COMPONENT_ID_LIST_FIELD.nid() || dataTypeNid == KernelTerm.COMPONENT_ID_SET_FIELD.nid()) {
+        if (dataTypeNid == KernelConcept.COMPONENT_ID_LIST_FIELD.nid() || dataTypeNid == KernelConcept.COMPONENT_ID_SET_FIELD.nid()) {
             return "List<System.Any>";
         }
         return "System.Any";
@@ -209,7 +210,7 @@ public final class ModelInfoGenerator {
      */
     public boolean isMarked(long patternNid, String modelName) {
         boolean[] marked = {false};
-        EntityService.get().forEachSemanticForComponentOfPattern(patternNid, IkeTerms.MODEL_CLASS_MARK_PATTERN.nid(),
+        EntityService.get().forEachSemanticForComponentOfPattern(patternNid, IkePattern.MODEL_CLASS_MARK_PATTERN.nid(),
                 semantic -> {
                     Latest<SemanticEntityVersion> latest = calculator.latest(semantic.nid());
                     if (latest.isPresent() && modelName.equals(latest.get().fieldValues().get(0))) {

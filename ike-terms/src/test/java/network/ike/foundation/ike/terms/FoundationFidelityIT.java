@@ -15,7 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.KernelPattern;
 import dev.ikm.tinkar.common.id.LongIdList;
 import dev.ikm.tinkar.common.id.LongIdSet;
 import dev.ikm.tinkar.common.id.PublicIds;
@@ -255,7 +256,7 @@ class FoundationFidelityIT {
      * no new version to their axiom semantic (confirmed empirically — same version
      * count before and after). The likely cause is a path-coordinate bootstrap
      * characteristic: before replay, no stamp anywhere in this store is on
-     * {@code KernelTerm.DEVELOPMENT_PATH} (the raw starter data is entirely on
+     * {@code KernelConcept.DEVELOPMENT_PATH} (the raw starter data is entirely on
      * Primordial path), so "latest on development" has no real cutoff to resolve
      * against for a component whose own history spans more than one shape; after
      * replay stamps ~407 new Development-path versions (this ledger's own inception
@@ -678,7 +679,7 @@ class FoundationFidelityIT {
         Set<Long> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelPattern.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                     AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
@@ -694,7 +695,7 @@ class FoundationFidelityIT {
     private static boolean hasAmbiguousAxiomHistory(long componentNid) {
         Set<Object> distinctShapes = new HashSet<>();
         for (SemanticEntity<?> axioms : EntityService.get()
-                .semanticsForComponentOfPattern(componentNid, KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).toList()) {
+                .semanticsForComponentOfPattern(componentNid, KernelPattern.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).toList()) {
             for (Object versionObj : axioms.versions()) {
                 dev.ikm.tinkar.entity.SemanticEntityVersion version =
                         (dev.ikm.tinkar.entity.SemanticEntityVersion) versionObj;
@@ -774,7 +775,7 @@ class FoundationFidelityIT {
         List<DiTreeEntity> trees = new ArrayList<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelPattern.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) ->
                         trees.add((DiTreeEntity) semanticVersion.fieldValues().get(0)));
         return trees;
@@ -813,17 +814,17 @@ class FoundationFidelityIT {
 
             List<EntityVertex> conceptAtoms = childrenWithMeaning(tree, and, LogicalAxiomSemantic.CONCEPT);
             assertEquals(1, conceptAtoms.size(), "expected one is-a ConceptAxiom for nid " + nid);
-            ConceptFacade isAParent = conceptAtoms.getFirst().propertyFast(KernelTerm.CONCEPT_REFERENCE);
+            ConceptFacade isAParent = conceptAtoms.getFirst().propertyFast(KernelConcept.CONCEPT_REFERENCE);
             assertEquals(parentNid, isAParent.nid(), "is-a parent drifted for nid " + nid);
 
             List<EntityVertex> roles = childrenWithMeaning(tree, and, LogicalAxiomSemantic.ROLE);
             assertEquals(1, roles.size(), "expected one Part of role for nid " + nid);
             EntityVertex role = roles.getFirst();
-            ConceptFacade roleType = role.propertyFast(KernelTerm.ROLE_TYPE);
+            ConceptFacade roleType = role.propertyFast(KernelConcept.ROLE_TYPE);
             assertEquals(partOfNid, roleType.nid(), "role type must be Part of for nid " + nid);
             List<EntityVertex> restrictions = childrenWithMeaning(tree, role, LogicalAxiomSemantic.CONCEPT);
             assertEquals(1, restrictions.size(), "expected one role restriction for nid " + nid);
-            ConceptFacade whole = restrictions.getFirst().propertyFast(KernelTerm.CONCEPT_REFERENCE);
+            ConceptFacade whole = restrictions.getFirst().propertyFast(KernelConcept.CONCEPT_REFERENCE);
             long expectedWholeNid = DELIBERATELY_PART_OF_WHOLE_BY_NID.getOrDefault(nid, parentNid);
             assertEquals(expectedWholeNid, whole.nid(),
                     "partOf whole drifted for nid " + nid);
@@ -848,7 +849,7 @@ class FoundationFidelityIT {
 
         Set<Long> propertyConcepts = new HashSet<>();
         for (EntityVertex atom : childrenWithMeaning(tree, ands.getFirst(), LogicalAxiomSemantic.CONCEPT)) {
-            ConceptFacade referenced = atom.propertyFast(KernelTerm.CONCEPT_REFERENCE);
+            ConceptFacade referenced = atom.propertyFast(KernelConcept.CONCEPT_REFERENCE);
             propertyConcepts.add(referenced.nid());
         }
         assertEquals(Set.of(PrimitiveData.nid(ROLE_TYPE_UUID), PrimitiveData.nid(TRANSITIVE_FEATURE_UUID)),
@@ -992,8 +993,8 @@ class FoundationFidelityIT {
      * @return the nids of the naming-apparatus patterns
      */
     private static Set<Long> namingApparatusPatternNids() {
-        return Set.of(KernelTerm.DESCRIPTION_PATTERN.nid(),
-                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(),
+        return Set.of(KernelPattern.DESCRIPTION_PATTERN.nid(),
+                KernelPattern.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(),
                 // The Prose element pattern: DefaultsAndTemplatesSet authors a curated
                 // narrative ABOUT Default value concept (a domain description of the
                 // koncept, IKE-Network/ike-issues#888) — foundation-module terminology
@@ -1367,7 +1368,7 @@ class FoundationFidelityIT {
                     .map(FoundationFidelityIT::normalized).orElse("");
             boolean hasRealDefinition = false;
             for (SemanticEntityVersion definitionVersion : languageCalculator
-                    .getDescriptionsForComponentOfType(nid, KernelTerm.DEFINITION_DESCRIPTION_TYPE.nid())) {
+                    .getDescriptionsForComponentOfType(nid, KernelConcept.DEFINITION_DESCRIPTION_TYPE.nid())) {
                 String definition = languageCalculator.getTextFromSemanticVersion(definitionVersion)
                         .map(FoundationFidelityIT::normalized).orElse("");
                 if (!definition.isEmpty() && !definition.equals(label) && !definition.equals(regularName)) {

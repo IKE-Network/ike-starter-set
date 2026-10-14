@@ -15,7 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.PatternFacade;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -110,7 +111,7 @@ final class ProseElementSet {
                 .meaning(set.conceptRef("Prose element (RichSurfaceTerms)"))
                 .purpose(set.conceptRef("Element content (RichSurfaceTerms)"))
                 .field(set.conceptRef("Prose content (RichSurfaceTerms)"),
-                        set.conceptRef("Element content (RichSurfaceTerms)"), KernelTerm.STRING)
+                        set.conceptRef("Element content (RichSurfaceTerms)"), KernelConcept.STRING)
                 .synonym("Prose element pattern")
                 .definition("An embedded prose block: text whose id-bearing k: tokens are"
                         + " the interchange form.");
@@ -143,7 +144,7 @@ final class ProseElementSet {
                 .meaning(set.conceptRef("Journal manifest (RichSurfaceTerms)"))
                 .purpose(set.conceptRef("Element order (RichSurfaceTerms)"))
                 .field(set.conceptRef("Journal elements (RichSurfaceTerms)"),
-                        set.conceptRef("Element order (RichSurfaceTerms)"), KernelTerm.COMPONENT_ID_LIST_FIELD)
+                        set.conceptRef("Element order (RichSurfaceTerms)"), KernelConcept.COMPONENT_ID_LIST_FIELD)
                 .synonym("Journal manifest pattern")
                 .definition("Holds the ordered lines of one structured document; a new version per"
                         + " insert, removal or reorder, so replay walks manifest versions in time.");

@@ -15,11 +15,12 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
-import dev.ikm.tinkar.terms.EntityProxy;
+import dev.ikm.tinkar.terms.ConceptFacade;
+import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.PatternFacade;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -434,20 +435,20 @@ final class ElmNodeKindSet {
      */
     static void compose(KnowledgeSet set) {
         ActiveStamp inception = Ike.INCEPTION;
-        EntityProxy.Concept modelRoot = set.conceptRef("Expression language model (IkeFoundation)");
-        EntityProxy.Concept operandKind = set.conceptRef("Operand kind (IkeFoundation)");
-        EntityProxy.Concept arity = set.conceptRef("Arity (IkeFoundation)");
-        EntityProxy.Pattern denotations = set.patternRef(ExpressionLanguageSet.DENOTATION_PATTERN_FQN);
-        EntityProxy.Pattern relations = set.patternRef(ExpressionLanguageSet.RELATION_PATTERN_FQN);
+        ConceptFacade modelRoot = set.conceptRef("Expression language model (IkeFoundation)");
+        ConceptFacade operandKind = set.conceptRef("Operand kind (IkeFoundation)");
+        ConceptFacade arity = set.conceptRef("Arity (IkeFoundation)");
+        PatternFacade denotations = set.patternRef(ExpressionLanguageSet.DENOTATION_PATTERN_FQN);
+        PatternFacade relations = set.patternRef(ExpressionLanguageSet.RELATION_PATTERN_FQN);
 
         // ── One more arity: an operator that takes nothing ──
         set.concept("Nullary (IkeFoundation)").at(inception)
                 .synonym("Nullary")
                 .definition("An operator that takes no operand: a literal, a reference, a retrieve.")
                 .isA(arity);
-        EntityProxy.Concept nullary = set.conceptRef("Nullary (IkeFoundation)");
-        EntityProxy.Concept unary = set.conceptRef("Unary (IkeFoundation)");
-        EntityProxy.Concept variadic = set.conceptRef("Variadic (IkeFoundation)");
+        ConceptFacade nullary = set.conceptRef("Nullary (IkeFoundation)");
+        ConceptFacade unary = set.conceptRef("Unary (IkeFoundation)");
+        ConceptFacade variadic = set.conceptRef("Variadic (IkeFoundation)");
 
         // ── Two more operand kinds: a list and a tuple ──
         set.concept("List kind (IkeFoundation)").at(inception)
@@ -466,8 +467,8 @@ final class ElmNodeKindSet {
                 .definition("An operand kind: a sequence of characters read as written, compared character by"
                         + " character; what CQL's String is a value of (IKE-Network/ike-issues#1122).")
                 .isA(operandKind);
-        EntityProxy.Concept listKind = set.conceptRef("List kind (IkeFoundation)");
-        EntityProxy.Concept tupleKind = set.conceptRef("Tuple kind (IkeFoundation)");
+        ConceptFacade listKind = set.conceptRef("List kind (IkeFoundation)");
+        ConceptFacade tupleKind = set.conceptRef("Tuple kind (IkeFoundation)");
 
         // ── The constructs the first families lacked ──
         String[][] constructs = {
@@ -621,7 +622,7 @@ final class ElmNodeKindSet {
                 .definition("What kind of circumstance a statement holds beside its topic, one of three, as the"
                         + " ANF structural definition gives them: a performance, a request, or a narrative.")
                 .isA(modelRoot);
-        EntityProxy.Concept circumstanceKind = set.conceptRef(CIRCUMSTANCE_KIND_FQN);
+        ConceptFacade circumstanceKind = set.conceptRef(CIRCUMSTANCE_KIND_FQN);
         String[][] circumstances = {
             {"Performance circumstance", "A circumstance kind: what was determined about the topic, a result as a"
                     + " measure, with what became of the act, when, and by what method."},
@@ -644,7 +645,7 @@ final class ElmNodeKindSet {
                         + " closed set, the statement's topic, its circumstance kind, its disposition, its timing"
                         + " whole or by an end, its result, its statement time, or a fact of the subject.")
                 .isA(modelRoot);
-        EntityProxy.Concept statementReading = set.conceptRef(STATEMENT_READING_FQN);
+        ConceptFacade statementReading = set.conceptRef(STATEMENT_READING_FQN);
         String[][] readings = {
             {"Topic reading", "A statement reading: the statement's topic, a concept."},
             {"Circumstance kind reading", "A statement reading: which kind of circumstance the statement holds."},
@@ -665,14 +666,14 @@ final class ElmNodeKindSet {
         }
 
         // ── The bridge and the reading, on a model's class and element ──
-        EntityProxy.Concept dataModel = set.conceptRef(ModelInformationSet.ROOT_FQN);
+        ConceptFacade dataModel = set.conceptRef(ModelInformationSet.ROOT_FQN);
         set.concept("Model bridge (IkeFoundation)").at(inception)
                 .synonym("Model bridge")
                 .definition("Why a field is recorded: it says what a model's class or element stands for in IKE's"
                         + " own terms, authored by IKE and checked at admission, so that a library written against"
                         + " the model evaluates over statements.")
                 .isA(dataModel);
-        EntityProxy.Concept bridge = set.conceptRef("Model bridge (IkeFoundation)");
+        ConceptFacade bridge = set.conceptRef("Model bridge (IkeFoundation)");
         String[][] fields = {
             {"Bridge circumstance kind", "The kind of circumstance a statement must hold to answer a retrieve of the class."},
             {"Bridge disposition", "The disposition a statement must carry to answer a retrieve of the class, or the"
@@ -690,9 +691,9 @@ final class ElmNodeKindSet {
         set.pattern(BRIDGE_PATTERN_FQN).at(inception)
                 .meaning(dataModel)
                 .purpose(bridge)
-                .field(set.conceptRef("Bridge circumstance kind (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Bridge disposition (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
-                .field(set.conceptRef("Bridge relation kind (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Bridge circumstance kind (IkeFoundation)"), bridge, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef("Bridge disposition (IkeFoundation)"), bridge, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef("Bridge relation kind (IkeFoundation)"), bridge, KernelConcept.CONCEPT_FIELD)
                 .definition("The criterion a retrievable class stands for, on the class: the circumstance kind a"
                         + " statement must hold, the disposition it must carry when the class fixes one, and the"
                         + " relation kind the bridge claims. The topic constraint takes the retrieve's codes through"
@@ -700,13 +701,13 @@ final class ElmNodeKindSet {
         set.pattern(READING_PATTERN_FQN).at(inception)
                 .meaning(dataModel)
                 .purpose(bridge)
-                .field(set.conceptRef("Element reading (IkeFoundation)"), bridge, KernelTerm.CONCEPT_FIELD)
+                .field(set.conceptRef("Element reading (IkeFoundation)"), bridge, KernelConcept.CONCEPT_FIELD)
                 .definition("The statement reading a model's element answers, on the element record, so that a"
                         + " property access on a statement reads the timing, the result, the topic, or the"
                         + " subject's fact the element stands for.");
 
         // ── The relations: each admitted node kind to the construct it means ──
-        Map<String, EntityProxy.Concept> claims = new LinkedHashMap<>();
+        Map<String, ConceptFacade> claims = new LinkedHashMap<>();
         claims.put("identity", set.conceptRef("Identity (IkeFoundation)"));
         claims.put("equivalence", set.conceptRef("Logical equivalence (IkeFoundation)"));
         claims.put("extension", set.conceptRef("Definitional extension (IkeFoundation)"));

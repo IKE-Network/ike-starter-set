@@ -15,8 +15,8 @@
  */
 package network.ike.foundation.ike.model;
 
-import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.ConceptFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,8 +39,8 @@ public final class ModelBridges {
      * @param disposition      the disposition a statement must carry, empty when the class fixes none
      * @param relation         the relation kind the bridge claims
      */
-    public record Bridge(String model, String className, EntityProxy.Concept circumstanceKind,
-                         Optional<EntityProxy.Concept> disposition, EntityProxy.Concept relation) {
+    public record Bridge(String model, String className, ConceptFacade circumstanceKind,
+                         Optional<ConceptFacade> disposition, ConceptFacade relation) {
     }
 
     /**
@@ -51,7 +51,7 @@ public final class ModelBridges {
      * @param elementName the element's name
      * @param reading     the reading
      */
-    public record Reading(String model, String className, String elementName, EntityProxy.Concept reading) {
+    public record Reading(String model, String className, String elementName, ConceptFacade reading) {
     }
 
     /**
@@ -62,15 +62,15 @@ public final class ModelBridges {
      * bridge claims a conservative extension.
      */
     public static final List<Bridge> BRIDGES = List.of(
-            new Bridge("QUICK", "Condition", IkeTerms.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("QUICK", "Observation", IkeTerms.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("QUICK", "Encounter", IkeTerms.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("QUICK", "MedicationPrescription", IkeTerms.REQUEST_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("FHIR", "Condition", IkeTerms.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("FHIR", "Observation", IkeTerms.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("FHIR", "Encounter", IkeTerms.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("FHIR", "MedicationRequest", IkeTerms.REQUEST_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION),
-            new Bridge("QDM", "PositiveEncounterPerformed", IkeTerms.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeTerms.CONSERVATIVE_EXTENSION));
+            new Bridge("QUICK", "Condition", IkeConcept.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("QUICK", "Observation", IkeConcept.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("QUICK", "Encounter", IkeConcept.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("QUICK", "MedicationPrescription", IkeConcept.REQUEST_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("FHIR", "Condition", IkeConcept.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("FHIR", "Observation", IkeConcept.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("FHIR", "Encounter", IkeConcept.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("FHIR", "MedicationRequest", IkeConcept.REQUEST_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION),
+            new Bridge("QDM", "PositiveEncounterPerformed", IkeConcept.PERFORMANCE_CIRCUMSTANCE, Optional.empty(), IkeConcept.CONSERVATIVE_EXTENSION));
 
     /**
      * The readings: the corpus's paths first, on the classes that declare the elements. A
@@ -79,31 +79,31 @@ public final class ModelBridges {
      * patient's birth date the subject's birth date.
      */
     public static final List<Reading> READINGS = List.of(
-            new Reading("QUICK", "Condition", "code", IkeTerms.TOPIC_READING),
-            new Reading("QUICK", "Condition", "onsetDateTime", IkeTerms.TIMING_START_READING),
-            new Reading("QUICK", "Condition", "abatementDate", IkeTerms.TIMING_END_READING),
-            new Reading("QUICK", "Observation", "code", IkeTerms.TOPIC_READING),
-            new Reading("QUICK", "Observation", "valueQuantity", IkeTerms.RESULT_READING),
-            new Reading("QUICK", "Observation", "issued", IkeTerms.STATEMENT_TIME_READING),
-            new Reading("QUICK", "Encounter", "type", IkeTerms.TOPIC_READING),
-            new Reading("QUICK", "Encounter", "period", IkeTerms.TIMING_READING),
-            new Reading("QUICK", "MedicationPrescription", "medication", IkeTerms.TOPIC_READING),
-            new Reading("QUICK", "MedicationPrescription", "dateWritten", IkeTerms.STATEMENT_TIME_READING),
-            new Reading("QUICK", "Patient", "birthDate", IkeTerms.SUBJECT_BIRTH_DATE_READING),
-            new Reading("FHIR", "Condition", "code", IkeTerms.TOPIC_READING),
-            new Reading("FHIR", "Condition", "onset", IkeTerms.TIMING_START_READING),
-            new Reading("FHIR", "Condition", "abatement", IkeTerms.TIMING_END_READING),
-            new Reading("FHIR", "Observation", "code", IkeTerms.TOPIC_READING),
-            new Reading("FHIR", "Observation", "value", IkeTerms.RESULT_READING),
-            new Reading("FHIR", "Observation", "issued", IkeTerms.STATEMENT_TIME_READING),
-            new Reading("FHIR", "Encounter", "type", IkeTerms.TOPIC_READING),
-            new Reading("FHIR", "Encounter", "period", IkeTerms.TIMING_READING),
-            new Reading("FHIR", "MedicationRequest", "medication", IkeTerms.TOPIC_READING),
-            new Reading("FHIR", "MedicationRequest", "authoredOn", IkeTerms.STATEMENT_TIME_READING),
-            new Reading("FHIR", "Patient", "birthDate", IkeTerms.SUBJECT_BIRTH_DATE_READING),
-            new Reading("QDM", "QDMBaseType", "code", IkeTerms.TOPIC_READING),
-            new Reading("QDM", "EncounterPerformed", "relevantPeriod", IkeTerms.TIMING_READING),
-            new Reading("QDM", "Patient", "birthDatetime", IkeTerms.SUBJECT_BIRTH_DATE_READING));
+            new Reading("QUICK", "Condition", "code", IkeConcept.TOPIC_READING),
+            new Reading("QUICK", "Condition", "onsetDateTime", IkeConcept.TIMING_START_READING),
+            new Reading("QUICK", "Condition", "abatementDate", IkeConcept.TIMING_END_READING),
+            new Reading("QUICK", "Observation", "code", IkeConcept.TOPIC_READING),
+            new Reading("QUICK", "Observation", "valueQuantity", IkeConcept.RESULT_READING),
+            new Reading("QUICK", "Observation", "issued", IkeConcept.STATEMENT_TIME_READING),
+            new Reading("QUICK", "Encounter", "type", IkeConcept.TOPIC_READING),
+            new Reading("QUICK", "Encounter", "period", IkeConcept.TIMING_READING),
+            new Reading("QUICK", "MedicationPrescription", "medication", IkeConcept.TOPIC_READING),
+            new Reading("QUICK", "MedicationPrescription", "dateWritten", IkeConcept.STATEMENT_TIME_READING),
+            new Reading("QUICK", "Patient", "birthDate", IkeConcept.SUBJECT_BIRTH_DATE_READING),
+            new Reading("FHIR", "Condition", "code", IkeConcept.TOPIC_READING),
+            new Reading("FHIR", "Condition", "onset", IkeConcept.TIMING_START_READING),
+            new Reading("FHIR", "Condition", "abatement", IkeConcept.TIMING_END_READING),
+            new Reading("FHIR", "Observation", "code", IkeConcept.TOPIC_READING),
+            new Reading("FHIR", "Observation", "value", IkeConcept.RESULT_READING),
+            new Reading("FHIR", "Observation", "issued", IkeConcept.STATEMENT_TIME_READING),
+            new Reading("FHIR", "Encounter", "type", IkeConcept.TOPIC_READING),
+            new Reading("FHIR", "Encounter", "period", IkeConcept.TIMING_READING),
+            new Reading("FHIR", "MedicationRequest", "medication", IkeConcept.TOPIC_READING),
+            new Reading("FHIR", "MedicationRequest", "authoredOn", IkeConcept.STATEMENT_TIME_READING),
+            new Reading("FHIR", "Patient", "birthDate", IkeConcept.SUBJECT_BIRTH_DATE_READING),
+            new Reading("QDM", "QDMBaseType", "code", IkeConcept.TOPIC_READING),
+            new Reading("QDM", "EncounterPerformed", "relevantPeriod", IkeConcept.TIMING_READING),
+            new Reading("QDM", "Patient", "birthDatetime", IkeConcept.SUBJECT_BIRTH_DATE_READING));
 
     private ModelBridges() {
     }

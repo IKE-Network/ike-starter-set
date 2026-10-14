@@ -20,8 +20,8 @@ import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
-import dev.ikm.tinkar.terms.EntityProxy;
-import network.ike.foundation.ike.bindings.IkeTerms;
+import dev.ikm.tinkar.terms.ConceptFacade;
+import network.ike.foundation.ike.bindings.IkeConcept;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -71,15 +71,15 @@ class ElmTreeBuilderIT {
 
         assertTrue(ElmConformance.check(tree, builder.catalog()).isEmpty());
         EntityVertex root = tree.root();
-        assertEquals(IkeTerms.ELM_EXPRESSIONDEF.nid(), root.getMeaningNid());
-        assertEquals("Has Diabetes", root.propertyFast(IkeTerms.ELM_NAME_POSITION));
-        EntityProxy.Concept level = root.propertyFast(IkeTerms.ELM_ACCESSLEVEL_POSITION);
+        assertEquals(IkeConcept.ELM_EXPRESSIONDEF.nid(), root.getMeaningNid());
+        assertEquals("Has Diabetes", root.propertyFast(IkeConcept.ELM_NAME_POSITION));
+        ConceptFacade level = root.propertyFast(IkeConcept.ELM_ACCESSLEVEL_POSITION);
         assertEquals(PrimitiveData.nid(AccessModifier.PUBLIC.publicId()), level.nid());
         // root → expression (argument vertex) → Exists → operand → Query
         EntityVertex expression = tree.vertex(tree.successors(root.vertexIndex()).get(0));
-        assertEquals(IkeTerms.ELM_EXPRESSION_POSITION.nid(), expression.getMeaningNid());
+        assertEquals(IkeConcept.ELM_EXPRESSION_POSITION.nid(), expression.getMeaningNid());
         EntityVertex exists = tree.vertex(tree.successors(expression.vertexIndex()).get(0));
-        assertEquals(IkeTerms.ELM_EXISTS.nid(), exists.getMeaningNid());
+        assertEquals(IkeConcept.ELM_EXISTS.nid(), exists.getMeaningNid());
         // The same tree built again is the same tree: every vertex id is derived.
         DiTreeEntity again = builder.build(define, TREE);
         assertEquals(tree.root().vertexId().asUuid(), again.root().vertexId().asUuid());

@@ -40,7 +40,7 @@ public final class ElmTypeNames {
      * @param catalog    the catalog
      * @return the concept, or empty when the name is not a System type the catalog knows
      */
-    public static Optional<dev.ikm.tinkar.terms.EntityProxy.Concept> systemType(String bracesName, ElmCatalog catalog) {
+    public static Optional<ConceptFacade> systemType(String bracesName, ElmCatalog catalog) {
         String prefix = "{" + SYSTEM_NAMESPACE + "}";
         if (!bracesName.startsWith(prefix)) {
             return Optional.empty();
