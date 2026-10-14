@@ -149,6 +149,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // apparatus that stamps a document materialized from a repository
         // (IKE-Network/ike-issues#468). Its lines are prose elements, so it composes after
         // ProseElementSet.
+        // DocumentStructureSet declares the block model a document and a conversation journal
+        // share, and the journal's own concepts (IKE-Network/ike-issues#844); the AsciiDoc-only
+        // elements are its children, so it composes first.
+        DocumentStructureSet.compose(Ike.SET);
         AsciiDocModelSet.compose(Ike.SET);
         KernelBindings.compose(Ike.SET);
         KometBindings.compose(Ike.SET);

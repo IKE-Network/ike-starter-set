@@ -184,8 +184,16 @@ class FoundationFidelityIT {
      * pair), the twenty-five fields and purposes, and the git-provenance family (model root,
      * author/module/path homes, purpose, git source and its two fields, affirmation and its
      * two fields).
+     * <p>
+     * The IKE-Network/ike-issues#844 shared block model adds 11 net: {@code DocumentStructureSet}
+     * mints 29 (the model root, Structured document, Document element, section, block and nine
+     * block kinds, the document field family of five with its parent and purpose, and the journal
+     * four: Conversation journal, Conversation turn, Komet assistant, Conversation journal module)
+     * while 18 leave {@code AsciiDocModelSet} (the twelve element kinds and six fields and purposes
+     * it now shares); {@code ProseElementSet} adopts 3 RichSurfaceTerms identities for the journal
+     * manifest (Journal manifest, Journal elements, Element order).
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70;
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -210,7 +218,7 @@ class FoundationFidelityIT {
      * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
      * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12;   // + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468)
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1;   // + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844)
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
