@@ -1,0 +1,210 @@
+{
+   "library" : {
+      "annotation" : [ {
+         "translatorVersion" : "3.29.0",
+         "translatorOptions" : "",
+         "signatureLevel" : "None",
+         "type" : "CqlToElmInfo"
+      } ],
+      "identifier" : {
+         "id" : "CqlErrorsAndMessagingOperatorsTest",
+         "version" : "1.0"
+      },
+      "schemaIdentifier" : {
+         "id" : "urn:hl7-org:elm",
+         "version" : "r1"
+      },
+      "usings" : {
+         "def" : [ {
+            "localIdentifier" : "System",
+            "uri" : "urn:hl7-org:elm-types:r1",
+            "annotation" : [ ]
+         } ]
+      },
+      "statements" : {
+         "def" : [ {
+            "name" : "TestMessageInfo",
+            "context" : "Unfiltered",
+            "accessLevel" : "Public",
+            "annotation" : [ ],
+            "expression" : {
+               "type" : "Message",
+               "annotation" : [ ],
+               "signature" : [ ],
+               "source" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "1",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "condition" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "true",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "code" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "100",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "severity" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "Message",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "message" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "Test Message",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               }
+            }
+         }, {
+            "name" : "TestMessageInfo_expected",
+            "context" : "Unfiltered",
+            "accessLevel" : "Public",
+            "annotation" : [ ],
+            "expression" : {
+               "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+               "value" : "1",
+               "type" : "Literal",
+               "annotation" : [ ]
+            }
+         }, {
+            "name" : "TestMessageWarn",
+            "context" : "Unfiltered",
+            "accessLevel" : "Public",
+            "annotation" : [ ],
+            "expression" : {
+               "type" : "Message",
+               "annotation" : [ ],
+               "signature" : [ ],
+               "source" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "2",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "condition" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "true",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "code" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "200",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "severity" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "Warning",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "message" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "You have been warned!",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               }
+            }
+         }, {
+            "name" : "TestMessageWarn_expected",
+            "context" : "Unfiltered",
+            "accessLevel" : "Public",
+            "annotation" : [ ],
+            "expression" : {
+               "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+               "value" : "2",
+               "type" : "Literal",
+               "annotation" : [ ]
+            }
+         }, {
+            "name" : "TestMessageTrace",
+            "context" : "Unfiltered",
+            "accessLevel" : "Public",
+            "annotation" : [ ],
+            "expression" : {
+               "type" : "Message",
+               "annotation" : [ ],
+               "signature" : [ ],
+               "source" : {
+                  "type" : "List",
+                  "annotation" : [ ],
+                  "element" : [ {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "3",
+                     "type" : "Literal",
+                     "annotation" : [ ]
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "4",
+                     "type" : "Literal",
+                     "annotation" : [ ]
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "5",
+                     "type" : "Literal",
+                     "annotation" : [ ]
+                  } ]
+               },
+               "condition" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "true",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "code" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "300",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "severity" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "Trace",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               },
+               "message" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "This is a trace",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               }
+            }
+         }, {
+            "name" : "TestMessageTrace_expected",
+            "context" : "Unfiltered",
+            "accessLevel" : "Public",
+            "annotation" : [ ],
+            "expression" : {
+               "type" : "List",
+               "annotation" : [ ],
+               "element" : [ {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "3",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "4",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "5",
+                  "type" : "Literal",
+                  "annotation" : [ ]
+               } ]
+            }
+         } ]
+      }
+   }
+}
+

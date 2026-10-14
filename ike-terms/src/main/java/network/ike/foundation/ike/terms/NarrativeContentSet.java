@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -184,8 +185,8 @@ final class NarrativeContentSet {
                         is simpler still — a referenced-component meaning of k:Path[] and purpose of
                         k:SetMembership[], with no fields of its own: a semantic of it merely marks a
                         component as belonging to version-control path management, the same bare
-                        membership-pattern convention this guide's Tinkar Base Model chapter describes for
-                        k:TinkarBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[].""");
+                        membership-pattern convention this guide's IKE Base Model chapter describes for
+                        k:IKEBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[].""");
 
         set.concept("Author for edit coordinate (SOLOR)").at(inception)
                 .semantic(proseElementPattern,
@@ -237,7 +238,7 @@ final class NarrativeContentSet {
                         ingested foundation, cited here as legacy prior art rather than resumed identity, the
                         same treatment k:ConceptConstraints[] gets in the Authoring Actions chapter.
                         k:SolorConceptsPattern[] is the same bare membership-pattern shape this guide's
-                        Tinkar Base Model chapter describes for k:TinkarBaseModelComponentPattern[] and
+                        IKE Base Model chapter describes for k:IKEBaseModelComponentPattern[] and
                         k:KometBaseModelComponentPattern[].""");
 
         set.concept("Navigation vertex (SOLOR)").at(inception)
@@ -464,7 +465,7 @@ final class NarrativeContentSet {
                         separate, disjoint one: Komet's own pattern-authoring UI (`PatternFieldsController`,
                         kview) draws its "choose a data type" list from this branch, while a pattern's real
                         field declaration draws its `dataType` tag from k:DisplayFields[] instead
-                        (`IkeTerm.LONG`, `IkeTerm.STRING`, `IkeTerm.COMPONENT_FIELD`, and so on, throughout
+                        (`KernelTerm.LONG`, `KernelTerm.STRING`, `KernelTerm.COMPONENT_FIELD`, and so on, throughout
                         this starter set's own source) — two families that happen to describe the same idea
                         twice, not one. Reparented under k:Legacy[] here as a deprecation signal; the
                         disconnect on the komet side is tracked as ikmdev/komet#880.
@@ -518,15 +519,11 @@ final class NarrativeContentSet {
                         concepts that exist solely to organize others), and
                         k:ImmediateChildFieldConstraint[] (direct children only) — an identical tuple for
                         all four, which is exactly why they are kinds within one pattern rather than four
-                        patterns. Concretely, this starter set's own STAMP pattern carries four such
-                        semantics: constrained field = k:Author[], kind = k:KindOfFieldConstraint[],
-                        anchor = k:Author[] — the same concept identifies both the field and the anchor
-                        here, since a later revision (IKE-Network/ike-issues#880) gave the Author field
-                        itself k:Author[] as its own meaning — likewise Module and Path, and a fourth
-                        whose tuple reads constrained field = k:StatusValue[], kind =
-                        k:ImmediateChildFieldConstraint[], anchor = k:StatusValue[] again: a concept can
-                        serve as both a field's own meaning and a constraint's own anchor without
-                        conflict, since the two roles are read from different fields entirely.
+                        patterns. Concretely, this starter set's own stamp version pattern carries four
+                        such semantics: constrained field = k:AuthorField[], kind =
+                        k:KindOfFieldConstraint[], anchor = k:Author[] — likewise Module and Path, and a
+                        fourth whose tuple reads constrained field = k:StatusField[], kind =
+                        k:ImmediateChildFieldConstraint[], anchor = k:StatusValue[].
 
                         k:ValueSetFieldConstraintPattern[] is the extensional shape, and it is
                         datatype-universal: the members are enumerated as data, and the member type is
@@ -600,10 +597,10 @@ final class NarrativeContentSet {
                         accept, walked from the same k:Author[] broader relationship the constraint's own
                         definition points at.""");
 
-        // Tinkar Base Model chapter (IKE-Network/ike-issues#880): the component/chronicle/
+        // IKE Base Model chapter (IKE-Network/ike-issues#880): the component/chronicle/
         // pattern-of-patterns meta-model every other chapter's own terminology ultimately
         // descends from.
-        set.concept("Tinkar Model concept").at(inception)
+        set.concept("IKE base model concept").at(inception)
                 .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: TinkarModelConcept (Tinkar Base Model — Components and Chronicles)")),
@@ -611,8 +608,8 @@ final class NarrativeContentSet {
                         k:ModelConcept[] anchors every concept in this guide that describes the knowledge
                         base's own structure rather than a domain it represents — the model-versus-data
                         distinction k:DataConcept[] draws on the other side (k:DefaultDataConcept[] and its
-                        siblings group actual data values, not structural terminology). k:TinkarModelConcept[]
-                        is the root of Tinkar's own meta-schema specifically: components, descriptions,
+                        siblings group actual data values, not structural terminology). k:IKEBaseModelConcept[]
+                        is the root of the base model's own terminology specifically: components, descriptions,
                         dialects, fields, and axioms — every chapter in this guide, from k:DescriptionPattern[]
                         to k:Axioms[] to k:FieldCategories[], ultimately descends from this one concept.
 
@@ -626,11 +623,11 @@ final class NarrativeContentSet {
                         k:SemanticChronologyPattern[]/k:SemanticVersionFieldPattern[], and
                         k:STAMPChronologyPattern[]/k:STAMPVersionFieldPattern[] specialize that shape for
                         each of the four component kinds this guide has already named.
-                        k:TinkarBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[] are
+                        k:IKEBaseModelComponentPattern[] and k:KometBaseModelComponentPattern[] are
                         membership patterns, not shape descriptions — both carrying a referenced-component
                         meaning of k:StarterDataAuthoring[] and purpose of k:SetMembership[], with no fields
                         of their own: a semantic of one of these patterns marks a component as belonging to
-                        Tinkar's own base terminology or Komet's own — the same membership-pattern convention
+                        the IKE base model or Komet's own — the same membership-pattern convention
                         k:SolorConceptsPattern[] uses (discussed in the Logic Coordinates chapter) to mark
                         a component as part of the SOLOR concept space.
 
@@ -677,10 +674,7 @@ final class NarrativeContentSet {
                         k:STAMPField[]/k:VersionProvenance[], plus k:StatusField[]/k:StatusForVersion[],
                         k:TimeField[]/k:TimeForVersion[] (data type k:StringDataType[]),
                         k:AuthorField[]/k:AuthorForVersion[], k:ModuleField[]/k:ModuleForVersion[], and
-                        k:PathField[]/k:PathForVersion[] — the same k:StatusForVersion[]/k:AuthorForVersion[]/
-                        k:ModuleForVersion[]/k:PathForVersion[]/k:TimeForVersion[] purpose concepts this guide's
-                        own STAMP pattern (see the STAMP Concepts chapter) also uses; the base-model layer
-                        specializes those five fields into a single, more directly authored five-field pattern.
+                        k:PathField[]/k:PathForVersion[] — the purposes the STAMP Concepts chapter names for the five dimensions.
                         k:PatternVersionPattern[] is richer still: meaning k:PatternVersionsField[], the same
                         shared purpose, and four fields — k:STAMPField[]/k:VersionProvenance[],
                         k:PatternMeaningField[] (meaning) for k:MeaningDeclaration[] (purpose),
@@ -802,7 +796,7 @@ final class NarrativeContentSet {
                         k:IntrinsicRole[] and k:UnmodeledRoleConcept[] extend this guide's own EL++ Concepts
                         chapter — an intrinsic role is one inherent to a concept's own definition rather than
                         externally imposed, while an unmodeled role concept marks a relationship SNOMED CT or
-                        Tinkar has not yet formally captured as a role. k:PropertySet[] and k:Feature[]
+                        the base model has not yet formally captured as a role. k:PropertySet[] and k:Feature[]
                         describe concrete-domain properties a concept can carry — the same family
                         k:ConcreteValueOperator[] and k:ValueConstraint[] operate on, with k:FeatureType[]
                         naming which kind of feature a given one is — and k:PropertyPatternImplication[] and
@@ -847,7 +841,7 @@ final class NarrativeContentSet {
                         field can't capture. The field itself keeps k:Comment[] as its meaning (that part was
                         always correct — the field genuinely does hold a comment) but now carries
                         k:EditorialClarification[] as its purpose too, the same concept reused at both
-                        levels; its data type, k:StringDataType[], is unchanged. Tinkar's own
+                        levels; its data type, k:StringDataType[], is unchanged. The store's own
                         `PatternVersion` model supports this cleanly: the original SOLOR-sourced version
                         stays in history untouched, and a `StampCoordinate` positioned after the revision
                         simply resolves the newer one. Two more small patterns round out this starter set's
@@ -874,7 +868,7 @@ final class NarrativeContentSet {
                         k:ComponentTypeFocus[] names which kind of component an editor's attention is
                         currently on — k:AxiomFocus[], k:ConceptFocus[], and k:DescriptionFocus[] — a
                         UI-facing concern distinct from any of the component-kind concept families (concept,
-                        pattern, semantic) this guide's Tinkar Base Model chapter already named, since
+                        pattern, semantic) this guide's IKE Base Model chapter already named, since
                         "focus" describes where an author is looking, not what a component is.
                         k:ConceptDetailsTreeTable[] names the tree-table view Komet renders a concept's
                         details in — one editor surface among several a concept's data can project
@@ -887,7 +881,7 @@ final class NarrativeContentSet {
                         alternate identifier came from — the field-meaning concept k:IdentifierPattern[]
                         itself declares a field for. k:UNIVERSALLYUNIQUEIDENTIFIER[] is the one identifier
                         source every component in this starter set actually carries: the UUID itself, which
-                        uniquely represents a concept in Tinkar independent of any external terminology's own
+                        uniquely represents a concept in IKE independent of any external terminology's own
                         identifier scheme. k:IdentifierValue[] names the field holding the literal identifier
                         string once a source has been chosen — an SCTID, an external code, or, for the
                         universally-unique-identifier source, the UUID's own text form.
@@ -930,7 +924,7 @@ final class NarrativeContentSet {
                         member trees an amalgam combines, and k:InverseTreeList[] names the same idea
                         inverted — the trees an amalgam excludes, or walks in reverse, depending on how a
                         particular amalgam is configured. Komet's own multi-hierarchy navigation views (a
-                        concept's SNOMED-style parents alongside its Tinkar-model parents, say, blended into
+                        concept's SNOMED-style parents alongside its base-model parents, say, blended into
                         one tree) are exactly the kind of view this property group exists to support.""");
 
         set.concept("Phenomenon").at(inception)
@@ -938,7 +932,7 @@ final class NarrativeContentSet {
                         PublicIds.of(set.uuidFor(
                                 "Narrative: Phenomenon (Clinical Phenomena and Domain Content)")), """
                         Every chapter so far has described this starter set's own meta-schema — the
-                        terminology Tinkar and this starter set use to describe knowledge, not any particular
+                        terminology the base model and this starter set use to describe knowledge, not any particular
                         domain's content. k:Phenomenon[] is different: it groups genuine, if sparse, seed
                         *domain* content — "a unique thought, fact, or circumstance," in its own words —
                         included here to show what real authored content looks like sitting on top of
@@ -990,7 +984,7 @@ final class NarrativeContentSet {
                         domain concepts follow their own per-source contracts (IKE-Network/ike-issues#952).
                         "Terminologies represented in a harmonized manner," in its own words: the single
                         organizing idea that this starter set,
-                        Tinkar's own base model, and SOLOR's imported terminology are all, ultimately, one
+                        the IKE base model, and SOLOR's imported terminology are all, ultimately, one
                         coherent knowledge representation rather than three unrelated things bolted together.
 
                         k:IkeFoundationRoot[] is this starter set's own root, by contrast — the concept this

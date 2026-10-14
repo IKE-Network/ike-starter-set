@@ -56,6 +56,13 @@
             <version>${ike-knowledge-provider.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- CommittedBindingsDriftTest holds Komet's committed KometTerm to the set. -->
+        <dependency>
+            <groupId>dev.ikm.komet</groupId>
+            <artifactId>komet-terms</artifactId>
+            <version>${komet.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

@@ -15,8 +15,9 @@
  */
 package network.ike.foundation.ike.terms;
 
-import dev.ikm.tinkar.common.id.IntIdList;
-import dev.ikm.tinkar.common.id.IntIdSet;
+import dev.ikm.tinkar.terms.KernelTerm;
+import dev.ikm.tinkar.common.id.LongIdList;
+import dev.ikm.tinkar.common.id.LongIdSet;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.common.service.CachingService;
 import dev.ikm.tinkar.common.service.EntityCountSummary;
@@ -50,7 +51,6 @@ import dev.ikm.tinkar.entity.load.LoadEntitiesFromProtobufFile;
 import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
-import dev.ikm.tinkar.terms.TinkarTerm;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -92,19 +92,19 @@ class FoundationFidelityIT {
 
     private static StampCalculator calculator;
     private static LanguageCalculator languageCalculator;
-    private static final Map<Integer, String> FQN_BEFORE = new HashMap<>();
-    private static final Map<Integer, Set<Integer>> IS_A_PARENTS_BEFORE = new HashMap<>();
-    private static final Map<Integer, Integer> VERSION_COUNT_BEFORE = new HashMap<>();
-    private static int conceptsBefore;
-    private static int patternsBefore;
+    private static final Map<Long, String> FQN_BEFORE = new HashMap<>();
+    private static final Map<Long, Set<Long>> IS_A_PARENTS_BEFORE = new HashMap<>();
+    private static final Map<Long, Integer> VERSION_COUNT_BEFORE = new HashMap<>();
+    private static long conceptsBefore;
+    private static long patternsBefore;
 
     /** New concepts the identity-exact ingest itself mints: the module, the root, IKE Community. */
-    private static final int INGEST_BOOTSTRAP_CONCEPTS = 3;
+    private static final long INGEST_BOOTSTRAP_CONCEPTS = 3;
     /**
      * New concepts {@code ConstraintPatternSet} (30 — see below),
-     * {@code PatternShapeRefinementSet} (2 for Comment pattern + 23 for the
-     * remaining 16 revised patterns + 7 for the IKE-Network/ike-issues#891
-     * Model-Feature pointer fixes = 32 — the #891 fixes mint Originated Module,
+     * {@code PatternShapeRefinementSet} (2 for Comment pattern + 22 for the
+     * remaining 15 revised patterns and the STAMP model's Time + 7 for the
+     * IKE-Network/ike-issues#891 Model-Feature pointer fixes = 31 — the #891 fixes mint Originated Module,
      * Origin Module Set, Originated Path, Branch Source, Branch Point, Identified
      * Component, Axiomatized Component, and Axiom Expression (+8) while Origin
      * Subject — whose definition misdescribed the origin-path field as naming the
@@ -144,15 +144,48 @@ class FoundationFidelityIT {
      * foundation home — Prose element, Prose content, and Element content, adopted
      * RichSurfaceTerms identities the prose pattern's declaration references.
      * <p>
-     * The CQL keyword set adds 158: {@code CqlSet} mints one concept per CQL keyword (136)
-     * and {@code CqlKeywordHierarchy} the categories they are filed under (22 — the CQL
-     * keyword root, five families, and 16 categories).
-     * <p>
-     * The ECL keyword set adds 58: {@code EclSet} mints one concept per ECL 2.3 keyword (48)
-     * and {@code EclKeywordHierarchy} the categories they are filed under (10 — the ECL
-     * keyword root, four families, and five categories).
+     * The IKE-Network/ike-issues#1089 query-operator apparatus adds 164:
+     * {@code ExpressionLanguageSet} mints the Expression language model root (+1), the
+     * Expression language family with CQL, ECL, and EL++ (+4), and their three dialects
+     * (+3); the closed taxonomies Lexical role (+7), Construct relation (+4), Operand kind
+     * (+12), and Arity (+4); six field-meaning concepts (+6); eighteen pattern
+     * meaning/purpose concepts (+18); Generic AND (+1; Generic OR is
+     * the inherited Or concept, renamed); the Logical expression vertex home (+1); the
+     * Indeterminate result and the three presence literals (+4); Presence AND, OR, and NOT (+3); the five measure
+     * relations (+5); the Statement measure family with its eleven members, four on the performance side, two on the request side, and Repetition measure with five (+13); the seven
+     * concept-set operators (+7); the three set operations (+3); and the Statement operator family with its seven
+     * members (+8); and the Criterion family with Topic constraint, Circumstance
+     * constraint, Measure comparison, and Association constraint (+5); and the Measure
+     * operator family with Measure addition, subtraction, multiplication, and division
+     * and the lower bound, upper bound, width, and whole unit operators (+9), with Measure aggregate
+     * and its six members beneath it (+7); and the time vocabulary: Unit of time with its
+     * eight units, Time scale with three scales, Gregorian calendar, and Time reading with
+     * Instant and Period, and Time zone with UTC offset (+19); and the days-covered pass:
+     * Measure outer span and Measure inner span under Measure operator, and Measure list
+     * operator with Measure list merge and Measure list split (+5); and ECL's remainder:
+     * Attribute group refinement, Attribute count refinement, Attribute value projection,
+     * and Concept set history extension (+4); and the conditionals pass: Conditional,
+     * Presence implication, and Presence exclusive OR (+3); and Correlation constraint, the
+     * fifth criterion (+1); Measure conversion (+1); and the presence aggregates Measure all
+     * present and Measure any present with their closed-world readings (+4); and the reference-set
+     * member fields, Member field constraint and Member field projection (+2); and the model information
+     * section (IKE-Network/ike-issues#1115): the Data model parent, its three purposes, five dialects, and
+     * sixty-five field meanings, and the unresolved marker (+75); and the node-kind section (#1116): the
+     * Nullary arity, the List and Tuple kinds, ten constructs the first families lacked, Circumstance kind
+     * with its three kinds, Statement reading with its nine readings, the Model bridge purpose, and four
+     * field meanings (+32). Every other construct it types or binds (EL++ AND, Is-a, Existential
+     * restriction, the five comparison operators, the two taxonomy field constraint kinds)
+     * is a resumed declared identity, not a mint.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 317;
+    /**
+     * The IKE-Network/ike-issues#468 AsciiDoc document model adds 70: {@code AsciiDocModelSet}
+     * mints the AsciiDoc document module and model root, the element kinds (document, section,
+     * block and seventeen block kinds, the inline reference family of six, the composition
+     * pair), the twenty-five fields and purposes, and the git-provenance family (model root,
+     * author/module/path homes, purpose, git source and its two fields, affirmation and its
+     * two fields).
+     */
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -166,8 +199,37 @@ class FoundationFidelityIT {
      * (1 — the shared Prose element pattern, an adopted RichSurfaceTerms identity
      * declared at its foundation home so the set's own prose semantics satisfy
      * referential closure, IKE-Network/ike-issues#937).
+     * <p>
+     * The IKE-Network/ike-issues#1089 apparatus adds 7 — the Expression Language
+     * Keyword Pattern, the Construct Denotation Pattern, the Literal Denotation
+     * Pattern, the Construct Relation Pattern, and the CQL, ECL, and EL++ Dialect
+     * Patterns ({@code ExpressionLanguageSet}). {@code ElmTreeSet} adds 3 (IKE-Network/ike-issues#1110:
+     * the tree, ordered list, and reference patterns), {@code UcumModelSet} 4 (#1114: the unit, prefix,
+     * and composed unit patterns and the UCUM dialect), and {@code ModelInformationSet} 13 (#1115: the
+     * model, requirement, class, element, context, relationship, and conversion records, the class
+     * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
+     * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 7;
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12;   // + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468)
+    /**
+     * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
+     * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
+     * {@code ike:schema-import} (IKE-Network/ike-issues#1104): 270 types, 143 position
+     * names, 9 schema primitives, 1 type of another schema referred to, 3 enumerations with
+     * 14 values, and the family's own 11 concepts (the root, three parents, the pattern's
+     * meaning and purpose, and five field meanings). Regenerated, never edited; the count
+     * moves only when the pinned release does.
+     */
+    private static final long IMPORTED_CATALOG_CONCEPTS = 463;
+    /**
+     * Concepts the set adopts under their established identities, as the set became the
+     * source of the platform's terms: constants live code uses that
+     * the Tinkar starter data never held. {@code SCTID}, the identifier source of the SNOMED CT
+     * identifiers the SNOMED knowledge base carries.
+     */
+    private static final long ADOPTED_ESTABLISHED_CONCEPTS = 1;
+    /** Patterns a catalog import mints: the ELM type position pattern. */
+    private static final long IMPORTED_CATALOG_PATTERNS = 1;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
@@ -179,7 +241,7 @@ class FoundationFidelityIT {
      * no new version to their axiom semantic (confirmed empirically — same version
      * count before and after). The likely cause is a path-coordinate bootstrap
      * characteristic: before replay, no stamp anywhere in this store is on
-     * {@code TinkarTerm.DEVELOPMENT_PATH} (the raw starter data is entirely on
+     * {@code KernelTerm.DEVELOPMENT_PATH} (the raw starter data is entirely on
      * Primordial path), so "latest on development" has no real cutoff to resolve
      * against for a component whose own history spans more than one shape; after
      * replay stamps ~407 new Development-path versions (this ledger's own inception
@@ -190,16 +252,16 @@ class FoundationFidelityIT {
      * semantics gained no new version). Logged, not silently dropped; tracked as
      * IKE-Network/ike-issues#875 for deeper investigation rather than fixed here.
      */
-    private static final Set<Integer> HISTORICALLY_AMBIGUOUS_AXIOM_NIDS = new HashSet<>();
+    private static final Set<Long> HISTORICALLY_AMBIGUOUS_AXIOM_NIDS = new HashSet<>();
 
     /**
      * The stamp nids present in the baseline store before replay — every stamp any
      * concept, pattern, or semantic version references. Snapshotted in
-     * {@link #loadAndSnapshot()}; {@link #replayIntroducesExactlyTheInceptionStampPair()}
-     * asserts the replay adds exactly the two inception stamps beyond these
-     * (IKE-Network/ike-issues#894).
+     * {@link #loadAndSnapshot()}; {@link #replayIntroducesExactlyTheInceptionStamps()}
+     * asserts the replay adds exactly the two inception stamps and the retirement stamp
+     * beyond these (IKE-Network/ike-issues#894, #1124).
      */
-    private static final Set<Integer> BASELINE_STAMP_NIDS = new HashSet<>();
+    private static final Set<Long> BASELINE_STAMP_NIDS = new HashSet<>();
 
     /**
      * UUIDs of pre-existing concepts whose declared fully qualified name deliberately
@@ -248,11 +310,56 @@ class FoundationFidelityIT {
             // identity under the plain name; the coordinate meaning is a fresh concept
             // (Navigation coordinate properties, CoordinateModelSet).
             Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), "Directed graph"),
-            // foundation.Section6: the baseline's unbalanced-paren birth FQN
-            // "KOMET user list (SOLOR" corrected in place (IKE-Network/ike-issues#950).
-            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), "KOMET user list (SOLOR)")
+            // foundation.Section6 once corrected the baseline's unbalanced-paren birth FQN
+            // "KOMET user list (SOLOR" in place (IKE-Network/ike-issues#950); the concept is
+            // no longer in the set's source (DELIBERATELY_NOT_RESTATED) — no entry.
+            // foundation.Section41: the query-operator naming discipline (IKE-Network/ike-issues#1089)
+            // — the inherited And is the EL++ instance of Generic AND, the inherited Or is the
+            // Generic OR itself, each renamed in place and keeping its identity.
+            Map.entry(UUID.fromString("fa113d51-07d2-587c-8930-0bce207d506d"), "EL++ AND (SOLOR)"),
+            Map.entry(UUID.fromString("2c940bcf-22a8-5fc9-b232-580021e758ed"), "Generic OR (SOLOR)"),
+            // The vocabulary is IKE's; Tinkar names legacy artifacts only (IKE-Network/ike-issues#1124):
+            // foundation.Section7, the base model's own root; foundation.Section6, the user the
+            // baseline's versions name as author; foundation.Section71, the base-model membership
+            // pattern (a pattern, recorded for the registry's completeness as above).
+            Map.entry(UUID.fromString("bc59d656-83d3-47d8-9507-0e656ea95463"), "IKE base model concept"),
+            Map.entry(UUID.fromString("dd96b2ea-6d7b-3791-ad74-bbdc67c493c1"), "Baseline starter data author (User)"),
+            Map.entry(UUID.fromString("6070f6f5-893d-5144-adce-7d305c391cf9"), "IKE base model component pattern")
     );
-    private static final Map<Integer, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
+    private static final Map<Long, String> DELIBERATELY_RENAMED_FQNS_BY_NID = new HashMap<>();
+
+    /**
+     * UUIDs of pre-existing concepts whose stated definition deliberately names no parent
+     * at all (IKE-Network/ike-issues#1124): the base root, Integrated Knowledge Management,
+     * which the baseline stated as its own parent — a cycle the classifier reduced to an
+     * empty necessary set. The ledger states the root as it is inferred: a primitive with
+     * no parents. {@link #isAParentsUnchanged()} asserts the empty parent set for these.
+     */
+    private static final Set<UUID> DELIBERATELY_PARENTLESS = Set.of(
+            UUID.fromString("7c21b6c5-cf11-5af9-893b-743f004c97f5"));
+    private static final Set<Long> DELIBERATELY_PARENTLESS_BY_NID = new HashSet<>();
+
+    /**
+     * UUIDs of baseline components this set deliberately does not restate, so replay adds
+     * no version to them; taken out of the set's source rather than retired, they are not
+     * in a knowledge base assembled from the set alone. The legacy {@code STAMP pattern}, a
+     * second description of a stamp's fields beside the stamp version pattern the code
+     * binds ({@code EntityBinding.Stamp.Version}); and the seven legacy user-preference and
+     * user-interface concepts the baseline filed as kinds of {@code User} (or, for the tree
+     * table, as a model concept), once retired in place (IKE-Network/ike-issues#1124).
+     * {@link #notRestatedComponentsAreLeftToTheBaseline()} holds that the set adds nothing
+     * to them and attaches nothing to them.
+     */
+    private static final Set<UUID> DELIBERATELY_NOT_RESTATED = Set.of(
+            UUID.fromString("9fd67fee-abf9-551d-9d0e-76a4b1e8b4ee"),  // STAMP pattern (legacy)
+            UUID.fromString("12131382-1535-5a77-928b-6eacad221ea2"),  // Path for user (SOLOR)
+            UUID.fromString("6167efcb-50e8-534d-9827-fdd60b02ae00"),  // Order for concept attachments (SOLOR)
+            UUID.fromString("69ee3f13-e2ba-5a96-9b91-5eecfad8e587"),  // Order for description attachments (SOLOR)
+            UUID.fromString("c8fd4f1b-d842-5245-9a7d-a58dc0ac1c11"),  // Module for user (SOLOR)
+            UUID.fromString("abcb0946-20e1-5483-8469-3e8fa0ce20c4"),  // Order for axiom attachments (SOLOR)
+            UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"),  // KOMET user list (SOLOR)
+            UUID.fromString("1655edd8-7b73-52c5-98b0-263d1ab3a90b")); // Concept details tree table (SOLOR)
+    private static final Set<Long> DELIBERATELY_NOT_RESTATED_BY_NID = new HashSet<>();
 
     /**
      * UUIDs of pre-existing concepts whose declared stated parent deliberately diverges
@@ -265,28 +372,27 @@ class FoundationFidelityIT {
      * adds the repaired {@code Directed graph} under the minted {@code Graph}, and eight
      * more Legacy occupants: application machinery and association concepts the baseline
      * had filed as kinds of {@code User} (or, for the tree table, as a model concept).
+     * Seven of those eight are no longer in the set's source (see
+     * {@link #DELIBERATELY_NOT_RESTATED}); {@code Starter Data Authoring} stays under Legacy,
+     * being the meaning of both base-model membership patterns.
      */
     private static final Map<UUID, UUID> DELIBERATELY_REPARENTED_ISA = Map.ofEntries(
+            // The query-operator naming discipline (IKE-Network/ike-issues#1089): the inherited
+            // And becomes the EL++ instance of the minted Generic AND, and the two non-operator
+            // vertex kinds filed under Connective operator move to the minted Logical
+            // expression vertex. Minted identities derive from their birth FQNs.
+            Map.entry(UUID.fromString("fa113d51-07d2-587c-8930-0bce207d506d"), // EL++ AND (SOLOR)
+                    Ike.SET.uuidFor("Generic AND (IkeFoundation)")),
+            Map.entry(UUID.fromString("e89148c7-4fe2-52f8-abb9-6a53605d20cb"), // Concept reference (SOLOR)
+                    Ike.SET.uuidFor("Logical expression vertex (IkeFoundation)")),
+            Map.entry(UUID.fromString("e7271c01-6ed4-5240-963f-34d1f24153b0"), // Definition root (SOLOR)
+                    Ike.SET.uuidFor("Logical expression vertex (IkeFoundation)")),
             Map.entry(UUID.fromString("61da7e50-f606-5ba0-a0df-83fd524951e7"), // Dynamic column data types (SOLOR)
                     UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
             Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), // Directed graph
                     UUID.fromString("da454dbd-ed6e-55cf-af5a-0d51b40d7640")),  // Graph (IkeFoundation)
-            Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), // KOMET user list (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
-            Map.entry(UUID.fromString("12131382-1535-5a77-928b-6eacad221ea2"), // Path for user (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("c8fd4f1b-d842-5245-9a7d-a58dc0ac1c11"), // Module for user (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("6167efcb-50e8-534d-9827-fdd60b02ae00"), // Order for concept attachments (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("69ee3f13-e2ba-5a96-9b91-5eecfad8e587"), // Order for description attachments (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("abcb0946-20e1-5483-8469-3e8fa0ce20c4"), // Order for axiom attachments (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
             Map.entry(UUID.fromString("070deb74-acc5-46bf-b9c6-eaee1b58ef52"), // Starter Data Authoring (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
-            Map.entry(UUID.fromString("1655edd8-7b73-52c5-98b0-263d1ab3a90b"), // Concept details tree table (SOLOR)
-                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),
+                    UUID.fromString("e06c87d2-0831-5548-b5c1-24dc0501a7de")),  // Legacy (IkeFoundation)
             // The two-parent root (IKE-Network/ike-issues#952): organization concepts
             // leave the root — only Model concept and domain content remain.
             Map.entry(UUID.fromString("72765109-6b53-3814-9b05-34ebddd16592"), // Object (SOLOR)
@@ -296,7 +402,7 @@ class FoundationFidelityIT {
             Map.entry(UUID.fromString("3415a972-7850-57cd-aa86-a572ca1c2ceb"), // Creative Commons BY license (SOLOR)
                     UUID.fromString("199756cd-f114-5116-bb44-c5388fcd3a65"))   // License (IkeFoundation)
     );
-    private static final Map<Integer, Integer> DELIBERATELY_REPARENTED_ISA_BY_NID = new HashMap<>();
+    private static final Map<Long, Long> DELIBERATELY_REPARENTED_ISA_BY_NID = new HashMap<>();
 
     /**
      * UUIDs of pre-existing concepts whose stated definition deliberately stops being
@@ -389,7 +495,7 @@ class FoundationFidelityIT {
             Map.entry(UUID.fromString("10b873e2-8247-5ab5-9dec-4edef37fc219"), // Status value
                     UUID.fromString("7bbd4210-381c-11e7-9598-0800200c9a66"))
     );
-    private static final Map<Integer, Integer> DELIBERATELY_ROLE_BEARING_ISA_BY_NID = new HashMap<>();
+    private static final Map<Long, Long> DELIBERATELY_ROLE_BEARING_ISA_BY_NID = new HashMap<>();
 
     /**
      * Overrides of the partOf whole for role-bearing reparents whose whole is NOT the
@@ -407,7 +513,7 @@ class FoundationFidelityIT {
             UUID.fromString("10b873e2-8247-5ab5-9dec-4edef37fc219"), // Status value
             UUID.fromString("3f93c9fb-48c9-53e2-a3e7-a7ae39311b97")
     );
-    private static final Map<Integer, Integer> DELIBERATELY_PART_OF_WHOLE_BY_NID = new HashMap<>();
+    private static final Map<Long, Long> DELIBERATELY_PART_OF_WHOLE_BY_NID = new HashMap<>();
 
     /**
      * {@code Part of (SOLOR)} — the one pre-existing concept whose stated definition
@@ -460,6 +566,12 @@ class FoundationFidelityIT {
             DELIBERATELY_REPARENTED_ISA_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
         }
+        for (UUID uuid : DELIBERATELY_PARENTLESS) {
+            DELIBERATELY_PARENTLESS_BY_NID.add(PrimitiveData.nid(uuid));
+        }
+        for (UUID uuid : DELIBERATELY_NOT_RESTATED) {
+            DELIBERATELY_NOT_RESTATED_BY_NID.add(PrimitiveData.nid(uuid));
+        }
         for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
             DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
                     PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
@@ -481,7 +593,7 @@ class FoundationFidelityIT {
         int[] conceptCount = {0};
         EntityService.get().forEachConceptEntity(concept -> {
             conceptCount[0]++;
-            int nid = concept.nid();
+            long nid = concept.nid();
             languageCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
                     .ifPresent(fqn -> FQN_BEFORE.put(nid, fqn));
             IS_A_PARENTS_BEFORE.put(nid, latestIsAParents(nid));
@@ -526,8 +638,8 @@ class FoundationFidelityIT {
      *
      * @return the stamp nids in use by content versions
      */
-    private static Set<Integer> versionStampNids() {
-        Set<Integer> stampNids = new HashSet<>();
+    private static Set<Long> versionStampNids() {
+        Set<Long> stampNids = new HashSet<>();
         EntityService.get().forEachConceptEntity(concept -> {
             for (EntityVersion version : concept.versions()) {
                 stampNids.add(version.stampNid());
@@ -538,19 +650,21 @@ class FoundationFidelityIT {
                 stampNids.add(version.stampNid());
             }
         });
-        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
-            for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
-                stampNids.add(((SemanticEntityVersion) versionObj).stampNid());
+        EntityService.get().forEachEntity(entity -> {
+            if (entity instanceof SemanticEntity<?> semantic) {
+                for (Object versionObj : semantic.versions()) {
+                    stampNids.add(((SemanticEntityVersion) versionObj).stampNid());
+                }
             }
         });
         return stampNids;
     }
 
-    private static Set<Integer> latestIsAParents(int componentNid) {
-        Set<Integer> parents = new HashSet<>();
+    private static Set<Long> latestIsAParents(long componentNid) {
+        Set<Long> parents = new HashSet<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) -> {
                     DiTreeEntity tree = (DiTreeEntity) semanticVersion.fieldValues().get(0);
                     AxiomDecompiler.Result result = AxiomDecompiler.decompile(tree);
@@ -563,11 +677,11 @@ class FoundationFidelityIT {
 
     /** Whether any of this component's raw stated-axiom semantic versions (not just
      * calculator-latest) resolve to more than one distinct (simpleIsA, parents) shape. */
-    private static boolean hasAmbiguousAxiomHistory(int componentNid) {
+    private static boolean hasAmbiguousAxiomHistory(long componentNid) {
         Set<Object> distinctShapes = new HashSet<>();
-        for (int semanticNid : EntityService.get()
-                .semanticNidsForComponentOfPattern(componentNid, TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid())) {
-            for (Object versionObj : EntityHandle.get(semanticNid).expectSemantic().versions()) {
+        for (SemanticEntity<?> axioms : EntityService.get()
+                .semanticsForComponentOfPattern(componentNid, KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid()).toList()) {
+            for (Object versionObj : axioms.versions()) {
                 dev.ikm.tinkar.entity.SemanticEntityVersion version =
                         (dev.ikm.tinkar.entity.SemanticEntityVersion) versionObj;
                 DiTreeEntity tree = (DiTreeEntity) version.fieldValues().get(0);
@@ -584,8 +698,8 @@ class FoundationFidelityIT {
     @DisplayName("Every pre-existing component's FQN text is unchanged after replay"
             + " — except DELIBERATELY_RENAMED_FQNS, which get their new, expected text")
     void fqnTextUnchanged() {
-        for (Map.Entry<Integer, String> entry : FQN_BEFORE.entrySet()) {
-            int nid = entry.getKey();
+        for (Map.Entry<Long, String> entry : FQN_BEFORE.entrySet()) {
+            long nid = entry.getKey();
             String fqnAfter = languageCalculator.getFullyQualifiedNameText(EntityProxy.Concept.make(nid))
                     .orElseThrow(() -> new AssertionError("FQN disappeared for nid " + nid));
             String expected = DELIBERATELY_RENAMED_FQNS_BY_NID.getOrDefault(nid, entry.getValue());
@@ -594,13 +708,33 @@ class FoundationFidelityIT {
     }
 
     @Test
+    @DisplayName("Every concept and pattern in the replayed store carries a fully qualified name")
+    void everyComponentCarriesAFullyQualifiedName() {
+        // A component without one cannot be named in the language coordinates that prefer
+        // it, nor declared by the ledger generator; 63 expression-language concepts once
+        // lost theirs when a generic keyword description suppressed the derived FQN.
+        List<String> missing = new ArrayList<>();
+        EntityService.get().forEachConceptEntity(concept -> {
+            if (languageCalculator.getFullyQualifiedNameText(concept.nid()).isEmpty()) {
+                missing.add("concept " + PrimitiveData.text(concept.nid()));
+            }
+        });
+        EntityService.get().forEachPatternEntity(pattern -> {
+            if (languageCalculator.getFullyQualifiedNameText(pattern.nid()).isEmpty()) {
+                missing.add("pattern " + PrimitiveData.text(pattern.nid()));
+            }
+        });
+        assertEquals(List.of(), missing, "components without a fully qualified name");
+    }
+
+    @Test
     @DisplayName("Every pre-existing component's latest isA parent set is unchanged after replay"
             + " (except components with ambiguous axiom history, see HISTORICALLY_AMBIGUOUS_AXIOM_NIDS,"
             + " and DELIBERATELY_REPARENTED_ISA, which get their new, expected parent)")
     void isAParentsUnchanged() {
-        int partOfNid = PrimitiveData.nid(PART_OF_UUID);
-        for (Map.Entry<Integer, Set<Integer>> entry : IS_A_PARENTS_BEFORE.entrySet()) {
-            int nid = entry.getKey();
+        long partOfNid = PrimitiveData.nid(PART_OF_UUID);
+        for (Map.Entry<Long, Set<Long>> entry : IS_A_PARENTS_BEFORE.entrySet()) {
+            long nid = entry.getKey();
             if (HISTORICALLY_AMBIGUOUS_AXIOM_NIDS.contains(nid)) {
                 continue;
             }
@@ -610,18 +744,23 @@ class FoundationFidelityIT {
                 // partOfIsATransitiveRoleType().
                 continue;
             }
-            Integer newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);
-            Set<Integer> expected = newParentNid != null ? Set.of(newParentNid) : entry.getValue();
+            if (DELIBERATELY_PARENTLESS_BY_NID.contains(nid)) {
+                assertEquals(Set.of(), latestIsAParents(nid),
+                        "deliberately parentless nid " + nid + " states a parent (IKE-Network/ike-issues#1124)");
+                continue;
+            }
+            Long newParentNid = DELIBERATELY_REPARENTED_ISA_BY_NID.get(nid);
+            Set<Long> expected = newParentNid != null ? Set.of(newParentNid) : entry.getValue();
             assertEquals(expected, latestIsAParents(nid), "isA parents drifted for nid " + nid);
         }
     }
 
     /** The latest stated-axiom trees for a component (normally exactly one). */
-    private static List<DiTreeEntity> latestStatedTrees(int componentNid) {
+    private static List<DiTreeEntity> latestStatedTrees(long componentNid) {
         List<DiTreeEntity> trees = new ArrayList<>();
         calculator.forEachSemanticVersionForComponentOfPattern(
                 EntityProxy.Concept.make(componentNid),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN,
                 (semanticVersion, entityVersion, patternVersion) ->
                         trees.add((DiTreeEntity) semanticVersion.fieldValues().get(0)));
         return trees;
@@ -644,10 +783,10 @@ class FoundationFidelityIT {
     @DisplayName("Role-bearing reparents state exactly is-a(parent) AND SomeRole(Part of, parent)"
             + " — the #950 partonomy shape, textual and logical definitions consistent")
     void roleBearingReparentsStateIsAAndPartOf() {
-        int partOfNid = PrimitiveData.nid(PART_OF_UUID);
-        for (Map.Entry<Integer, Integer> entry : DELIBERATELY_ROLE_BEARING_ISA_BY_NID.entrySet()) {
-            int nid = entry.getKey();
-            int parentNid = entry.getValue();
+        long partOfNid = PrimitiveData.nid(PART_OF_UUID);
+        for (Map.Entry<Long, Long> entry : DELIBERATELY_ROLE_BEARING_ISA_BY_NID.entrySet()) {
+            long nid = entry.getKey();
+            long parentNid = entry.getValue();
             List<DiTreeEntity> trees = latestStatedTrees(nid);
             assertEquals(1, trees.size(), "expected exactly one stated tree for nid " + nid);
             DiTreeEntity tree = trees.getFirst();
@@ -660,18 +799,18 @@ class FoundationFidelityIT {
 
             List<EntityVertex> conceptAtoms = childrenWithMeaning(tree, and, LogicalAxiomSemantic.CONCEPT);
             assertEquals(1, conceptAtoms.size(), "expected one is-a ConceptAxiom for nid " + nid);
-            ConceptFacade isAParent = conceptAtoms.getFirst().propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            ConceptFacade isAParent = conceptAtoms.getFirst().propertyFast(KernelTerm.CONCEPT_REFERENCE);
             assertEquals(parentNid, isAParent.nid(), "is-a parent drifted for nid " + nid);
 
             List<EntityVertex> roles = childrenWithMeaning(tree, and, LogicalAxiomSemantic.ROLE);
             assertEquals(1, roles.size(), "expected one Part of role for nid " + nid);
             EntityVertex role = roles.getFirst();
-            ConceptFacade roleType = role.propertyFast(TinkarTerm.ROLE_TYPE);
+            ConceptFacade roleType = role.propertyFast(KernelTerm.ROLE_TYPE);
             assertEquals(partOfNid, roleType.nid(), "role type must be Part of for nid " + nid);
             List<EntityVertex> restrictions = childrenWithMeaning(tree, role, LogicalAxiomSemantic.CONCEPT);
             assertEquals(1, restrictions.size(), "expected one role restriction for nid " + nid);
-            ConceptFacade whole = restrictions.getFirst().propertyFast(TinkarTerm.CONCEPT_REFERENCE);
-            int expectedWholeNid = DELIBERATELY_PART_OF_WHOLE_BY_NID.getOrDefault(nid, parentNid);
+            ConceptFacade whole = restrictions.getFirst().propertyFast(KernelTerm.CONCEPT_REFERENCE);
+            long expectedWholeNid = DELIBERATELY_PART_OF_WHOLE_BY_NID.getOrDefault(nid, parentNid);
             assertEquals(expectedWholeNid, whole.nid(),
                     "partOf whole drifted for nid " + nid);
         }
@@ -681,7 +820,7 @@ class FoundationFidelityIT {
     @DisplayName("Part of is a transitive role type: PropertySet(And(Role type, Transitive Feature))"
             + " — the shape ElkSnomedDataBuilder reads (IKE-Network/ike-issues#950)")
     void partOfIsATransitiveRoleType() {
-        int partOfNid = PrimitiveData.nid(PART_OF_UUID);
+        long partOfNid = PrimitiveData.nid(PART_OF_UUID);
         List<DiTreeEntity> trees = latestStatedTrees(partOfNid);
         assertEquals(1, trees.size(), "expected exactly one stated tree for Part of");
         DiTreeEntity tree = trees.getFirst();
@@ -693,9 +832,9 @@ class FoundationFidelityIT {
         List<EntityVertex> ands = childrenWithMeaning(tree, propertySets.getFirst(), LogicalAxiomSemantic.AND);
         assertEquals(1, ands.size(), "expected one And under Part of's PropertySet");
 
-        Set<Integer> propertyConcepts = new HashSet<>();
+        Set<Long> propertyConcepts = new HashSet<>();
         for (EntityVertex atom : childrenWithMeaning(tree, ands.getFirst(), LogicalAxiomSemantic.CONCEPT)) {
-            ConceptFacade referenced = atom.propertyFast(TinkarTerm.CONCEPT_REFERENCE);
+            ConceptFacade referenced = atom.propertyFast(KernelTerm.CONCEPT_REFERENCE);
             propertyConcepts.add(referenced.nid());
         }
         assertEquals(Set.of(PrimitiveData.nid(ROLE_TYPE_UUID), PrimitiveData.nid(TRANSITIVE_FEATURE_UUID)),
@@ -704,12 +843,15 @@ class FoundationFidelityIT {
     }
 
     @Test
-    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge,"
-            + " no exceptions: pre-release, the ledger carries no revision layering"
-            + " (IKE-Network/ike-issues#894)")
+    @DisplayName("Every pre-existing component gains exactly one (inception) version — a true merge:"
+            + " pre-release, the ledger carries no revision layering (IKE-Network/ike-issues#894);"
+            + " the deliberately not-restated legacy STAMP pattern alone gains none")
     void versionCountIncreasesByExactlyOne() {
-        for (Map.Entry<Integer, Integer> entry : VERSION_COUNT_BEFORE.entrySet()) {
-            int nid = entry.getKey();
+        for (Map.Entry<Long, Integer> entry : VERSION_COUNT_BEFORE.entrySet()) {
+            long nid = entry.getKey();
+            if (DELIBERATELY_NOT_RESTATED_BY_NID.contains(nid)) {
+                continue;
+            }
             boolean isPattern = EntityHandle.get(nid).isPattern();
             int versionsAfter = isPattern
                     ? EntityHandle.get(nid).expectPattern().versions().size()
@@ -720,26 +862,46 @@ class FoundationFidelityIT {
     }
 
     @Test
-    @DisplayName("Replay introduces exactly the inception stamp pair: the foundation-module stamp"
-            + " and its Defaults-module counterpart, both at the one declared inception time"
-            + " the platform's named inception instant (IKE-Network/ike-issues#894)")
-    void replayIntroducesExactlyTheInceptionStampPair() {
+    @DisplayName("A deliberately not-restated baseline component is left to the baseline: replay adds"
+            + " no version to it and attaches nothing to it")
+    void notRestatedComponentsAreLeftToTheBaseline() {
+        assertFalse(DELIBERATELY_NOT_RESTATED_BY_NID.isEmpty(), "the registry resolves");
+        for (long nid : DELIBERATELY_NOT_RESTATED_BY_NID) {
+            int versionsAfter = EntityHandle.get(nid).isPattern()
+                    ? EntityHandle.get(nid).expectPattern().versions().size()
+                    : EntityHandle.get(nid).expectConcept().versions().size();
+            assertEquals(VERSION_COUNT_BEFORE.get(nid), versionsAfter,
+                    "replay added a version to not-restated nid " + nid);
+            for (SemanticEntity<?> semantic : EntityService.get().semanticsForComponent(nid).toList()) {
+                for (Object versionObj : semantic.versions()) {
+                    assertTrue(BASELINE_STAMP_NIDS.contains(((SemanticEntityVersion) versionObj).stampNid()),
+                            "replay attached a semantic version to not-restated nid " + nid);
+                }
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Replay introduces exactly the inception stamps: the foundation-module stamp and its"
+            + " Defaults-module and AsciiDoc-module counterparts, all at the one declared inception time,"
+            + " the platform's named inception instant (IKE-Network/ike-issues#894, #468)")
+    void replayIntroducesExactlyTheInceptionStamps() {
         assertEquals(PrimitiveData.INCEPTION_EPOCH, Ike.INCEPTION.time(),
                 "the pair's declared time is the platform's named inception instant, which"
                         + " renders as the word \"Inception\" on every surface (KEC ruling,"
                         + " IKE-Network/ike-issues#894)");
-        assertEquals(UUID.fromString("45b13d09-7c50-5495-8460-aef66a2ae615"),
-                Ike.INCEPTION.publicId().asUuidArray()[0],
+        assertTrue(Ike.INCEPTION.publicId().contains(UUID.fromString("45b13d09-7c50-5495-8460-aef66a2ae615")),
                 "the foundation inception tuple must derive the stamp identity the guide's"
                         + " badge-anatomy figure features — the tuple is part of the published"
                         + " knowledge-state");
 
-        Set<Integer> introduced = new HashSet<>(versionStampNids());
+        Set<Long> introduced = new HashSet<>(versionStampNids());
         introduced.removeAll(BASELINE_STAMP_NIDS);
         assertEquals(Set.of(PrimitiveData.nid(Ike.INCEPTION.publicId()),
-                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId())),
+                        PrimitiveData.nid(Ike.DEFAULTS_INCEPTION.publicId()),
+                        PrimitiveData.nid(Ike.ASCIIDOC_INCEPTION.publicId())),
                 introduced,
-                "replay must write versions under exactly the two inception stamps — any other"
+                "replay must write versions under exactly the three inception stamps — any other"
                         + " stamp means a working-day or revision layer survived the flatten"
                         + " (IKE-Network/ike-issues#894)");
     }
@@ -747,20 +909,27 @@ class FoundationFidelityIT {
     @Test
     @DisplayName("Identity-exact ingest mints exactly the 3 hand-authored concepts (module, root, IKE Community), zero new patterns")
     void noUnexpectedNewComponents() {
-        int[] conceptsAfter = {0};
+        long[] conceptsAfter = {0};
         EntityService.get().forEachConceptEntity(concept -> conceptsAfter[0]++);
-        int[] patternsAfter = {0};
+        long[] patternsAfter = {0};
         EntityService.get().forEachPatternEntity(pattern -> patternsAfter[0]++);
-        assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS, conceptsAfter[0],
+        assertEquals(conceptsBefore + INGEST_BOOTSTRAP_CONCEPTS + AUTHORED_CONTENT_CONCEPTS
+                        + IMPORTED_CATALOG_CONCEPTS + ADOPTED_ESTABLISHED_CONCEPTS, conceptsAfter[0],
                 "expected exactly " + INGEST_BOOTSTRAP_CONCEPTS + " identity-exact-ingest concepts (module,"
                         + " root, IKE Community) plus " + AUTHORED_CONTENT_CONCEPTS + " deliberately-authored"
                         + " new concepts (see AUTHORED_CONTENT_CONCEPTS,"
-                        + " IKE-Network/ike-issues#880 and #885) — no other minting");
-        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS, patternsAfter[0],
+                        + " IKE-Network/ike-issues#880 and #885) plus " + IMPORTED_CATALOG_CONCEPTS
+                        + " imported catalog concepts (see IMPORTED_CATALOG_CONCEPTS, #1104) plus "
+                        + ADOPTED_ESTABLISHED_CONCEPTS + " adopted under established identities (see"
+                        + " ADOPTED_ESTABLISHED_CONCEPTS) — no other minting");
+        assertEquals(patternsBefore + AUTHORED_CONTENT_PATTERNS + IMPORTED_CATALOG_PATTERNS, patternsAfter[0],
                 "identity-exact ingest mints no new patterns; the authoring passes deliberately mint "
                         + AUTHORED_CONTENT_PATTERNS + " (Taxonomy Field Constraint Pattern, Value-set Field"
                         + " Constraint Pattern, Starter Set Author Roster Pattern, Preferred Reviewer"
-                        + " Pattern, Solor Concepts Pattern, Data Type Defaults Pattern)");
+                        + " Pattern, Solor Concepts Pattern, Data Type Defaults Pattern, Prose element"
+                        + " pattern, Expression Language Keyword Pattern, Construct Denotation Pattern,"
+                        + " Literal Denotation Pattern, Construct Relation Pattern, CQL/ECL/EL++ Dialect"
+                        + " Patterns)");
     }
 
     @Test
@@ -769,11 +938,15 @@ class FoundationFidelityIT {
         Path outFile = Files.createTempFile("ike-fidelity-export", ".zip");
         EntityCountSummary summary = new ExportEntitiesToProtobufFile(outFile.toFile(),
                 new TemporalEntityAggregator(0L, Long.MAX_VALUE)).compute();
-        int[] conceptsAfter = {0};
+        long[] conceptsAfter = {0};
         EntityService.get().forEachConceptEntity(concept -> conceptsAfter[0]++);
+        // A not-restated concept keeps only its baseline versions, which predate the window.
+        long notRestatedConcepts = DELIBERATELY_NOT_RESTATED_BY_NID.stream()
+                .filter(nid -> !EntityHandle.get(nid).isPattern()).count();
         assertTrue(summary.conceptCount() > 0, "export produced no concepts");
-        assertEquals(conceptsAfter[0], summary.conceptCount(),
-                "export's concept count must reconcile with the post-replay store");
+        assertEquals(conceptsAfter[0] - notRestatedConcepts, summary.conceptCount(),
+                "export's concept count must reconcile with the post-replay store, less the"
+                        + " not-restated concepts");
     }
 
     @Test
@@ -804,9 +977,9 @@ class FoundationFidelityIT {
      *
      * @return the nids of the naming-apparatus patterns
      */
-    private static Set<Integer> namingApparatusPatternNids() {
-        return Set.of(TinkarTerm.DESCRIPTION_PATTERN.nid(),
-                TinkarTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(),
+    private static Set<Long> namingApparatusPatternNids() {
+        return Set.of(KernelTerm.DESCRIPTION_PATTERN.nid(),
+                KernelTerm.EL_PLUS_PLUS_STATED_AXIOMS_PATTERN.nid(),
                 // The Prose element pattern: DefaultsAndTemplatesSet authors a curated
                 // narrative ABOUT Default value concept (a domain description of the
                 // koncept, IKE-Network/ike-issues#888) — foundation-module terminology
@@ -822,7 +995,7 @@ class FoundationFidelityIT {
      *
      * @return the attachment concept's nid in the post-replay store
      */
-    private static int defaultValueConceptNid() {
+    private static long defaultValueConceptNid() {
         return PrimitiveData.nid(Ike.SET.uuidFor("Default value concept (IkeFoundation)"));
     }
 
@@ -833,7 +1006,7 @@ class FoundationFidelityIT {
      *
      * @return the module concept's nid in the post-replay store
      */
-    private static int defaultsModuleNid() {
+    private static long defaultsModuleNid() {
         return PrimitiveData.nid(Ike.SET.uuidFor("Defaults and templates module (IkeFoundation)"));
     }
 
@@ -845,10 +1018,10 @@ class FoundationFidelityIT {
      *
      * @return the attachment concepts' nids in the post-replay store
      */
-    private static Set<Integer> attachmentConceptNids() {
-        Set<Integer> attachments = new HashSet<>();
+    private static Set<Long> attachmentConceptNids() {
+        Set<Long> attachments = new HashSet<>();
         attachments.add(defaultValueConceptNid());
-        int templateConceptNid = PrimitiveData.nid(Ike.SET.uuidFor("Template concept (IkeFoundation)"));
+        long templateConceptNid = PrimitiveData.nid(Ike.SET.uuidFor("Template concept (IkeFoundation)"));
         EntityService.get().forEachConceptEntity(concept -> {
             if (latestIsAParents(concept.nid()).contains(templateConceptNid)) {
                 attachments.add(concept.nid());
@@ -864,11 +1037,11 @@ class FoundationFidelityIT {
      * @param consumer receives each defaults/template semantic
      */
     private static void forEachDefaultsOrTemplateSemantic(Consumer<SemanticEntity<?>> consumer) {
-        Set<Integer> attachments = attachmentConceptNids();
-        Set<Integer> namingApparatus = namingApparatusPatternNids();
-        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
-            SemanticEntity<?> semantic = EntityHandle.get(semanticNid).expectSemantic();
-            if (attachments.contains(semantic.referencedComponentNid())
+        Set<Long> attachments = attachmentConceptNids();
+        Set<Long> namingApparatus = namingApparatusPatternNids();
+        EntityService.get().forEachEntity(entity -> {
+            if (entity instanceof SemanticEntity<?> semantic
+                    && attachments.contains(semantic.referencedComponentNid())
                     && !namingApparatus.contains(semantic.patternNid())) {
                 consumer.accept(semantic);
             }
@@ -879,8 +1052,8 @@ class FoundationFidelityIT {
     @DisplayName("Every defaults/template semantic has all versions in the Defaults and templates"
             + " module — the live side of the live-and-die invariant (IKE-Network/ike-issues#885)")
     void defaultsAndTemplatesContentLivesWhollyInModule() {
-        int moduleNid = defaultsModuleNid();
-        int[] contentSemantics = {0};
+        long moduleNid = defaultsModuleNid();
+        long[] contentSemantics = {0};
         forEachDefaultsOrTemplateSemantic(semantic -> {
             contentSemantics[0]++;
             for (SemanticEntityVersion version : semantic.versions()) {
@@ -902,11 +1075,13 @@ class FoundationFidelityIT {
     @DisplayName("The Defaults and templates module holds only defaults/template semantics — the"
             + " die side of the live-and-die invariant (IKE-Network/ike-issues#885)")
     void defaultsModuleHoldsOnlyDefaultsAndTemplatesContent() {
-        Set<Integer> attachments = attachmentConceptNids();
-        Set<Integer> namingApparatus = namingApparatusPatternNids();
-        int moduleNid = defaultsModuleNid();
-        PrimitiveData.get().forEachSemanticNid(semanticNid -> {
-            SemanticEntity<?> semantic = EntityHandle.get(semanticNid).expectSemantic();
+        Set<Long> attachments = attachmentConceptNids();
+        Set<Long> namingApparatus = namingApparatusPatternNids();
+        long moduleNid = defaultsModuleNid();
+        EntityService.get().forEachEntity(entity -> {
+            if (!(entity instanceof SemanticEntity<?> semantic)) {
+                return;
+            }
             for (SemanticEntityVersion version : semantic.versions()) {
                 if (EntityHandle.get(version.stampNid()).expectStamp().moduleNid() != moduleNid) {
                     continue;
@@ -943,7 +1118,7 @@ class FoundationFidelityIT {
     @DisplayName("At most one active defaults/template semantic per (pattern, attachment concept)"
             + " pair, under the computed singleSemanticUuid identity (IKE-Network/ike-issues#885)")
     void defaultValueIdentityIsComputedAndUnique() {
-        Map<List<Integer>, Integer> activePerPair = new HashMap<>();
+        Map<List<Long>, Integer> activePerPair = new HashMap<>();
         forEachDefaultsOrTemplateSemantic(semantic -> {
             if (!calculator.latestIsActive(semantic.nid())) {
                 return;
@@ -957,17 +1132,17 @@ class FoundationFidelityIT {
                     "active defaults/template semantic " + semantic.publicId() + " must carry the"
                             + " computed singleSemanticUuid(pattern, attachment concept) identity");
         });
-        for (Map.Entry<List<Integer>, Integer> entry : activePerPair.entrySet()) {
+        for (Map.Entry<List<Long>, Integer> entry : activePerPair.entrySet()) {
             assertEquals(1, entry.getValue().intValue(),
                     "more than one active defaults/template semantic for the"
                             + " (pattern, attachment concept) pair " + entry.getKey());
         }
-        int preferredReviewerPatternNid =
+        long preferredReviewerPatternNid =
                 PrimitiveData.nid(Ike.SET.uuidFor("Preferred Reviewer Pattern (IkeFoundation)"));
         assertTrue(activePerPair.containsKey(
                         List.of(preferredReviewerPatternNid, defaultValueConceptNid())),
                 "the worked-example default value semantic for Preferred Reviewer Pattern is missing");
-        int dataTypeDefaultsPatternNid =
+        long dataTypeDefaultsPatternNid =
                 PrimitiveData.nid(Ike.SET.uuidFor("Data Type Defaults Pattern (IkeFoundation)"));
         assertTrue(activePerPair.containsKey(
                         List.of(dataTypeDefaultsPatternNid, defaultValueConceptNid())),
@@ -987,13 +1162,13 @@ class FoundationFidelityIT {
         List<Object> values = tuple.versions().get(0).fieldValues().castToList();
         assertEquals(16, values.size(), "one field per ConceptToDataType-recognized data type");
 
-        int uninitializedNid = PrimitiveData.nid(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"));
+        long uninitializedNid = PrimitiveData.nid(UUID.fromString("55f74246-0a25-57ac-9473-a788d08fb656"));
         assertEquals("UNINITIALIZED", values.get(0), "String default");
         assertEquals(uninitializedNid, ((EntityFacade) values.get(1)).nid(), "Component default");
-        IntIdSet idSet = (IntIdSet) values.get(2);
+        LongIdSet idSet = (LongIdSet) values.get(2);
         assertEquals(1, idSet.size(), "ComponentIdSet default is a singleton");
         assertTrue(idSet.contains(uninitializedNid), "ComponentIdSet default holds Uninitialized Component");
-        IntIdList idList = (IntIdList) values.get(3);
+        LongIdList idList = (LongIdList) values.get(3);
         assertEquals(1, idList.size(), "ComponentIdList default is a singleton");
         assertEquals(uninitializedNid, idList.get(0), "ComponentIdList default holds Uninitialized Component");
         DiTreeEntity tree = (DiTreeEntity) values.get(4);
@@ -1035,15 +1210,15 @@ class FoundationFidelityIT {
             + " Member match relation under the checking view) correspond one-to-one with the"
             + " service-loaded MemberMatchEvaluators (IKE-Network/ike-issues#890)")
     void memberMatchRelationsBijectServiceLoadedEvaluators() {
-        int parentNid = PrimitiveData.nid(Ike.SET.uuidFor("Member match relation (IkeFoundation)"));
-        Set<Integer> relationNids = new HashSet<>();
+        long parentNid = PrimitiveData.nid(Ike.SET.uuidFor("Member match relation (IkeFoundation)"));
+        Set<Long> relationNids = new HashSet<>();
         EntityService.get().forEachConceptEntity(concept -> {
             if (latestIsAParents(concept.nid()).contains(parentNid)) {
                 relationNids.add(concept.nid());
             }
         });
 
-        Set<Integer> evaluatorRelationNids = new HashSet<>();
+        Set<Long> evaluatorRelationNids = new HashSet<>();
         for (MemberMatchEvaluator evaluator : PluggableService.load(MemberMatchEvaluator.class)) {
             assertTrue(evaluatorRelationNids.add(PrimitiveData.nid(evaluator.relation().publicId())),
                     "two service-loaded evaluators declare the same relation \""
@@ -1070,12 +1245,12 @@ class FoundationFidelityIT {
         // collisions (OWL Axiom Syntax, Identifier, Module origins, Path origins) were
         // fixed with distinct referenced-component meanings in PatternShapeRefinementSet,
         // and the exemption registry that pinned them is gone — no pattern may collide.
-        Set<UUID> colliding = new HashSet<>();
+        Set<String> colliding = new HashSet<>();
         for (KnowledgeSet.Declaration declaration : Ike.SET.declarations()) {
             if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
                 continue;
             }
-            int patternNid = PrimitiveData.nid(declaration.publicId());
+            long patternNid = PrimitiveData.nid(declaration.publicId());
             Latest<PatternEntityVersion> latest = calculator.latest(patternNid);
             if (!latest.isPresent()) {
                 continue;
@@ -1083,7 +1258,7 @@ class FoundationFidelityIT {
             PatternEntityVersion version = latest.get();
             for (FieldDefinitionForEntity field : version.fieldDefinitions()) {
                 if (field.meaningNid() == version.semanticMeaningNid()) {
-                    colliding.add(declaration.publicId().asUuidArray()[0]);
+                    colliding.add(declaration.publicId().idString());
                 }
             }
         }
@@ -1126,7 +1301,7 @@ class FoundationFidelityIT {
             if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
                 continue;
             }
-            int patternNid = PrimitiveData.nid(declaration.publicId());
+            long patternNid = PrimitiveData.nid(declaration.publicId());
             Latest<PatternEntityVersion> latest = calculator.latest(patternNid);
             if (!latest.isPresent()) {
                 continue;
@@ -1154,7 +1329,7 @@ class FoundationFidelityIT {
         // Unconditional, no registry: DefinitionCompletionSet authored the 25 missing
         // definitions and revised the 9 label echoes; this gate keeps the inventory at
         // zero for both defect classes.
-        Set<Integer> meaningAndPurposeNids = new HashSet<>();
+        Set<Long> meaningAndPurposeNids = new HashSet<>();
         for (KnowledgeSet.Declaration declaration : Ike.SET.declarations()) {
             if (declaration.kind() != KnowledgeSet.Declaration.Kind.PATTERN) {
                 continue;
@@ -1171,14 +1346,14 @@ class FoundationFidelityIT {
                 meaningAndPurposeNids.add(field.purposeNid());
             }
         }
-        for (int nid : meaningAndPurposeNids) {
+        for (long nid : meaningAndPurposeNids) {
             String label = languageCalculator.getFullyQualifiedNameText(nid)
                     .map(FoundationFidelityIT::normalized).orElse("");
             String regularName = languageCalculator.getRegularDescriptionText(nid)
                     .map(FoundationFidelityIT::normalized).orElse("");
             boolean hasRealDefinition = false;
             for (SemanticEntityVersion definitionVersion : languageCalculator
-                    .getDescriptionsForComponentOfType(nid, TinkarTerm.DEFINITION_DESCRIPTION_TYPE.nid())) {
+                    .getDescriptionsForComponentOfType(nid, KernelTerm.DEFINITION_DESCRIPTION_TYPE.nid())) {
                 String definition = languageCalculator.getTextFromSemanticVersion(definitionVersion)
                         .map(FoundationFidelityIT::normalized).orElse("");
                 if (!definition.isEmpty() && !definition.equals(label) && !definition.equals(regularName)) {

@@ -15,6 +15,8 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 
@@ -69,7 +71,7 @@ final class CoordinateModelSet {
                         + " is part of this model — stated logically as a transitive"
                         + " Part of restriction, in the part-to-whole direction EL++"
                         + " supports.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
 
         set.concept("Stamp coordinate properties (IkeFoundation)").at(inception)
                 .synonym("Stamp coordinate properties")
@@ -82,7 +84,7 @@ final class CoordinateModelSet {
                         + " Part of restriction.")
                 .statedAxioms(leb -> leb.NecessarySet(leb.And(
                         leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)")),
-                        leb.SomeRole(IkeTerm.PART_OF,
+                        leb.SomeRole(EntityProxy.Concept.make("Part of (SOLOR)", PublicIds.of("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73")),
                                 leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)"))))));
 
         set.concept("Edit coordinate properties (IkeFoundation)").at(inception)
@@ -96,7 +98,7 @@ final class CoordinateModelSet {
                         + " restriction.")
                 .statedAxioms(leb -> leb.NecessarySet(leb.And(
                         leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)")),
-                        leb.SomeRole(IkeTerm.PART_OF,
+                        leb.SomeRole(EntityProxy.Concept.make("Part of (SOLOR)", PublicIds.of("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73")),
                                 leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)"))))));
 
         set.concept("Navigation coordinate properties (IkeFoundation)").at(inception)
@@ -114,7 +116,7 @@ final class CoordinateModelSet {
                         + " (IKE-Network/ike-issues#950).")
                 .statedAxioms(leb -> leb.NecessarySet(leb.And(
                         leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)")),
-                        leb.SomeRole(IkeTerm.PART_OF,
+                        leb.SomeRole(EntityProxy.Concept.make("Part of (SOLOR)", PublicIds.of("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73")),
                                 leb.ConceptAxiom(set.conceptRef("View coordinate model (IkeFoundation)"))))));
     }
 }

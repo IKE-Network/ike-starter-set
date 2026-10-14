@@ -15,8 +15,10 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.service.PrimitiveData;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
+import dev.ikm.tinkar.entity.builder.BindingClass;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.Stamp;
 import dev.ikm.tinkar.terms.DefaultsTemplateTerm;
@@ -39,10 +41,36 @@ public final class Ike {
      */
     public static final KnowledgeSet SET = KnowledgeSet.of("d890e06f-ec35-429a-b541-d0ead19695e2");
 
+    /**
+     * The binding class of the set's stamps: the generated {@code IkeStamps}, through which
+     * code outside the ledger authors under the set's stamps without depending on it.
+     */
+    public static final BindingClass STAMPS = SET.bindingClass("IkeStamps");
+
+    /**
+     * The kernel: the components tinkar-core and its stores name in their own code, generated
+     * into {@code dev.ikm.tinkar.terms.KernelTerm} and committed there (see
+     * {@link KernelBindings}).
+     */
+    public static final BindingClass KERNEL = SET.bindingClass("dev.ikm.tinkar.terms", "KernelTerm");
+
+    /**
+     * Komet's terms: the components Komet and its plugins name beyond the kernel, generated
+     * into {@code dev.ikm.komet.terms.KometTerm} and committed there (see {@link KometBindings}).
+     */
+    public static final BindingClass KOMET = SET.bindingClass("dev.ikm.komet.terms", "KometTerm");
+
     /** The set's module concept — the export dimension for this knowledge. */
     public static final EntityProxy.Concept MODULE =
             SET.conceptRef("IkeFoundation module (IkeFoundation)");
 
+    /**
+     * The AsciiDoc document module — the export dimension that carries or omits the
+     * AsciiDoc document vocabulary as a unit (IKE-Network/ike-issues#468); declared by
+     * {@link AsciiDocModelSet}.
+     */
+    public static final EntityProxy.Concept ASCIIDOC_MODULE =
+            SET.conceptRef(AsciiDocModelSet.MODULE_FQN);
     /** The set's root concept. */
     public static final EntityProxy.Concept ROOT =
             SET.conceptRef("IkeFoundation root (IkeFoundation)");
@@ -63,13 +91,13 @@ public final class Ike {
      * it. The time is the platform's named inception instant,
      * {@link PrimitiveData#INCEPTION_EPOCH} — a sentinel that renders as the word
      * "Inception" on every surface, timezone-proof — per KEC's ruling (2026-07-18): the
-     * set has not been released, so all of it is still at inception. Declaring the pair
-     * here, once, is what makes "one set of inception stamps" compiler-visible; a third
-     * IKE stamp cannot appear without editing this class, and the fidelity stamp-pair
-     * gate would refuse it.
+     * set has not been released, so all of it is still at inception. Declaring the
+     * stamps here, once, is what makes "one set of inception stamps" compiler-visible;
+     * a further IKE stamp cannot appear without editing this class, and the fidelity
+     * gate's stamp test would refuse it.
      */
     public static final ActiveStamp INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
-            IKE_COMMUNITY, MODULE, IkeTerm.DEVELOPMENT_PATH);
+            IKE_COMMUNITY, MODULE, KernelTerm.DEVELOPMENT_PATH);
 
     /**
      * The inception stamp's Defaults-and-templates-module counterpart, at the same
@@ -80,5 +108,14 @@ public final class Ike {
      */
     public static final ActiveStamp DEFAULTS_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
             IKE_COMMUNITY, DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE,
-            IkeTerm.DEVELOPMENT_PATH);
+            KernelTerm.DEVELOPMENT_PATH);
+
+    /**
+     * The inception stamp's AsciiDoc-document-module counterpart, at the same declared
+     * time: the module dimension alone separates the AsciiDoc document vocabulary
+     * ({@link AsciiDocModelSet}) from the foundation terminology, so a store can carry or
+     * omit it as a unit (IKE-Network/ike-issues#468).
+     */
+    public static final ActiveStamp ASCIIDOC_INCEPTION = Stamp.active(PrimitiveData.INCEPTION_EPOCH,
+            IKE_COMMUNITY, ASCIIDOC_MODULE, KernelTerm.DEVELOPMENT_PATH);
 }

@@ -21,7 +21,10 @@
 module network.ike.foundation.ike.terms {
     requires transitive dev.ikm.tinkar.entity;
 
-    exports network.ike.foundation.ike.terms;
+    // No package is exported: the ledger's products are its protobuf change set and the
+    // bindings generated from it, not its source. The build composes it through the
+    // KnowledgeSetSource service below; code names the set's components and stamps through
+    // the generated bindings (ike-bindings).
 
     provides dev.ikm.tinkar.entity.builder.KnowledgeSetSource
             with network.ike.foundation.ike.terms.IkeSource;

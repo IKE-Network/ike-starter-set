@@ -19,6 +19,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.KnowledgeSetSource;
 import network.ike.foundation.ike.terms.cql.CqlSet;
 import network.ike.foundation.ike.terms.ecl.EclSet;
+import dev.ikm.tinkar.entity.builder.Stamp;
 import network.ike.foundation.ike.terms.foundation.FoundationSet;
 
 /**
@@ -48,6 +49,19 @@ public final class IkeSource implements KnowledgeSetSource {
         // baseline's own first content (Uninitialized Component), not this set's
         // bootstrap concepts.
         FoundationSet.compose(Ike.SET);
+        // The non-existent stamp: the stamp of a component's value before the component
+        // existed, which the change chronology compares a first version against. Every store
+        // needs it, and no version of the set uses it, so the set declares it outright
+        // instead of the application writing it into each store at startup. Its dimensions
+        // (Author for version, Uninitialized component) are foundation components, composed
+        // just above.
+        Ike.SET.stamp(Stamp.nonExistent());
+        // The set's stamps, generated beside its bindings so code that authors under them
+        // names them as it names the set's components.
+        Ike.SET.bindStamp(Ike.INCEPTION, Ike.STAMPS, "INCEPTION");
+        Ike.SET.bindStamp(Ike.DEFAULTS_INCEPTION, Ike.STAMPS, "DEFAULTS_INCEPTION");
+        Ike.SET.bindStamp(Ike.ASCIIDOC_INCEPTION, Ike.STAMPS, "ASCIIDOC_INCEPTION");
+        Ike.SET.bindStamp(Stamp.nonExistent(), Ike.STAMPS, "NON_EXISTENT");
         ConceptSet.compose(Ike.SET);
         // ProseElementSet declares the shared prose-element apparatus at its foundation
         // home (IKE-Network/ike-issues#937): the pattern the narrative sections attach
@@ -61,6 +75,34 @@ public final class IkeSource implements KnowledgeSetSource {
         // examples attach to declared-identity components the foundation sections open,
         // so it composes after FoundationSet.
         ConstraintPatternSet.compose(Ike.SET);
+        // ExpressionLanguageSet places external expression-language constructs (CQL,
+        // ECL, OWL 2 EL) relative to the EL++ core by checked relations — keyword
+        // bindings, denotations, equivalence/extension assertions
+        // (IKE-Network/ike-issues#1089); it types the taxonomy field constraint kinds
+        // ConstraintPatternSet declares, so it composes after it.
+        ExpressionLanguageSet.compose(Ike.SET);
+        // ElmNodeCatalogSet, the ELM node catalog, is generated from HL7's ELM schemas by
+        // ike:schema-import (IKE-Network/ike-issues#1104); it hangs its family root under
+        // the model concept and refers to nothing else, so it composes after the
+        // expression-language section.
+        ElmNodeCatalogSet.compose(Ike.SET);
+        // ElmTreeSet is authored beside the catalog (IKE-Network/ike-issues#1110): the tree,
+        // ordered list, and reference patterns and the three operand roles; it refers to the
+        // catalog's root and position parent, so it composes after the catalog.
+        ElmTreeSet.compose(Ike.SET);
+        // ElmTypeSet relates the catalog's 23 System types to the concepts of the query model
+        // (IKE-Network/ike-issues#1113); it refers to both, so it composes after both.
+        ElmTypeSet.compose(Ike.SET);
+        // UcumModelSet holds what is ours about UCUM (IKE-Network/ike-issues#1114): the parents,
+        // the patterns, and the dialect; the units themselves are imported, never authored.
+        UcumModelSet.compose(Ike.SET);
+        // ModelInformationSet holds what is ours about model information (IKE-Network/ike-issues#1115):
+        // the Data model parent, the record patterns, the mark, and the dialects; the models are imported.
+        ModelInformationSet.compose(Ike.SET);
+        // ElmNodeKindSet relates each admitted ELM node kind to the construct it means, the evaluator's
+        // dispatch table (IKE-Network/ike-issues#1116); it refers to the catalog, the constructs, and the
+        // model information section, so it composes after all three.
+        ElmNodeKindSet.compose(Ike.SET);
         NarrativeContentSet.compose(Ike.SET);
         // PatternShapeRefinementSet mints the meaning/purpose concepts the corrected
         // section pattern shapes reference by derived identity (IKE-Network/ike-issues#880,
@@ -108,6 +150,16 @@ public final class IkeSource implements KnowledgeSetSource {
         EclSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
+        // The kernel and Komet's terms bind components declared throughout the sections above,
+        // so they compose last.
+        // AsciiDocModelSet declares the AsciiDoc document model — the primitives a parse of
+        // an IKE AsciiDoc document produces, in their own module — and the git-provenance
+        // apparatus that stamps a document materialized from a repository
+        // (IKE-Network/ike-issues#468). Its lines are prose elements, so it composes after
+        // ProseElementSet.
+        AsciiDocModelSet.compose(Ike.SET);
+        KernelBindings.compose(Ike.SET);
+        KometBindings.compose(Ike.SET);
         return Ike.SET;
     }
 }

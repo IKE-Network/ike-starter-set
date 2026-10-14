@@ -15,6 +15,7 @@
  */
 package network.ike.foundation.ike.terms;
 
+import dev.ikm.tinkar.terms.KernelTerm;
 import dev.ikm.tinkar.common.id.PublicIds;
 import dev.ikm.tinkar.entity.builder.ActiveStamp;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
@@ -80,28 +81,28 @@ final class ProseElementSet {
                 .synonym("Prose element")
                 .definition("An embedded prose block: the journal owns the content, carried"
                         + " as text on the prose element pattern.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
 
         set.concept("Prose content (RichSurfaceTerms)",
                         PublicIds.of("cee59367-e4eb-5bbf-839e-453e4b686230")).at(inception)
                 .synonym("Prose content")
                 .definition("A prose block's text: lightweight markup whose inline concept"
                         + " references are id-bearing k: tokens — the interchange form.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
 
         set.concept("Element content (RichSurfaceTerms)",
                         PublicIds.of("6507e073-af86-5ec3-bb26-35fde45c2bfe")).at(inception)
                 .synonym("Element content")
                 .definition("Carrying an element's content: the purpose shared by the"
                         + " element patterns and their fields.")
-                .isA(IkeTerm.MODEL_CONCEPT);
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
 
         set.pattern(PROSE_ELEMENT_PATTERN_FQN,
                         PROSE_ELEMENT_PATTERN.publicId()).at(inception)
                 .meaning(set.conceptRef("Prose element (RichSurfaceTerms)"))
                 .purpose(set.conceptRef("Element content (RichSurfaceTerms)"))
                 .field(set.conceptRef("Prose content (RichSurfaceTerms)"),
-                        set.conceptRef("Element content (RichSurfaceTerms)"), IkeTerm.STRING)
+                        set.conceptRef("Element content (RichSurfaceTerms)"), KernelTerm.STRING)
                 .synonym("Prose element pattern")
                 .definition("An embedded prose block: text whose id-bearing k: tokens are"
                         + " the interchange form.");
