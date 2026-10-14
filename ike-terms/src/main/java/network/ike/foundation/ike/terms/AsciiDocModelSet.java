@@ -253,9 +253,10 @@ final class AsciiDocModelSet {
                 .synonym("Git provenance model")
                 .definition("The apparatus that stamps content materialized from a git repository"
                         + " with the repository's own provenance: the homes of the author, module"
-                        + " and path concepts an identity adapter derives per repository, the git"
-                        + " source that names the commit a version came from, and the affirmation"
-                        + " that records a person's signed concurrence with lines.")
+                        + " and path concepts an identity adapter derives per repository, and the"
+                        + " git source that names the commit a version came from. What people say about"
+                        + " those lines is annotation, which serves any component"
+                        + " (AnnotationModelSet).")
                 .isA(IKE_BASE_MODEL_CONCEPT);
         set.concept(fqn("Git author")).at(foundation)
                 .synonym("Git author")
@@ -274,8 +275,8 @@ final class AsciiDocModelSet {
                 .isA(PATH_SOLOR, set.conceptRef(fqn("Git provenance model")));
         set.concept(fqn("Git provenance")).at(foundation)
                 .synonym("Git provenance")
-                .definition("Carrying git provenance: the purpose of the git source and affirmation"
-                        + " patterns and their fields.")
+                .definition("Carrying git provenance: the purpose of the git source pattern and its"
+                        + " fields.")
                 .isA(set.conceptRef(fqn("Git provenance model")));
         set.concept(fqn("Git source")).at(foundation)
                 .synonym("Git source")
@@ -291,23 +292,6 @@ final class AsciiDocModelSet {
                 .synonym("Source commit")
                 .definition("The full SHA of the commit a version came from.")
                 .isA(set.conceptRef(fqn("Git provenance model")));
-        set.concept(fqn("Affirmation")).at(foundation)
-                .synonym("Affirmation")
-                .definition("A person's signed concurrence with specific lines of a committed file,"
-                        + " recorded in git as an empty commit carrying one Affirms: trailer per"
-                        + " line range — path, range, anchoring revision, content hash — and read"
-                        + " back as a semantic on the document, stamped with the affirming commit."
-                        + " An affirmation is the person's own act; nothing records one on their"
-                        + " behalf.")
-                .isA(set.conceptRef(fqn("Git provenance model")));
-        set.concept(fqn("Affirmed lines")).at(foundation)
-                .synonym("Affirmed lines")
-                .definition("The line elements an affirmation covers, in order.")
-                .isA(set.conceptRef(fqn("Git provenance model")));
-        set.concept(fqn("Affirms trailer")).at(foundation)
-                .synonym("Affirms trailer")
-                .definition("The Affirms: trailer as written in the commit.")
-                .isA(set.conceptRef(fqn("Git provenance model")));
         EntityProxy.Concept provenance = set.conceptRef(fqn("Git provenance"));
         set.pattern(fqn("Git source pattern")).at(foundation)
                 .meaning(set.conceptRef(fqn("Git source")))
@@ -317,14 +301,6 @@ final class AsciiDocModelSet {
                 .synonym("Git source pattern")
                 .definition("A document's git source: path and commit, one version per commit"
                         + " that changed the file.");
-        set.pattern(fqn("Affirmation pattern")).at(foundation)
-                .meaning(set.conceptRef(fqn("Affirmation")))
-                .purpose(provenance)
-                .field(set.conceptRef(fqn("Affirmed lines")), provenance, KernelTerm.COMPONENT_ID_LIST_FIELD)
-                .field(set.conceptRef(fqn("Affirms trailer")), provenance, KernelTerm.STRING)
-                .synonym("Affirmation pattern")
-                .definition("One Affirms: trailer: the affirmed line elements and the trailer as"
-                        + " written.");
     }
 
     private static String fqn(String name) {

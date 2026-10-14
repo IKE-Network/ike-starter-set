@@ -126,6 +126,11 @@ public final class IkeSource implements KnowledgeSetSource {
         // (Status value, Time, Author, Module, Path) reference with Part of
         // restrictions (IKE-Network/ike-issues#952).
         StampModelSet.compose(Ike.SET);
+        // AnnotationModelSet mints annotation — affirmation, refutation and comment as one act,
+        // the kind a concept — and the Annotation pattern that carries it for any component
+        // (IKE-Network/ike-issues#1300). Affirmation keeps the identity the git-provenance family
+        // gave it.
+        AnnotationModelSet.compose(Ike.SET);
         // LicenseModelSet mints the License family: the set is dual-licensed CC BY +
         // Apache 2.0, in every POM and as concepts (IKE-Network/ike-issues#952).
         LicenseModelSet.compose(Ike.SET);
