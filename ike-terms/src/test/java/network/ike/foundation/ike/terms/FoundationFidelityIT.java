@@ -192,8 +192,22 @@ class FoundationFidelityIT {
      * The ECL keyword set adds 58: {@code EclSet} mints one concept per ECL 2.3 keyword (48)
      * and {@code EclKeywordHierarchy} the categories they are filed under (10 — the ECL
      * keyword root, four families, and five categories).
+     * <p>
+     * The IKE-Network/ike-issues#844 shared block model adds 11 net: {@code DocumentStructureSet}
+     * mints 29 (the model root, Structured document, Document element, section, block and nine
+     * block kinds, the document field family of five with its parent and purpose, and the journal
+     * four: Conversation journal, Conversation turn, Komet assistant, Conversation journal module)
+     * while 18 leave {@code AsciiDocModelSet} (the twelve element kinds and six fields and purposes
+     * it now shares); {@code ProseElementSet} adopts 3 RichSurfaceTerms identities for the journal
+     * manifest (Journal manifest, Journal elements, Element order).
+     * <p>
+     * {@code AnnotationModelSet} (IKE-Network/ike-issues#1300) adds 10 — Annotation model,
+     * Annotation, Annotation kind, Uncategorized comment, Judgment, Refutation, Reviewed
+     * provenance, Reviewed version, Annotated elements, Review module — and takes over
+     * Affirmation from {@code AsciiDocModelSet}, whose Affirmed lines and Affirms trailer
+     * retire with the affirmation pattern: net 8.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 158 + 58;
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 158 + 58 + 11 + 8;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -218,7 +232,7 @@ class FoundationFidelityIT {
      * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
      * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12;   // + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468)
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1;   // + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by

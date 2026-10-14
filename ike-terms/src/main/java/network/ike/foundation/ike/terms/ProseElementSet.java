@@ -43,6 +43,11 @@ import dev.ikm.tinkar.terms.EntityProxy;
  * (versions of one description, not duplicates). The (RichSurfaceTerms) birth tag is
  * kept: the tag records the set of birth, and adoption preserves identity, name
  * included.
+ * <p>
+ * The journal manifest apparatus is adopted the same way (IKE-Network/ike-issues#844):
+ * the manifest orders a structured document's lines, for a document materialized from git
+ * and a conversation journal alike ({@link DocumentStructureSet}), so its definitions here
+ * speak of lines where rich-surface's spoke of journal blocks.
  */
 final class ProseElementSet {
 
@@ -62,6 +67,9 @@ final class ProseElementSet {
      */
     static final EntityProxy.Pattern PROSE_ELEMENT_PATTERN = EntityProxy.Pattern.make(
             PROSE_ELEMENT_PATTERN_FQN, PublicIds.of("89b831a1-e773-5f83-87a6-2cfc8e107fb0"));
+
+    /** Birth FQN of the shared journal manifest pattern. */
+    static final String JOURNAL_MANIFEST_PATTERN_FQN = "Journal manifest pattern (RichSurfaceTerms)";
 
     private ProseElementSet() {
     }
@@ -106,5 +114,38 @@ final class ProseElementSet {
                 .synonym("Prose element pattern")
                 .definition("An embedded prose block: text whose id-bearing k: tokens are"
                         + " the interchange form.");
+
+        set.concept("Journal manifest (RichSurfaceTerms)",
+                        PublicIds.of("fd19455c-7c08-545c-a951-6045001efbc1")).at(inception)
+                .synonym("Journal manifest")
+                .definition("What a manifest semantic means: the ordered lines of one structured"
+                        + " document, a document or a conversation journal. Inserting, removing or"
+                        + " reordering a line writes a new manifest version; replay walks manifest"
+                        + " versions in time.")
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
+
+        set.concept("Journal elements (RichSurfaceTerms)",
+                        PublicIds.of("197ba7dc-03b5-5e3d-a607-3cc538509b03")).at(inception)
+                .synonym("Journal elements")
+                .definition("The ordered lines of one structured document, as prose elements:"
+                        + " the manifest pattern's single field.")
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
+
+        set.concept("Element order (RichSurfaceTerms)",
+                        PublicIds.of("6055c01b-96c2-58b2-bb13-465a135a7bdf")).at(inception)
+                .synonym("Element order")
+                .definition("Ordering a structured document's lines: the purpose of the journal"
+                        + " manifest and its field.")
+                .isA(EntityProxy.Concept.make("Model concept (SOLOR)", PublicIds.of("7bbd4210-381c-11e7-9598-0800200c9a66")));
+
+        set.pattern(JOURNAL_MANIFEST_PATTERN_FQN,
+                        PublicIds.of("1bdc5ac6-e4ed-5b62-ad6d-8ae10208bb00")).at(inception)
+                .meaning(set.conceptRef("Journal manifest (RichSurfaceTerms)"))
+                .purpose(set.conceptRef("Element order (RichSurfaceTerms)"))
+                .field(set.conceptRef("Journal elements (RichSurfaceTerms)"),
+                        set.conceptRef("Element order (RichSurfaceTerms)"), KernelTerm.COMPONENT_ID_LIST_FIELD)
+                .synonym("Journal manifest pattern")
+                .definition("Holds the ordered lines of one structured document; a new version per"
+                        + " insert, removal or reorder, so replay walks manifest versions in time.");
     }
 }
