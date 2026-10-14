@@ -1,0 +1,6 @@
+[#ecl-logic-and-refinement]
+== Logic & Refinement
+
+This family combines expression constraints and refines them by attribute: the boolean connectives and the modifiers of an attribute or attribute group.
+
+Members: <<ecl-term-and,`and`>>, <<ecl-term-many,`many`>>, <<ecl-term-minus,`minus`>>, <<ecl-term-or,`or`>>, <<ecl-term-reverseOf,`reverseOf`>>, <<ecl-term-to,`to`>>

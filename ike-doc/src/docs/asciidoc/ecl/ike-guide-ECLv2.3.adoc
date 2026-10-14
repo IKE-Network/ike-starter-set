@@ -1,0 +1,25 @@
+= ECL in Komet: A Working Guide
+:toc: left
+:toclevels: 2
+:sectnums:
+:sectnumlevels: 2
+:source-highlighter: rouge
+:revdate: 2026-10-06
+
+A practical reference to the SNOMED CT Expression Constraint Language (ECL 2.3) keyword set, organized the way they're being modeled in Komet -- with a definition and a worked example for all 48 keywords.
+
+include::overview-and-reading-guide.adoc[]
+
+include::running-ecl-queries.adoc[]
+
+include::family-summaries.adoc[]
+
+include::constraint-operators.adoc[]
+
+include::logic-and-refinement.adoc[]
+
+include::filters.adoc[]
+
+include::history.adoc[]
+
+include::keyword-dictionary.adoc[]

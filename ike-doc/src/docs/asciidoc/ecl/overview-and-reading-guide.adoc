@@ -1,0 +1,14 @@
+[#ecl-overview-and-reading-guide]
+== Overview and Reading Guide
+
+ECL (the SNOMED CT Expression Constraint Language) is the SNOMED International language for defining a bounded set of SNOMED CT concepts -- by their place in the hierarchy, their attribute refinements, their reference set membership, and filters on their descriptions, definition status and members. This chapter inventories every keyword in ECL 2.3, the words its brief and long syntax ABNF recognize. Each keyword is also composed into the IKE starter set as a concept, filed under its family and category in the ECL keyword hierarchy, so Komet, the IKE-Foundation terminology authoring platform, finds it like any other concept.
+
+Keywords are grouped into 4 families -- Constraint Operators, Logic & Refinement, Filters, and History -- each a top-level section below, with its categories, where it has them, as subsections.
+
+Every textual ECL keyword is case insensitive. Many have a symbol in the brief syntax (`<` for descendantOf, `^` for memberOf); each entry's definition names it.
+
+Each entry in the <<ecl-keyword-dictionary,Keyword Dictionary>> states, in order:
+
+* Its *category* (e.g. `Hierarchy Operator`) within its family
+* A plain-language *definition*
+* A worked *example* -- illustrative ECL, written to show the keyword in a realistic SNOMED CT context
