@@ -30,23 +30,23 @@ final class Flatten {
 
         // Derived identities (type-5, from the set's namespace). The description ids are named
         // here because the dialect semantics below attach to those descriptions by identity.
-        UUID concept = set.uuidFor("flatten (CQL)");
-        UUID fullyQualifiedName = set.uuidFor("flatten (CQL) fully qualified name description");
-        UUID regularName = set.uuidFor("flatten (CQL) regular name description");
-        UUID definition = set.uuidFor("flatten (CQL) definition description");
+        UUID conceptUUID = set.uuidFor("flatten (CQL)");
+        UUID fullyQualifiedNameUUID = set.uuidFor("flatten (CQL) fully qualified name description");
+        UUID regularNameUUID = set.uuidFor("flatten (CQL) regular name description");
+        UUID definitionUUID = set.uuidFor("flatten (CQL) definition description");
 
-        set.concept("flatten (CQL)", PublicIds.of(concept)).at(inception)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), KernelTerm.ENGLISH_LANGUAGE, "flatten (CQL)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), KernelTerm.ENGLISH_LANGUAGE, "flatten", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), KernelTerm.ENGLISH_LANGUAGE,
+        set.concept("flatten (CQL)", PublicIds.of(conceptUUID)).at(inception)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedNameUUID), KernelTerm.ENGLISH_LANGUAGE, "flatten (CQL)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(regularNameUUID), KernelTerm.ENGLISH_LANGUAGE, "flatten", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(definitionUUID), KernelTerm.ENGLISH_LANGUAGE,
                         "Flattens a list of lists into a single, single-level list.\nExample: flatten { {"
                         + " 1, 2 }, { 3, 4 } }",
                         KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
-                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) UUID identifier")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), concept.toString())  // UUID identifier
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) UUID identifier")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), conceptUUID.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("flatten (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("List and interval operator keywords (CQL)")))))
-                .semanticOn(PublicIds.of(fullyQualifiedName), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) fully qualified name US dialect")), KernelTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(regularName), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) regular name US dialect")), KernelTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(definition), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) definition US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(fullyQualifiedNameUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) fully qualified name US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(regularNameUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) regular name US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(definitionUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("flatten (CQL) definition US dialect")), KernelTerm.PREFERRED)  // dialect pref
                 ;
 
     }

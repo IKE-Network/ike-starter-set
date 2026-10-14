@@ -26,23 +26,23 @@ final class ChildOrSelfOf {
 
         // Derived identities (type-5, from the set's namespace). The description ids are named
         // here because the dialect semantics below attach to those descriptions by identity.
-        UUID concept = set.uuidFor("childOrSelfOf ECL keyword (ECL)");
-        UUID fullyQualifiedName = set.uuidFor("childOrSelfOf ECL keyword (ECL) fully qualified name description");
-        UUID regularName = set.uuidFor("childOrSelfOf ECL keyword (ECL) regular name description");
-        UUID definition = set.uuidFor("childOrSelfOf ECL keyword (ECL) definition description");
+        UUID conceptUUID = set.uuidFor("childOrSelfOf ECL keyword (ECL)");
+        UUID fullyQualifiedNameUUID = set.uuidFor("childOrSelfOf ECL keyword (ECL) fully qualified name description");
+        UUID regularNameUUID = set.uuidFor("childOrSelfOf ECL keyword (ECL) regular name description");
+        UUID definitionUUID = set.uuidFor("childOrSelfOf ECL keyword (ECL) definition description");
 
-        set.concept("childOrSelfOf ECL keyword (ECL)", PublicIds.of(concept)).at(inception)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), KernelTerm.ENGLISH_LANGUAGE, "childOrSelfOf ECL keyword (ECL)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), KernelTerm.ENGLISH_LANGUAGE, "childOrSelfOf", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), KernelTerm.ENGLISH_LANGUAGE,
+        set.concept("childOrSelfOf ECL keyword (ECL)", PublicIds.of(conceptUUID)).at(inception)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedNameUUID), KernelTerm.ENGLISH_LANGUAGE, "childOrSelfOf ECL keyword (ECL)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(regularNameUUID), KernelTerm.ENGLISH_LANGUAGE, "childOrSelfOf", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(definitionUUID), KernelTerm.ENGLISH_LANGUAGE,
                         "Selects the focus concept and its immediate children (brief syntax <<!).\nExample: "
                         + "childOrSelfOf 73211009 |Diabetes mellitus|",
                         KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
-                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) UUID identifier")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), concept.toString())  // UUID identifier
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) UUID identifier")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), conceptUUID.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL hierarchy operator keywords (ECL)")))))
-                .semanticOn(PublicIds.of(fullyQualifiedName), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) fully qualified name US dialect")), KernelTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(regularName), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) regular name US dialect")), KernelTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(definition), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) definition US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(fullyQualifiedNameUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) fully qualified name US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(regularNameUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) regular name US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(definitionUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("childOrSelfOf ECL keyword (ECL) definition US dialect")), KernelTerm.PREFERRED)  // dialect pref
                 ;
 
     }

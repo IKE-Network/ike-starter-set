@@ -29,23 +29,23 @@ final class Desc {
 
         // Derived identities (type-5, from the set's namespace). The description ids are named
         // here because the dialect semantics below attach to those descriptions by identity.
-        UUID concept = set.uuidFor("desc (CQL)");
-        UUID fullyQualifiedName = set.uuidFor("desc (CQL) fully qualified name description");
-        UUID regularName = set.uuidFor("desc (CQL) regular name description");
-        UUID definition = set.uuidFor("desc (CQL) definition description");
+        UUID conceptUUID = set.uuidFor("desc (CQL)");
+        UUID fullyQualifiedNameUUID = set.uuidFor("desc (CQL) fully qualified name description");
+        UUID regularNameUUID = set.uuidFor("desc (CQL) regular name description");
+        UUID definitionUUID = set.uuidFor("desc (CQL) definition description");
 
-        set.concept("desc (CQL)", PublicIds.of(concept)).at(inception)
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedName), KernelTerm.ENGLISH_LANGUAGE, "desc (CQL)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(regularName), KernelTerm.ENGLISH_LANGUAGE, "desc", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
-                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(definition), KernelTerm.ENGLISH_LANGUAGE,
+        set.concept("desc (CQL)", PublicIds.of(conceptUUID)).at(inception)
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(fullyQualifiedNameUUID), KernelTerm.ENGLISH_LANGUAGE, "desc (CQL)", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.FULLY_QUALIFIED_NAME_DESCRIPTION_TYPE)  // FQN
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(regularNameUUID), KernelTerm.ENGLISH_LANGUAGE, "desc", KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.REGULAR_NAME_DESCRIPTION_TYPE)  // regular name
+                .semantic(KernelTerm.DESCRIPTION_PATTERN, PublicIds.of(definitionUUID), KernelTerm.ENGLISH_LANGUAGE,
                         "Short form of ‘descending’ — orders sort-clause results from highest to"
                         + " lowest.\nExample: [\"Encounter\"] E sort by E.period.start desc",
                         KernelTerm.DESCRIPTION_NOT_CASE_SENSITIVE, KernelTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
-                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) UUID identifier")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), concept.toString())  // UUID identifier
+                .semantic(KernelTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) UUID identifier")), EntityProxy.Concept.make("Universally Unique Identifier (SOLOR)", PublicIds.of("845274b5-9644-3799-94c6-e0ea37e7d1a4")), conceptUUID.toString())  // UUID identifier
                 .statedAxioms(PublicIds.of(set.uuidFor("desc (CQL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Sort modifier keywords (CQL)")))))
-                .semanticOn(PublicIds.of(fullyQualifiedName), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) fully qualified name US dialect")), KernelTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(regularName), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) regular name US dialect")), KernelTerm.PREFERRED)  // dialect pref
-                .semanticOn(PublicIds.of(definition), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) definition US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(fullyQualifiedNameUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) fully qualified name US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(regularNameUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) regular name US dialect")), KernelTerm.PREFERRED)  // dialect pref
+                .semanticOn(PublicIds.of(definitionUUID), KernelTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("desc (CQL) definition US dialect")), KernelTerm.PREFERRED)  // dialect pref
                 ;
 
     }
