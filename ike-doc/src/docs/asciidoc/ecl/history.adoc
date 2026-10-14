@@ -1,0 +1,6 @@
+[#ecl-history]
+== History
+
+The history supplement keyword and its profiles, which add inactive concepts to a result through historical associations, the profile choosing how many associations to follow.
+
+Members: <<ecl-term-history,`history`>>, <<ecl-term-history-max,`history-max`>>, <<ecl-term-history-min,`history-min`>>, <<ecl-term-history-mod,`history-mod`>>

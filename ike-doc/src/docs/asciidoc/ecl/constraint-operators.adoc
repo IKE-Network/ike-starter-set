@@ -1,0 +1,14 @@
+[#ecl-constraint-operators]
+== Constraint Operators
+
+=== Hierarchy Operator (10)
+
+Selects descendants, ancestors, children, parents, or the top or bottom of a set.
+
+Members: <<ecl-term-ancestorOf,`ancestorOf`>>, <<ecl-term-ancestorOrSelfOf,`ancestorOrSelfOf`>>, <<ecl-term-bottom,`bottom`>>, <<ecl-term-childOf,`childOf`>>, <<ecl-term-childOrSelfOf,`childOrSelfOf`>>, <<ecl-term-descendantOf,`descendantOf`>>, <<ecl-term-descendantOrSelfOf,`descendantOrSelfOf`>>, <<ecl-term-parentOf,`parentOf`>>, <<ecl-term-parentOrSelfOf,`parentOrSelfOf`>>, <<ecl-term-top,`top`>>
+
+=== Reference Set Operator (2)
+
+Selects reference set members, or the reference sets containing given concepts.
+
+Members: <<ecl-term-memberOf,`memberOf`>>, <<ecl-term-refsetContainingAny,`refsetContainingAny`>>

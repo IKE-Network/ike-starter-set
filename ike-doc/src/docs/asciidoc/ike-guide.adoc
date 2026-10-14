@@ -1293,6 +1293,22 @@ include::cql/data-and-timing-operators.adoc[leveloffset=1]
 
 include::cql/query-and-control-flow.adoc[leveloffset=1]
 
+== ECL in Komet
+
+include::ecl/overview-and-reading-guide.adoc[leveloffset=1]
+
+include::ecl/running-ecl-queries.adoc[leveloffset=1]
+
+include::ecl/family-summaries.adoc[leveloffset=1]
+
+include::ecl/constraint-operators.adoc[leveloffset=1]
+
+include::ecl/logic-and-refinement.adoc[leveloffset=1]
+
+include::ecl/filters.adoc[leveloffset=1]
+
+include::ecl/history.adoc[leveloffset=1]
+
 == IKE Base Model
 
 This chapter describes the component/chronicle/pattern-of-patterns meta-model every
