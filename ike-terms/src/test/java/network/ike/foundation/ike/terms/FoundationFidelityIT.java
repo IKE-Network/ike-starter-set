@@ -184,8 +184,16 @@ class FoundationFidelityIT {
      * pair), the twenty-five fields and purposes, and the git-provenance family (model root,
      * author/module/path homes, purpose, git source and its two fields, affirmation and its
      * two fields).
+     * <p>
+     * The CQL keyword set adds 158: {@code CqlSet} mints one concept per CQL keyword (136)
+     * and {@code CqlKeywordHierarchy} the categories they are filed under (22 — the CQL
+     * keyword root, five families, and 16 categories).
+     * <p>
+     * The ECL keyword set adds 58: {@code EclSet} mints one concept per ECL 2.3 keyword (48)
+     * and {@code EclKeywordHierarchy} the categories they are filed under (10 — the ECL
+     * keyword root, four families, and five categories).
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70;
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 158 + 58;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
