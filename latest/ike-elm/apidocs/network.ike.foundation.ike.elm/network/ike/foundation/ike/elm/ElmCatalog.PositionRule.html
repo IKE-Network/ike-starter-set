@@ -75,7 +75,7 @@ initTheme();
 <li><a href="#method-summary" tabindex="0">Method Summary</a></li>
 <li><a href="#constructor-detail" tabindex="0">Constructor Details</a>
 <ol class="toc-list">
-<li><a href="#%3Cinit%3E(java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept,network.ike.foundation.ike.elm.ElmCatalog.ValueType,int,int,network.ike.foundation.ike.elm.ElmCatalog.Form)" tabindex="0">PositionRule(String, EntityProxy.Concept, ElmCatalog.ValueType, int, int, ElmCatalog.Form)</a></li>
+<li><a href="#%3Cinit%3E(java.lang.String,dev.ikm.tinkar.terms.ConceptFacade,network.ike.foundation.ike.elm.ElmCatalog.ValueType,int,int,network.ike.foundation.ike.elm.ElmCatalog.Form)" tabindex="0">PositionRule(String, ConceptFacade, ElmCatalog.ValueType, int, int, ElmCatalog.Form)</a></li>
 </ol>
 </li>
 <li><a href="#method-detail" tabindex="0">Method Details</a>
@@ -121,7 +121,7 @@ initTheme();
 </dl>
 <hr>
 <div class="horizontal-scroll">
-<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">ElmCatalog.PositionRule</span>(<a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name, dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;position, <a href="ElmCatalog.ValueType.html" title="interface in network.ike.foundation.ike.elm">ElmCatalog.ValueType</a>&nbsp;valueType, int&nbsp;minimum, int&nbsp;maximum, <a href="ElmCatalog.Form.html" title="enum class in network.ike.foundation.ike.elm">ElmCatalog.Form</a>&nbsp;form)
+<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">ElmCatalog.PositionRule</span>(<a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name, dev.ikm.tinkar.terms.ConceptFacade&nbsp;position, <a href="ElmCatalog.ValueType.html" title="interface in network.ike.foundation.ike.elm">ElmCatalog.ValueType</a>&nbsp;valueType, int&nbsp;minimum, int&nbsp;maximum, <a href="ElmCatalog.Form.html" title="enum class in network.ike.foundation.ike.elm">ElmCatalog.Form</a>&nbsp;form)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/Record.html" title="class in java.lang" class="external-link">Record</a></span></div>
 <div class="block">One position of one node kind: what it holds, how many times, and in which form.</div>
 </div>
@@ -136,8 +136,8 @@ initTheme();
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept,network.ike.foundation.ike.elm.ElmCatalog.ValueType,int,int,network.ike.foundation.ike.elm.ElmCatalog.Form)" class="member-name-link">PositionRule</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;position,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,dev.ikm.tinkar.terms.ConceptFacade,network.ike.foundation.ike.elm.ElmCatalog.ValueType,int,int,network.ike.foundation.ike.elm.ElmCatalog.Form)" class="member-name-link">PositionRule</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name,
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;position,
  <a href="ElmCatalog.ValueType.html" title="interface in network.ike.foundation.ike.elm">ElmCatalog.ValueType</a>&nbsp;valueType,
  int&nbsp;minimum,
  int&nbsp;maximum,
@@ -200,7 +200,7 @@ roles first, second, and third instead of ordering.</div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-name"><code>name</code></a> record component.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>dev.ikm.tinkar.terms.EntityProxy.Concept</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>dev.ikm.tinkar.terms.ConceptFacade</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#position()" class="member-name-link">position</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-position"><code>position</code></a> record component.</div>
@@ -233,11 +233,11 @@ roles first, second, and third instead of ordering.</div>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept,network.ike.foundation.ike.elm.ElmCatalog.ValueType,int,int,network.ike.foundation.ike.elm.ElmCatalog.Form)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,dev.ikm.tinkar.terms.ConceptFacade,network.ike.foundation.ike.elm.ElmCatalog.ValueType,int,int,network.ike.foundation.ike.elm.ElmCatalog.Form)">
 <h3>PositionRule</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PositionRule</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;position,
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;position,
  <a href="ElmCatalog.ValueType.html" title="interface in network.ike.foundation.ike.elm">ElmCatalog.ValueType</a>&nbsp;valueType,
  int&nbsp;minimum,
  int&nbsp;maximum,
@@ -354,7 +354,7 @@ roles first, second, and third instead of ordering.</div>
 <section class="detail" id="position()">
 <h3>position</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.EntityProxy.Concept</span>&nbsp;<span class="element-name">position</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.ConceptFacade</span>&nbsp;<span class="element-name">position</span>()</div>
 <div class="block">Returns the value of the <a href="#param-position"><code>position</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>

@@ -84,10 +84,10 @@ initTheme();
 <li><a href="#calculator()" tabindex="0">calculator()</a></li>
 <li><a href="#concept(dev.ikm.tinkar.common.id.PublicId)" tabindex="0">concept(PublicId)</a></li>
 <li><a href="#statedParent(dev.ikm.tinkar.common.id.PublicId,dev.ikm.tinkar.common.id.PublicId)" tabindex="0">statedParent(PublicId, PublicId)</a></li>
-<li><a href="#semantic(dev.ikm.tinkar.common.id.PublicId,dev.ikm.tinkar.terms.EntityProxy.Pattern,long,org.eclipse.collections.api.list.ImmutableList)" tabindex="0">semantic(PublicId, EntityProxy.Pattern, long, ImmutableList)</a></li>
-<li><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept)" tabindex="0">describe(long, UUID, String, EntityProxy.Concept)</a></li>
-<li><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept,dev.ikm.tinkar.terms.EntityProxy.Concept)" tabindex="0">describe(long, UUID, String, EntityProxy.Concept, EntityProxy.Concept)</a></li>
-<li><a href="#dialect(long,java.util.UUID,dev.ikm.tinkar.terms.EntityProxy.Pattern,dev.ikm.tinkar.terms.EntityProxy.Concept)" tabindex="0">dialect(long, UUID, EntityProxy.Pattern, EntityProxy.Concept)</a></li>
+<li><a href="#semantic(dev.ikm.tinkar.common.id.PublicId,dev.ikm.tinkar.terms.PatternFacade,long,org.eclipse.collections.api.list.ImmutableList)" tabindex="0">semantic(PublicId, PatternFacade, long, ImmutableList)</a></li>
+<li><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.ConceptFacade)" tabindex="0">describe(long, UUID, String, ConceptFacade)</a></li>
+<li><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.ConceptFacade,dev.ikm.tinkar.terms.ConceptFacade)" tabindex="0">describe(long, UUID, String, ConceptFacade, ConceptFacade)</a></li>
+<li><a href="#dialect(long,java.util.UUID,dev.ikm.tinkar.terms.PatternFacade,dev.ikm.tinkar.terms.ConceptFacade)" tabindex="0">dialect(long, UUID, PatternFacade, ConceptFacade)</a></li>
 <li><a href="#retire(dev.ikm.tinkar.common.id.PublicId)" tabindex="0">retire(PublicId)</a></li>
 <li><a href="#sameFields(org.eclipse.collections.api.list.ImmutableList,org.eclipse.collections.api.list.ImmutableList)" tabindex="0">sameFields(ImmutableList, ImmutableList)</a></li>
 </ol>
@@ -182,29 +182,29 @@ of its own, so an existing one is left alone.</div>
 <div class="block">What the writer has done so far.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept)" class="member-name-link">describe</a><wbr>(long&nbsp;aboutNid,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.ConceptFacade)" class="member-name-link">describe</a><wbr>(long&nbsp;aboutNid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/util/UUID.html" title="class in java.util" class="external-link">UUID</a>&nbsp;descriptionUuid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;text,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;type)</code></div>
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;type)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Writes a description of a component in English, not case sensitive, with its US dialect
 acceptability set to preferred.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept,dev.ikm.tinkar.terms.EntityProxy.Concept)" class="member-name-link">describe</a><wbr>(long&nbsp;aboutNid,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.ConceptFacade,dev.ikm.tinkar.terms.ConceptFacade)" class="member-name-link">describe</a><wbr>(long&nbsp;aboutNid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/util/UUID.html" title="class in java.util" class="external-link">UUID</a>&nbsp;descriptionUuid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;text,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;type,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;usAcceptability)</code></div>
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;type,
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;usAcceptability)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Writes a description of a component in English, not case sensitive, with its US dialect
 acceptability as given.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dialect(long,java.util.UUID,dev.ikm.tinkar.terms.EntityProxy.Pattern,dev.ikm.tinkar.terms.EntityProxy.Concept)" class="member-name-link">dialect</a><wbr>(long&nbsp;descriptionNid,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dialect(long,java.util.UUID,dev.ikm.tinkar.terms.PatternFacade,dev.ikm.tinkar.terms.ConceptFacade)" class="member-name-link">dialect</a><wbr>(long&nbsp;descriptionNid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/util/UUID.html" title="class in java.util" class="external-link">UUID</a>&nbsp;dialectUuid,
- dev.ikm.tinkar.terms.EntityProxy.Pattern&nbsp;dialectPattern,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;acceptability)</code></div>
+ dev.ikm.tinkar.terms.PatternFacade&nbsp;dialectPattern,
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;acceptability)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Records a description's acceptability in a dialect.</div>
 </div>
@@ -222,8 +222,8 @@ with no regard to child order; components by nid; lists of nids in order; everyt
 else by equality.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#semantic(dev.ikm.tinkar.common.id.PublicId,dev.ikm.tinkar.terms.EntityProxy.Pattern,long,org.eclipse.collections.api.list.ImmutableList)" class="member-name-link">semantic</a><wbr>(dev.ikm.tinkar.common.id.PublicId&nbsp;semanticId,
- dev.ikm.tinkar.terms.EntityProxy.Pattern&nbsp;pattern,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#semantic(dev.ikm.tinkar.common.id.PublicId,dev.ikm.tinkar.terms.PatternFacade,long,org.eclipse.collections.api.list.ImmutableList)" class="member-name-link">semantic</a><wbr>(dev.ikm.tinkar.common.id.PublicId&nbsp;semanticId,
+ dev.ikm.tinkar.terms.PatternFacade&nbsp;pattern,
  long&nbsp;referencedComponentNid,
  org.eclipse.collections.api.list.ImmutableList&lt;<a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/Object.html" title="class in java.lang" class="external-link">Object</a>&gt;&nbsp;fieldValues)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -338,11 +338,11 @@ the parent, and nothing more. Written version-aware like any semantic.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="semantic(dev.ikm.tinkar.common.id.PublicId,dev.ikm.tinkar.terms.EntityProxy.Pattern,long,org.eclipse.collections.api.list.ImmutableList)">
+<section class="detail" id="semantic(dev.ikm.tinkar.common.id.PublicId,dev.ikm.tinkar.terms.PatternFacade,long,org.eclipse.collections.api.list.ImmutableList)">
 <h3>semantic</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">semantic</span><wbr><span class="parameters">(dev.ikm.tinkar.common.id.PublicId&nbsp;semanticId,
- dev.ikm.tinkar.terms.EntityProxy.Pattern&nbsp;pattern,
+ dev.ikm.tinkar.terms.PatternFacade&nbsp;pattern,
  long&nbsp;referencedComponentNid,
  org.eclipse.collections.api.list.ImmutableList&lt;<a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/Object.html" title="class in java.lang" class="external-link">Object</a>&gt;&nbsp;fieldValues)</span></div>
 <div class="block">Writes a semantic, version-aware: nothing when the latest version says the same,
@@ -360,13 +360,13 @@ a new version when it differs, a new semantic when none exists.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept)">
+<section class="detail" id="describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.ConceptFacade)">
 <h3>describe</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">describe</span><wbr><span class="parameters">(long&nbsp;aboutNid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/util/UUID.html" title="class in java.util" class="external-link">UUID</a>&nbsp;descriptionUuid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;text,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;type)</span></div>
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;type)</span></div>
 <div class="block">Writes a description of a component in English, not case sensitive, with its US dialect
 acceptability set to preferred.</div>
 <dl class="notes">
@@ -382,14 +382,14 @@ acceptability set to preferred.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.EntityProxy.Concept,dev.ikm.tinkar.terms.EntityProxy.Concept)">
+<section class="detail" id="describe(long,java.util.UUID,java.lang.String,dev.ikm.tinkar.terms.ConceptFacade,dev.ikm.tinkar.terms.ConceptFacade)">
 <h3>describe</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">describe</span><wbr><span class="parameters">(long&nbsp;aboutNid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/util/UUID.html" title="class in java.util" class="external-link">UUID</a>&nbsp;descriptionUuid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;text,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;type,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;usAcceptability)</span></div>
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;type,
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;usAcceptability)</span></div>
 <div class="block">Writes a description of a component in English, not case sensitive, with its US dialect
 acceptability as given.</div>
 <dl class="notes">
@@ -406,13 +406,13 @@ acceptability as given.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="dialect(long,java.util.UUID,dev.ikm.tinkar.terms.EntityProxy.Pattern,dev.ikm.tinkar.terms.EntityProxy.Concept)">
+<section class="detail" id="dialect(long,java.util.UUID,dev.ikm.tinkar.terms.PatternFacade,dev.ikm.tinkar.terms.ConceptFacade)">
 <h3>dialect</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">dialect</span><wbr><span class="parameters">(long&nbsp;descriptionNid,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/util/UUID.html" title="class in java.util" class="external-link">UUID</a>&nbsp;dialectUuid,
- dev.ikm.tinkar.terms.EntityProxy.Pattern&nbsp;dialectPattern,
- dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;acceptability)</span></div>
+ dev.ikm.tinkar.terms.PatternFacade&nbsp;dialectPattern,
+ dev.ikm.tinkar.terms.ConceptFacade&nbsp;acceptability)</span></div>
 <div class="block">Records a description's acceptability in a dialect.</div>
 <dl class="notes">
 <dt>Parameters:</dt>

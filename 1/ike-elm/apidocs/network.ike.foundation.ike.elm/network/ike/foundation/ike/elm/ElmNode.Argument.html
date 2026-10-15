@@ -75,7 +75,7 @@ initTheme();
 <li><a href="#method-summary" tabindex="0">Method Summary</a></li>
 <li><a href="#constructor-detail" tabindex="0">Constructor Details</a>
 <ol class="toc-list">
-<li><a href="#%3Cinit%3E(dev.ikm.tinkar.terms.EntityProxy.Concept,java.lang.String,network.ike.foundation.ike.elm.ElmNode)" tabindex="0">Argument(EntityProxy.Concept, String, ElmNode)</a></li>
+<li><a href="#%3Cinit%3E(dev.ikm.tinkar.terms.ConceptFacade,java.lang.String,network.ike.foundation.ike.elm.ElmNode)" tabindex="0">Argument(ConceptFacade, String, ElmNode)</a></li>
 </ol>
 </li>
 <li><a href="#method-detail" tabindex="0">Method Details</a>
@@ -113,7 +113,7 @@ initTheme();
 </dl>
 <hr>
 <div class="horizontal-scroll">
-<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">ElmNode.Argument</span>(dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;position, <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name, <a href="ElmNode.html" title="class in network.ike.foundation.ike.elm">ElmNode</a>&nbsp;child)
+<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">ElmNode.Argument</span>(dev.ikm.tinkar.terms.ConceptFacade&nbsp;position, <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name, <a href="ElmNode.html" title="class in network.ike.foundation.ike.elm">ElmNode</a>&nbsp;child)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/Record.html" title="class in java.lang" class="external-link">Record</a></span></div>
 <div class="block">A node held under a position or a role.</div>
 </div>
@@ -128,7 +128,7 @@ initTheme();
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(dev.ikm.tinkar.terms.EntityProxy.Concept,java.lang.String,network.ike.foundation.ike.elm.ElmNode)" class="member-name-link">Argument</a><wbr>(dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;position,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(dev.ikm.tinkar.terms.ConceptFacade,java.lang.String,network.ike.foundation.ike.elm.ElmNode)" class="member-name-link">Argument</a><wbr>(dev.ikm.tinkar.terms.ConceptFacade&nbsp;position,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="ElmNode.html" title="class in network.ike.foundation.ike.elm">ElmNode</a>&nbsp;child)</code></div>
 <div class="col-last even-row-color">
@@ -168,7 +168,7 @@ initTheme();
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-name"><code>name</code></a> record component.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>dev.ikm.tinkar.terms.EntityProxy.Concept</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>dev.ikm.tinkar.terms.ConceptFacade</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#position()" class="member-name-link">position</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-position"><code>position</code></a> record component.</div>
@@ -196,10 +196,10 @@ initTheme();
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(dev.ikm.tinkar.terms.EntityProxy.Concept,java.lang.String,network.ike.foundation.ike.elm.ElmNode)">
+<section class="detail" id="&lt;init&gt;(dev.ikm.tinkar.terms.ConceptFacade,java.lang.String,network.ike.foundation.ike.elm.ElmNode)">
 <h3>Argument</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Argument</span><wbr><span class="parameters">(dev.ikm.tinkar.terms.EntityProxy.Concept&nbsp;position,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Argument</span><wbr><span class="parameters">(dev.ikm.tinkar.terms.ConceptFacade&nbsp;position,
  <a href="https://docs.oracle.com/en/java/javase/27/docs/api/java.base/java/lang/String.html" title="class in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="ElmNode.html" title="class in network.ike.foundation.ike.elm">ElmNode</a>&nbsp;child)</span></div>
 <div class="block">Creates an instance of a <code>Argument</code> record class.</div>
@@ -271,7 +271,7 @@ initTheme();
 <section class="detail" id="position()">
 <h3>position</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.EntityProxy.Concept</span>&nbsp;<span class="element-name">position</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.ConceptFacade</span>&nbsp;<span class="element-name">position</span>()</div>
 <div class="block">Returns the value of the <a href="#param-position"><code>position</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>

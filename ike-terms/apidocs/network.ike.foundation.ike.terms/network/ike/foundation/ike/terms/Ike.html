@@ -105,7 +105,7 @@ initTheme();
 <div class="block">Ledger-internal handles for the IkeFoundation knowledge set: the session root and the
 reference handles the sections cite. Handles are conveniences over derived
 identities — never identity sources. Consumers use the generated bindings class
-(network.ike.foundation.ike.bindings.IkeTerms), not this one.</div>
+(network.ike.foundation.ike.bindings.IkeConcept and IkePattern), not this one.</div>
 </div>
 </section>
 <section class="summary">
@@ -127,7 +127,7 @@ time: the module dimension alone separates the AsciiDoc document vocabulary
 (<code>AsciiDocModelSet</code>) from the foundation terminology, so a store can carry or
 omit it as a unit (IKE-Network/ike-issues#468).</div>
 </div>
-<div class="col-first odd-row-color"><code>static final dev.ikm.tinkar.terms.EntityProxy.Concept</code></div>
+<div class="col-first odd-row-color"><code>static final dev.ikm.tinkar.terms.ConceptFacade</code></div>
 <div class="col-second odd-row-color"><code><a href="#ASCIIDOC_MODULE" class="member-name-link">ASCIIDOC_MODULE</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The AsciiDoc document module — the export dimension that carries or omits the
@@ -143,7 +143,7 @@ Defaults tuple, the worked Preferred Reviewer default) from the foundation
 terminology — see the live-and-die invariant on
 <code>DefaultsTemplateTerm.DEFAULTS_AND_TEMPLATES_MODULE</code>.</div>
 </div>
-<div class="col-first odd-row-color"><code>static final dev.ikm.tinkar.terms.EntityProxy.Concept</code></div>
+<div class="col-first odd-row-color"><code>static final dev.ikm.tinkar.terms.ConceptFacade</code></div>
 <div class="col-second odd-row-color"><code><a href="#IKE_COMMUNITY" class="member-name-link">IKE_COMMUNITY</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Community authorship: the IKE Network itself, attributed as author for
@@ -162,21 +162,21 @@ it.</div>
 <div class="col-second odd-row-color"><code><a href="#KERNEL" class="member-name-link">KERNEL</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The kernel: the components tinkar-core and its stores name in their own code, generated
-into <code>dev.ikm.tinkar.terms.KernelTerm</code> and committed there (see
-<code>KernelBindings</code>).</div>
+into <code>dev.ikm.tinkar.terms.KernelConcept</code> and <code>KernelPattern</code> and committed
+there (see <code>KernelBindings</code>).</div>
 </div>
 <div class="col-first even-row-color"><code>static final dev.ikm.tinkar.entity.builder.BindingClass</code></div>
 <div class="col-second even-row-color"><code><a href="#KOMET" class="member-name-link">KOMET</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Komet's terms: the components Komet and its plugins name beyond the kernel, generated
-into <code>dev.ikm.komet.terms.KometTerm</code> and committed there (see <code>KometBindings</code>).</div>
+into <code>dev.ikm.komet.terms.KometConcept</code> and committed there (see <code>KometBindings</code>).</div>
 </div>
-<div class="col-first odd-row-color"><code>static final dev.ikm.tinkar.terms.EntityProxy.Concept</code></div>
+<div class="col-first odd-row-color"><code>static final dev.ikm.tinkar.terms.ConceptFacade</code></div>
 <div class="col-second odd-row-color"><code><a href="#MODULE" class="member-name-link">MODULE</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The set's module concept — the export dimension for this knowledge.</div>
 </div>
-<div class="col-first even-row-color"><code>static final dev.ikm.tinkar.terms.EntityProxy.Concept</code></div>
+<div class="col-first even-row-color"><code>static final dev.ikm.tinkar.terms.ConceptFacade</code></div>
 <div class="col-second even-row-color"><code><a href="#ROOT" class="member-name-link">ROOT</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The set's root concept.</div>
@@ -190,7 +190,7 @@ every identity in the set derives.</div>
 <div class="col-first even-row-color"><code>static final dev.ikm.tinkar.entity.builder.BindingClass</code></div>
 <div class="col-second even-row-color"><code><a href="#STAMPS" class="member-name-link">STAMPS</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The binding class of the set's stamps: the generated <code>IkeStamps</code>, through which
+<div class="block">The binding class of the set's stamps: the generated <code>IkeStamp</code> enum, through which
 code outside the ledger authors under the set's stamps without depending on it.</div>
 </div>
 </div>
@@ -229,8 +229,9 @@ every identity in the set derives. Never change it.</div>
 <h3>STAMPS</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.entity.builder.BindingClass</span>&nbsp;<span class="element-name">STAMPS</span></div>
-<div class="block">The binding class of the set's stamps: the generated <code>IkeStamps</code>, through which
-code outside the ledger authors under the set's stamps without depending on it.</div>
+<div class="block">The binding class of the set's stamps: the generated <code>IkeStamp</code> enum, through which
+code outside the ledger authors under the set's stamps without depending on it. Named
+like the set's own bindings (<code>Ike</code>), so the stamps join them as their stamp enum.</div>
 </div>
 </section>
 </li>
@@ -240,8 +241,8 @@ code outside the ledger authors under the set's stamps without depending on it.<
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.entity.builder.BindingClass</span>&nbsp;<span class="element-name">KERNEL</span></div>
 <div class="block">The kernel: the components tinkar-core and its stores name in their own code, generated
-into <code>dev.ikm.tinkar.terms.KernelTerm</code> and committed there (see
-<code>KernelBindings</code>).</div>
+into <code>dev.ikm.tinkar.terms.KernelConcept</code> and <code>KernelPattern</code> and committed
+there (see <code>KernelBindings</code>).</div>
 </div>
 </section>
 </li>
@@ -251,7 +252,7 @@ into <code>dev.ikm.tinkar.terms.KernelTerm</code> and committed there (see
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.entity.builder.BindingClass</span>&nbsp;<span class="element-name">KOMET</span></div>
 <div class="block">Komet's terms: the components Komet and its plugins name beyond the kernel, generated
-into <code>dev.ikm.komet.terms.KometTerm</code> and committed there (see <code>KometBindings</code>).</div>
+into <code>dev.ikm.komet.terms.KometConcept</code> and committed there (see <code>KometBindings</code>).</div>
 </div>
 </section>
 </li>
@@ -259,7 +260,7 @@ into <code>dev.ikm.komet.terms.KometTerm</code> and committed there (see <code>K
 <section class="detail" id="MODULE">
 <h3>MODULE</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.EntityProxy.Concept</span>&nbsp;<span class="element-name">MODULE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.ConceptFacade</span>&nbsp;<span class="element-name">MODULE</span></div>
 <div class="block">The set's module concept — the export dimension for this knowledge.</div>
 </div>
 </section>
@@ -268,7 +269,7 @@ into <code>dev.ikm.komet.terms.KometTerm</code> and committed there (see <code>K
 <section class="detail" id="ASCIIDOC_MODULE">
 <h3>ASCIIDOC_MODULE</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.EntityProxy.Concept</span>&nbsp;<span class="element-name">ASCIIDOC_MODULE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.ConceptFacade</span>&nbsp;<span class="element-name">ASCIIDOC_MODULE</span></div>
 <div class="block">The AsciiDoc document module — the export dimension that carries or omits the
 AsciiDoc document vocabulary as a unit (IKE-Network/ike-issues#468); declared by
 <code>AsciiDocModelSet</code>.</div>
@@ -279,7 +280,7 @@ AsciiDoc document vocabulary as a unit (IKE-Network/ike-issues#468); declared by
 <section class="detail" id="ROOT">
 <h3>ROOT</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.EntityProxy.Concept</span>&nbsp;<span class="element-name">ROOT</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.ConceptFacade</span>&nbsp;<span class="element-name">ROOT</span></div>
 <div class="block">The set's root concept.</div>
 </div>
 </section>
@@ -288,7 +289,7 @@ AsciiDoc document vocabulary as a unit (IKE-Network/ike-issues#468); declared by
 <section class="detail" id="IKE_COMMUNITY">
 <h3>IKE_COMMUNITY</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.EntityProxy.Concept</span>&nbsp;<span class="element-name">IKE_COMMUNITY</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">dev.ikm.tinkar.terms.ConceptFacade</span>&nbsp;<span class="element-name">IKE_COMMUNITY</span></div>
 <div class="block">Community authorship: the IKE Network itself, attributed as author for
 content synthesized by tooling on the Network's behalf (starter-set
 ingest, IKE-Network/ike-issues#872) rather than by an individual editor
