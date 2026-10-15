@@ -131,6 +131,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // (IKE-Network/ike-issues#1300). Affirmation keeps the identity the git-provenance family
         // gave it.
         AnnotationModelSet.compose(Ike.SET);
+        // ActionModelSet mints Komet's actions as concepts: the action branch, the Action
+        // definition pattern naming each action's input and result patterns and its model
+        // instructions, and activate and inactivate as the first (dev-komet-actions).
+        ActionModelSet.compose(Ike.SET);
         // LicenseModelSet mints the License family: the set is dual-licensed CC BY +
         // Apache 2.0, in every POM and as concepts (IKE-Network/ike-issues#952).
         LicenseModelSet.compose(Ike.SET);

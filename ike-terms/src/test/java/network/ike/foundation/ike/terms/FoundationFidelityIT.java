@@ -199,8 +199,14 @@ class FoundationFidelityIT {
      * provenance, Reviewed version, Annotated elements, Review module — and takes over
      * Affirmation from {@code AsciiDocModelSet}, whose Affirmed lines and Affirms trailer
      * retire with the affirmation pattern: net 8.
+     * <p>
+     * {@code ActionModelSet} (ike-lab-documents topic {@code dev-komet-actions}) adds 23: Action
+     * model; the definition family (Action definition, Action performance, Input pattern, Result
+     * pattern, Model instructions); Action record, Action input and Performed action; Action result, Action outcome and its three
+     * outcomes, Written version, Outcome message; Komet action and its four children by what an
+     * action does; and Activate component and Inactivate component.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8;
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -225,7 +231,7 @@ class FoundationFidelityIT {
      * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
      * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1;   // + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1 + 3;   // + the Action definition, Component action input and Version change result patterns (dev-komet-actions); + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
