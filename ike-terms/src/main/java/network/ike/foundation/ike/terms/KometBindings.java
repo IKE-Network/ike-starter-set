@@ -112,6 +112,18 @@ final class KometBindings {
         bind(set, "3e56c6b6-5371-11eb-ae93-0242ac130002", "VERTEX_FIELD");
         bind(set, "e973f077-a99d-59e6-b7bd-804e87e0e639", "VERTEX_SORT");
         bind(set, "347cd3f2-8130-5032-8960-091e194e9afe", "VERTEX_STATE_SET");
+
+        // Komet's actions (ActionModelSet): the parent the action consistency check walks, the
+        // actions Komet implements, the outcomes a result reports, and the patterns runs take.
+        bind(set, "bc394f75-e8c9-5f9e-aa30-d9db1523fb32", "KOMET_ACTION");
+        bind(set, "d79be663-33f0-5208-923f-2245e67b6cca", "ACTIVATE_COMPONENT");
+        bind(set, "e258555e-fe67-5bfc-8340-7707177e1dbc", "INACTIVATE_COMPONENT");
+        bind(set, "a0bdab4e-69db-559d-ac82-24e3f1af7702", "ACTION_COMPLETED");
+        bind(set, "f72d46df-3a28-5d99-b89a-2fc45311803d", "ACTION_REFUSED");
+        bind(set, "2b555975-4639-5c58-bea4-8288e281cffa", "ACTION_FAILED");
+        bind(set, "e2b99626-2ba5-5e24-a5ac-03378d63de0c", "ACTION_DEFINITION_PATTERN");
+        bind(set, "6fde6318-1f30-531c-8b0c-374baaf4a9e5", "COMPONENT_ACTION_INPUT_PATTERN");
+        bind(set, "c0f13898-fa2a-5b10-aa22-cf0885144af0", "VERSION_CHANGE_RESULT_PATTERN");
     }
 
     private static void bind(KnowledgeSet set, String uuid, String constant) {
