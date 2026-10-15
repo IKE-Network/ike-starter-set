@@ -186,6 +186,14 @@ class FoundationFidelityIT {
      * author/module/path homes, purpose, git source and its two fields, affirmation and its
      * two fields).
      * <p>
+     * The CQL keyword set adds 158: {@code CqlSet} mints one concept per CQL keyword (136)
+     * and {@code CqlKeywordHierarchy} the categories they are filed under (22 — the CQL
+     * keyword root, five families, and 16 categories).
+     * <p>
+     * The ECL keyword set adds 58: {@code EclSet} mints one concept per ECL 2.3 keyword (48)
+     * and {@code EclKeywordHierarchy} the categories they are filed under (10 — the ECL
+     * keyword root, four families, and five categories).
+     * <p>
      * The IKE-Network/ike-issues#844 shared block model adds 11 net: {@code DocumentStructureSet}
      * mints 29 (the model root, Structured document, Document element, section, block and nine
      * block kinds, the document field family of five with its parent and purpose, and the journal
@@ -200,7 +208,7 @@ class FoundationFidelityIT {
      * Affirmation from {@code AsciiDocModelSet}, whose Affirmed lines and Affirms trailer
      * retire with the affirmation pattern: net 8.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8;
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 158 + 58 + 11 + 8;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field

@@ -1,0 +1,20 @@
+[#ecl-family-summaries]
+== Family Summaries
+
+Quick-scan view of each family in this guide and what it contributes to ECL authoring.
+
+=== Constraint Operators (12)
+
+This family selects concepts by their position in the SNOMED CT hierarchy or by reference set membership. Each keyword has a symbol (brief syntax) and a word (long syntax) form.
+
+=== Logic & Refinement (6)
+
+This family combines expression constraints and refines them by attribute: the boolean connectives and the modifiers of an attribute or attribute group.
+
+=== Filters (26)
+
+This family covers the {{ }} filter constraints that narrow a result by description, concept or reference set member properties, and the fixed tokens those filters compare against.
+
+=== History (4)
+
+The history supplement keyword and its profiles, which add inactive concepts to a result through historical associations, the profile choosing how many associations to follow.
