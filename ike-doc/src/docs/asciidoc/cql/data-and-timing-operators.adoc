@@ -1,10 +1,10 @@
 == Data & Timing Operators
 
-=== List/Interval Operator (17)
+=== List/Interval Operator (18)
 
 Operators for combining, comparing, and inspecting lists and intervals.
 
-Members: <<term-collapse,`collapse`>>, <<term-contains,`contains`>>, <<term-distinct,`distinct`>>, <<term-end,`end`>>, <<term-except,`except`>>, <<term-expand,`expand`>>, <<term-flatten,`flatten`>>, <<term-in,`in`>>, <<term-included-in,`included in`>>, <<term-includes,`includes`>>, <<term-intersect,`intersect`>>, <<term-point,`point`>>, <<term-properly,`properly`>>, <<term-singleton,`singleton`>>, <<term-start,`start`>>, <<term-union,`union`>>, <<term-width,`width`>>
+Members: <<term-collapse,`collapse`>>, <<term-contains,`contains`>>, <<term-distinct,`distinct`>>, <<term-end,`end`>>, <<term-except,`except`>>, <<term-expand,`expand`>>, <<term-flatten,`flatten`>>, <<term-in,`in`>>, <<term-included-in,`included in`>>, <<term-includes,`includes`>>, <<term-intersect,`intersect`>>, <<term-ordered,`ordered`>>, <<term-point,`point`>>, <<term-properly,`properly`>>, <<term-singleton,`singleton`>>, <<term-start,`start`>>, <<term-union,`union`>>, <<term-width,`width`>>
 
 === Timing Operator (17)
 
