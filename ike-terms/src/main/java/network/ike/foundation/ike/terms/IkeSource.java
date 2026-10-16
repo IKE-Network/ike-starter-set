@@ -117,6 +117,9 @@ public final class IkeSource implements KnowledgeSetSource {
         // ditree) the repaired Section66 "Directed graph" cites by derived identity
         // (IKE-Network/ike-issues#950).
         GraphModelSet.compose(Ike.SET);
+        // ClassificationModelSet declares the inferred equivalence pattern beside the
+        // navigation patterns, from the foundation's own concepts.
+        ClassificationModelSet.compose(Ike.SET);
         // CoordinateModelSet mints the view-coordinate-model family roots the
         // redistributed coordinate-dimension sections cite by derived identity; Part of
         // is seated as a transitive role type at foundation.Section41

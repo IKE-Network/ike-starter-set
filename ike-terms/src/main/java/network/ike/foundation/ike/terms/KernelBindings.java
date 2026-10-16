@@ -93,6 +93,9 @@ final class KernelBindings {
         bind(set, "b32dd26b-c3fc-487e-987e-16ace71a0d0f", "IDENTIFIER_VALUE");
         bind(set, "03004053-c23e-5206-8514-fb551dd328f4", "INACTIVE_STATE");
         bind(set, "def77c09-e1eb-40f2-931a-e7cf2ce0e597", "INCLUSION_SET");
+        // Declared after the kernel was cut, so it carries its derived identity.
+        set.bind(set.patternRef(ClassificationModelSet.INFERRED_EQUIVALENCE_PATTERN).publicId(), Ike.KERNEL,
+                "INFERRED_EQUIVALENCE_PATTERN");
         bind(set, "4bc6c333-7fc9-52f1-942d-f8decba19dc2", "INFERRED_NAVIGATION");
         bind(set, "a53cc42d-c07e-5934-96b3-2ede3264474e", "INFERRED_NAVIGATION_PATTERN");
         bind(set, "1290e6ba-48d0-31d2-8d62-e133373c63f5", "INFERRED_PREMISE_TYPE");

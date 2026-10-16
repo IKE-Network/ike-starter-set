@@ -238,7 +238,7 @@ class FoundationFidelityIT {
      * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
      * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1 + 3 + 2 + 1;   // + the Document block edit input pattern (#1306); + the Source release and Knowledge base composition patterns (SourceReleaseModelSet, #1304); + the Action definition, Component action input and Version change result patterns (dev-komet-actions); + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1 + 3 + 2 + 1 + 1;   // + the Inferred equivalence pattern (ClassificationModelSet); + the Document block edit input pattern (#1306); + the Source release and Knowledge base composition patterns (SourceReleaseModelSet, #1304); + the Action definition, Component action input and Version change result patterns (dev-komet-actions); + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
