@@ -577,6 +577,30 @@ initTheme();
 <dd>
 <div class="block">An action that writes: a new component, or a new version of one.</div>
 </dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#CHANGE_BASIS" class="member-name-link">CHANGE_BASIS</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The time of the point in the store the transaction's changes were made against: what its author could see.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#CHANGE_BASIS_PATH" class="member-name-link">CHANGE_BASIS_PATH</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The path of the point in the store the transaction's changes were made against.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#CHANGE_TRACKING" class="member-name-link">CHANGE_TRACKING</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">Recording each transaction that changes a knowledge base, inside the knowledge base: what it was made against, what it wrote, and how it ended, so pending work survives a restart and a change can be judged concurrent with another: the purpose of the change transaction pattern and its fields.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#CHANGE_TRACKING_MODULE" class="member-name-link">CHANGE_TRACKING_MODULE</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The module transaction records are written to: bookkeeping about how the knowledge base changed, not knowledge.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#CHANGE_TRANSACTION" class="member-name-link">CHANGE_TRANSACTION</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">One transaction of changes to a knowledge base by one author: its name, its basis, what it has written while open, and whether it is open, committed or cancelled.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkePattern.html#CHANGE_TRANSACTION_PATTERN" class="member-name-link">CHANGE_TRANSACTION_PATTERN</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></dt>
+<dd>
+<div class="block">A transaction that wrote uncommitted versions, referencing the change tracking module, with the transaction's UUID as its identity and its author on every version's stamp: its name, its state, its basis (time, path, and any external basis such as a git commit), and, while it is open, the components it has written.</div>
+</dd>
 <dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#CHECK_ACTION" class="member-name-link">CHECK_ACTION</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
 <dd>
 <div class="block">An action that judges content against a rule or a method and reports findings, writing nothing but its result.</div>
@@ -3581,6 +3605,10 @@ initTheme();
 <dd>
 <div class="block">The unit extents of a step that cover an extent, or their starts as points; nothing for an extent written coarser than the step.</div>
 </dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#EXTERNAL_CHANGE_BASIS" class="member-name-link">EXTERNAL_CHANGE_BASIS</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">What the changes were made against outside the knowledge base, such as the git commit a document edit started from; empty when there is none.</div>
+</dd>
 <dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#EXTERNAL_IDENTITY_MAPPING" class="member-name-link">EXTERNAL_IDENTITY_MAPPING</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
 <dd>
 <div class="block">Why an Identifier Pattern semantic exists: to record an alternate identifier a component carries in an external terminology's own identifier scheme.</div>
@@ -3912,6 +3940,10 @@ initTheme();
 <dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#INFERRED_DEFINITION" class="member-name-link">INFERRED_DEFINITION</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
 <dd>
 <div class="block">Inferred Definition (SOLOR)</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkePattern.html#INFERRED_EQUIVALENCE_PATTERN" class="member-name-link">INFERRED_EQUIVALENCE_PATTERN</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></dt>
+<dd>
+<div class="block">The concepts classification found the referenced concept logically equivalent to, never including the concept itself.</div>
 </dd>
 <dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#INFERRED_NAVIGATION" class="member-name-link">INFERRED_NAVIGATION</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
 <dd>
@@ -5860,6 +5892,30 @@ initTheme();
 <dd>&nbsp;</dd>
 <dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkePattern.html#toString()" class="member-name-link">toString()</a> - Method in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#TRANSACTION_CANCELLED" class="member-name-link">TRANSACTION_CANCELLED</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The transaction ended by cancelling what it wrote; its versions are withdrawn, its record remains.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#TRANSACTION_COMMITTED" class="member-name-link">TRANSACTION_COMMITTED</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The transaction ended by committing what it wrote.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#TRANSACTION_COMPONENTS" class="member-name-link">TRANSACTION_COMPONENTS</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The components the transaction has written, as of the record's version, while it is open: complete once the store has been saved.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#TRANSACTION_NAME" class="member-name-link">TRANSACTION_NAME</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The name the transaction was made with, which says what it is for.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#TRANSACTION_OPEN" class="member-name-link">TRANSACTION_OPEN</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">The transaction may still write; what it wrote is uncommitted.</div>
+</dd>
+<dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#TRANSACTION_STATE" class="member-name-link">TRANSACTION_STATE</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
+<dd>
+<div class="block">Whether the transaction is still open, or how it ended.</div>
+</dd>
 <dt><a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html#TRANSITIVE_FEATURE" class="member-name-link">TRANSITIVE_FEATURE</a> - Enum constant in enum class network.ike.foundation.ike.bindings.<a href="network.ike.foundation.ike.bindings/network/ike/foundation/ike/bindings/IkeConcept.html" title="enum class in network.ike.foundation.ike.bindings">IkeConcept</a></dt>
 <dd>
 <div class="block">Transitive Feature (SOLOR)</div>
