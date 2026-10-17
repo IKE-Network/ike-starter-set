@@ -142,6 +142,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // release each import writes and the composition each assembly writes, whose patterns the
         // knowledge provider names by derived identity (IKE-Network/ike-issues#1304).
         SourceReleaseModelSet.compose(Ike.SET);
+        // ChangeTrackingModelSet extends that provenance model with the record each transaction
+        // that writes uncommitted versions leaves, which tinkar-core's Transaction writes through
+        // the kernel bindings (IKE-Network/ike-issues#1308).
+        ChangeTrackingModelSet.compose(Ike.SET);
         // LicenseModelSet mints the License family: the set is dual-licensed CC BY +
         // Apache 2.0, in every POM and as concepts (IKE-Network/ike-issues#952).
         LicenseModelSet.compose(Ike.SET);
