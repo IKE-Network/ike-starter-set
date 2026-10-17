@@ -30,7 +30,8 @@ import dev.ikm.tinkar.terms.KernelConcept;
  * <p><b>The action branch.</b> {@code Komet action} is the parent, with children by what an
  * action does: read, change, check, navigate. A kind of action is a concept beneath one of them,
  * defined for the clinicians and knowledge architects who use it. Activate and inactivate are
- * the first, as the smallest family the rules engine offers.
+ * the first, as the smallest family the rules engine offers; editing a document block is the
+ * first action with an input beyond its subject.
  *
  * <p><b>The action definition.</b> An {@code Action definition pattern} semantic on each action
  * concept names the pattern its input takes, the pattern its result takes, and the instructions
@@ -40,7 +41,8 @@ import dev.ikm.tinkar.terms.KernelConcept;
  * <p><b>Inputs and results.</b> Each run's input is a semantic of the action's input pattern whose
  * referenced component is the action's subject; its result is a semantic of the result pattern
  * whose referenced component is that input. An action that takes only its subject uses the
- * {@code Component action input pattern}; one that writes a version reports it in a
+ * {@code Component action input pattern}, and one with parameters has an input pattern of its own
+ * ({@code Document block edit input pattern}); one that writes a version reports it in a
  * {@code Version change result pattern}. A failure is a result, never an exception: the outcome
  * says whether the action completed, was refused (nothing written), or failed.
  *
@@ -102,6 +104,10 @@ final class ActionModelSet {
         concept(set, inception, "Performed action", "Action model",
                 "The kind of action a run performed: a concept beneath Komet action.");
 
+        concept(set, inception, "Replacement text", "Action model",
+                "The text a run puts in place of its subject's: for a document block, the block's new"
+                        + " lines, one per line.");
+
         // ── Results ──────────────────────────────────────────────────────────
         concept(set, inception, "Action result", "Action model",
                 "What one run of an action produced: a semantic of the action's result pattern whose"
@@ -144,6 +150,16 @@ final class ActionModelSet {
                 .definition("The input of an action that takes nothing but its subject, the referenced"
                         + " component: the kind of action performed on it.");
 
+        set.pattern(fqn("Document block edit input pattern")).at(inception)
+                .meaning(set.conceptRef(fqn("Action input")))
+                .purpose(record)
+                .field(set.conceptRef(fqn("Performed action")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("Replacement text")), record, KernelConcept.STRING)
+                .synonym("Document block edit input pattern")
+                .definition("The input of an action that replaces the text of a document block, the"
+                        + " referenced component, which is the block's element semantic: the kind of"
+                        + " action performed on it and the block's new text.");
+
         set.pattern(fqn("Version change result pattern")).at(inception)
                 .meaning(set.conceptRef(fqn("Action result")))
                 .purpose(record)
@@ -185,6 +201,18 @@ final class ActionModelSet {
                 "Inactivate only a component the person has asked to retire; disagreement with content is"
                         + " a refutation, not an inactivation. Refuse when the subject is already inactive."
                         + " Report the version written; the person commits it.");
+        changeAction(set, inception, "Edit document block", "Document block edit input pattern",
+                "Replaces the text of one block of a document materialized from git, a block whose"
+                        + " members are lines: an unchanged line keeps its element, a changed line gets a"
+                        + " new version of it, a new line gets a provisional element until a commit gives"
+                        + " it an identity, and a removed line leaves the block. The edit lands as"
+                        + " uncommitted versions in the document's one pending edit, and the person's git"
+                        + " commit of the file settles it.",
+                "Edit only a block the person has asked to change, and only its text, one line per line;"
+                        + " a block keeps at least one line. A block that holds other blocks is not edited"
+                        + " as text: edit the blocks it holds. Refuse when an edit of the document by"
+                        + " someone else is pending. Report what changed; the edit stays uncommitted until"
+                        + " the person commits the document in git.");
     }
 
     static String fqn(String name) {
@@ -201,13 +229,19 @@ final class ActionModelSet {
     /** A change action that takes only its subject and reports the version it wrote. */
     private static void changeAction(KnowledgeSet set, ActiveStamp stamp, String name, String definition,
                                      String modelInstructions) {
+        changeAction(set, stamp, name, "Component action input pattern", definition, modelInstructions);
+    }
+
+    /** A change action whose input takes the named pattern and that reports the version it wrote. */
+    private static void changeAction(KnowledgeSet set, ActiveStamp stamp, String name, String inputPattern,
+                                     String definition, String modelInstructions) {
         set.concept(fqn(name)).at(stamp)
                 .synonym(name)
                 .definition(definition)
                 .isA(set.conceptRef(fqn("Change action")))
                 .semantic(set.patternRef(fqn("Action definition pattern")),
                         PublicIds.of(set.uuidFor("Action definition: " + name)),
-                        set.patternRef(fqn("Component action input pattern")),
+                        set.patternRef(fqn(inputPattern)),
                         set.patternRef(fqn("Version change result pattern")),
                         modelInstructions);
     }

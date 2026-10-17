@@ -204,7 +204,8 @@ class FoundationFidelityIT {
      * model; the definition family (Action definition, Action performance, Input pattern, Result
      * pattern, Model instructions); Action record, Action input and Performed action; Action result, Action outcome and its three
      * outcomes, Written version, Outcome message; Komet action and its four children by what an
-     * action does; and Activate component and Inactivate component.
+     * action does; and Activate component and Inactivate component. Editing a document block
+     * (IKE-Network/ike-issues#1306) adds 2: Edit document block and Replacement text.
      * <p>
      * {@code SourceReleaseModelSet} (IKE-Network/ike-issues#1304) adds 15: Knowledge base
      * provenance model and its purpose; Source release and its seven fields (Release name,
@@ -212,7 +213,7 @@ class FoundationFidelityIT {
      * Knowledge base composition and its four fields (Assembly inputs, Source releases, Assembly
      * classifier, Assembled).
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15;
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -237,7 +238,7 @@ class FoundationFidelityIT {
      * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
      * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1 + 3 + 2;   // + the Source release and Knowledge base composition patterns (SourceReleaseModelSet, #1304); + the Action definition, Component action input and Version change result patterns (dev-komet-actions); + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1 + 3 + 2 + 1;   // + the Document block edit input pattern (#1306); + the Source release and Knowledge base composition patterns (SourceReleaseModelSet, #1304); + the Action definition, Component action input and Version change result patterns (dev-komet-actions); + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by
