@@ -77,14 +77,14 @@
         that can be used to harmonize other standards based models.</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="MD5">7c080071340d3f158c0e3db53f98bf30</hash>
-        <hash alg="SHA-1">f0ae7b9941f9bb1a89e6070e5cdf755470404040</hash>
-        <hash alg="SHA-256">480906a19fb8d5857d76c41045567e39be541a9366e51e28b7e736bfe8e0a44c</hash>
-        <hash alg="SHA-512">4f22a3ce5d4ede837c7dd27d778835a8ecbfeea70b4f52571019f0df1fa95c9ef511289c0bd44377377c1329c55d05b489bfc047badaf0a8f8169060d1946001</hash>
-        <hash alg="SHA-384">2263a61c3e3b37670e2216c9b5b3d07f03c7e7304fafc098f2296912ea3e82ac5e8d29f4d5ad4f1bc46f12b98bae2f0c</hash>
-        <hash alg="SHA3-384">12aa20edc9bf38e3a2930652d7da5e0810f851fb3d759c94d00e461acbbcc5740f7ecd7b3ede9a54da880e177471754e</hash>
-        <hash alg="SHA3-256">5683b50a863d689bc521a3c05e271820cbfdb7c41933c4a3cb44fe5eaefc9fef</hash>
-        <hash alg="SHA3-512">3081f5bf365201796f2e027a305f965f2ec03f2582399eb6c37ee998e1e91dfd758da1d35eb121382b1a307dd811b00cb1ea4099a7c04078e1e7cf55cfab9036</hash>
+        <hash alg="MD5">a8f47b6f333272a7fb76713a42a90cbf</hash>
+        <hash alg="SHA-1">9961ca583c5914e2100a3439209002884659975f</hash>
+        <hash alg="SHA-256">1e3296f79c3f1735e087c7c59cff819037e04ef51b22b38f1fa794267ebcc7bd</hash>
+        <hash alg="SHA-512">5579644755deb2520ddec5251fa7a559243d6cd01f0c308e09136b4905253a42d9d66c7ea4c6ef6e7b0d564ae985b0724671432a1777ac814437947e0727fa8d</hash>
+        <hash alg="SHA-384">b522c59ad61ea7cf007b7b63d1f32fe253950e8c83eac9fc034bb104ab8b09193e1175081ed1504dcd4746839126e40d</hash>
+        <hash alg="SHA3-384">e688d122b1392ec88fa893945e4586ae7fab468ae4d193d4daabef5b73d43448f7c154f8f2af16a9380afcb4d6bc36dd</hash>
+        <hash alg="SHA3-256">537dfb9839a5f78267b4dace696d4ecbfcb974754b510301e54c6f7f45748156</hash>
+        <hash alg="SHA3-512">e9c5f8c9e6f402605578610e3657d4aa12b1cd00f5038ac28d75efce5fa8fe9d3809920bfc231360e1a157564de209f16dd9cf83a132703a2e9eded656fdba6b</hash>
       </hashes>
       <licenses>
         <license>
@@ -118,14 +118,14 @@
         that can be used to harmonize other standards based models.</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="MD5">331b94c51347b1eafa7539aec32370f8</hash>
-        <hash alg="SHA-1">3b130c6766588a8752821b5f2b9c4b8dd3fbc9d3</hash>
-        <hash alg="SHA-256">4412d7b866a846a4764f93a4df7c440fd8209c15ab951b25bd59888418a176a3</hash>
-        <hash alg="SHA-512">6339d1f2e29e4588121ac273371c775625eb2883db5c2493bee2d2bcfde31a0adae7e96abd789ea952482ac283930516e3d008b587a047765d635fa04e717973</hash>
-        <hash alg="SHA-384">77ff6ee644ff6f621c0888933612755af8e99c9ef0cdcffa8ca2801d564f578e63ca0ee6fc94dad64a2ceef0039c786b</hash>
-        <hash alg="SHA3-384">5095fb8b9119ef8882b4ca57e948087fc8d13c93697f6bbca72bace4297481e20d8091fda7c37d9235277cd3b50ec4c5</hash>
-        <hash alg="SHA3-256">f6ccb5aa6170cf79c50fc53c08e2a2e8cc62baa86fbe1774a9051b0a36bdfea1</hash>
-        <hash alg="SHA3-512">5ec42132ba0b6962de363c64907aeaf9ec00dca4db9332295e9f4ba2d461424a97c4107e609b1db6d146472d061678f8b8f1b157a2c8de3f41725ad15c7f792b</hash>
+        <hash alg="MD5">94284445ae8f99861e65cbf13adb4b3f</hash>
+        <hash alg="SHA-1">5801d76ad2583bed95dc2b30646daee48919dc8b</hash>
+        <hash alg="SHA-256">6d7d03dded50862b20e6343ad7d45833b686653c381d1f23cf50fde60ca2cae1</hash>
+        <hash alg="SHA-512">9d1fb16396a292b34c09611b7a805c6424ae4bcc5d11307aa75c5f6e4220f153f361e16b829142be1d51ff555b630201ea383c06d9df64db5b7f8821ef9ebae6</hash>
+        <hash alg="SHA-384">ff8a947b1e0c3de8dd80a738bb409d3b9b76b4247d10d5594a3a38edd0befd9fc16d651ce3f9dd00b155709e95762caa</hash>
+        <hash alg="SHA3-384">97b3d613b5cde6687d96d47a56e6718e6c3536bdd6436feb6a14aafe544d2414ca26d6f82a196eedb7b2a7307cb62768</hash>
+        <hash alg="SHA3-256">ab038af94bf04139747226f4d764af05c9e8ebbe9ac1930925fd47ac129305f0</hash>
+        <hash alg="SHA3-512">6c1a38c120496aa4cd9d97b70eae2c99d0b65797ff45a360a3070ec4bd8f1dceec35895299f770034952de949f3742fb2e75b72c7dafea5d0674a804e7e744d4</hash>
       </hashes>
       <licenses>
         <license>

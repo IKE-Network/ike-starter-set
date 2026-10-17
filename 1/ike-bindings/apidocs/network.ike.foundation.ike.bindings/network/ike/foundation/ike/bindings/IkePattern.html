@@ -142,7 +142,10 @@ initTheme();
 <li><a href="#ANNOTATION_PATTERN" tabindex="0">ANNOTATION_PATTERN</a></li>
 <li><a href="#ACTION_DEFINITION_PATTERN" tabindex="0">ACTION_DEFINITION_PATTERN</a></li>
 <li><a href="#COMPONENT_ACTION_INPUT_PATTERN" tabindex="0">COMPONENT_ACTION_INPUT_PATTERN</a></li>
+<li><a href="#DOCUMENT_BLOCK_EDIT_INPUT_PATTERN" tabindex="0">DOCUMENT_BLOCK_EDIT_INPUT_PATTERN</a></li>
 <li><a href="#VERSION_CHANGE_RESULT_PATTERN" tabindex="0">VERSION_CHANGE_RESULT_PATTERN</a></li>
+<li><a href="#SOURCE_RELEASE_PATTERN" tabindex="0">SOURCE_RELEASE_PATTERN</a></li>
+<li><a href="#KNOWLEDGE_BASE_COMPOSITION_PATTERN" tabindex="0">KNOWLEDGE_BASE_COMPOSITION_PATTERN</a></li>
 <li><a href="#DATA_TYPE_DEFAULTS_PATTERN" tabindex="0">DATA_TYPE_DEFAULTS_PATTERN</a></li>
 <li><a href="#DOCUMENT_BLOCK_PATTERN" tabindex="0">DOCUMENT_BLOCK_PATTERN</a></li>
 <li><a href="#ASCIIDOC_DOCUMENT_ATTRIBUTES_PATTERN" tabindex="0">ASCIIDOC_DOCUMENT_ATTRIBUTES_PATTERN</a></li>
@@ -306,73 +309,81 @@ adopted an established one; regenerate from the ledger.</div>
 <div class="col-last even-row-color">
 <div class="block">Description Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#DOCUMENT_BLOCK_PATTERN" class="member-name-link">DOCUMENT_BLOCK_PATTERN</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#DOCUMENT_BLOCK_EDIT_INPUT_PATTERN" class="member-name-link">DOCUMENT_BLOCK_EDIT_INPUT_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">The input of an action that replaces the text of a document block, the referenced component, which is the block's element semantic: the kind of action performed on it and the block's new text.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#DOCUMENT_BLOCK_PATTERN" class="member-name-link">DOCUMENT_BLOCK_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">One element of a structured document — a section, a block, a row, a cell, a list, an item or a turn — with its kind, level, title, verbatim parameters and ordered members; a new version only when one of these changes.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#ECL_DIALECT_PATTERN" class="member-name-link">ECL_DIALECT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#ECL_DIALECT_PATTERN" class="member-name-link">ECL_DIALECT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the ECL dialect.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EL_DIALECT_PATTERN" class="member-name-link">EL_DIALECT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#EL_DIALECT_PATTERN" class="member-name-link">EL_DIALECT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the EL++ dialect.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#EL_INFERRED_AXIOMS_PATTERN" class="member-name-link">EL_INFERRED_AXIOMS_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#EL_INFERRED_AXIOMS_PATTERN" class="member-name-link">EL_INFERRED_AXIOMS_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">EL++ Inferred Axioms Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EL_STATED_AXIOMS_PATTERN" class="member-name-link">EL_STATED_AXIOMS_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#EL_STATED_AXIOMS_PATTERN" class="member-name-link">EL_STATED_AXIOMS_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">EL++ Stated Axioms Pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#ELM_ORDERED_LIST_PATTERN" class="member-name-link">ELM_ORDERED_LIST_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#ELM_ORDERED_LIST_PATTERN" class="member-name-link">ELM_ORDERED_LIST_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The items an ELM list position holds, in order, each an ELM tree of its own, about the definition whose tree points at the list.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#ELM_REFERENCE_PATTERN" class="member-name-link">ELM_REFERENCE_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#ELM_REFERENCE_PATTERN" class="member-name-link">ELM_REFERENCE_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">One thing a definition names, about the definition semantic that names it: the kind of thing, the definition it is as a link, and the names as written.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#ELM_TREE_PATTERN" class="member-name-link">ELM_TREE_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#ELM_TREE_PATTERN" class="member-name-link">ELM_TREE_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">One definition of a library, or the library's own identity record, as one tree of ELM nodes, about the library concept.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#ELM_TYPE_POSITION_PATTERN" class="member-name-link">ELM_TYPE_POSITION_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#ELM_TYPE_POSITION_PATTERN" class="member-name-link">ELM_TYPE_POSITION_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">ELM type position pattern (ELM)</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#EXPRESSION_LANGUAGE_KEYWORD_PATTERN" class="member-name-link">EXPRESSION_LANGUAGE_KEYWORD_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#EXPRESSION_LANGUAGE_KEYWORD_PATTERN" class="member-name-link">EXPRESSION_LANGUAGE_KEYWORD_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Expression Language Keyword Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#FHIR_DIALECT_PATTERN" class="member-name-link">FHIR_DIALECT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#FHIR_DIALECT_PATTERN" class="member-name-link">FHIR_DIALECT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the FHIR dialect.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#GB_DIALECT_PATTERN" class="member-name-link">GB_DIALECT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#GB_DIALECT_PATTERN" class="member-name-link">GB_DIALECT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">GB Dialect Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#GIT_SOURCE_PATTERN" class="member-name-link">GIT_SOURCE_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#GIT_SOURCE_PATTERN" class="member-name-link">GIT_SOURCE_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">A document's git source: path and commit, one version per commit that changed the file.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#IDENTIFIER_PATTERN" class="member-name-link">IDENTIFIER_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#IDENTIFIER_PATTERN" class="member-name-link">IDENTIFIER_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Identifier Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#IKE_BASE_MODEL_COMPONENT_PATTERN" class="member-name-link">IKE_BASE_MODEL_COMPONENT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#IKE_BASE_MODEL_COMPONENT_PATTERN" class="member-name-link">IKE_BASE_MODEL_COMPONENT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">IKE base model component pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#INFERRED_NAVIGATION_PATTERN" class="member-name-link">INFERRED_NAVIGATION_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#INFERRED_NAVIGATION_PATTERN" class="member-name-link">INFERRED_NAVIGATION_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Inferred Navigation Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#JOURNAL_MANIFEST_PATTERN" class="member-name-link">JOURNAL_MANIFEST_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#JOURNAL_MANIFEST_PATTERN" class="member-name-link">JOURNAL_MANIFEST_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Holds the ordered lines of one structured document; a new version per insert, removal or reorder, so replay walks manifest versions in time.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#KNOWLEDGE_BASE_COMPOSITION_PATTERN" class="member-name-link">KNOWLEDGE_BASE_COMPOSITION_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">How the knowledge base was assembled, referencing this pattern: the inputs with their checksums, the source releases in the order they arrived, the classifier, and when it ran.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#KOMET_BASE_MODEL_COMPONENT_PATTERN" class="member-name-link">KOMET_BASE_MODEL_COMPONENT_PATTERN</a></code></div>
 <div class="col-last even-row-color">
@@ -474,64 +485,68 @@ adopted an established one; regenerate from the ledger.</div>
 <div class="col-last even-row-color">
 <div class="block">Solor Concepts Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#STAMP_CHRONOLOGY_PATTERN" class="member-name-link">STAMP_CHRONOLOGY_PATTERN</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#SOURCE_RELEASE_PATTERN" class="member-name-link">SOURCE_RELEASE_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">A source release imported into the knowledge base, referencing a module the import wrote: the release's name and date, the artifact and its checksum, the importer, the modules written, and the source releases it was layered on.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#STAMP_CHRONOLOGY_PATTERN" class="member-name-link">STAMP_CHRONOLOGY_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">STAMP Chronology Pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#STAMP_VERSION_FIELD_PATTERN" class="member-name-link">STAMP_VERSION_FIELD_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#STAMP_VERSION_FIELD_PATTERN" class="member-name-link">STAMP_VERSION_FIELD_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">STAMP version field pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#STARTER_SET_AUTHOR_ROSTER_PATTERN" class="member-name-link">STARTER_SET_AUTHOR_ROSTER_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#STARTER_SET_AUTHOR_ROSTER_PATTERN" class="member-name-link">STARTER_SET_AUTHOR_ROSTER_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Starter Set Author Roster Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#STATED_NAVIGATION_PATTERN" class="member-name-link">STATED_NAVIGATION_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#STATED_NAVIGATION_PATTERN" class="member-name-link">STATED_NAVIGATION_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Stated Navigation Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#TAXONOMY_FIELD_CONSTRAINT_PATTERN" class="member-name-link">TAXONOMY_FIELD_CONSTRAINT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#TAXONOMY_FIELD_CONSTRAINT_PATTERN" class="member-name-link">TAXONOMY_FIELD_CONSTRAINT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Taxonomy Field Constraint Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#UCUM_COMPOSED_UNIT_PATTERN" class="member-name-link">UCUM_COMPOSED_UNIT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#UCUM_COMPOSED_UNIT_PATTERN" class="member-name-link">UCUM_COMPOSED_UNIT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">A unit composed by UCUM's grammar: its canonical code, IKE's dimension and magnitude for it, and whether any factor is special or arbitrary, in which case it does not convert.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#UCUM_DIALECT_PATTERN" class="member-name-link">UCUM_DIALECT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#UCUM_DIALECT_PATTERN" class="member-name-link">UCUM_DIALECT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the UCUM dialect.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#UCUM_PREFIX_PATTERN" class="member-name-link">UCUM_PREFIX_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#UCUM_PREFIX_PATTERN" class="member-name-link">UCUM_PREFIX_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">What UCUM says of one prefix, kept verbatim: the code, the case-insensitive code, the print symbol, and the factor.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#UCUM_UNIT_PATTERN" class="member-name-link">UCUM_UNIT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#UCUM_UNIT_PATTERN" class="member-name-link">UCUM_UNIT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">What UCUM says of one unit, kept verbatim, and what IKE computes from it: the code, the case-insensitive code, the print symbol, the class, whether metric, special, or arbitrary, the definition's value and unit as written, and IKE's dimension and magnitude.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#US_CORE_DIALECT_PATTERN" class="member-name-link">US_CORE_DIALECT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#US_CORE_DIALECT_PATTERN" class="member-name-link">US_CORE_DIALECT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the US Core dialect.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#US_DIALECT_PATTERN" class="member-name-link">US_DIALECT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#US_DIALECT_PATTERN" class="member-name-link">US_DIALECT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the United States English dialect — one field, that description's acceptability for this dialect.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#VALUE_CONSTRAINT_PATTERN" class="member-name-link">VALUE_CONSTRAINT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#VALUE_CONSTRAINT_PATTERN" class="member-name-link">VALUE_CONSTRAINT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Value Constraint Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#VALUE_SET_FIELD_CONSTRAINT_PATTERN" class="member-name-link">VALUE_SET_FIELD_CONSTRAINT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#VALUE_SET_FIELD_CONSTRAINT_PATTERN" class="member-name-link">VALUE_SET_FIELD_CONSTRAINT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Value-set Field Constraint Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#VERSION_CHANGE_RESULT_PATTERN" class="member-name-link">VERSION_CHANGE_RESULT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#VERSION_CHANGE_RESULT_PATTERN" class="member-name-link">VERSION_CHANGE_RESULT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The result of an action that writes a new version of its subject, referencing the run's input: the outcome, the STAMP of the version written (the outcome concept itself when nothing was written), and a message.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#VERSION_CONTROL_PATH_PATTERN" class="member-name-link">VERSION_CONTROL_PATH_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#VERSION_CONTROL_PATH_PATTERN" class="member-name-link">VERSION_CONTROL_PATH_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Version control path pattern</div>
 </div>
 </div>
@@ -1204,11 +1219,38 @@ the order they are declared.</div>
 </section>
 </li>
 <li>
+<section class="detail" id="DOCUMENT_BLOCK_EDIT_INPUT_PATTERN">
+<h3>DOCUMENT_BLOCK_EDIT_INPUT_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">DOCUMENT_BLOCK_EDIT_INPUT_PATTERN</span></div>
+<div class="block">The input of an action that replaces the text of a document block, the referenced component, which is the block's element semantic: the kind of action performed on it and the block's new text.</div>
+</div>
+</section>
+</li>
+<li>
 <section class="detail" id="VERSION_CHANGE_RESULT_PATTERN">
 <h3>VERSION_CHANGE_RESULT_PATTERN</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">VERSION_CHANGE_RESULT_PATTERN</span></div>
 <div class="block">The result of an action that writes a new version of its subject, referencing the run's input: the outcome, the STAMP of the version written (the outcome concept itself when nothing was written), and a message.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="SOURCE_RELEASE_PATTERN">
+<h3>SOURCE_RELEASE_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">SOURCE_RELEASE_PATTERN</span></div>
+<div class="block">A source release imported into the knowledge base, referencing a module the import wrote: the release's name and date, the artifact and its checksum, the importer, the modules written, and the source releases it was layered on. Written under the source's own stamp, one per importer.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="KNOWLEDGE_BASE_COMPOSITION_PATTERN">
+<h3>KNOWLEDGE_BASE_COMPOSITION_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">KNOWLEDGE_BASE_COMPOSITION_PATTERN</span></div>
+<div class="block">How the knowledge base was assembled, referencing this pattern: the inputs with their checksums, the source releases in the order they arrived, the classifier, and when it ran. One record per knowledge base; each assembly is a new version.</div>
 </div>
 </section>
 </li>
