@@ -93,7 +93,8 @@ final class KernelBindings {
         bind(set, "b32dd26b-c3fc-487e-987e-16ace71a0d0f", "IDENTIFIER_VALUE");
         bind(set, "03004053-c23e-5206-8514-fb551dd328f4", "INACTIVE_STATE");
         bind(set, "def77c09-e1eb-40f2-931a-e7cf2ce0e597", "INCLUSION_SET");
-        // Declared after the kernel was cut, so it carries its derived identity.
+        // Declared after the kernel was cut, so these carry their derived identities.
+        set.bind(set.conceptRef(ClassificationModelSet.BOTTOM).publicId(), Ike.KERNEL, "BOTTOM");
         set.bind(set.patternRef(ClassificationModelSet.INFERRED_EQUIVALENCE_PATTERN).publicId(), Ike.KERNEL,
                 "INFERRED_EQUIVALENCE_PATTERN");
         // The record a transaction keeps (IKE-Network/ike-issues#1308): its pattern, the module it

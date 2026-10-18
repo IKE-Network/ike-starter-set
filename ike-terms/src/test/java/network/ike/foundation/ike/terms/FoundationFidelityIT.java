@@ -218,7 +218,7 @@ class FoundationFidelityIT {
      * states (open, committed, cancelled); Change basis, Change basis path, External change basis;
      * and Transaction components.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12;
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1;   // + Nothing, the bottom concept (ClassificationModelSet)
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field

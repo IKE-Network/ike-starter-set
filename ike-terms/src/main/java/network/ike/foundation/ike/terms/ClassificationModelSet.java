@@ -24,7 +24,8 @@ import dev.ikm.tinkar.terms.KernelConcept;
 
 /**
  * Declares what classification concludes beyond the taxonomy's edges: the concepts a
- * classified concept is logically equivalent to. The inferred navigation pattern records
+ * classified concept is logically equivalent to, and the bottom concept, Nothing, that an
+ * unsatisfiable concept is equivalent to. The inferred navigation pattern records
  * parents and children only, and equivalent concepts share both, so without this pattern a
  * classification's equivalences were held in memory and lost when it finished.
  * <p>
@@ -40,6 +41,9 @@ final class ClassificationModelSet {
     private static final EntityProxy.Concept LOGICALLY_EQUIVALENT_TO =
             EntityProxy.Concept.make("Logically equivalent to (Solor)", PublicIds.of("3642d9a3-8e23-5289-836b-366c0b1e2900"));
 
+    /** The bottom concept's birth name; its identity derives from it. */
+    static final String BOTTOM = "Nothing (IkeFoundation)";
+
     /** The equivalence pattern's birth name; its identity derives from it. */
     static final String INFERRED_EQUIVALENCE_PATTERN = "Inferred equivalence pattern (IkeFoundation)";
 
@@ -53,6 +57,19 @@ final class ClassificationModelSet {
      */
     static void compose(KnowledgeSet set) {
         ActiveStamp inception = Ike.INCEPTION;
+
+        // The bottom concept: what an unsatisfiable concept is equivalent to. Every concept
+        // subsumes it, so it has no place in the taxonomy of its own; it is stated under the
+        // root, where an incoherent definition shows at once.
+        set.concept(BOTTOM).at(inception)
+                .synonym("Nothing")
+                .synonym("Bottom concept")
+                .definition("The concept with no instances, a kind of every concept: the reasoner's"
+                        + " bottom, owl:Nothing in OWL. A concept classification finds equivalent to it"
+                        + " is unsatisfiable: its definition contradicts itself, as when it is a kind of"
+                        + " two disjoint concepts. Stated under the root, so unsatisfiable concepts,"
+                        + " which share its place, show at the top of the taxonomy.")
+                .isA(KernelConcept.ROOT_VERTEX);
 
         ConceptFacade purpose = set.conceptRef("Taxonomy Navigation Cache (IkeFoundation)");
         set.pattern(INFERRED_EQUIVALENCE_PATTERN).at(inception)
