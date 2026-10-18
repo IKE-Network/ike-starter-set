@@ -21,25 +21,38 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.terms.ConceptFacade;
 import dev.ikm.tinkar.terms.EntityProxy;
 import dev.ikm.tinkar.terms.KernelConcept;
+import dev.ikm.tinkar.terms.KernelPattern;
+
+import java.time.Instant;
 
 /**
- * Declares how a knowledge base records what it is made of (IKE-Network/ike-issues#1304): the
- * source releases imported into it, and the assembly that composed them.
+ * Declares how a knowledge base registers what it is made of (IKE-Network/ike-issues#1304): the
+ * releases imported into it, the assemblies that composed it, and the exports taken from it.
  *
- * <p><b>Source release.</b> Each source import writes one {@code Source release pattern} semantic,
- * referencing a module the import wrote, under a stamp of the source's own, so it travels inside
- * the source's delta into every assembly that loads it. There is one per importer: a later
- * release is a new version of the same semantic, and the stamp history says which release was
- * loaded.
+ * <p><b>Who and where.</b> Every registration is written by the {@code IKE Registrar}, in the
+ * {@code IKE Registry module}, on the {@code IKE Registry path}, whatever tool writes it, so the
+ * accounting is in one place. Registrations are bookkeeping about the knowledge base, not knowledge:
+ * content views leave them out, and a registration carried in an export keeps its stamp wherever it
+ * is loaded.
  *
- * <p><b>Composition.</b> An assembly writes one {@code Knowledge base composition pattern}
- * semantic, referencing the pattern itself, before it exports: its inputs, the source releases the
- * store holds in the order they arrived, and the classifier. Each assembly is a new version of it.
+ * <p><b>Release registration.</b> Each source import writes one, identified by the importer's name,
+ * the options that change what it writes, and the release's SHA-256, so importing the same release
+ * the same way again writes nothing new. It is stamped at the publisher's release date.
  *
- * <p><b>The fully qualified names are frozen.</b> The knowledge provider ({@code
- * KnowledgeBaseComposition}) names both patterns by their derived identities,
- * {@code T5(d890e06f…, "<name> (IkeFoundation)")}, and writes their fields in the order declared
- * here; renaming a pattern or reordering its fields breaks every knowledge base already built.
+ * <p><b>Assembly registration.</b> Each assembly writes one, identified by the ordered checksums of
+ * its inputs, stamped when it ran: rebuilding from the same inputs is a new version, different inputs
+ * a new registration.
+ *
+ * <p><b>Export registration.</b> Each export writes one, identified by the checksum of what it
+ * wrote, stamped when it ran.
+ *
+ * <p><b>Superseded.</b> The {@code Source release pattern} and {@code Knowledge base composition
+ * pattern} this set declared first were carried by checkpoints, so their names are frozen; nothing
+ * writes them any more.
+ *
+ * <p><b>The fully qualified names are frozen</b> once a checkpoint carries them: tinkar-core's
+ * registry names the Registrar, the module, the path and the patterns through the kernel bindings,
+ * and writes the fields in the order declared here.
  */
 final class SourceReleaseModelSet {
 
@@ -51,6 +64,33 @@ final class SourceReleaseModelSet {
 
     /** The composition pattern's birth name; its identity derives from it. */
     static final String COMPOSITION_PATTERN = "Knowledge base composition pattern (IkeFoundation)";
+
+    /** The release registration pattern's birth name; its identity derives from it. */
+    static final String RELEASE_REGISTRATION_PATTERN = "Release registration pattern (IkeFoundation)";
+
+    /** The assembly registration pattern's birth name; its identity derives from it. */
+    static final String ASSEMBLY_REGISTRATION_PATTERN = "Assembly registration pattern (IkeFoundation)";
+
+    /** The export registration pattern's birth name; its identity derives from it. */
+    static final String EXPORT_REGISTRATION_PATTERN = "Export registration pattern (IkeFoundation)";
+
+    /** The Registrar's birth name. */
+    static final String REGISTRAR = "IKE Registrar (IkeFoundation)";
+
+    /** The Registry module's birth name. */
+    static final String REGISTRY_MODULE = "IKE Registry module (IkeFoundation)";
+
+    /** The Registry path's birth name. */
+    static final String REGISTRY_PATH = "IKE Registry path (IkeFoundation)";
+
+    private static final EntityProxy.Concept MODULE_SOLOR =
+            EntityProxy.Concept.make("Module (SOLOR)", PublicIds.of("40d1c869-b509-32f8-b735-836eac577a67"));
+
+    private static final EntityProxy.Concept PATH_SOLOR =
+            EntityProxy.Concept.make("Path (SOLOR)", PublicIds.of("4459d8cf-5a6f-3952-9458-6d64324b27b7"));
+
+    /** The origin time every path in the set takes: the whole of its origin path. */
+    private static final Instant ORIGIN_LATEST = Instant.parse("+1000000000-12-31T23:59:59.999999999Z");
 
     private SourceReleaseModelSet() {
     }
@@ -84,11 +124,10 @@ final class SourceReleaseModelSet {
                 "The source's own name for the release, as its importer reports it: an edition, a"
                         + " version, a release date.");
         concept(set, inception, "Release date", "Knowledge base provenance model",
-                "When the release took effect in the knowledge base: the latest time among the stamps"
-                        + " its import wrote.");
+                "The date the publisher gave the release, as its importer reports it.");
         concept(set, inception, "Release artifact", "Knowledge base provenance model",
-                "The artifact the release was imported from: its Maven coordinate when it was resolved"
-                        + " from a repository, otherwise its file name.");
+                "The artifact the release was imported from, as it was named: its Maven coordinate"
+                        + " when it was resolved from a repository, otherwise its file name.");
         concept(set, inception, "Origin checksum", "Knowledge base provenance model",
                 "The SHA-256 of the artifact as imported, written sha256:<hex>; for a directory, of its"
                         + " files in path order, each relative path followed by its content.");
@@ -107,8 +146,8 @@ final class SourceReleaseModelSet {
                         + " the source releases it holds in the order they arrived, and the classifier"
                         + " that reasoned over them. Each assembly writes a new version.");
         concept(set, inception, "Assembly inputs", "Knowledge base provenance model",
-                "The assembly's inputs in load order, one per line: the input's role, its artifact,"
-                        + " and its SHA-256 checksum.");
+                "The assembly's inputs in load order, one per line: the input's role, its artifact as"
+                        + " named, its resolved version when it has one, and its SHA-256 checksum.");
         concept(set, inception, "Source releases", "Knowledge base provenance model",
                 "The source release records the knowledge base holds, in the order they arrived.");
         // Not "Classifier": that is the regular name of Classifier for logic coordinate.
@@ -131,10 +170,8 @@ final class SourceReleaseModelSet {
                 .field(set.conceptRef(fqn("Modules written")), provenance, KernelConcept.COMPONENT_ID_SET_FIELD)
                 .field(set.conceptRef(fqn("Base releases")), provenance, KernelConcept.COMPONENT_ID_SET_FIELD)
                 .synonym("Source release pattern")
-                .definition("A source release imported into the knowledge base, referencing a module"
-                        + " the import wrote: the release's name and date, the artifact and its"
-                        + " checksum, the importer, the modules written, and the source releases it"
-                        + " was layered on. Written under the source's own stamp, one per importer.");
+                .definition("Superseded by the release registration pattern"
+                        + " (IKE-Network/ike-issues#1304); nothing writes it.");
 
         set.pattern(COMPOSITION_PATTERN).at(inception)
                 .meaning(set.conceptRef(fqn("Knowledge base composition")))
@@ -144,13 +181,136 @@ final class SourceReleaseModelSet {
                 .field(set.conceptRef(fqn("Assembly classifier")), provenance, KernelConcept.STRING)
                 .field(set.conceptRef(fqn("Assembled")), provenance, KernelConcept.INSTANT_LITERAL)
                 .synonym("Knowledge base composition pattern")
-                .definition("How the knowledge base was assembled, referencing this pattern: the"
-                        + " inputs with their checksums, the source releases in the order they"
-                        + " arrived, the classifier, and when it ran. One record per knowledge base;"
-                        + " each assembly is a new version.");
+                .definition("Superseded by the assembly registration pattern"
+                        + " (IKE-Network/ike-issues#1304); nothing writes it.");
+
+        composeRegistry(set, inception, provenance);
     }
 
-    private static String fqn(String name) {
+    /**
+     * The Registrar, the Registry module and path, and the three registration patterns.
+     */
+    private static void composeRegistry(KnowledgeSet set, ActiveStamp inception, ConceptFacade provenance) {
+        String model = "Knowledge base provenance model";
+
+        // ── Who and where ────────────────────────────────────────────────────
+        set.concept(REGISTRAR).at(inception)
+                .synonym("IKE Registrar")
+                .definition("The author of every registration: the IKE tooling that records what a"
+                        + " knowledge base is made of whenever it imports, assembles or exports,"
+                        + " in Komet, in a Maven goal, or anywhere else.")
+                .isA(KernelConcept.USER);
+        set.concept(REGISTRY_MODULE).at(inception)
+                .synonym("IKE Registry module")
+                .definition("The module registrations are written in: bookkeeping about what the"
+                        + " knowledge base is made of, not knowledge. Content views leave it out.")
+                .isA(MODULE_SOLOR, set.conceptRef(fqn(model)));
+        set.concept(REGISTRY_PATH).at(inception)
+                .synonym("IKE Registry path")
+                .definition("The path every registration is written on, whatever path the content"
+                        + " it describes is on, so the accounting of a knowledge base is in one place."
+                        + " Nothing is promoted to or from it.")
+                .isA(PATH_SOLOR)
+                .semantic(KernelPattern.PATHS_PATTERN, PublicIds.of(set.uuidFor("IKE Registry path: path")))
+                .semantic(KernelPattern.PATH_ORIGINS_PATTERN, PublicIds.of(set.uuidFor("IKE Registry path: origin")),
+                        KernelConcept.PRIMORDIAL_PATH, ORIGIN_LATEST);
+
+        // ── Registration fields ──────────────────────────────────────────────
+        concept(set, inception, "Release registration", model,
+                "The record of one release imported into a knowledge base: what was read, how it was"
+                        + " read, and what the import wrote. Identified by the importer, the options that"
+                        + " change what it writes, and the release's checksum, so importing the same"
+                        + " release the same way again writes nothing new.");
+        concept(set, inception, "Resolved version", model,
+                "The version the artifact resolved to when it was named by a Maven coordinate: for a"
+                        + " snapshot, its timestamped version. Empty for an artifact named by file.");
+        concept(set, inception, "Importer options", model,
+                "The importer's options that change what it writes, one name=value per line in name"
+                        + " order; part of the registration's identity.");
+        concept(set, inception, "Stamps written", model,
+                "The stamps the import wrote versions under, whether they were new to the knowledge"
+                        + " base or not. The components, modules and paths it wrote follow from them.");
+        concept(set, inception, "Components written", model,
+                "How many components the import created for the first time.");
+        concept(set, inception, "Components versioned", model,
+                "How many components the import gave a new version.");
+        concept(set, inception, "Components unchanged", model,
+                "How many components the import found the same and left untouched: what no stamp"
+                        + " shows it looked at.");
+        concept(set, inception, "Semantics retired", model,
+                "How many semantics the import retired.");
+        concept(set, inception, "Assembly registration", model,
+                "The record of one assembly of a knowledge base: its inputs in load order, the release"
+                        + " registrations in the order they arrived, and the classifier, stamped when it"
+                        + " ran. Identified by the ordered checksums of its inputs.");
+        concept(set, inception, "Release registrations", model,
+                "The release registrations the knowledge base holds, in the order they arrived.");
+        concept(set, inception, "Export registration", model,
+                "The record of one export from a knowledge base: the file written, what it selected,"
+                        + " and the checksum of what it wrote, stamped when it ran. Identified by that"
+                        + " checksum.");
+        concept(set, inception, "Export file", model,
+                "The name of the file the export wrote.");
+        concept(set, inception, "Export selection", model,
+                "What the export selected: its time window, modules, or other filter, as text.");
+        concept(set, inception, "Output checksum", model,
+                "The SHA-256 of what the export wrote, written sha256:<hex>.");
+        concept(set, inception, "Components exported", model,
+                "How many components the export wrote.");
+
+        // ── Registration patterns ────────────────────────────────────────────
+        set.pattern(RELEASE_REGISTRATION_PATTERN).at(inception)
+                .meaning(set.conceptRef(fqn("Release registration")))
+                .purpose(provenance)
+                .field(set.conceptRef(fqn("Release name")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Release date")), provenance, KernelConcept.INSTANT_LITERAL)
+                .field(set.conceptRef(fqn("Release artifact")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Resolved version")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Origin checksum")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Importer")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Importer options")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Stamps written")), provenance, KernelConcept.COMPONENT_ID_SET_FIELD)
+                .field(set.conceptRef(fqn("Components written")), provenance, KernelConcept.LONG)
+                .field(set.conceptRef(fqn("Components versioned")), provenance, KernelConcept.LONG)
+                .field(set.conceptRef(fqn("Components unchanged")), provenance, KernelConcept.LONG)
+                .field(set.conceptRef(fqn("Semantics retired")), provenance, KernelConcept.LONG)
+                .field(set.conceptRef(fqn("Base releases")), provenance, KernelConcept.COMPONENT_ID_SET_FIELD)
+                .synonym("Release registration pattern")
+                .definition("A release imported into the knowledge base, referencing this pattern:"
+                        + " the release's name and publisher date, the artifact as named, its resolved"
+                        + " version and checksum, the importer and the options that change what it"
+                        + " writes, the stamps it wrote under, its counts, and the release"
+                        + " registrations it was layered on. Written by the IKE Registrar in the"
+                        + " Registry module on the Registry path, stamped at the release date.");
+
+        set.pattern(ASSEMBLY_REGISTRATION_PATTERN).at(inception)
+                .meaning(set.conceptRef(fqn("Assembly registration")))
+                .purpose(provenance)
+                .field(set.conceptRef(fqn("Assembly inputs")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Release registrations")), provenance, KernelConcept.COMPONENT_ID_LIST_FIELD)
+                .field(set.conceptRef(fqn("Assembly classifier")), provenance, KernelConcept.STRING)
+                .synonym("Assembly registration pattern")
+                .definition("An assembly of the knowledge base, referencing this pattern: its inputs in"
+                        + " load order, each with its role, artifact as named, resolved version and"
+                        + " checksum; the release registrations in the order they arrived; and the"
+                        + " classifier. Written by the IKE Registrar in the Registry module on the"
+                        + " Registry path, stamped when the assembly ran.");
+
+        set.pattern(EXPORT_REGISTRATION_PATTERN).at(inception)
+                .meaning(set.conceptRef(fqn("Export registration")))
+                .purpose(provenance)
+                .field(set.conceptRef(fqn("Export file")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Export selection")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Output checksum")), provenance, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Components exported")), provenance, KernelConcept.LONG)
+                .synonym("Export registration pattern")
+                .definition("An export from the knowledge base, referencing this pattern: the file"
+                        + " written, what it selected, the checksum of what it wrote, and how many"
+                        + " components it wrote. Written by the IKE Registrar in the Registry module on"
+                        + " the Registry path, stamped when the export ran.");
+    }
+
+    static String fqn(String name) {
         return name + " (IkeFoundation)";
     }
 
