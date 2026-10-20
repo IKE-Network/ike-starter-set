@@ -174,6 +174,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // elements are its children, so it composes first.
         DocumentStructureSet.compose(Ike.SET);
         AsciiDocModelSet.compose(Ike.SET);
+        // AnfStatementSet declares an ANF statement as one tree in an ANF statement pattern
+        // (IKE-Network/ike-issues#1312); its circumstance vertices reuse the circumstance
+        // kinds ElmNodeKindSet declares, so it composes after that set.
+        AnfStatementSet.compose(Ike.SET);
         KernelBindings.compose(Ike.SET);
         KometBindings.compose(Ike.SET);
         return Ike.SET;
