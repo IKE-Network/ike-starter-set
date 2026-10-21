@@ -233,7 +233,7 @@ class FoundationFidelityIT {
      * purpose and field, ANF statement structure and ANF statement tree. The circumstance kinds it
      * reuses are {@code ElmNodeKindSet}'s and count there.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63;   // + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312)
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63 + 4 + 21;   // + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312); + InstanceDataSet (4) and DocumentVertexSet (21) (#1313)
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -258,7 +258,7 @@ class FoundationFidelityIT {
      * mark, and the FHIR, QDM, QUICK, QI-Core, and US Core dialect patterns); and {@code ElmNodeKindSet} 2
      * (#1116: the Model Class Bridge Pattern and the Model Element Reading Pattern).
      */
-    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1 + 3 + 2 + 1 + 1 + 1 + 3 + 1;   // + the ANF statement pattern (AnfStatementSet, #1312); + the Release, Assembly and Export registration patterns (#1304); + the Change transaction pattern (ChangeTrackingModelSet, #1308); + the Inferred equivalence pattern (ClassificationModelSet); + the Document block edit input pattern (#1306); + the Source release and Knowledge base composition patterns (SourceReleaseModelSet, #1304); + the Action definition, Component action input and Version change result patterns (dev-komet-actions); + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
+    private static final long AUTHORED_CONTENT_PATTERNS = 36 + 12 + 1 + 3 + 2 + 1 + 1 + 1 + 3 + 1 + 1;   // + the Document vertex pattern, a template (DocumentVertexSet, #1313); + the ANF statement pattern (AnfStatementSet, #1312); + the Release, Assembly and Export registration patterns (#1304); + the Change transaction pattern (ChangeTrackingModelSet, #1308); + the Inferred equivalence pattern (ClassificationModelSet); + the Document block edit input pattern (#1306); + the Source release and Knowledge base composition patterns (SourceReleaseModelSet, #1304); + the Action definition, Component action input and Version change result patterns (dev-komet-actions); + the AsciiDoc document attributes, block and eight reference patterns, git source and affirmation (#468); + the adopted journal manifest pattern, the block pattern having moved to DocumentStructureSet (#844); the affirmation pattern became the Annotation pattern (#1300)
     /**
      * Concepts a catalog import mints, never authored by hand: {@code ElmNodeCatalogSet},
      * generated from HL7's ELM schemas at cqframework/clinical_quality_language v5.3.0 by

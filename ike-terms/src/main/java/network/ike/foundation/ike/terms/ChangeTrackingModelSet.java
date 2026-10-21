@@ -47,8 +47,6 @@ import dev.ikm.tinkar.terms.KernelConcept;
  */
 final class ChangeTrackingModelSet {
 
-    private static final EntityProxy.Concept MODULE_SOLOR =
-            EntityProxy.Concept.make("Module (SOLOR)", PublicIds.of("40d1c869-b509-32f8-b735-836eac577a67"));
 
     /** The change transaction pattern's birth name; its identity derives from it. */
     static final String CHANGE_TRANSACTION_PATTERN = "Change transaction pattern (IkeFoundation)";
@@ -74,9 +72,10 @@ final class ChangeTrackingModelSet {
         set.concept(fqn("Change tracking module")).at(inception)
                 .synonym("Change tracking module")
                 .definition("The module transaction records are written to: bookkeeping about how the"
-                        + " knowledge base changed, not knowledge. Default views and published releases"
-                        + " leave it out; change sets exchanged between people carry it.")
-                .isA(MODULE_SOLOR, set.conceptRef(fqn(model)));
+                        + " knowledge base changed, not knowledge. It is an instance module: its records"
+                        + " are the store's own, written to the instance change sets and never published"
+                        + " with knowledge (IKE-Network/ike-issues#1313).")
+                .isA(set.conceptRef(InstanceDataSet.INSTANCE_MODULE), set.conceptRef(fqn(model)));
 
         concept(set, inception, "Change transaction", model,
                 "One transaction of changes to a knowledge base by one author: its name, its basis, what"

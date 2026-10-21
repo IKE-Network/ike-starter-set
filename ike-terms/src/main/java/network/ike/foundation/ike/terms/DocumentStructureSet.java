@@ -48,8 +48,6 @@ final class DocumentStructureSet {
 
     static final String ROOT_FQN = "Document structure model (IkeFoundation)";
 
-    private static final EntityProxy.Concept MODULE_SOLOR =
-            EntityProxy.Concept.make("Module (SOLOR)", PublicIds.of("40d1c869-b509-32f8-b735-836eac577a67"));
     private static final EntityProxy.Concept IKE_BASE_MODEL_CONCEPT =
             EntityProxy.Concept.make("IKE base model concept", PublicIds.of("bc59d656-83d3-47d8-9507-0e656ea95463"));
 
@@ -80,37 +78,37 @@ final class DocumentStructureSet {
                 "Anything that groups a structured document's lines: a section, a block, a"
                         + " row, a cell, a list item, a conversation turn. The lines themselves"
                         + " are prose elements, which these elements group.");
-        concept(set, foundation, "Document section", fqn("Document element"),
+        named(set, foundation, "Document section", "Section", fqn("Document element"),
                 "A section: a heading of some level and the elements beneath it until the next"
                         + " heading of that level or shallower.");
         concept(set, foundation, "Document block", fqn("Document element"),
                 "A block-level element grouping lines: the paragraphs, listings, quotations,"
                         + " lists, tables and images a section or a turn contains.");
-        concept(set, foundation, "Document paragraph", fqn("Document block"),
+        named(set, foundation, "Document paragraph", "Paragraph", fqn("Document block"),
                 "A run of prose lines up to a blank line; under semantic line breaks each line is"
                         + " one claim, so the paragraph groups claims and the line keeps the"
                         + " provenance.");
-        concept(set, foundation, "Document listing", fqn("Document block"),
+        named(set, foundation, "Document listing", "Listing", fqn("Document block"),
                 "A delimited block of text kept as written, such as an AsciiDoc ---- listing or a"
                         + " Markdown fenced block; its language or other tag is in its parameters.");
-        concept(set, foundation, "Document quotation", fqn("Document block"),
+        named(set, foundation, "Document quotation", "Quotation", fqn("Document block"),
                 "A quotation block, with its attribution in its parameters when it has one.");
-        concept(set, foundation, "Document table", fqn("Document block"),
+        named(set, foundation, "Document table", "Table", fqn("Document block"),
                 "A table; its column specification and options are its parameters, its rows its"
                         + " members.");
-        concept(set, foundation, "Document table row", fqn("Document block"),
+        named(set, foundation, "Document table row", "Row", fqn("Document block"),
                 "One row of a table; its cells are its members.");
-        concept(set, foundation, "Document table cell", fqn("Document block"),
+        named(set, foundation, "Document table cell", "Cell", fqn("Document block"),
                 "One cell of a table row; its lines are its members.");
-        concept(set, foundation, "Document list", fqn("Document block"),
+        named(set, foundation, "Document list", "List", fqn("Document block"),
                 "An unordered, ordered or description list; the kind is in its parameters, its"
                         + " items its members.");
-        concept(set, foundation, "Document list item", fqn("Document block"),
+        named(set, foundation, "Document list item", "List item", fqn("Document block"),
                 "One item of a list, with its continuation blocks as members; a description"
                         + " list item's term is its title.");
-        concept(set, foundation, "Document image", fqn("Document block"),
+        named(set, foundation, "Document image", "Image", fqn("Document block"),
                 "An image; the target and the alternative text are in its parameters.");
-        concept(set, foundation, "Document opaque block", fqn("Document block"),
+        named(set, foundation, "Document opaque block", "Opaque block", fqn("Document block"),
                 "A block the parse recognises but does not model, kept verbatim so the document"
                         + " reads back unchanged.");
 
@@ -119,15 +117,15 @@ final class DocumentStructureSet {
                 "A field of the document block pattern.");
         concept(set, foundation, "Document element kind", fqn("Document field"),
                 "Which element a block semantic is: a concept under Document element.");
-        concept(set, foundation, "Document element level", fqn("Document field"),
+        named(set, foundation, "Document element level", "Level", fqn("Document field"),
                 "A section's heading level, or a list's nesting depth.");
-        concept(set, foundation, "Document element title", fqn("Document field"),
+        named(set, foundation, "Document element title", "Title", fqn("Document field"),
                 "A section's heading text, a block's title, a description list item's term.");
-        concept(set, foundation, "Document element parameters", fqn("Document field"),
+        named(set, foundation, "Document element parameters", "Parameters", fqn("Document field"),
                 "The element's parameters as written, such as an AsciiDoc attribute line or a"
                         + " Markdown fence's info string, kept verbatim so the document reads back"
                         + " unchanged; a reader parses what it needs.");
-        concept(set, foundation, "Document element members", fqn("Document field"),
+        named(set, foundation, "Document element members", "Members", fqn("Document field"),
                 "The lines and elements an element contains, in order.");
         concept(set, foundation, "Document structure", ROOT_FQN,
                 "Carrying a structured document's structure: the purpose of the document block"
@@ -149,11 +147,11 @@ final class DocumentStructureSet {
                         + " of these changes.");
 
         // ── Conversation journals ────────────────────────────────────────────────
-        concept(set, foundation, "Conversation journal", fqn("Structured document"),
+        named(set, foundation, "Conversation journal", "Journal", fqn("Structured document"),
                 "A conversation held as a structured document: each conversation is anchored by"
                         + " an instance of this concept, its turns' lines are prose elements in"
                         + " manifest order, and its turns and their blocks are document elements.");
-        concept(set, foundation, "Conversation turn", fqn("Document element"),
+        named(set, foundation, "Conversation turn", "Turn", fqn("Document element"),
                 "One turn of a conversation, by a person or by the Komet assistant; its members"
                         + " are its blocks. Who wrote it is the STAMP author of its versions, never"
                         + " a field.");
@@ -165,12 +163,25 @@ final class DocumentStructureSet {
         set.concept(fqn("Conversation journal module")).at(foundation)
                 .synonym("Conversation journal module")
                 .definition("The module every conversation journal's lines, elements and manifest"
-                        + " stamp in, so conversations can be carried or omitted as a unit.")
-                .isA(MODULE_SOLOR);
+                        + " stamp in, so conversations can be carried or omitted as a unit. A journal's"
+                        + " only record is the store, so the module is an instance module"
+                        + " (IKE-Network/ike-issues#1313).")
+                .isA(set.conceptRef(InstanceDataSet.INSTANCE_MODULE));
     }
 
     static String fqn(String name) {
         return name + " (IkeFoundation)";
+    }
+
+    /**
+     * A concept whose preferred synonym is the bare noun a vertex of its kind is read by, while its
+     * fully qualified name keeps the qualifying words (IKE-Network/ike-issues#1313).
+     */
+    private static void named(KnowledgeSet set, ActiveStamp stamp, String name, String synonym, String parentFqn, String definition) {
+        set.concept(fqn(name)).at(stamp)
+                .synonym(synonym)
+                .definition(definition)
+                .isA(set.conceptRef(parentFqn));
     }
 
     private static void concept(KnowledgeSet set, ActiveStamp stamp, String name, String parentFqn, String definition) {
