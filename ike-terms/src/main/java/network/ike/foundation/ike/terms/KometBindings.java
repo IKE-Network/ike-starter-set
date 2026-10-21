@@ -119,6 +119,7 @@ final class KometBindings {
         bind(set, "d79be663-33f0-5208-923f-2245e67b6cca", "ACTIVATE_COMPONENT");
         bind(set, "e258555e-fe67-5bfc-8340-7707177e1dbc", "INACTIVATE_COMPONENT");
         bind(set, "18d930ea-9ced-5cc2-b19f-257547037d03", "EDIT_DOCUMENT_BLOCK");
+        bind(set, "cd4f4488-ca4c-5e44-904e-ca91b5399c6d", "EDIT_DOCUMENT_SENTENCE");
         bind(set, "a0bdab4e-69db-559d-ac82-24e3f1af7702", "ACTION_COMPLETED");
         bind(set, "f72d46df-3a28-5d99-b89a-2fc45311803d", "ACTION_REFUSED");
         bind(set, "2b555975-4639-5c58-bea4-8288e281cffa", "ACTION_FAILED");

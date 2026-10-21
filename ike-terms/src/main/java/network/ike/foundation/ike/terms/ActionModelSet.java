@@ -213,6 +213,18 @@ final class ActionModelSet {
                         + " as text: edit the blocks it holds. Refuse when an edit of the document by"
                         + " someone else is pending. Report what changed; the edit stays uncommitted until"
                         + " the person commits the document in git.");
+        changeAction(set, inception, "Edit document sentence", "Document block edit input pattern",
+                "Replaces the text of one sentence of a document materialized from git as semantic"
+                        + " vertices (IKE-Network/ike-issues#1313): the sentence goes on a line of its own, a"
+                        + " part of it on one line whose words survive keeps that line, and only changed text"
+                        + " is broken anew, after a clause or a comma. The block's lines are then edited as"
+                        + " Edit document block edits them, and the sentence gets a new version under its own"
+                        + " identity. The input's subject is the sentence; its text is the replacement.",
+                "Edit only a sentence the person has asked to change, and give its whole new text. Refuse"
+                        + " a text that would change the document's structure, such as a line that would open"
+                        + " a list or a section, and refuse when an edit of the document by someone else is"
+                        + " pending. Report what changed; the edit stays uncommitted until the person commits"
+                        + " the document in git.");
     }
 
     static String fqn(String name) {

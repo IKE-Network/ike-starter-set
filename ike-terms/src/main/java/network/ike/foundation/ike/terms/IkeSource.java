@@ -179,6 +179,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // pattern. Its block meanings are the elements the two sets above declare, so it composes
         // after both.
         DocumentVertexSet.compose(Ike.SET);
+        // DocumentSegmentSet declares the text below the line as vertices (IKE-Network/ike-issues#1313):
+        // sentences, inline elements and the keys they carry. It reuses the vertex property parent
+        // and the inline references declared above, so it composes after them.
+        DocumentSegmentSet.compose(Ike.SET);
         // InstanceDataSet declares the module parents that decide a pattern's kind, knowledge,
         // ephemeral or instance (IKE-Network/ike-issues#1313), and the document modules under them.
         InstanceDataSet.compose(Ike.SET);

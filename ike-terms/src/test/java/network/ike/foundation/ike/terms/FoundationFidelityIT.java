@@ -205,7 +205,8 @@ class FoundationFidelityIT {
      * pattern, Model instructions); Action record, Action input and Performed action; Action result, Action outcome and its three
      * outcomes, Written version, Outcome message; Komet action and its four children by what an
      * action does; and Activate component and Inactivate component. Editing a document block
-     * (IKE-Network/ike-issues#1306) adds 2: Edit document block and Replacement text.
+     * (IKE-Network/ike-issues#1306) adds 2: Edit document block and Replacement text; editing a sentence
+     * (IKE-Network/ike-issues#1313) adds 1, Edit document sentence.
      * <p>
      * {@code SourceReleaseModelSet} (IKE-Network/ike-issues#1304) adds 15: Knowledge base
      * provenance model and its purpose; Source release and its seven fields (Release name,
@@ -233,7 +234,7 @@ class FoundationFidelityIT {
      * purpose and field, ANF statement structure and ANF statement tree. The circumstance kinds it
      * reuses are {@code ElmNodeKindSet}'s and count there.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63 + 4 + 21;   // + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312); + InstanceDataSet (4) and DocumentVertexSet (21) (#1313)
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63 + 4 + 21 + 19 + 1;   // + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312); + InstanceDataSet (4) and DocumentVertexSet (21) (#1313); + DocumentSegmentSet (19) and Edit document sentence (1) (#1313)
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
