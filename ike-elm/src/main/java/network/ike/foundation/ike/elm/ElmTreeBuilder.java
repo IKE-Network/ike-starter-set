@@ -18,10 +18,12 @@ package network.ike.foundation.ike.elm;
 import dev.ikm.tinkar.common.bind.ClassConceptBinding;
 import dev.ikm.tinkar.common.id.PublicId;
 import dev.ikm.tinkar.common.service.PrimitiveData;
+import dev.ikm.tinkar.entity.EntityService;
 import dev.ikm.tinkar.entity.graph.DiTreeEntity;
 import dev.ikm.tinkar.entity.graph.EntityVertex;
 import dev.ikm.tinkar.terms.EntityProxy;
 import network.ike.foundation.ike.bindings.IkeConcept;
+import network.ike.foundation.ike.bindings.IkePattern;
 
 import java.util.Map;
 
@@ -110,7 +112,8 @@ public final class ElmTreeBuilder {
             EntityVertex argumentVertex = EntityVertex.make(ElmIdentity.vertex(treeId, path + "/" + list.getKey()),
                     rule.position().nid());
             argumentVertex.putUncommittedProperty(IkeConcept.ELM_LIST_ITEMS.nid(),
-                    EntityProxy.Semantic.make(PrimitiveData.nid(list.getValue())));
+                    EntityProxy.Semantic.make(EntityService.get().nidForSemantic(
+                            IkePattern.ELM_ORDERED_LIST_PATTERN.publicId(), list.getValue())));
             argumentVertex.commitProperties();
             builder.addVertex(argumentVertex);
             builder.addEdge(argumentVertex.vertexIndex(), vertex.vertexIndex());
@@ -124,7 +127,7 @@ public final class ElmTreeBuilder {
      */
     private static Object stored(Object value) {
         if (value instanceof ClassConceptBinding binding) {
-            return EntityProxy.Concept.make(PrimitiveData.nid(binding.publicId()));
+            return EntityProxy.Concept.make(EntityService.get().nidForConcept(binding.publicId()));
         }
         return value;
     }

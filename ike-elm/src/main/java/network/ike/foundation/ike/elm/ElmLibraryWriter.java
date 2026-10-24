@@ -170,10 +170,11 @@ public final class ElmLibraryWriter {
         PublicId listId = ElmIdentity.list(definition, positionPath);
         long[] nids = new long[items.size()];
         for (int i = 0; i < items.size(); i++) {
-            nids[i] = PrimitiveData.nid(items.get(i));
+            nids[i] = treeNid(items.get(i));
         }
         LongIdList itemNids = LongIds.list.of(nids);
-        store.semantic(listId, IkePattern.ELM_ORDERED_LIST_PATTERN, PrimitiveData.nid(definition),
+        // The definition's tree is written after the lists inside it, so it is registered here.
+        store.semantic(listId, IkePattern.ELM_ORDERED_LIST_PATTERN, treeNid(definition),
                 Lists.immutable.of(itemNids));
         return listId;
     }
@@ -196,9 +197,17 @@ public final class ElmLibraryWriter {
                 .filter(entity -> entity instanceof dev.ikm.tinkar.entity.ConceptEntity)
                 .map(entity -> (Object) EntityProxy.Concept.make(targetNid))
                 .orElse(EntityProxy.Semantic.make(targetNid));
-        store.semantic(referenceId, IkePattern.ELM_REFERENCE_PATTERN, PrimitiveData.nid(definition),
+        store.semantic(referenceId, IkePattern.ELM_REFERENCE_PATTERN, treeNid(definition),
                 Lists.immutable.of(kind, targetFacade, name, libraryName));
         return referenceId;
+    }
+
+    /**
+     * The nid of a tree semantic, registered under the tree pattern when it is not yet written: a
+     * store keyed by pattern mints no nid for an identity it has never seen without its kind.
+     */
+    private static long treeNid(PublicId tree) {
+        return EntityService.get().nidForSemantic(IkePattern.ELM_TREE_PATTERN.publicId(), tree);
     }
 
     /**

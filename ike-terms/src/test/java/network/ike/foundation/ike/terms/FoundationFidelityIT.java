@@ -603,32 +603,11 @@ class FoundationFidelityIT {
     static void loadAndSnapshot() throws Exception {
         CachingService.clearAll();
         ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT, Files.createTempDirectory("ike-fidelity").toFile());
-        PrimitiveData.selectControllerByName("Load Ephemeral Store");
+        PrimitiveData.selectControllerByName("Load Memory-Only 64-bit Store");
         PrimitiveData.start();
         File baseline = Path.of("target", "data", "tinkar-starter-data-unreasoned-pb.zip").toFile();
         new LoadEntitiesFromProtobufFile(baseline).compute();
 
-        for (Map.Entry<UUID, String> entry : DELIBERATELY_RENAMED_FQNS.entrySet()) {
-            DELIBERATELY_RENAMED_FQNS_BY_NID.put(PrimitiveData.nid(entry.getKey()), entry.getValue());
-        }
-        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_REPARENTED_ISA.entrySet()) {
-            DELIBERATELY_REPARENTED_ISA_BY_NID.put(
-                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
-        }
-        for (UUID uuid : DELIBERATELY_PARENTLESS) {
-            DELIBERATELY_PARENTLESS_BY_NID.add(PrimitiveData.nid(uuid));
-        }
-        for (UUID uuid : DELIBERATELY_NOT_RESTATED) {
-            DELIBERATELY_NOT_RESTATED_BY_NID.add(PrimitiveData.nid(uuid));
-        }
-        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
-            DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
-                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
-        }
-        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_PART_OF_WHOLE.entrySet()) {
-            DELIBERATELY_PART_OF_WHOLE_BY_NID.put(
-                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
-        }
         for (UUID uuid : DELIBERATELY_NOT_ADOPTED_SEMANTIC_UUIDS) {
             // expectSemantic doubles as a baseline-presence check: the seeds must come
             // from the upstream baseline, and only from there (IKE-Network/ike-issues#887).
@@ -672,6 +651,37 @@ class FoundationFidelityIT {
 
         // The real, compiled, committed source — not a temp-dir stand-in.
         new IkeSource().compose().write();
+
+        resolveDeliberateExceptions();
+    }
+
+    /**
+     * Turns the deliberate-exception registries, kept by UUID, into nids. It runs after the
+     * replay because some entries name concepts the set mints, which the baseline alone does
+     * not hold, and the store mints no nid for a UUID it has never seen.
+     */
+    private static void resolveDeliberateExceptions() {
+        for (Map.Entry<UUID, String> entry : DELIBERATELY_RENAMED_FQNS.entrySet()) {
+            DELIBERATELY_RENAMED_FQNS_BY_NID.put(PrimitiveData.nid(entry.getKey()), entry.getValue());
+        }
+        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_REPARENTED_ISA.entrySet()) {
+            DELIBERATELY_REPARENTED_ISA_BY_NID.put(
+                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
+        }
+        for (UUID uuid : DELIBERATELY_PARENTLESS) {
+            DELIBERATELY_PARENTLESS_BY_NID.add(PrimitiveData.nid(uuid));
+        }
+        for (UUID uuid : DELIBERATELY_NOT_RESTATED) {
+            DELIBERATELY_NOT_RESTATED_BY_NID.add(PrimitiveData.nid(uuid));
+        }
+        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_ROLE_BEARING_ISA.entrySet()) {
+            DELIBERATELY_ROLE_BEARING_ISA_BY_NID.put(
+                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
+        }
+        for (Map.Entry<UUID, UUID> entry : DELIBERATELY_PART_OF_WHOLE.entrySet()) {
+            DELIBERATELY_PART_OF_WHOLE_BY_NID.put(
+                    PrimitiveData.nid(entry.getKey()), PrimitiveData.nid(entry.getValue()));
+        }
     }
 
     @AfterAll

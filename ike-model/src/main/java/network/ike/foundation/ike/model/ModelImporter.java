@@ -143,7 +143,7 @@ public final class ModelImporter {
         int readings = 0;
         for (ClassInfo clazz : file.classes()) {
             PublicId id = resolution.own.get(clazz.qualifiedName());
-            long nid = PrimitiveData.nid(id);
+            long nid = EntityService.get().nidForConcept(id);
             if (!resolution.system) {
                 Optional<ModelBridges.Bridge> bridge = ModelBridges.bridgeFor(model, clazz.qualifiedName());
                 if (bridge.isPresent()) {
@@ -171,7 +171,8 @@ public final class ModelImporter {
             }
             for (Relationship relationship : clazz.relationships()) {
                 EntityFacade context = resolution.contextIds.containsKey(relationship.context())
-                        ? EntityProxy.Semantic.make(PrimitiveData.nid(resolution.contextIds.get(relationship.context())))
+                        ? EntityProxy.Semantic.make(EntityService.get().nidForSemantic(
+                                IkePattern.MODEL_CONTEXT_PATTERN.publicId(), resolution.contextIds.get(relationship.context())))
                         : IkeConcept.UNRESOLVED;
                 ModelConcepts.relationship(writer, id, nid, relationship, context);
                 relationships++;
@@ -256,7 +257,7 @@ public final class ModelImporter {
             }
             stop();
             ConceptFacade modelConcept = EntityProxy.Concept.make(
-                    PrimitiveData.nid(ModelIdentity.model(model, file.version())));
+                    EntityService.get().nidForConcept(ModelIdentity.model(model, file.version())));
             for (ClassInfo clazz : file.classes()) {
                 String place = model + "." + clazz.localName(model);
                 // A class hangs under its base when the base is a class of a model. A class with no
@@ -280,8 +281,11 @@ public final class ModelImporter {
                     lenient(clazz.target()).ifPresent(concept -> targets.put(clazz.qualifiedName(), concept));
                 }
                 if (!clazz.primaryCodePath().isEmpty()) {
+                    // Registered under its pattern before it is written: the store mints no nid for an
+                    // identity it has never seen without its kind.
                     codePath(clazz).ifPresent(id -> codeElements.put(clazz.qualifiedName(),
-                            EntityProxy.Semantic.make(PrimitiveData.nid(id))));
+                            EntityProxy.Semantic.make(EntityService.get().nidForSemantic(
+                                    IkePattern.MODEL_ELEMENT_PATTERN.publicId(), id))));
                 }
             }
             for (Context context : file.contexts()) {
@@ -352,7 +356,7 @@ public final class ModelImporter {
             if (prefix.equals(model)) {
                 PublicId id = own.get(qualified);
                 if (id != null) {
-                    found = Optional.of(EntityProxy.Concept.make(PrimitiveData.nid(id)));
+                    found = Optional.of(EntityProxy.Concept.make(EntityService.get().nidForConcept(id)));
                 } else if (!lenient) {
                     problems.add(place + " names " + qualified + ", which the file does not declare");
                 }

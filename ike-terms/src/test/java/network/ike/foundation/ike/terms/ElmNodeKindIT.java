@@ -61,7 +61,7 @@ class ElmNodeKindIT {
     static void composeAndWrite() throws Exception {
         CachingService.clearAll();
         ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT, Files.createTempDirectory("ike-node-kinds").toFile());
-        PrimitiveData.selectControllerByName("Load Ephemeral Store");
+        PrimitiveData.selectControllerByName("Load Memory-Only 64-bit Store");
         PrimitiveData.start();
         set = new IkeSource().compose();
         set.write();
@@ -96,7 +96,7 @@ class ElmNodeKindIT {
             List<long[]> found = RELATIONS.get(nid("ELM " + relation.kind() + " (ELM)"));
             assertEquals(1, found == null ? 0 : found.size(), relation.kind() + " relates exactly once");
             assertEquals(nid(relation.target()), found.get(0)[0], relation.kind() + " targets " + relation.target());
-            assertEquals(claims.get(relation.claim()).intValue(), found.get(0)[1], relation.kind() + " claims " + relation.claim());
+            assertEquals((long) claims.get(relation.claim()), found.get(0)[1], relation.kind() + " claims " + relation.claim());
             boolean kindTarget = relation.target().endsWith(" kind (IkeFoundation)")
                     || relation.target().equals("Measure ratio (IkeFoundation)");
             assertTrue(kindTarget || DENOTED.contains(found.get(0)[0]), relation.target() + " carries a denotation");

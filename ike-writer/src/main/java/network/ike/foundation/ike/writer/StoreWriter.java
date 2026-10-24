@@ -157,7 +157,9 @@ public final class StoreWriter {
      * @return the concept's nid
      */
     public long concept(PublicId conceptId) {
-        long nid = PrimitiveData.nid(conceptId);
+        // Registered as a concept before it is written: a store keyed by pattern mints no nid for
+        // an identity it has never seen without being told its kind.
+        long nid = EntityService.get().nidForConcept(conceptId);
         if (EntityHandle.get(nid).entity().filter(e -> !e.canceled()).isEmpty()) {
             RecordListBuilder<ConceptVersionRecord> versions = RecordListBuilder.make();
             ConceptRecord bootstrap = ConceptRecord.makeNew(conceptId, versions);

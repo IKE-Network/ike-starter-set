@@ -51,7 +51,7 @@ final class Store {
         if (!started) {
             CachingService.clearAll();
             ServiceProperties.set(ServiceKeys.DATA_STORE_ROOT, Files.createTempDirectory("ike-model").toFile());
-            PrimitiveData.selectControllerByName("Load Ephemeral Store");
+            PrimitiveData.selectControllerByName("Load Memory-Only 64-bit Store");
             PrimitiveData.start();
             new IkeSource().compose().write();
             calculator = Calculators.Stamp.DevelopmentLatestActiveOnly();
