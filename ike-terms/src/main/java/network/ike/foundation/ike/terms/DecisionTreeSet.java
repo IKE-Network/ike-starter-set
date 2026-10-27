@@ -43,15 +43,21 @@ import dev.ikm.tinkar.terms.KernelConcept;
  * <p><b>Every number is an ANF measure.</b> A probability and a cost are measure vertices under
  * the node that carries them, with their bounds, their open flags and their measure semantic
  * under the kernel's interval-role property keys, exactly as {@link AnfStatementSet}'s measures
- * are. A point value is the measure whose bounds meet. The measure semantic fixes the units and
- * the reference frame: a probability's is the share of those at the node, a cost's is a money
- * frame or a health frame. Nothing computed is stored: the expected value at a chance, the
- * chosen branch at a decision and a sensitivity swing are computed on the view or written into a
- * decision record.
+ * are. A point value is the measure whose bounds meet. The measure semantic fixes what is
+ * intrinsic to the number: a probability's is the share of those at the node, a money cost's is
+ * its currency at its price year, a health cost's is its unit of healthy life. The standpoint the
+ * tree is read from, whose costs count, the price year money is brought to, the discounting, the
+ * horizon and the price of a year of healthy life, is a <em>valuation coordinate</em>, one more
+ * constituent of the view beside the stamp, language, logic, navigation and edit coordinates:
+ * chosen at evaluation, never stored on the tree, and recorded by a decision record as the
+ * coordinate it was rolled back under. Nothing computed is stored: the expected value at a
+ * chance, the chosen branch at a decision and a sensitivity swing are computed on the view or
+ * written into a decision record.
  *
- * <p><b>Situations are statements, names are concepts.</b> An alternative is an ANF request
- * statement and an event or an outcome holds ANF situation statements, referenced by identity;
- * a node names its concept through the kernel's concept reference key. A measure says where its
+ * <p><b>Situations are statements, names are concepts.</b> An alternative, an event and an
+ * outcome each hold the ANF statements they are, referenced by identity under one Statement key;
+ * a statement says what kind it is, a request for the alternative, a performance or a narrative
+ * for what happens. A node names its concept through the kernel's concept reference key. A measure says where its
  * value comes from: estimated, cited from a source, or derived by an ELM definition from other
  * measures.
  */
@@ -62,8 +68,15 @@ final class DecisionTreeSet {
     /** The pattern whose one field is the tree. */
     static final String DECISION_TREE_PATTERN = fqn("Decision tree pattern");
 
+    /** The valuation coordinate's properties family, a constituent of the view coordinate model. */
+    static final String VALUATION_COORDINATE_PROPERTIES = fqn("Valuation coordinate properties");
+
     private static final EntityProxy.Concept IKE_BASE_MODEL_CONCEPT =
             EntityProxy.Concept.make("IKE base model concept", PublicIds.of("bc59d656-83d3-47d8-9507-0e656ea95463"));
+
+    /** The transitive part-of role the coordinate families state their composition with. */
+    private static final EntityProxy.Concept PART_OF =
+            EntityProxy.Concept.make("Part of (SOLOR)", PublicIds.of("b4c3f6f9-6937-30fd-8412-d0c77f8a7f73"));
 
     private DecisionTreeSet() {
     }
@@ -81,8 +94,8 @@ final class DecisionTreeSet {
                 .definition("A decision tree held as one tree: the pattern whose field is the tree, the"
                         + " meanings of its nodes and of the measures they carry, the keys of the"
                         + " properties a vertex carries, the measure semantics its probabilities and costs"
-                        + " are read in, the frames it is evaluated in, and the kinds of basis a measure's"
-                        + " value rests on.")
+                        + " are read in, the valuation coordinate it is rolled back under, and the kinds"
+                        + " of basis a measure's value rests on.")
                 .isA(IKE_BASE_MODEL_CONCEPT);
 
         // ── The tree ─────────────────────────────────────────────────────────────
@@ -140,25 +153,25 @@ final class DecisionTreeSet {
                 "The measure an event carries: the share of those at the chance who leave it by this"
                         + " event, on the Share at node semantic, bounded within zero and one.");
         measure(set, inception, "Money cost measure", "Money cost",
-                "A cost in money an alternative, an event or an outcome carries, on a money frame:"
+                "A cost in money an alternative, an event or an outcome carries, on a money semantic:"
                         + " what is billed for the care taken on that branch, or the money part of a"
                         + " rupture.");
         measure(set, inception, "Health cost measure", "Health cost",
-                "A cost in health an alternative, an event or an outcome carries, on a health frame:"
-                        + " the years of healthy life a scan's harm, a complication or a rupture takes."
-                        + " Counted beside money, never folded into it in the tree; the price of a year"
-                        + " of healthy life belongs to the frame the tree is evaluated in.");
+                "A cost in health an alternative, an event or an outcome carries, on a health"
+                        + " semantic: the years of healthy life a scan's harm, a complication or a rupture"
+                        + " takes. Counted beside money, never folded into it in the tree; the price of a"
+                        + " year of healthy life belongs to the valuation coordinate the tree is read"
+                        + " under.");
 
         // ── Property keys ────────────────────────────────────────────────────────
         concept(set, inception, "Decision tree property", ROOT_FQN,
                 "A key of a property a vertex of a decision tree carries, beside the kernel's concept"
                         + " reference and interval keys, which the tree reuses.");
-        property(set, inception, "Request statement",
-                "The ANF request statement an alternative is: a reference to the statement, never a"
-                        + " copy of it.");
-        property(set, inception, "Situation statement",
-                "The ANF situation statements an event is or an outcome holds: references to the"
-                        + " statements, which a bound case is tested against.");
+        property(set, inception, "Statement",
+                "The ANF statements a node is or holds: references to the statements, never copies of"
+                        + " them. A statement says what kind it is, so one key serves the request an"
+                        + " alternative is and the situations an event is or an outcome holds, which a"
+                        + " bound case is tested against.");
         property(set, inception, "Derived from",
                 "The ELM definition that computes a measure's value from other measures of the tree,"
                         + " a positive-scan probability from a sensitivity, a specificity and a"
@@ -169,10 +182,6 @@ final class DecisionTreeSet {
         property(set, inception, "Basis source",
                 "The source a cited measure's value is taken from: a reference to the citation or the"
                         + " document.");
-        property(set, inception, "Frame",
-                "The decision frame the tree is evaluated in, on the root: the perspective, the price"
-                        + " year, the discounting and the horizon every cost measure's semantic must"
-                        + " agree with.");
         property(set, inception, "Tree reference",
                 "The decision whose own tree folds in at this outcome or alternative, by reference,"
                         + " so one tree is never copied into another; what the folded tree rolls back to"
@@ -188,30 +197,58 @@ final class DecisionTreeSet {
         // ── Measure semantics ────────────────────────────────────────────────────
         concept(set, inception, "Decision measure semantic", ROOT_FQN,
                 "A measure semantic a decision measure is read in, named by the kernel's unit of"
-                        + " measure key: the share of those at a node for a probability, a money frame"
-                        + " or a health frame for a cost. Two measures roll back together only when"
-                        + " their semantics agree.");
+                        + " measure key: the share of those at a node for a probability, a money"
+                        + " semantic or a health semantic for a cost. It fixes what is intrinsic to the"
+                        + " number; the standpoint it is read from is the valuation coordinate. Two"
+                        + " measures roll back together only when their semantics agree or the"
+                        + " coordinate brings them to one.");
         semantic(set, inception, "Share at node",
                 "The measure semantic of a probability: the share of those at a chance who leave it by"
                         + " one event, a number between zero and one with no unit. The shares of a"
                         + " chance's events sum to one within their bounds.");
-        semantic(set, inception, "Money frame",
-                "The measure semantic of a money cost: a currency, a price year, a perspective and a"
-                        + " discounting, fixed together by one concept beneath this one, so that two"
-                        + " money costs on the same frame add and two on different frames do not.");
-        semantic(set, inception, "Health frame",
-                "The measure semantic of a health cost: a measure of healthy life, quality-adjusted"
-                        + " life years or another, with its discounting, fixed by one concept beneath"
-                        + " this one.");
+        semantic(set, inception, "Money semantic",
+                "The measure semantic of a money cost: a currency at a price year, fixed together by"
+                        + " one concept beneath this one, so that two money costs on the same semantic"
+                        + " add and two on different ones are first brought to the valuation"
+                        + " coordinate's price year.");
+        semantic(set, inception, "Health semantic",
+                "The measure semantic of a health cost: a unit of healthy life, the quality-adjusted"
+                        + " life year or another, fixed by one concept beneath this one.");
 
-        // ── Frames ───────────────────────────────────────────────────────────────
-        concept(set, inception, "Decision frame", ROOT_FQN,
-                "The standpoint a decision tree is evaluated from: whose costs count, the perspective;"
-                        + " the price year; the discounting; the horizon; and the price of a year of"
-                        + " healthy life at which health and money are set against each other. Each"
-                        + " frame a tree is evaluated in is a concept beneath this one, named by the"
-                        + " root's Frame property, and every cost measure's semantic must agree with"
-                        + " it.");
+        // ── The valuation coordinate ─────────────────────────────────────────────
+        // One more constituent of the view, mirroring the stamp, edit and navigation
+        // properties families of CoordinateModelSet: a properties family that is part of the
+        // view coordinate model, and dimension concepts that are each part of the family.
+        ConceptFacade viewCoordinateModel = set.conceptRef("View coordinate model (IkeFoundation)");
+        set.concept(VALUATION_COORDINATE_PROPERTIES).at(inception)
+                .synonym("Valuation coordinate properties")
+                .definition("The dimensions of the valuation coordinate, the standpoint a decision tree"
+                        + " is rolled back from: whose costs count, the price year money is brought to,"
+                        + " the discounting, the horizon, and the price of a year of healthy life at"
+                        + " which health and money are set against each other. Chosen at evaluation,"
+                        + " never stored on the tree, and recorded by a decision record as the"
+                        + " coordinate it was rolled back under. A model concept grouping those"
+                        + " dimensions, and part of the view coordinate model, stated logically as a"
+                        + " Part of restriction.")
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(viewCoordinateModel),
+                        leb.SomeRole(PART_OF, leb.ConceptAxiom(viewCoordinateModel)))));
+        dimension(set, inception, "Perspective",
+                "The perspective dimension of the valuation coordinate: whose costs count, the payer,"
+                        + " the health system, the patient or society.");
+        dimension(set, inception, "Price year",
+                "The price-year dimension of the valuation coordinate: the year every money cost is"
+                        + " brought to before costs are added.");
+        dimension(set, inception, "Discounting",
+                "The discounting dimension of the valuation coordinate: the rate at which costs and"
+                        + " health in later years are reduced to the present.");
+        dimension(set, inception, "Horizon",
+                "The horizon dimension of the valuation coordinate: how far ahead consequences are"
+                        + " counted.");
+        dimension(set, inception, "Health price",
+                "The health-price dimension of the valuation coordinate: the price of a year of"
+                        + " healthy life, at which a health cost is set against a money cost when the"
+                        + " tree is rolled back to one number.");
 
         // ── Basis kinds ──────────────────────────────────────────────────────────
         concept(set, inception, "Basis kind", ROOT_FQN,
@@ -282,5 +319,16 @@ final class DecisionTreeSet {
 
     private static void basis(KnowledgeSet set, ActiveStamp stamp, String name, String synonym, String definition) {
         named(set, stamp, name, synonym, fqn("Basis kind"), definition);
+    }
+
+    /** A dimension of the valuation coordinate: a kind of its properties family, and part of it. */
+    private static void dimension(KnowledgeSet set, ActiveStamp stamp, String name, String definition) {
+        ConceptFacade family = set.conceptRef(VALUATION_COORDINATE_PROPERTIES);
+        set.concept(fqn(name)).at(stamp)
+                .synonym(name)
+                .definition(definition)
+                .statedAxioms(leb -> leb.NecessarySet(leb.And(
+                        leb.ConceptAxiom(family),
+                        leb.SomeRole(PART_OF, leb.ConceptAxiom(family)))));
     }
 }

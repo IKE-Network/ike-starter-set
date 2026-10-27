@@ -234,13 +234,14 @@ class FoundationFidelityIT {
      * purpose and field, ANF statement structure and ANF statement tree. The circumstance kinds it
      * reuses are {@code ElmNodeKindSet}'s and count there.
      * <p>
-     * {@code DecisionTreeSet} (dev-decision-tree-blocks, under IKE-Network/ike-issues#806) adds 33:
+     * {@code DecisionTreeSet} (dev-decision-tree-blocks, under IKE-Network/ike-issues#806) adds 36:
      * Decision tree model; Decision tree; Decision tree node and its five kinds; Decision measure
-     * and its three kinds; Decision tree property and its nine keys; Decision measure semantic and
-     * its three semantics; Decision frame; Basis kind and its three kinds; and the pattern's purpose
-     * and field, Decision tree structure and Decision tree content.
+     * and its three kinds; Decision tree property and its seven keys; Decision measure semantic and
+     * its three semantics; Valuation coordinate properties and its five dimensions; Basis kind and
+     * its three kinds; and the pattern's purpose and field, Decision tree structure and Decision
+     * tree content.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63 + 4 + 21 + 19 + 1 + 33;   // + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312); + InstanceDataSet (4) and DocumentVertexSet (21) (#1313); + DocumentSegmentSet (19) and Edit document sentence (1) (#1313); + DecisionTreeSet (33) (dev-decision-tree-blocks)
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63 + 4 + 21 + 19 + 1 + 36;   // + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312); + InstanceDataSet (4) and DocumentVertexSet (21) (#1313); + DocumentSegmentSet (19) and Edit document sentence (1) (#1313); + DecisionTreeSet (36) (dev-decision-tree-blocks)
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
