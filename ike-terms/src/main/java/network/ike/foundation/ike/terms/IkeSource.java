@@ -190,6 +190,11 @@ public final class IkeSource implements KnowledgeSetSource {
         // (IKE-Network/ike-issues#1312); its circumstance vertices reuse the circumstance
         // kinds ElmNodeKindSet declares, so it composes after that set.
         AnfStatementSet.compose(Ike.SET);
+        // DecisionTreeSet declares a decision tree as one tree in a decision tree pattern
+        // (dev-decision-tree-blocks, under IKE-Network/ike-issues#806): the node and measure
+        // kinds, the property keys, the measure semantics, the frames and the basis kinds. Its
+        // alternatives and events reference ANF statements, so it composes after AnfStatementSet.
+        DecisionTreeSet.compose(Ike.SET);
         KernelBindings.compose(Ike.SET);
         KometBindings.compose(Ike.SET);
         return Ike.SET;
