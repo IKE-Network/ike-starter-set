@@ -94,8 +94,9 @@ final class DecisionTreeSet {
                 .definition("A decision tree held as one tree: the pattern whose field is the tree, the"
                         + " meanings of its nodes and of the measures they carry, the keys of the"
                         + " properties a vertex carries, the measure semantics its probabilities and costs"
-                        + " are read in, the valuation coordinate it is rolled back under, and the kinds"
-                        + " of basis a measure's value rests on.")
+                        + " are read in, the valuation coordinate it is rolled back under, the kinds of"
+                        + " basis a measure's value rests on, and the derivation kinds that compute a"
+                        + " measure from the tree's parameters.")
                 .isA(IKE_BASE_MODEL_CONCEPT);
 
         // ── The tree ─────────────────────────────────────────────────────────────
@@ -162,6 +163,13 @@ final class DecisionTreeSet {
                         + " takes. Counted beside money, never folded into it in the tree; the price of a"
                         + " year of healthy life belongs to the valuation coordinate the tree is read"
                         + " under.");
+        measure(set, inception, "Parameter measure", "Parameter",
+                "A measure of the method itself, carried under the root decision and named by the"
+                        + " quantity it measures through the kernel's concept reference key: a test's"
+                        + " sensitivity, a yearly hazard, the cost of a rupture, the years at risk. A"
+                        + " derived measure anywhere in the tree reads parameters as its operands, so"
+                        + " the model's assumptions are stated once and every number that follows from"
+                        + " them is computed, never copied. A parameter may itself be derived.");
 
         // ── Property keys ────────────────────────────────────────────────────────
         concept(set, inception, "Decision tree property", ROOT_FQN,
@@ -173,10 +181,14 @@ final class DecisionTreeSet {
                         + " alternative is and the situations an event is or an outcome holds, which a"
                         + " bound case is tested against.");
         property(set, inception, "Derived from",
-                "The ELM definition that computes a measure's value from other measures of the tree,"
-                        + " a positive-scan probability from a sensitivity, a specificity and a"
-                        + " prevalence: a reference to the definition. A measure with this key has the"
-                        + " derived basis.");
+                "What computes a measure's value from other measures of the tree: a derivation kind"
+                        + " with a native implementation, Bayes posterior for a positive-scan probability"
+                        + " from a prevalence, a sensitivity and a specificity, or an ELM definition"
+                        + " stored as knowledge: a reference to the kind or the definition. A measure"
+                        + " with this key has the derived basis and names its operands.");
+        property(set, inception, "Derivation operands",
+                "The quantities a derived measure reads, in the order its derivation kind takes them:"
+                        + " references to the concepts the tree's parameters are named by.");
         property(set, inception, "Measure basis",
                 "What a measure's value rests on: a basis kind concept, estimated, cited or derived.");
         property(set, inception, "Basis source",
@@ -260,8 +272,41 @@ final class DecisionTreeSet {
         basis(set, inception, "Cited basis", "Cited",
                 "The value is taken from a source the measure names through its Basis source.");
         basis(set, inception, "Derived basis", "Derived",
-                "The value is computed from other measures of the tree by the ELM definition the"
-                        + " measure names through Derived from, and is never entered by hand.");
+                "The value is computed from other measures of the tree by the derivation kind or the"
+                        + " ELM definition the measure names through Derived from, and is never entered"
+                        + " by hand.");
+
+        // ── Derivation kinds ─────────────────────────────────────────────────────
+        concept(set, inception, "Derivation kind", ROOT_FQN,
+                "A computation with a native implementation that a derived measure names through"
+                        + " Derived from, reading its operands in a fixed order: the formulas a decision"
+                        + " tree's worked numbers come from, so that a block states its assumptions once."
+                        + " Each kind evaluates over bounds, so a bounded operand gives a bounded"
+                        + " result. Where the kinds run out, an ELM definition takes the same key.");
+        derivation(set, inception, "Complement derivation", "Complement",
+                "One minus its one operand: a false-negative rate from a sensitivity, the share of"
+                        + " a risk a treatment leaves from the share it removes.");
+        derivation(set, inception, "Product derivation", "Product",
+                "The product of its operands, two or more: the expected cost of a risk from the"
+                        + " chance of it and the cost of it. Its semantic is that of the one operand"
+                        + " with a money or health semantic, else a share.");
+        derivation(set, inception, "Cumulative hazard derivation", "Cumulative hazard",
+                "The chance that something with a constant yearly hazard happens at least once over a"
+                        + " number of years: one minus the complement of the hazard to the power of the"
+                        + " years. Operands: the yearly hazard, then the years.");
+        derivation(set, inception, "Bayes posterior derivation", "Bayes posterior",
+                "The chance that a state is present given a test result, from the prior chance of"
+                        + " the state, the chance of that result when the state is present, and the"
+                        + " chance of it when the state is absent: prior times the first likelihood,"
+                        + " over that plus the complement of the prior times the second. Operands: the"
+                        + " prior, the likelihood given present, the likelihood given absent. For a"
+                        + " positive test those are prevalence, sensitivity and one minus specificity;"
+                        + " for a negative test, prevalence, one minus sensitivity and specificity.");
+        derivation(set, inception, "Bayes marginal derivation", "Bayes marginal",
+                "The chance of a test result over both states: prior times the likelihood given"
+                        + " present plus the complement of the prior times the likelihood given absent,"
+                        + " the denominator of the posterior. Operands as for the posterior. For a"
+                        + " positive test it is the share of those tested whose test is positive.");
 
         // ── The pattern ──────────────────────────────────────────────────────────
         concept(set, inception, "Decision tree structure", ROOT_FQN,
@@ -319,6 +364,10 @@ final class DecisionTreeSet {
 
     private static void basis(KnowledgeSet set, ActiveStamp stamp, String name, String synonym, String definition) {
         named(set, stamp, name, synonym, fqn("Basis kind"), definition);
+    }
+
+    private static void derivation(KnowledgeSet set, ActiveStamp stamp, String name, String synonym, String definition) {
+        named(set, stamp, name, synonym, fqn("Derivation kind"), definition);
     }
 
     /** A dimension of the valuation coordinate: a kind of its properties family, and part of it. */
