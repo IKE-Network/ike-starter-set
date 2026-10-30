@@ -123,6 +123,8 @@ final class KometBindings {
         bind(set, "2fae24f5-0776-5aaa-a4d8-8ce288c1a075", "EDIT_ANF_STATEMENT");
         bind(set, "11602b2b-1b19-5fdb-b67b-e7d0e9977a54", "PROMOTE_TO_COMPLEX_CONCEPT");
         bind(set, "cd4f4488-ca4c-5e44-904e-ca91b5399c6d", "EDIT_DOCUMENT_SENTENCE");
+        bind(set, "35f59e27-9fef-52a9-b9cf-0baa0848e27f", "ADD_DOCUMENT_BLOCK");
+        bind(set, "265acd37-710f-5cbb-9e33-a1a7650e5622", "DELETE_DOCUMENT_BLOCK");
         bind(set, "a0bdab4e-69db-559d-ac82-24e3f1af7702", "ACTION_COMPLETED");
         bind(set, "f72d46df-3a28-5d99-b89a-2fc45311803d", "ACTION_REFUSED");
         bind(set, "2b555975-4639-5c58-bea4-8288e281cffa", "ACTION_FAILED");
@@ -131,6 +133,7 @@ final class KometBindings {
         bind(set, "4f7e66dc-ecad-5e59-a684-480a07be21ed", "DOCUMENT_BLOCK_EDIT_INPUT_PATTERN");
         bind(set, "d500cc84-978b-543b-9011-0fefa0166507", "ANF_STATEMENT_TREE_INPUT_PATTERN");
         bind(set, "3891e739-23c3-51e3-b048-580330566298", "COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN");
+        bind(set, "0c165219-451c-5597-beb8-a2d404e67742", "DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN");
         bind(set, "c0f13898-fa2a-5b10-aa22-cf0885144af0", "VERSION_CHANGE_RESULT_PATTERN");
     }
 

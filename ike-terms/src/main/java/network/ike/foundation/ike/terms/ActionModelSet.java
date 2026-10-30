@@ -42,7 +42,8 @@ import dev.ikm.tinkar.terms.KernelConcept;
  * referenced component is the action's subject; its result is a semantic of the result pattern
  * whose referenced component is that input. An action that takes only its subject uses the
  * {@code Component action input pattern}, and one with parameters has an input pattern of its own
- * ({@code Document block edit input pattern}); one that writes a version reports it in a
+ * ({@code Document block edit input pattern}, {@code Document block insertion input pattern}); one
+ * that writes a version reports it in a
  * {@code Version change result pattern}. A failure is a result, never an exception: the outcome
  * says whether the action completed, was refused (nothing written), or failed.
  *
@@ -110,6 +111,9 @@ final class ActionModelSet {
         concept(set, inception, "Complex concept name", "Action model",
                 "The name a run gives the complex concept it creates, written as the concept's fully"
                         + " qualified name and its regular name.");
+        concept(set, inception, "Block kind", "Action model",
+                "The kind of block a run adds to a document: a document paragraph or a document"
+                        + " listing, named by the Document structure concept for it.");
 
         // ── Results ──────────────────────────────────────────────────────────
         concept(set, inception, "Action result", "Action model",
@@ -162,6 +166,17 @@ final class ActionModelSet {
                 .definition("The input of an action that replaces the text of a document block, the"
                         + " referenced component, which is the block's element semantic: the kind of"
                         + " action performed on it and the block's new text.");
+
+        set.pattern(fqn("Document block insertion input pattern")).at(inception)
+                .meaning(set.conceptRef(fqn("Action input")))
+                .purpose(record)
+                .field(set.conceptRef(fqn("Performed action")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("Block kind")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("Replacement text")), record, KernelConcept.STRING)
+                .synonym("Document block insertion input pattern")
+                .definition("The input of an action that adds a block to a document after the referenced"
+                        + " component, a block whose members are lines: the kind of action performed, the"
+                        + " new block's kind, and its text, one line per line.");
 
         set.pattern(fqn("ANF statement tree input pattern")).at(inception)
                 .meaning(set.conceptRef(fqn("Action input")))
@@ -270,6 +285,31 @@ final class ActionModelSet {
                         + " names no parent concept, and when an edit of the statement is pending, since the"
                         + " promotion is one change. Report the new concept; the person finishes its"
                         + " expansion and commits it.");
+        changeAction(set, inception, "Add document block", "Document block insertion input pattern",
+                "Adds a block to a document materialized from git: a new paragraph or listing after a"
+                        + " block whose members are lines, with the given text. Its lines and the block itself"
+                        + " land as provisional elements under the document's one pending edit, written into"
+                        + " the parent block's members in place; the person's git commit of the file settles"
+                        + " them, and the commit's own identities stand in theirs. The input's subject is the"
+                        + " block to insert after; its fields are the new block's kind and its text.",
+                "Add a block only where the person has asked for one, and only a paragraph or a listing,"
+                        + " one line per line; a listing keeps its delimiters. Insert after a block that holds"
+                        + " lines, never after a section or a list: a text that would form two blocks is"
+                        + " refused. Refuse when an edit of the document by someone else is pending. Report"
+                        + " what was added; the block stays uncommitted until the person commits the document"
+                        + " in git.");
+        changeAction(set, inception, "Delete document block",
+                "Deletes a block of a document materialized from git, a block whose members are lines:"
+                        + " its lines leave the document and the block gets an inactive version, in the"
+                        + " document's one pending edit, and the blank line that separated it goes with it."
+                        + " The person's git commit of the file settles the deletion, which retires the"
+                        + " lines where git recorded their removal. Refused for a block holding other"
+                        + " blocks: remove its blocks first.",
+                "Delete only a block the person has asked to remove, after telling them what goes."
+                        + " A block that holds other blocks is emptied block by block. Refuse when an edit of"
+                        + " the document by someone else is pending. Report what was removed; the deletion"
+                        + " stays uncommitted until the person commits the document in git, and Discard"
+                        + " edit brings the block back.");
         changeAction(set, inception, "Edit document sentence", "Document block edit input pattern",
                 "Replaces the text of one sentence of a document materialized from git as semantic"
                         + " vertices (IKE-Network/ike-issues#1313): the sentence goes on a line of its own, a"

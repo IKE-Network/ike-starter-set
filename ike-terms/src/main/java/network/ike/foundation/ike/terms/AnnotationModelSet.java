@@ -30,8 +30,9 @@ import dev.ikm.tinkar.terms.KernelConcept;
  *
  * <p><b>The kind hierarchy.</b> {@code Annotation kind} is the root; {@code Uncategorized
  * comment} is the default, and how Comment pattern semantics read; {@code Judgment} is a stance
- * on the content, with {@code Affirmation} and {@code Refutation} beneath it. A new kind is a
- * new concept here: no trailer grammar or walker changes.
+ * on the content, with {@code Affirmation} and {@code Refutation} beneath it; {@code Retraction}
+ * withdraws an earlier annotation and is no stance. A new kind is a new concept here: no trailer
+ * grammar or walker changes.
  *
  * <p><b>The fully qualified names are frozen.</b> Every concept takes the set's derived identity,
  * {@code T5(d890e06f…, "<name> (IkeFoundation)")}, and git commit messages carry the kind
@@ -95,6 +96,13 @@ final class AnnotationModelSet {
                 "The annotator has reviewed the version and disputes it, with the reason as the"
                         + " annotation text. A refutation is an opinion, not a retirement: inactivating"
                         + " the content is a separate edit by whoever is accountable for it.");
+        concept(set, inception, "Retraction", "Annotation kind",
+                "The annotator withdraws an earlier annotation of theirs: in git, an Annotation: trailer"
+                        + " naming the annotation commit, which takes every annotation that commit recorded"
+                        + " out of force, with the reason as the text. Not a judgment: it takes back nothing"
+                        + " but its target, so a stance the target had superseded does not come back, and"
+                        + " later annotations stand. In the graph the retracted annotation gets an inactive"
+                        + " version under the retraction's STAMP.");
 
         // ── The pattern's purpose and fields ─────────────────────────────────
         concept(set, inception, "Reviewed provenance", "Annotation model",
