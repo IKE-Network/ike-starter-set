@@ -107,6 +107,9 @@ final class ActionModelSet {
         concept(set, inception, "Replacement text", "Action model",
                 "The text a run puts in place of its subject's: for a document block, the block's new"
                         + " lines, one per line.");
+        concept(set, inception, "Complex concept name", "Action model",
+                "The name a run gives the complex concept it creates, written as the concept's fully"
+                        + " qualified name and its regular name.");
 
         // ── Results ──────────────────────────────────────────────────────────
         concept(set, inception, "Action result", "Action model",
@@ -159,6 +162,26 @@ final class ActionModelSet {
                 .definition("The input of an action that replaces the text of a document block, the"
                         + " referenced component, which is the block's element semantic: the kind of"
                         + " action performed on it and the block's new text.");
+
+        set.pattern(fqn("ANF statement tree input pattern")).at(inception)
+                .meaning(set.conceptRef(fqn("Action input")))
+                .purpose(record)
+                .field(set.conceptRef(fqn("Performed action")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("ANF statement tree")), record, KernelConcept.DITREE_FIELD)
+                .synonym("ANF statement tree input pattern")
+                .definition("The input of an action that writes the tree of an ANF statement: the kind of"
+                        + " action performed and the statement's tree. Its referenced component is the"
+                        + " statement to edit, or the document block a new statement is added to.");
+
+        set.pattern(fqn("Complex concept promotion input pattern")).at(inception)
+                .meaning(set.conceptRef(fqn("Action input")))
+                .purpose(record)
+                .field(set.conceptRef(fqn("Performed action")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("Complex concept name")), record, KernelConcept.STRING)
+                .synonym("Complex concept promotion input pattern")
+                .definition("The input of an action that promotes an ANF statement's composed topic to a"
+                        + " complex concept: the kind of action performed on the statement, the referenced"
+                        + " component, and the name of the complex concept it creates.");
 
         set.pattern(fqn("Version change result pattern")).at(inception)
                 .meaning(set.conceptRef(fqn("Action result")))
@@ -213,6 +236,40 @@ final class ActionModelSet {
                         + " as text: edit the blocks it holds. Refuse when an edit of the document by"
                         + " someone else is pending. Report what changed; the edit stays uncommitted until"
                         + " the person commits the document in git.");
+        changeAction(set, inception, "Add ANF statement", "ANF statement tree input pattern",
+                "Adds an ANF statement to a document block: writes a new semantic of the ANF statement"
+                        + " pattern, under the edit coordinate, whose referenced component is the block and"
+                        + " whose tree is the given one. The tree must be a well-formed statement: every"
+                        + " vertex an ANF meaning, every child one its parent admits, and every attribute's"
+                        + " own rules kept. A statement may still lack attributes; it is completed by"
+                        + " editing it.",
+                "Add a statement only to a block the person has asked you to add it to, and only one"
+                        + " the person's text or request supports. Refuse when the subject is not a document"
+                        + " block or the tree is not a well-formed statement, saying which rule it breaks."
+                        + " Report the version written and the new statement's identifier; the person"
+                        + " commits it.");
+        changeAction(set, inception, "Edit ANF statement", "ANF statement tree input pattern",
+                "Replaces the tree of one ANF statement with a new tree: writes a new version of the"
+                        + " statement's semantic, under the edit coordinate, whose tree is the new one. The"
+                        + " new tree must be a well-formed statement, as for adding one. A second edit by the"
+                        + " same person replaces their pending version rather than stacking on it.",
+                "Edit only a statement the person has asked to change. Keep the identity of every"
+                        + " vertex you do not change, so its history follows it. Refuse when the new tree"
+                        + " is not a well-formed statement, saying which rule it breaks, and when an edit"
+                        + " of the statement by someone else is pending. Report the version written; the"
+                        + " person commits it.");
+        changeAction(set, inception, "Promote to complex concept", "Complex concept promotion input pattern",
+                "Promotes an ANF statement's composed topic to a complex concept, as one uncommitted"
+                        + " change: writes a new concept in the Complex concepts module with the given name,"
+                        + " its complex concept specification with the composition as its definition and a"
+                        + " focused expansion on the composition's parent concept to be finished in the"
+                        + " complex concept editor, and a new version of the statement whose topic is the"
+                        + " new concept. Instance data keeps a concept, never a composed expression.",
+                "Promote only a topic the person has asked to promote, and name the complex concept as"
+                        + " the person would. Refuse when the topic is already a single concept, when it"
+                        + " names no parent concept, and when an edit of the statement is pending, since the"
+                        + " promotion is one change. Report the new concept; the person finishes its"
+                        + " expansion and commits it.");
         changeAction(set, inception, "Edit document sentence", "Document block edit input pattern",
                 "Replaces the text of one sentence of a document materialized from git as semantic"
                         + " vertices (IKE-Network/ike-issues#1313): the sentence goes on a line of its own, a"

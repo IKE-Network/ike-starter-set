@@ -265,7 +265,8 @@ final class AnfStatementSet {
                 .definition("One clinical statement in Analysis Normal Form, held as one tree whose root"
                         + " is the statement, whose vertices are its context, its one circumstance and"
                         + " their attributes, and whose vertex identities persist across versions, so a"
-                        + " changed attribute is a new version of one vertex.");
+                        + " changed attribute is a new version of one vertex. Its referenced component is"
+                        + " the document block that holds it.");
     }
 
     static String fqn(String name) {
