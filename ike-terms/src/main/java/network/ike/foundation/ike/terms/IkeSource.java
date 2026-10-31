@@ -199,6 +199,12 @@ public final class IkeSource implements KnowledgeSetSource {
         // kinds, the property keys, the measure semantics, the frames and the basis kinds. Its
         // alternatives and events reference ANF statements, so it composes after AnfStatementSet.
         DecisionTreeSet.compose(Ike.SET);
+        // CalculatorSet declares a medical calculator as one tree in a calculator pattern
+        // (dev-calculator-blocks, under IKE-Network/ike-issues#806): the vertex kinds, the
+        // property keys, the when-missing policies and two more derivation kinds. Its terms
+        // and formula reuse DecisionTreeSet's derivation keys and its Derivation kind parent,
+        // so it composes after that set.
+        CalculatorSet.compose(Ike.SET);
         KernelBindings.compose(Ike.SET);
         KometBindings.compose(Ike.SET);
         return Ike.SET;
