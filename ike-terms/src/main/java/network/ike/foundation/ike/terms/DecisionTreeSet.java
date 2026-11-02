@@ -163,6 +163,13 @@ final class DecisionTreeSet {
                         + " takes. Counted beside money, never folded into it in the tree; the price of a"
                         + " year of healthy life belongs to the valuation coordinate the tree is read"
                         + " under.");
+        measure(set, inception, "Count cost measure", "Count cost",
+                "A consequence counted in its own unit that an alternative, an event or an outcome"
+                        + " carries: ruptures, retreatments, implants removed, patients who never receive"
+                        + " a sound device. The measure semantic names what is counted. Never priced into"
+                        + " money by the tree: the ledger beneath the drawing keeps it beside money and"
+                        + " health, so a reader who prices nothing can still weigh the alternatives, as"
+                        + " the regulatory topics weigh a device's removals against its cost.");
         measure(set, inception, "Parameter measure", "Parameter",
                 "A measure of the method itself, carried under the root decision and named by the"
                         + " quantity it measures through the kernel's concept reference key: a test's"

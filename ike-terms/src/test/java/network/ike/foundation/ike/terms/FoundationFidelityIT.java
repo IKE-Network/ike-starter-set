@@ -251,7 +251,7 @@ class FoundationFidelityIT {
      * concept tree.
      * The Complex concepts module, where promoted topics are written, adds 1.
      * <p>
-     * {@code DecisionTreeSet} (dev-decision-tree-blocks, under IKE-Network/ike-issues#806) adds 44:
+     * {@code DecisionTreeSet} (dev-decision-tree-blocks, under IKE-Network/ike-issues#806) adds 45, the Count cost measure since 2026-11-01:
      * Decision tree model; Decision tree; Decision tree node and its five kinds; Decision measure
      * and its four kinds; Decision tree property and its eight keys; Decision measure semantic and
      * its three semantics; Valuation coordinate properties and its five dimensions; Basis kind and
@@ -264,7 +264,7 @@ class FoundationFidelityIT {
      * survival derivation kinds under Derivation kind; and the pattern's purpose and field,
      * Calculator structure and Calculator content.
      */
-    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63 + 4 + 21 + 2 + 27 + 2 + 1 + 19 + 1 + 44 + 4 + 30 + 2;   // + Not clinical and Text range (decision 9 revised); + Add document block, Delete document block, Block kind and Retraction (#806, #1300); + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312); + InstanceDataSet (4) and DocumentVertexSet (21) (#1313); + Add ANF statement and Edit ANF statement (#1312); + ComplexConceptSet (#1312); + Promote to complex concept, Complex concept name, Complex concepts module (#1312); + DocumentSegmentSet (19) and Edit document sentence (1) (#1313); + DecisionTreeSet (44) (dev-decision-tree-blocks) + CalculatorSet (30) (dev-calculator-blocks)
+    private static final long AUTHORED_CONTENT_CONCEPTS = 456 + 70 + 11 + 8 + 23 + 15 + 2 + 12 + 1 + 18 + 63 + 4 + 21 + 2 + 27 + 2 + 1 + 19 + 1 + 45 + 4 + 30 + 2;   // + Not clinical and Text range (decision 9 revised); + Add document block, Delete document block, Block kind and Retraction (#806, #1300); + Nothing, the bottom concept (ClassificationModelSet); + the ANF statement set (#1312); + InstanceDataSet (4) and DocumentVertexSet (21) (#1313); + Add ANF statement and Edit ANF statement (#1312); + ComplexConceptSet (#1312); + Promote to complex concept, Complex concept name, Complex concepts module (#1312); + DocumentSegmentSet (19) and Edit document sentence (1) (#1313); + DecisionTreeSet (45: 44 and the Count cost measure of 2026-11-01) (dev-decision-tree-blocks) + CalculatorSet (30) (dev-calculator-blocks)
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
