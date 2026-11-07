@@ -144,9 +144,15 @@ initTheme();
 <li><a href="#ACTION_DEFINITION_PATTERN" tabindex="0">ACTION_DEFINITION_PATTERN</a></li>
 <li><a href="#COMPONENT_ACTION_INPUT_PATTERN" tabindex="0">COMPONENT_ACTION_INPUT_PATTERN</a></li>
 <li><a href="#DOCUMENT_BLOCK_EDIT_INPUT_PATTERN" tabindex="0">DOCUMENT_BLOCK_EDIT_INPUT_PATTERN</a></li>
+<li><a href="#DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN" tabindex="0">DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN</a></li>
+<li><a href="#ANF_STATEMENT_TREE_INPUT_PATTERN" tabindex="0">ANF_STATEMENT_TREE_INPUT_PATTERN</a></li>
+<li><a href="#COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN" tabindex="0">COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN</a></li>
 <li><a href="#VERSION_CHANGE_RESULT_PATTERN" tabindex="0">VERSION_CHANGE_RESULT_PATTERN</a></li>
 <li><a href="#SOURCE_RELEASE_PATTERN" tabindex="0">SOURCE_RELEASE_PATTERN</a></li>
 <li><a href="#KNOWLEDGE_BASE_COMPOSITION_PATTERN" tabindex="0">KNOWLEDGE_BASE_COMPOSITION_PATTERN</a></li>
+<li><a href="#RELEASE_REGISTRATION_PATTERN" tabindex="0">RELEASE_REGISTRATION_PATTERN</a></li>
+<li><a href="#ASSEMBLY_REGISTRATION_PATTERN" tabindex="0">ASSEMBLY_REGISTRATION_PATTERN</a></li>
+<li><a href="#EXPORT_REGISTRATION_PATTERN" tabindex="0">EXPORT_REGISTRATION_PATTERN</a></li>
 <li><a href="#CHANGE_TRANSACTION_PATTERN" tabindex="0">CHANGE_TRANSACTION_PATTERN</a></li>
 <li><a href="#DATA_TYPE_DEFAULTS_PATTERN" tabindex="0">DATA_TYPE_DEFAULTS_PATTERN</a></li>
 <li><a href="#DOCUMENT_BLOCK_PATTERN" tabindex="0">DOCUMENT_BLOCK_PATTERN</a></li>
@@ -160,6 +166,11 @@ initTheme();
 <li><a href="#ASCIIDOC_INCLUDE_PATTERN" tabindex="0">ASCIIDOC_INCLUDE_PATTERN</a></li>
 <li><a href="#ASCIIDOC_CONDITIONAL_PATTERN" tabindex="0">ASCIIDOC_CONDITIONAL_PATTERN</a></li>
 <li><a href="#GIT_SOURCE_PATTERN" tabindex="0">GIT_SOURCE_PATTERN</a></li>
+<li><a href="#DOCUMENT_VERTEX_PATTERN" tabindex="0">DOCUMENT_VERTEX_PATTERN</a></li>
+<li><a href="#ANF_STATEMENT_PATTERN" tabindex="0">ANF_STATEMENT_PATTERN</a></li>
+<li><a href="#COMPLEX_CONCEPT_PATTERN" tabindex="0">COMPLEX_CONCEPT_PATTERN</a></li>
+<li><a href="#DECISION_TREE_PATTERN" tabindex="0">DECISION_TREE_PATTERN</a></li>
+<li><a href="#CALCULATOR_PATTERN" tabindex="0">CALCULATOR_PATTERN</a></li>
 </ol>
 </li>
 <li><a href="#method-detail" tabindex="0">Method Details</a>
@@ -223,9 +234,17 @@ adopted an established one; regenerate from the ledger.</div>
 <div class="col-last even-row-color">
 <div class="block">The definition of the action concept it references: the pattern each run's input takes, the pattern its result takes, and the instructions a model needs when it performs the action.</div>
 </div>
+<div class="col-first odd-row-color"><code><a href="#ANF_STATEMENT_PATTERN" class="member-name-link">ANF_STATEMENT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">One clinical statement in Analysis Normal Form, held as one tree whose root is the statement, whose vertices are its context, its one circumstance and their attributes, and whose vertex identities persist across versions, so a changed attribute is a new version of one vertex.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#ANF_STATEMENT_TREE_INPUT_PATTERN" class="member-name-link">ANF_STATEMENT_TREE_INPUT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The input of an action that writes the tree of an ANF statement: the kind of action performed and the statement's tree.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#ANNOTATION_PATTERN" class="member-name-link">ANNOTATION_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">An annotation of the referenced component: its kind, the reviewed version's STAMP, the elements it covers (empty for the whole component), and its text (empty when there is none).</div>
+<div class="block">An annotation of the referenced component: its kind, the reviewed version's STAMP, the elements it covers (empty for the whole component), its text (empty when there is none), and the part of each element's text it covers (empty when it covers each whole).</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#ASCIIDOC_CITATION_PATTERN" class="member-name-link">ASCIIDOC_CITATION_PATTERN</a></code></div>
 <div class="col-last even-row-color">
@@ -263,6 +282,14 @@ adopted an established one; regenerate from the ledger.</div>
 <div class="col-last even-row-color">
 <div class="block">A link on a line: its URL and display text.</div>
 </div>
+<div class="col-first odd-row-color"><code><a href="#ASSEMBLY_REGISTRATION_PATTERN" class="member-name-link">ASSEMBLY_REGISTRATION_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">An assembly of the knowledge base, referencing this pattern: its inputs in load order, each with its role, artifact as named, resolved version and checksum; the release registrations in the order they arrived; and the classifier.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#CALCULATOR_PATTERN" class="member-name-link">CALCULATOR_PATTERN</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">One calculator, held as one tree about the calculator concept it defines: its root names the calculator, its vertices are the output, the inputs, the equation terms, the strata with their coefficients and conditions, the formula and the bands, and its vertex identities persist across versions, so a recalibrated coefficient is a new version of one vertex, never a new calculator.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#CHANGE_TRANSACTION_PATTERN" class="member-name-link">CHANGE_TRANSACTION_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">A transaction that wrote uncommitted versions, referencing the change tracking module, with the transaction's UUID as its identity and its author on every version's stamp: its name, its state, its basis (time, path, and any external basis such as a git commit), and, while it is open, the components it has written.</div>
@@ -270,6 +297,14 @@ adopted an established one; regenerate from the ledger.</div>
 <div class="col-first even-row-color"><code><a href="#COMMENT_PATTERN" class="member-name-link">COMMENT_PATTERN</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Comment pattern</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#COMPLEX_CONCEPT_PATTERN" class="member-name-link">COMPLEX_CONCEPT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">One complex concept's specification, held as one tree whose root is the specification and whose children are its description logic definition and its expansion.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN" class="member-name-link">COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The input of an action that promotes an ANF statement's composed topic to a complex concept: the kind of action performed on the statement, the referenced component, and the name of the complex concept it creates.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#COMPONENT_ACTION_INPUT_PATTERN" class="member-name-link">COMPONENT_ACTION_INPUT_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
@@ -311,49 +346,65 @@ adopted an established one; regenerate from the ledger.</div>
 <div class="col-last even-row-color">
 <div class="block">Data Type Defaults Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#DESCRIPTION_PATTERN" class="member-name-link">DESCRIPTION_PATTERN</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#DECISION_TREE_PATTERN" class="member-name-link">DECISION_TREE_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">One decision tree, held as one tree about the decision concept it informs: its root is the decision, its vertices are the nodes and the measures they carry, and its vertex identities persist across versions, so a revised probability or cost is a new version of one vertex, never a new tree.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#DESCRIPTION_PATTERN" class="member-name-link">DESCRIPTION_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Description Pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#DOCUMENT_BLOCK_EDIT_INPUT_PATTERN" class="member-name-link">DOCUMENT_BLOCK_EDIT_INPUT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#DOCUMENT_BLOCK_EDIT_INPUT_PATTERN" class="member-name-link">DOCUMENT_BLOCK_EDIT_INPUT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The input of an action that replaces the text of a document block, the referenced component, which is the block's element semantic: the kind of action performed on it and the block's new text.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN" class="member-name-link">DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The input of an action that adds a block to a document after the referenced component, a block whose members are lines: the kind of action performed, the new block's kind, and its text, one line per line.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#DOCUMENT_BLOCK_PATTERN" class="member-name-link">DOCUMENT_BLOCK_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">One element of a structured document — a section, a block, a row, a cell, a list, an item or a turn — with its kind, level, title, verbatim parameters and ordered members; a new version only when one of these changes.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#ECL_DIALECT_PATTERN" class="member-name-link">ECL_DIALECT_PATTERN</a></code></div>
+<div class="col-first even-row-color"><code><a href="#DOCUMENT_VERTEX_PATTERN" class="member-name-link">DOCUMENT_VERTEX_PATTERN</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">The template every document's own vertex pattern is derived from: one field, a vertex.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#ECL_DIALECT_PATTERN" class="member-name-link">ECL_DIALECT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the ECL dialect.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EL_DIALECT_PATTERN" class="member-name-link">EL_DIALECT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#EL_DIALECT_PATTERN" class="member-name-link">EL_DIALECT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the EL++ dialect.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#EL_INFERRED_AXIOMS_PATTERN" class="member-name-link">EL_INFERRED_AXIOMS_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#EL_INFERRED_AXIOMS_PATTERN" class="member-name-link">EL_INFERRED_AXIOMS_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">EL++ Inferred Axioms Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#EL_STATED_AXIOMS_PATTERN" class="member-name-link">EL_STATED_AXIOMS_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#EL_STATED_AXIOMS_PATTERN" class="member-name-link">EL_STATED_AXIOMS_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">EL++ Stated Axioms Pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#ELM_ORDERED_LIST_PATTERN" class="member-name-link">ELM_ORDERED_LIST_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#ELM_ORDERED_LIST_PATTERN" class="member-name-link">ELM_ORDERED_LIST_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The items an ELM list position holds, in order, each an ELM tree of its own, about the definition whose tree points at the list.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#ELM_REFERENCE_PATTERN" class="member-name-link">ELM_REFERENCE_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#ELM_REFERENCE_PATTERN" class="member-name-link">ELM_REFERENCE_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">One thing a definition names, about the definition semantic that names it: the kind of thing, the definition it is as a link, and the names as written.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#ELM_TREE_PATTERN" class="member-name-link">ELM_TREE_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#ELM_TREE_PATTERN" class="member-name-link">ELM_TREE_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">One definition of a library, or the library's own identity record, as one tree of ELM nodes, about the library concept.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#ELM_TYPE_POSITION_PATTERN" class="member-name-link">ELM_TYPE_POSITION_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#ELM_TYPE_POSITION_PATTERN" class="member-name-link">ELM_TYPE_POSITION_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">ELM type position pattern (ELM)</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#EXPORT_REGISTRATION_PATTERN" class="member-name-link">EXPORT_REGISTRATION_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">An export from the knowledge base, referencing this pattern: the file written, what it selected, the checksum of what it wrote, and how many components it wrote.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#EXPRESSION_LANGUAGE_KEYWORD_PATTERN" class="member-name-link">EXPRESSION_LANGUAGE_KEYWORD_PATTERN</a></code></div>
 <div class="col-last even-row-color">
@@ -393,7 +444,7 @@ adopted an established one; regenerate from the ledger.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#KNOWLEDGE_BASE_COMPOSITION_PATTERN" class="member-name-link">KNOWLEDGE_BASE_COMPOSITION_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">How the knowledge base was assembled, referencing this pattern: the inputs with their checksums, the source releases in the order they arrived, the classifier, and when it ran.</div>
+<div class="block">Superseded by the assembly registration pattern (IKE-Network/ike-issues#1304); nothing writes it.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#KOMET_BASE_MODEL_COMPONENT_PATTERN" class="member-name-link">KOMET_BASE_MODEL_COMPONENT_PATTERN</a></code></div>
 <div class="col-last even-row-color">
@@ -479,84 +530,88 @@ adopted an established one; regenerate from the ledger.</div>
 <div class="col-last even-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the QUICK dialect.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#SEMANTIC_CHRONOLOGY_PATTERN" class="member-name-link">SEMANTIC_CHRONOLOGY_PATTERN</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#RELEASE_REGISTRATION_PATTERN" class="member-name-link">RELEASE_REGISTRATION_PATTERN</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">A release imported into the knowledge base, referencing this pattern: the release's name and publisher date, the artifact as named, its resolved version and checksum, the importer and the options that change what it writes, the stamps it wrote under, its counts, and the release registrations it was layered on.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#SEMANTIC_CHRONOLOGY_PATTERN" class="member-name-link">SEMANTIC_CHRONOLOGY_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Semantic Chronology Pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#SEMANTIC_VERSION_FIELD_PATTERN" class="member-name-link">SEMANTIC_VERSION_FIELD_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#SEMANTIC_VERSION_FIELD_PATTERN" class="member-name-link">SEMANTIC_VERSION_FIELD_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Semantic version field pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#SOLOR_CONCEPT_ASSEMBLAGE" class="member-name-link">SOLOR_CONCEPT_ASSEMBLAGE</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#SOLOR_CONCEPT_ASSEMBLAGE" class="member-name-link">SOLOR_CONCEPT_ASSEMBLAGE</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">SOLOR concept assemblage (SOLOR)</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#SOLOR_CONCEPTS_PATTERN" class="member-name-link">SOLOR_CONCEPTS_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#SOLOR_CONCEPTS_PATTERN" class="member-name-link">SOLOR_CONCEPTS_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Solor Concepts Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#SOURCE_RELEASE_PATTERN" class="member-name-link">SOURCE_RELEASE_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">A source release imported into the knowledge base, referencing a module the import wrote: the release's name and date, the artifact and its checksum, the importer, the modules written, and the source releases it was layered on.</div>
-</div>
-<div class="col-first even-row-color"><code><a href="#STAMP_CHRONOLOGY_PATTERN" class="member-name-link">STAMP_CHRONOLOGY_PATTERN</a></code></div>
+<div class="col-first even-row-color"><code><a href="#SOURCE_RELEASE_PATTERN" class="member-name-link">SOURCE_RELEASE_PATTERN</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">Superseded by the release registration pattern (IKE-Network/ike-issues#1304); nothing writes it.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#STAMP_CHRONOLOGY_PATTERN" class="member-name-link">STAMP_CHRONOLOGY_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">STAMP Chronology Pattern</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#STAMP_VERSION_FIELD_PATTERN" class="member-name-link">STAMP_VERSION_FIELD_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#STAMP_VERSION_FIELD_PATTERN" class="member-name-link">STAMP_VERSION_FIELD_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">STAMP version field pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#STARTER_SET_AUTHOR_ROSTER_PATTERN" class="member-name-link">STARTER_SET_AUTHOR_ROSTER_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#STARTER_SET_AUTHOR_ROSTER_PATTERN" class="member-name-link">STARTER_SET_AUTHOR_ROSTER_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Starter Set Author Roster Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#STATED_NAVIGATION_PATTERN" class="member-name-link">STATED_NAVIGATION_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#STATED_NAVIGATION_PATTERN" class="member-name-link">STATED_NAVIGATION_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Stated Navigation Pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#TAXONOMY_FIELD_CONSTRAINT_PATTERN" class="member-name-link">TAXONOMY_FIELD_CONSTRAINT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#TAXONOMY_FIELD_CONSTRAINT_PATTERN" class="member-name-link">TAXONOMY_FIELD_CONSTRAINT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Taxonomy Field Constraint Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#UCUM_COMPOSED_UNIT_PATTERN" class="member-name-link">UCUM_COMPOSED_UNIT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#UCUM_COMPOSED_UNIT_PATTERN" class="member-name-link">UCUM_COMPOSED_UNIT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">A unit composed by UCUM's grammar: its canonical code, IKE's dimension and magnitude for it, and whether any factor is special or arbitrary, in which case it does not convert.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#UCUM_DIALECT_PATTERN" class="member-name-link">UCUM_DIALECT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#UCUM_DIALECT_PATTERN" class="member-name-link">UCUM_DIALECT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the UCUM dialect.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#UCUM_PREFIX_PATTERN" class="member-name-link">UCUM_PREFIX_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#UCUM_PREFIX_PATTERN" class="member-name-link">UCUM_PREFIX_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">What UCUM says of one prefix, kept verbatim: the code, the case-insensitive code, the print symbol, and the factor.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#UCUM_UNIT_PATTERN" class="member-name-link">UCUM_UNIT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#UCUM_UNIT_PATTERN" class="member-name-link">UCUM_UNIT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">What UCUM says of one unit, kept verbatim, and what IKE computes from it: the code, the case-insensitive code, the print symbol, the class, whether metric, special, or arbitrary, the definition's value and unit as written, and IKE's dimension and magnitude.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#US_CORE_DIALECT_PATTERN" class="member-name-link">US_CORE_DIALECT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#US_CORE_DIALECT_PATTERN" class="member-name-link">US_CORE_DIALECT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the US Core dialect.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#US_DIALECT_PATTERN" class="member-name-link">US_DIALECT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#US_DIALECT_PATTERN" class="member-name-link">US_DIALECT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Records whether a description is preferred or acceptable in the United States English dialect — one field, that description's acceptability for this dialect.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#VALUE_CONSTRAINT_PATTERN" class="member-name-link">VALUE_CONSTRAINT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#VALUE_CONSTRAINT_PATTERN" class="member-name-link">VALUE_CONSTRAINT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Value Constraint Pattern</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#VALUE_SET_FIELD_CONSTRAINT_PATTERN" class="member-name-link">VALUE_SET_FIELD_CONSTRAINT_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#VALUE_SET_FIELD_CONSTRAINT_PATTERN" class="member-name-link">VALUE_SET_FIELD_CONSTRAINT_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Value-set Field Constraint Pattern (IkeFoundation)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#VERSION_CHANGE_RESULT_PATTERN" class="member-name-link">VERSION_CHANGE_RESULT_PATTERN</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="#VERSION_CHANGE_RESULT_PATTERN" class="member-name-link">VERSION_CHANGE_RESULT_PATTERN</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The result of an action that writes a new version of its subject, referencing the run's input: the outcome, the STAMP of the version written (the outcome concept itself when nothing was written), and a message.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#VERSION_CONTROL_PATH_PATTERN" class="member-name-link">VERSION_CONTROL_PATH_PATTERN</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#VERSION_CONTROL_PATH_PATTERN" class="member-name-link">VERSION_CONTROL_PATH_PATTERN</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Version control path pattern</div>
 </div>
 </div>
@@ -1215,7 +1270,7 @@ the order they are declared.</div>
 <h3>ANNOTATION_PATTERN</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">ANNOTATION_PATTERN</span></div>
-<div class="block">An annotation of the referenced component: its kind, the reviewed version's STAMP, the elements it covers (empty for the whole component), and its text (empty when there is none).</div>
+<div class="block">An annotation of the referenced component: its kind, the reviewed version's STAMP, the elements it covers (empty for the whole component), its text (empty when there is none), and the part of each element's text it covers (empty when it covers each whole).</div>
 </div>
 </section>
 </li>
@@ -1247,6 +1302,33 @@ the order they are declared.</div>
 </section>
 </li>
 <li>
+<section class="detail" id="DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN">
+<h3>DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN</span></div>
+<div class="block">The input of an action that adds a block to a document after the referenced component, a block whose members are lines: the kind of action performed, the new block's kind, and its text, one line per line.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ANF_STATEMENT_TREE_INPUT_PATTERN">
+<h3>ANF_STATEMENT_TREE_INPUT_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">ANF_STATEMENT_TREE_INPUT_PATTERN</span></div>
+<div class="block">The input of an action that writes the tree of an ANF statement: the kind of action performed and the statement's tree. Its referenced component is the statement to edit, or the document block a new statement is added to.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN">
+<h3>COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN</span></div>
+<div class="block">The input of an action that promotes an ANF statement's composed topic to a complex concept: the kind of action performed on the statement, the referenced component, and the name of the complex concept it creates.</div>
+</div>
+</section>
+</li>
+<li>
 <section class="detail" id="VERSION_CHANGE_RESULT_PATTERN">
 <h3>VERSION_CHANGE_RESULT_PATTERN</h3>
 <div class="horizontal-scroll">
@@ -1260,7 +1342,7 @@ the order they are declared.</div>
 <h3>SOURCE_RELEASE_PATTERN</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">SOURCE_RELEASE_PATTERN</span></div>
-<div class="block">A source release imported into the knowledge base, referencing a module the import wrote: the release's name and date, the artifact and its checksum, the importer, the modules written, and the source releases it was layered on. Written under the source's own stamp, one per importer.</div>
+<div class="block">Superseded by the release registration pattern (IKE-Network/ike-issues#1304); nothing writes it.</div>
 </div>
 </section>
 </li>
@@ -1269,7 +1351,34 @@ the order they are declared.</div>
 <h3>KNOWLEDGE_BASE_COMPOSITION_PATTERN</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">KNOWLEDGE_BASE_COMPOSITION_PATTERN</span></div>
-<div class="block">How the knowledge base was assembled, referencing this pattern: the inputs with their checksums, the source releases in the order they arrived, the classifier, and when it ran. One record per knowledge base; each assembly is a new version.</div>
+<div class="block">Superseded by the assembly registration pattern (IKE-Network/ike-issues#1304); nothing writes it.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="RELEASE_REGISTRATION_PATTERN">
+<h3>RELEASE_REGISTRATION_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">RELEASE_REGISTRATION_PATTERN</span></div>
+<div class="block">A release imported into the knowledge base, referencing this pattern: the release's name and publisher date, the artifact as named, its resolved version and checksum, the importer and the options that change what it writes, the stamps it wrote under, its counts, and the release registrations it was layered on. Written by the IKE Registrar in the Registry module on the Registry path, stamped at the release date.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ASSEMBLY_REGISTRATION_PATTERN">
+<h3>ASSEMBLY_REGISTRATION_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">ASSEMBLY_REGISTRATION_PATTERN</span></div>
+<div class="block">An assembly of the knowledge base, referencing this pattern: its inputs in load order, each with its role, artifact as named, resolved version and checksum; the release registrations in the order they arrived; and the classifier. Written by the IKE Registrar in the Registry module on the Registry path, stamped when the assembly ran.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="EXPORT_REGISTRATION_PATTERN">
+<h3>EXPORT_REGISTRATION_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">EXPORT_REGISTRATION_PATTERN</span></div>
+<div class="block">An export from the knowledge base, referencing this pattern: the file written, what it selected, the checksum of what it wrote, and how many components it wrote. Written by the IKE Registrar in the Registry module on the Registry path, stamped when the export ran.</div>
 </div>
 </section>
 </li>
@@ -1387,6 +1496,51 @@ the order they are declared.</div>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">GIT_SOURCE_PATTERN</span></div>
 <div class="block">A document's git source: path and commit, one version per commit that changed the file.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="DOCUMENT_VERTEX_PATTERN">
+<h3>DOCUMENT_VERTEX_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">DOCUMENT_VERTEX_PATTERN</span></div>
+<div class="block">The template every document's own vertex pattern is derived from: one field, a vertex. Nothing writes elements against the template itself; each document's pattern is written under the document's module, ephemeral for a document in git and instance otherwise, so its vertices hold one contiguous key range and deleting the document is one range delete.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ANF_STATEMENT_PATTERN">
+<h3>ANF_STATEMENT_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">ANF_STATEMENT_PATTERN</span></div>
+<div class="block">One clinical statement in Analysis Normal Form, held as one tree whose root is the statement, whose vertices are its context, its one circumstance and their attributes, and whose vertex identities persist across versions, so a changed attribute is a new version of one vertex. Its referenced component is the document block that holds it.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="COMPLEX_CONCEPT_PATTERN">
+<h3>COMPLEX_CONCEPT_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">COMPLEX_CONCEPT_PATTERN</span></div>
+<div class="block">One complex concept's specification, held as one tree whose root is the specification and whose children are its description logic definition and its expansion. Its referenced component is the complex concept it specifies.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="DECISION_TREE_PATTERN">
+<h3>DECISION_TREE_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">DECISION_TREE_PATTERN</span></div>
+<div class="block">One decision tree, held as one tree about the decision concept it informs: its root is the decision, its vertices are the nodes and the measures they carry, and its vertex identities persist across versions, so a revised probability or cost is a new version of one vertex, never a new tree.</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="CALCULATOR_PATTERN">
+<h3>CALCULATOR_PATTERN</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="IkePattern.html" title="enum class in network.ike.foundation.ike.bindings">IkePattern</a></span>&nbsp;<span class="element-name">CALCULATOR_PATTERN</span></div>
+<div class="block">One calculator, held as one tree about the calculator concept it defines: its root names the calculator, its vertices are the output, the inputs, the equation terms, the strata with their coefficients and conditions, the formula and the bands, and its vertex identities persist across versions, so a recalibrated coefficient is a new version of one vertex, never a new calculator.</div>
 </div>
 </section>
 </li>

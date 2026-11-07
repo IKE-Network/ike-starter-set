@@ -120,35 +120,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "502bc6ec1d7925e8cbb5746223b5df55"
+          "content" : "786ab0007860ee9642abd970dad2bac2"
         },
         {
           "alg" : "SHA-1",
-          "content" : "6ad3866965195536e4330beb4a484042bd00ba97"
+          "content" : "90bec15ae6a9d4963a2b56e3bc9940a2fa057cb7"
         },
         {
           "alg" : "SHA-256",
-          "content" : "73cfd01ecf4ed3ce830c688df365d72876af1616111fee975fe96b1e5139df54"
+          "content" : "feb97bc1504c27fb9346ad2c336b36fb5bdf307839c8192694cccec0d7fa04c7"
         },
         {
           "alg" : "SHA-512",
-          "content" : "099953e49ffa307c86d03481300b88d039f9e28be2c981272695d012c2364978f660c3ecddec40b491eab2e86531c82bc30dffe0c921d633c3ab617a0be69964"
+          "content" : "dd597f6f424d4eda94f2e1830202f3fb49e867077404d8a126f44ab124796e17df7208de890e474ac8fa16b2511f299216bfc68eaeaed334257ba3a9d95bde2b"
         },
         {
           "alg" : "SHA-384",
-          "content" : "7b4d647e63f40b3bd36600ead332b9bb257436cc129c7c57800a35d0c8a290613d9e72e71fe855b0870ee45203b0fab6"
+          "content" : "0e0826162082aa63fd32b00307020bacebfc4d1b321e157b5510c53143a486f095690cab7419f4525b17e643aa0b2940"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "9f70981e1114b2f7ace421e86cac9d6711e9cc602db867cec439252b8a50c501ca4a662266de37a4a18710d41e51e4ba"
+          "content" : "39cbb19ec2fefe9e599b985e0c28028f8d1c4df4001caa0259531f28d78dcc706ed95bf81eb22b97306635f0a9ddd849"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "808ca9a4480c1d9533d499b4fade874b7e5062c50009e8d0a8bb3bb8628b2195"
+          "content" : "9ba1e60100c8006d1df38e09c623734335870da2c0cc33feea03ae337cd1f870"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "9625ecc8f9ac85d7ceeff89d9eb010317e750077baf96c346f3a64960d6e142344b0b4a1fd2ea732240463264a5958869a434f7300c9af67bc9dabbdc00c6266"
+          "content" : "2a17dfa227c4f950c312c95eb8bb065b4c149f9807d139879c4dfc2838c2a11f35ac0c1d184aebe96bdca8b017d3aba4194950f292445beb232cfcb6b3c98876"
         }
       ],
       "licenses" : [
@@ -190,35 +190,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8d05027729e6ef0a95e7db9e562956e5"
+          "content" : "cff35ec131046f2e356be6c5b26b4801"
         },
         {
           "alg" : "SHA-1",
-          "content" : "7a2e6d10e9337eaa7fafe3f4cb78ee248b29e858"
+          "content" : "d4b5960ecb17c88fd8fda52c5da6aa7c7399075f"
         },
         {
           "alg" : "SHA-256",
-          "content" : "abd02f35df056a15118d70bc2972a14e77642af01c5b292a0a2979c9b6425009"
+          "content" : "b1c5c5caee71e7e08f55dc49d941da740497a8dc5b0e3e2d28901e4562ca3107"
         },
         {
           "alg" : "SHA-512",
-          "content" : "a374534039d2398e327fb39f01b6fab7f9a94c0c81001ed4461cb64f37773485ca30d69196d32e971ab971d02db94e7a1e9085c215d8970669a981efad33c567"
+          "content" : "11b3b8bae541161340822b9c9390aef5091d5e029d738fb223971486c00cd2636d963b84e533e1f0e5784f0f54e1eedeafaaffd040f8d4a07ba24163bbd1c2db"
         },
         {
           "alg" : "SHA-384",
-          "content" : "81626af592ce2af1c2a069d27a98acddb512b69519fcb0336a224a524bc15df034bdda5d50face068d89b91d735e1905"
+          "content" : "de014afde30b003e5ff8fe8df01433812d11863958a4a277f884246e72d72421de3a9c9ded534f4351ace03b7f14c3ed"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "ff43c554e31e825c2df62916757ae4ec04e853faf44f9693c72450de0817fb874e8f938940d7e0f04185c237d515fe61"
+          "content" : "4b964cf955f40f2560ac0bd520f0547eeffe644bd3ae15b49efd2b9779f7d1e7d3ac2dae312a951bea455fb9fc910a3e"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "57acebe3f3431d20ffd7ca2ea593b7ad55cfbdc7e7d06dcf2b37204ec5e68dc7"
+          "content" : "e44cb310b46286921c3b9c1b04808b2dc345cb23fb8d67ef395c5f0581295b26"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "fe16cf440d41a340b567b6149c4187c68ff47800f4f8c585c9e605bed871b62c12fb1c20519560c3ec4bd5750445b68c33195e3d406f968d19ea8ff78b303af1"
+          "content" : "77501d55ac4edf0717f563d7196b5e4a36dcb3c760e50ca4897c13be5cc22d64b470f18339057331a29f9c80d42cef7add27d05211599ba85426d2f988ec6aee"
         }
       ],
       "licenses" : [
@@ -250,76 +250,6 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
-      "publisher" : "Integrated Knowledge Management",
-      "group" : "dev.ikm.tinkar",
-      "name" : "collection",
-      "version" : "1.127.7-SNAPSHOT",
-      "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
-      "scope" : "required",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "546316dcc940a03724281bc322d20c1c"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "4384cc9cebcd84f30bf4fd6b3ca7c0d9f28d1640"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "fd48d8eafab798cd110f0a1170ae016efd839baaafe93ef5e81f6c7908cfe32e"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "f89be54c732c85181ecae4356e3c95bbe80b6e89e87df1d335097c4a0790ff6dbf020183c588634cfba9a7dc8678e15157f398465b0ba38f2ca478a820bce482"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "9e3cb27459794fe852b0f18aea67a4fac874fc2656512287048a56f529a6d8eeb907b90e86fe264f607fb0d9e4290f14"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "fba0d84dc2925b7a297d579772005a4922ea208d268f93d4c2178fa105568c19cf6afa8791043d04e42b88eae34bf991"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "6c96a91448c8a889d26bac4eef6ca88d94e2a281da7dd3deb440b6ce1fce307a"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "276696dfdedd164f1459d496c84f850b0ba2364dbaaec39b6495cf7868d36ac7157d72c9029776f4762982f72c62ce1e7946a5275600054c62713410463aa18b"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
-      "externalReferences" : [
-        {
-          "type" : "website",
-          "url" : "http://www.ikm.dev/collection"
-        },
-        {
-          "type" : "distribution-intake",
-          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
-        },
-        {
-          "type" : "issue-tracker",
-          "url" : "https://github.com/ikmdev/tinkar-core/issues"
-        },
-        {
-          "type" : "vcs",
-          "url" : "http://www.github.com/ikmdev/tinkar-core/collection"
-        }
-      ]
-    },
-    {
-      "type" : "library",
       "bom-ref" : "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
       "publisher" : "Integrated Knowledge Management",
       "group" : "dev.ikm.tinkar",
@@ -330,35 +260,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "5dc195b67329bf70ec20a03c17a71e9b"
+          "content" : "3f71757597aaf7e7de889f01e881427f"
         },
         {
           "alg" : "SHA-1",
-          "content" : "b7ece830ba6d30088f1b87676a05a8a894341c0a"
+          "content" : "5918e757ce1bfd9f855c16b7e9d4ab7504fedd69"
         },
         {
           "alg" : "SHA-256",
-          "content" : "097e542d6879361c0828c954cdaf1a12b632c17fa3f66f05a0300126822b542d"
+          "content" : "90c24e42e1210664c3d904a6b1e290db2ff6af72c805fa27c68166478fcf5a6e"
         },
         {
           "alg" : "SHA-512",
-          "content" : "68e01b7fd103d2036bf320011f88546ad4cbb0cb770f6971dc1cb778a6e1ae8ab86b102bacdc5c8771b2ee7049fa389efa63df460da3cc684a33a5e304dc3869"
+          "content" : "53a5cfc35efbaac1c8a63b564ca537d41b4ed43e4edcb88b87f3d31504a9e7466079e62d9160d36901b1e0d06c96c968ea06e770bb69a70aae590380e6deba87"
         },
         {
           "alg" : "SHA-384",
-          "content" : "68b05c8a5a800eb59aaa20fd4a8c603c5f278c1e83059dd264d01fcbbee30f11b9f7fad0ac2d5722e8a18d3d4a651d7e"
+          "content" : "88a7d52f737544072ec892495c0f5a84be883d630e78bd000dcb05654c9835e37e3ad042a21db668ce6943b4362ccb57"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "a24fdbc2e7921b49ca0cefa6d60a3cbb5d722d246c96f6deb838f9bd83b5037400a670a23fd5f64896bd6f7e5455450b"
+          "content" : "812847df1e608b5ee84820e9768de4cb1582472c2faf4ef7e1d5afbb5769c241d275355508b657f5da4c39a7d54c6e0f"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "9cf016e21f2f0874b283250e45a36d725e3be25235581659d3dabf9dd8230eb2"
+          "content" : "6c896d71f1832880c78d02a827d8a52fc9465da8ee7509fd5943c4dec0ba7d12"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "1c4102bb8af9552dd483903b51a1e82002170c3e3785c3c92a8c6b5c1e7da79add5196cd276126f92e9a36601be33f3b0edabe90262ef4c25c92340479fc238b"
+          "content" : "aac72285b021f363767ea1f2d29ea21b6bbe1b39aba1b97582f7b78f862dc132f07acf6a6bb4591fdbe5dc26bcf075769c7eb495f18b346e412312d9fecfb0ee"
         }
       ],
       "licenses" : [
@@ -531,35 +461,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "cff03bf8f0c5566bb5bc85f24c922779"
+          "content" : "db8c57951527bff1af3aa53048fa544d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "62927d8bb844ddb7b8d62686e36edeadc636814b"
+          "content" : "bfac72de065bfae88292cb7730eb3fe5f2587c18"
         },
         {
           "alg" : "SHA-256",
-          "content" : "7da8989354470bf79f7c230da5032fcf98cbcc2dc625e8bd4ac9b486c310e5b7"
+          "content" : "9171b2730bba37e4d7a9931a3a1c185dc01c7742bb1b87985014a2c7c04183c7"
         },
         {
           "alg" : "SHA-512",
-          "content" : "a77ee6d02fc6626379875487b754c5b0490fd9b90f5beac090429b419f16b27d2f83dab2962db4bb86b9bf52c58ad069753e0b1f941738d7794329a880c5dfdb"
+          "content" : "ec58d36fd12ff5ca8cf86fdc5f11da7cba45cf593731c738e432da95a4e04c0b817612f6560d1b2fd3bbd90c4defeccba974f473c7360ff21bab6861297181f4"
         },
         {
           "alg" : "SHA-384",
-          "content" : "9151106cbeda5500463a529a5ad55160a595e33ec29efe3b2e2fc0391659f2276c278e4d0758d71810a940236cd9626b"
+          "content" : "146ec34cf41c2df74156dea435c6e33a41799cad27cb80d055cded41fce66b3521d3586b4fb8d8d9bcea83cc73c805d5"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "28337c4c34a776840da3e689f50b2be8838e01bb415fa3611d08b5ddc7523cf050ed0c7cce4183c930bc293ad20e43a4"
+          "content" : "f2aa212a8f4d975ccfa74b7bfb6a8dd2de1fc6c1e64c32a74eac14a65c1280a365891fb59d47ba7f5bafd130b8e5362b"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "89fa76af5e717f0123e113bcdda35ba8b253ccd1e0030bef6e0f3c44991c02f0"
+          "content" : "d524f7646fa96f5174ad1971e07037a2f04ba8547e93b879f94c9b6395db963d"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "ef26c2073a4d9257927e92ee8b1e32ddc5bb35d38bf71274729e2faef78dc801cef58f23de7d640a647170cef75323f05afdd9ebe8b179d30707fabb50517a20"
+          "content" : "216daaf618c88c117b7374da126c6816aac3c960133ffa304cf6c8d56289d7c2c1ee7a0e3c2e3b2952ecfa8a8814669f26936ea88063d1ba6dd0361ca838175c"
         }
       ],
       "licenses" : [
@@ -601,35 +531,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "49c8b76bbdc656c12544277faa3ad1d8"
+          "content" : "8a61cd22340b41730e410250d4b223ca"
         },
         {
           "alg" : "SHA-1",
-          "content" : "004ede349690e3cf85cbc902dd782f46f453fca8"
+          "content" : "43e7b747104c7309cea848785f7ec2df8c7e7e3d"
         },
         {
           "alg" : "SHA-256",
-          "content" : "199c71289bf61ce2848fff6eca7bbd3a0b09d62e94cf5bbcb040e86964440425"
+          "content" : "8dc3b7d85bf1b8304ecd0d4fbd16d7571cde46dc0631639effca89b1ced5335d"
         },
         {
           "alg" : "SHA-512",
-          "content" : "7961712803f7bc55c6dd740c2f7405d1d243191a166c75b0394c2cdd553759ffc15e55320d11d0b2f8cbe7b4a643de6c232afd38df355ff46309d3f2c2730ecd"
+          "content" : "e5027f3787ad9b46057440a97cb9f871087f211503aaabc84cf3ab9584050e057bcd0db4dabc46430403cd856b0818b55a44aeb39de3b8f33f2d2ce3efa97c9c"
         },
         {
           "alg" : "SHA-384",
-          "content" : "2fb4ae05f898ab6c2dc6ae71844b744195349f19e5019bb421947d3559789606d7f8209c8732a3267f74bbc8af698a85"
+          "content" : "4269976dd76bb0b2f3eb3f64c086e380f1f7527b4e142342653e2f834630d7da1ea9421e2c705b05e284fc3f477a6b85"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "8629a7565d5e4ee840a287cec91e6e4b4b856284fbb2b8163e700cc67a050f59d10fe2265f465cbd5ec9de9d519f69bb"
+          "content" : "4c44ceebae81709337a61fff0c6accc1d4443cdc498133b62b81f2ff2d3074a419baca452c089b3653d0408b15f7c8c5"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "77bf2ca201ca106fcd255778bc24c36e6c6fb0fbb1e5272261457a9804588d2f"
+          "content" : "701f424439625490d5f726c10b6d79e16bb28c19ad657e46d435fdb34668c706"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "c48524f954a9608d6185a0cedf904941623760737150058352fd2d6dd1175632c8fda79ae096240ab744213b9795fe7670d331a3f0632bf69f8c84760839444a"
+          "content" : "32be9cd98cff8faf14a2fb60d4d8875f50e1a07f4a048085f1ec19f6e1b20a0a9b114a6e8416414c44f0692af2c9d88eba114ff6a93bd687f79cadcedd048824"
         }
       ],
       "licenses" : [
@@ -1350,35 +1280,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "490e5ca64cef29a91eaf3e40217018a4"
+          "content" : "b5b5bffab5f2967e2acd60319f33fd65"
         },
         {
           "alg" : "SHA-1",
-          "content" : "ac21cc35ee3b9ca6a52ee18b6e6854b441f1605f"
+          "content" : "cb8b9852fb9a56addcfc359392fc35d8c8f11d5d"
         },
         {
           "alg" : "SHA-256",
-          "content" : "ebd750e084dbf78c6e335d2f5c2d88c1cb394f84705741331686e2009dee0ed5"
+          "content" : "96b753ca5a49333e6fc604a269ada6ccab35095e24d53db7208ac4dabda3a291"
         },
         {
           "alg" : "SHA-512",
-          "content" : "39e0e9409bbdc771b0a22855d3b90e91e4805660ff94bf5022f7dd9c5c71f6fcb15c61d79552c5538277a8b79d12071e34f66b451b4b93e1ff8326943be0b3b6"
+          "content" : "58c7ace09016210bcbf4856257b75cf0e35ca2205d8113bb2f8a188a109b657d07ec044282a37e20a1e1249c3f3acef78b4788c0410939ff8f8d62d22bec13f0"
         },
         {
           "alg" : "SHA-384",
-          "content" : "2c7c8dbc52b847d2556b7a8bc013a979ab01c6132e568dc535a908f506d73e1076f22efd2c56d30afe9ae24e302c6e3c"
+          "content" : "df0446daf5df15cfb60af2856ed58f4298a677f70bc0ae616e898dcc4b64468c5c8213441ae2214e5c3573e455548f88"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "2b2b1b09c26310500173297be7138601004123ba57a98e555843330d817b2abe2aad1022f2d1210f6903e908939fb182"
+          "content" : "bbd2e5fb32f5bc7b0220371c3a8f091d848a4f15b34e0a6fa90a04af88e7b5437f544dfeccdbe20a9c0b03a617b3982e"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "bbaa966c4eabfb44f5e85143259c7ea36908d9f9f8c5f6ef85b2642996baa676"
+          "content" : "8aac342e6f086cc7b6301cbae77154a931ebc62957a932c9c1ef407485b4de0e"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "3e01a06787f7bfc93c38618669de737fcf8dd11096c6c896081e4780509e90b15da39f1aadafb7b7b8030c26bb6de440135cbc2aa4a3d83bf0b1f94a0e6a9f22"
+          "content" : "677a37055973c2bb9716c969587f4a699b97e3379a43e5b16058b669c5a0ded0f5f4d5cceee45e2d60205e8f28132a07840ae95cf129208b3abb4873a4ad1058"
         }
       ],
       "purl" : "pkg:maven/network.ike.foundation/ike-bindings@1-SNAPSHOT?type=jar"
@@ -1395,35 +1325,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "1b603dae8b0a2cdc1c4bb7a72d8dc50c"
+          "content" : "9d039b94fc8e3e1bc6933f0b522362e5"
         },
         {
           "alg" : "SHA-1",
-          "content" : "c7df8394266dc886889b12fa26a6a185d67402f7"
+          "content" : "300bd267e06419f7dc4756a81ff7e22efd8461c1"
         },
         {
           "alg" : "SHA-256",
-          "content" : "010ee506b0eb839a30d2b46c78fbc11a5a8a67e603dd0d38d8fa704b0f478a36"
+          "content" : "2c4f7d15e92a54d52954aa34fc336f2343a499c8b1d65edd03c422ddffac8db8"
         },
         {
           "alg" : "SHA-512",
-          "content" : "c8c79230108e2657f9cbad5fa94201b578be3b0277f6b9478cb63d125bc909e3afa69fb09546f78b966e10074fd1421ee7c995e0025f74f6dc26adc78ffa4cd8"
+          "content" : "d2aff72c76fc896c5726f98dd90a94b7b1963ff21af81ec53a074b8021a7a6ade84ce6dec7925686eef264bb217fe6894ab2d52ef8a6849e943cce0b74e9b7e7"
         },
         {
           "alg" : "SHA-384",
-          "content" : "c388e889cc017e31f53813f2e0b8298de2185cfdf3fe0479d39582cdb986c97bd6d0c9856681557b087b745414f5e75a"
+          "content" : "85de72e4d01c6e98929cf79c259fbfcebd131e5449a89537807d9f8df5c52e894a724922d5837814ae8a84ffeac3ae2b"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "0fd2446d64a6e133e354b0733e9497c5e5ac88fa3c24dd8b361e484585de6d58e5866ce4f53c74b1b51c0909354df311"
+          "content" : "1fb23982de8d8b452547075b2e69f9cb5ccae359e7e06ba2847348ad81b0c5d71db7e2cba6d36fe0c3bb91dde1b43d16"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "5d8f28e54ed19708447b843d1ece99fd90cf61ad8f2d27a60a56b641f7943ebb"
+          "content" : "00feec63528a27def845b9e83d97e3c206b5d5c78ef4312d1dd0999e6526b33d"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "07a3e2c807ebd4aeff3536385181b082008b0d6b5e1d38e5cb806129f05b36e340b8443a99aaf1857f5143b9484410c52f16522e2a8f887ad6e92ccfed75a0f6"
+          "content" : "159502d447a8eddb7870d58e4bab77454b7eaa7c81410f7fe4e498d76a17687e89be485d3cfe71e184802ecdaf0bae203eb3838a5e5b0e2818c23bd6f4a83521"
         }
       ],
       "licenses" : [
@@ -1465,35 +1395,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "1e0037bfcb13178b25dc997f3b0e6199"
+          "content" : "c6083f6630d7283222f557394372734c"
         },
         {
           "alg" : "SHA-1",
-          "content" : "8b4534d4d5b43f567ca70bb52126a09f8de740ae"
+          "content" : "de1c0068ab65baeadedbe1f345eabb01e6a1ad12"
         },
         {
           "alg" : "SHA-256",
-          "content" : "3ca97f74173f41f56d10180d69ad58bb0f4d267b481f60d86254c86c7e6d9076"
+          "content" : "73f36d9e31de81be84012bcd7361d96332dfa53cdbfee5351232b2a425010a29"
         },
         {
           "alg" : "SHA-512",
-          "content" : "263b5e544c2905f1f1a35aec7a2cb6efd24169554b4e564f3c63903df059ebef70222b1d61ac378d8c8da11cbf4cae1143ed7562e7b7c7b80543e8fee43d82f1"
+          "content" : "55847a3afdfdfeda4924e7903a68a4a8db181af97679edf2cffc4abd483e2e5b5d4bdfb605018af566ab75843dfaf135e76b3afe80bc01c82ff3c04d056eb28e"
         },
         {
           "alg" : "SHA-384",
-          "content" : "26c3f9e6f9c53c79b469f58c1589b953f3ed02a725ccc2d14384cc17bc4fbe312d73be2732661e019003964b99811919"
+          "content" : "e95260af85dd66cc9466398f5ed9464e0fac14225ef6b12fedc9d940f2b8f98b246f800d7a744afca895cf839dbee4c2"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "7bce1e14652714eaedc55a4b5cc53eab5118d618b722d17f5cacfb1c91e1f879c32966c399c52020dba9bb2cf6b433e9"
+          "content" : "392f976cdfea92f789de0138ad26205c6feb7c18c4339859d5fe31e1db831b082c018a7af83475cc897e3da4ba7957af"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "1d45e70bfe3c3b99bbd66f9f7da1a40921b8e07534704cd5ddd7f70e9cab665d"
+          "content" : "f189c4583f411361453d554e637e3117d75bba0fe1bcd4ff2ae4ee2f05c65711"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "93c757abe4b972d4903c187002b84d13bf6552836f261f62ace788fdee93798ba2b8cae379fdbedd925a9b2104f0262e635dd372926fb093ff4f365f01278cd1"
+          "content" : "e7706962cfbff9c0026fd6006a75a223a57e912d5afebcdc1ca835a8fb46f3686302e579d6b716431263775ca7a496f222e377639e1410a719935c6d2329365e"
         }
       ],
       "purl" : "pkg:maven/network.ike.foundation/ike-ucum@1-SNAPSHOT?type=jar"
@@ -1508,35 +1438,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "6d64a795921c058da8f7e90a4be44208"
+          "content" : "bd1443db5b8f4af71e42b56a5830c9b4"
         },
         {
           "alg" : "SHA-1",
-          "content" : "67a48d8ce4e32bb4ca07deda7832b3c5c524ede0"
+          "content" : "1db6410acfdd0c8fd9da2dff5f2d770ac19292e3"
         },
         {
           "alg" : "SHA-256",
-          "content" : "ea6c60c26f85c0275977f680d4b5fc35eee67878869b58f369dc1483e95dde18"
+          "content" : "12a9d858c338de864496f2bd60297e85a0e22820d5b356b9954df00239e1e2b2"
         },
         {
           "alg" : "SHA-512",
-          "content" : "07da573a5ac2bddcd4a7002f1a7daa3dbecbb51bebf302a4d99d4ef2b2758a913b1f5a5ca6008427aa86c469d30b3fd48c12ff97b06182fc4d92444f7748a0c1"
+          "content" : "0b50b9b1d6dbccfd342a9e9d3c6f5f265085d5d961eea49c861be242f21cc836beda16c6747c5d63c58ec2a5e0f297cb06230f3d96eb1d3278dea00c5d09db47"
         },
         {
           "alg" : "SHA-384",
-          "content" : "445cc09f4b97b7e2249be4dc55fc82e59893a224b81d54c44cb045b9cd369fd04544780ad2e24e3e1ba2a9abbc59bd1c"
+          "content" : "d663f429015dbcbd32b061e24ad46f3342b3c5ab897d4cc1662ae6c325ea108c08f5c5f909488e6192fd3035a245e8d7"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "32089e78ce93cd7f642e5dc6502e0be2bcb19ec57bf65ee482edf116359682479a26d42707bc4a64dc55ab7073b410f2"
+          "content" : "912171a3a1a19bccfbf938847c5fdfd024cd9ebe8ba3518c75ee960c09a120a5a223766134f2510b880d6df5764b0f70"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "3fc13fd10b8303eca0c3c2f324110293443051187e58ba0829c6f49b49cd3c54"
+          "content" : "e4374a7f1d6b4a6e16cb1885765f4b47526ee4c038a80b8581e168a93171d165"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "010892bdb5ef250f9926f2482a749333b5a0a22c5f1ca0fb5b3ca93e54d58849104c8199e4164ff46774b480d204eea7777f237a1698f8f49cd6de241a1f3fee"
+          "content" : "4ee6b4d23584f0fddf8c99e35404a163e18806b895d7c0a52d35b6ca270b43cdf8ccd36b68833774d18d64ba2a5891f6c1745376f01516717669e7cea081c1a9"
         }
       ],
       "purl" : "pkg:maven/network.ike.foundation/ike-model@1-SNAPSHOT?type=jar"
@@ -1551,35 +1481,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "0646db6af1552252046f2cf6b1f73ec8"
+          "content" : "0ae42876411ee6e8c31bc7b32f118e19"
         },
         {
           "alg" : "SHA-1",
-          "content" : "7f13a1711c361009c7a65cb6ed4a353baeebb257"
+          "content" : "97443db8a6cb3178e58aac6f5621b2e61848a5d8"
         },
         {
           "alg" : "SHA-256",
-          "content" : "fdf0d845a74b620cf887401098897db6c68b36a3b3089392947f4a41e505b8a7"
+          "content" : "70a018e8e1a419a28e837d1777265508870157c0dc64f88d5e8591d79e76da4f"
         },
         {
           "alg" : "SHA-512",
-          "content" : "f7ba067f32fb0362b49fa379a6cc68eb26b05fb3f6092d32bcb03c9415e6f8a038c275703c0c7887ebf7ad4f4046bb62fdc0120b49c4ee53e00a8ad27ccef0ba"
+          "content" : "dd6b1837edd7dc0d154fc340fcadf2b52658159f63ab4274302a62b7e6153ba79e5fb39cb5acc78c2d132d1abe0d81bee9c0f9add194c629547ff44fa0f31c58"
         },
         {
           "alg" : "SHA-384",
-          "content" : "f3946a905dd3d4183b05584840e54d7bd0b0661c22c95f8143f5983db6815296868e17d7f887018d2b175cd53af3ca4c"
+          "content" : "797877b08ed9aaca684ee7003b3c2e1bdae39ebe8349b4c3e2b30c2496c11cfb21403f92f2eb8c38b4b1699dec528434"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "5189c9f014cd192a003357f8f0862eb2c0d5971dd4d504ccb09081f1fd66f55b53c90f8514b09fa839a9ad14bc0f7a27"
+          "content" : "2430e0a30eb05201fc1d38dcf34cc5a7a1a8168890bd34a886e83d339aedb0c0896fd62f25e9a9fd9a0b55e05a560a8c"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "3b6b5b550d4f4db11f3da117947c927c6eb8eeb63fb22114b6447e634dde5a8c"
+          "content" : "05f6f871d7ebccd6546c1ef41dd3097014b7b5cfe06438259acfe330fbd7792f"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "ec6c417452b295797889af4d381b51ccdeceb4e322f8d7861570daf056c04409c162f62d2ba071e02744d2862e9d26cbe931c2041e90a7c1c42945f658410948"
+          "content" : "fa731bb13ef5a941c2431ee87457b4ea2ebb4d6efae73db0cdb3595449692d6c4f7f61e2281d20379f87ad074f002f30da30c83220f6cd670fbc9a138d9df4aa"
         }
       ],
       "purl" : "pkg:maven/network.ike.foundation/ike-elm@1-SNAPSHOT?type=jar"
@@ -1796,45 +1726,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-build-standards",
-      "version" : "264",
+      "version" : "268",
       "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "939a7a98b6cf971abc310d225622f085"
+          "content" : "b53d7df505f3a4c179c23148cfc70c1d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "13472b4c200338f958cd231253ab44c4591730b8"
+          "content" : "4698fa5e91db54dd596f926ec242f8886b723d8c"
         },
         {
           "alg" : "SHA-256",
-          "content" : "22f717203c67f165a359bb77633030c7e0020368a4bfbf0263aee2c0c0b41122"
+          "content" : "85b8109638fa29987bca728d16c5bc62435823f265196fca716da2c3d04a1d43"
         },
         {
           "alg" : "SHA-512",
-          "content" : "f8837a96ef8f3114e54d4d6b9d153e2caab0754150371d49f6a5de4ba1bf4b68fee9da4a79aa565693c19a04c730983ce4695d4b6eb9aafd0c49ad0942bc82d2"
+          "content" : "d5ceea47302e0e9c51f381d24f68cf51e6b52354375dd5484623563e21c4a8f9cf421865b16e42aff5e6448f35e44e089949f19c33b3e31f356258b323575f93"
         },
         {
           "alg" : "SHA-384",
-          "content" : "8e439e28f2cef00a16c238bf9bb377a4bfab35f00095c4982a751a35104e2db479ebd63cdcee74a52d2c9a58b8a973c9"
+          "content" : "909fd0a94bee51dae27ccf4b703d2d5cba43c8a02f770e0fbc9200589b6bd9eaefac3dffd13e1585c551ba6f912b6739"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "d23cbff853edb83302897589c4a0680a55fc5df275468bf94d2ec5cec9ee2443d1395b340d6b005971b45bf3e7714b40"
+          "content" : "0c7d26217f1b72cae3f9815b8903f8f20045ea7dc1ad0498233638eeda7a8f5a228a625b979dc89a932ce16f9b218639"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "a435f7e51efb322c507c93cda0f3f092cb5b50d85652b6a210230d1a642ceaeb"
+          "content" : "f11ba51ad18c0f379d4904367b050866f179208748a1e4e52c9cf0b7bea71c95"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "76ad51e3134bc2c35502ae41fb4754fb7bf02d3c5671cac4c3d65612205e9097b22b88f52f8850ed94c4b3be3436f0a9c507013836cfe7c26c059c62390a95b4"
+          "content" : "59ff7fffbc8d75d3435afc23309dc74ee83a448bc7df881082de958267b96d92b73eb37596b8a219738f2b4aed981eb6338aea721bafbc4404706b6f88764e15"
         }
       ],
       "licenses" : [
@@ -1844,7 +1774,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -1862,45 +1792,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-build-standards",
-      "version" : "264",
+      "version" : "268",
       "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8e0b8f7f5f6060111e4c2154a7fffccf"
+          "content" : "0657fb50c3e047aff56aaced82fcceab"
         },
         {
           "alg" : "SHA-1",
-          "content" : "9b0ad9ae4eac2e50178dc069ca3d910f2ffcc693"
+          "content" : "486627f6fdec9e5066ef7980309df7d0d8551e19"
         },
         {
           "alg" : "SHA-256",
-          "content" : "7799969b38ce9ce263203656b684133810e086a5e0811efe57073c1f23d14377"
+          "content" : "af487daee6442e3cdfb1b5215d493b8de44b4aef25c8777abbe0167d70cf225c"
         },
         {
           "alg" : "SHA-512",
-          "content" : "0878284b15637a4b78f7dfa0f3650c265ab27755837667ac93658bc850d20d45e5a6f10b26730d8671ba0954981e9faa54c1cdc3872e11d94ba71d13b79b0c86"
+          "content" : "b28322054bedf9a1ee49308799a4156b38705de2cb721d5642ec5c7eb149da47522e9b77fd5209aeec8e4584a376b43894f4a5eab16974424c964bf545cf1026"
         },
         {
           "alg" : "SHA-384",
-          "content" : "617e027dc6eb9889c64e4854190a5eb2621c1700c5452b26ed5a110a36f6e4caecd2124ff9f6f5fe4b28e41d61372ce8"
+          "content" : "58a334e6ce3fdddacef358552e7264b41806f59738ce375f72a1abb81fdbfe52caad9e06628779d0bd03b14837dae030"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "206614f90efc9886dea0c92e56ce3556b02d92aba4af0a9194fb0dd8ec250b1db24434969b25f187c6c5bbdc32f4f75a"
+          "content" : "785a708db2e7de5829fcdb67ddc6c2b69bc6bef453412c5913f9aac49c924b6f0c651c86ef0d9925f7682d21805c046f"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "906c4f5f662bfe777bdd9be5b8172bad1d19c14eb541b9a3add91bc82e120d3e"
+          "content" : "14331eb982645926cc1c243eb69120cc96620065a8b8ac33f5f0f7b3537c8a67"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "bb56b8f6c38b1ec6ddda18163c1e137d9758f7a64f86f57828a5a80b3daf53d5f2f87bd45bd556d45a19521cb7c68c9873a7ef6c60aaa0b487dfb28025a9d433"
+          "content" : "56a25e224a4b06ce025913a26447da81922f9e68ebb06e14b0c85512265a3a2e9eda2ef366745d6f8932e3eda7b43b1d072f792ae1aab4fea3d0adfd07a34cc4"
         }
       ],
       "licenses" : [
@@ -1910,7 +1840,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -1928,45 +1858,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-build-standards",
-      "version" : "264",
+      "version" : "268",
       "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8189235196f091ad02766d6c1bb0123c"
+          "content" : "1f89bdad00db12d279901b65a09a725d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "5eeac2801acde7ecfd0d0b5d5c1d12dcadcc4b3a"
+          "content" : "fc72b1ab3ace0da21dcde2a869ffc7686092e1fe"
         },
         {
           "alg" : "SHA-256",
-          "content" : "3083955cb4a8bea3737f99927d39e9d837c791a3fd6fc02c487279398295a70a"
+          "content" : "63e7e6f58be81dddb540d1e2a1ffed64f0a608515d62d05d67c5774230f8d80e"
         },
         {
           "alg" : "SHA-512",
-          "content" : "624dd8d896477925a7504f962204e2c518dac3e539a2ccf6ca506c7e24d150914821dd755a3737ad0aa940ed65ff4b07bf71af8821488a8a6a8be572fc6b9d54"
+          "content" : "ada4d165709f953f73ad1a1a3ff4604308c3059bf67dd60afb49a92f6ff1ae906dd3dd8e3dc15d32d26d43c123ba272ca6587b8d55674db484d66426a95af28d"
         },
         {
           "alg" : "SHA-384",
-          "content" : "b0a52edc58a8a906bd922da28578c4fd9d85e6eadadb793b37978f4f6b2fbcab7d604e25b12182802d9cfd6b88e37ac7"
+          "content" : "7d79a09b09c2c8814c881f551e498f07dd618379753ce5be9bb0d5232e67bd79e444b67cca1d50ead31c34c0f23444fd"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "956c1ee86849c89ca86c2151666c6749bb618d40a4c8097652e244d166a0b4bdd77c86b38afa987052d14795d59b6231"
+          "content" : "6073ec50ed1085ff609cabd915d7e7092444a343a18d9ab357dba4f1b0351947a46cd8ae6f0a54bc2d32b7ea717932c7"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "2e7358f0647fa4efdba7ee14f23d9ba2ea11a810659c81a51f044c229c3b0f0c"
+          "content" : "5d13b12b1a41a256c4e852857e543214cdace19441bd3fe2ddc8218231fe401a"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "0f7c46898cefbd7b77da9d485f1e228e89c92c4092b07eeaeeb11132e5033343cc979f1d0bd8ed5ef07cf85e4104244e3fc1d7bfdedc399f5847011db284c7e5"
+          "content" : "d037a22aa17fe8ce02ffe3ec967123697c9593fda617fbe2bd3fd307931e2e05875296281b97acb2d82e9255d56d75a8266dbb1625a6abc3602ea321f530e4e6"
         }
       ],
       "licenses" : [
@@ -1976,7 +1906,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -2136,9 +2066,9 @@
         "pkg:maven/network.ike.foundation/ike-ucum@1-SNAPSHOT?type=jar",
         "pkg:maven/network.ike.foundation/ike-model@1-SNAPSHOT?type=jar",
         "pkg:maven/network.ike.foundation/ike-elm@1-SNAPSHOT?type=jar",
-        "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
-        "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
-        "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
         "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar",
         "pkg:maven/network.ike/ike-base-parent@16?classifier=site-theme&type=zip"
       ]
@@ -2147,7 +2077,6 @@
       "ref" : "pkg:maven/dev.ikm.tinkar/entity@1.127.7-SNAPSHOT?type=jar",
       "dependsOn" : [
         "pkg:maven/dev.ikm.tinkar/terms@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/component@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.5-SNAPSHOT?type=jar",
@@ -2215,15 +2144,6 @@
       "ref" : "pkg:maven/dev.ikm.tinkar/component@1.127.7-SNAPSHOT?type=jar",
       "dependsOn" : [
         "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
-        "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
-      ]
-    },
-    {
-      "ref" : "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
-      "dependsOn" : [
-        "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
         "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
         "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
       ]
@@ -2327,15 +2247,15 @@
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
       "dependsOn" : [ ]
     },
     {

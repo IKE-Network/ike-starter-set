@@ -118,35 +118,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "2d6310c3f51fcd13adbbce874ea31350"
+          "content" : "df786a53d08e863799e2afb2904dd9e6"
         },
         {
           "alg" : "SHA-1",
-          "content" : "dd20d5bb5fe19e6a6d75d4720dd14292873895da"
+          "content" : "1bd45b348ef8382f31740d5aaad3f6edfe852f59"
         },
         {
           "alg" : "SHA-256",
-          "content" : "5322013525593dac72ffac6a1c2d07cf1329033f39874ce8ffeb6ac27c740083"
+          "content" : "3c15dcd928f30d058e8b6afb70c934e15b6fc3b0ae9159a4ce2b35ecf1232253"
         },
         {
           "alg" : "SHA-512",
-          "content" : "0188bf43589ae18a3950be034596f837c42ec76d91dcecdcf3e197a2a7a11288f9d0561f07a504a52b778f2c7eca8fe0fea4b1fc8c34a28379281c35eba79dd0"
+          "content" : "c825d03209b77526e5b6e140d15b67eaa145741fa2eea81eec6f4c8b456e02f6f36e1dc8675f29528b3e8bcd28fa7bf147d841caf9d87faae77fb542e224e333"
         },
         {
           "alg" : "SHA-384",
-          "content" : "80f66b6beeb111f0cee33b2857189dbf73046cffd9a8bdfcb9be7d7cb5e2f75f5d0827fe3b7cbe706990cb09b8bace21"
+          "content" : "8fc2a0b73e20e7b24c873fc350859aa1283b277518eaac3c4ecb073cfe586c93b5d335cee3d9828777f56691afcb6a55"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "faa1c0dfe04262ab267e2b9f4daf8cc0c904ea09c0259bce92fcbe7b78db5cca39531a3949ce1fe019c85f7db27782e8"
+          "content" : "9968c905d2e3890361fe245773895ec02fe0cff1594436feb9531329b631846b5255f5f4897a7ee244087b10e18f6a88"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "a19f218a80ed9198f2ad0957e7f7b21d5485e2facde9a09d183077ea69282ebf"
+          "content" : "7f384558398f38d9305d9888c4348426213eb33586b22ef138d4fb1c0f1be98a"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "b5982fe64f1318f26f6eef0e6115a5fc0d359a4585a4769631aa8c0009964a49a8dc7b8d9048f28ddad1dbe8d201aca9e042f593ebe5b1667bb55b0675517661"
+          "content" : "317f8f2631ec276710a8fd65f0bc4d7a8e8eee5e09e5d42331f9322086c96412320e98280044a1e97bdcdd113a3876240d0a55b97d9a0fde232b8944fa3bd3d3"
         }
       ],
       "purl" : "pkg:maven/network.ike.foundation/ike-changeset@1-SNAPSHOT?type=jar"
@@ -163,35 +163,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8d8e0998ad54f1e57729732eb887cb77"
+          "content" : "7a61ac0bf75e4e6893cbce8dd83aa450"
         },
         {
           "alg" : "SHA-1",
-          "content" : "18e3cf65c17aa165108dc083bd2bfdac4469a8ce"
+          "content" : "d072e07bec5e4bf48fdcec45333dc99e74ae1879"
         },
         {
           "alg" : "SHA-256",
-          "content" : "1cde4dcf78e0e6dc38ff16a440aedd51d6b9afa43a41215278d284dac0fb90ee"
+          "content" : "43bcf0dab6db6bc91a8108f561802576db8d76000b8e9e0e28f85942798d6e37"
         },
         {
           "alg" : "SHA-512",
-          "content" : "9fd4c0b8e470a6f54032046522ee7ae1de9e4f0ad99d5dbf37c499073ac4dbcfd5564f0482e962de34c890cdd31193b1ab61af20aa8e7351437ba39188bf594c"
+          "content" : "2d19d3b0c93e3d14dd4d4ad4a844b7492d7898cf2e004dc43a8b4f6913d541ef51dc3f888463d78efef2d436033f647f240b229fbc20965a6ac9748042cf738e"
         },
         {
           "alg" : "SHA-384",
-          "content" : "3186eee919d8bf4141c356d0592eb3d8ff2e3f797d54831dc58cc4bf4f9eb8e821e511b8ef94a0a86b17148caccc5cf6"
+          "content" : "86e5c6c271e54a7c958fb65e8c6c60c6a23ec673224843fd906ffbe707ef13d32291dcdc883c5bf9f6eba5187bd1ee57"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "f75bd06131fc2e9da4708e87c99483eb51334c04472f1af32090c09932540ce8ef6168ba47c52c88f7c5fa9f8f5aea60"
+          "content" : "0fe36e13b83dc0ac5819580f3af2502a2d29ab35331837e8002a9473ea9696ee80f83c13f2d23797c2c4630d6bca3d62"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "4be2fddb3e31f6b148d28a8c251330a80a62ef821547417fc16d169b47f38f71"
+          "content" : "612b8549bd91f5a5c1ac032e206f7ef0e55c96a8980334638cb55fca664ebcc1"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "86801c150b17bbc6146dfe3bb0051f0e02e375c2e518dd4a964e80ad08534800921bac3db726726b8969d1174055b0abbba01a53043d01687a9e49f874f0b4fd"
+          "content" : "4cc751ce846d0bd2e9af565fcab2f0c8874fae63240b76d8dc6a70ad2e16015245706ff678a119d8b440bd4c0ee6529af7006238ad4e6fbbdb6305cfab1c9ed2"
         }
       ],
       "licenses" : [
@@ -235,35 +235,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "502bc6ec1d7925e8cbb5746223b5df55"
+          "content" : "786ab0007860ee9642abd970dad2bac2"
         },
         {
           "alg" : "SHA-1",
-          "content" : "6ad3866965195536e4330beb4a484042bd00ba97"
+          "content" : "90bec15ae6a9d4963a2b56e3bc9940a2fa057cb7"
         },
         {
           "alg" : "SHA-256",
-          "content" : "73cfd01ecf4ed3ce830c688df365d72876af1616111fee975fe96b1e5139df54"
+          "content" : "feb97bc1504c27fb9346ad2c336b36fb5bdf307839c8192694cccec0d7fa04c7"
         },
         {
           "alg" : "SHA-512",
-          "content" : "099953e49ffa307c86d03481300b88d039f9e28be2c981272695d012c2364978f660c3ecddec40b491eab2e86531c82bc30dffe0c921d633c3ab617a0be69964"
+          "content" : "dd597f6f424d4eda94f2e1830202f3fb49e867077404d8a126f44ab124796e17df7208de890e474ac8fa16b2511f299216bfc68eaeaed334257ba3a9d95bde2b"
         },
         {
           "alg" : "SHA-384",
-          "content" : "7b4d647e63f40b3bd36600ead332b9bb257436cc129c7c57800a35d0c8a290613d9e72e71fe855b0870ee45203b0fab6"
+          "content" : "0e0826162082aa63fd32b00307020bacebfc4d1b321e157b5510c53143a486f095690cab7419f4525b17e643aa0b2940"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "9f70981e1114b2f7ace421e86cac9d6711e9cc602db867cec439252b8a50c501ca4a662266de37a4a18710d41e51e4ba"
+          "content" : "39cbb19ec2fefe9e599b985e0c28028f8d1c4df4001caa0259531f28d78dcc706ed95bf81eb22b97306635f0a9ddd849"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "808ca9a4480c1d9533d499b4fade874b7e5062c50009e8d0a8bb3bb8628b2195"
+          "content" : "9ba1e60100c8006d1df38e09c623734335870da2c0cc33feea03ae337cd1f870"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "9625ecc8f9ac85d7ceeff89d9eb010317e750077baf96c346f3a64960d6e142344b0b4a1fd2ea732240463264a5958869a434f7300c9af67bc9dabbdc00c6266"
+          "content" : "2a17dfa227c4f950c312c95eb8bb065b4c149f9807d139879c4dfc2838c2a11f35ac0c1d184aebe96bdca8b017d3aba4194950f292445beb232cfcb6b3c98876"
         }
       ],
       "licenses" : [
@@ -295,76 +295,6 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
-      "publisher" : "Integrated Knowledge Management",
-      "group" : "dev.ikm.tinkar",
-      "name" : "collection",
-      "version" : "1.127.7-SNAPSHOT",
-      "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
-      "scope" : "required",
-      "hashes" : [
-        {
-          "alg" : "MD5",
-          "content" : "546316dcc940a03724281bc322d20c1c"
-        },
-        {
-          "alg" : "SHA-1",
-          "content" : "4384cc9cebcd84f30bf4fd6b3ca7c0d9f28d1640"
-        },
-        {
-          "alg" : "SHA-256",
-          "content" : "fd48d8eafab798cd110f0a1170ae016efd839baaafe93ef5e81f6c7908cfe32e"
-        },
-        {
-          "alg" : "SHA-512",
-          "content" : "f89be54c732c85181ecae4356e3c95bbe80b6e89e87df1d335097c4a0790ff6dbf020183c588634cfba9a7dc8678e15157f398465b0ba38f2ca478a820bce482"
-        },
-        {
-          "alg" : "SHA-384",
-          "content" : "9e3cb27459794fe852b0f18aea67a4fac874fc2656512287048a56f529a6d8eeb907b90e86fe264f607fb0d9e4290f14"
-        },
-        {
-          "alg" : "SHA3-384",
-          "content" : "fba0d84dc2925b7a297d579772005a4922ea208d268f93d4c2178fa105568c19cf6afa8791043d04e42b88eae34bf991"
-        },
-        {
-          "alg" : "SHA3-256",
-          "content" : "6c96a91448c8a889d26bac4eef6ca88d94e2a281da7dd3deb440b6ce1fce307a"
-        },
-        {
-          "alg" : "SHA3-512",
-          "content" : "276696dfdedd164f1459d496c84f850b0ba2364dbaaec39b6495cf7868d36ac7157d72c9029776f4762982f72c62ce1e7946a5275600054c62713410463aa18b"
-        }
-      ],
-      "licenses" : [
-        {
-          "license" : {
-            "id" : "Apache-2.0"
-          }
-        }
-      ],
-      "purl" : "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
-      "externalReferences" : [
-        {
-          "type" : "website",
-          "url" : "http://www.ikm.dev/collection"
-        },
-        {
-          "type" : "distribution-intake",
-          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
-        },
-        {
-          "type" : "issue-tracker",
-          "url" : "https://github.com/ikmdev/tinkar-core/issues"
-        },
-        {
-          "type" : "vcs",
-          "url" : "http://www.github.com/ikmdev/tinkar-core/collection"
-        }
-      ]
-    },
-    {
-      "type" : "library",
       "bom-ref" : "pkg:maven/dev.ikm.tinkar/component@1.127.7-SNAPSHOT?type=jar",
       "publisher" : "Integrated Knowledge Management",
       "group" : "dev.ikm.tinkar",
@@ -375,35 +305,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "cff03bf8f0c5566bb5bc85f24c922779"
+          "content" : "db8c57951527bff1af3aa53048fa544d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "62927d8bb844ddb7b8d62686e36edeadc636814b"
+          "content" : "bfac72de065bfae88292cb7730eb3fe5f2587c18"
         },
         {
           "alg" : "SHA-256",
-          "content" : "7da8989354470bf79f7c230da5032fcf98cbcc2dc625e8bd4ac9b486c310e5b7"
+          "content" : "9171b2730bba37e4d7a9931a3a1c185dc01c7742bb1b87985014a2c7c04183c7"
         },
         {
           "alg" : "SHA-512",
-          "content" : "a77ee6d02fc6626379875487b754c5b0490fd9b90f5beac090429b419f16b27d2f83dab2962db4bb86b9bf52c58ad069753e0b1f941738d7794329a880c5dfdb"
+          "content" : "ec58d36fd12ff5ca8cf86fdc5f11da7cba45cf593731c738e432da95a4e04c0b817612f6560d1b2fd3bbd90c4defeccba974f473c7360ff21bab6861297181f4"
         },
         {
           "alg" : "SHA-384",
-          "content" : "9151106cbeda5500463a529a5ad55160a595e33ec29efe3b2e2fc0391659f2276c278e4d0758d71810a940236cd9626b"
+          "content" : "146ec34cf41c2df74156dea435c6e33a41799cad27cb80d055cded41fce66b3521d3586b4fb8d8d9bcea83cc73c805d5"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "28337c4c34a776840da3e689f50b2be8838e01bb415fa3611d08b5ddc7523cf050ed0c7cce4183c930bc293ad20e43a4"
+          "content" : "f2aa212a8f4d975ccfa74b7bfb6a8dd2de1fc6c1e64c32a74eac14a65c1280a365891fb59d47ba7f5bafd130b8e5362b"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "89fa76af5e717f0123e113bcdda35ba8b253ccd1e0030bef6e0f3c44991c02f0"
+          "content" : "d524f7646fa96f5174ad1971e07037a2f04ba8547e93b879f94c9b6395db963d"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "ef26c2073a4d9257927e92ee8b1e32ddc5bb35d38bf71274729e2faef78dc801cef58f23de7d640a647170cef75323f05afdd9ebe8b179d30707fabb50517a20"
+          "content" : "216daaf618c88c117b7374da126c6816aac3c960133ffa304cf6c8d56289d7c2c1ee7a0e3c2e3b2952ecfa8a8814669f26936ea88063d1ba6dd0361ca838175c"
         }
       ],
       "licenses" : [
@@ -445,35 +375,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "49c8b76bbdc656c12544277faa3ad1d8"
+          "content" : "8a61cd22340b41730e410250d4b223ca"
         },
         {
           "alg" : "SHA-1",
-          "content" : "004ede349690e3cf85cbc902dd782f46f453fca8"
+          "content" : "43e7b747104c7309cea848785f7ec2df8c7e7e3d"
         },
         {
           "alg" : "SHA-256",
-          "content" : "199c71289bf61ce2848fff6eca7bbd3a0b09d62e94cf5bbcb040e86964440425"
+          "content" : "8dc3b7d85bf1b8304ecd0d4fbd16d7571cde46dc0631639effca89b1ced5335d"
         },
         {
           "alg" : "SHA-512",
-          "content" : "7961712803f7bc55c6dd740c2f7405d1d243191a166c75b0394c2cdd553759ffc15e55320d11d0b2f8cbe7b4a643de6c232afd38df355ff46309d3f2c2730ecd"
+          "content" : "e5027f3787ad9b46057440a97cb9f871087f211503aaabc84cf3ab9584050e057bcd0db4dabc46430403cd856b0818b55a44aeb39de3b8f33f2d2ce3efa97c9c"
         },
         {
           "alg" : "SHA-384",
-          "content" : "2fb4ae05f898ab6c2dc6ae71844b744195349f19e5019bb421947d3559789606d7f8209c8732a3267f74bbc8af698a85"
+          "content" : "4269976dd76bb0b2f3eb3f64c086e380f1f7527b4e142342653e2f834630d7da1ea9421e2c705b05e284fc3f477a6b85"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "8629a7565d5e4ee840a287cec91e6e4b4b856284fbb2b8163e700cc67a050f59d10fe2265f465cbd5ec9de9d519f69bb"
+          "content" : "4c44ceebae81709337a61fff0c6accc1d4443cdc498133b62b81f2ff2d3074a419baca452c089b3653d0408b15f7c8c5"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "77bf2ca201ca106fcd255778bc24c36e6c6fb0fbb1e5272261457a9804588d2f"
+          "content" : "701f424439625490d5f726c10b6d79e16bb28c19ad657e46d435fdb34668c706"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "c48524f954a9608d6185a0cedf904941623760737150058352fd2d6dd1175632c8fda79ae096240ab744213b9795fe7670d331a3f0632bf69f8c84760839444a"
+          "content" : "32be9cd98cff8faf14a2fb60d4d8875f50e1a07f4a048085f1ec19f6e1b20a0a9b114a6e8416414c44f0692af2c9d88eba114ff6a93bd687f79cadcedd048824"
         }
       ],
       "licenses" : [
@@ -1196,35 +1126,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "f4dfde9f1d50daf280480ec7a9067856"
+          "content" : "3ef8416b48f98c91ca19f7ad01b94465"
         },
         {
           "alg" : "SHA-1",
-          "content" : "8cfad3cceb2d1afdce8bdf1609ddbf9c907f19c8"
+          "content" : "9a2d4c503d11893f865f97aa5f85a34e0a0d8bf8"
         },
         {
           "alg" : "SHA-256",
-          "content" : "9f579329a48ef6b5c0c7e8adb5b0f2be5490a6bdad7562a008b96ac612a1f692"
+          "content" : "7f8a4c2cd5c25ecc26b152f22cd24f1713a58ba513ea1a1b0a43c18851091748"
         },
         {
           "alg" : "SHA-512",
-          "content" : "45de29222080627d7c25adab9ab17683bb8ba921aa744a3047d1999b2afac04149767db90663ce30393eb201cf824bd27647fd1b8feb70dd304ca0c9a8a6ce62"
+          "content" : "2169de91c14e4ae246bf2b46e231eeb6bc4b7eaff87d494b2297d191bc6bb4318805853c2b0cdbce4e33c181a92e61ed57e1e6cd581dfe6139956dbead2dcc90"
         },
         {
           "alg" : "SHA-384",
-          "content" : "eea063da183763ba7f826da7e5e304a1458a299d036f251e4bf99c7484e5547a0dc01d2c51f78e319faded00d1c734f9"
+          "content" : "ef3af5a899c08006b6fb4d2587e44f909024f1c84ba96d888f4967f7fee78946928158bb6d5bfe5b4878e2e685848b63"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "10906c3a6eb093250bb0b0395c4deafc783503d074cd9ffe9251f5284700cad6fe369312d53310b7a3c43a9b594f9415"
+          "content" : "1ee02d15fe2cc63cefca1d493af06eb9c0382c59efef6edb117a78e6b9d3797c840a3f1e9f9117eecd27b456dda28f35"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "6d34b160106da1ab7c412b4efc6c46edf232e6420ea43dc0c2b4b26158afba2f"
+          "content" : "e192b04a4d620fbef41c876bf96ea1c2a95cd57697c03311c9590402a613cdee"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "e59ffff612093e9fef40216dafdec2745868f96e14d5b8d7efc2064299dda874e023ff3f9f2aa37c0941a2c7bf49a5adfe3e65c264bab185224d35adda07d847"
+          "content" : "0b92ba21ca7fb51cea1c08309d2c4c68a5ca9f87b2c5e325597f0028c5d35160407f34a25716c701d3ce0ee2c94d457aab8076d256a329eff8a33b558ca47c9a"
         }
       ],
       "licenses" : [
@@ -1252,45 +1182,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-knowledge-spi@267-SNAPSHOT?type=jar",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-knowledge-spi@269?type=jar",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-knowledge-spi",
-      "version" : "267-SNAPSHOT",
+      "version" : "269",
       "description" : "Zero-dependency contract module for the IKE knowledge pipeline: ServiceLoader service interfaces (assemble, export, bindings, verify), the ViewSpec dimension vocabulary, and the properties codec that crosses the forked-JVM execution seam.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "317fa18a6c5f43f2b38bbda293269e2c"
+          "content" : "bd198116205611c3de69e4c8c4e6d61b"
         },
         {
           "alg" : "SHA-1",
-          "content" : "ccee6370e9aeea96b453b422f91b7aee70d43a9c"
+          "content" : "69b0d883b37f893825688ae966224814d64d2c13"
         },
         {
           "alg" : "SHA-256",
-          "content" : "a005623c2b7384d71fa971a08b2d8df97c7aac495049cb8c5e2112e349b7cff7"
+          "content" : "034b9a011eaf9643c7c5187728affef80247a4b174d89892a9ab498a8491c838"
         },
         {
           "alg" : "SHA-512",
-          "content" : "2e56cf1f02145288efca73de3cfbae10b24ea4cc503bc55fb719ffa3fd600a5184a4f341ab0e396767b74a391005b4f0c8efe41d3257c91b2804f81d494eabdf"
+          "content" : "877f924ae8f6921e95df9fa296261ebfa7e05d26e4e82279bbc63a48c711d1b92fb13ee0bbdc4c23841eb1f53ec64900fa74764977bdafe15ef6d252280b946e"
         },
         {
           "alg" : "SHA-384",
-          "content" : "d251d0d978d95b5afd9dacc61b3e172bd1fafa59a86794f08752440241a26ae7911e829369d7764c27f7275de0ea3052"
+          "content" : "ecde2e1627b822a61eda9ef3d2eb49c73c3009eb9ebf652f59e1ae33ce00a72bdaf8700f1467b83a00662ef6a8c94db0"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "b0ccd9200ef461aeba882e0b0dfe4bca4a2c401406ca4a6a4bd39b5a99f8d3cebf43795a1c967fe4dbb955117ff744e6"
+          "content" : "9b0afb333324eac4791449ccdd911b1837b6ddda1544194e37ad3e7fc569d63d915b0b61f18a15f698f4f8c07d6b58e8"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "e17f013dd582f9ccbb212cd2eaf650e5b343009f2fa3442fea2e87b885f5d798"
+          "content" : "fd2cbf17a5d9d3badbb08f32b9e302448938dd404025230a0190cd33907a68cc"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "01b27fc6650fa4672ee960462157f76ce7cda16a5a58887092cb7cd2c05f88729e11ac70bb9abfa250c65e9712c284340d63e5be3041eacd54ac4776c336045a"
+          "content" : "9c4c84e17e8018aa91049209deed1ef135264f581ae83656676333fea2518dc2d64bf393a6329846786be46f63969bf3694d0b39251a106632b132e67e971763"
         }
       ],
       "licenses" : [
@@ -1300,7 +1230,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-knowledge-spi@267-SNAPSHOT?type=jar",
+      "purl" : "pkg:maven/network.ike.tooling/ike-knowledge-spi@269?type=jar",
       "externalReferences" : [
         {
           "type" : "website",
@@ -1328,35 +1258,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "5dc195b67329bf70ec20a03c17a71e9b"
+          "content" : "3f71757597aaf7e7de889f01e881427f"
         },
         {
           "alg" : "SHA-1",
-          "content" : "b7ece830ba6d30088f1b87676a05a8a894341c0a"
+          "content" : "5918e757ce1bfd9f855c16b7e9d4ab7504fedd69"
         },
         {
           "alg" : "SHA-256",
-          "content" : "097e542d6879361c0828c954cdaf1a12b632c17fa3f66f05a0300126822b542d"
+          "content" : "90c24e42e1210664c3d904a6b1e290db2ff6af72c805fa27c68166478fcf5a6e"
         },
         {
           "alg" : "SHA-512",
-          "content" : "68e01b7fd103d2036bf320011f88546ad4cbb0cb770f6971dc1cb778a6e1ae8ab86b102bacdc5c8771b2ee7049fa389efa63df460da3cc684a33a5e304dc3869"
+          "content" : "53a5cfc35efbaac1c8a63b564ca537d41b4ed43e4edcb88b87f3d31504a9e7466079e62d9160d36901b1e0d06c96c968ea06e770bb69a70aae590380e6deba87"
         },
         {
           "alg" : "SHA-384",
-          "content" : "68b05c8a5a800eb59aaa20fd4a8c603c5f278c1e83059dd264d01fcbbee30f11b9f7fad0ac2d5722e8a18d3d4a651d7e"
+          "content" : "88a7d52f737544072ec892495c0f5a84be883d630e78bd000dcb05654c9835e37e3ad042a21db668ce6943b4362ccb57"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "a24fdbc2e7921b49ca0cefa6d60a3cbb5d722d246c96f6deb838f9bd83b5037400a670a23fd5f64896bd6f7e5455450b"
+          "content" : "812847df1e608b5ee84820e9768de4cb1582472c2faf4ef7e1d5afbb5769c241d275355508b657f5da4c39a7d54c6e0f"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "9cf016e21f2f0874b283250e45a36d725e3be25235581659d3dabf9dd8230eb2"
+          "content" : "6c896d71f1832880c78d02a827d8a52fc9465da8ee7509fd5943c4dec0ba7d12"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "1c4102bb8af9552dd483903b51a1e82002170c3e3785c3c92a8c6b5c1e7da79add5196cd276126f92e9a36601be33f3b0edabe90262ef4c25c92340479fc238b"
+          "content" : "aac72285b021f363767ea1f2d29ea21b6bbe1b39aba1b97582f7b78f862dc132f07acf6a6bb4591fdbe5dc26bcf075769c7eb495f18b346e412312d9fecfb0ee"
         }
       ],
       "licenses" : [
@@ -1529,35 +1459,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8d05027729e6ef0a95e7db9e562956e5"
+          "content" : "cff35ec131046f2e356be6c5b26b4801"
         },
         {
           "alg" : "SHA-1",
-          "content" : "7a2e6d10e9337eaa7fafe3f4cb78ee248b29e858"
+          "content" : "d4b5960ecb17c88fd8fda52c5da6aa7c7399075f"
         },
         {
           "alg" : "SHA-256",
-          "content" : "abd02f35df056a15118d70bc2972a14e77642af01c5b292a0a2979c9b6425009"
+          "content" : "b1c5c5caee71e7e08f55dc49d941da740497a8dc5b0e3e2d28901e4562ca3107"
         },
         {
           "alg" : "SHA-512",
-          "content" : "a374534039d2398e327fb39f01b6fab7f9a94c0c81001ed4461cb64f37773485ca30d69196d32e971ab971d02db94e7a1e9085c215d8970669a981efad33c567"
+          "content" : "11b3b8bae541161340822b9c9390aef5091d5e029d738fb223971486c00cd2636d963b84e533e1f0e5784f0f54e1eedeafaaffd040f8d4a07ba24163bbd1c2db"
         },
         {
           "alg" : "SHA-384",
-          "content" : "81626af592ce2af1c2a069d27a98acddb512b69519fcb0336a224a524bc15df034bdda5d50face068d89b91d735e1905"
+          "content" : "de014afde30b003e5ff8fe8df01433812d11863958a4a277f884246e72d72421de3a9c9ded534f4351ace03b7f14c3ed"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "ff43c554e31e825c2df62916757ae4ec04e853faf44f9693c72450de0817fb874e8f938940d7e0f04185c237d515fe61"
+          "content" : "4b964cf955f40f2560ac0bd520f0547eeffe644bd3ae15b49efd2b9779f7d1e7d3ac2dae312a951bea455fb9fc910a3e"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "57acebe3f3431d20ffd7ca2ea593b7ad55cfbdc7e7d06dcf2b37204ec5e68dc7"
+          "content" : "e44cb310b46286921c3b9c1b04808b2dc345cb23fb8d67ef395c5f0581295b26"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "fe16cf440d41a340b567b6149c4187c68ff47800f4f8c585c9e605bed871b62c12fb1c20519560c3ec4bd5750445b68c33195e3d406f968d19ea8ff78b303af1"
+          "content" : "77501d55ac4edf0717f563d7196b5e4a36dcb3c760e50ca4897c13be5cc22d64b470f18339057331a29f9c80d42cef7add27d05211599ba85426d2f988ec6aee"
         }
       ],
       "licenses" : [
@@ -1599,35 +1529,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "f9f615b4fcd9cd70d5d515af80c45dd3"
+          "content" : "9c17934e4bd2f1a259c55c44068c664c"
         },
         {
           "alg" : "SHA-1",
-          "content" : "80d7194ecc388271f9620ebc9b1412d5cf083e0f"
+          "content" : "b8e0f8860977a26d05519c3796e8fde9a3291db7"
         },
         {
           "alg" : "SHA-256",
-          "content" : "a6d69d452ede64a059ecd3a71fae0ee7c1a5541f8dfba5942b31f56330ed4d14"
+          "content" : "20322c2d2effb5f6276ad93c55339b67040bd65926a49bc7fbd332da5b27a350"
         },
         {
           "alg" : "SHA-512",
-          "content" : "bb63b8632cf95321c1e294e2fdc9bd57d325d0b517cd5065066f434f440fa0dca3edb7f2ef8a6fa849f0fbc246b2019f1d147c570e2862d45f2e5cba97d65aa6"
+          "content" : "9f3d277f323b79767a9dc44044e0bfbb6a06b689d76f76398b258fd80182a74f590a07f6c072015c2279bb146d95a836fda8e4de70679e0d6a210baec32aca06"
         },
         {
           "alg" : "SHA-384",
-          "content" : "f4174649f1369f98f8f509d69298cb50ce239554a38a4e4bbb96d9395024dc0791dac7d2cbd1813cf27fb0389fc62438"
+          "content" : "e704013b6f8b6d3731d65a92218a5600346f1e21c01dbd502de8ba63d9bc645e0fa86f58cda75c6b1bc1d048ca1c85aa"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "fd992d9ba74a8668e6287a8c2eebae402b6d86f7100d7e8a58420a66806e919600600c9a7d35331f0e9698b507c8b5b9"
+          "content" : "cb8d0716f165f6e4eec05d4db2c394f529139f736f3729c924d798fe741be7e06e2cdca22ef0a4a309ed11c89c837966"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "30ddd612098028cfc9b96dd7e457088b7aa127008bb12d5a6534a25d8a6bb53c"
+          "content" : "4709ecca19d22a130fcebe22824e2e2c2edb381fb426efd18a43a2165f73b5ae"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "d3dcaf6091f7613c9f623fbd051b7b0c1fb99858f7f8fd8f74dd1ca8ac3e41fa5316d66fc28bf61a968779824a94489aa55acc01fa6bd264e8d81c4c662354f0"
+          "content" : "f50917ee4466454b150e2669c4088d55f7ac02d2d021675e451decaf8b7c9659db6bb9b682ae8da7d7a7b19b6d095d6d43434058d7c36106191536f9a6691186"
         }
       ],
       "licenses" : [
@@ -1669,35 +1599,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "31b2170d4517dcaae72391d61fdef682"
+          "content" : "97c78dc9883c570af32c7a359559a5c9"
         },
         {
           "alg" : "SHA-1",
-          "content" : "922c8deb726b8e7dbd5ae38083221c06596b0276"
+          "content" : "f0dc4b185ca810b57780a2faeda190541042c5f4"
         },
         {
           "alg" : "SHA-256",
-          "content" : "0bacabb99ff17b40fb2cbd58436ad139f96086f19350a97202c5682e317216e6"
+          "content" : "cf6fd9ab003dbaaf521a14c4780979bf77cd3ea62e545c78282c53d135c09acb"
         },
         {
           "alg" : "SHA-512",
-          "content" : "9d3176fc2782514722414c76deb30125dd9e2fd52aaae2f14dced567f42aada7e3162a25a90c8e9ed15193ae0f94344787cc2009f67e28e4ae4a3503b0d6791f"
+          "content" : "a81b469ab7d72e5576ff6f4f5000d35804d8ce645007c90c5c7de869e1a6baba40bfd11e7e0323f28d8343fff427fddd0f8b274ffcbbaa9beeeaabd890887f3a"
         },
         {
           "alg" : "SHA-384",
-          "content" : "36fb670f00ace27248cdacce63a7c57653bcacafb2116a4734f6ab750c118e46ccde64503fd98ad83c05feb75cf229eb"
+          "content" : "e35884123ca554081e7359a24f2faa455a75d3d3fe8c6d2f371f7dbfbcf971675102204069fb30a8eeb158e4f8f315a2"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "2e72676b4913454ce5a2b429fe665faed9f745ee7b963ad4071e795dfa710f07ebff14ae0e28f6bb8bcc98dbda5b01e9"
+          "content" : "3735f7d407b69ad7c0f1db9285394515c686616ea43329e9ab3f0b2c096339705a05e429dbddb0d8acafe700376dc317"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "af35b618a58575911d560c256456f410e1fad51d88566a63d23b901fb8f83b74"
+          "content" : "cec2cb632d379322bd8333259a5ef99a5e7ad23257903366c28fa54e62d61be4"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "8ecd3b5ed42fc0dae8d99fb64f1b6278da7873a37789cb06368d5273af7dfd3d92fb6d4dbddfa90adc2a9d0afd116880e85fcb72557984b3dc8fe98c28dbc214"
+          "content" : "82a64c6b84e38d7c7a2afcc3e5e93f3a301810fa7388a2e498b13c562cc3f6ef0cca949d643cd2f7cc31950188f0d38c5dce5bdc2e3a531dc22245cffd9a3c07"
         }
       ],
       "licenses" : [
@@ -1739,35 +1669,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "c8e0e31309afd790e389f1da5f2d9b92"
+          "content" : "7e8d5ff9819458cdecc88ee76cab2de8"
         },
         {
           "alg" : "SHA-1",
-          "content" : "696f5b13f5d66b049dc0742ed27f6c7ba99659c6"
+          "content" : "2938f2b92d60f48f1ed265ab401df50ed6c13998"
         },
         {
           "alg" : "SHA-256",
-          "content" : "d2bc456d529065c68a04e4727517ce220f3d57790b35a0af49de0bcd024d40c8"
+          "content" : "5c57e73aaa68b7bcd7f93a0f187174ac884d86c3fb8a5c748fb83d3623a8ad71"
         },
         {
           "alg" : "SHA-512",
-          "content" : "8362163019118967fae4f9234a91460fb3e416d7da7390218c3dc2f4219c8777c2100406b1cd4071c6b91adaaca7bee2eff4e458ec9fb63b181fd5ab1a7b12f5"
+          "content" : "955bedebe927df33193e22e1eb4a635aa429c4c4f5f7a8b39c4c43d56dd4eac1c243a9b065c1cc596ab0a69306d99af7046388167fa4561099f5e3b301916620"
         },
         {
           "alg" : "SHA-384",
-          "content" : "cf9ff8b7d737dba91e79ea77a5c0b494e3afe91bd9275bf4167803c40c920a73f939f613a8c7b9caaf2f63d181ec37de"
+          "content" : "fcc7e25061facf833c21847001df5ef58b4b9608f7e89d7c138b761adfd78ce8477e2329adb166920abc5935cc3ea45b"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "12c63a445290a360358ebd59082a00e0fdc52d4ed944970b3afe232673f6954a913d232cd07e7fbef1aa35e7896ff45d"
+          "content" : "38815672001dc76e66ca507f154a2334b6ffbc8f1c56c6b7b3d786c11490eac8bd5d3fabbb52e957641017c9877c17bc"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "c688115dc65304c2cc8343c38e5d8d6a48a3fbec54894ba038cc360f68cd07e1"
+          "content" : "a171d2442df7dd058099f3575540f16440257f062a1f0b9d3a831270a1215f9a"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "daa4df5f5d508a32b794123df89beba42134eddb5c68e466ab60f22f76daf9e3a5424dc1452b309093fb521188a5a2d8c88c1c0923990af75475a954574a93c8"
+          "content" : "9a4a2f9472fab26dd2581a0f9c671f6c15d9bc155ca5cb6a7fda50c44b37982ec76715810c2f8ec147994ff786f5eddfc243f1c560a0114305452cb90eb48900"
         }
       ],
       "licenses" : [
@@ -1809,35 +1739,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "f680adf6e10a9c8e5194cf9372549151"
+          "content" : "87f0438cc72d17ebb0760dc9ba6d36e3"
         },
         {
           "alg" : "SHA-1",
-          "content" : "a43e3e0a5db8e6c2b168a7477cdf843ad0c679e0"
+          "content" : "d300e30881141d8267ee2a79e99afc30f69dc5b1"
         },
         {
           "alg" : "SHA-256",
-          "content" : "74f3c4c5d84b9f1cd97715507ee43762ddfc08f2e1514568553215b92e598d9e"
+          "content" : "9bf7a1ae77164a1a3971b2252b1487f7f806e54b5a658d2450e9d4489c3c80cb"
         },
         {
           "alg" : "SHA-512",
-          "content" : "e2f41d34e2fe4d887ec94f8e1492e191bfe869bbe81890205c66dd150a337eb5502f8dcc4103b5b1712f252812b5562ccd32e901d52b2fd311fa92331dfa9680"
+          "content" : "d602b78183ce2d3a0ab014d2f99143134d5ba1e9d353d4797c1d6d1e686d309599a7245b17ec7964079f02d3311d2e56326317beccd2232678f9882a59563860"
         },
         {
           "alg" : "SHA-384",
-          "content" : "3921dd862f8276f350fbc6659c35671a2e7cadb01035eda2fb5d3182eb1dce2e10648178b8a65961d30471333542ca1e"
+          "content" : "65def49f20a43c21f7da878d6051708816ebb988be664ea9bf11d7ebd30d24e9a00f67f28c7cb44ef9a9a9eff97bd171"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "29100c8336fed9894e347b99d2b561a5903d8050e55c950681aa810de74c70a8c8ce8dc06570e7f073da3ef4167d8144"
+          "content" : "6fe1712f0764c126fb8e6213ca3a61492e42d81d6de3653503efbc140140a533bb8a53968449925f2110148b0da28714"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "a09abb46e3cb185e3d5111aa8e5889f07babad011945da027b7960c0271d7213"
+          "content" : "08bd3e42d73e51287bc2a24054d0dd12ecddc14b865671a61c39db4c969efc05"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "32093ac0e5bef4e8196a751494e28ce0c6aacf558c997c9e2403a18c648033110d074f93c0e1daaefed8e229667fe5eb893e7824cb44e93444bef586184b6efb"
+          "content" : "f3bbfb7fb1eb89881505ad5c3d0622b79c1718ceea51775f32dcd6204e66aa9d3c64cbecd78d7154dbd6ecc12ff4c2161d5e031251fbaa8f04734a9122471998"
         }
       ],
       "licenses" : [
@@ -1879,35 +1809,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "b2221504b44e7046b183389107a6cb83"
+          "content" : "a2e601b780e2de4440e8eb32efd7bed4"
         },
         {
           "alg" : "SHA-1",
-          "content" : "4e6350ea6af60b4da245ebb94378c2b137d27db3"
+          "content" : "0c4bdf843ef6ec1ae8ce52c9b3eb117886224388"
         },
         {
           "alg" : "SHA-256",
-          "content" : "98db58c1722476dcb967767dd442c7b4177ac49d6aa9b041b831282fbd91eba5"
+          "content" : "7e587f38c662ee1b765d47394ba72604c50ceed17a65489d18b443c7c19b62ad"
         },
         {
           "alg" : "SHA-512",
-          "content" : "019b4e72f01931bb135528eea0366096b88175d7e74cb91da162c4e55db867551174ddba03cec6d489496d1e9598ce2828b0defb7de392b541a9e7ade2155421"
+          "content" : "5eba27e6add1cd7f2469c0951787b2f0fcc044a797a3f249e768fbce6094ee2a0db6b9bb5f4b9c4271c956528ab0164b7ef10d3b790c50c03a3d1b87d3f9e186"
         },
         {
           "alg" : "SHA-384",
-          "content" : "4bb7320516d20ae8deec739cb957a49353c2b6e8e42af6917993c8117db9896094341102fc2ae351f7d94d428737b9fc"
+          "content" : "6c471f03eea42369cd51fee86710758b6bd2aec7a919708621c2bd60b33694dda6f207322e23e90833e3ef33400f666c"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "d50c61ed48a37243672f2708369d06dae8aba1f0a664d854b2d4729478b270bded0137641f9b47b14eb3ce487eae4e8b"
+          "content" : "e4c85050411046691f965cf01b54cc21480d9dc971cc54911e14542d8496c15eab7d143042ecdca504c47ee60ed7103b"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "0c7e6db01079edd163562121374a89a116100a46a029f885309137da0ab1a164"
+          "content" : "8bb7f57865c238f962534d0470560a328599327677231cb3c37a256586fb867d"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "b927e0eee43821cc62de194cda9f824061832c54d34151f9e3b04fd59c89c97583687872a7234a18c48778da9dffc69384f33706bf23367c2a69408462121bb5"
+          "content" : "6fa4f81624d1edfb8e69522684ec342a9b036be468b00b159b9fc36383d8114774298411033c1fa0246abd1541b5fd6ba550ace6f1669303895b8281b629a41f"
         }
       ],
       "licenses" : [
@@ -2011,35 +1941,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "27479a112bed12039cc7fbac4f4d3c61"
+          "content" : "b272c655c4b1e2cc6ee30d920727c09d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "512f5156954a5e71548c21bb92d93ae267fbc2fb"
+          "content" : "b5bb49cf60449e9a2a40ae624e9b7468fff27f07"
         },
         {
           "alg" : "SHA-256",
-          "content" : "b5f33242cdb82a65265439140068d010eff15862aba04f83b2c6d42048da6925"
+          "content" : "9309316cf192842825d7da4afa0bd31e53ad0368b00812f5a1d0824d22a1fe69"
         },
         {
           "alg" : "SHA-512",
-          "content" : "6f867b98dd64ff5863e2e10a90f7066be282545ff837ec7c3399ca83e09da9ac078b827e884793a4338d9cd8f4bad614355661f8e099adc1a2a7edc423aa3f58"
+          "content" : "c12e84b5d353830047d7a45139ae80fef287f0ee543c9a8c838353c235e2f6fda1292e6fb011256a2a06a4daa4516bdf2fabdeb850979ac61fdc1de9099d8ac5"
         },
         {
           "alg" : "SHA-384",
-          "content" : "2e3357324011a987cf4ebde9dbfbcfb604a619d8d829f835137c71b614bcd135175553edb28ea7b8f7772c4880ce7b11"
+          "content" : "f586b4a12fdbfeb545d8b0835ddf0da1a7c0797cee1ce8e324bbb5c9faad92fbd1ab961cd5b0dd550fb6e2e26f85bb23"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "c3f9e2d37ab101f06d7e37e55613d4fbeeb914f8818e5052f74e21f9780c6e530ef4111a2eddb78390154ba0ba677842"
+          "content" : "a64fb47436dc312eca785c3af59f23092aa092e018e0a0cefb41010ff8470f8de50534abc53c65d8cac78d1d45e61bcd"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "4413893f51bc0e030909e86e400700061f86c210c73acc7df608a12110598ab7"
+          "content" : "66a54470b5931629a6f7cb122d2d97b010b281ecfd849a18a3e057c07af55fd1"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "0f009f364bc8f3f5f11c1aa1aafba021afe1c883b0549c972acfb37aa4e186cb0d4e2e7e1d7579caeb895fe4bba8192568e4e1189593160ee976a80a0167a8a5"
+          "content" : "b32c8c39d1b577a5b2922b2fe673e4fc5f9372fa3d6f9731e1910751df6779345759bfef79c5f95d8c298ee15bde8187d3c8584173ba265c1e60532c12aed16c"
         }
       ],
       "licenses" : [
@@ -2077,35 +2007,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "e3a89006ac897fae55960490406f505e"
+          "content" : "a14663810f491ad0810d4b60598f488d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "fe75bd1cc13e287df3f88bc426c4146486efd63c"
+          "content" : "5a8cf5dbb1eb03a461d30af4acc339d7cc972960"
         },
         {
           "alg" : "SHA-256",
-          "content" : "e9409531cbbf5d498200359e9f3eabe27e479f6665203d7e9a962bb876726d17"
+          "content" : "74f1bc34818b1ead8276697888484ed554fa3e22a662238c79e6985963612e5a"
         },
         {
           "alg" : "SHA-512",
-          "content" : "6131da9dc918b7f26785f6de490940780cd6dbcf7f84b0e924a1adb7101d19fde1c63f7934da385a5eac392d1f481be8b09cae3ab7b0033f66a98318095e47c1"
+          "content" : "0c8d3bdfbcdf2cb88f7d61b27532e148b59abd6098790316972b844157198f8702983055bd037c6aaef5ba045547aa9543934c38a15c3c00a4cd34bd13ee262a"
         },
         {
           "alg" : "SHA-384",
-          "content" : "117ca233e1e1a8a7db707a5d830ad90d7b4b8b99c21164bcdcaaefa79d88698e9fe813fbda56bb1753627ddda8c0297e"
+          "content" : "758fbc5481d56a5e36e7d4fc3cff5316023164b6c63048f388f38a2278592ca07a2241d4ab8cc35abf9fd9fbb7627d1f"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "afaaf8feb29307a96a5f05d8576b39bbf406c48551061dcfb78afe7db122ac18b96de919f0c2cb0d9fd28e9430c11de3"
+          "content" : "c8f1a7bbbb625556bd21bb9e5a49e823ff1b0f647a1601a54753f8c169609bf606dbb45431b1912423d9ad04ee77c060"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "b191e0a3ada74fa527ffce0cd1a3e5b5496b9c5c95d23a0b615f443892deb387"
+          "content" : "4ced6f4d9f4cec9c1109440e09ccb81f2e7a4ef181c96e56c6d35857ea101814"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "88d79930d67defe54e50940a9604b9f34be7e3f805b022ff6035c329de47ed7521812fb3a73038b1c952516763df7f53af133a432b9b62c75217fa9ef21478fd"
+          "content" : "1a55adab00132f88469ace5cc4c1fc3d3ab8a5f24ff52a58fb71bf392a297af83b85aa3b72cf42c7c2fd94d38be375ad66cef0334946bf8742d6bb117d97bbfa"
         }
       ],
       "licenses" : [
@@ -2143,35 +2073,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "342bff86854074ff3ad1162724c821de"
+          "content" : "adebab22790e854594671df3fe23d885"
         },
         {
           "alg" : "SHA-1",
-          "content" : "8b8883b01d105b6d99cf2fc8d5eed0bb645ce35d"
+          "content" : "2f29f658d9f3398605f9a03d2b38e8d98f7c6c5d"
         },
         {
           "alg" : "SHA-256",
-          "content" : "e8a9d2ee19f6a3a842bc06107a085013a5dc28715dcd9764b930d6c1b21c9a49"
+          "content" : "f9970e27484bc0b635ffb8b09c5eb76a52bf30919482153e9dcfac55ed39964c"
         },
         {
           "alg" : "SHA-512",
-          "content" : "a4b26f472644edc0c181dd8f859c4d3f10c461cebbbfbcba4b53c144f4e03ee4c5aa38f4674f629f556885381217e0e101fc8a2895b0a85e2c85f62414d1e7bd"
+          "content" : "a1009576123b8818dc86d0c45b1a50e5688ca99e78cf2db63e550834f45f0a13817ae08bad2f2aec7258d9070610d4a80135144d6197a27103d1f83fb43d5f85"
         },
         {
           "alg" : "SHA-384",
-          "content" : "a64bed88d90221fe48718a56a7945afa8b48b34f18ef1b1aa3bd21a202a6ce7da4944e1af6d07152c50a35e78b6bbea8"
+          "content" : "86620536268e37e8a8d7a26bf12133698e9e075ade55b13b35cda46f674e3e25b7ad6e200292726a301d9dfd5bdcefdf"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "c76e774b70735fe00f3aa5e5e634b6d2b58124c2d8fb6b621e6969654d4d668f43f67561ef35bddb541a1a585b177953"
+          "content" : "1c9f0ea45ee62bd86a2937f7c9f353e0da1afe2cf8a8b9bd1fff3e5656f2edad756d3f03adba962446299bef248b800d"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "4f23e9dabb43342d45adc66476e9c7ba1b7d3707cfefbf46647f023f6e54d05a"
+          "content" : "120d49ac7a34413721491c03db033166146949592a5189de62b4c8cfb46a28de"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "ebc5f63b2ffaa27317635cd300a4d9a0f7f6f886330ec7bf1eef3aa27a870b38119de3f141b3fb1ddb718133eeea93b5a8795fb399ea93cb4afd5a0f3790d498"
+          "content" : "c9afbd73124ae7cd40082c27b90268bbdadba8ba300531a0fb815e1487163c922d2260a37e9c11395ad0c12b96e030d9ab76cd6eae580f7944187649a8b59e70"
         }
       ],
       "licenses" : [
@@ -2209,35 +2139,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8e0e55139de39cc3890bfaf334370601"
+          "content" : "bb866d026f1a4c551efdacc85636c4bb"
         },
         {
           "alg" : "SHA-1",
-          "content" : "0fa1791d2d06a14ee1235f10781a3e7a0000ed97"
+          "content" : "f3a7fe9c9cac47fc461957fba429a05432413905"
         },
         {
           "alg" : "SHA-256",
-          "content" : "a6652a4c715b1e4636403aa2a153ececa0944ed084268916e89c50e1c1cee9bb"
+          "content" : "bfc7177f9a75aaf5f41a64c833014a343781bce6fd097275755f63bb976ea5cc"
         },
         {
           "alg" : "SHA-512",
-          "content" : "32273d649ae167404c9030b3d533dd68bfffac3974cfdfc9abea6c642ccc93ff1a4488238243736e1a173f84c61fe2d5b10033f55d696ddbb463ab97456f351e"
+          "content" : "7826f17447ec3b545d0c56cac154f31337589ce8f3f25d6876080c8e9b93f0b6c049b10b49110ad29c042a0ed8e442dc4153d6a5c63df7c3d56d33a10b9b6092"
         },
         {
           "alg" : "SHA-384",
-          "content" : "ae36577ab154e27868c3c81c328e4048a4643562ee3cf1e0f9d2f650f1cb628e840681cf182ecac61f86d67e86b95b24"
+          "content" : "ff4a40dc93747cf3340e7566919e6d201c66c965346f1296b9329102f39c0975020e68d5c65add1407702e9ae0cafff0"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "97fbbffee06b087941b455e883252bdc8ca8785b0ad719691e60a20c38656d6112a0acab451532c44892ffa07b158282"
+          "content" : "5703cb72d55d34a8e765db8937dccb53f06670227daa59ee4b8ad2dbfbc8f2d503be52e48595d1d37b99e1e260068bc0"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "3888ff76ea3edde94095f051bfa297cded384db489c66cb0391a24a2c9a5c875"
+          "content" : "6f37b4fc4995d8fc2805b814fe30451ac4a49d2e7a8ae344913228aa1ac80caa"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "b83ceb0020e2b705bb5e40eaa80ccad27128c554517acb970b9b3d89ba14fa7a51bd6b7619ad2efedb6908e79e38d18f190efc02e5861a39090d3c4be66739a3"
+          "content" : "6be4ecd7b625bece07b7069fbd8d5c8eae3450eca9dfe987f37988715ba19bc789a5a623832d173470e47530e47d80fd1e3f22151eaf35d01660788ac4280cc8"
         }
       ],
       "licenses" : [
@@ -2275,35 +2205,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "f1da58c94e9f6a99cf0ddd3bd5f170ac"
+          "content" : "c8d325963d37f4d8cdac44364d41b58f"
         },
         {
           "alg" : "SHA-1",
-          "content" : "a1c41fe5d18505b684699106524d411afd72a3b0"
+          "content" : "7865d10c7b3659669ef152c6b2713d96ba69da9a"
         },
         {
           "alg" : "SHA-256",
-          "content" : "0633c2ceed08338f363235dd4f3ea9fd69463f239724e6114d4d2cd4c603865f"
+          "content" : "47df0992c6f7f1d6b0956cf85b4c850743b3afbbbd93b1469159553138d51662"
         },
         {
           "alg" : "SHA-512",
-          "content" : "35f583b67abfeb5175d8aefee835e9bf5089ed025e58c37e57fafb57f69d9141e0934e573fc7c76ea04973d9db627bab2cd3d1b44a23aca0456502dde04403ea"
+          "content" : "6155753f122e4ab0bb7c5f1ab6ebbdf8da8a8401e2c37540fb99d4721dcf8c834d6506a202b02fee63f04cc870f3adf0e42f6eded8c5ebf789322aa86aa12e3b"
         },
         {
           "alg" : "SHA-384",
-          "content" : "6eb0580c18279ad8fefd6ddbfddbd9b3b3be1e90840a7e905d1f4c72dc57d72ae1f151ae681bdc5824161e02b7e1a515"
+          "content" : "5b163a6b68777c050d92f7a442e0960c2bbbd995e8e730d309a80428c60400b43aeec56e0f90ed49c1a211167e43a627"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "478f166596f4c843c18f23c0ce4389fe9c9d325e98b826aa7fc0b840d5daa0d1ccdf0794aaf9d495076a75730d6f71d6"
+          "content" : "2dcfda2548ff28b94aca045b1f4eaa9e30c49fb3491c7b92005c49dca17932c6137c6fdff8321225ae9c1d5ee8596b37"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "10c4083607c56c06677ecbcbb2875701020fd4829406afe9cd1bf2f33455f8b9"
+          "content" : "c9bb54b985509e7018749c22aefb2be271ba448950a5278d9d3d3c386e8c87e4"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "1c764a9d481df82e2647742a947820299e31c89ba5f2b231b3d948232e4b3fe35505b9f34ab2fdb8f1370825567acc39f140e8cf7366138b0c12f944f4f4a281"
+          "content" : "b84f6aa31b8604a3e09336028b377b52c3bbfa367a5d66899990c5a854266c71011d77c138011a16fb06e25e614df07d4cad699655c8af8a310a4f93d590ba05"
         }
       ],
       "licenses" : [
@@ -2341,35 +2271,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "4f421831e1b0ccaa12c3db0989c8fd5a"
+          "content" : "db5bca2cb3bfce64e63f5285d7a5320d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "b2559c0d74d6fa4230e76d3d90fe5e7b811caf62"
+          "content" : "2770f208d7674569f2b7dc30d0f5ba966d068d7b"
         },
         {
           "alg" : "SHA-256",
-          "content" : "6d9ee79effbcfded22a8d29ff5daabf0199063b28fd7f34c57251a3f10635660"
+          "content" : "8db5b1b3f8f32727c5bb361dc2062c7fca7a24dfbc3a6f6fbced5485a6f4bacb"
         },
         {
           "alg" : "SHA-512",
-          "content" : "d615fba66e30b28277529bb15f9e8bc7a3e3aa8d76bd675194e5951eea481fbd8750ef85071efab96a664b04e0302607de9a3f9252a3478472591fa7f3167e41"
+          "content" : "33c3081da4d0e86388798a43540e2c59b8764578364711d574d068c8a4497849bc4ce258102d6d0dcb0e3a3b137e1f01ab7dc08044c0cc48089e482897deb5a5"
         },
         {
           "alg" : "SHA-384",
-          "content" : "952f9d9804ed1b6cc45cd0e000397eeb0eb127ac09151bc35802f3718d177cae866c67d26d579ec7c544008af298ac51"
+          "content" : "b78948a6194e874165bc6242c1d32ad699a82ecbe3d9fbda1c6b6a40250c025dcd0d9af69d8725f08a3a7bf314d64e4f"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "54a78495b5b7ea5b1111313cb19f24b9d256802d4f3deeb977f3ae72a44e717942cd9c7755585c3a4ebe8888953eeca4"
+          "content" : "ac4bc18540534bf58702a52ce06bbc7627c8a5b5e56c4c1045a13cf8db72febbddb2a5d676e0ff4ce1c3239586ef7335"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "aeccf913b4e1dbd362ea14dcfd95f5e1585114338e39f493620a4191383591e9"
+          "content" : "b65fc3cdbd9e23c15c353e88bb7cb69f0b7ad77d602e1992d664e0042496604b"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "8c231db5c48a053901ab8f9696f41e467ca7467c6067a19aa1a4ce97217cf9bbd1b4871679e4b0caef3af6bfbc2c0acd5680ce10813ed97452e24d566873b44e"
+          "content" : "43f90d05a9ceb7dd609828eea5c7abf432f78377b5c3c4e4dfb252717aa1e6c24de931d57a808d79760948602e761ca4ee8676adbf8d5859e7a0200d8d8d74ec"
         }
       ],
       "licenses" : [
@@ -2407,35 +2337,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "29fbcbff006a03c0e8f2f7118affc70d"
+          "content" : "af1ad459906e8271006b112607671afc"
         },
         {
           "alg" : "SHA-1",
-          "content" : "603896bb0bddd9b7f1a4d0bceeefc4bfbd5c23c2"
+          "content" : "9e33002094c0dee7aa2db78e5559a468aa502099"
         },
         {
           "alg" : "SHA-256",
-          "content" : "eb20898c23e8e0c655e68878c57cf8c1803e77526216e6c6c07d9c6e78fabbbf"
+          "content" : "d43a6905883866e121c0b880780ed66b12ae6e5ad99367672ba0d02b08cce79a"
         },
         {
           "alg" : "SHA-512",
-          "content" : "9b5e664dcf38cdb08531a75fa6aea36e6df7c04f8a4b11b90797b6e9bad2482b4e74b500e9c10f8c817ded5c8248b3e0584114dc428889ffa3af6ea9afddf980"
+          "content" : "16a0bee139fcd29104270330f92e9d4af3a5239d33324e4eae8377484ef2541745013d5c8ecd5221df35a08ffc7aaadc395abd406e051bf694c6f6859de0968c"
         },
         {
           "alg" : "SHA-384",
-          "content" : "2635d607aa25477e1208738255d2cc9296450089e7b2420fb1082ac3e52f314b73a1536176e9ac4b750fd320981d554e"
+          "content" : "5dae6ae17f55159a90d253cc5e109038ae5809686a0bedfb08e944f8b2026a16b74b6fdd7706b55f17f4fae051aed09a"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "b76ab24361d46ba9bf24a4e5417dac1b99209f366e6c12598c890e8a1a0544437979b88ddb210e52db859a658dc71429"
+          "content" : "22f89695fe750457ab526aa445fb18ef11ddf9468afaa66c3fdd430887f8bb5e6076cbc2970d74cfad6d22d4ffc4a611"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "dcf83597aa09888fb77690ebce8d4d59603877d964f44b2cbf6e61911ac65751"
+          "content" : "bc918a8accb0febd782e0c6bbae4f1d367b7b9c51ad50f40be077a9f588b536f"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "e4005ec1c9ccf66dfba8372e185e67d3d26404534012faac62093f857938e5528db83f2ef648c4992e0382e475f92cc5dd129f5a4544bd19cc122e5ff4b4eaf1"
+          "content" : "30c12af803359733e450cc10a60604bf41c3e473dc75dd8b938de399ccbe5b91e29a91f3e525123c8a75da0f1c013935d124474b288d496ac0447020704cfde9"
         }
       ],
       "licenses" : [
@@ -2473,35 +2403,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "df451fca2551da3a33ed37cdd8a736f2"
+          "content" : "919f5051d3875d329c819f8a0acf098f"
         },
         {
           "alg" : "SHA-1",
-          "content" : "ba31321be163be0dc77e9f05dd143631be01d7f3"
+          "content" : "4dfc68c8a5bff218dbc4121f6844fd1332bee634"
         },
         {
           "alg" : "SHA-256",
-          "content" : "f401b56a2df9791b933ccb8bd27ed1569bcd174e7a6d7f1caa457cf58b123aee"
+          "content" : "6d05005d4fb1c7b174138e86b6962fc7e85a10218d917f85d94e60d9da70f777"
         },
         {
           "alg" : "SHA-512",
-          "content" : "bd81153485624d6d2bc92a6b123d02470753446c825d0b026bc4ad9d7ebb285bb63a0c82bd9fefa0c7769dc52a11629c18e0238037e3e2e20d3fb43846cd14a7"
+          "content" : "77a51fbb783938f2a4b43a20fed700a9602a855bb5d47fff3a1bc75e96c6eeb223575cd549eea145cc8ebe5760285f3cc3ac9949fe5659719c4ccdd189253a24"
         },
         {
           "alg" : "SHA-384",
-          "content" : "c887f017ebe8bc769057a09b53b4de56bac376edd34d81117dcdb41e014ef7f0b171e89f9af4a27e85ebb5ed6f01a158"
+          "content" : "1d1e49a6202c677c70b0af585db6d302b33606ed2529d0fe291c4b73563df02cc6a3469fdbf04f76bd18209a10f9dff4"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "8af0af99cdf9fe13226a19df944d5cdc1fbd36350d14471d43d4b693154085281f658862970505c5aacca0265f807334"
+          "content" : "64fbbd623e379e6f09d5d32d276a3f69519858521f3eb93412f4a5d48b70cd811ac0effc558af31dec98fc5bd79f16bb"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "9186e6f72a811cc72a0521768f76a826bb7d7d0ece9efd7676d13a2efd912376"
+          "content" : "5cc27882ace8a22b52d952610b47bda168162015990812597275f931c3140411"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "8ead619b0e80dcedb73eb8b4301afea5965ef5228ac016bd1e353a3bf1845bc88193b115e4f94527dac04fd3365af8d9b0e8581a16a5a01358d247427d72f15c"
+          "content" : "705485b797cbf987193499167cb5d07c7d85da6d6de4fdb0f3a2228ee4c601d64ad63858d95ccb086ad930a63346ddb95d968fe2aae8310b643180b34edbff97"
         }
       ],
       "licenses" : [
@@ -2539,35 +2469,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "7069d841f121bfd9b618d03b720fc68c"
+          "content" : "5229af2189e6d10d34979cef88eec960"
         },
         {
           "alg" : "SHA-1",
-          "content" : "3aef7d25d4415d757c1ad775d2c958bc263b6b40"
+          "content" : "58a0f3c04b53e5606d980ffd0b0157c617708f2e"
         },
         {
           "alg" : "SHA-256",
-          "content" : "2f8ec1ea7622e226ed2cbc5336edeb0a10e2a76cd684aff435f57d51c3f9cc36"
+          "content" : "2c12a216a16c208d426896e2e428a861a557c410818bd5f695a0bbc13cd42946"
         },
         {
           "alg" : "SHA-512",
-          "content" : "34631a76195921c0a4da7f47a0cd91892d1f744ddb38fb327a3518f6646a1a3bbc4d3045da1c9aa1fa279153fbe29ddeb91c55c39ec04c66fe1806abe9498183"
+          "content" : "d923f12e62b3712b3d8222e56a3db05b896f30d1d9418930c3571f8929e35a77deeee7ab338a4113cde93991a5846d2af1d8e971a182b0e1918df391df903e29"
         },
         {
           "alg" : "SHA-384",
-          "content" : "3f5e479632585daf003de6f45a3accb6182ab6c8a1d3dcbe4b9a896e756a683dac5bb5833d0963f88bf0741ae8c2261c"
+          "content" : "81a28bafcc1abe9ce70e3e238c275cc7faffe4d2d2a179867be4a029a16dfd629f9f4cbeedb6b456e00e54632916d00d"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "91bf01770d1500528f21bf7e90001d791706819734c26d5c061d827a088abf2b14e93f08e0db830939233f35eefc2786"
+          "content" : "ca32177cae4671a1af17db09ec76df1d2962d1556648b7bb51042cadf3f001bcc33a35afac59c7747ca3db29d2737509"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "ec3495d39f956bb3f35d4d37513023d46b64a511c36786c1053fda2dd74a29dc"
+          "content" : "66b5dd2ff11c350aed3bdea13288052a391b1376cc76ab90abf6c7cbad83e237"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "4a85c7c5cc04fb63e3dc19584cbceee1c1d3bab7c358c3d0dc9206e6098a345490168f6dea1f255bebb874bc8781e99361ddbde928e7e5229fd30f5cb94c4bdf"
+          "content" : "8a34436dcf4194996662709069476bd6193d504dadacd46e00d43ba97183f50b1e740bf60ee47240ef53589e4b856a6d7d49fba5fa951d1e14aa9d248854e0a3"
         }
       ],
       "licenses" : [
@@ -2605,35 +2535,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "bf7b9181e4aa03f8dbac5370b2278a70"
+          "content" : "c20824e43c4854e3040f42944bf7ee36"
         },
         {
           "alg" : "SHA-1",
-          "content" : "78fd571477aaf58f5bb6de1dbf2804438efd2f46"
+          "content" : "414ba1f04f58de2f503306242b72f390fd2ddbf1"
         },
         {
           "alg" : "SHA-256",
-          "content" : "3db9f34cc014c11fc5202b8d7f032418e9a16f5e551fb5d1b718872b33bf2e46"
+          "content" : "9d9ab547a50a62cea01e9a3e5a9482f6064511babbbfeb36b233a5516ee5300f"
         },
         {
           "alg" : "SHA-512",
-          "content" : "3f20d3c5d9aa82f727ed0260b8ae01ae313cd38bb2b6f7e3e1d365d105c7cd8dab847e9fa119847894af1053ee4fd0885898623475ecb73f997800511fe52dc7"
+          "content" : "46bd65331a4c4665c38c70f35a9718d2fdf629512e43fb37964bce6483aff9bd53816c347b2be1a2d4947ef33d68db82543ab703017635862121755c298abf91"
         },
         {
           "alg" : "SHA-384",
-          "content" : "baf68b95779eb1b59614a265da64a44531f1976bc8db3895c610477f1889e0595289b340c53f702edf767bb36b174ae8"
+          "content" : "1e84edf967c34f1f0d3ee589f20e440df63ecc56a292839b8fef423e8163d3b750b0e9bcf8a6c5fd6f3e3aee645f88bb"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "f98759428ee082ea93149c005aa1a47a6471bc14dfd9eceaf4192414d6a6e36e08e747e84a2702686df4a923ef25040e"
+          "content" : "7d1f0a20b4a986d254375d7ab8add29d3841355d03b8a9e407dc34b20a7c6ef77b7661b73bcbccc39ee30147318982ba"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "1b8defd270528a157beb32a0a5954fd029e128c8a6cadb9a23b21572a9cd75e4"
+          "content" : "c6de3ec3bb547041cd9e4a415950ef18b3d97632340e93b104372a53aedafa66"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "d773c15a539f0d5c91c6a1b550cf0f758e75e2800804722016ba1f3f69eb3acd66ea416c8037041ca8abd7f3ebc66a3d7163467c60d69b7864cf403ed46bee75"
+          "content" : "8a7e32370d049c4d98b04dd32f4b321f8ca6f753ade54307548f23322514e6806c31269ee3dc791634ed43d7fe2b0ab878d2e7ab9ef4773ffb846593471331b3"
         }
       ],
       "licenses" : [
@@ -2671,35 +2601,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "c00a80bb0cec03e647c7e9e40ca7fb3e"
+          "content" : "b602ecf6888372a9539c1196cfcdd5a6"
         },
         {
           "alg" : "SHA-1",
-          "content" : "7fde52ddf224e0271847261ec4aeefafb5728cde"
+          "content" : "528657de1ade2c362f9739a4efefb9570c379618"
         },
         {
           "alg" : "SHA-256",
-          "content" : "fb06d26092345f61ea3f8fe2c41ce3df52e7ef2fa19815b4e990e748a705ab11"
+          "content" : "536d6f1450a363a09205268b490b58f26f600f069ef24ba935c011215726ec40"
         },
         {
           "alg" : "SHA-512",
-          "content" : "fbb83f9d9ea6b74e69762eae774af23c958f988e851fabca1c9b93f1a85ccff02eb3cd3ba2aed07564d2d767e50c4036d9c72b79f4b3befdcc3833f070f7ccf8"
+          "content" : "b845a86b1733bb3707be75fe75dfce96781db6e8a51f40c562ab506ffea90d5ae166ad55d4ff4e97f6494adbffe1ff12c7ca3255c2e356e932b7cfe7f90605c4"
         },
         {
           "alg" : "SHA-384",
-          "content" : "8b840eeb1b23eba63b409b8ea3acb599037faed478abc05c9a2f67eee7eecea143b27e15129349c335feceedef1b212b"
+          "content" : "680dffc220b1fe6fda3eecca59bc7c7085e0b3d0fc928d8301351d5926811a7b8533b86167477423e4c3c703e170fcda"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "d9ffbde28ea0ac974bf965bb06f003ea17a0c22dea72f3ced7ebc8ff42a283ad32df1e931d6404a5fb9e883c737bb421"
+          "content" : "7aad8ff7292eb73e81c71edb16b64d85f242c37fcd6f7925d87e00b767b01e511571b0ba2b9a3e9427a3bcf69ef888cd"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "61d73fe4fffb7d7154a0f2e02aeaaead97cf8821d96dd072bda243ee02c2911f"
+          "content" : "4e92c9756b7e9c89df5628c08f22dedf4eb7acc4fd32a9243cfdaf9b79caab9d"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "6c114c142d5ce68ec8b792ae9516fa0a0757f841b36c22cf9068951e7fc5b1ead27b4a8c531bb72929338400ca002a68d10159660046e785bec6c707eff1789c"
+          "content" : "378e2ee0fc288a1ac3d42375a0bb53e1ced85e17e26f9f3f8d5fa84942fd4c99e66574d85b21bd6edc5f6916d01de17befea07fa9ee809039a142a401498f3a6"
         }
       ],
       "licenses" : [
@@ -2727,45 +2657,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.7-SNAPSHOT?type=jar",
+      "bom-ref" : "pkg:maven/dev.ikm.tinkar/data-spinedarray64-provider@1.127.7-SNAPSHOT?type=jar",
       "publisher" : "Integrated Knowledge Management",
       "group" : "dev.ikm.tinkar",
-      "name" : "data-spinedarray-provider",
+      "name" : "data-spinedarray64-provider",
       "version" : "1.127.7-SNAPSHOT",
       "description" : "Tinkar-core is a java software project that aims to provides a reference implementation for the open-source HL7 Tinkar informational Ballot. Tinkar and its underlining data model serves as a self-describing terminology model that can be used to harmonize other standards based models.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "1793950502be06c4d45c5f6dffd31608"
+          "content" : "ecc98750d898661916313083ac587e62"
         },
         {
           "alg" : "SHA-1",
-          "content" : "f3760b7d0e250afc774558bfa497d5894316cbd9"
+          "content" : "d816d936994f46d7596143f48ee1768a5809d20f"
         },
         {
           "alg" : "SHA-256",
-          "content" : "769993fcf4b25dbb70e61fe9c73444933f7627c7bf6d1c2ead6e75788dc1e6ad"
+          "content" : "f60048370c64d947ad83c80f29fc7e9f626289474c782ebb807609171f462ecf"
         },
         {
           "alg" : "SHA-512",
-          "content" : "ec206f567be761f2e8dc81c61329a1eac37100c7004037f08947b8319ae374aaf353a634b3b5c38993ed2f1f9177ea1c11575a65b5e1bc4e1ef564ef1671b10a"
+          "content" : "1e9f1f950ff95741aa673a9a235144e7ae3fe8b6d97b668eb79182320a035d8088b3f3fa915b3e52585167656ca22f9c37497f0e7b228af877f7ce7d77da07ec"
         },
         {
           "alg" : "SHA-384",
-          "content" : "3c50e2854cb44aa88a850d3be2c18aabbceb27170e8e386795d1eb9f2472a177ac3550d3c871fed1357c7d38faf1e14d"
+          "content" : "fb19a9f635564b4aee4d02dbb802c0c532d058e35d8af94230d365845f7fc179287966caca4ffc0ed4da7f1c3c8e5736"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "df1588b9baa0cda143a36a4aaced1502361af68318940666ea1a18bb8e514ba0d3a985fc9d82d59dc42db5d5409539c1"
+          "content" : "e036d40540be0adad55d03ed9b6ef0a4666650aa95d85eb645e0c056497368d6a05f0ba1dfbfc4b4794b9c2e56ba3aff"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "c57f4543f7cbf0b5fcf682d800d1d1273b463288079ac48518f47217c35daec0"
+          "content" : "75317a5ef2050a864d7146e7b25d0d6e7d5bfbef92c1ab586edeed0e574880d8"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "6ddb7cc42dc1542adc0fbf21fba79d9276a85bc51f30cb60ee0ec91cea106e7dcec38fcf5e2707639cd1ae3597f12d42dbd50b50791c2d84574aeb5d9a65e76d"
+          "content" : "63243aa14ec6650eb8f7b26327f6710e14d36d69890c75bd66519281f2cf89a458755ad75d90be5f84d3d14803ad80665ffe4658d32c56893cd688182275b256"
         }
       ],
       "licenses" : [
@@ -2775,11 +2705,11 @@
           }
         }
       ],
-      "purl" : "pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.7-SNAPSHOT?type=jar",
+      "purl" : "pkg:maven/dev.ikm.tinkar/data-spinedarray64-provider@1.127.7-SNAPSHOT?type=jar",
       "externalReferences" : [
         {
           "type" : "website",
-          "url" : "http://www.ikm.dev/provider/data-spinedarray-provider"
+          "url" : "http://www.ikm.dev/provider/data-spinedarray64-provider"
         },
         {
           "type" : "distribution-intake",
@@ -2791,7 +2721,7 @@
         },
         {
           "type" : "vcs",
-          "url" : "http://www.github.com/ikmdev/tinkar-core/provider/data-spinedarray-provider"
+          "url" : "http://www.github.com/ikmdev/tinkar-core/provider/data-spinedarray64-provider"
         }
       ]
     },
@@ -2807,35 +2737,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "5cb6be552c1dc71fad3b3feee78cea76"
+          "content" : "4b656350c08f7c8a687926f2d93b579a"
         },
         {
           "alg" : "SHA-1",
-          "content" : "9845c2c0dd25f00c7cb604413af4486b6e96de3d"
+          "content" : "c3a59af2da9b044abf3b8cfc5a8d51d8f5f5213d"
         },
         {
           "alg" : "SHA-256",
-          "content" : "4a143dd1447ef97513d18cfc2cf23d2cd58099aaf504c43cb9d6f4d1b317a78a"
+          "content" : "08891c3a45c6853a46ba3ba34b1f96627b826c1903484e194f8f087e621bba52"
         },
         {
           "alg" : "SHA-512",
-          "content" : "b7b5acee6cfeca0bad69b4b523c76e6ec9426b842d18a357916590cf8fd848c342cb82c0ede9fa420c70fe7083864eea3306d6d14a3c72c2a9282945f4877d12"
+          "content" : "ea0b636038c04ed396065baef78eeb01509ed529a41bcd6a1144f0fb8331bf748747771a8519232203269061713f1989d240843b491fabe1a926317846da8dfa"
         },
         {
           "alg" : "SHA-384",
-          "content" : "b538c27e4bdd93722a704c77a011f48d06ac3a5003bb7d1b6da9ccbd4770d91f8c7b5ca0bc585f3700aaae9f8684962e"
+          "content" : "fec8c033b8b7763d67055bc1b4878b98e9e76aec28e5fd1751bae3ab112f2c0adf86559e120373e15fcd6d872a64f54b"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "806aed8dfae5eb5a4ffcb05273d2f39e0b1ce9ff12470ab1093bd81515b0419d5e83609446ff1df992cb1f7942d02314"
+          "content" : "07b766f355505c52eedf78fd193473bdc9493a4983a1b6be0bcf61ad839ec800bff10bc2da9338225f324429cca982df"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "56ae9b2df3164bd804ae5a615bab05707ebbcdec1d91a378b3018817919e2cec"
+          "content" : "ca242b6ab051fdc92b7ad9ed0bb49da8066535a89ce034aec3860bcce0c204c8"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "f59f0eb776bfe4e6265122d84f1f8a25aff80de19d03d34baf4d009b7e04927b8034d037b26528af91496334e6bc70548486be700f013ad62ddeba73a3f557a8"
+          "content" : "e52e5edc6638a16a69c711382a6596e244c4b19316561a0d354fa0d3592ef03352b4700c6637921ad427b98c8a07167c0e9b35829f35005cc118046ea2c6b4f3"
         }
       ],
       "licenses" : [
@@ -3388,35 +3318,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "88bf3fa51e3d0f18cb6d169a5542d88c"
+          "content" : "02dd493ebb51ffdeb70390d77e251f4a"
         },
         {
           "alg" : "SHA-1",
-          "content" : "f28be4fa1c5a401aea3e114924d86da0b5fed1be"
+          "content" : "27e121588ec81d47a8bb6a9a8dbe5ac01d3cee9d"
         },
         {
           "alg" : "SHA-256",
-          "content" : "95b2055d928b687905af6ea99e3476cbd75388216ccc6516827f8218d2310385"
+          "content" : "9aa3815ff8a500f4d2ba326d599300693a37a1afda9e6d9dedd2b8c11d287b2f"
         },
         {
           "alg" : "SHA-512",
-          "content" : "f18ec1ce11d115e6098570273cd226419a4d09545b950ba2ac48166fb2cfe2e6bbf90361ff4b68f93b8a7d5708ab6eb8669952f71cee66df36140269ba442631"
+          "content" : "4795a04a34999c546966d231da51467e021b90dd9f0ef7af5711f9bd53cb19da014b6b2e5d84da04b83c1458d55c56e9e5b08844ec5e5befb1470a83cf66db63"
         },
         {
           "alg" : "SHA-384",
-          "content" : "693c05f2a3275861f752eeaad9f136c527b6c677c2c62bb3f5163942d29dc58ec2048eac8cc0fa55c9de3e27233c5ba5"
+          "content" : "7237461bd56fd9830f2ff7680d11277485a44714bea7a1f97b4fd297cabac2e90bf0a1b52320e7bcc89c5632f8d75554"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "a123ba9974def3d173d44f4fbd6a256b53a138163f91b5733fc27b83d4a26f877d4bf5e7ed433808ee6ed55161303e80"
+          "content" : "b160f6873a17e111e907021af2a6ad828fc1645b70158505d386108c64a9617b4f97ed04cfa7e2f128219b95188d4359"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "8120afbd2454e0890180e8cdc6ba83a8c5e238a0ee58d8b9824b4d5c460b60b7"
+          "content" : "bcd2d85f24da400b5b3ffd40660e5dce0fd79bd75939b0154f20e27e4142d8c1"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "f49815ca59fdb3c13829e44ade236515fd2240f7c7a55cb4cb9a91c6610eb5c66aae72bdf460c84a4d513949dbbd51bd7299e885fae345b936216d500f192d85"
+          "content" : "ad7a1e811b0cf969f23adda1247e64966f4c0219b8aecf65c7dbedfab8dd69fed03de04288fe7df39fa43b205a60df9aa5fb2e0352a65a8c83e33c714b76bca2"
         }
       ],
       "licenses" : [
@@ -3458,35 +3388,35 @@
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "35485fc3bd1307b879a89feaf57a8765"
+          "content" : "89864124392c799fc501e1e0d5f2d269"
         },
         {
           "alg" : "SHA-1",
-          "content" : "658b2337d83fd5cfaa4283e81dd802c78486dd94"
+          "content" : "9cf8bf2c287c18a16d30ae1048596044b015da46"
         },
         {
           "alg" : "SHA-256",
-          "content" : "49e13f4a39b7385ff95dceddb3b173a95b5e1f502eda4c634e809387ea280b62"
+          "content" : "b384b81d1088fb801ed59667ba992ea1c957b1402812dc4e0c68d4ad2fbe46c0"
         },
         {
           "alg" : "SHA-512",
-          "content" : "da7f06caade38dfc83f0f5f6a6bcded0b512d939a785003d9efef03151a7fa85821e9b507cc01461197facf5b4828367769b19f259fffeb7da1026ddf5a65be6"
+          "content" : "aa29a2ef4ac25cbad1eff44af3bebb2cd77c0eac8565eafc448d2dca9e1d0ed0e38662588201971abea4e24c1740dec8f2316bad7faeaa029ce41b314debaa71"
         },
         {
           "alg" : "SHA-384",
-          "content" : "320f5668857e80483ced32c000d331d3cc7d09b220fd452980317e63581185a4213317273b3d9f3ffb24a46cb1af0d5c"
+          "content" : "98931f132ca8bef915fac258d5f41d00cb27c014635ec24f0d68802b5f4cb1724d33703108c7f2b95646ac51a6d5c79f"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "e3defd5a9680d51c4548df1ebfcbd82edcaed3d0c27b39b2bc0ff837270471e34474b843fff029d72b178747c46f9da8"
+          "content" : "9824339396e3637d934790499f4ee942a96e6f4da98220c8a467ed29044cf92726eb9715b9148ad1a9f83e59cd2b7926"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "1d5f3df805fa03ac0ad97375ed769066832b9739269db605dbfe9d05cfb2e9b3"
+          "content" : "d6d6e33183626d86423d35d7d538b33f8c7924a4faab9a97acf239908dbf93d7"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "ac1eaf1ef501fbe321c1ef385649b01ccf76042d3ec3d1d7c44b1426124906ae8bb2b411529b73e18f94e4b53999f0ea341ba21e0b3256dca72c4f2dfd968a48"
+          "content" : "c11a649c3521388dc735265843b68eed4113b156e647560d2a2d6206e0b04abd41604b9afde7b708679224de474e0310787e76788e77cb37e41068db5da68cc9"
         }
       ],
       "licenses" : [
@@ -3584,45 +3514,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-build-standards",
-      "version" : "264",
+      "version" : "268",
       "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "939a7a98b6cf971abc310d225622f085"
+          "content" : "b53d7df505f3a4c179c23148cfc70c1d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "13472b4c200338f958cd231253ab44c4591730b8"
+          "content" : "4698fa5e91db54dd596f926ec242f8886b723d8c"
         },
         {
           "alg" : "SHA-256",
-          "content" : "22f717203c67f165a359bb77633030c7e0020368a4bfbf0263aee2c0c0b41122"
+          "content" : "85b8109638fa29987bca728d16c5bc62435823f265196fca716da2c3d04a1d43"
         },
         {
           "alg" : "SHA-512",
-          "content" : "f8837a96ef8f3114e54d4d6b9d153e2caab0754150371d49f6a5de4ba1bf4b68fee9da4a79aa565693c19a04c730983ce4695d4b6eb9aafd0c49ad0942bc82d2"
+          "content" : "d5ceea47302e0e9c51f381d24f68cf51e6b52354375dd5484623563e21c4a8f9cf421865b16e42aff5e6448f35e44e089949f19c33b3e31f356258b323575f93"
         },
         {
           "alg" : "SHA-384",
-          "content" : "8e439e28f2cef00a16c238bf9bb377a4bfab35f00095c4982a751a35104e2db479ebd63cdcee74a52d2c9a58b8a973c9"
+          "content" : "909fd0a94bee51dae27ccf4b703d2d5cba43c8a02f770e0fbc9200589b6bd9eaefac3dffd13e1585c551ba6f912b6739"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "d23cbff853edb83302897589c4a0680a55fc5df275468bf94d2ec5cec9ee2443d1395b340d6b005971b45bf3e7714b40"
+          "content" : "0c7d26217f1b72cae3f9815b8903f8f20045ea7dc1ad0498233638eeda7a8f5a228a625b979dc89a932ce16f9b218639"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "a435f7e51efb322c507c93cda0f3f092cb5b50d85652b6a210230d1a642ceaeb"
+          "content" : "f11ba51ad18c0f379d4904367b050866f179208748a1e4e52c9cf0b7bea71c95"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "76ad51e3134bc2c35502ae41fb4754fb7bf02d3c5671cac4c3d65612205e9097b22b88f52f8850ed94c4b3be3436f0a9c507013836cfe7c26c059c62390a95b4"
+          "content" : "59ff7fffbc8d75d3435afc23309dc74ee83a448bc7df881082de958267b96d92b73eb37596b8a219738f2b4aed981eb6338aea721bafbc4404706b6f88764e15"
         }
       ],
       "licenses" : [
@@ -3632,7 +3562,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -3650,45 +3580,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-build-standards",
-      "version" : "264",
+      "version" : "268",
       "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8e0b8f7f5f6060111e4c2154a7fffccf"
+          "content" : "0657fb50c3e047aff56aaced82fcceab"
         },
         {
           "alg" : "SHA-1",
-          "content" : "9b0ad9ae4eac2e50178dc069ca3d910f2ffcc693"
+          "content" : "486627f6fdec9e5066ef7980309df7d0d8551e19"
         },
         {
           "alg" : "SHA-256",
-          "content" : "7799969b38ce9ce263203656b684133810e086a5e0811efe57073c1f23d14377"
+          "content" : "af487daee6442e3cdfb1b5215d493b8de44b4aef25c8777abbe0167d70cf225c"
         },
         {
           "alg" : "SHA-512",
-          "content" : "0878284b15637a4b78f7dfa0f3650c265ab27755837667ac93658bc850d20d45e5a6f10b26730d8671ba0954981e9faa54c1cdc3872e11d94ba71d13b79b0c86"
+          "content" : "b28322054bedf9a1ee49308799a4156b38705de2cb721d5642ec5c7eb149da47522e9b77fd5209aeec8e4584a376b43894f4a5eab16974424c964bf545cf1026"
         },
         {
           "alg" : "SHA-384",
-          "content" : "617e027dc6eb9889c64e4854190a5eb2621c1700c5452b26ed5a110a36f6e4caecd2124ff9f6f5fe4b28e41d61372ce8"
+          "content" : "58a334e6ce3fdddacef358552e7264b41806f59738ce375f72a1abb81fdbfe52caad9e06628779d0bd03b14837dae030"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "206614f90efc9886dea0c92e56ce3556b02d92aba4af0a9194fb0dd8ec250b1db24434969b25f187c6c5bbdc32f4f75a"
+          "content" : "785a708db2e7de5829fcdb67ddc6c2b69bc6bef453412c5913f9aac49c924b6f0c651c86ef0d9925f7682d21805c046f"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "906c4f5f662bfe777bdd9be5b8172bad1d19c14eb541b9a3add91bc82e120d3e"
+          "content" : "14331eb982645926cc1c243eb69120cc96620065a8b8ac33f5f0f7b3537c8a67"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "bb56b8f6c38b1ec6ddda18163c1e137d9758f7a64f86f57828a5a80b3daf53d5f2f87bd45bd556d45a19521cb7c68c9873a7ef6c60aaa0b487dfb28025a9d433"
+          "content" : "56a25e224a4b06ce025913a26447da81922f9e68ebb06e14b0c85512265a3a2e9eda2ef366745d6f8932e3eda7b43b1d072f792ae1aab4fea3d0adfd07a34cc4"
         }
       ],
       "licenses" : [
@@ -3698,7 +3628,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -3716,45 +3646,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-build-standards",
-      "version" : "264",
+      "version" : "268",
       "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "8189235196f091ad02766d6c1bb0123c"
+          "content" : "1f89bdad00db12d279901b65a09a725d"
         },
         {
           "alg" : "SHA-1",
-          "content" : "5eeac2801acde7ecfd0d0b5d5c1d12dcadcc4b3a"
+          "content" : "fc72b1ab3ace0da21dcde2a869ffc7686092e1fe"
         },
         {
           "alg" : "SHA-256",
-          "content" : "3083955cb4a8bea3737f99927d39e9d837c791a3fd6fc02c487279398295a70a"
+          "content" : "63e7e6f58be81dddb540d1e2a1ffed64f0a608515d62d05d67c5774230f8d80e"
         },
         {
           "alg" : "SHA-512",
-          "content" : "624dd8d896477925a7504f962204e2c518dac3e539a2ccf6ca506c7e24d150914821dd755a3737ad0aa940ed65ff4b07bf71af8821488a8a6a8be572fc6b9d54"
+          "content" : "ada4d165709f953f73ad1a1a3ff4604308c3059bf67dd60afb49a92f6ff1ae906dd3dd8e3dc15d32d26d43c123ba272ca6587b8d55674db484d66426a95af28d"
         },
         {
           "alg" : "SHA-384",
-          "content" : "b0a52edc58a8a906bd922da28578c4fd9d85e6eadadb793b37978f4f6b2fbcab7d604e25b12182802d9cfd6b88e37ac7"
+          "content" : "7d79a09b09c2c8814c881f551e498f07dd618379753ce5be9bb0d5232e67bd79e444b67cca1d50ead31c34c0f23444fd"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "956c1ee86849c89ca86c2151666c6749bb618d40a4c8097652e244d166a0b4bdd77c86b38afa987052d14795d59b6231"
+          "content" : "6073ec50ed1085ff609cabd915d7e7092444a343a18d9ab357dba4f1b0351947a46cd8ae6f0a54bc2d32b7ea717932c7"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "2e7358f0647fa4efdba7ee14f23d9ba2ea11a810659c81a51f044c229c3b0f0c"
+          "content" : "5d13b12b1a41a256c4e852857e543214cdace19441bd3fe2ddc8218231fe401a"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "0f7c46898cefbd7b77da9d485f1e228e89c92c4092b07eeaeeb11132e5033343cc979f1d0bd8ed5ef07cf85e4104244e3fc1d7bfdedc399f5847011db284c7e5"
+          "content" : "d037a22aa17fe8ce02ffe3ec967123697c9593fda617fbe2bd3fd307931e2e05875296281b97acb2d82e9255d56d75a8266dbb1625a6abc3602ea321f530e4e6"
         }
       ],
       "licenses" : [
@@ -3764,7 +3694,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -4140,45 +4070,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=asciidoctorconfig&type=zip",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=asciidoctorconfig&type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.tooling",
       "name" : "ike-build-standards",
-      "version" : "264",
+      "version" : "268",
       "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "9a7bbba58191b2c1d88ed208c48cb183"
+          "content" : "25b30bb71bdaf058b7506c4c7720ddc6"
         },
         {
           "alg" : "SHA-1",
-          "content" : "45acbd4df71972209b4cc4c36ba263e0ef7c93f2"
+          "content" : "05aec002b60687fae12a8a9fc82d2fa6935a6dc7"
         },
         {
           "alg" : "SHA-256",
-          "content" : "de1d4a2521c832b43681acaeeb6d7d10331938583e93dc35da5d38e884c947d3"
+          "content" : "fe79d94eacb5340adf834aa090944b0026257231ff6e7edbb2e509572fe2aa25"
         },
         {
           "alg" : "SHA-512",
-          "content" : "9e04ab12fe899c78a4fcbe6bb251c0ac2ca7d031e70cc725d931d864c89160ebea2a370734a1169be5361f3ddf74ae7adf4fa9b9f9067ebda47370f5ba00beb6"
+          "content" : "5b0794af979ef20ef4513ea392ea002ba7883e309f7f9bd62525b174f6b491513bc59c6f4293ddf8d05bf9de5a68d7bd75d08bc5b7666f9d2b82c429ae832eb4"
         },
         {
           "alg" : "SHA-384",
-          "content" : "eaec3019f2763cd7d616d739fdd3795cf82e6cb564510e5483465470ada72282b326955977523c1552f742efbe724193"
+          "content" : "e3a71418632e3dac9ac9405d58e89a739151e63cea0ebe6e0cc4e9221e1a7e8bee2276c1e83f40d069503160fdaee873"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "f0d2d68befe825a0c281f6428667c1a4868ca9539722c1f4df35921ac149a6d438ea848cb2251932f1365936e2e9166f"
+          "content" : "174fde0cf234610258e20a0180b3be898a1dad02c8c72444c34923ecd8b88d8f565afa2508b7253baf152930effa858d"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "297ffb359891b80ca79a1cc60706ce64bf7fd2da320f399d176e6b4ad8c16f30"
+          "content" : "bdd4462e4c9953fd2288e10bc3b0f12a173e545532ee77a7ac15edb67454bcfc"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "2a2a5c5901eef538ccb9bf6997dd0584faf1ed4b6dcce9c30b159eac4c08d474c347dda6721669d2b3dd35c39592754b88c0e5378b13986f9a87cba769b3cf35"
+          "content" : "32013a09a70a4972683027e841b5b8877cfed897c842fcd0ff3799b382e79e48aa84828429069ece5feccb7c2e4187152dda18dab93661d824c89d9f56a9b5e0"
         }
       ],
       "licenses" : [
@@ -4188,7 +4118,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=asciidoctorconfig&type=zip",
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=asciidoctorconfig&type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -4206,45 +4136,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.docs/minimal-fonts@121?type=zip",
+      "bom-ref" : "pkg:maven/network.ike.docs/minimal-fonts@125?type=zip",
       "publisher" : "IKE Network",
       "group" : "network.ike.docs",
       "name" : "minimal-fonts",
-      "version" : "121",
+      "version" : "125",
       "description" : "Minimal Noto font subset for IKE documentation (~4MB)",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "33bb0bab424669c46bf5e8ce7526386a"
+          "content" : "4a9fbcec6fb3744c56f3e18e10a3c2cf"
         },
         {
           "alg" : "SHA-1",
-          "content" : "8672da515978a0550fedebd303885b99463f0e7b"
+          "content" : "f1f85e6e8f6b28cee446654a0263bf1eba1ba697"
         },
         {
           "alg" : "SHA-256",
-          "content" : "9194c2f8c44d37f7d3564204320fd114d396f1fe8c5610346b3e2b68e4eacef8"
+          "content" : "3333ea3d143664524ce880e4a4f982ee8a6ac725503822d64a24fae477e1b54d"
         },
         {
           "alg" : "SHA-512",
-          "content" : "e33d3cb7cb17b81ac712d93abdb58929428a3ed608db2b418dbde939dff35b7a03c9dd96776d03b89bae7baba98aaf2816f8f7d5cbdbf975614526e69cad8311"
+          "content" : "5eec875e8625f687cc15174a515305d6397434cc253736984c29b5ef4b1d0a289edd016afa7ec7eb36ca556cb236795630ec8a67d60a18249d24572d5e28755e"
         },
         {
           "alg" : "SHA-384",
-          "content" : "03349261261ded3ccd4dfccfc70e045f191b9b5b359ee16975cea2ab54c6c1d3b7e9590c77686cd40555e1c55b262386"
+          "content" : "ba506b6f3dd4a11ad30a53657396d3add15c123767156c9a4c9573d4904253002f36206813bc03ea9a0a0b35f038f5e8"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "60d57503b4c272258b3215727a16d5714cdbfe97dca197a084e5b480fe989523fd4c70091b8f7df7e19900d9f24ee2ad"
+          "content" : "dc7a751c4c026e66c8d2fff5cff3f1f7134553b4e3bc9604e706c6c3b082d2af55a46b9c4a38fdf4a1822541e540804c"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "e87e55b3adbe16f27cf0a74d97434f6beb86ee2675ba40c3b05de9241a1d2924"
+          "content" : "d1fcf0dee2b3e7bbad3616c1f130a683b3577117d9620ef3d9c3a45cf4133003"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "e415a864554ccbcf1d21d3640365743410d67d9761022c0f533d581d82eaeba324b94ab1d193576c9c540733258db1e1beb1781bcc26921f6ceec437a896c2ad"
+          "content" : "729f5a614bc7b805b87a32736f476249a33ec674e6e61b6dab364cad659da97ff67f887cfb6d681d2ae6e1417bc3719c6d1d4842ee03c78fb5e388bec2f45db0"
         }
       ],
       "licenses" : [
@@ -4255,7 +4185,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.docs/minimal-fonts@121?type=zip",
+      "purl" : "pkg:maven/network.ike.docs/minimal-fonts@125?type=zip",
       "externalReferences" : [
         {
           "type" : "website",
@@ -4273,45 +4203,45 @@
     },
     {
       "type" : "library",
-      "bom-ref" : "pkg:maven/network.ike.docs/docbook-xsl@121?type=jar",
+      "bom-ref" : "pkg:maven/network.ike.docs/docbook-xsl@125?type=jar",
       "publisher" : "IKE Network",
       "group" : "network.ike.docs",
       "name" : "docbook-xsl",
-      "version" : "121",
+      "version" : "125",
       "description" : "DocBook XSL 1.79.2 stylesheets with IKE FO customization layer. Ready-to-use artifact for the AsciiDoc → DocBook5 → XSL-FO → PDF pipeline.",
       "scope" : "required",
       "hashes" : [
         {
           "alg" : "MD5",
-          "content" : "9b1af833a6d68a5264f13e66c00de1a4"
+          "content" : "760cbe3198030eae623f4a59cacb0512"
         },
         {
           "alg" : "SHA-1",
-          "content" : "7cc97cdfdd8caa5cc09096dbfb427a9219e8de56"
+          "content" : "23d79b6ab912ba3c728d8035991fac4aae9ed548"
         },
         {
           "alg" : "SHA-256",
-          "content" : "f2188d20ed0ec98dcc244b3ccd0be09f06b1705513257829d09f9fa417ae80a6"
+          "content" : "e4ecea465fd21c6bab76ce2d2c3de1b64e61cb68adc87221111c17830a0307b0"
         },
         {
           "alg" : "SHA-512",
-          "content" : "6db03e42ea816998aacb250fe3a1b7e5bc3f460475521beda790fe7ff609196bd58384145f781d2c0cb5ae18098c0ce187eedd4a9aa0e2d2a10381d9f01e13d8"
+          "content" : "78e73dc8eccee2ede4d484498113a3b7653bb388df041996f1ea100b92933f048692fa169a560312f0f2aef8296fa4391b8960d745e3a5fbdb79851fede36530"
         },
         {
           "alg" : "SHA-384",
-          "content" : "8c892d22d90c9116f60f685567941475620ef748fba30dec29e7b97038dd16b29e423365fe9bea14c8e04d79fbea11f7"
+          "content" : "0966f8671802e8c3fdec830b6d95882b80a2f039ec597411cf616e96ee802bdb65a4ea0cab62048d238e07d9955e930e"
         },
         {
           "alg" : "SHA3-384",
-          "content" : "250b153ff7257420762f7fb35e7bf68f8e4130d9d7734ecaee97a56a47c829bf437319679736d3e27eb9fa03f30af193"
+          "content" : "25f4c9607d6f9ee4aad7f5c21e8ea1ed3be45b9a37d141afcff7444497fa77acdd4d96f3f6cf7324c3a8445df99991c7"
         },
         {
           "alg" : "SHA3-256",
-          "content" : "8350d91408e1ca01a5923793e0bf30ae6b1b120a77c642dc9859a8b84f005836"
+          "content" : "4824dc09f8e8b8dadd79388b01fbf3bab6b83e58cd42979bc943a0b6e4164455"
         },
         {
           "alg" : "SHA3-512",
-          "content" : "ac26531320a6270d1ee73b35c0441b4a06708df54dc1b1f8f024c6e1b24fcea5e06e1b1b7018f621d4c344bd79b4d161fda0b1f499498223f43807f759b977eb"
+          "content" : "0a48711b0c4c2c011dd11263c1e966d3800eec2e403e3925d98e608065015beffea492c38898c89605d2eb3f0a94e1bd11b0c2f6e761d3654e5d704e07a2bf30"
         }
       ],
       "licenses" : [
@@ -4328,7 +4258,7 @@
           }
         }
       ],
-      "purl" : "pkg:maven/network.ike.docs/docbook-xsl@121?type=jar",
+      "purl" : "pkg:maven/network.ike.docs/docbook-xsl@125?type=jar",
       "externalReferences" : [
         {
           "type" : "website",
@@ -4351,14 +4281,14 @@
       "dependsOn" : [
         "pkg:maven/network.ike.foundation/ike-changeset@1-SNAPSHOT?type=jar",
         "pkg:maven/network.ike.docs/ike-doc-resources@94?type=jar",
-        "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
-        "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
-        "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
         "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar",
         "pkg:maven/network.ike/ike-base-parent@16?classifier=site-theme&type=zip",
-        "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=asciidoctorconfig&type=zip",
-        "pkg:maven/network.ike.docs/minimal-fonts@121?type=zip",
-        "pkg:maven/network.ike.docs/docbook-xsl@121?type=jar"
+        "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=asciidoctorconfig&type=zip",
+        "pkg:maven/network.ike.docs/minimal-fonts@125?type=zip",
+        "pkg:maven/network.ike.docs/docbook-xsl@125?type=jar"
       ]
     },
     {
@@ -4380,7 +4310,6 @@
       "ref" : "pkg:maven/dev.ikm.tinkar/entity@1.127.7-SNAPSHOT?type=jar",
       "dependsOn" : [
         "pkg:maven/dev.ikm.tinkar/terms@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/component@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.5-SNAPSHOT?type=jar",
@@ -4453,15 +4382,6 @@
       ]
     },
     {
-      "ref" : "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
-      "dependsOn" : [
-        "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
-        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
-        "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
-      ]
-    },
-    {
       "ref" : "pkg:maven/dev.ikm.tinkar/tinkar-schema@1.43.5-SNAPSHOT?type=jar",
       "dependsOn" : [
         "pkg:maven/dev.ikm.jpms/protobuf-java@4.30.2-r3?type=jar",
@@ -4502,7 +4422,7 @@
     {
       "ref" : "pkg:maven/network.ike.knowledge/ike-knowledge-provider@7-SNAPSHOT?type=jar",
       "dependsOn" : [
-        "pkg:maven/network.ike.tooling/ike-knowledge-spi@267-SNAPSHOT?type=jar",
+        "pkg:maven/network.ike.tooling/ike-knowledge-spi@269?type=jar",
         "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar",
         "pkg:maven/org.apache.logging.log4j/log4j-slf4j2-impl@2.26.1?type=jar",
         "pkg:maven/org.apache.logging.log4j/log4j-core@2.26.1?type=jar",
@@ -4512,14 +4432,14 @@
         "pkg:maven/dev.ikm.tinkar/importer-api@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/reasoner-service@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/reasoner-elk-snomed@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.7-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/data-spinedarray64-provider@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/search-provider@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/entity-provider@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/executor-provider@1.127.7-SNAPSHOT?type=jar"
       ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-knowledge-spi@267-SNAPSHOT?type=jar",
+      "ref" : "pkg:maven/network.ike.tooling/ike-knowledge-spi@269?type=jar",
       "dependsOn" : [ ]
     },
     {
@@ -4565,7 +4485,6 @@
     {
       "ref" : "pkg:maven/dev.ikm.tinkar/reasoner-elk-snomed@1.127.7-SNAPSHOT?type=jar",
       "dependsOn" : [
-        "pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/component@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/entity@1.127.7-SNAPSHOT?type=jar",
@@ -4576,20 +4495,18 @@
         "pkg:maven/dev.ikm.tinkar.ext.owl/owl-extension@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/reasoner-service@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.elk/elk-snomed@0.40.1-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/data-spinedarray64-provider@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
       ]
     },
     {
-      "ref" : "pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.7-SNAPSHOT?type=jar",
+      "ref" : "pkg:maven/dev.ikm.tinkar/entity-provider@1.127.7-SNAPSHOT?type=jar",
       "dependsOn" : [
-        "pkg:maven/dev.ikm.tinkar/search-provider@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/collection@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/entity@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/terms@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.jpms/activej-bytebuf@4.3-r10?type=jar",
-        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+        "pkg:maven/dev.ikm.tinkar/search-provider@1.127.7-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
         "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
       ]
     },
@@ -4654,23 +4571,11 @@
       ]
     },
     {
-      "ref" : "pkg:maven/dev.ikm.tinkar/entity-provider@1.127.7-SNAPSHOT?type=jar",
-      "dependsOn" : [
-        "pkg:maven/dev.ikm.tinkar/entity@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/search-provider@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
-        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
-        "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
-      ]
-    },
-    {
       "ref" : "pkg:maven/dev.ikm.tinkar.ext.owl/owl-extension@1.127.7-SNAPSHOT?type=jar",
       "dependsOn" : [
         "pkg:maven/dev.ikm.tinkar/entity@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.tinkar/entity-provider@1.127.7-SNAPSHOT?type=jar",
-        "pkg:maven/dev.ikm.tinkar/data-spinedarray-provider@1.127.7-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.elk/elk-snomed@0.40.1-SNAPSHOT?type=jar",
         "pkg:maven/dev.ikm.elk/elk-snomed-owl-el@0.40.1-SNAPSHOT?type=jar",
         "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
@@ -4779,6 +4684,18 @@
       ]
     },
     {
+      "ref" : "pkg:maven/dev.ikm.tinkar/data-spinedarray64-provider@1.127.7-SNAPSHOT?type=jar",
+      "dependsOn" : [
+        "pkg:maven/dev.ikm.tinkar/search-provider@1.127.7-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/entity@1.127.7-SNAPSHOT?type=jar",
+        "pkg:maven/dev.ikm.tinkar/terms@1.127.7-SNAPSHOT?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections-api@13.0.0?type=jar",
+        "pkg:maven/org.eclipse.collections/eclipse-collections@13.0.0?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.20?type=jar"
+      ]
+    },
+    {
       "ref" : "pkg:maven/dev.ikm.tinkar/executor-provider@1.127.7-SNAPSHOT?type=jar",
       "dependsOn" : [
         "pkg:maven/dev.ikm.tinkar/common@1.127.7-SNAPSHOT?type=jar",
@@ -4791,15 +4708,15 @@
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=claude&type=zip",
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=claude&type=zip",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=config&type=zip",
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=config&type=zip",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=scaffold&type=zip",
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=scaffold&type=zip",
       "dependsOn" : [ ]
     },
     {
@@ -4807,15 +4724,15 @@
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@264?classifier=asciidoctorconfig&type=zip",
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@268?classifier=asciidoctorconfig&type=zip",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.docs/minimal-fonts@121?type=zip",
+      "ref" : "pkg:maven/network.ike.docs/minimal-fonts@125?type=zip",
       "dependsOn" : [ ]
     },
     {
-      "ref" : "pkg:maven/network.ike.docs/docbook-xsl@121?type=jar",
+      "ref" : "pkg:maven/network.ike.docs/docbook-xsl@125?type=jar",
       "dependsOn" : [ ]
     }
   ]
