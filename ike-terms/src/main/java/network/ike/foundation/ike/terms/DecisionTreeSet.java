@@ -216,7 +216,8 @@ final class DecisionTreeSet {
         // ── Measure semantics ────────────────────────────────────────────────────
         concept(set, inception, "Decision measure semantic", ROOT_FQN,
                 "A measure semantic a decision measure is read in, named by the kernel's unit of"
-                        + " measure key: the share of those at a node for a probability, a money"
+                        + " measure key: the share of those at a node for a probability, the share of"
+                        + " the subject group for a share a statement determined, a money"
                         + " semantic or a health semantic for a cost. It fixes what is intrinsic to the"
                         + " number; the standpoint it is read from is the valuation coordinate. Two"
                         + " measures roll back together only when their semantics agree or the"
@@ -225,6 +226,16 @@ final class DecisionTreeSet {
                 "The measure semantic of a probability: the share of those at a chance who leave it by"
                         + " one event, a number between zero and one with no unit. The shares of a"
                         + " chance's events sum to one within their bounds.");
+        semantic(set, inception, "Share of the subject group",
+                "The measure semantic of a share someone determined and stated: the members of the"
+                        + " subject group with the topic, over the members of the group, on a scale from"
+                        + " zero to one, with no unit. The semantic names the kind of frame, a group;"
+                        + " the statement's subject of information supplies the particular group, and a"
+                        + " particular group never goes into the semantic. A sensitivity is a share of"
+                        + " the sites with the problem, a false-positive rate a share of the sites"
+                        + " without it. A decision tree reads such a share as the share at the node"
+                        + " that carries it, where the group is checked. A percentage is how a"
+                        + " rendering draws a share, never a second semantic.");
         semantic(set, inception, "Money semantic",
                 "The measure semantic of a money cost: a currency at a price year, fixed together by"
                         + " one concept beneath this one, so that two money costs on the same semantic"

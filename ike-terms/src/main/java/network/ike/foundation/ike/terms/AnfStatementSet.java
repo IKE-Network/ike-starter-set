@@ -94,6 +94,12 @@ final class AnfStatementSet {
         element(set, inception, "ANF subject of record",
                 "Who the statement is about: a reference to the participant, with the participant's"
                         + " role as a property.");
+        concept(set, inception, "Subject of record not applicable", ROOT_FQN,
+                "The subject of record of a statement that is about a group rather than a person: a"
+                        + " share of the sites with a problem, the cost of an inspection, the chance of a"
+                        + " material problem for submissions like this one. The subject of record is"
+                        + " never left out; a statement about a group names this concept there, and the"
+                        + " group it is about is its subject of information.");
         element(set, inception, "ANF subject of information",
                 "Who or what the statement is about when that is not the subject of record, such as a"
                         + " relative in a family history: an expression held by value.");
