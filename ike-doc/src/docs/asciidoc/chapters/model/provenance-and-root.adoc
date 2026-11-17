@@ -1,0 +1,11 @@
+:chapter-id: provenance-and-root
+:chapter-parent: ike-guide
+:chapter-order: 2200
+:chapter-status: published
+
+= Provenance and Root
+
+koncept-narrative::IntegratedKnowledgeManagement[]
+
+// The comprehensive, alphabetical Koncept Glossary is appended automatically
+// (koncept-glossary-all) as the final chapter.

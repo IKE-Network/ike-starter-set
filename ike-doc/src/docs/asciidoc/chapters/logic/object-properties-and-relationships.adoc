@@ -1,0 +1,8 @@
+:chapter-id: object-properties-and-relationships
+:chapter-parent: ike-guide
+:chapter-order: 2100
+:chapter-status: published
+
+= Object Properties and Relationships
+
+koncept-narrative::ObjectProperties[]

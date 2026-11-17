@@ -1,0 +1,8 @@
+:chapter-id: feature-based-and-intrinsic-roles
+:chapter-parent: ike-guide
+:chapter-order: 1500
+:chapter-status: published
+
+= Feature-Based and Intrinsic Roles
+
+koncept-narrative::DescriptionType[]

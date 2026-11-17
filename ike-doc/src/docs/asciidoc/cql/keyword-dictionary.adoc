@@ -1,11 +1,15 @@
-[#keyword-dictionary]
-== Keyword Dictionary
+:chapter-id: keyword-dictionary
+:chapter-parent: cql-dictionary
+:chapter-order: 100
+:chapter-status: published
+
+= Keyword Dictionary
 
 All 136 CQL keywords, alphabetically. Category, definition, and example for each.
 
 [[term-after]]
 [discrete]
-==== *after*
+=== *after*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -22,7 +26,7 @@ Relational operator testing whether one date, time, or interval occurs later tha
 
 [[term-aggregate]]
 [discrete]
-==== *aggregate*
+=== *aggregate*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -39,7 +43,7 @@ aggregate "RunningTotal" starting 0: RunningTotal + Claim.amount
 
 [[term-all]]
 [discrete]
-==== *all*
+=== *all*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -56,7 +60,7 @@ Modifier that keeps duplicate values instead of the default distinct behavior, u
 
 [[term-and]]
 [discrete]
-==== *and*
+=== *and*
 
 `Logical Operator` -- (Core Operators > Logical Operator)
 
@@ -73,7 +77,7 @@ AgeInYears() >= 18 and AgeInYears() < 65
 
 [[term-as]]
 [discrete]
-==== *as*
+=== *as*
 
 `Type Operator` -- (Core Operators > Type Operator)
 
@@ -90,7 +94,7 @@ define function "GetQuantity"(obs Observation): obs.value as Quantity
 
 [[term-asc]]
 [discrete]
-==== *asc*
+=== *asc*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier)
 
@@ -107,7 +111,7 @@ Short form of ‘ascending’ — orders sort-clause results from lowest to high
 
 [[term-ascending]]
 [discrete]
-==== *ascending*
+=== *ascending*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier)
 
@@ -124,7 +128,7 @@ Full form of ‘asc’ — orders sort-clause results from lowest to highest.
 
 [[term-before]]
 [discrete]
-==== *before*
+=== *before*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -141,7 +145,7 @@ Relational operator testing whether one date, time, or interval occurs earlier t
 
 [[term-between]]
 [discrete]
-==== *between*
+=== *between*
 
 `Comparison Operator` -- (Core Operators > Comparison Operator)
 
@@ -158,7 +162,7 @@ Tests whether a value falls within an inclusive range (e.g. ‘4 between 2 and 8
 
 [[term-bind]]
 [discrete]
-==== *bind*
+=== *bind*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -175,7 +179,7 @@ include ColorectalCancerElements called CCE bind { AsOf: end of "Measurement Per
 
 [[term-by]]
 [discrete]
-==== *by*
+=== *by*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -192,7 +196,7 @@ Connector introducing the ordering expression in a sort clause (‘sort by ...�
 
 [[term-called]]
 [discrete]
-==== *called*
+=== *called*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -209,7 +213,7 @@ include FHIRHelpers version '4.0.1' called FHIRHelpers
 
 [[term-case]]
 [discrete]
-==== *case*
+=== *case*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression)
 
@@ -230,7 +234,7 @@ end
 
 [[term-cast]]
 [discrete]
-==== *cast*
+=== *cast*
 
 `Type Operator` -- (Core Operators > Type Operator)
 
@@ -247,7 +251,7 @@ cast "SomeValue" as Integer
 
 [[term-code]]
 [discrete]
-==== *code*
+=== *code*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -264,7 +268,7 @@ code "Diabetes code": '73211009' from "SNOMED"
 
 [[term-Code]]
 [discrete]
-==== *Code*
+=== *Code*
 
 `Type Name` -- (Types & Literals > Type Name)
 
@@ -281,7 +285,7 @@ define "DiabetesCode": Code '73211009' from "SNOMED" display 'Diabetes mellitus'
 
 [[term-codesystem]]
 [discrete]
-==== *codesystem*
+=== *codesystem*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -298,7 +302,7 @@ codesystem "SNOMED": 'http://snomed.info/sct'
 
 [[term-codesystems]]
 [discrete]
-==== *codesystems*
+=== *codesystems*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -315,7 +319,7 @@ valueset "Example": 'urn:oid:2.16.1' codesystems { "SNOMED", "LOINC" }
 
 [[term-collapse]]
 [discrete]
-==== *collapse*
+=== *collapse*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -332,7 +336,7 @@ collapse "OverlappingEncounterPeriods"
 
 [[term-concept]]
 [discrete]
-==== *concept*
+=== *concept*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -349,7 +353,7 @@ concept "Diabetes concept": { "Diabetes code" } display 'Diabetes mellitus'
 
 [[term-Concept]]
 [discrete]
-==== *Concept*
+=== *Concept*
 
 `Type Name` -- (Types & Literals > Type Name)
 
@@ -366,7 +370,7 @@ define "DiabetesConcept": Concept { "DiabetesCode" } display 'Diabetes mellitus'
 
 [[term-contains]]
 [discrete]
-==== *contains*
+=== *contains*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -383,7 +387,7 @@ Membership operator testing whether an interval or list contains a given point o
 
 [[term-context]]
 [discrete]
-==== *context*
+=== *context*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -400,7 +404,7 @@ context Patient
 
 [[term-conversion]]
 [discrete]
-==== *conversion*
+=== *conversion*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -417,7 +421,7 @@ define implicit conversion from FHIR.Period to Interval<System.DateTime> using F
 
 [[term-convert]]
 [discrete]
-==== *convert*
+=== *convert*
 
 `Type Operator` -- (Core Operators > Type Operator)
 
@@ -434,7 +438,7 @@ convert 5000 'g' to 'kg'
 
 [[term-date]]
 [discrete]
-==== *date*
+=== *date*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator)
 
@@ -451,7 +455,7 @@ date from "EncounterDateTime"
 
 [[term-day]]
 [discrete]
-==== *day*
+=== *day*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -468,7 +472,7 @@ AdmissionDateTime + 1 day
 
 [[term-days]]
 [discrete]
-==== *days*
+=== *days*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -485,7 +489,7 @@ Interval["AdmissionDateTime", "AdmissionDateTime" + 3 days]
 
 [[term-default]]
 [discrete]
-==== *default*
+=== *default*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -503,7 +507,7 @@ parameter "MeasurementPeriod" Interval<DateTime>
 
 [[term-define]]
 [discrete]
-==== *define*
+=== *define*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -520,7 +524,7 @@ define "InInitialPopulation": exists "QualifyingEncounters"
 
 [[term-desc]]
 [discrete]
-==== *desc*
+=== *desc*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier)
 
@@ -537,7 +541,7 @@ Short form of ‘descending’ — orders sort-clause results from highest to lo
 
 [[term-descending]]
 [discrete]
-==== *descending*
+=== *descending*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier)
 
@@ -554,7 +558,7 @@ Full form of ‘desc’ — orders sort-clause results from highest to lowest.
 
 [[term-difference]]
 [discrete]
-==== *difference*
+=== *difference*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator)
 
@@ -571,7 +575,7 @@ difference in days between "AdmissionDateTime" and "DischargeDateTime"
 
 [[term-display]]
 [discrete]
-==== *display*
+=== *display*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -588,7 +592,7 @@ code "Diabetes code": '73211009' from "SNOMED" display 'Diabetes mellitus'
 
 [[term-distinct]]
 [discrete]
-==== *distinct*
+=== *distinct*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -605,7 +609,7 @@ distinct { 1, 1, 2, 3 }
 
 [[term-div]]
 [discrete]
-==== *div*
+=== *div*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator)
 
@@ -622,7 +626,7 @@ Truncated (integer-style) division, discarding any remainder — e.g. ‘4 div 2
 
 [[term-duration]]
 [discrete]
-==== *duration*
+=== *duration*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator)
 
@@ -639,7 +643,7 @@ duration in days between "AdmissionDateTime" and "DischargeDateTime"
 
 [[term-during]]
 [discrete]
-==== *during*
+=== *during*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -656,7 +660,7 @@ Tests whether a point or interval falls entirely within another interval.
 
 [[term-else]]
 [discrete]
-==== *else*
+=== *else*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression)
 
@@ -673,7 +677,7 @@ if AgeInYears() >= 18 then 'Adult' else 'Minor'
 
 [[term-end]]
 [discrete]
-==== *end*
+=== *end*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -690,7 +694,7 @@ end of "MeasurementPeriod"
 
 [[term-ends]]
 [discrete]
-==== *ends*
+=== *ends*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -707,7 +711,7 @@ Tests whether one interval finishes at the same point as another (a ‘suffix’
 
 [[term-except]]
 [discrete]
-==== *except*
+=== *except*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -724,7 +728,7 @@ Set-difference operator — returns the elements or range in the left operand th
 
 [[term-exists]]
 [discrete]
-==== *exists*
+=== *exists*
 
 `Logical Operator` -- (Core Operators > Logical Operator)
 
@@ -741,7 +745,7 @@ exists "QualifyingEncounters"
 
 [[term-expand]]
 [discrete]
-==== *expand*
+=== *expand*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -758,7 +762,7 @@ expand "MeasurementPeriod" per day
 
 [[term-explicit]]
 [discrete]
-==== *explicit*
+=== *explicit*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -775,7 +779,7 @@ define explicit conversion from FHIR.Quantity to System.Quantity using FHIRHelpe
 
 [[term-extends]]
 [discrete]
-==== *extends*
+=== *extends*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -792,7 +796,7 @@ define public type Quantity extends System.Any { value System.Decimal, unit Syst
 
 [[term-false]]
 [discrete]
-==== *false*
+=== *false*
 
 `Literal` -- (Types & Literals > Literal)
 
@@ -809,7 +813,7 @@ define "IsExcluded": false
 
 [[term-flatten]]
 [discrete]
-==== *flatten*
+=== *flatten*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -826,7 +830,7 @@ flatten { { 1, 2 }, { 3, 4 } }
 
 [[term-fluent]]
 [discrete]
-==== *fluent*
+=== *fluent*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -843,7 +847,7 @@ define fluent function "ToAgeInYears"(BirthDate Date): AgeInYears(BirthDate)
 
 [[term-from]]
 [discrete]
-==== *from*
+=== *from*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -860,7 +864,7 @@ from [Encounter] E, [Condition] C where E.subject = C.subject
 
 [[term-function]]
 [discrete]
-==== *function*
+=== *function*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -877,7 +881,7 @@ define function "CalculateAge"(BirthDate Date): AgeInYears(BirthDate)
 
 [[term-hour]]
 [discrete]
-==== *hour*
+=== *hour*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -894,7 +898,7 @@ Singular calendar-duration unit of one hour.
 
 [[term-hours]]
 [discrete]
-==== *hours*
+=== *hours*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -911,7 +915,7 @@ Plural calendar-duration unit of hours.
 
 [[term-identifier]]
 [discrete]
-==== *identifier*
+=== *identifier*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -928,7 +932,7 @@ define type AdverseEvent extends FHIR.AdverseEvent identifier 'http://hl7.org/fh
 
 [[term-if]]
 [discrete]
-==== *if*
+=== *if*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression)
 
@@ -945,7 +949,7 @@ if AgeInYears() >= 18 then 'Adult' else 'Minor'
 
 [[term-implicit]]
 [discrete]
-==== *implicit*
+=== *implicit*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -962,7 +966,7 @@ define implicit conversion from FHIR.Period to Interval<System.DateTime> using F
 
 [[term-implies]]
 [discrete]
-==== *implies*
+=== *implies*
 
 `Logical Operator` -- (Core Operators > Logical Operator)
 
@@ -979,7 +983,7 @@ Logical implication — false only when the left operand is true and the right i
 
 [[term-in]]
 [discrete]
-==== *in*
+=== *in*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -996,7 +1000,7 @@ Tests whether a value is a member of a list, interval, or terminology set — th
 
 [[term-include]]
 [discrete]
-==== *include*
+=== *include*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -1013,7 +1017,7 @@ include FHIRHelpers version '4.0.1' called FHIRHelpers
 
 [[term-included-in]]
 [discrete]
-==== *included in*
+=== *included in*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1030,7 +1034,7 @@ Tests whether one interval or list is entirely contained within another — the 
 
 [[term-includes]]
 [discrete]
-==== *includes*
+=== *includes*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1047,7 +1051,7 @@ Tests whether one interval or list entirely contains another — the inverse of 
 
 [[term-intersect]]
 [discrete]
-==== *intersect*
+=== *intersect*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1064,7 +1068,7 @@ Returns the elements, or overlapping range, common to both operands.
 
 [[term-Interval]]
 [discrete]
-==== *Interval*
+=== *Interval*
 
 `Type Name` -- (Types & Literals > Type Name)
 
@@ -1081,7 +1085,7 @@ define "MeasurementPeriod": Interval[@2024-01-01, @2024-12-31]
 
 [[term-is]]
 [discrete]
-==== *is*
+=== *is*
 
 `Type Operator` -- (Core Operators > Type Operator)
 
@@ -1098,7 +1102,7 @@ Tests the run-time type of a value (e.g. ‘5 is Integer’), or tests for null/
 
 [[term-key]]
 [discrete]
-==== *key*
+=== *key*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -1115,7 +1119,7 @@ define context Patient of type FHIR.Patient with key { id }
 
 [[term-label]]
 [discrete]
-==== *label*
+=== *label*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -1132,7 +1136,7 @@ define type AdverseEvent extends FHIR.AdverseEvent label AdverseEvent
 
 [[term-let]]
 [discrete]
-==== *let*
+=== *let*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -1149,7 +1153,7 @@ Defines a named, reusable intermediate expression scoped to a single query.
 
 [[term-library]]
 [discrete]
-==== *library*
+=== *library*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -1166,7 +1170,7 @@ library CQMExample version '1.0.0'
 
 [[term-List]]
 [discrete]
-==== *List*
+=== *List*
 
 `Type Name` -- (Types & Literals > Type Name)
 
@@ -1183,7 +1187,7 @@ define "Encounters": [Encounter] E return E.period
 
 [[term-maximum]]
 [discrete]
-==== *maximum*
+=== *maximum*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator)
 
@@ -1200,7 +1204,7 @@ maximum Integer
 
 [[term-meets]]
 [discrete]
-==== *meets*
+=== *meets*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1217,7 +1221,7 @@ Tests whether two intervals are adjacent — one ends exactly where the other be
 
 [[term-millisecond]]
 [discrete]
-==== *millisecond*
+=== *millisecond*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1234,7 +1238,7 @@ Singular calendar-duration unit of one millisecond — the finest date/time prec
 
 [[term-milliseconds]]
 [discrete]
-==== *milliseconds*
+=== *milliseconds*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1251,7 +1255,7 @@ duration in milliseconds between "Start" and "End"
 
 [[term-minimum]]
 [discrete]
-==== *minimum*
+=== *minimum*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator)
 
@@ -1268,7 +1272,7 @@ minimum Integer
 
 [[term-minute]]
 [discrete]
-==== *minute*
+=== *minute*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1285,7 +1289,7 @@ Singular calendar-duration unit of one minute.
 
 [[term-minutes]]
 [discrete]
-==== *minutes*
+=== *minutes*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1302,7 +1306,7 @@ duration in minutes between "Start" and "End"
 
 [[term-mod]]
 [discrete]
-==== *mod*
+=== *mod*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator)
 
@@ -1319,7 +1323,7 @@ Modulo operator — returns the remainder of dividing the left operand by the ri
 
 [[term-month]]
 [discrete]
-==== *month*
+=== *month*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1336,7 +1340,7 @@ Singular calendar-duration unit of one month.
 
 [[term-months]]
 [discrete]
-==== *months*
+=== *months*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1353,7 +1357,7 @@ duration in months between "Start" and "End"
 
 [[term-not]]
 [discrete]
-==== *not*
+=== *not*
 
 `Logical Operator` -- (Core Operators > Logical Operator)
 
@@ -1370,7 +1374,7 @@ not exists "Exclusions"
 
 [[term-null]]
 [discrete]
-==== *null*
+=== *null*
 
 `Literal` -- (Types & Literals > Literal)
 
@@ -1387,7 +1391,7 @@ The literal representing an unknown or missing value.
 
 [[term-occurs]]
 [discrete]
-==== *occurs*
+=== *occurs*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1404,7 +1408,7 @@ Optional word that may appear anywhere ‘starts’ or ‘ends’ can appear in 
 
 [[term-of]]
 [discrete]
-==== *of*
+=== *of*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator)
 
@@ -1421,7 +1425,7 @@ start of "MeasurementPeriod"
 
 [[term-on]]
 [discrete]
-==== *on*
+=== *on*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1438,7 +1442,7 @@ Timing keyword combined with ‘or before’ / ‘or after’ to build the inclu
 
 [[term-or]]
 [discrete]
-==== *or*
+=== *or*
 
 `Logical Operator` -- (Core Operators > Logical Operator)
 
@@ -1455,7 +1459,7 @@ Boolean inclusive disjunction — true if either or both operands are true.
 
 [[term-or-after]]
 [discrete]
-==== *or after*
+=== *or after*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1472,7 +1476,7 @@ Qualifies a precision- or quantity-based timing comparison to include the bounda
 
 [[term-or-before]]
 [discrete]
-==== *or before*
+=== *or before*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1489,7 +1493,7 @@ Qualifies a precision- or quantity-based timing comparison to include the bounda
 
 [[term-or-less]]
 [discrete]
-==== *or less*
+=== *or less*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1506,7 +1510,7 @@ Qualifies a quantity offset in a timing phrase to mean ‘that amount or a small
 
 [[term-or-more]]
 [discrete]
-==== *or more*
+=== *or more*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1523,7 +1527,7 @@ Qualifies a quantity offset in a timing phrase to mean ‘that amount or a large
 
 [[term-or-on]]
 [discrete]
-==== *or on*
+=== *or on*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1540,7 +1544,7 @@ Qualifies a timing comparison to include the exact-boundary case, used to build 
 
 [[term-ordered]]
 [discrete]
-==== *ordered*
+=== *ordered*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1557,7 +1561,7 @@ Modifier of union, intersect, or except, used after all, that keeps elements in 
 
 [[term-overlaps]]
 [discrete]
-==== *overlaps*
+=== *overlaps*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1574,7 +1578,7 @@ Tests whether two intervals share at least one point in common.
 
 [[term-parameter]]
 [discrete]
-==== *parameter*
+=== *parameter*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -1591,7 +1595,7 @@ parameter "MeasurementPeriod" Interval<DateTime>
 
 [[term-path]]
 [discrete]
-==== *path*
+=== *path*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -1608,7 +1612,7 @@ define type AdverseEvent extends FHIR.AdverseEvent retrievable primary code path
 
 [[term-per]]
 [discrete]
-==== *per*
+=== *per*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1625,7 +1629,7 @@ expand "MeasurementPeriod" per day
 
 [[term-point]]
 [discrete]
-==== *point*
+=== *point*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1642,7 +1646,7 @@ point from Interval[5, 5]
 
 [[term-predecessor]]
 [discrete]
-==== *predecessor*
+=== *predecessor*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator)
 
@@ -1659,7 +1663,7 @@ predecessor of 5
 
 [[term-primary]]
 [discrete]
-==== *primary*
+=== *primary*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -1676,7 +1680,7 @@ define type AdverseEvent extends FHIR.AdverseEvent retrievable primary code path
 
 [[term-private]]
 [discrete]
-==== *private*
+=== *private*
 
 `Access Modifier` -- (Declarations > Access Modifier)
 
@@ -1693,7 +1697,7 @@ define private "HelperCalculation": 1 + 1
 
 [[term-properly]]
 [discrete]
-==== *properly*
+=== *properly*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1710,7 +1714,7 @@ Strengthens ‘includes’ / ‘included in’ so an exactly-equal value no long
 
 [[term-public]]
 [discrete]
-==== *public*
+=== *public*
 
 `Access Modifier` -- (Declarations > Access Modifier)
 
@@ -1727,7 +1731,7 @@ define public "InitialPopulation": true
 
 [[term-related]]
 [discrete]
-==== *related*
+=== *related*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -1744,7 +1748,7 @@ define type Observation extends DomainResource { subject Reference } related to 
 
 [[term-retrievable]]
 [discrete]
-==== *retrievable*
+=== *retrievable*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -1761,7 +1765,7 @@ define type AdverseEvent extends FHIR.AdverseEvent retrievable primary code path
 
 [[term-return]]
 [discrete]
-==== *return*
+=== *return*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -1778,7 +1782,7 @@ Shapes or projects a query’s result, optionally computing new values; defaults
 
 [[term-same]]
 [discrete]
-==== *same*
+=== *same*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1795,7 +1799,7 @@ Precision-based equality comparison for date/time values: ‘same as’, ‘same
 
 [[term-second]]
 [discrete]
-==== *second*
+=== *second*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1812,7 +1816,7 @@ Singular calendar-duration unit of one second.
 
 [[term-seconds]]
 [discrete]
-==== *seconds*
+=== *seconds*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -1829,7 +1833,7 @@ duration in seconds between "Start" and "End"
 
 [[term-singleton]]
 [discrete]
-==== *singleton*
+=== *singleton*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1846,7 +1850,7 @@ singleton from ["Patient"]
 
 [[term-sort]]
 [discrete]
-==== *sort*
+=== *sort*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -1863,7 +1867,7 @@ Introduces the sort clause that orders a query’s results; must be the last cla
 
 [[term-start]]
 [discrete]
-==== *start*
+=== *start*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -1880,7 +1884,7 @@ start of "MeasurementPeriod"
 
 [[term-starting]]
 [discrete]
-==== *starting*
+=== *starting*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -1897,7 +1901,7 @@ aggregate "RunningTotal" starting 0: RunningTotal + Claim.amount
 
 [[term-starts]]
 [discrete]
-==== *starts*
+=== *starts*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -1914,7 +1918,7 @@ Tests whether one interval begins at the same point as another (a ‘prefix’ r
 
 [[term-successor]]
 [discrete]
-==== *successor*
+=== *successor*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator)
 
@@ -1931,7 +1935,7 @@ successor of 5
 
 [[term-such-that]]
 [discrete]
-==== *such that*
+=== *such that*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -1948,7 +1952,7 @@ Attaches the filtering condition to a with/without relationship clause.
 
 [[term-then]]
 [discrete]
-==== *then*
+=== *then*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression)
 
@@ -1965,7 +1969,7 @@ if AgeInYears() >= 18 then 'Adult' else 'Minor'
 
 [[term-time]]
 [discrete]
-==== *time*
+=== *time*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator)
 
@@ -1982,7 +1986,7 @@ time from "EncounterDateTime"
 
 [[term-timezoneoffset]]
 [discrete]
-==== *timezoneoffset*
+=== *timezoneoffset*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator)
 
@@ -1999,7 +2003,7 @@ timezoneoffset from "EncounterDateTime"
 
 [[term-to]]
 [discrete]
-==== *to*
+=== *to*
 
 `Type Operator` -- (Core Operators > Type Operator)
 
@@ -2016,7 +2020,7 @@ convert 98.6 '[degF]' to 'Cel'
 
 [[term-true]]
 [discrete]
-==== *true*
+=== *true*
 
 `Literal` -- (Types & Literals > Literal)
 
@@ -2033,7 +2037,7 @@ define "MeetsInitialPopulation": true
 
 [[term-Tuple]]
 [discrete]
-==== *Tuple*
+=== *Tuple*
 
 `Type Name` -- (Types & Literals > Type Name)
 
@@ -2050,7 +2054,7 @@ define "PatientSummary": Tuple { name: 'Jane Doe', age: 45 }
 
 [[term-type]]
 [discrete]
-==== *type*
+=== *type*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -2067,7 +2071,7 @@ define public type Quantity extends System.Any { value System.Decimal, unit Syst
 
 [[term-union]]
 [discrete]
-==== *union*
+=== *union*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -2084,7 +2088,7 @@ Combines two lists or intervals into one (duplicates removed for lists; for inte
 
 [[term-using]]
 [discrete]
-==== *using*
+=== *using*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -2101,7 +2105,7 @@ using FHIR version '4.0.1'
 
 [[term-valueset]]
 [discrete]
-==== *valueset*
+=== *valueset*
 
 `Declaration` -- (Declarations > Declaration)
 
@@ -2118,7 +2122,7 @@ valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001'
 
 [[term-version]]
 [discrete]
-==== *version*
+=== *version*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier)
 
@@ -2135,7 +2139,7 @@ library CQMExample version '1.0.0'
 
 [[term-week]]
 [discrete]
-==== *week*
+=== *week*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -2152,7 +2156,7 @@ Singular calendar-duration unit of one week (always treated as 7 days).
 
 [[term-weeks]]
 [discrete]
-==== *weeks*
+=== *weeks*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -2169,7 +2173,7 @@ duration in weeks between "Start" and "End"
 
 [[term-when]]
 [discrete]
-==== *when*
+=== *when*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression)
 
@@ -2189,7 +2193,7 @@ end
 
 [[term-where]]
 [discrete]
-==== *where*
+=== *where*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -2206,7 +2210,7 @@ Filters a query’s results to only the elements for which a boolean condition e
 
 [[term-width]]
 [discrete]
-==== *width*
+=== *width*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator)
 
@@ -2223,7 +2227,7 @@ width of "MeasurementPeriod"
 
 [[term-with]]
 [discrete]
-==== *with*
+=== *with*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -2240,7 +2244,7 @@ Filters a query’s primary source to elements that have a specified relationshi
 
 [[term-within]]
 [discrete]
-==== *within*
+=== *within*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator)
 
@@ -2257,7 +2261,7 @@ Tests whether a point or interval falls within a specified proximity or range of
 
 [[term-without]]
 [discrete]
-==== *without*
+=== *without*
 
 `Query Clause` -- (Query & Control Flow > Query Clause)
 
@@ -2274,7 +2278,7 @@ Filters a query’s primary source to elements that do NOT have a specified rela
 
 [[term-xor]]
 [discrete]
-==== *xor*
+=== *xor*
 
 `Logical Operator` -- (Core Operators > Logical Operator)
 
@@ -2291,7 +2295,7 @@ Boolean exclusive-or — true only when exactly one operand is true.
 
 [[term-year]]
 [discrete]
-==== *year*
+=== *year*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 
@@ -2308,7 +2312,7 @@ Singular calendar-duration unit of one year.
 
 [[term-years]]
 [discrete]
-==== *years*
+=== *years*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit)
 

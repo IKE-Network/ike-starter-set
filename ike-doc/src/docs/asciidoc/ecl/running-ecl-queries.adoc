@@ -1,4 +1,8 @@
-[#ecl-running-ecl-queries]
-== Running ECL Queries
+:chapter-id: running-ecl-queries
+:chapter-parent: ecl
+:chapter-order: 200
+:chapter-status: published
+
+= Running ECL Queries
 
 Running an ECL Query info here

@@ -1,0 +1,16 @@
+:chapter-id: navigation-coordinates
+:chapter-parent: ike-guide
+:chapter-order: 600
+:chapter-status: published
+
+= Navigation Coordinates
+
+koncept-narrative::NavigationVertex[]
+
+<<koncept-pattern-table-StatedNavigationPattern>> and
+<<koncept-pattern-table-InferredNavigationPattern>> show the two navigation
+patterns' shapes.
+
+koncept-pattern-table::StatedNavigationPattern[]
+
+koncept-pattern-table::InferredNavigationPattern[]

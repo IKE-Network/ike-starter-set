@@ -1,0 +1,13 @@
+= ECL Keyword Dictionary
+:toc: left
+:sectnums:
+:chapter-id: ecl-dictionary
+:chapter-status: published
+:chapter-root:
+
+[preface]
+== About This Dictionary
+
+This reference dictionary documents all 48 keywords of the SNOMED CT Expression Constraint Language (ECL 2.3), brief and long syntax, with a definition and a worked example for each.
+
+include::hierarchy:ecl-dictionary[]

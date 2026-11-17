@@ -1,19 +1,24 @@
-== Declarations
+:chapter-id: declarations
+:chapter-parent: cql
+:chapter-order: 500
+:chapter-status: published
 
-=== Declaration (13)
+= Declarations
+
+== Declaration (13)
 
 The library-level statements that give a CQL file its shape.
 
-Members: <<term-code,`code`>>, <<term-codesystem,`codesystem`>>, <<term-concept,`concept`>>, <<term-context,`context`>>, <<term-conversion,`conversion`>>, <<term-define,`define`>>, <<term-function,`function`>>, <<term-include,`include`>>, <<term-library,`library`>>, <<term-parameter,`parameter`>>, <<term-type,`type`>>, <<term-using,`using`>>, <<term-valueset,`valueset`>>
+Members: xref:cql-dictionary.html#term-code[`code`], xref:cql-dictionary.html#term-codesystem[`codesystem`], xref:cql-dictionary.html#term-concept[`concept`], xref:cql-dictionary.html#term-context[`context`], xref:cql-dictionary.html#term-conversion[`conversion`], xref:cql-dictionary.html#term-define[`define`], xref:cql-dictionary.html#term-function[`function`], xref:cql-dictionary.html#term-include[`include`], xref:cql-dictionary.html#term-library[`library`], xref:cql-dictionary.html#term-parameter[`parameter`], xref:cql-dictionary.html#term-type[`type`], xref:cql-dictionary.html#term-using[`using`], xref:cql-dictionary.html#term-valueset[`valueset`]
 
-=== Declaration Modifier (17)
+== Declaration Modifier (17)
 
 Modifiers that refine a declaration -- an alias, a default, a version.
 
-Members: <<term-bind,`bind`>>, <<term-called,`called`>>, <<term-codesystems,`codesystems`>>, <<term-default,`default`>>, <<term-display,`display`>>, <<term-explicit,`explicit`>>, <<term-extends,`extends`>>, <<term-fluent,`fluent`>>, <<term-identifier,`identifier`>>, <<term-implicit,`implicit`>>, <<term-key,`key`>>, <<term-label,`label`>>, <<term-path,`path`>>, <<term-primary,`primary`>>, <<term-related,`related`>>, <<term-retrievable,`retrievable`>>, <<term-version,`version`>>
+Members: xref:cql-dictionary.html#term-bind[`bind`], xref:cql-dictionary.html#term-called[`called`], xref:cql-dictionary.html#term-codesystems[`codesystems`], xref:cql-dictionary.html#term-default[`default`], xref:cql-dictionary.html#term-display[`display`], xref:cql-dictionary.html#term-explicit[`explicit`], xref:cql-dictionary.html#term-extends[`extends`], xref:cql-dictionary.html#term-fluent[`fluent`], xref:cql-dictionary.html#term-identifier[`identifier`], xref:cql-dictionary.html#term-implicit[`implicit`], xref:cql-dictionary.html#term-key[`key`], xref:cql-dictionary.html#term-label[`label`], xref:cql-dictionary.html#term-path[`path`], xref:cql-dictionary.html#term-primary[`primary`], xref:cql-dictionary.html#term-related[`related`], xref:cql-dictionary.html#term-retrievable[`retrievable`], xref:cql-dictionary.html#term-version[`version`]
 
-=== Access Modifier (2)
+== Access Modifier (2)
 
 Controls whether a definition is visible outside its own library.
 
-Members: <<term-private,`private`>>, <<term-public,`public`>>
+Members: xref:cql-dictionary.html#term-private[`private`], xref:cql-dictionary.html#term-public[`public`]

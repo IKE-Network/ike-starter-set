@@ -1,0 +1,8 @@
+:chapter-id: authoring-actions-and-legacy-constraints
+:chapter-parent: ike-guide
+:chapter-order: 1400
+:chapter-status: published
+
+= Authoring Actions and Legacy Constraints
+
+koncept-narrative::ActionProperties[]

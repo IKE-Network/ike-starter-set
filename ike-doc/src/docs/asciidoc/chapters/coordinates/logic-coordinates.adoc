@@ -1,0 +1,17 @@
+:chapter-id: logic-coordinates
+:chapter-parent: ike-guide
+:chapter-order: 500
+:chapter-status: published
+
+= Logic Coordinates
+
+koncept-narrative::LogicCoordinateProperties[]
+
+<<koncept-pattern-table-SolorConceptsPattern>> and
+<<koncept-pattern-table-SOLORConceptAssemblage>> show the membership patterns named
+here — the fresh Solor Concepts Pattern and the dormant legacy SOLOR concept
+assemblage it supersedes.
+
+koncept-pattern-table::SolorConceptsPattern[]
+
+koncept-pattern-table::SOLORConceptAssemblage[]

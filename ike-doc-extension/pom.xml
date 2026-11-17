@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.foundation</groupId>
+        <artifactId>ike-starter-set</artifactId>
+        <version>1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ike-doc-extension</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Ike Doc Extension</name>
+    <description>
+        AsciidoctorJ include processor resolving 'hierarchy:' and 'chapter:' targets from the index
+        written by ike-hierarchy-maven-plugin. It walks no directories and resolves no path it was
+        not handed, so a rendered guide depends only on the validated index and is identical on
+        every machine.
+    </description>
+
+    <!-- Dual licensed (IKE-Network/ike-issues#952); identical in every POM of this reactor. -->
+    <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International</name>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <maven.compiler.release>25</maven.compiler.release>
+        <asciidoctorj.version>2.5.13</asciidoctorj.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>25</release>
+                    <compilerArgs combine.self="override"/>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine combine.self="override"/>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>network.ike.foundation</groupId>
+            <artifactId>ike-hierarchy-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctorj</artifactId>
+            <version>${asciidoctorj.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctorj-api</artifactId>
+            <version>${asciidoctorj.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.27.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

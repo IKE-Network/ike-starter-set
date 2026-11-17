@@ -1,20 +1,24 @@
-[#ecl-filters]
-== Filters
+:chapter-id: ecl-filters
+:chapter-parent: ecl
+:chapter-order: 600
+:chapter-status: published
 
-=== Description Filter (14)
+= Filters
+
+== Description Filter (14)
 
 Filters on a concept's descriptions (term, language, type, dialect, identifier), with the term search types and the description type and acceptability tokens they compare against.
 
-Members: <<ecl-term-accept,`accept`>>, <<ecl-term-def,`def`>>, <<ecl-term-dialect,`dialect`>>, <<ecl-term-dialectId,`dialectId`>>, <<ecl-term-fsn,`fsn`>>, <<ecl-term-id,`id`>>, <<ecl-term-language,`language`>>, <<ecl-term-match,`match`>>, <<ecl-term-prefer,`prefer`>>, <<ecl-term-syn,`syn`>>, <<ecl-term-term,`term`>>, <<ecl-term-type,`type`>>, <<ecl-term-typeId,`typeId`>>, <<ecl-term-wild,`wild`>>
+Members: xref:ecl-dictionary.html#ecl-term-accept[`accept`], xref:ecl-dictionary.html#ecl-term-def[`def`], xref:ecl-dictionary.html#ecl-term-dialect[`dialect`], xref:ecl-dictionary.html#ecl-term-dialectId[`dialectId`], xref:ecl-dictionary.html#ecl-term-fsn[`fsn`], xref:ecl-dictionary.html#ecl-term-id[`id`], xref:ecl-dictionary.html#ecl-term-language[`language`], xref:ecl-dictionary.html#ecl-term-match[`match`], xref:ecl-dictionary.html#ecl-term-prefer[`prefer`], xref:ecl-dictionary.html#ecl-term-syn[`syn`], xref:ecl-dictionary.html#ecl-term-term[`term`], xref:ecl-dictionary.html#ecl-term-type[`type`], xref:ecl-dictionary.html#ecl-term-typeId[`typeId`], xref:ecl-dictionary.html#ecl-term-wild[`wild`]
 
-=== Concept Filter (4)
+== Concept Filter (4)
 
 Filters on a concept's own definition status, with the definition status tokens.
 
-Members: <<ecl-term-defined,`defined`>>, <<ecl-term-definitionStatus,`definitionStatus`>>, <<ecl-term-definitionStatusId,`definitionStatusId`>>, <<ecl-term-primitive,`primitive`>>
+Members: xref:ecl-dictionary.html#ecl-term-defined[`defined`], xref:ecl-dictionary.html#ecl-term-definitionStatus[`definitionStatus`], xref:ecl-dictionary.html#ecl-term-definitionStatusId[`definitionStatusId`], xref:ecl-dictionary.html#ecl-term-primitive[`primitive`]
 
-=== Component Filter (8)
+== Component Filter (8)
 
 Keywords shared by description, concept and member filters: the filter type letters (D, C, M), module, effective time, and active with its boolean values.
 
-Members: <<ecl-term-active,`active`>>, <<ecl-term-C,`C`>>, <<ecl-term-D,`D`>>, <<ecl-term-effectiveTime,`effectiveTime`>>, <<ecl-term-false,`false`>>, <<ecl-term-M,`M`>>, <<ecl-term-moduleId,`moduleId`>>, <<ecl-term-true,`true`>>
+Members: xref:ecl-dictionary.html#ecl-term-active[`active`], xref:ecl-dictionary.html#ecl-term-C[`C`], xref:ecl-dictionary.html#ecl-term-D[`D`], xref:ecl-dictionary.html#ecl-term-effectiveTime[`effectiveTime`], xref:ecl-dictionary.html#ecl-term-false[`false`], xref:ecl-dictionary.html#ecl-term-M[`M`], xref:ecl-dictionary.html#ecl-term-moduleId[`moduleId`], xref:ecl-dictionary.html#ecl-term-true[`true`]

@@ -1,0 +1,11 @@
+// The CQL chapter, migrated to the decentralized hierarchy.
+//
+// No include:: line here on purpose: ike-guide's own 'include::hierarchy:ike-guide[]'
+// already walks this chapter's descendants transitively (see HierarchyIndex#descendantsOf),
+// so an 'include::hierarchy:cql[]' here would render every child chapter a second time.
+:chapter-id: cql
+:chapter-parent: ike-guide
+:chapter-order: 1050
+:chapter-status: published
+
+= CQL in Komet

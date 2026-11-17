@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.foundation</groupId>
+        <artifactId>ike-starter-set</artifactId>
+        <version>1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ike-hierarchy-model</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Ike Hierarchy Model</name>
+    <description>
+        The decentralized live hierarchy: chapter identity, self-declared placement, path
+        containment, validation, and the generated index format. Depends on nothing but the JDK, so
+        the rules that decide whether a guide is well formed can be tested without Maven or
+        Asciidoctor — and so both the Maven plugin that writes the index and the Asciidoctor
+        extension that reads it agree on the format by construction rather than by convention.
+    </description>
+
+    <!-- Dual licensed (IKE-Network/ike-issues#952); identical in every POM of this reactor. -->
+    <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International</name>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <!-- Java 25 per JAVA.md, and no preview features anywhere in this module chain: a Maven
+             plugin compiled with preview features enabled refuses to load unless Maven's own
+             JVM is that exact JDK major version and was started with the same enable-preview
+             flag. -->
+        <maven.compiler.release>25</maven.compiler.release>
+        <assertj.version>3.27.3</assertj.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>25</release>
+                    <compilerArgs combine.self="override"/>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine combine.self="override"/>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- No compile-scope dependencies, deliberately. This module is the shared vocabulary of a
+             Maven plugin and an Asciidoctor extension, both of which are loaded into classloaders
+             that already contain a great deal; anything added here is a version conflict waiting
+             to happen in one of them. -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

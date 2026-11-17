@@ -76,6 +76,12 @@
         <subproject>ike-terms</subproject>
         <subproject>ike-bindings</subproject>
         <subproject>ike-changeset</subproject>
+        <!-- The decentralized live hierarchy: the pure model, the Maven 4 plugin that writes
+             the index, and the Asciidoctor extension that reads it. Build order follows the
+             dependency graph; the listing order here just reads top-down. -->
+        <subproject>ike-hierarchy-model</subproject>
+        <subproject>ike-hierarchy-maven-plugin</subproject>
+        <subproject>ike-doc-extension</subproject>
         <subproject>ike-doc</subproject>
         <subproject>ike-kb</subproject>
     </subprojects>
@@ -101,6 +107,19 @@
                     <configuration>
                         <deployAtEnd>true</deployAtEnd>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>network.ike.docs</groupId>
+                    <artifactId>ike-doc-maven-plugin</artifactId>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>lint-site</id>
+                            <phase>none</phase>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

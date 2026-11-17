@@ -1,25 +1,30 @@
-== Data & Timing Operators
+:chapter-id: data-and-timing-operators
+:chapter-parent: cql
+:chapter-order: 700
+:chapter-status: published
 
-=== List/Interval Operator (18)
+= Data & Timing Operators
+
+== List/Interval Operator (18)
 
 Operators for combining, comparing, and inspecting lists and intervals.
 
-Members: <<term-collapse,`collapse`>>, <<term-contains,`contains`>>, <<term-distinct,`distinct`>>, <<term-end,`end`>>, <<term-except,`except`>>, <<term-expand,`expand`>>, <<term-flatten,`flatten`>>, <<term-in,`in`>>, <<term-included-in,`included in`>>, <<term-includes,`includes`>>, <<term-intersect,`intersect`>>, <<term-ordered,`ordered`>>, <<term-point,`point`>>, <<term-properly,`properly`>>, <<term-singleton,`singleton`>>, <<term-start,`start`>>, <<term-union,`union`>>, <<term-width,`width`>>
+Members: xref:cql-dictionary.html#term-collapse[`collapse`], xref:cql-dictionary.html#term-contains[`contains`], xref:cql-dictionary.html#term-distinct[`distinct`], xref:cql-dictionary.html#term-end[`end`], xref:cql-dictionary.html#term-except[`except`], xref:cql-dictionary.html#term-expand[`expand`], xref:cql-dictionary.html#term-flatten[`flatten`], xref:cql-dictionary.html#term-in[`in`], xref:cql-dictionary.html#term-included-in[`included in`], xref:cql-dictionary.html#term-includes[`includes`], xref:cql-dictionary.html#term-intersect[`intersect`], xref:cql-dictionary.html#term-ordered[`ordered`], xref:cql-dictionary.html#term-point[`point`], xref:cql-dictionary.html#term-properly[`properly`], xref:cql-dictionary.html#term-singleton[`singleton`], xref:cql-dictionary.html#term-start[`start`], xref:cql-dictionary.html#term-union[`union`], xref:cql-dictionary.html#term-width[`width`]
 
-=== Timing Operator (17)
+== Timing Operator (17)
 
 Allen's-interval-algebra-style relationships between dates, times, and intervals.
 
-Members: <<term-after,`after`>>, <<term-before,`before`>>, <<term-during,`during`>>, <<term-ends,`ends`>>, <<term-meets,`meets`>>, <<term-occurs,`occurs`>>, <<term-on,`on`>>, <<term-or-after,`or after`>>, <<term-or-before,`or before`>>, <<term-or-less,`or less`>>, <<term-or-more,`or more`>>, <<term-or-on,`or on`>>, <<term-overlaps,`overlaps`>>, <<term-per,`per`>>, <<term-same,`same`>>, <<term-starts,`starts`>>, <<term-within,`within`>>
+Members: xref:cql-dictionary.html#term-after[`after`], xref:cql-dictionary.html#term-before[`before`], xref:cql-dictionary.html#term-during[`during`], xref:cql-dictionary.html#term-ends[`ends`], xref:cql-dictionary.html#term-meets[`meets`], xref:cql-dictionary.html#term-occurs[`occurs`], xref:cql-dictionary.html#term-on[`on`], xref:cql-dictionary.html#term-or-after[`or after`], xref:cql-dictionary.html#term-or-before[`or before`], xref:cql-dictionary.html#term-or-less[`or less`], xref:cql-dictionary.html#term-or-more[`or more`], xref:cql-dictionary.html#term-or-on[`or on`], xref:cql-dictionary.html#term-overlaps[`overlaps`], xref:cql-dictionary.html#term-per[`per`], xref:cql-dictionary.html#term-same[`same`], xref:cql-dictionary.html#term-starts[`starts`], xref:cql-dictionary.html#term-within[`within`]
 
-=== Time-Precision Unit (16)
+== Time-Precision Unit (16)
 
 The calendar-duration units quantities and date arithmetic are expressed in.
 
-Members: <<term-day,`day`>>, <<term-days,`days`>>, <<term-hour,`hour`>>, <<term-hours,`hours`>>, <<term-millisecond,`millisecond`>>, <<term-milliseconds,`milliseconds`>>, <<term-minute,`minute`>>, <<term-minutes,`minutes`>>, <<term-month,`month`>>, <<term-months,`months`>>, <<term-second,`second`>>, <<term-seconds,`seconds`>>, <<term-week,`week`>>, <<term-weeks,`weeks`>>, <<term-year,`year`>>, <<term-years,`years`>>
+Members: xref:cql-dictionary.html#term-day[`day`], xref:cql-dictionary.html#term-days[`days`], xref:cql-dictionary.html#term-hour[`hour`], xref:cql-dictionary.html#term-hours[`hours`], xref:cql-dictionary.html#term-millisecond[`millisecond`], xref:cql-dictionary.html#term-milliseconds[`milliseconds`], xref:cql-dictionary.html#term-minute[`minute`], xref:cql-dictionary.html#term-minutes[`minutes`], xref:cql-dictionary.html#term-month[`month`], xref:cql-dictionary.html#term-months[`months`], xref:cql-dictionary.html#term-second[`second`], xref:cql-dictionary.html#term-seconds[`seconds`], xref:cql-dictionary.html#term-week[`week`], xref:cql-dictionary.html#term-weeks[`weeks`], xref:cql-dictionary.html#term-year[`year`], xref:cql-dictionary.html#term-years[`years`]
 
-=== Extraction Operator (6)
+== Extraction Operator (6)
 
 Pulling a component (date, time, precision) out of a date/time value.
 
-Members: <<term-date,`date`>>, <<term-difference,`difference`>>, <<term-duration,`duration`>>, <<term-of,`of`>>, <<term-time,`time`>>, <<term-timezoneoffset,`timezoneoffset`>>
+Members: xref:cql-dictionary.html#term-date[`date`], xref:cql-dictionary.html#term-difference[`difference`], xref:cql-dictionary.html#term-duration[`duration`], xref:cql-dictionary.html#term-of[`of`], xref:cql-dictionary.html#term-time[`time`], xref:cql-dictionary.html#term-timezoneoffset[`timezoneoffset`]

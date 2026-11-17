@@ -1,0 +1,13 @@
+= CQL Keyword Dictionary
+:toc: left
+:sectnums:
+:chapter-id: cql-dictionary
+:chapter-status: published
+:chapter-root:
+
+[preface]
+== About This Dictionary
+
+This reference dictionary documents all 136 keywords of the Clinical Quality Language (CQL), with formal syntax, typing rules, clinical examples, and execution semantics.
+
+include::hierarchy:cql-dictionary[]

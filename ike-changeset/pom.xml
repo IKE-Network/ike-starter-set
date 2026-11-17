@@ -7,6 +7,7 @@
     <parent>
         <groupId>network.ike.foundation</groupId>
         <artifactId>ike-starter-set</artifactId>
+        <version>1-SNAPSHOT</version>
     </parent>
 
     <artifactId>ike-changeset</artifactId>

@@ -1,0 +1,35 @@
+:chapter-id: el-concepts
+:chapter-parent: ike-guide
+:chapter-order: 700
+:chapter-status: published
+
+= EL++ Concepts
+
+koncept-narrative::Axioms[]
+
+== Roles and Role Operators
+
+koncept-narrative::Role[]
+
+== Inclusion, Necessary, and Sufficient Sets
+
+koncept-narrative::InclusionSet[]
+
+== Concrete Value Operators
+
+koncept-narrative::ConcreteValueOperator[]
+
+== Logical Definitions and Grouping
+
+koncept-narrative::LogicalDefinition[]
+
+<<koncept-pattern-table-ELStatedAxiomsPattern>>,
+<<koncept-pattern-table-ELInferredAxiomsPattern>>, and
+<<koncept-pattern-table-OWLAxiomSyntaxPattern>> show the three axiom patterns'
+shapes.
+
+koncept-pattern-table::ELStatedAxiomsPattern[]
+
+koncept-pattern-table::ELInferredAxiomsPattern[]
+
+koncept-pattern-table::OWLAxiomSyntaxPattern[]

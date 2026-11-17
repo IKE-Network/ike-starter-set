@@ -7,6 +7,7 @@
     <parent>
         <groupId>network.ike.foundation</groupId>
         <artifactId>ike-starter-set</artifactId>
+        <version>1-SNAPSHOT</version>
     </parent>
 
     <artifactId>ike-doc</artifactId>
@@ -41,6 +42,13 @@
     </properties>
 
     <dependencies>
+        <!-- Build-order only: ensure doc extension builds before doc rendering -->
+        <dependency>
+            <groupId>network.ike.foundation</groupId>
+            <artifactId>ike-doc-extension</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- Build-order only: the change-set module extracts the koncepts.yml this
              guide renders. -->
         <dependency>
@@ -66,10 +74,37 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
             </plugin>
+            <!-- Discovers every chapter declared anywhere in the reactor, validates the
+                 hierarchy they form, and writes target/ike-hierarchy-index.json. Must run before
+                 the guide renders: the include processor below reads only this index. -->
+            <plugin>
+                <groupId>network.ike.foundation</groupId>
+                <artifactId>ike-hierarchy-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <id>hierarchy-index</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>index</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <dependencies>
+                    <dependency>
+                        <groupId>network.ike.foundation</groupId>
+                        <artifactId>ike-doc-extension</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>network.ike.foundation</groupId>
+                        <artifactId>ike-hierarchy-model</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
                     <dependency>
                         <groupId>network.ike.docs</groupId>
                         <artifactId>koncept-asciidoc-extension</artifactId>
@@ -78,6 +113,11 @@
                 </dependencies>
                 <configuration>
                     <attributes>
+                        <!-- The index the include processor reads, and the base every path in it
+                             is resolved beneath. The base comes from Maven rather than from the
+                             index, so the index cannot name a file outside the project. -->
+                        <ike-hierarchy-index>${project.build.directory}/ike-hierarchy-index.json</ike-hierarchy-index>
+                        <ike-hierarchy-base>${session.rootDirectory}</ike-hierarchy-base>
                         <koncept-definitions-file>${koncepts.yml}</koncept-definitions-file>
                         <koncept-glossary-all/>
                     </attributes>

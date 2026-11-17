@@ -1,0 +1,8 @@
+:chapter-id: clinical-phenomena-and-domain-content
+:chapter-parent: ike-guide
+:chapter-order: 2000
+:chapter-status: published
+
+= Clinical Phenomena and Domain Content
+
+koncept-narrative::Phenomenon[]

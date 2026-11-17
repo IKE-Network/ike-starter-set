@@ -1,25 +1,30 @@
-== Core Operators
+:chapter-id: core-operators
+:chapter-parent: cql
+:chapter-order: 600
+:chapter-status: published
 
-=== Logical Operator (6)
+= Core Operators
+
+== Logical Operator (6)
 
 Boolean connectives, evaluated with three-valued (true/false/null) logic.
 
-Members: <<term-and,`and`>>, <<term-exists,`exists`>>, <<term-implies,`implies`>>, <<term-not,`not`>>, <<term-or,`or`>>, <<term-xor,`xor`>>
+Members: xref:cql-dictionary.html#term-and[`and`], xref:cql-dictionary.html#term-exists[`exists`], xref:cql-dictionary.html#term-implies[`implies`], xref:cql-dictionary.html#term-not[`not`], xref:cql-dictionary.html#term-or[`or`], xref:cql-dictionary.html#term-xor[`xor`]
 
-=== Arithmetic Operator (6)
+== Arithmetic Operator (6)
 
 Numeric operators beyond the basic +, -, *, /.
 
-Members: <<term-div,`div`>>, <<term-maximum,`maximum`>>, <<term-minimum,`minimum`>>, <<term-mod,`mod`>>, <<term-predecessor,`predecessor`>>, <<term-successor,`successor`>>
+Members: xref:cql-dictionary.html#term-div[`div`], xref:cql-dictionary.html#term-maximum[`maximum`], xref:cql-dictionary.html#term-minimum[`minimum`], xref:cql-dictionary.html#term-mod[`mod`], xref:cql-dictionary.html#term-predecessor[`predecessor`], xref:cql-dictionary.html#term-successor[`successor`]
 
-=== Type Operator (5)
+== Type Operator (5)
 
 Casting and type-checking between CQL's types.
 
-Members: <<term-as,`as`>>, <<term-cast,`cast`>>, <<term-convert,`convert`>>, <<term-is,`is`>>, <<term-to,`to`>>
+Members: xref:cql-dictionary.html#term-as[`as`], xref:cql-dictionary.html#term-cast[`cast`], xref:cql-dictionary.html#term-convert[`convert`], xref:cql-dictionary.html#term-is[`is`], xref:cql-dictionary.html#term-to[`to`]
 
-=== Comparison Operator (1)
+== Comparison Operator (1)
 
 General-purpose range comparison.
 
-Members: <<term-between,`between`>>
+Members: xref:cql-dictionary.html#term-between[`between`]

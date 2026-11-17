@@ -1,0 +1,12 @@
+:chapter-id: value-constraints-and-reference-ranges
+:chapter-parent: ike-guide
+:chapter-order: 1300
+:chapter-status: published
+
+= Value Constraints and Reference Ranges
+
+koncept-narrative::ValueConstraint[]
+
+<<koncept-pattern-table-ValueConstraintPattern>> shows the pattern's shape.
+
+koncept-pattern-table::ValueConstraintPattern[]

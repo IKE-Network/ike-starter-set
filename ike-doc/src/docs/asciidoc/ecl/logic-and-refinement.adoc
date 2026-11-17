@@ -1,6 +1,10 @@
-[#ecl-logic-and-refinement]
-== Logic & Refinement
+:chapter-id: logic-and-refinement
+:chapter-parent: ecl
+:chapter-order: 500
+:chapter-status: published
+
+= Logic & Refinement
 
 This family combines expression constraints and refines them by attribute: the boolean connectives and the modifiers of an attribute or attribute group.
 
-Members: <<ecl-term-and,`and`>>, <<ecl-term-many,`many`>>, <<ecl-term-minus,`minus`>>, <<ecl-term-or,`or`>>, <<ecl-term-reverseOf,`reverseOf`>>, <<ecl-term-to,`to`>>
+Members: xref:ecl-dictionary.html#ecl-term-and[`and`], xref:ecl-dictionary.html#ecl-term-many[`many`], xref:ecl-dictionary.html#ecl-term-minus[`minus`], xref:ecl-dictionary.html#ecl-term-or[`or`], xref:ecl-dictionary.html#ecl-term-reverseOf[`reverseOf`], xref:ecl-dictionary.html#ecl-term-to[`to`]

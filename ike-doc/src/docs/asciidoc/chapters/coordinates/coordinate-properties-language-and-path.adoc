@@ -1,0 +1,8 @@
+:chapter-id: coordinate-properties-language-and-path
+:chapter-parent: ike-guide
+:chapter-order: 1800
+:chapter-status: published
+
+= Coordinate Properties: Language and Path
+
+koncept-narrative::LanguageCoordinateProperties[]

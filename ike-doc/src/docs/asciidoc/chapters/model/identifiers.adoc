@@ -1,0 +1,12 @@
+:chapter-id: identifiers
+:chapter-parent: ike-guide
+:chapter-order: 1700
+:chapter-status: published
+
+= Identifiers
+
+koncept-narrative::IdentifierSource[]
+
+<<koncept-pattern-table-IdentifierPattern>> shows the identifier pattern's shape.
+
+koncept-pattern-table::IdentifierPattern[]

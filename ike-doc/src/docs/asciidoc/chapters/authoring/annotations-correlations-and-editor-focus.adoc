@@ -1,0 +1,19 @@
+:chapter-id: annotations-correlations-and-editor-focus
+:chapter-parent: ike-guide
+:chapter-order: 1600
+:chapter-status: published
+
+= Annotations, Correlations and Editor Focus
+
+koncept-narrative::AnnotationType[]
+
+<<koncept-pattern-table-CommentPattern>>,
+<<koncept-pattern-table-StarterSetAuthorRosterPattern>>, and
+<<koncept-pattern-table-PreferredReviewerPattern>> show these three patterns'
+shapes.
+
+koncept-pattern-table::CommentPattern[]
+
+koncept-pattern-table::StarterSetAuthorRosterPattern[]
+
+koncept-pattern-table::PreferredReviewerPattern[]

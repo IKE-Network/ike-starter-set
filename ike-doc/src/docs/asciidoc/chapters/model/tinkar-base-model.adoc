@@ -1,0 +1,45 @@
+:chapter-id: tinkar-base-model
+:chapter-parent: ike-guide
+:chapter-order: 1200
+:chapter-status: published
+
+= Tinkar Base Model
+
+This chapter describes the component/chronicle/pattern-of-patterns meta-model every
+other chapter's own terminology ultimately descends from.
+
+== Components and Chronicles
+
+koncept-narrative::TinkarModelConcept[]
+
+The base-model shape patterns' own tables follow, in the order the narrative names
+them: the chronicle and version shapes for components, concepts, patterns,
+semantics, and STAMPs, then the base-model membership patterns.
+
+koncept-pattern-table::ComponentChronologyPattern[]
+
+koncept-pattern-table::ComponentVersionPattern[]
+
+koncept-pattern-table::ConceptFieldPattern[]
+
+koncept-pattern-table::ConceptVersionPattern[]
+
+koncept-pattern-table::PatternChronologyPattern[]
+
+koncept-pattern-table::PatternVersionPattern[]
+
+koncept-pattern-table::SemanticChronologyPattern[]
+
+koncept-pattern-table::SemanticVersionFieldPattern[]
+
+koncept-pattern-table::STAMPChronologyPattern[]
+
+koncept-pattern-table::STAMPVersionFieldPattern[]
+
+koncept-pattern-table::TinkarBaseModelComponentPattern[]
+
+koncept-pattern-table::KometBaseModelComponentPattern[]
+
+== Base Model Primitives
+
+koncept-narrative::Object[]

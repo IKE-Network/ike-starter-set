@@ -1,19 +1,24 @@
-== Query & Control Flow
+:chapter-id: query-and-control-flow
+:chapter-parent: cql
+:chapter-order: 800
+:chapter-status: published
 
-=== Query Clause (12)
+= Query & Control Flow
+
+== Query Clause (12)
 
 The clauses that make up a CQL query: source, filter, relate, shape, sort.
 
-Members: <<term-aggregate,`aggregate`>>, <<term-all,`all`>>, <<term-by,`by`>>, <<term-from,`from`>>, <<term-let,`let`>>, <<term-return,`return`>>, <<term-sort,`sort`>>, <<term-starting,`starting`>>, <<term-such-that,`such that`>>, <<term-where,`where`>>, <<term-with,`with`>>, <<term-without,`without`>>
+Members: xref:cql-dictionary.html#term-aggregate[`aggregate`], xref:cql-dictionary.html#term-all[`all`], xref:cql-dictionary.html#term-by[`by`], xref:cql-dictionary.html#term-from[`from`], xref:cql-dictionary.html#term-let[`let`], xref:cql-dictionary.html#term-return[`return`], xref:cql-dictionary.html#term-sort[`sort`], xref:cql-dictionary.html#term-starting[`starting`], xref:cql-dictionary.html#term-such-that[`such that`], xref:cql-dictionary.html#term-where[`where`], xref:cql-dictionary.html#term-with[`with`], xref:cql-dictionary.html#term-without[`without`]
 
-=== Conditional Expression (5)
+== Conditional Expression (5)
 
 Branching logic -- choose a result based on a condition.
 
-Members: <<term-case,`case`>>, <<term-else,`else`>>, <<term-if,`if`>>, <<term-then,`then`>>, <<term-when,`when`>>
+Members: xref:cql-dictionary.html#term-case[`case`], xref:cql-dictionary.html#term-else[`else`], xref:cql-dictionary.html#term-if[`if`], xref:cql-dictionary.html#term-then[`then`], xref:cql-dictionary.html#term-when[`when`]
 
-=== Sort Modifier (4)
+== Sort Modifier (4)
 
 Direction keywords for the sort clause.
 
-Members: <<term-asc,`asc`>>, <<term-ascending,`ascending`>>, <<term-desc,`desc`>>, <<term-descending,`descending`>>
+Members: xref:cql-dictionary.html#term-asc[`asc`], xref:cql-dictionary.html#term-ascending[`ascending`], xref:cql-dictionary.html#term-desc[`desc`], xref:cql-dictionary.html#term-descending[`descending`]

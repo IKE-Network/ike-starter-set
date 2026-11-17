@@ -1,0 +1,61 @@
+:chapter-id: stamp-concepts
+:chapter-parent: ike-guide
+:chapter-order: 400
+:chapter-status: published
+
+= STAMP Concepts
+
+Every version of every component carries a STAMP: a (status, author, module, path,
+time) tuple recording who committed it, in what state, in which module, on which
+path, and when. Four of those five dimensions are themselves concepts in this set.
+
+== Status
+
+koncept-narrative::StatusValue[]
+
+== Author
+
+koncept-narrative::Author[]
+
+== Module
+
+koncept-narrative::Module[]
+
+<<koncept-pattern-table-ModuleOriginsPattern>> shows the module-origins pattern's
+shape.
+
+koncept-pattern-table::ModuleOriginsPattern[]
+
+== Path
+
+koncept-narrative::Path[]
+
+<<koncept-pattern-table-PathOriginsPattern>> and
+<<koncept-pattern-table-VersionControlPathPattern>> show the two path patterns'
+shapes.
+
+koncept-pattern-table::PathOriginsPattern[]
+
+koncept-pattern-table::VersionControlPathPattern[]
+
+== Edit Coordinate
+
+koncept-narrative::AuthorForEditCoordinate[]
+
+Put together, a `StampCoordinate` is exactly these four dimensions plus a time: the
+allowed states, the module preference and exclusion, and a position (path plus time).
+`StampCalculator` walks a component's version history and returns whichever version
+is both on an allowed path (at or before the coordinate's time) and in an allowed
+state — "latest state," computed the same way every time the same coordinate is used.
+
+As a pattern, k:STAMPPattern[] itself carries a referenced-component meaning of
+k:VersionProperties[] and a purpose of k:CommitProvenance[] — why the pattern exists:
+to record who committed a version, in what state, module, path, and when. Five fields
+each carry their own meaning and purpose concept: k:StatusValue[] (meaning) for
+k:StatusForVersion[] (purpose), k:Time[] (meaning) for k:TimeForVersion[] (purpose),
+and k:Author[], k:Module[], and k:Path[] (meaning) for k:AuthorForVersion[],
+k:ModuleForVersion[], and k:PathForVersion[] (purpose) respectively — the same four
+koncepts named above, plus time, now restated here by their own exact field-meaning
+identity. That shape, feature by feature, is <<koncept-pattern-table-STAMPPattern>>.
+
+koncept-pattern-table::STAMPPattern[]

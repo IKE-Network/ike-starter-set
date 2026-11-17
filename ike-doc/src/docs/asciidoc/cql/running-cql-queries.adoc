@@ -1,3 +1,8 @@
-== Running CQL Queries
+:chapter-id: running-cql-queries
+:chapter-parent: cql
+:chapter-order: 200
+:chapter-status: published
+
+= Running CQL Queries
 
 Running a CQL Query info here
