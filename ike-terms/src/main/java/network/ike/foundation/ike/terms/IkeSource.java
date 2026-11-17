@@ -205,6 +205,15 @@ public final class IkeSource implements KnowledgeSetSource {
         // and formula reuse DecisionTreeSet's derivation keys and its Derivation kind parent,
         // so it composes after that set.
         CalculatorSet.compose(Ike.SET);
+        // RuleModelSet declares the names every rule needs (dev-rules-as-knowledge,
+        // IKE-Network/ike-issues#1391 and #1390): Rule model, Komet rule and Komet rule set.
+        RuleModelSet.compose(Ike.SET);
+        // GuidedWorkflowModelSet declares the guided workflow as concepts (dev-guided-workflow,
+        // IKE-Network/ike-issues#1390): a workflow, the kinds of step by who performs them, the
+        // two definition patterns, the intake of a 510(k) from its eSTAR export with its nine
+        // steps, and its two rule sets with their seven rules. Its rule sets and rules are kinds
+        // of the two parents RuleModelSet declares, so it composes after that set.
+        GuidedWorkflowModelSet.compose(Ike.SET);
         KernelBindings.compose(Ike.SET);
         KometBindings.compose(Ike.SET);
         return Ike.SET;
