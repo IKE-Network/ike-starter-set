@@ -46,8 +46,9 @@ import dev.ikm.tinkar.terms.KernelConcept;
  * <p><b>The rules.</b> The two rule sets of the guided workflow and their seven rules are
  * concepts beneath {@code Komet rule set} and {@code Komet rule} ({@link RuleModelSet}). A rule
  * is named by the sentence of what it does. Which rules a rule set has, and the text of a set,
- * are recorded when the {@code Rule source pattern} is declared with the work on rules written
- * in Komet (IKE-Network/ike-issues#1391); until then the text is the plugin's.
+ * are recorded as semantics of the {@code Rule source pattern} ({@link RuleModelSet}) once the
+ * work on rules written in Komet (IKE-Network/ike-issues#1391) writes them; until then the text
+ * is the plugin's.
  *
  * <p><b>The fully qualified names are frozen</b> once a checkpoint carries them: every concept and
  * pattern takes the set's derived identity, {@code T5(d890e06f…, "<name> (IkeFoundation)")}.

@@ -206,7 +206,9 @@ public final class IkeSource implements KnowledgeSetSource {
         // so it composes after that set.
         CalculatorSet.compose(Ike.SET);
         // RuleModelSet declares the names every rule needs (dev-rules-as-knowledge,
-        // IKE-Network/ike-issues#1391 and #1390): Rule model, Komet rule and Komet rule set.
+        // IKE-Network/ike-issues#1391 and #1390): Rule model, Komet rule and Komet rule set, and
+        // the Rule source pattern of the text of one rule set, with its meaning, its purpose and
+        // its three fields.
         RuleModelSet.compose(Ike.SET);
         // GuidedWorkflowModelSet declares the guided workflow as concepts (dev-guided-workflow,
         // IKE-Network/ike-issues#1390): a workflow, the kinds of step by who performs them, the
