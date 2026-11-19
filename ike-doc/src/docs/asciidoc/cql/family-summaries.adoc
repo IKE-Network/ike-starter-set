@@ -6,15 +6,15 @@ Quick-scan view of each family in this guide and what it contributes to CQL auth
 
 This family defines the foundational values CQL expressions operate on: built-in types (<<term-Code,`Code`>>, <<term-Concept,`Concept`>>, <<term-Interval,`Interval`>>, <<term-List,`List`>>, <<term-Tuple,`Tuple`>>) and fixed literals (<<term-true,`true`>>, <<term-false,`false`>>, <<term-null,`null`>>). These terms establish the basic data shapes and constants used throughout the language.
 
-=== Declarations (19)
+=== Declarations (32)
 
-This family contains the top-level library-building language: context, terminology, parameters, includes, and reusable definitions, plus modifiers for visibility, aliasing, defaults, fluent use, display labels, and versions. In practice, these keywords structure a CQL library and control how its logic is exposed and reused.
+This family contains the top-level library-building language: context, terminology, parameters, includes, and reusable definitions, plus modifiers for visibility, aliasing, defaults, fluent use, display labels, versions, and parameter binding on includes. It also holds the CQL 2.0 trial-use model-definition keywords: class types (<<term-type,`type`>>, <<term-extends,`extends`>>) and their type information, primary code paths, context relationships, and type conversions (<<term-conversion,`conversion`>>, <<term-implicit,`implicit`>>, <<term-explicit,`explicit`>>). In practice, these keywords structure a CQL library and control how its logic is exposed and reused.
 
 === Core Operators (18)
 
 This family covers general-purpose expression logic: boolean composition, arithmetic operations, type checks/conversions, and core comparison (<<term-between,`between`>>). These terms are the primary tools for computing, combining, and evaluating conditions inside definitions and queries.
 
-=== Data & Timing Operators (56)
+=== Data & Timing Operators (57)
 
 This family provides most of CQL's clinical data-shaping and temporal logic, including list/interval operations, temporal relationships, precision units, and date/time extraction (<<term-difference,`difference`>>, <<term-duration,`duration`>>, parts of dates/times). It is central for measure logic that depends on membership, boundaries, overlap, ordering, and timing windows.
 
