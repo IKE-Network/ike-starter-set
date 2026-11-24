@@ -125,6 +125,13 @@ final class KometBindings {
         bind(set, "cd4f4488-ca4c-5e44-904e-ca91b5399c6d", "EDIT_DOCUMENT_SENTENCE");
         bind(set, "35f59e27-9fef-52a9-b9cf-0baa0848e27f", "ADD_DOCUMENT_BLOCK");
         bind(set, "265acd37-710f-5cbb-9e33-a1a7650e5622", "DELETE_DOCUMENT_BLOCK");
+        // The storage actions and the read action that writes a file (#1313), and their inputs.
+        bind(set, "f7f815c1-a9e1-53bf-937d-cf5785b77ce2", "REMOVE_FROM_KNOWLEDGE_BASE");
+        bind(set, "8dcd9eeb-3849-58ab-8cc8-568a77d43e4b", "SHARE_DOCUMENT");
+        bind(set, "4f214783-60e7-555f-9c5f-dff676aa14ed", "MAKE_DOCUMENT_LOCAL");
+        bind(set, "f9804fe7-3176-5a5e-ab25-3e58c02a16e9", "DELETE_DOCUMENT");
+        bind(set, "3c90d8da-8eb0-55e7-ab35-f4c0d42a9b0a", "EXPORT_TO_FILE");
+        bind(set, "f789e6f8-227e-5b6e-85de-3b747a64b8d7", "IMPORT_FROM_FILE");
         bind(set, "a0bdab4e-69db-559d-ac82-24e3f1af7702", "ACTION_COMPLETED");
         bind(set, "f72d46df-3a28-5d99-b89a-2fc45311803d", "ACTION_REFUSED");
         bind(set, "2b555975-4639-5c58-bea4-8288e281cffa", "ACTION_FAILED");
@@ -134,6 +141,9 @@ final class KometBindings {
         bind(set, "d500cc84-978b-543b-9011-0fefa0166507", "ANF_STATEMENT_TREE_INPUT_PATTERN");
         bind(set, "3891e739-23c3-51e3-b048-580330566298", "COMPLEX_CONCEPT_PROMOTION_INPUT_PATTERN");
         bind(set, "0c165219-451c-5597-beb8-a2d404e67742", "DOCUMENT_BLOCK_INSERTION_INPUT_PATTERN");
+        bind(set, "8e47c5e8-9adc-510c-a368-e6b7a3530152", "DATA_GROUP_INPUT_PATTERN");
+        bind(set, "11b3bbab-e57e-527b-b5ae-7d22cb09dff2", "FILE_EXPORT_INPUT_PATTERN");
+        bind(set, "364689a9-a019-54ba-9628-91517795ec7c", "FILE_IMPORT_INPUT_PATTERN");
         bind(set, "c0f13898-fa2a-5b10-aa22-cf0885144af0", "VERSION_CHANGE_RESULT_PATTERN");
     }
 

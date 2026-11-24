@@ -31,7 +31,10 @@ import dev.ikm.tinkar.terms.KernelConcept;
  * action does: read, change, check, navigate. A kind of action is a concept beneath one of them,
  * defined for the clinicians and knowledge architects who use it. Activate and inactivate are
  * the first, as the smallest family the rules engine offers; editing a document block is the
- * first action with an input beyond its subject.
+ * first action with an input beyond its subject. The storage actions act on whole groups of data:
+ * they remove documents saved in files, share documents, make shared ones local, delete them, and
+ * import data from a file; exporting such a group is the first read action with a file
+ * (IKE-Network/ike-issues#1313).
  *
  * <p><b>The action definition.</b> An {@code Action definition pattern} semantic on each action
  * concept names the pattern its input takes, the pattern its result takes, and the instructions
@@ -114,6 +117,20 @@ final class ActionModelSet {
         concept(set, inception, "Block kind", "Action model",
                 "The kind of block a run adds to a document: a document paragraph or a document"
                         + " listing, named by the Document structure concept for it.");
+        concept(set, inception, "Acted on together", "Action model",
+                "The other groups of data a run acts on in the same step as its subject. When a person"
+                        + " removes a folder of documents, the subject is one document in the folder and"
+                        + " this field lists the others. Documents acted on together may refer to one"
+                        + " another, as the documents of an assembly do, and those references do not stop"
+                        + " the run.");
+        concept(set, inception, "File location", "Action model",
+                "The file a run writes or reads, given as its path on this computer. An exported"
+                        + " conversation is written to the file the person chose in the save panel, and an"
+                        + " import reads the file the person opened.");
+        concept(set, inception, "Replace existing data", "Action model",
+                "Whether a run that brings data in removes the copy this knowledge base already has"
+                        + " before it reads the file. It is true only when the person was asked and"
+                        + " answered Replace.");
 
         // ── Results ──────────────────────────────────────────────────────────
         concept(set, inception, "Action result", "Action model",
@@ -198,6 +215,40 @@ final class ActionModelSet {
                         + " complex concept: the kind of action performed on the statement, the referenced"
                         + " component, and the name of the complex concept it creates.");
 
+        set.pattern(fqn("Data group input pattern")).at(inception)
+                .meaning(set.conceptRef(fqn("Action input")))
+                .purpose(record)
+                .field(set.conceptRef(fqn("Performed action")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("Acted on together")), record, KernelConcept.COMPONENT_ID_SET_FIELD)
+                .synonym("Data group input pattern")
+                .definition("The input of an action that acts on whole groups of data, such as removing,"
+                        + " sharing or deleting documents: the kind of action performed, and the other"
+                        + " groups acted on with the referenced component, which is the document or other"
+                        + " group itself.");
+
+        set.pattern(fqn("File export input pattern")).at(inception)
+                .meaning(set.conceptRef(fqn("Action input")))
+                .purpose(record)
+                .field(set.conceptRef(fqn("Performed action")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("File location")), record, KernelConcept.STRING)
+                .synonym("File export input pattern")
+                .definition("The input of an action that writes data of the knowledge base to a file: the"
+                        + " kind of action performed on the referenced component, which is the data"
+                        + " written, and where the file goes.");
+
+        set.pattern(fqn("File import input pattern")).at(inception)
+                .meaning(set.conceptRef(fqn("Action input")))
+                .purpose(record)
+                .field(set.conceptRef(fqn("Performed action")), record, KernelConcept.CONCEPT_FIELD)
+                .field(set.conceptRef(fqn("File location")), record, KernelConcept.STRING)
+                .field(set.conceptRef(fqn("Replace existing data")), record, KernelConcept.BOOLEAN_FIELD)
+                .synonym("File import input pattern")
+                .definition("The input of an action that reads data into the knowledge base from a file:"
+                        + " the kind of action performed, where the file is, and whether the data replaces"
+                        + " a copy already here. The referenced component is the module parent the data"
+                        + " is kept under, Local module for data that never syncs with the knowledge"
+                        + " base.");
+
         set.pattern(fqn("Version change result pattern")).at(inception)
                 .meaning(set.conceptRef(fqn("Action result")))
                 .purpose(record)
@@ -225,6 +276,12 @@ final class ActionModelSet {
         concept(set, inception, "Navigate action", "Komet action",
                 "An action that changes what a person sees — focus, window, layout — and nothing in the"
                         + " knowledge base.");
+        concept(set, inception, "Storage action", "Komet action",
+                "An action on a whole group of data, such as a document or a conversation. It takes the"
+                        + " group out of the knowledge base, brings one in, or changes who else gets it, in"
+                        + " one step. Removing a folder of documents saved in files is an example, and so is"
+                        + " sharing a document. What it does is complete when the run ends, with nothing"
+                        + " left uncommitted for a person to commit.");
 
         changeAction(set, inception, "Activate component",
                 "Makes an inactive component active again: writes a new version of the subject with"
@@ -322,6 +379,64 @@ final class ActionModelSet {
                         + " a list or a section, and refuse when an edit of the document by someone else is"
                         + " pending. Report what changed; the edit stays uncommitted until the person commits"
                         + " the document in git.");
+
+        // ── Storage: removing, sharing, exporting and importing groups of data (#1313) ──
+        // A person performs each of these; the assistant offers them. The policy on patient data in
+        // data kept only in a knowledge base is not settled (IKE-Network/ike-issues#1313).
+        storageAction(set, inception, "Remove from knowledge base", "Data group input pattern",
+                "Removes documents saved in files from the knowledge base, each with its annotations and"
+                        + " narrations, in one step. Their files stay where they are, and opening a file"
+                        + " again reads the document back in under the same identities. A single document"
+                        + " or a whole folder of them can be removed. The removal is refused when an edit of"
+                        + " one of them is not yet saved to its file, when something outside them refers to"
+                        + " one of them, or when the data is not saved in a file.",
+                "Do not perform this action yourself. Offer it for documents the person has asked to"
+                        + " remove, and name them. Never offer it for data that is not saved in a file, such"
+                        + " as a conversation: the knowledge base is its only record, and it leaves through"
+                        + " the Trash.");
+        storageAction(set, inception, "Share document", "Data group input pattern",
+                "Shares documents with everyone who syncs the knowledge base, each with the documents it"
+                        + " includes. The others can read a shared document and comment on it. Its file"
+                        + " stays its record: whoever has the file edits and commits it, and the shared copy"
+                        + " follows each commit. Sharing is refused when an edit of one of the documents is"
+                        + " not committed, when one refers to local data outside them, or when a file is in"
+                        + " a folder without git.",
+                "Do not perform this action yourself. Offer it for documents the person has asked to"
+                        + " share, name them and the documents they include, and say who gets them. Never"
+                        + " offer to share anything about a real patient.");
+        storageAction(set, inception, "Make document local", "Data group input pattern",
+                "Makes shared documents local. Everyone else who syncs the knowledge base loses them, with"
+                        + " what was said of them, at their next sync. Whoever makes a document local keeps"
+                        + " it: read from its file where the file is on their computer, and as local data"
+                        + " where it is not. It is refused when another shared document includes one of"
+                        + " them.",
+                "Do not perform this action yourself. Offer it for documents the person has asked to make"
+                        + " local, name them, and say that everyone else loses them.");
+        storageAction(set, inception, "Delete document", "Data group input pattern",
+                "Deletes shared documents for everyone who syncs the knowledge base, or documents kept in"
+                        + " this knowledge base alone. A shared document's file stays where it is, and git"
+                        + " history still contains what was shared. Nothing else contains a document kept"
+                        + " in this knowledge base alone. It is refused when something else refers to one of"
+                        + " them, or when another shared document includes one of them.",
+                "Do not perform this action yourself. Offer it for documents the person has asked to"
+                        + " delete, name them, and say who loses them.");
+        readAction(set, inception, "Export to file", "File export input pattern",
+                "Writes a group of local data that is not saved in a file to one file, so another"
+                        + " knowledge base can import it. A conversation with the assistant is an example."
+                        + " The file records the concepts, patterns and modules the data needs, and the"
+                        + " data's kind. Nothing in the knowledge base changes.",
+                "Do not perform this action yourself. Offer it for the conversation the person is having"
+                        + " with you. A document saved in a file is never exported this way: its file is"
+                        + " its record.");
+        storageAction(set, inception, "Import from file", "File import input pattern",
+                "Reads a file written by Export to file into this knowledge base. Before anything is read"
+                        + " in, three things are checked. Every concept, pattern and module the file needs"
+                        + " must be here. The kind of data recorded in the file must match the kind of its"
+                        + " modules here. The data must not be here already, unless the run replaces it."
+                        + " When a check fails, nothing is read in. The data is kept with the knowledge"
+                        + " base's own records, so a rebuild of the knowledge base keeps it.",
+                "Do not perform this action yourself. Offer it for a file the person has named. Replacing"
+                        + " data already here removes it, and only the person does that.");
     }
 
     static String fqn(String name) {
@@ -333,6 +448,41 @@ final class ActionModelSet {
                 .synonym(name)
                 .definition(definition)
                 .isA(set.conceptRef(fqn(parent)));
+    }
+
+    /**
+     * A storage action whose input takes the named pattern. It writes no version, so its result
+     * reports the outcome concept in the {@code Version change result pattern}'s version field, as a
+     * refusal does.
+     */
+    private static void storageAction(KnowledgeSet set, ActiveStamp stamp, String name, String inputPattern,
+                                      String definition, String modelInstructions) {
+        set.concept(fqn(name)).at(stamp)
+                .synonym(name)
+                .definition(definition)
+                .isA(set.conceptRef(fqn("Storage action")))
+                .semantic(set.patternRef(fqn("Action definition pattern")),
+                        PublicIds.of(set.uuidFor("Action definition: " + name)),
+                        set.patternRef(fqn(inputPattern)),
+                        set.patternRef(fqn("Version change result pattern")),
+                        modelInstructions);
+    }
+
+    /**
+     * A read action whose input takes the named pattern. It writes nothing to the knowledge base, so
+     * its result reports no version.
+     */
+    private static void readAction(KnowledgeSet set, ActiveStamp stamp, String name, String inputPattern,
+                                   String definition, String modelInstructions) {
+        set.concept(fqn(name)).at(stamp)
+                .synonym(name)
+                .definition(definition)
+                .isA(set.conceptRef(fqn("Read action")))
+                .semantic(set.patternRef(fqn("Action definition pattern")),
+                        PublicIds.of(set.uuidFor("Action definition: " + name)),
+                        set.patternRef(fqn(inputPattern)),
+                        set.patternRef(fqn("Version change result pattern")),
+                        modelInstructions);
     }
 
     /** A change action that takes only its subject and reports the version it wrote. */

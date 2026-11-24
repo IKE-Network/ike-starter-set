@@ -112,11 +112,14 @@ final class KernelBindings {
         // What a knowledge base is made of (IKE-Network/ike-issues#1304): the Registrar, the module and
         // path registrations are written to, and the three registration patterns tinkar-core's registry
         // writes. Declared after the kernel was cut, with derived identities.
-        // The kinds of data a store holds besides knowledge (IKE-Network/ike-issues#1313): the module
-        // parents tinkar-core's commit validator reads a module's kind by, and the data type of a
-        // single-vertex field. Declared after the kernel was cut, with derived identities.
-        set.bind(set.conceptRef(InstanceDataSet.EPHEMERAL_MODULE).publicId(), Ike.KERNEL, "EPHEMERAL_MODULE");
-        set.bind(set.conceptRef(InstanceDataSet.INSTANCE_MODULE).publicId(), Ike.KERNEL, "INSTANCE_MODULE");
+        // The kinds of data a knowledge base holds besides knowledge, named by who else gets the data
+        // (IKE-Network/ike-issues#1313, design-2026-11-22-knowledge-shared-local): the module parents
+        // tinkar-core's commit validator reads a module's kind by, and the data type of a single-vertex
+        // field. Declared after the kernel was cut. Local module and File module keep the identities of
+        // the Instance module and Ephemeral module they were named before 2026-11-22.
+        set.bind(set.conceptRef(DataKindSet.LOCAL_MODULE).publicId(), Ike.KERNEL, "LOCAL_MODULE");
+        set.bind(set.conceptRef(DataKindSet.FILE_MODULE).publicId(), Ike.KERNEL, "FILE_MODULE");
+        set.bind(set.conceptRef(DataKindSet.SHARED_MODULE).publicId(), Ike.KERNEL, "SHARED_MODULE");
         set.bind(set.conceptRef(DocumentVertexSet.fqn("Vertex data type")).publicId(), Ike.KERNEL, "VERTEX_FIELD");
         set.bind(set.conceptRef(SourceReleaseModelSet.REGISTRAR).publicId(), Ike.KERNEL, "REGISTRAR");
         set.bind(set.conceptRef(SourceReleaseModelSet.REGISTRY_MODULE).publicId(), Ike.KERNEL, "REGISTRY_MODULE");

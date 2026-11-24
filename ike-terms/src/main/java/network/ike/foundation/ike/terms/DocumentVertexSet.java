@@ -139,8 +139,9 @@ final class DocumentVertexSet {
                 .synonym("Document vertex pattern")
                 .definition("The template every document's own vertex pattern is derived from: one field,"
                         + " a vertex. Nothing writes elements against the template itself; each document's"
-                        + " pattern is written under the document's module, ephemeral for a document in git"
-                        + " and instance otherwise, so its vertices hold one contiguous key range and"
+                        + " pattern is written under the document's module, a file module for a document saved"
+                        + " in a file and a local or shared module otherwise, so its vertices hold one"
+                        + " contiguous key range and"
                         + " deleting the document is one range delete.");
     }
 

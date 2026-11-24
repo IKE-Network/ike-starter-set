@@ -163,10 +163,10 @@ final class DocumentStructureSet {
         set.concept(fqn("Conversation journal module")).at(foundation)
                 .synonym("Conversation journal module")
                 .definition("The module every conversation journal's lines, elements and manifest"
-                        + " stamp in, so conversations can be carried or omitted as a unit. A journal's"
-                        + " only record is the store, so the module is an instance module"
+                        + " stamp in, so conversations can be carried or omitted as a unit. A journal never"
+                        + " syncs with the knowledge base, so the module is a local module"
                         + " (IKE-Network/ike-issues#1313).")
-                .isA(set.conceptRef(InstanceDataSet.INSTANCE_MODULE));
+                .isA(set.conceptRef(DataKindSet.LOCAL_MODULE));
     }
 
     static String fqn(String name) {

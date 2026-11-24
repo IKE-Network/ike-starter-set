@@ -72,10 +72,10 @@ final class ChangeTrackingModelSet {
         set.concept(fqn("Change tracking module")).at(inception)
                 .synonym("Change tracking module")
                 .definition("The module transaction records are written to: bookkeeping about how the"
-                        + " knowledge base changed, not knowledge. It is an instance module: its records"
-                        + " are the store's own, written to the instance change sets and never published"
-                        + " with knowledge (IKE-Network/ike-issues#1313).")
-                .isA(set.conceptRef(InstanceDataSet.INSTANCE_MODULE), set.conceptRef(fqn(model)));
+                        + " knowledge base changed, not knowledge. It is a local module, because its records"
+                        + " belong to this knowledge base alone: they are written to its local change sets"
+                        + " and never synced (IKE-Network/ike-issues#1313).")
+                .isA(set.conceptRef(DataKindSet.LOCAL_MODULE), set.conceptRef(fqn(model)));
 
         concept(set, inception, "Change transaction", model,
                 "One transaction of changes to a knowledge base by one author: its name, its basis, what"

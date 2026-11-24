@@ -134,6 +134,11 @@ public final class IkeSource implements KnowledgeSetSource {
         // (IKE-Network/ike-issues#1300). Affirmation keeps the identity the git-provenance family
         // gave it.
         AnnotationModelSet.compose(Ike.SET);
+        // DataKindSet declares the module parents that decide a pattern's kind, knowledge, shared or
+        // local (IKE-Network/ike-issues#1313, design-2026-11-22-knowledge-shared-local), and the
+        // document modules under them. Local module and File module have declared identities, so
+        // the set composes before every set that refers to them.
+        DataKindSet.compose(Ike.SET);
         // ActionModelSet mints Komet's actions as concepts: the action branch, the Action
         // definition pattern naming each action's input and result patterns and its model
         // instructions, and activate and inactivate as the first (dev-komet-actions).
@@ -187,9 +192,6 @@ public final class IkeSource implements KnowledgeSetSource {
         // sentences, inline elements and the keys they carry. It reuses the vertex property parent
         // and the inline references declared above, so it composes after them.
         DocumentSegmentSet.compose(Ike.SET);
-        // InstanceDataSet declares the module parents that decide a pattern's kind, knowledge,
-        // ephemeral or instance (IKE-Network/ike-issues#1313), and the document modules under them.
-        InstanceDataSet.compose(Ike.SET);
         // AnfStatementSet declares an ANF statement as one tree in an ANF statement pattern
         // (IKE-Network/ike-issues#1312); its circumstance vertices reuse the circumstance
         // kinds ElmNodeKindSet declares, so it composes after that set.
