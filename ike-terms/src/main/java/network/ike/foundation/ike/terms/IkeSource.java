@@ -174,6 +174,10 @@ public final class IkeSource implements KnowledgeSetSource {
         // elements are its children, so it composes first.
         DocumentStructureSet.compose(Ike.SET);
         AsciiDocModelSet.compose(Ike.SET);
+        // AuthorResponsibilitySet declares the Responsible person pattern, which names the person
+        // responsible for the work of an author (IKE-Network/ike-issues#1399). It is beneath the Git
+        // provenance model AsciiDocModelSet declares, so it composes after that set.
+        AuthorResponsibilitySet.compose(Ike.SET);
         // DocumentVertexSet declares a document as semantic vertices (IKE-Network/ike-issues#1313):
         // the line meanings, the vertex property keys, the vertex data type and the template
         // pattern. Its block meanings are the elements the two sets above declare, so it composes
